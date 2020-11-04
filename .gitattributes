@@ -1,0 +1,51 @@
+# Git Attributes File
+# Use this as .gitattributes file.
+#
+# Copyright 2020 The MathWorks, Inc.
+
+*.jpg -crlf -diff -merge
+*.png -crlf -diff -merge
+
+*.pdf -crlf -diff -merge
+
+*.docx -crlf -diff -merge
+*.pptx -crlf -diff -merge
+*.xlsx -crlf -diff -merge
+
+# === For use with MathWorks tools ===
+# For details, see the MATLAB Documentation "Set Up Git Source Control".
+
+# Tip*
+#
+# You can reduce your Git repository size by saving Simulink models in SLX
+# format **without** compression. Turning off compression results in larger SLX
+# files on disk but reduces repository size.
+#
+# To turn off SLX compression, open your Simulink SLX file. In the Toolstrip,
+# select Modeling tab. In the Design section, select Property Inspector. In the
+# Property Inspector, select Properties tab. In the General group, at SLX
+# Compression, select "None".
+#
+# (*based on the Simulink Documentation "Manage Model Versions and Specify Model
+# Properties")
+
+# MATLAB binary files
+*.fig -crlf -diff -merge
+*.mat -crlf -diff -merge
+*.mdl -crlf -diff -merge
+*.mdlp -crlf -diff -merge
+*.mexa64 -crlf -diff -merge
+*.mexmaci64 -crlf -diff -merge
+*.mexw64 -crlf -diff -merge
+*.mlapp -crlf -diff -merge
+*.mldatx -crlf -diff -merge
+*.mlproj -crlf -diff -merge
+*.mlx -crlf -diff -merge
+*.p -crlf -diff -merge
+*.sfx -crlf -diff -merge
+*.sldd -crlf -diff -merge
+*.slreqx -crlf -diff -merge
+*.sltx -crlf -diff -merge
+*.slx -crlf -diff -merge
+*.slxc -crlf -diff -merge
+*.slxp -crlf -diff -merge

@@ -1,0 +1,111 @@
+component Vehicle1DBasic
+% Vehicle 1D Basic : 1.4 : fixed
+% Longitudinal vehicle
+
+% Copyright 2020 The MathWorks, Inc.
+
+  parameters
+    M_e = { 1500 'kg' };  % Vehicle effective mass
+    R_tire = { 30 'cm' };  % Tire rolling radius
+    A_rl = { 120 'N' };  % Road-load coefficient A
+    B_rl = { 0.5 'N/(km/hr)' };  % Road-load coefficient B
+    C_rl = { 0.03 'N/(km/hr)^2' };  % Road-load coefficient C
+  end
+  parameters
+    ShowBrakeIn = simscape.enum.onoff.on;  % Show brake force inport
+    ShowGradeIn = simscape.enum.onoff.on;  % Show road grade inport
+  end
+  parameters (ExternalAccess = none)
+    grav = { 9.81 'm/s^2' };  % Gravitational acceleration
+  end
+  parameters
+    ShowVelOut = simscape.enum.onoff.on;  % Show velocity outport
+    ShowGOut = simscape.enum.onoff.on;  % Show G outport
+  end
+  equations
+    assert(M_e > 0)
+    assert(R_tire > 0)
+    assert(A_rl > 0)
+    assert(B_rl >= 0)
+    assert(C_rl > 0)
+    assert(grav > 0)
+  end
+
+  nodes
+    Axle = foundation.mechanical.rotational.rotational;
+  end
+
+  inputs
+    % Brake force
+    brkF = { 0 'N' };  % Brake
+
+    % Road grade range 0-100 % corresponds to 0-45 degrees range.
+    grade_pct = 0;  % Grade
+  end
+  equations
+    assert(-100 <= grade_pct);
+    assert(grade_pct <= 100);
+  end
+
+  outputs
+    v_out = { 0 'km/hr' };  % V
+    G = 0;
+  end
+
+  % port locations
+  annotations
+    [ brkF, grade_pct ] : Side = top;
+    Axle : Side = left;
+    [ v_out, G ] : Side = right;
+  end
+
+  % block options
+  if not(ShowBrakeIn), annotations; brkF : ExternalAccess = none; end; end
+  if not(ShowGradeIn)
+    annotations
+      grav : ExternalAccess = none;
+      grade_pct : ExternalAccess = none;
+    end
+  end
+  if not(ShowVelOut), annotations; v_out : ExternalAccess = none; end; end
+  if not(ShowGOut), annotations; G : ExternalAccess = none; end; end
+
+  parameters (Access = protected)
+    v_norm = { 0.5 'km/hr' };
+  end
+  equations; assert(v_norm > 0); end
+
+  variables
+    v = { value={ 0 'km/hr' }, priority=priority.high };  % Vehicle speed
+  end
+
+  variables (Access = private)
+    trq = { 0 'N*m' };
+    w = { 0 'rpm' };
+  end
+
+  branches
+    trq : Axle.t -> *;
+  end
+
+  intermediates
+    incline_angle = atan(grade_pct/100);
+    F_drive = trq/R_tire;
+    F_brake = brkF*tanh(w/{0.1 'rpm'});
+    F_roll = A_rl + B_rl*v*tanh(v/{0.1 'km/hr'});
+    F_airdrag = C_rl*v^2;
+    F_resist = tanh(v/v_norm)*(F_roll + F_airdrag) + M_e*grav*sin(incline_angle);
+    F_total = F_drive - F_brake - F_resist;
+    accl = F_total/M_e;
+  end
+
+  equations
+    w == Axle.w;
+    v == R_tire*w;
+    M_e*der(v) == F_total;
+
+    % outputs
+    v_out == v;
+    G == accl/grav;
+  end
+end
