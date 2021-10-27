@@ -1,6 +1,8 @@
 component Vehicle1DBasic
 % Vehicle 1D Basic : 1.4 : fixed
-% Longitudinal vehicle
+% Longitudinal vehicle.
+% Brake force input takes a value in Newton (N).
+% Road grade input takes value in 0-1 normalized percent (1).
 
 % Copyright 2020 The MathWorks, Inc.
 
@@ -39,12 +41,12 @@ component Vehicle1DBasic
     % Brake force
     brkF = { 0 'N' };  % Brake
 
-    % Road grade range 0-100 % corresponds to 0-45 degrees range.
-    grade_pct = 0;  % Grade
+    % Road grade in normalized percent value, a value between -1 and 1.
+    grade_norm = 0;  % Grade
   end
   equations
-    assert(-100 <= grade_pct);
-    assert(grade_pct <= 100);
+    assert(-1 <= grade_norm);
+    assert(grade_norm <= 1);
   end
 
   outputs
@@ -54,7 +56,7 @@ component Vehicle1DBasic
 
   % port locations
   annotations
-    [ brkF, grade_pct ] : Side = top;
+    [ brkF, grade_norm ] : Side = top;
     Axle : Side = left;
     [ v_out, G ] : Side = right;
   end
@@ -64,7 +66,7 @@ component Vehicle1DBasic
   if not(ShowGradeIn)
     annotations
       grav : ExternalAccess = none;
-      grade_pct : ExternalAccess = none;
+      grade_norm : ExternalAccess = none;
     end
   end
   if not(ShowVelOut), annotations; v_out : ExternalAccess = none; end; end
@@ -89,7 +91,7 @@ component Vehicle1DBasic
   end
 
   intermediates
-    incline_angle = atan(grade_pct/100);
+    incline_angle = atan(grade_norm);
     F_drive = trq/R_tire;
     F_brake = brkF*tanh(w/{0.1 'rpm'});
     F_roll = A_rl + B_rl*v*tanh(v/{0.1 'km/hr'});
