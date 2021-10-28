@@ -6,7 +6,7 @@
 
 if not(contains(string(ver('matlab').Release), "R2020b"))
   disp("This project was developed in R2020b.")
-  versionhar = ver('matlab').Release;
-  disp("This MATLAB Release is " + versionhar(2:end-1) + ".")
+  relstr = ver('matlab').Release;
+  disp("This MATLAB Release is " + relstr(2:end-1) + ".")
   clear release
 end
