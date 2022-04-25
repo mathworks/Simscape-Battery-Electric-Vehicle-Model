@@ -1,22 +1,26 @@
 %% Model Parameters for BEV Drive Cycle Basic Model
 
-% Copyright 2020 The MathWorks, Inc.
+% Copyright 2020-2022 The MathWorks, Inc.
 
-% This is based on Solver Profiler's suggestion for simulation speed up.
-% By default, this option is off.
-% Turning this option on may or may not speed up the simulation.
-%set_param('BevDriveCycleBasicModel', 'DecoupledContinuousIntegration', 'on')
+%% Ambient
+
+% Used when thermal model is enabled. Default setting does not use this.
+ambient.temp_K = 273.15 + 20;
 
 %% Vehicle
-%Vehicle1DBasicParams
-%-{
-vehicle.vehMass_kg = 1600;
-vehicle.tireRollingRadius_cm = 30;
+
+vehicle.mass_kg = 1600;
+vehicle.tireRollingRadius_m = 0.3;
+
 vehicle.roadLoadA_N = 100;
 vehicle.roadLoadB_N_per_kph = 0;
 vehicle.roadLoadC_N_per_kph2 = 0.035;
-vehicle.roadGrade=0;
-%}
+vehicle.roadLoad_gravAccel_m_per_s2 = 9.81;
+
+smoothing.vehicle_speedThreshold_kph = 1;
+smoothing.vehicle_axleSpeedThreshold_rpm = 1;
+
+initial.vehicle_speed_kph = 0;
 
 %% High Voltage Battery
 batteryHV.nominalCapacity_kWh = 4;
@@ -27,11 +31,14 @@ batteryHV.batteryPackAhr_ini = ...
 batteryHV.internal_R_Ohm = 0.01;
 batteryHV.AmbTemp=293.15; % Kelvin
 
+initial.hvBatterySOC_pct = 70;
+initial.hvBatteryCharge_Ah = batteryHV.batteryPackAhr_ini * initial.hvBatterySOC_pct/100;
+
 %% Reduction Gear
 bevGear.gearRatio = 7.0;
 bevGear.efficiency = 0.98;
 
-%% Motor Drive
+%% Motor Drive Unit
 motorDrive.simplePmsmDrv_trqMax_Nm = 360;
 motorDrive.simplePmsmDrv_powMax_W = 150e+3;
 motorDrive.simplePmsmDrv_timeConst_s = 0.02;
@@ -52,15 +59,14 @@ motorDrive.simplePmsmDrv_initialRotorSpd_rpm = 0;
 motorDrive.spdCtl_trqMax_Nm = motorDrive.simplePmsmDrv_trqMax_Nm;
 
 motorDrive.gearRatioCompensation = 3/bevGear.gearRatio;
-motorDrive.AmbTemp=293.15; % Kelvin
-  % adjust the max motor speed
 
-%% Driver & Environment
+% Used when thermal model is enabled. Default setting does not use this.
+motorDrive.AmbTemp_K = ambient.temp_K;
 
-bevMotorSpdRef.tireRadius_cm = vehicle.tireRollingRadius_cm;
-bevMotorSpdRef.reductionGearRaio = bevGear.gearRatio;
+%% Controller & Environment
 
-%% Initial conditions
+bevControl.MotorSpdRef_tireRadius_m = vehicle.tireRollingRadius_m;
+bevControl.MotorSpdRef_reductionGearRaio = bevGear.gearRatio;
 
-initial.hvBatterySOC_pct = 70;
-initial.hvBatteryCharge_Ah = batteryHV.batteryPackAhr_ini * initial.hvBatterySOC_pct/100;
+bevControl.MotorSpdRef_Ki = 15;
+bevControl.MotorSpdRef_Kp = 15;

@@ -19,3 +19,8 @@ Models
 - Longitudinal Vehicle block from Simscape Driveline is
   added as a new (and default) Referenced Subsystem.
   The previous custom block is still included too.
+
+Testing
+
+- GitHub Actions continuous integration is enabled
+  in the GitHub repository.
