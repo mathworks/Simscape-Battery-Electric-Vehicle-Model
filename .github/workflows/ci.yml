@@ -1,0 +1,30 @@
+# GitHub Actions Workflow with MATLAB Actions
+
+# Copyright 2021-2022 The MathWorks, Inc.
+
+name: MATLAB R2022a
+
+on:
+  push:
+    branches: [ main, R2022a ]
+
+  pull_request:
+    branches: [ main, R2022a ]
+
+jobs:
+  matlab-R2022a-test:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Setup MATLAB
+        uses: matlab-actions/setup-matlab@v1
+        with:
+          release: R2022a
+
+      - name: Run tests
+        uses: matlab-actions/run-command@v1
+        with:
+          command: openProject(pwd); BEVProject_runtests;
