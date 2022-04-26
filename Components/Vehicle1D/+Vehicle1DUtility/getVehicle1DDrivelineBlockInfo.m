@@ -1,5 +1,5 @@
 function info = getVehicle1DDrivelineBlockInfo(blk_gcbh)
-% Collects block parameter values from longitudinal Vehicle block.
+%% Collects block parameter values from Longitudinal Vehicle block.
 % To use this function, make sure to select the block in Simulink canvas and
 % then pass gcbh to this function.
 

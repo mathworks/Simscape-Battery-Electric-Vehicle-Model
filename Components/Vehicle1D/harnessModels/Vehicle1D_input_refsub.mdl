@@ -43,8 +43,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2022-04-25T12:53:56Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2022-04-25T12:53:57Z</dcterms:modified>
-  <cp:revision>1.1</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2022-04-26T14:45:25Z</dcterms:modified>
+  <cp:revision>1.13</cp:revision>
   <cp:version>R2022a</cp:version>
 </cp:coreProperties>
 
@@ -59,18 +59,18 @@ __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <mwcoreProperties xmlns="http://schemas.mathworks.com/package/2014/corePropertiesExtension">
-  <uuid>6ea64324-cc61-4c72-b554-1c196376eaa1</uuid>
+  <uuid>3383eb68-d623-46dd-b802-75fd8d614c94</uuid>
 </mwcoreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2022a Release -->
 <MathWorks_version_info>
-  <version>9.12.0.1935954</version>
+  <version>9.12.0.1940184</version>
   <release>R2022a</release>
   <description>Update 2</description>
-  <date>Apr 15 2022</date>
-  <checksum>1378679883</checksum>
+  <date>Apr 20 2022</date>
+  <checksum>397506373</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -111,8 +111,8 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="RTWModifiedTimeStamp">572795637</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.1&gt;</P>
+      <P Name="RTWModifiedTimeStamp">572888507</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.13&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -934,23 +934,23 @@ __MWOPC_PART_BEGIN__ /simulink/hdlParams.xml
 __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" defaultPackage="slid" packageUris="http://schema.mathworks.com/mf0/slid/R2020b_20191110">
-  <System type="System" uuid="fe1bd4a9-5dd6-4a54-a3c5-f111cdc9466d">
-    <Interface type="Interface" uuid="dc382931-bc6d-414f-8829-8efff9405b81"/>
+  <System type="System" uuid="6ab0eac9-c897-4af2-a1de-987b75cc6f79">
+    <Interface type="Interface" uuid="57d568ee-3957-43b5-982e-49d717a7286d"/>
   </System>
 </MF0>
 __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sltp_graph version="1.1" packageUris="http://schema.mathworks.com/mf0/sltp_mm/R2021b_202106150630">
-  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="c0f010ac-5f12-4eb5-a3af-317ec54026a8">
+  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="138f2afc-8a1e-4458-a1ae-b8fcaddfb79e">
     <editorState type="sltp.mm.core.EditorState" uuid="eef3d58f-be22-4f10-a5f1-04c032ab2a78">
       <panelState type="sltp.mm.core.EditorPanelState" uuid="ab8d8ef4-1ebd-45c6-bcbe-a5b4773c7166"/>
     </editorState>
-    <rootTask type="sltp.mm.core.Task" uuid="0401730e-7b2e-428f-a47b-6e0b2d1dc748">
-      <context type="sltp.mm.core.Context" uuid="c0f010ac-5f12-4eb5-a3af-317ec54026a8"/>
+    <rootTask type="sltp.mm.core.Task" uuid="31dd4a2f-b532-4df7-95eb-dd6d25cfe29f">
+      <context type="sltp.mm.core.Context" uuid="138f2afc-8a1e-4458-a1ae-b8fcaddfb79e"/>
       <explicit>false</explicit>
       <name>Default</name>
       <priority>-2147483648</priority>
-      <subgraph type="sltp.mm.core.Graph" uuid="4b080250-0431-4d04-8c31-b0d937a0e806"/>
+      <subgraph type="sltp.mm.core.Graph" uuid="e390437a-2ec6-4f46-8b4a-ea536fd0db99"/>
     </rootTask>
   </sltp.mm.core.Context>
 </sltp_graph>
@@ -973,12 +973,12 @@ __MWOPC_PART_BEGIN__ /simulink/ScheduleEditor.xml
 __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[30, 30, 1010, 750]</P>
+  <P Name="Location">[70, 37, 1050, 757]</P>
   <P Name="SystemRect">[0.000000, 0.000000, 0.000000, 0.000000]</P>
   <P Name="SetExecutionDomain">off</P>
   <P Name="ExecutionDomainType">Deduce</P>
   <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">19</P>
+  <P Name="SIDHighWatermark">265</P>
   <P Name="SimulinkSubDomain">Simulink</P>
   <Block BlockType="FromWorkspace" Name="From Workspace" SID="1">
     <P Name="Position">[20, 115, 180, 145]</P>
@@ -988,8 +988,39 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 Interpolate: %&lt;Interpolate&gt;</P>
     <P Name="VariableName">vehicle_InputSignals</P>
     <P Name="OutDataTypeStr">Bus: vehicle_InputBus</P>
-    <P Name="Interpolate">off</P>
     <P Name="OutputAfterFinalValue">Holding final value</P>
+  </Block>
+  <Block BlockType="CallbackButton" Name="Open Script1" SID="258">
+    <P Name="Position">[-150, 65, -40, 100]</P>
+    <P Name="ZOrder">26294</P>
+    <P Name="HideAutomaticName">off</P>
+    <P Name="ClickFcn">edit Vehicle1D_testcase_DriveAxle
+</P>
+    <P Name="ButtonText">Open Script</P>
+  </Block>
+  <Block BlockType="CallbackButton" Name="Open Script2" SID="263">
+    <P Name="Position">[-150, 125, -40, 160]</P>
+    <P Name="ZOrder">26298</P>
+    <P Name="HideAutomaticName">off</P>
+    <P Name="ClickFcn">edit Vehicle1D_testcase_Coastdown
+</P>
+    <P Name="ButtonText">Open Script</P>
+  </Block>
+  <Block BlockType="CallbackButton" Name="Open Script3" SID="264">
+    <P Name="Position">[-150, 190, -40, 225]</P>
+    <P Name="ZOrder">26299</P>
+    <P Name="HideAutomaticName">off</P>
+    <P Name="ClickFcn">edit Vehicle1D_testcase_RoadGrade3
+</P>
+    <P Name="ButtonText">Open Script</P>
+  </Block>
+  <Block BlockType="CallbackButton" Name="Open Script4" SID="265">
+    <P Name="Position">[-150, 255, -40, 290]</P>
+    <P Name="ZOrder">26300</P>
+    <P Name="HideAutomaticName">off</P>
+    <P Name="ClickFcn">edit Vehicle1D_testcase_Brake3
+</P>
+    <P Name="ButtonText">Open Script</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Open signal selection function" SID="2">
     <P Name="Position">[45, 40, 155, 75]</P>
@@ -1000,51 +1031,63 @@ Interpolate: %&lt;Interpolate&gt;</P>
     <P Name="ButtonText">Open function</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Select and Plot1" SID="3">
-    <P Name="Position">[-260, 40, -150, 75]</P>
+    <P Name="Position">[-380, 65, -270, 100]</P>
     <P Name="ZOrder">26282</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="ClickFcn">Vehicle1D_selectInput( ...
     InputPattern = &quot;DriveAxle&quot;, ...
-    DisplayPlot = true, ...
     DisplayMessage = true )
+
+Vehicle1D_plotInputs( ...
+    &quot;vehicle_InputSignals&quot;, ...
+    WindowName = &quot;Drive Axle&quot;);
 </P>
     <P Name="ButtonText">Select and Plot</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Select and Plot2" SID="4">
-    <P Name="Position">[-260, 103, -150, 138]</P>
+    <P Name="Position">[-380, 128, -270, 163]</P>
     <P Name="ZOrder">26284</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="ClickFcn">Vehicle1D_selectInput( ...
     InputPattern = &quot;Coastdown&quot;, ...
-    DisplayPlot = true, ...
     DisplayMessage = true )
+
+Vehicle1D_plotInputs( ...
+    &quot;vehicle_InputSignals&quot;, ...
+    WindowName = &quot;Coastdown&quot;);
 </P>
     <P Name="ButtonText">Select and Plot</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Select and Plot3" SID="5">
-    <P Name="Position">[-260, 166, -150, 201]</P>
+    <P Name="Position">[-380, 191, -270, 226]</P>
     <P Name="ZOrder">26286</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="ClickFcn">Vehicle1D_selectInput( ...
     InputPattern = &quot;RoadGrade3&quot;, ...
-    DisplayPlot = true, ...
     DisplayMessage = true )
+
+Vehicle1D_plotInputs( ...
+    &quot;vehicle_InputSignals&quot;, ...
+    WindowName = &quot;Road Grade 3&quot;);
 </P>
     <P Name="ButtonText">Select and Plot</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Select and Plot4" SID="6">
-    <P Name="Position">[-260, 230, -150, 265]</P>
+    <P Name="Position">[-380, 255, -270, 290]</P>
     <P Name="ZOrder">26288</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="ClickFcn">Vehicle1D_selectInput( ...
     InputPattern = &quot;Brake3&quot;, ...
-    DisplayPlot = true, ...
     DisplayMessage = true )
+
+Vehicle1D_plotInputs( ...
+    &quot;vehicle_InputSignals&quot;, ...
+    WindowName = &quot;Brake 3&quot;);
 </P>
     <P Name="ButtonText">Select and Plot</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Select1" SID="7">
-    <P Name="Position">[-145, 40, -35, 75]</P>
+    <P Name="Position">[-265, 65, -155, 100]</P>
     <P Name="ZOrder">26280</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="ClickFcn">Vehicle1D_selectInput( ...
@@ -1054,7 +1097,7 @@ Interpolate: %&lt;Interpolate&gt;</P>
     <P Name="ButtonText">Select</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Select2" SID="8">
-    <P Name="Position">[-145, 103, -35, 138]</P>
+    <P Name="Position">[-265, 128, -155, 163]</P>
     <P Name="ZOrder">26283</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="ClickFcn">Vehicle1D_selectInput( ...
@@ -1064,7 +1107,7 @@ Interpolate: %&lt;Interpolate&gt;</P>
     <P Name="ButtonText">Select</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Select3" SID="9">
-    <P Name="Position">[-145, 166, -35, 201]</P>
+    <P Name="Position">[-265, 191, -155, 226]</P>
     <P Name="ZOrder">26285</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="ClickFcn">Vehicle1D_selectInput( ...
@@ -1074,7 +1117,7 @@ Interpolate: %&lt;Interpolate&gt;</P>
     <P Name="ButtonText">Select</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Select4" SID="10">
-    <P Name="Position">[-145, 230, -35, 265]</P>
+    <P Name="Position">[-265, 255, -155, 290]</P>
     <P Name="ZOrder">26287</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="ClickFcn">Vehicle1D_selectInput( ...
@@ -1084,28 +1127,36 @@ Interpolate: %&lt;Interpolate&gt;</P>
     <P Name="ButtonText">Select</P>
   </Block>
   <Block BlockType="Outport" Name="Inputs" SID="11">
-    <P Name="Position">[235, 123, 265, 137]</P>
+    <P Name="Position">[205, 123, 235, 137]</P>
     <P Name="ZOrder">26293</P>
   </Block>
   <Line>
-    <P Name="ZOrder">1</P>
+    <P Name="ZOrder">10</P>
     <P Name="Src">1#out:1</P>
     <P Name="Dst">11#in:1</P>
   </Line>
   <Annotation SID="12">
-    <P Name="Name">Clicking these buttons loads signal data and Bus
-in the base workspace for the From Workspace block.
-To see the call back function,
-click the Open signal selection function button.</P>
-    <P Name="Position">[-373, -66, -38, 0]</P>
+    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:14px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Clicking one of the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Select and Plot&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; or &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Select&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; buttons loads input signal and bus&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;in the base workspace for the From Workspace block, getting ready for simulation.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;The &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Open Script&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; button opens a Live Script corresponding to the input pattern.&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;To see the call back function which loads input signals to the base workspace,&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;click the &lt;/span&gt;&lt;span style=&quot; font-size:14px; font-weight:600;&quot;&gt;Open signal selection function&lt;/span&gt;&lt;span style=&quot; font-size:14px;&quot;&gt; button.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[-543, -64, -23, 22]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="FixedHeight">on</P>
+    <P Name="FixedWidth">on</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
-    <P Name="ZOrder">-7</P>
+    <P Name="Interpreter">rich</P>
+    <P Name="ZOrder">-68</P>
     <P Name="FontSize">14</P>
   </Annotation>
   <Annotation SID="13">
     <P Name="Name">External Input Signal Patterns</P>
-    <P Name="Position">[-398, -93, -12, 310]</P>
+    <P Name="Position">[-558, -93, -17, 310]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="FixedHeight">on</P>
     <P Name="FixedWidth">on</P>
@@ -1113,7 +1164,7 @@ click the Open signal selection function button.</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">-8</P>
+    <P Name="ZOrder">-69</P>
     <P Name="FontSize">14</P>
     <P Name="FontWeight">bold</P>
   </Annotation>
@@ -1123,11 +1174,11 @@ click the Open signal selection function button.</P>
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Drive Axle&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[-340, 49, -276, 67]</P>
+    <P Name="Position">[-468, 74, -404, 92]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-9</P>
+    <P Name="ZOrder">-70</P>
   </Annotation>
   <Annotation SID="15">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1135,35 +1186,35 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Coastdown&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[-347, 111, -275, 129]</P>
+    <P Name="Position">[-472, 136, -400, 154]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-10</P>
+    <P Name="ZOrder">-71</P>
   </Annotation>
   <Annotation SID="16">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;RoadGrade3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[-357, 174, -275, 192]</P>
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Road Grade 3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[-481, 199, -392, 217]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-11</P>
+    <P Name="ZOrder">-72</P>
   </Annotation>
   <Annotation SID="17">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Brake3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[-321, 244, -275, 262]</P>
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Brake 3&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[-461, 269, -411, 287]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-12</P>
+    <P Name="ZOrder">-73</P>
   </Annotation>
   <Annotation SID="18">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1171,11 +1222,11 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:600; font-style:normal;&quot;&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px; font-weight:400;&quot;&gt;Select and Plot&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[-253, 11, -157, 29]</P>
+    <P Name="Position">[-373, 36, -277, 54]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-13</P>
+    <P Name="ZOrder">-74</P>
   </Annotation>
   <Annotation SID="19">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1183,11 +1234,46 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:600; font-style:normal;&quot;&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px; font-weight:400;&quot;&gt;Select&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[-110, 11, -70, 29]</P>
+    <P Name="Position">[-230, 36, -190, 54]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-14</P>
+    <P Name="ZOrder">-75</P>
+  </Annotation>
+  <Annotation SID="256">
+    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Arial&apos;; font-size:12px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12px;&quot;&gt;Copyright 2020-2022 The MathWorks, Inc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[-268, 327, -41, 343]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="Interpreter">rich</P>
+    <P Name="ZOrder">-76</P>
+  </Annotation>
+  <Annotation SID="257">
+    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Input Pattern&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[-477, 36, -395, 54]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
+    <P Name="Interpreter">rich</P>
+    <P Name="ZOrder">-77</P>
+  </Annotation>
+  <Annotation SID="262">
+    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Open Script&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[-133, 36, -58, 54]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
+    <P Name="Interpreter">rich</P>
+    <P Name="ZOrder">-78</P>
   </Annotation>
 </System>
 
@@ -1195,8 +1281,62 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
 <?xml version="1.0" encoding="utf-8"?>
 <WindowsInfo>
   <Object PropName="BdWindowsInfo" ObjectID="1" ClassName="Simulink.BDWindowsInfo">
-    <P Name="WindowsInfo" Class="double">[]</P>
-    <P Name="BDUuid" Class="char"/>
+    <Object PropName="WindowsInfo" ObjectID="2" ClassName="Simulink.WindowInfo">
+      <P Name="IsActive" Class="logical">1</P>
+      <P Name="Location" Class="double">[70.0, 37.0, 980.0, 720.0]</P>
+      <Object PropName="ModelBrowserInfo" ObjectID="3" ClassName="Simulink.ModelBrowserInfo">
+        <P Name="Visible" Class="logical">0</P>
+        <P Name="DockPosition" Class="char">Left</P>
+        <P Name="Width" Class="int32">50</P>
+        <P Name="Height" Class="int32">50</P>
+        <P Name="Filter" Class="int32">9</P>
+        <P Name="Minimized" Class="char">Unset</P>
+      </Object>
+      <Object PropName="ExplorerBarInfo" ObjectID="4" ClassName="Simulink.ExplorerBarInfo">
+        <P Name="Visible" Class="logical">1</P>
+      </Object>
+      <Object PropName="EditorsInfo" ObjectID="5" ClassName="Simulink.EditorInfo">
+        <P Name="IsActive" Class="logical">1</P>
+        <P Name="IsTabbed" Class="logical">1</P>
+        <P Name="ViewObjType" Class="char">SimulinkTopLevel</P>
+        <P Name="LoadSaveID" Class="char">0</P>
+        <P Name="Extents" Class="double">[1392.0, 736.0]</P>
+        <P Name="ZoomFactor" Class="double">1.0</P>
+        <P Name="Offset" Class="double">[-625.5, -120.33333333333334]</P>
+        <P Name="SceneRectInView" Class="double">[-625.5, -120.33333333333334, 928.0, 490.66666666666669]</P>
+      </Object>
+      <Array PropName="DockComponentsInfo" Type="Simulink.DockComponentInfo" Dimension="1*2">
+        <Object ObjectID="6">
+          <P Name="Type" Class="char">GLUE2:PropertyInspector</P>
+          <P Name="ID" Class="char">Property Inspector</P>
+          <P Name="Visible" Class="logical">0</P>
+          <P Name="CreateCallback" Class="char"/>
+          <P Name="UserData" Class="char"/>
+          <P Name="Floating" Class="logical">0</P>
+          <P Name="DockPosition" Class="char">Right</P>
+          <P Name="Width" Class="int32">426</P>
+          <P Name="Height" Class="int32">320</P>
+          <P Name="Minimized" Class="char">Unset</P>
+        </Object>
+        <Object ObjectID="7">
+          <P Name="Type" Class="char">Simulink:Editor:ReferencedFiles</P>
+          <P Name="ID" Class="char">Referenced Files</P>
+          <P Name="Visible" Class="logical">0</P>
+          <P Name="CreateCallback" Class="char"/>
+          <P Name="UserData" Class="char">{&quot;filterShowRefModels&quot;:&quot;true&quot;,&quot;filterShowRefSubs&quot;:&quot;true&quot;,&quot;filterShowOnlyDirtyFiles&quot;:&quot;false&quot;}
+</P>
+          <P Name="Floating" Class="logical">0</P>
+          <P Name="DockPosition" Class="char">Left</P>
+          <P Name="Width" Class="int32">426</P>
+          <P Name="Height" Class="int32">320</P>
+          <P Name="Minimized" Class="char">Unset</P>
+        </Object>
+      </Array>
+      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAACTAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAxwD///8AAAABAAAAAAAAAAD8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAAA/////wAAAoAA////AAAAAwAAAAAAAAAA/AEAAAAB+/////8AAAAAAP////8AAAIDAP///wAABagAAAMuAAAAAQAAAAIAAAABAAAAAvwAAAAA</P>
+      <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
+      <P Name="WindowUuid" Class="char">88077be1-2cbe-4a6d-842e-662c1185ec51</P>
+    </Object>
+    <P Name="BDUuid" Class="char">5567d3b0-1041-4ed6-b9e1-426cd0a1acf8</P>
   </Object>
 </WindowsInfo>
 

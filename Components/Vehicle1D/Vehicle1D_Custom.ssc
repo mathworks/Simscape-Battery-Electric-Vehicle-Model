@@ -1,0 +1,100 @@
+component Vehicle1D_Custom
+% Custom Longitudinal Vehicle : 1.4 : fixed
+% This is an abstract longitudinal vehicle model
+% including a non-slipping tire and simple brake.<br/>
+% <br/>
+% Road grade input takes a value in
+% the unitless and normalized 0-1 value between -1 and 1,
+% which corresponds to between -100% grade (-45 degrees)
+% and 100% grade (45 degrees).<br/>
+% <ul>
+% <li> View
+%      <a href="matlab:edit Vehicle1DUtility.reportVehicle1DCustomBlock">vehicle properties</a></li>
+% </ul>
+
+% Copyright 2020-2021 The MathWorks, Inc.
+
+  parameters
+    grav = { 9.81 'm/s^2' }  % Gravitational acceleration
+    M_e = { 1500 'kg' }  % Vehicle effective mass
+    R_tire = { 0.3 'm' }  % Tire rolling radius
+    A_rl = { 120 'N' }  % Road-load coefficient A
+    B_rl = { 0.5 'N/(km/hr)' }  % Road-load coefficient B
+    C_rl = { 0.03 'N/(km/hr)^2' }  % Road-load coefficient C
+    V_1 = { 0.1 'km/hr' }  % Vehicle speed smoothing threshold
+    w_1 = { 0.1 'rpm' }  % Axle speed smoothing threshold
+  end
+
+  equations
+    assert(grav > 0)
+    assert(M_e > 0)
+    assert(R_tire > 0)
+    assert(A_rl > 0)
+    assert(B_rl >= 0)
+    assert(C_rl > 0)
+    assert(V_1> 0)
+    assert(w_1> 0)
+  end
+
+  nodes
+    Axle = foundation.mechanical.rotational.rotational
+  end
+
+  inputs
+    % Brake force
+    brkF = { 0 'N' }  % Brake
+
+    % Road grade percent in normalized 0-1 value
+    grade_norm = 0  % Grade
+  end
+  equations
+    assert(-1 <= grade_norm)
+    assert(grade_norm <= 1)
+  end
+
+  outputs
+    v_out = { 0 'km/hr' }  % V
+    G = 0
+  end
+
+  % Port locations
+  annotations
+    [ brkF, grade_norm ] : Side = top
+    Axle : Side = left
+    [ v_out, G ] : Side = right
+  end
+
+  variables
+    V_x = { value={ 0 'km/hr' }, priority=priority.high }  % Vehicle speed
+  end
+
+  variables (Access = private)
+    trq = { 0 'N*m' }
+    w = { 0 'rpm' }
+  end
+
+  branches
+    trq : Axle.t -> *
+  end
+
+  intermediates
+    incline_angle = atan(grade_norm)
+    F_drive = trq/R_tire
+    F_brake = max(0, brkF)*tanh(w/w_1)
+    F_roll = A_rl + B_rl*V_x*tanh(V_x/V_1)
+    F_airdrag = C_rl*V_x^2
+    F_resist = (F_roll*cos(incline_angle) + F_airdrag)*tanh(V_x/V_1) + M_e*grav*sin(incline_angle)
+    F_total = F_drive - F_brake - F_resist
+    accl = F_total/M_e
+  end
+
+  equations
+    w == Axle.w
+    V_x == R_tire*w
+    M_e*der(V_x) == F_total
+
+    % outputs
+    v_out == V_x
+    G == accl/grav
+  end
+end  % component

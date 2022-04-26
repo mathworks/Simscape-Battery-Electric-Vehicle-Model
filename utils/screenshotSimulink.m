@@ -2,7 +2,7 @@ function result = screenshotSimulink(nvpairs)
 %% Saves the screenshot of a Simulink model to an image file.
 %
 % The simplest way to use this function is to pass the Simulink model name.
-%   result = screenshotSimulink("ssc_dcmotor");
+%   result = screenshotSimulink(SimulinkModelName="ssc_dcmotor");
 % Returned data is a struct containing the file name
 % of a produced screenshot image as well as the width and height of it.
 %

@@ -1,16 +1,16 @@
 classdef Vehicle1D_InputSignalBuilder < handle
-% Class implementation of Input Signal Builder
+%% Class implementation of Input Signal Builder
 
 % Copyright 2022 The MathWorks, Inc.
 
 properties
-  % ### Signals
+  % Signals
 
   AxleTrq timetable
   BrakeForce timetable
   RoadGrade timetable
 
-  % ### Other properties
+  % Other properties
 
   FunctionName (1,1) string
   StopTime (1,1) duration
@@ -98,7 +98,7 @@ methods
 
     % Making the figure taller than the default plot window height can
     % make the top part of the window go outside the monitor screen.
-    % To prevent it, lower the x position of the window,
+    % To prevent it, lower the y position of the window,
     % assuming that lowering the window position is safer
     % because the visibility of the window top is more important
     % that of the window bottom.
@@ -110,10 +110,10 @@ methods
 
     if inpObj.SavePlot_tf
       exportgraphics(gca, inpObj.SavePlotImageFileName)
-    end  % if
+    end
   end  % function
 
-  %% Input Signal Patterns
+  %% Signal Patterns
 
   function signalData = Constant(inpObj, nvpairs)
   %%
@@ -157,8 +157,10 @@ methods
   %%
     arguments
       inpObj
-      nvpairs.StopTime (1,1) duration = seconds(500)
+
       nvpairs.InitialVehicleSpeed_kph (1,1) double = 100
+
+      nvpairs.StopTime (1,1) duration = seconds(500)
       nvpairs.AxleTorque_Const_Nm (1,1) {mustBeNonnegative} = 0
       nvpairs.BrakeForce_Const_N (1,1) {mustBeNonnegative} = 0
       nvpairs.RoadGrade_Const_pct (1,1) {mustBeInRange(nvpairs.RoadGrade_Const_pct, -50, 50)} = 0
