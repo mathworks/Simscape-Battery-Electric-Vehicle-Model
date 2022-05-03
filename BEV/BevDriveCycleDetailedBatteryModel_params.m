@@ -22,7 +22,7 @@ batteryHV.batteryCoolantFlwT=-10; % Coolant temperature
 batteryHV.AmbTemp=293.15;
 batteryHV.batterySOC_LUT = [0 0.1 0.25 0.5 0.75 0.9 1]';   % State of charge table breakpoints S
 batteryHV.batteryTemp_LUT = [278 293 313];          % Temperature table breakpoints T
-batteryHV.batteryCapacity_LUT = [10 10 10]; % Battery cell capacity at different (T) points [Ahr]
+batteryHV.batteryCapacity_LUT = 10; % Battery cell capacity
 
 
 
@@ -36,7 +36,7 @@ batteryHV1.batteryCell_cp = 500; % [J/kg/K] Cell specific heat
 
 batteryHV1.batterySOC_LUT = batteryHV.batterySOC_LUT;   % State of charge table breakpoints S
 batteryHV1.batteryTemp_LUT = batteryHV.batteryTemp_LUT;          % Temperature table breakpoints T
-batteryHV1.batteryCapacity_LUT = batteryHV.batteryCapacity_LUT ; % Battery cell capacity at different (T) points [Ahr]
+batteryHV1.batteryCapacity_LUT = batteryHV.batteryCapacity_LUT ; % Battery cell capacity 
 batteryHV1.batteryEm_LUT = [
     3.4966    3.5057    3.5148
     3.5519    3.5660    3.5653
@@ -106,7 +106,7 @@ batteryHV2.batteryCell_cp = 500; % [J/kg/K] Cell specific heat
 
 batteryHV2.batterySOC_LUT = batteryHV.batterySOC_LUT;   % State of charge table breakpoints S
 batteryHV2.batteryTemp_LUT = batteryHV.batteryTemp_LUT;          % Temperature table breakpoints T
-batteryHV2.batteryCapacity_LUT = batteryHV.batteryCapacity_LUT ; % Battery cell capacity at different (T) points [Ahr]
+batteryHV2.batteryCapacity_LUT = batteryHV.batteryCapacity_LUT ; % Battery cell capacity
 batteryHV2.batteryEm_LUT = [
     3.4966    3.5057    3.5148
     3.5519    3.5660    3.5653

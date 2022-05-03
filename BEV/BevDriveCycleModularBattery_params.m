@@ -33,7 +33,7 @@ if exist('batteryHV1','var')
     %
     batteryHV.batterySOC_LUT = batteryHV1.batterySOC_LUT;   % State of charge table breakpoints S
     batteryHV.batteryTemp_LUT = batteryHV1.batteryTemp_LUT;          % Temperature table breakpoints T
-    batteryHV.batteryCapacity_LUT = batteryHV1.batteryCapacity_LUT; % Battery cell capacity at different (T) points [Ahr]
+    batteryHV.batteryCapacity_LUT = batteryHV1.batteryCapacity_LUT; % Battery cell capacity
     batteryHV.batteryEm_LUT = batteryHV1.batteryEm_LUT; % [V] Em open-circuit voltage vs SOC rows and T columns
     batteryHV.batteryR0_LUT = batteryHV1.batteryR0_LUT; % [Ohm] R0 resistance vs SOC rows and T columns
     batteryHV.batteryR1_LUT = batteryHV1.batteryR1_LUT; % [Ohm] R1 Resistance vs SOC rows and T columns
@@ -70,7 +70,7 @@ else
     %
     batteryHV.batterySOC_LUT = [0 0.1 0.25 0.5 0.75 0.9 1]';   % State of charge table breakpoints S
     batteryHV.batteryTemp_LUT = [278 293 313];          % Temperature table breakpoints T
-    batteryHV.batteryCapacity_LUT = [10 10 10]; % Battery cell capacity at different (T) points [Ahr]
+    batteryHV.batteryCapacity_LUT = 10; % Battery cell capacity
     batteryHV.batteryEm_LUT = [
         3.4966    3.5057    3.5148
         3.5519    3.5660    3.5653
