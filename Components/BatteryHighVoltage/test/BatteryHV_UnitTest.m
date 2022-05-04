@@ -103,8 +103,8 @@ end  % function
 function blockParameters_BatteryHV_Electrical(testCase)
 %% Check that block parameters are properly set up
 
-%   close all
-%   bdclose all
+  close all
+  bdclose all
 
   mdl = "BatteryHV_refsub_Electrical";
   load_system(mdl)
@@ -330,6 +330,16 @@ end
 
 
 
+
+%% Other tests
+
+function run_takeScreenshots(~)
+  close all
+  bdclose all
+  BatteryHV_takeScreenshots
+  close all
+  bdclose all
+end
 
 end  % methods (Test)
 end  % classdef
