@@ -1,0 +1,3250 @@
+component batteryMultiDimModel 
+% Battery Multi-D Model : 7 : rotates
+% This block models a battery module. It consists of multiple battery cells 
+% that can be configured in series and parallel. Multiple copies of this 
+% battery module can be connected in series and/or parallel to create a 
+% full battery pack, such as is used for electric vehicles. The underlying 
+% cell model is the Battery (Table-Based) block from the Simscape(TM) 
+% Electrical library. Three different battery modeling fidelity are 
+% available for selection and use.
+
+% Copyright 2020-2021 The MathWorks, Inc.
+
+% -------------------------------------------------------------------------
+% How to read the code below :
+% -------------------------------------------------------------------------
+%
+% Basic Code Structure (rest all, part from this IF-LOOP is composed of 
+% ERROR check code, annotations and parameter definition) :
+% 
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% if modelComplexity == batteryModule.batteryAbstractionLevel.detailed
+%       Solve for battery equations when Detailed Model Fidelity selected
+%       for i=1:nCells
+%           Solve for all cells
+%       end
+%       ...............................
+%       ...............................
+%       if thermalManagement == batteryModule.batteryCoolingSystem.none
+%           No thermal model selected; define heat transfer coeff. on module sides
+%       else
+%           Define heat transfer on the 6 sides or faces of the module
+%           The 6 sides are referred to as : bottom (_b), top (_t), left (_l), 
+%           right (_r), posEnd (_p) & negEnd (_n); 4 thermal options for each side
+%           ...........................
+%           ...........................
+%       end
+% elseif modelComplexity == batteryModule.batteryAbstractionLevel.grouped
+%       Solve for battery equations when Grouped Model Fidelity selected
+%       for i=1:nParts
+%           Solve for nParts (Grouped parts or groups), where nParts=5 (fixed)
+%       end
+%       ...............................
+%       ...............................
+%       if thermalManagement == batteryModule.batteryCoolingSystem.none
+%           No thermal model selected; define heat transfer coeff. on module sides
+%       else
+%           Define heat transfer on the 6 sides or faces of the module
+%           The 6 sides are referred to as : bottom (_b), top (_t), left (_l), 
+%           right (_r), posEnd (_p) & negEnd (_n); 4 thermal options for each side
+%           ...........................
+%           ...........................
+%       end
+% else 
+%       Solve for (ONE, lumped) battery equations when Lumped Model Fidelity selected
+%       ...............................
+%       ...............................
+%       if thermalManagement == batteryModule.batteryCoolingSystem.none
+%           No thermal model selected; define heat transfer coeff. on module sides
+%       else
+%           Define heat transfer on the 6 sides or faces of the module
+%           The 6 sides are referred to as : bottom (_b), top (_t), left (_l), 
+%           right (_r), posEnd (_p) & negEnd (_n); 4 thermal options for each side
+%           ...........................
+%           ...........................
+%       end
+% end
+% +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% 
+
+% Define nodes for the model (electrical and thermal)
+nodes
+    p = foundation.electrical.electrical;    % pos
+    Qt= foundation.thermal.thermal;          % Qt
+    n = foundation.electrical.electrical;    % neg 
+    Ql= foundation.thermal.thermal;          % Ql
+    Qb= foundation.thermal.thermal;          % Qb
+    Qr= foundation.thermal.thermal;          % Qr
+    Qp= foundation.thermal.thermal;          % Qp
+    Qn= foundation.thermal.thermal;          % Qn
+    H = foundation.thermal.thermal;          % Amb
+end
+
+% Define output data for all cells
+outputs
+    outputCellSOC      = {ones(1,Ns*Np),'1'};  % SOC
+    outputCellTemp     = {ones(1,Ns*Np),'K'};  % Temp
+    outputCellV        = {ones(1,Ns*Np),'V'};  % V
+    %
+    bottom_thermPort   = {zeros(2,Ns*Np),'1'}; % QT_b
+    top_thermPort      = {zeros(2,Ns*Np),'1'}; % QT_t
+    %
+    left_thermPort_R   = {zeros(2,Ns*Np),'1'}; % QT_l
+    right_thermPort_R  = {zeros(2,Ns*Np),'1'}; % QT_r
+    posEnd_thermPort_R = {zeros(2,1),'1'};     % QT_p
+    negEnd_thermPort_R = {zeros(2,1),'1'};     % QT_n
+    %
+    left_thermPort_C   = {zeros(2,left_cells),'1'};      % QT_l
+    right_thermPort_C  = {zeros(2,right_cells),'1'};     % QT_r
+    posEnd_thermPort_C = {zeros(2,posEnd_cells),'1'};    % QT_p
+    negEnd_thermPort_C = {zeros(2,negEnd_cells),'1'};    % QT_n
+end
+
+parameters
+    modelComplexity=batteryModule.batteryAbstractionLevel.detailed; % Select model fidelity
+    thermalManagement=batteryModule.batteryCoolingSystem.none;      % Select module thermal management
+    %
+    thermal_moduleBottom=batteryModule.batteryThermalPortSelection.thermalPortLumped; % Bottom heat transfer
+    thermal_moduleTop=batteryModule.batteryThermalPortSelection.thermalPortLumped;    % Top heat transfer
+    thermal_moduleLeft=batteryModule.batteryThermalPortSelection.thermalPortLumped;   % Left-side heat transfer
+    thermal_moduleRight=batteryModule.batteryThermalPortSelection.thermalPortLumped;  % Right-side heat transfer
+    thermal_modulePos=batteryModule.batteryThermalPortSelection.thermalPortLumped;    % Pos. terminal side heat transfer
+    thermal_moduleNeg=batteryModule.batteryThermalPortSelection.thermalPortLumped;    % Neg. terminal side heat transfer
+    %
+    % Module Definition
+    Ns=5;                                                           % Number of series connected strings
+    Np=2;                                                           % Number of parallel cells in a string
+    cellTypeSelection=batteryModule.batteryTypeSelection.pouch; % Choose cell type
+    cellHeight={0.650,'m'};                                         % Cell height
+    cellWidth={0.200,'m'};                                          % Cell width
+    cellThickness={0.020,'m'};                                      % Cell thickness
+    cellDiameter={0.018,'m'};                                       % Cell diameter
+    cellCylinLine=3;                                                % Number of cylindrical cells in a straight line
+    moduleExternalR={0,'Ohm'};                                      % Accessory total resistance (tabs, cables, busbars, welds)  
+    LUTpointsTemp={[273.15 298.15 323.15],'K'};                     % Vector of temperatures, T
+    LUTpointsSOC={[0 0.25 0.75 1],'1'};                             % Vector of state-of-charge values, SOC
+    cellAH={4.1,'A*hr'};                                            % Single cell ampere-hour rating, baseline AH
+    moduleCellAHpercentVar={ones(1,10),'1'};                        % Cell ampere-hour rating variation in percent from baseline
+    cellThermalMass={500,'J/K'};                                    % Cell thermal mass
+    cellThermalCond={0.8,'W/(m * K)'};                              % Cell thermal conductivity (through plane)
+    cellThermalCond_inPlane={20,'W/(m * K)'};                       % Cell thermal conductivity (in plane)
+    %
+    cellHeatTrCoeff={1,'W/(m^2 * K)'};                              % Heat transfer coefficient to ambient
+    htc_bottom={1,'W/(m^2 * K)'};                                   % Heat transfer coefficient from module bottom to ambient
+    htc_top={1,'W/(m^2 * K)'};                                      % Heat transfer coefficient from module top to ambient
+    htc_right={1,'W/(m^2 * K)'};                                    % Heat transfer coefficient from module right to ambient
+    htc_left={1,'W/(m^2 * K)'};                                     % Heat transfer coefficient from module left to ambient
+    htc_pos={1,'W/(m^2 * K)'};                                      % Heat transfer coefficient from module +ve side to ambient
+    htc_neg={1,'W/(m^2 * K)'};                                      % Heat transfer coefficient from module -ve side to ambient
+    %
+    cellTemp={300*ones(1,10),'K'};                                  % Vector of initial cell temperatures 
+    cellSOC={ones(1,10),'1'};                                       % Vector of initial cell state of charge
+    %
+    LUTpointsFlowrate_b={[0.01 0.02 0.03 0.04 0.05 0.06],'kg/s'};   % Vector of coolant flow rates, L
+    LUTpointsTemp_b={[273.15 298.15 323.15],'K'};                   % Vector of temperatures for LUT thermal model, Tc
+    LUTpointsFlowrate_t={[0.01 0.02 0.03 0.04 0.05 0.06],'kg/s'};   % Vector of coolant flow rates, L
+    LUTpointsTemp_t={[273.15 298.15 323.15],'K'};                   % Vector of temperatures for LUT thermal model, Tc
+    LUTpointsFlowrate_r={[0.01 0.02 0.03 0.04 0.05 0.06],'kg/s'};   % Vector of coolant flow rates, L
+    LUTpointsTemp_r={[273.15 298.15 323.15],'K'};                   % Vector of temperatures for LUT thermal model, Tc
+    LUTpointsFlowrate_l={[0.01 0.02 0.03 0.04 0.05 0.06],'kg/s'};   % Vector of coolant flow rates, L
+    LUTpointsTemp_l={[273.15 298.15 323.15],'K'};                   % Vector of temperatures for LUT thermal model, Tc
+    LUTpointsFlowrate_p={[0.01 0.02 0.03 0.04 0.05 0.06],'kg/s'};   % Vector of coolant flow rates, L
+    LUTpointsTemp_p={[273.15 298.15 323.15],'K'};                   % Vector of temperatures for LUT thermal model, Tc
+    LUTpointsFlowrate_n={[0.01 0.02 0.03 0.04 0.05 0.06],'kg/s'};   % Vector of coolant flow rates, L
+    LUTpointsTemp_n={[273.15 298.15 323.15],'K'};                   % Vector of temperatures for LUT thermal model, Tc
+    %
+    moduleCooling_b={zeros(3,6,10),'W/K'};                          % Effective rate of coolant heat transfer from each cell
+    moduleCooling_t={zeros(3,6,10),'W/K'};                          % Effective rate of coolant heat transfer from each cell
+    moduleCooling_r={zeros(3,6,10),'W/K'};                          % Effective rate of coolant heat transfer from each cell
+    moduleCooling_l={zeros(3,6,10),'W/K'};                          % Effective rate of coolant heat transfer from each cell
+    moduleCooling_p={zeros(3,6,10),'W/K'};                          % Effective rate of coolant heat transfer from each cell
+    moduleCooling_n={zeros(3,6,10),'W/K'};                          % Effective rate of coolant heat transfer from each cell
+    %
+    moduleExtHeat={zeros(1,10),'W'};                                % External heat 
+    moduleCellBalancing=batteryModule.batteryCellBalancing.none;    % Cell balancing
+    moduleCellVoltages=batteryModule.batteryCellVoltages.no;        % Output cell voltages (yes/no)
+    passiveShuntR={50,'Ohm'};                                       % Shunt resistor
+    passiveSWclosedR={0.01,'Ohm'};                                  % Switch closed resistance
+    passiveSWopenCond={1e-8,'1/Ohm'};                               % Switch open conductance
+    passiveSWthreshold={0.5,'1'};                                   % Switch operation threshold
+    %
+    % Cell Model
+    prm_dir = ee.enum.battery.prm_dir.noCurrentDirectionality;      % Current directionality
+    V0_mat = {[3.20 3.10 3.14; ...
+        3.25 3.27 3.30; ...
+        3.28 3.31 3.34; ...
+        3.33 3.50 3.59], 'V'};                            % No-load voltage, V0(SOC,T)
+    R0_mat = {[0.030 0.015 0.002; ...
+        0.040 0.017 0.008; ...
+        0.039 0.012 0.006; ...
+        0.027 0.013 0.021], 'Ohm'};                       % Terminal resistance, R0(SOC,T)
+    R0_dis_mat = {[0.030 0.015 0.002; ...
+        0.040 0.017 0.008; ...
+        0.039 0.012 0.006; ...
+        0.027 0.013 0.021], 'Ohm'};                       % Terminal resistance during discharging, R0(SOC,T)
+	R0_ch_mat = {[0.030 0.015 0.002; ...
+        0.040 0.017 0.008; ...
+        0.039 0.012 0.006; ...
+        0.027 0.013 0.021], 'Ohm'};                       % Terminal resistance during charging, R0(SOC,T)    
+    moduleCellR0PercentVar = {ones(1,10),'1'};            % Cell terminal resistance R0 variation from baseline R0
+
+    prm_leak = ee.enum.battery.prm_leak.disabled;         % Self-discharge
+    Rleak_vec = {[8e3 7e3 6e3], 'Ohm'};                   % Self-discharge resistance, Rleak(T)
+    moduleCellLeakPercentVar = {ones(1,10),'1'};          % Cell Self-discharge resistance variation from baseline Rleak
+
+    extrapolation_option = simscape.enum.extrapolation.nearest; % Extrapolation method for all tables
+        
+    prm_dyn = ee.enum.battery.prm_dyn.off;         % Charge dynamics
+    R1_mat = {[0.089 0.076 0.010; ...
+        0.042 0.022 0.099; ...
+        0.019 0.007 0.002; ...
+        0.051 0.043 0.029], 'Ohm'};                % First polarization resistance, R1(SOC,T)
+    tau1_mat = {[44 148 235; ...
+        93 110 1000; ...
+        19 27 133; ...
+        0.5 22 3], 's'};                           % First time constant, tau1(SOC,T)
+    R2_mat = {[0.014 0.382 0.407; ...
+        0.028 0.006 0.007; ...
+        0.014 0.007 0.006; ...
+        0.333 0.956 0.912], 'Ohm'};                % Second polarization resistance, R2(SOC,T)
+    tau2_mat = {[1 44 5644; ...
+        11 24 506; ...
+        2 14 330; ...
+        3310 13419 30216], 's'};                   % Second time constant, tau2(SOC,T)
+    R3_mat = {[0.014 0.382 0.407; ...
+        0.028 0.006 0.007; ...
+        0.014 0.007 0.006; ...
+        0.333 0.956 0.912], 'Ohm'};                % Third polarization resistance, R3(SOC,T)
+    tau3_mat = {[1 44 5644; ...
+        11 24 506; ...
+        2 14 330; ...
+        3310 13419 30216], 's'};                   % Third time constant, tau3(SOC,T)    
+    R4_mat = {[0.014 0.382 0.407; ...
+        0.028 0.006 0.007; ...
+        0.014 0.007 0.006; ...
+        0.333 0.956 0.912], 'Ohm'};                % Fourth polarization resistance, R4(SOC,T)
+    tau4_mat = {[1 44 5644; ...
+        11 24 506; ...
+        2 14 330; ...
+        3310 13419 30216], 's'};                   % Fourth time constant, tau4(SOC,T)
+    R5_mat = {[0.014 0.382 0.407; ...
+        0.028 0.006 0.007; ...
+        0.014 0.007 0.006; ...
+        0.333 0.956 0.912], 'Ohm'};                % Fifth polarization resistance, R5(SOC,T)
+    tau5_mat = {[1 44 5644; ...
+        11 24 506; ...
+        2 14 330; ...
+        3310 13419 30216], 's'};                   % Fifth time constant, tau5(SOC,T)
+    
+    prm_fade = ee.enum.battery.prm_fade.equations; % Fade characteristics defined by
+    
+    N0 = {100, '1'};                        % Number of discharge cycles, N
+    dV0 = {0, '1'};                         % Change in no-load voltage after N discharge cycles (%)
+    dR0 = {0, '1'};                         % Change in terminal resistance after N discharge cycles (%)
+    dAH = {0, '1'};                         % Change in ampere-hour rating after N discharge cycles (%)
+    dRleak = {0, '1'};                      % Change in self-discharge resistance after N discharge cycles (%)
+    dR1 = {0, '1'};                         % Change in first polarization resistance after N discharge cycles (%)
+    dR2 = {0, '1'};                         % Change in second polarization resistance after N discharge cycles (%)
+    dR3 = {0, '1'};                         % Change in third polarization resistance after N discharge cycles (%)
+    dR4 = {0, '1'};                         % Change in fourth polarization resistance after N discharge cycles (%)
+    dR5 = {0, '1'};                         % Change in fifth polarization resistance after N discharge cycles (%)
+    
+    N0vec = {[100 200 300], '1'};           % Vector of discharge cycle values, N
+    Tfadevec = {[298.15 323.15], 'K'};      % Vector of temperatures for fade data, Tfade
+    
+    dV0vec = {[0 0 0], '1'};                % Percentage change in no-load voltage, dV0(N)
+    dR0vec = {[0 0 0], '1'};                % Percentage change in terminal resistance, dR0(N)
+    dAHvec = {[0 0 0], '1'};                % Percentage change in ampere-hour rating, dAH(N)
+    dRleakvec = {[0 0 0], '1'};             % Percentage change in self-discharge resistance, dRleak(N)
+    dR1vec = {[0 0 0], '1'};                % Percentage change in first polarization resistance, dR1(N)
+    dR2vec = {[0 0 0], '1'};                % Percentage change in second polarization resistance, dR2(N)
+    dR3vec = {[0 0 0], '1'};                % Percentage change in third polarization resistance, dR3(N)
+    dR4vec = {[0 0 0], '1'};                % Percentage change in fourth polarization resistance, dR4(N)
+    dR5vec = {[0 0 0], '1'};                % Percentage change in fifth polarization resistance, dR5(N)
+    
+    dV0mat = {[0 0; 0 0; 0 0], '1'};        % Percentage change in no-load voltage, dV0(N,Tfade)
+    dR0mat = {[0 0; 0 0; 0 0], '1'};        % Percentage change in terminal resistance, dR0(N,Tfade)
+    dAHmat = {[0 0; 0 0; 0 0], '1'};        % Percentage change in ampere-hour rating, dAH(N,Tfade)
+    dRleakmat = {[0 0; 0 0; 0 0], '1'};     % Percentage change in self-discharge resistance, dRleak(N,Tfade)
+    dR1mat = {[0 0; 0 0; 0 0], '1'};        % Percentage change in first polarization resistance, dR1(N,Tfade)
+    dR2mat = {[0 0; 0 0; 0 0], '1'};        % Percentage change in second polarization resistance, dR2(N,Tfade)
+    dR3mat = {[0 0; 0 0; 0 0], '1'};        % Percentage change in third polarization resistance, dR3(N,Tfade)
+    dR4mat = {[0 0; 0 0; 0 0], '1'};        % Percentage change in fourth polarization resistance, dR4(N,Tfade)
+    dR5mat = {[0 0; 0 0; 0 0], '1'};        % Percentage change in fifth polarization resistance, dR5(N,Tfade)
+
+end
+
+parameters(Access=private)
+    SOC_port =      ee.enum.enable.yes;                 % Show SOC measurement port
+    thermal_port=   simscape.enum.thermaleffects.model; % Show thermal port
+end
+
+annotations
+    UILayout = [UIGroup("Model Complexity",modelComplexity) 
+                UIGroup("Cell Electrical",LUTpointsTemp,cellAH,LUTpointsSOC,V0_mat, prm_dir, R0_mat, R0_dis_mat, R0_ch_mat, prm_leak, Rleak_vec, extrapolation_option, prm_dyn, R1_mat, tau1_mat, R2_mat, tau2_mat, R3_mat, tau3_mat, R4_mat, tau4_mat, R5_mat, tau5_mat)
+                UIGroup("Cell Capacity Fade", prm_fade, N0, dV0, dR0, dAH, dRleak, dR1, dR2, dR3, dR4, dR5, N0vec, Tfadevec, dV0vec, dR0vec, dAHvec, dRleakvec, dR1vec, dR2vec, dR3vec, dR4vec, dR5vec, dV0mat, dR0mat, dAHmat, dRleakmat, dR1mat, dR2mat, dR3mat, dR4mat, dR5mat) 
+                UIGroup("Cell Thermal",cellThermalMass, cellThermalCond,cellThermalCond_inPlane)
+                UIGroup("Module Electrical",Ns,Np,cellTypeSelection,cellHeight,cellWidth, cellThickness, cellDiameter, cellCylinLine, moduleExternalR,moduleCellBalancing,passiveShuntR,passiveSWclosedR,passiveSWopenCond,passiveSWthreshold,moduleCellVoltages) 
+                UIGroup("Module Thermal", thermalManagement,cellHeatTrCoeff,thermal_moduleBottom,htc_bottom,moduleCooling_b,LUTpointsFlowrate_b,LUTpointsTemp_b,thermal_moduleTop,htc_top,moduleCooling_t,LUTpointsFlowrate_t,LUTpointsTemp_t,thermal_moduleRight,htc_right,moduleCooling_r,LUTpointsFlowrate_r,LUTpointsTemp_r,thermal_moduleLeft,htc_left,moduleCooling_l,LUTpointsFlowrate_l,LUTpointsTemp_l,thermal_modulePos,htc_pos,moduleCooling_p,LUTpointsFlowrate_p,LUTpointsTemp_p,thermal_moduleNeg,htc_neg,moduleCooling_n,LUTpointsFlowrate_n,LUTpointsTemp_n,moduleExtHeat) 
+                UIGroup("Cell-to-Cell Variation",cellTemp, cellSOC, moduleCellAHpercentVar,moduleCellLeakPercentVar,moduleCellR0PercentVar)]
+end
+
+components(ExternalAccess = observe)
+    lumpedThermalPortDummy = foundation.thermal.sources.temperature(temperature = {293.15, 'K'});
+end
+
+% Icon display
+if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+        cellTypeSelection == batteryModule.batteryTypeSelection.can)
+    if modelComplexity == batteryModule.batteryAbstractionLevel.detailed
+        annotations
+            Icon = 'ee_batteryRect_detailed.png'
+        end
+    elseif modelComplexity == batteryModule.batteryAbstractionLevel.grouped
+        annotations
+            Icon = 'ee_batteryRect_grouped.png'
+        end
+    else
+        annotations
+            Icon = 'ee_batteryRect_lumped.png'
+        end
+    end
+elseif cellTypeSelection == batteryModule.batteryTypeSelection.compactCylindrical
+    if modelComplexity == batteryModule.batteryAbstractionLevel.detailed
+        annotations
+            Icon = 'ee_batteryCylCom_detailed.png'
+        end
+    elseif modelComplexity == batteryModule.batteryAbstractionLevel.grouped
+        annotations
+            Icon = 'ee_batteryCylCom_grouped.png'
+        end
+    else
+        annotations
+            Icon = 'ee_batteryCylCom_lumped.png'
+        end
+    end    
+else
+    if modelComplexity == batteryModule.batteryAbstractionLevel.detailed
+        annotations
+            Icon = 'ee_batteryCylReg_detailed.png'
+        end
+    elseif modelComplexity == batteryModule.batteryAbstractionLevel.grouped
+        annotations
+            Icon = 'ee_batteryCylReg_grouped.png'
+        end
+    else
+        annotations
+            Icon = 'ee_batteryCylReg_lumped.png'
+        end
+    end
+end
+
+parameters(Access=private)
+    left_cellsData=batteryModule.getNumOfCylindricalCellsContact(cellCylinLine,Ns,Np,3);
+    left_cells=left_cellsData(1,1);
+    indexOfCylCellLeftEnd=left_cellsData(1,2:left_cells+1);
+    %
+    right_cellsData=batteryModule.getNumOfCylindricalCellsContact(cellCylinLine,Ns,Np,4);
+    right_cells=right_cellsData(1,1);
+    indexOfCylCellRightEnd=right_cellsData(1,2:right_cells+1);
+    %
+    posEnd_cellsData=batteryModule.getNumOfCylindricalCellsContact(cellCylinLine,Ns,Np,1);
+    posEnd_cells=posEnd_cellsData(1,1);
+    indexOfCylCellPosEnd=posEnd_cellsData(1,2:posEnd_cells+1);
+    %
+    negEnd_cellsData=batteryModule.getNumOfCylindricalCellsContact(cellCylinLine,Ns,Np,2);
+    negEnd_cells=negEnd_cellsData(1,1);
+    indexOfCylCellNegEnd=negEnd_cellsData(1,2:negEnd_cells+1);
+end  
+
+if thermalManagement == batteryModule.batteryCoolingSystem.thermalPort
+    % Data initialization for Thermal Ports
+    if thermal_moduleBottom == batteryModule.batteryThermalPortSelection.thermalPortConn
+        variables(Access=private)
+            bottom_battQ = {zeros(1,Ns*Np),'W'};
+        end
+    end
+    %
+    if thermal_moduleTop == batteryModule.batteryThermalPortSelection.thermalPortConn
+        variables(Access=private)
+            top_battQ = {zeros(1,Ns*Np),'W'};
+        end
+    end
+    %
+    if thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalPortConn
+        if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+        cellTypeSelection == batteryModule.batteryTypeSelection.can) 
+            variables(Access=private)
+                left_battQ_R = {zeros(1,Ns*Np),'W'};
+            end
+        else
+            variables(Access=private)
+                left_battQ_C = {zeros(1,left_cells),'W'};
+            end
+        end
+    end
+    %
+    if thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalPortConn
+        if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+        cellTypeSelection == batteryModule.batteryTypeSelection.can) 
+            variables(Access=private)
+                right_battQ_R = {zeros(1,Ns*Np),'W'};
+            end
+        else
+            variables(Access=private)
+                right_battQ_C = {zeros(1,right_cells),'W'};
+            end
+        end
+    end
+    %
+    if thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalPortConn
+        if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+        cellTypeSelection == batteryModule.batteryTypeSelection.can) 
+            variables(Access=private)
+                posEnd_battQ_R = {zeros(1,1),'W'};
+            end
+        else
+            variables(Access=private)
+                posEnd_battQ_C = {zeros(1,posEnd_cells),'W'};
+            end
+        end
+    end
+    %
+    if thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalPortConn
+        if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+        cellTypeSelection == batteryModule.batteryTypeSelection.can) 
+            variables(Access=private)
+                negEnd_battQ_R = {zeros(1,1),'W'};
+            end
+        else
+            variables(Access=private)
+                negEnd_battQ_C = {zeros(1,negEnd_cells),'W'};
+            end
+        end
+    end
+end 
+
+% Define input for the model (switching for passive balancing, coolant 
+% flowrate and temperature control to model battery heat removal)
+inputs
+    passiveSWonOff = {zeros(1,Ns),'1'};     % SW
+    frac_b= {1, '1'};                       % FlwR
+    delT_b= {0,'K'};                        % FlwT
+    frac_t= {1, '1'};                       % FlwR
+    delT_t= {0,'K'};                        % FlwT
+    frac_r= {1, '1'};                       % FlwR
+    delT_r= {0,'K'};                        % FlwT
+    frac_l= {1, '1'};                       % FlwR
+    delT_l= {0,'K'};                        % FlwT
+    frac_p= {1, '1'};                       % FlwR
+    delT_p= {0,'K'};                        % FlwT
+    frac_n= {1, '1'};                       % FlwR
+    delT_n= {0,'K'};                        % FlwT
+end
+
+annotations
+    p                  : Side=Top;
+    n                  : Side=Top;
+    H                  : Side=Right;
+    outputCellSOC      : Side=Left;
+    outputCellTemp     : Side=Left;
+    passiveSWonOff     : Side=Left;
+    frac_b             : Side=Right;
+    delT_b             : Side=Right;
+    frac_t             : Side=Right;
+    delT_t             : Side=Right;
+    frac_r             : Side=Right;
+    delT_r             : Side=Right;
+    frac_l             : Side=Right;
+    delT_l             : Side=Right;
+    frac_p             : Side=Right;
+    delT_p             : Side=Right;
+    frac_n             : Side=Right;
+    delT_n             : Side=Right;
+    bottom_thermPort   : Side=Bottom;
+    Qb                 : Side=Bottom;
+    top_thermPort      : Side=Top;
+    Qt                 : Side=Top;
+    left_thermPort_R   : Side=Bottom;
+    left_thermPort_C   : Side=Bottom;
+    Ql                 : Side=Bottom;
+    right_thermPort_R  : Side=Bottom;
+    right_thermPort_C  : Side=Bottom;
+    Qr                 : Side=Bottom;
+    posEnd_thermPort_R : Side=Left;
+    posEnd_thermPort_C : Side=Left;
+    Qp                 : Side=Left;
+    negEnd_thermPort_R : Side=Right;
+    negEnd_thermPort_C : Side=Right;
+    Qn                 : Side=Right;
+    outputCellV        : Side=Left;
+end
+
+% Parameter definition for internal usage; processing user defined parameters
+parameters(Access=private)
+    cellSOC0=cellSOC;
+    cellTemp0=cellTemp;
+    %
+    LUTpointsFlowrate_b_val=value(LUTpointsFlowrate_b,'kg/s');
+    moduleCooling_b_val=value(moduleCooling_b,'W/K');
+    LUTpointsTemp_b_val=value(LUTpointsTemp_b,'K');
+    %
+    LUTpointsFlowrate_t_val=value(LUTpointsFlowrate_t,'kg/s');
+    moduleCooling_t_val=value(moduleCooling_t,'W/K');
+    LUTpointsTemp_t_val=value(LUTpointsTemp_t,'K');
+    %
+    LUTpointsFlowrate_l_val=value(LUTpointsFlowrate_l,'kg/s');
+    moduleCooling_l_val=value(moduleCooling_l,'W/K');
+    LUTpointsTemp_l_val=value(LUTpointsTemp_l,'K');
+    %
+    LUTpointsFlowrate_r_val=value(LUTpointsFlowrate_r,'kg/s');
+    moduleCooling_r_val=value(moduleCooling_r,'W/K');
+    LUTpointsTemp_r_val=value(LUTpointsTemp_r,'K');
+    %
+    LUTpointsFlowrate_p_val=value(LUTpointsFlowrate_p,'kg/s');
+    moduleCooling_p_val=value(moduleCooling_p,'W/K');
+    LUTpointsTemp_p_val=value(LUTpointsTemp_p,'K');
+    %
+    LUTpointsFlowrate_n_val=value(LUTpointsFlowrate_n,'kg/s');
+    moduleCooling_n_val=value(moduleCooling_n,'W/K');
+    LUTpointsTemp_n_val=value(LUTpointsTemp_n,'K');
+    %
+    [val_LUTpointsTemp_coolant,val_LUTpointsFlowrate,val_moduleCooling,thermalLUT_selected]=...
+        batteryModule.getThermalLUTfromSideDefinition(...
+        thermalManagement,thermal_moduleBottom,thermal_moduleTop,...
+        thermal_moduleLeft,thermal_moduleRight,thermal_modulePos,thermal_moduleNeg,...
+        LUTpointsFlowrate_b_val,moduleCooling_b_val,LUTpointsTemp_b_val,...
+        LUTpointsFlowrate_t_val,moduleCooling_t_val,LUTpointsTemp_t_val,...
+        LUTpointsFlowrate_l_val,moduleCooling_l_val,LUTpointsTemp_l_val,...
+        LUTpointsFlowrate_r_val,moduleCooling_r_val,LUTpointsTemp_r_val,...
+        LUTpointsFlowrate_p_val,moduleCooling_p_val,LUTpointsTemp_p_val,...
+        LUTpointsFlowrate_n_val,moduleCooling_n_val,LUTpointsTemp_n_val);
+    %
+    LUTpointsTemp_coolant={val_LUTpointsTemp_coolant,'K'};
+    LUTpointsFlowrate={val_LUTpointsFlowrate,'kg/s'};
+    moduleCooling={val_moduleCooling,'W/K'};
+    %
+    flowrate0=LUTpointsFlowrate;
+    moduleCooling0=moduleCooling;
+    minLength={1e-4,'m'}; 
+    minThermalK={1e-3, 'W/(m * K)'}; 
+    T_dependence=ee.enum.temperature_dependence.yes;
+    %
+    moduleCooling_val=value(moduleCooling,'W/K');
+    moduleCooling2Dlumped=permute(sum(permute(moduleCooling_val,[3,1,2])),[2,3,1]);
+    moduleCooling2Dlumped_val=repmat(moduleCooling2Dlumped,[1,1,Ns*Np]);
+    %
+    lumped_moduleCooling={moduleCooling2Dlumped_val,'W/K'};
+    lumped_cellSOC0=ones(1,Ns*Np)*sum([cellSOC])/(Ns*Np);
+    lumped_cellTemp0=ones(1,Ns*Np)*sum([cellTemp])/(Ns*Np);
+    lumped_V0_mat=V0_mat*Ns;
+    lumped_R0_mat=R0_mat*(Ns/Np)*(sum(moduleCellR0PercentVar)/(Ns*Np));
+    lumped_R0_dis_mat=R0_dis_mat*(Ns/Np)*(sum(moduleCellR0PercentVar)/(Ns*Np));
+    lumped_R0_ch_mat=R0_ch_mat*(Ns/Np)*(sum(moduleCellR0PercentVar)/(Ns*Np));
+    lumped_R1_mat=R1_mat*Ns/Np;
+    lumped_R2_mat=R2_mat*Ns/Np;
+    lumped_R3_mat=R3_mat*Ns/Np;
+    lumped_R4_mat=R4_mat*Ns/Np;
+    lumped_R5_mat=R5_mat*Ns/Np;
+    lumped_cellAH=cellAH*Np; 
+    %
+    lumped_Rleak=Rleak_vec*(Ns/Np)*(sum(moduleCellLeakPercentVar)/(Ns*Np));
+    %
+    % ---------------------------------------------------------------------
+    cellTemp_val=value(cellTemp,'K');
+    isDataVarPresent_T=sum(abs(diff(cellTemp_val)));
+    cellSOC_val=value(cellSOC,'1');
+    isDataVarPresent_SOC=sum(abs(diff(cellSOC_val)));
+    % ---------------------------------------------------------------------
+    sum_moduleCooling_val=sum(sum(moduleCooling_val));
+    moduleCellR0PercentVar_val=value(moduleCellR0PercentVar,'1');
+    extHeat_val=value(moduleExtHeat,'W');
+    moduleCellLeakPercentVar_val=value(moduleCellLeakPercentVar,'1');
+    moduleCellAHpercentVar_val=value(moduleCellAHpercentVar,'1');
+    % 
+    % Find cell index based on User Data
+    % 
+    isDataVarPresent_Coolant=sum(abs(diff(sum_moduleCooling_val)));
+    [indxCell1_CP,indxCell2_CP]=batteryModule.getGroupedModelIndexCheck(sum_moduleCooling_val,Np,1);
+    % 
+    isDataVarPresent_R0=sum(abs(diff(moduleCellR0PercentVar_val)));
+    [indxCell1_R0,indxCell2_R0]=batteryModule.getGroupedModelIndexCheck(moduleCellR0PercentVar_val,Np,0);
+    %
+    isDataVarPresent_Q=sum(abs(diff(extHeat_val)));
+    [indxCell1_Q,indxCell2_Q]=batteryModule.getGroupedModelIndexCheck(extHeat_val,Np,0);
+    %
+    isDataVarPresent_Rleak=sum(abs(diff(moduleCellLeakPercentVar_val)));
+    [indxCell1_Rleak,indxCell2_Rleak]=batteryModule.getGroupedModelIndexCheck(moduleCellLeakPercentVar_val,Np,0);
+    %
+    isDataVarPresent_AH=sum(abs(diff(moduleCellAHpercentVar_val)));
+    [indxCell1_AH,indxCell2_AH]=batteryModule.getGroupedModelIndexCheck(moduleCellAHpercentVar_val,Np,0);
+    % 
+    % Final Calculation of Best and Worst Cell indices
+    calcFinalIndices=[isDataVarPresent_Coolant,indxCell1_CP,indxCell2_CP;...
+                      isDataVarPresent_R0,indxCell1_R0,indxCell2_R0;...
+                      isDataVarPresent_Q,indxCell1_Q,indxCell2_Q;...
+                      isDataVarPresent_Rleak,indxCell1_Rleak,indxCell2_Rleak;...
+                      isDataVarPresent_AH,indxCell1_AH,indxCell2_AH];
+    %
+    [indxCell1,indxCell2]=batteryModule.getGroupedModelIndexFinal(thermalLUT_selected,calcFinalIndices);
+    % 
+%     indxCell1=1;indxCell2=10;
+    groupedModelCheck=indxCell2-indxCell1-2*Np;
+    % Constraint : indxCell1 & indxCell2 gap should NOT be less than 2*Np
+    % ---------------------------------------------------------------------
+    numOfSections=5;
+    [indx_cv01,indx_cv02,indx_cv03,indx_cv04,indx_cv05]=...
+        batteryModule.getGroupedModelFiveSections(indxCell1,indxCell2,Ns,Np);
+   
+    %
+    numCells5section=[indx_cv01,indx_cv02-indx_cv01,indx_cv03-indx_cv02,indx_cv04-indx_cv03,indx_cv05-indx_cv04];
+    cellIndex5Section=[indx_cv01,indx_cv02,indx_cv03,indx_cv04,indx_cv05]; 
+    %
+    grouped_moduleCooling_val=batteryModule.getGroupedModelParam3Dvec(...
+        moduleCooling_val,cellIndex5Section,thermalLUT_selected);
+    grouped_moduleCooling={grouped_moduleCooling_val,'W/K'};
+    % 
+    % module Cell AH percent variations   
+    grouped_cellAhrPercentVar_val=batteryModule.getGroupedModelParam1Dvec(...
+        moduleCellAHpercentVar_val,cellIndex5Section,numCells5section);
+    grouped_moduleCellAHpercentVar={grouped_cellAhrPercentVar_val,'1'};
+    %
+    % External heat
+    grouped_extHeat_val=batteryModule.getGroupedModelParam1Dvec(...
+        extHeat_val,cellIndex5Section,numCells5section);
+    grouped_extHeat={grouped_extHeat_val,'W'};
+    % 
+    % module Cell terminal resistance percent variations
+    grouped_cellR0PercentVar_val=batteryModule.getGroupedModelParam1Dvec(...
+        moduleCellR0PercentVar_val,cellIndex5Section,numCells5section);
+    grouped_moduleCellR0PercentVar={grouped_cellR0PercentVar_val,'1'}
+    %
+    %
+    % module Cell Leak Percent Variations
+    %     Module leak can be enabled or disabled; If it is enabled, vector size (below)
+    %     would not be an issue as it is visible. The vector 'moduleCellLeakPercentVar'
+    %     is not visible when Rleak is disabled and hence a bound check (not required
+    %     for other parameters) is required and implemented below. Bound check is to check
+    %     vector size as per number of cells in the model.
+    %     If <Rleak model is disabled>
+    %         Initalize below var with default size of 10 for moduleCellLeakPercentVar
+    %     Else
+    %
+    %     End
+    len_vector=max(size(moduleCellLeakPercentVar_val));indx_cv05_lim=min(indx_cv05,len_vector);
+    indx_cv04_lim=min(indx_cv04,indx_cv05_lim-1);indx_cv03_lim=min(indx_cv03,indx_cv04_lim-1);
+    indx_cv02_lim=min(indx_cv02,indx_cv03_lim-1);indx_cv01_lim=min(indx_cv01,indx_cv02_lim-1);
+    cellIndex5Section_lim=[indx_cv01_lim,indx_cv02_lim,indx_cv03_lim,indx_cv04_lim,indx_cv05_lim];
+    grouped_CellLeakPercent_val=batteryModule.getGroupedModelParam1Dvec(...
+        moduleCellLeakPercentVar_val,cellIndex5Section_lim,numCells5section);
+    grouped_moduleCellLeakPercentVar={grouped_CellLeakPercent_val,'1'};
+    %
+    % Grouped Model with Lumped thermal nodes - connectivity indices
+    % Valid ONLY for cylindrical cells
+    % <side>_cellsData(size=Ns*Np+1), cellIndex5Section(size=5), cellCylinLine
+    left_SectionContact=batteryModule.getNumOfCylindricalSectionContact_S(left_cellsData,cellCylinLine,cellIndex5Section,Ns*Np,1);
+    grouped_left_countSection=left_SectionContact(1,1);
+    grouped_left_referToSection=left_SectionContact(1,2:(grouped_left_countSection+1));
+    %
+    right_SectionContact=batteryModule.getNumOfCylindricalSectionContact_S(right_cellsData,cellCylinLine,cellIndex5Section,Ns*Np,2);
+    grouped_right_countSection=right_SectionContact(1,1);
+    grouped_right_referToSection=right_SectionContact(1,2:(grouped_right_countSection+1));
+    %
+    posEnd_SectionContact=batteryModule.getNumOfCylindricalSectionContact_S(posEnd_cellsData,cellCylinLine,cellIndex5Section,Ns*Np,3);
+    grouped_posEnd_countSection=posEnd_SectionContact(1,1);
+    grouped_posEnd_referToSection=posEnd_SectionContact(1,2:(grouped_posEnd_countSection+1));
+    %
+    negEnd_SectionContact=batteryModule.getNumOfCylindricalSectionContact_S(negEnd_cellsData,cellCylinLine,cellIndex5Section,Ns*Np,4);
+    grouped_negEnd_countSection=negEnd_SectionContact(1,1);
+    grouped_negEnd_referToSection=negEnd_SectionContact(1,2:(grouped_negEnd_countSection+1));
+    %
+end
+
+if modelComplexity == batteryModule.batteryAbstractionLevel.lumped || ...
+   modelComplexity == batteryModule.batteryAbstractionLevel.grouped     
+    annotations
+        [moduleCellBalancing] : ExternalAccess=none;
+    end    
+else
+    %
+end
+
+if modelComplexity == batteryModule.batteryAbstractionLevel.lumped     
+    annotations
+        [moduleCellVoltages,outputCellV] : ExternalAccess=none;
+    end    
+else
+    if moduleCellVoltages == batteryModule.batteryCellVoltages.no
+        annotations
+            [outputCellV] : ExternalAccess=none;
+        end
+    end
+end
+
+if modelComplexity == batteryModule.batteryAbstractionLevel.grouped
+    equations
+        assert(groupedModelCheck>0,'Monitoring cells must be apart by more than twice the number of parallel cells');
+    end
+else
+    %   
+end
+
+% Check for current directionality feature; enable visibility of relevant 
+% parameters
+if prm_dir == ee.enum.battery.prm_dir.noCurrentDirectionality
+    annotations
+        [R0_dis_mat,R0_ch_mat] : ExternalAccess=none;
+    end
+      
+    equations
+        assert(all(R0_mat(:)>0));
+    end
+else
+    annotations
+        [R0_mat] : ExternalAccess=none;
+    end
+      
+    equations
+        assert(all(R0_ch_mat(:)>0));
+        assert(all(R0_dis_mat(:)>0));
+        % Parameter R0 must be defined at all SOC and Temperature lookup table points 
+        assert(all(size(R0_ch_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+        assert(all(size(R0_dis_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+    end
+end
+
+% Check for cell balancing, if enabled
+if(moduleCellBalancing == batteryModule.batteryCellBalancing.none || ...
+        modelComplexity == batteryModule.batteryAbstractionLevel.lumped || ...
+        modelComplexity == batteryModule.batteryAbstractionLevel.grouped)
+    annotations
+        [passiveShuntR,passiveSWclosedR,passiveSWopenCond,...
+            passiveSWthreshold,passiveSWonOff] : ExternalAccess=none;
+    end
+else
+    % All parameters for cell balancing must be greater than zero
+    equations
+        assert(passiveShuntR>0,'Shunt resistance must be greater than zero');
+        assert(passiveSWclosedR>0,'Switch closed resistance must be greater than zero');
+        assert(passiveSWopenCond>0,'Switch open conductance must be greater than zero');
+    end
+end
+        
+if prm_leak == ee.enum.battery.prm_leak.disabled
+    annotations
+        [Rleak_vec,moduleCellLeakPercentVar] : ExternalAccess=none;
+    end
+else
+    % Check if values of parameter is defined at all temperature points
+    equations
+        assert(all(Rleak_vec>0));
+        assert(length(Rleak_vec) == length(LUTpointsTemp));
+    end
+    if modelComplexity == batteryModule.batteryAbstractionLevel.lumped 
+        annotations
+            [moduleCellLeakPercentVar] : ExternalAccess=none;
+        end
+    else
+        equations
+            assert(all(moduleCellLeakPercentVar>0),'Cell leak percent variation vector must be greater than zero');
+            assert(length(moduleCellLeakPercentVar) == Ns*Np,'Cell leak percent variation vector must be of size equal to number of cells');
+        end
+    end
+end
+
+% Check for cell dynamics and make appropiate resistance(s) and time 
+% constant(s) visible
+if prm_dyn == ee.enum.battery.prm_dyn.rc1
+    annotations
+        [R2_mat,tau2_mat, ...
+            R3_mat,tau3_mat, ...
+            R4_mat,tau4_mat, ...
+            R5_mat,tau5_mat]: ExternalAccess=none;
+    end
+elseif prm_dyn == ee.enum.battery.prm_dyn.rc2
+    annotations
+        [R3_mat,tau3_mat, ...
+            R4_mat,tau4_mat, ...
+            R5_mat,tau5_mat]: ExternalAccess=none;
+    end
+elseif prm_dyn == ee.enum.battery.prm_dyn.rc3
+    annotations
+        [R4_mat,tau4_mat, ...
+            R5_mat,tau5_mat]: ExternalAccess=none;
+    end
+elseif prm_dyn == ee.enum.battery.prm_dyn.rc4
+    annotations
+        [R5_mat,tau5_mat]: ExternalAccess=none;
+    end
+elseif prm_dyn == ee.enum.battery.prm_dyn.rc5
+    % do nothing
+else
+    annotations
+        [R1_mat,tau1_mat, ...
+            R2_mat,tau2_mat, ...
+            R3_mat,tau3_mat, ...
+            R4_mat,tau4_mat, ...
+            R5_mat,tau5_mat]: ExternalAccess=none;
+    end
+end
+
+% 
+equations
+    assert(all(LUTpointsTemp>0));
+    assert(all(diff(LUTpointsTemp)>0));
+    assert(cellAH>0);
+    assert(all(V0_mat(:)>=0));
+    assert(all(R0_mat(:)>0));
+    % Parameters V0 and R0 must be defined at all SOC and Temperature points
+    assert(all(size(V0_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+    assert(all(size(R0_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+    assert(length(cellAH) == 1);
+end
+   
+% Check for cell dynamics and check parameter size and values
+if prm_dyn == ee.enum.battery.prm_dyn.rc1 || ...
+        prm_dyn == ee.enum.battery.prm_dyn.rc2 || ...
+        prm_dyn == ee.enum.battery.prm_dyn.rc3 || ...
+        prm_dyn == ee.enum.battery.prm_dyn.rc4 || ...
+        prm_dyn == ee.enum.battery.prm_dyn.rc5
+    equations
+        assert(all(R1_mat(:)>0));
+        assert(all(tau1_mat(:)>0));
+        % Parameters R1 and TAU1 must be defined at all SOC and Temperature points
+        assert(all(size(R1_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+        assert(all(size(tau1_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+    end
+end
+% Check for cell dynamics and check parameter size and values
+if prm_dyn == ee.enum.battery.prm_dyn.rc2 || ...
+        prm_dyn == ee.enum.battery.prm_dyn.rc3 || ...
+        prm_dyn == ee.enum.battery.prm_dyn.rc4 || ...
+        prm_dyn == ee.enum.battery.prm_dyn.rc5
+    equations
+        assert(all(R2_mat(:)>0));
+        assert(all(tau2_mat(:)>0));
+        % Parameters R2 and TAU2 must be defined at all SOC and Temperature points
+        assert(all(size(R2_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+        assert(all(size(tau2_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+    end
+end
+% Check for cell dynamics and check parameter size and values
+if prm_dyn == ee.enum.battery.prm_dyn.rc3 || ...
+        prm_dyn == ee.enum.battery.prm_dyn.rc4 || ...
+        prm_dyn == ee.enum.battery.prm_dyn.rc5
+    equations
+        assert(all(R3_mat(:)>0));
+        assert(all(tau3_mat(:)>0));
+        % Parameters R3 and TAU3 must be defined at all SOC and Temperature points
+        assert(all(size(R3_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+        assert(all(size(tau3_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+    end
+end
+% Check for cell dynamics and check parameter size and values
+if prm_dyn == ee.enum.battery.prm_dyn.rc4 || ...
+        prm_dyn == ee.enum.battery.prm_dyn.rc5
+    equations
+        assert(all(R4_mat(:)>0));
+        assert(all(tau4_mat(:)>0));
+        % Parameters R4 and TAU4 must be defined at all SOC and Temperature points
+        assert(all(size(R4_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+        assert(all(size(tau4_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+    end
+end
+% Check for cell dynamics and check parameter size and values
+if prm_dyn == ee.enum.battery.prm_dyn.rc5
+    equations
+        assert(all(R5_mat(:)>0));
+        assert(all(tau5_mat(:)>0));
+        % Parameters R5 and TAU5 must be defined at all SOC and Temperature points
+        assert(all(size(R5_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+        assert(all(size(tau5_mat) == [length(LUTpointsSOC) length(LUTpointsTemp)]));
+    end
+end
+
+% Check for Cell fade model definition
+if prm_fade == ee.enum.battery.prm_fade.tableN
+    annotations
+        [N0,dV0,dR0,dAH,dRleak,dR1,dR2,dR3,dR4,dR5, ...
+            Tfadevec,dV0mat,dR0mat,dAHmat,dRleakmat, ...
+            dR1mat,dR2mat,dR3mat,dR4mat,dR5mat] : ExternalAccess=none;
+    end
+    
+    if prm_leak == ee.enum.battery.prm_leak.disabled
+        annotations
+            dRleakvec : ExternalAccess=none;
+        end
+    else
+        equations
+            assert(length(N0vec) == length(dRleakvec));
+        end
+    end
+    
+    if prm_dyn == ee.enum.battery.prm_dyn.rc1
+        annotations
+            [dR2vec,dR3vec,dR4vec,dR5vec] : ExternalAccess=none;
+        end
+        
+        equations
+            assert(length(N0vec) == length(dR1vec));
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc2
+        annotations
+            [dR3vec,dR4vec,dR5vec] : ExternalAccess=none;
+        end
+        
+        equations
+            assert(length(N0vec) == length(dR1vec));
+            assert(length(N0vec) == length(dR2vec));
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc3
+        annotations
+            [dR4vec,dR5vec] : ExternalAccess=none;
+        end
+        
+        equations
+            assert(length(N0vec) == length(dR1vec));
+            assert(length(N0vec) == length(dR2vec));
+            assert(length(N0vec) == length(dR3vec));
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc4
+        annotations
+            [dR5vec] : ExternalAccess=none;
+        end
+        
+        equations
+            assert(length(N0vec) == length(dR1vec));
+            assert(length(N0vec) == length(dR2vec));
+            assert(length(N0vec) == length(dR3vec));
+            assert(length(N0vec) == length(dR4vec));
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc5
+        equations
+            assert(length(N0vec) == length(dR1vec));
+            assert(length(N0vec) == length(dR2vec));
+            assert(length(N0vec) == length(dR3vec));
+            assert(length(N0vec) == length(dR4vec));
+            assert(length(N0vec) == length(dR5vec));
+        end
+    else
+        annotations
+            [dR1vec,dR2vec,dR3vec,dR4vec,dR5vec] : ExternalAccess=none;
+        end
+    end
+    
+    equations
+        assert(all(N0vec>=1));
+        assert(length(N0vec) == length(dV0vec));
+        assert(length(N0vec) == length(dR0vec));
+        assert(length(N0vec) == length(dAHvec));
+    end
+elseif prm_fade == ee.enum.battery.prm_fade.tableNandT
+    annotations
+        [N0,dV0,dR0,dAH,dRleak,dR1,dR2,dR3,dR4,dR5, ...
+            dV0vec,dR0vec,dAHvec,dRleakvec, ...
+            dR1vec,dR2vec,dR3vec,dR4vec,dR5vec] : ExternalAccess=none;
+    end
+    
+    if prm_leak == ee.enum.battery.prm_leak.disabled
+        annotations
+            dRleakmat : ExternalAccess=none;
+        end
+    else
+        equations
+            assert(all(size(dRleakmat) == [length(N0vec) length(Tfadevec)]));
+        end
+    end
+    
+    if prm_dyn == ee.enum.battery.prm_dyn.rc1
+        annotations
+            [dR2mat,dR3mat,dR4mat,dR5mat] : ExternalAccess=none;
+        end
+        
+        equations
+            assert(all(size(dR1mat) == [length(N0vec) length(Tfadevec)]));
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc2
+        annotations
+            [dR3mat,dR4mat,dR5mat] : ExternalAccess=none;
+        end
+        
+        equations
+            assert(all(size(dR1mat) == [length(N0vec) length(Tfadevec)]));
+            assert(all(size(dR2mat) == [length(N0vec) length(Tfadevec)]));
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc3
+        annotations
+            [dR4mat,dR5mat] : ExternalAccess=none;
+        end
+        
+        equations
+            assert(all(size(dR1mat) == [length(N0vec) length(Tfadevec)]));
+            assert(all(size(dR2mat) == [length(N0vec) length(Tfadevec)]));
+            assert(all(size(dR3mat) == [length(N0vec) length(Tfadevec)]));
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc4
+        annotations
+            [dR5mat] : ExternalAccess=none;
+        end
+        
+        equations
+            assert(all(size(dR1mat) == [length(N0vec) length(Tfadevec)]));
+            assert(all(size(dR2mat) == [length(N0vec) length(Tfadevec)]));
+            assert(all(size(dR3mat) == [length(N0vec) length(Tfadevec)]));
+            assert(all(size(dR4mat) == [length(N0vec) length(Tfadevec)]));
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc5
+        equations
+            assert(all(size(dR1mat) == [length(N0vec) length(Tfadevec)]));
+            assert(all(size(dR2mat) == [length(N0vec) length(Tfadevec)]));
+            assert(all(size(dR3mat) == [length(N0vec) length(Tfadevec)]));
+            assert(all(size(dR4mat) == [length(N0vec) length(Tfadevec)]));
+            assert(all(size(dR5mat) == [length(N0vec) length(Tfadevec)]));
+        end
+    else
+        annotations
+            [dR1mat,dR2mat,dR3mat,dR4mat,dR5mat] : ExternalAccess=none;
+        end
+    end
+    
+    equations
+        assert(all(N0vec>=1));
+        assert(all(Tfadevec>{0,'K'}));
+        assert(all(size(dV0mat) == [length(N0vec) length(Tfadevec)]));
+        assert(all(size(dR0mat) == [length(N0vec) length(Tfadevec)]));
+        assert(all(size(dAHmat) == [length(N0vec) length(Tfadevec)]));
+    end
+else
+    annotations
+        [N0vec,Tfadevec,dV0vec,dR0vec,dAHvec,dRleakvec, ...
+            dR1vec,dR2vec,dR3vec,dR4vec,dR5vec, ...
+            dV0mat,dR0mat,dAHmat,dRleakmat, ...
+            dR1mat,dR2mat,dR3mat,dR4mat,dR5mat] : ExternalAccess=none;
+    end
+    
+    if prm_leak == ee.enum.battery.prm_leak.disabled
+        annotations
+            dRleak : ExternalAccess=none;
+        end
+    end
+    
+    if prm_dyn == ee.enum.battery.prm_dyn.rc1
+        annotations
+            [dR2,dR3,dR4,dR5] : ExternalAccess=none;
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc2
+        annotations
+            [dR3,dR4,dR5] : ExternalAccess=none;
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc3
+        annotations
+            [dR4,dR5] : ExternalAccess=none;
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc4
+        annotations
+            dR5 : ExternalAccess=none;
+        end
+    elseif prm_dyn == ee.enum.battery.prm_dyn.rc5
+        % do nothing
+    else
+        annotations
+            [dR1,dR2,dR3,dR4,dR5] : ExternalAccess=none;
+        end
+    end
+    
+    equations
+        assert(N0>=1);
+    end
+end
+
+
+% Check for cell type and relevant input (Cell Pouch, Can, Cylindrical)
+if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+        cellTypeSelection == batteryModule.batteryTypeSelection.can)
+    % Rectangular shaped cell selected
+    annotations
+        [cellDiameter,cellCylinLine] : ExternalAccess=none;
+    end
+    parameters(Access=private)
+        cell_type = 1 ;
+    end
+    % All parameters must be greater than zero
+    equations
+        assert(cellWidth > 0, 'Cell width must be a positive number');
+        assert(cellHeight > 0, 'Cell height must be a positive number');
+        assert(cellThickness > 0, 'Cell thickness must be a positive number');
+    end
+else % cellTypeSelection == batteryModule.batteryTypeSelection.compactcylindrical  or regularcylindrical
+    % Cylindrical shaped cell selected
+    annotations
+        [cellWidth,cellThickness] : ExternalAccess=none;
+    end
+    parameters(Access=private)
+        cell_type = 2 ;
+    end  
+    % All parameters must be greater than zero
+    equations
+        assert(cellHeight > 0, 'Cell height must be a positive number');
+        assert(cellDiameter > 0, 'Cell diameter must be a positive number');
+        assert(cellCylinLine > Np && cellCylinLine < Ns*Np,'Number of cells in a line must be positive and less than number of total cells');
+    end
+end
+
+% Check dimension or size of all vector parameters
+equations
+    assert(all(moduleCellAHpercentVar>0),'Cell capacity percent variation vector must be greater than zero');
+    assert(all(moduleCellR0PercentVar>0),'Cell terminal resistance variation vector must be greater than zero');
+    assert(all(outputCellSOC>=0) && all(outputCellSOC<=1),'Value of cell SOC must be greater than zero and less than one at all times');
+    % Num of cells in series and parallel must be equal to or greater than one
+    assert(mod(Ns*Np, 1) == 0 && Ns*Np > 1 && Ns>0 && Np>0, 'Number of series or parallel connected cells must be a positive integer');
+    % Check for size of SOC and Temperature vectors
+    assert(length(cellSOC0) == Ns*Np,'Cell initial SOC vector size must be equal to the total number of cells in the module');
+    assert(length(cellTemp0) == Ns*Np,'Cell initial temperature vector size must be equal to the total number of cells in the module');
+    % Cell thermal mass, thermal conductivity, heat transfer coeff must be greater than zero
+    assert(cellThermalCond > 0, 'Cell thermal conductivity must be a positive number');
+    assert(cellHeatTrCoeff > 0, 'Heat transfer coefficient must be a positive number');
+    assert(cellThermalMass > 0, 'Cell thermal mass must be a positive number');
+    % Module additional resistance must be greater than or equal to zero
+    assert(moduleExternalR >= 0, 'Additional lumped resistance must be greater than or equal to zero');
+    % Module external heat vector size check
+    assert(all(moduleExtHeat>=0) && length(moduleExtHeat) == Ns*Np,'Module external heat input vector size must equal the total number of cells and all values must be equal or greater than zero');
+end
+
+if thermalManagement == batteryModule.batteryCoolingSystem.none
+    annotations
+        [frac_b,delT_b,frac_t,delT_t,frac_r,delT_r,frac_l,delT_l,frac_p,delT_p,frac_n,delT_n,...
+            moduleCooling_b,LUTpointsFlowrate_b,LUTpointsTemp_b,...
+            moduleCooling_t,LUTpointsFlowrate_t,LUTpointsTemp_t,...
+            moduleCooling_r,LUTpointsFlowrate_r,LUTpointsTemp_r,...
+            moduleCooling_l,LUTpointsFlowrate_l,LUTpointsTemp_l,...
+            moduleCooling_p,LUTpointsFlowrate_p,LUTpointsTemp_p,...
+            moduleCooling_n,LUTpointsFlowrate_n,LUTpointsTemp_n,...
+            bottom_thermPort,top_thermPort,...
+            left_thermPort_R,right_thermPort_R,posEnd_thermPort_R,negEnd_thermPort_R,...
+            left_thermPort_C,right_thermPort_C,posEnd_thermPort_C,negEnd_thermPort_C,...
+            Qb,Qt,Qn,Qp,Ql,Qr,...
+            thermal_moduleBottom,thermal_moduleTop,...
+            thermal_moduleLeft,thermal_moduleRight,...
+            thermal_modulePos,thermal_moduleNeg,...
+            htc_top,htc_bottom,htc_right,htc_left,htc_pos,htc_neg] : ExternalAccess=none;
+    end
+    connections
+        connect(Qt,lumpedThermalPortDummy.A);
+        connect(Qb,lumpedThermalPortDummy.A);
+        connect(Ql,lumpedThermalPortDummy.A);
+        connect(Qr,lumpedThermalPortDummy.A);
+        connect(Qp,lumpedThermalPortDummy.A);
+        connect(Qn,lumpedThermalPortDummy.A);
+    end
+    equations
+        top_thermPort      == [1:Ns*Np;1:Ns*Np];
+        bottom_thermPort   == [1:Ns*Np;1:Ns*Np];
+        right_thermPort_R  == [1:Ns*Np;1:Ns*Np];
+        right_thermPort_C  == [1:right_cells;1:right_cells];
+        left_thermPort_R   == [1:Ns*Np;1:Ns*Np];
+        left_thermPort_C   == [1:left_cells;1:left_cells];
+        posEnd_thermPort_R == [1;1];
+        posEnd_thermPort_C == [1:posEnd_cells;1:posEnd_cells];
+        negEnd_thermPort_R == [1;1];
+        negEnd_thermPort_C == [1:negEnd_cells;1:negEnd_cells];
+    end
+else
+    % thermalManagement == batteryModule.batteryCoolingSystem.thermalPort
+    annotations
+        [cellHeatTrCoeff] : ExternalAccess=none;
+    end
+    equations
+        assert(all(LUTpointsTemp_coolant>0),'All coolant lookup table temperature points must be greater than zero');
+        assert(all(diff(LUTpointsTemp_coolant)>0),'All coolant lookup table temperature points must be unique'); 
+    end
+    %
+    if thermal_moduleBottom == batteryModule.batteryThermalPortSelection.thermalPortConn
+        annotations
+            [LUTpointsFlowrate_b,moduleCooling_b,LUTpointsTemp_b,frac_b,delT_b,htc_bottom,Qb] : ExternalAccess=none;
+        end
+        connections
+            connect(Qb,lumpedThermalPortDummy.A);
+        end
+        equations
+            assert(modelComplexity == batteryModule.batteryAbstractionLevel.detailed,...
+                   'Detailed thermal port for Module Bottom Connection must be run with Detailed Battery Module only');
+        end
+    elseif thermal_moduleBottom == batteryModule.batteryThermalPortSelection.thermalPortLumped
+        annotations
+            [LUTpointsFlowrate_b,moduleCooling_b,LUTpointsTemp_b,frac_b,delT_b,htc_bottom,bottom_thermPort] : ExternalAccess=none;
+        end
+        equations
+            bottom_thermPort == [1:Ns*Np;1:Ns*Np];
+        end
+    elseif thermal_moduleBottom == batteryModule.batteryThermalPortSelection.thermalLUT
+        annotations
+            [htc_bottom,bottom_thermPort,Qb] : ExternalAccess=none;
+        end
+        equations
+            bottom_thermPort == [1:Ns*Np;1:Ns*Np];
+            assert(size(moduleCooling0,3) == Ns*Np,'The third dimension of the 3D array for module cooling must be equal to total number of cells in the module');
+            assert(size(moduleCooling0,2) == length(flowrate0),'The second dimension of the 3D array for module cooling must be equal to the length of the coolant flow rate vector');
+            assert(size(moduleCooling0,1) == length(LUTpointsTemp_coolant),'The first dimension of the 3D array for module cooling must be equal to the length of the temperature vector');
+        end
+        connections
+            connect(Qb,lumpedThermalPortDummy.A);
+        end
+    else
+        annotations
+            [LUTpointsFlowrate_b,moduleCooling_b,LUTpointsTemp_b,frac_b,delT_b,bottom_thermPort,Qb] : ExternalAccess=none;
+        end
+        connections
+            connect(Qb,lumpedThermalPortDummy.A);
+        end
+        equations
+            bottom_thermPort == [1:Ns*Np;1:Ns*Np];
+        end
+    end
+    %
+    if thermal_moduleTop == batteryModule.batteryThermalPortSelection.thermalPortConn
+        annotations
+            [LUTpointsFlowrate_t,moduleCooling_t,LUTpointsTemp_t,frac_t,delT_t,htc_top,Qt] : ExternalAccess=none;
+        end
+        connections
+            connect(Qt,lumpedThermalPortDummy.A);
+        end
+        equations
+            assert(modelComplexity == batteryModule.batteryAbstractionLevel.detailed,...
+                   'Detailed thermal port for Module Top Connection must be run with Detailed Battery Module only');
+        end
+    elseif thermal_moduleTop == batteryModule.batteryThermalPortSelection.thermalPortLumped
+        annotations
+            [LUTpointsFlowrate_t,moduleCooling_t,LUTpointsTemp_t,frac_t,delT_t,htc_top,top_thermPort] : ExternalAccess=none;
+        end
+        equations
+            top_thermPort == [1:Ns*Np;1:Ns*Np];
+        end
+    elseif thermal_moduleTop == batteryModule.batteryThermalPortSelection.thermalLUT
+        annotations
+            [htc_top,top_thermPort,Qt] : ExternalAccess=none;
+        end
+        equations
+            top_thermPort == [1:Ns*Np;1:Ns*Np];
+            assert(size(moduleCooling0,3) == Ns*Np,'The third dimension of the 3D array for module cooling must be equal to total number of cells in the module');
+            assert(size(moduleCooling0,2) == length(flowrate0),'The second dimension of the 3D array for module cooling must be equal to the length of the coolant flow rate vector');
+            assert(size(moduleCooling0,1) == length(LUTpointsTemp_coolant),'The first dimension of the 3D array for module cooling must be equal to the length of the temperature vector');
+        end
+        connections
+            connect(Qt,lumpedThermalPortDummy.A);
+        end
+    else
+        annotations
+            [LUTpointsFlowrate_t,moduleCooling_t,LUTpointsTemp_t,frac_t,delT_t,top_thermPort,Qt] : ExternalAccess=none;
+        end
+        connections
+            connect(Qt,lumpedThermalPortDummy.A);
+        end
+        equations
+            top_thermPort == [1:Ns*Np;1:Ns*Np];
+        end
+    end
+    %
+    if thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalPortConn
+        if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+        cellTypeSelection == batteryModule.batteryTypeSelection.can)
+            annotations
+                [LUTpointsFlowrate_l,moduleCooling_l,LUTpointsTemp_l,frac_l,delT_l,...
+                    htc_left,Ql,left_thermPort_C] : ExternalAccess=none;
+            end
+            equations
+                left_thermPort_C == [1:left_cells;1:left_cells];
+            end
+        else
+            annotations
+                [LUTpointsFlowrate_l,moduleCooling_l,LUTpointsTemp_l,frac_l,delT_l,...
+                    htc_left,Ql,left_thermPort_R] : ExternalAccess=none;
+            end
+            equations
+                left_thermPort_R == [1:Ns*Np;1:Ns*Np];
+            end
+        end
+        connections
+            connect(Ql,lumpedThermalPortDummy.A);
+        end
+        equations
+            assert(modelComplexity == batteryModule.batteryAbstractionLevel.detailed,...
+                   'Detailed thermal port for Module Left Connection must be run with Detailed Battery Module only');
+        end
+    elseif thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalPortLumped
+        annotations
+            [LUTpointsFlowrate_l,moduleCooling_l,LUTpointsTemp_l,frac_l,delT_l,...
+                htc_left,left_thermPort_R,left_thermPort_C] : ExternalAccess=none;
+        end
+        equations
+            left_thermPort_R == [1:Ns*Np;1:Ns*Np];
+            left_thermPort_C == [1:left_cells;1:left_cells];
+        end
+    elseif thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalLUT
+        annotations
+            [htc_left,left_thermPort_R,left_thermPort_C,Ql] : ExternalAccess=none;
+        end
+        equations
+            left_thermPort_R == [1:Ns*Np;1:Ns*Np];
+            left_thermPort_C == [1:left_cells;1:left_cells];
+            assert(size(moduleCooling0,3) == Ns*Np,'The third dimension of the 3D array for module cooling must be equal to total number of cells in the module');
+            assert(size(moduleCooling0,2) == length(flowrate0),'The second dimension of the 3D array for module cooling must be equal to the length of the coolant flow rate vector');
+            assert(size(moduleCooling0,1) == length(LUTpointsTemp_coolant),'The first dimension of the 3D array for module cooling must be equal to the length of the temperature vector');
+        end
+        connections
+            connect(Ql,lumpedThermalPortDummy.A);
+        end
+    else
+        annotations
+            [LUTpointsFlowrate_l,moduleCooling_l,LUTpointsTemp_l,frac_l,delT_l,...
+                left_thermPort_R,left_thermPort_C,Ql] : ExternalAccess=none;
+        end
+        connections
+            connect(Ql,lumpedThermalPortDummy.A);
+        end
+        equations
+            left_thermPort_R == [1:Ns*Np;1:Ns*Np];
+            left_thermPort_C == [1:left_cells;1:left_cells];
+        end
+    end
+    %
+    if thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalPortConn
+        if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+        cellTypeSelection == batteryModule.batteryTypeSelection.can)
+            annotations
+                [LUTpointsFlowrate_r,moduleCooling_r,LUTpointsTemp_r,frac_r,delT_r,...
+                    htc_right,Qr,right_thermPort_C] : ExternalAccess=none;
+            end
+            equations
+                right_thermPort_C == [1:right_cells;1:right_cells];
+            end
+        else
+            annotations
+                [LUTpointsFlowrate_r,moduleCooling_r,LUTpointsTemp_r,frac_r,delT_r,...
+                    htc_right,Qr,right_thermPort_R] : ExternalAccess=none;
+            end
+            equations
+                right_thermPort_R == [1:Ns*Np;1:Ns*Np];
+            end
+        end
+        connections
+            connect(Qr,lumpedThermalPortDummy.A);
+        end
+        equations
+            assert(modelComplexity == batteryModule.batteryAbstractionLevel.detailed,...
+                   'Detailed thermal port for Module Right Connection must be run with Detailed Battery Module only');
+        end
+    elseif thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalPortLumped
+        annotations
+            [LUTpointsFlowrate_r,moduleCooling_r,LUTpointsTemp_r,frac_r,delT_r,...
+                htc_right,right_thermPort_R,right_thermPort_C] : ExternalAccess=none;
+        end
+        equations
+            right_thermPort_R == [1:Ns*Np;1:Ns*Np];
+            right_thermPort_C == [1:right_cells;1:right_cells];
+        end
+    elseif thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalLUT
+        annotations
+            [htc_right,right_thermPort_R,right_thermPort_C,Qr] : ExternalAccess=none;
+        end
+        equations
+            right_thermPort_R == [1:Ns*Np;1:Ns*Np];
+            right_thermPort_C == [1:right_cells;1:right_cells];
+            assert(size(moduleCooling0,3) == Ns*Np,'The third dimension of the 3D array for module cooling must be equal to total number of cells in the module');
+            assert(size(moduleCooling0,2) == length(flowrate0),'The second dimension of trhe 3D array for module cooling must be equal to the length of the coolant flow rate vector');
+            assert(size(moduleCooling0,1) == length(LUTpointsTemp_coolant),'The first dimension of the 3D array for module cooling must be equal to the length of the temperature vector');
+        end
+        connections
+            connect(Qr,lumpedThermalPortDummy.A);
+        end
+    else
+        annotations
+            [LUTpointsFlowrate_r,moduleCooling_r,LUTpointsTemp_r,frac_r,delT_r,...
+                right_thermPort_R,right_thermPort_C,Qr] : ExternalAccess=none;
+        end
+        equations
+            right_thermPort_R == [1:Ns*Np;1:Ns*Np];
+            right_thermPort_C == [1:right_cells;1:right_cells];
+        end
+        connections
+            connect(Qr,lumpedThermalPortDummy.A);
+        end
+    end
+    %
+    if thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalPortConn
+        if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+        cellTypeSelection == batteryModule.batteryTypeSelection.can)
+            annotations
+                [LUTpointsFlowrate_p,moduleCooling_p,LUTpointsTemp_p,frac_p,delT_p,...
+                    htc_pos,Qp,posEnd_thermPort_C] : ExternalAccess=none;
+            end
+            equations
+                posEnd_thermPort_C == [1:posEnd_cells;1:posEnd_cells];
+            end
+        else
+            annotations
+                [LUTpointsFlowrate_p,moduleCooling_p,LUTpointsTemp_p,frac_p,delT_p,...
+                    htc_pos,Qp,posEnd_thermPort_R] : ExternalAccess=none;
+            end
+            equations
+                posEnd_thermPort_R == [1;1];
+            end
+        end
+        connections
+            connect(Qp,lumpedThermalPortDummy.A);
+        end
+        equations
+            assert(modelComplexity == batteryModule.batteryAbstractionLevel.detailed,...
+                   'Detailed thermal port for Module PosEnd Connection must be run with Detailed Battery Module only');
+        end
+    elseif thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalPortLumped
+        annotations
+            [LUTpointsFlowrate_p,moduleCooling_p,LUTpointsTemp_p,frac_p,delT_p,...
+                htc_pos,posEnd_thermPort_R,posEnd_thermPort_C] : ExternalAccess=none;
+        end
+        equations
+            posEnd_thermPort_R == [1;1];
+            posEnd_thermPort_C == [1:posEnd_cells;1:posEnd_cells];
+        end
+    elseif thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalLUT
+        annotations
+            [htc_pos,posEnd_thermPort_R,posEnd_thermPort_C,Qp] : ExternalAccess=none;
+        end
+        equations
+            posEnd_thermPort_R == [1;1];
+            posEnd_thermPort_C == [1:posEnd_cells;1:posEnd_cells];
+            assert(size(moduleCooling0,3) == Ns*Np,'The third dimension of the 3D array for module cooling must be equal to total number of cells in the module');
+            assert(size(moduleCooling0,2) == length(flowrate0),'The second dimension of trhe 3D array for module cooling must be equal to the length of the coolant flow rate vector');
+            assert(size(moduleCooling0,1) == length(LUTpointsTemp_coolant),'The first dimension of the 3D array for module cooling must be equal to the length of the temperature vector');
+        end
+        connections
+            connect(Qp,lumpedThermalPortDummy.A);
+        end
+    else
+        annotations
+            [LUTpointsFlowrate_p,moduleCooling_p,LUTpointsTemp_p,frac_p,delT_p,...
+                posEnd_thermPort_R,posEnd_thermPort_C,Qp] : ExternalAccess=none;
+        end
+        equations
+            posEnd_thermPort_R == [1;1];
+            posEnd_thermPort_C == [1:posEnd_cells;1:posEnd_cells];
+        end
+        connections
+            connect(Qp,lumpedThermalPortDummy.A);
+        end
+    end
+    %
+    if thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalPortConn
+        if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+        cellTypeSelection == batteryModule.batteryTypeSelection.can)
+            annotations
+                [LUTpointsFlowrate_n,moduleCooling_n,LUTpointsTemp_n,frac_n,delT_n,...
+                    htc_neg,Qn,negEnd_thermPort_C] : ExternalAccess=none;
+            end
+            equations
+                negEnd_thermPort_C == [1:negEnd_cells;1:negEnd_cells];
+            end
+        else
+            annotations
+                [LUTpointsFlowrate_n,moduleCooling_n,LUTpointsTemp_n,frac_n,delT_n,...
+                    htc_neg,Qn,negEnd_thermPort_R] : ExternalAccess=none;
+            end
+            equations
+                negEnd_thermPort_R == [1;1];
+            end
+        end
+        connections
+            connect(Qn,lumpedThermalPortDummy.A);
+        end
+        equations
+            assert(modelComplexity == batteryModule.batteryAbstractionLevel.detailed,...
+                   'Detailed thermal port for Module NegEnd Connection must be run with Detailed Battery Module only');
+        end
+    elseif thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalPortLumped
+        annotations
+            [LUTpointsFlowrate_n,moduleCooling_n,LUTpointsTemp_n,frac_n,delT_n,...
+                htc_neg,negEnd_thermPort_R,negEnd_thermPort_C] : ExternalAccess=none;
+        end
+        equations
+            negEnd_thermPort_R == [1;1];
+            negEnd_thermPort_C == [1:negEnd_cells;1:negEnd_cells];
+        end
+    elseif thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalLUT
+        annotations
+            [htc_neg,negEnd_thermPort_R,negEnd_thermPort_C,Qn] : ExternalAccess=none;
+        end
+        equations
+            negEnd_thermPort_R == [1;1];
+            negEnd_thermPort_C == [1:negEnd_cells;1:negEnd_cells];
+            assert(size(moduleCooling0,3) == Ns*Np,'The third dimension of the 3D array for module cooling must be equal to total number of cells in the module');
+            assert(size(moduleCooling0,2) == length(flowrate0),'The second dimension of trhe 3D array for module cooling must be equal to the length of the coolant flow rate vector');
+            assert(size(moduleCooling0,1) == length(LUTpointsTemp_coolant),'The first dimension of the 3D array for module cooling must be equal to the length of the temperature vector');
+        end
+        connections
+            connect(Qn,lumpedThermalPortDummy.A);
+        end
+    else
+        annotations
+            [LUTpointsFlowrate_n,moduleCooling_n,LUTpointsTemp_n,frac_n,delT_n,...
+                negEnd_thermPort_R,negEnd_thermPort_C,Qn] : ExternalAccess=none;
+        end
+        connections
+            connect(Qn,lumpedThermalPortDummy.A);
+        end
+        equations
+            negEnd_thermPort_R == [1;1];
+            negEnd_thermPort_C == [1:negEnd_cells;1:negEnd_cells];
+        end
+    end
+end
+% 
+
+% Add lumped resistance in module for all cell tabs, cables, busbar & welds
+components(ExternalAccess=none)
+    Resistor = foundation.electrical.elements.resistor(R=moduleExternalR);
+end
+
+%
+if modelComplexity == batteryModule.batteryAbstractionLevel.detailed
+    % modelComplexity==batteryModule.batteryAbstractionLevel.detailed
+    % -------------------------------------------------------------------
+    equations
+    	% Record output
+        outputCellTemp == [battery_thermal.cell_temperature];
+        outputCellSOC  == [battery_thermal.stateOfCharge];
+        outputCellV    == [battery_thermal.v];
+    end
+    % Loop over number of cells and create array of components for Cell Model 
+    % and the relevant heat transfer
+    if prm_leak == ee.enum.battery.prm_leak.disabled
+        for i=1:Ns*Np
+            components(ExternalAccess=observe)
+               battery_thermal(i) = ee.sources.table_battery(...
+                    SOC_vec=LUTpointsSOC,T_dependence=T_dependence,T_vec=LUTpointsTemp,...
+                    prm_dir=prm_dir,V0_mat=V0_mat,...
+                    R0_mat=R0_mat*moduleCellR0PercentVar(i),...
+                    R0_dis_mat=R0_dis_mat*moduleCellR0PercentVar(i),R0_ch_mat=R0_ch_mat*moduleCellR0PercentVar(i),...
+                    AH=cellAH*moduleCellAHpercentVar(i),...
+                    prm_leak=prm_leak,Rleak_vec=Rleak_vec,...
+                    extrapolation_option=extrapolation_option,SOC_port=SOC_port,...
+                    prm_dyn=prm_dyn,R1_mat=R1_mat,tau1_mat=tau1_mat,R2_mat=R2_mat,tau2_mat=tau2_mat,...
+                    R3_mat=R3_mat,tau3_mat=tau3_mat,R4_mat=R4_mat,tau4_mat=tau4_mat,...
+                    R5_mat=R5_mat,tau5_mat=tau5_mat,...
+                    prm_fade=prm_fade,N0=N0,dV0=dV0,dR0=dR0,dAH=dAH,dRleak=dRleak,...
+                    dR1=dR1,dR2=dR2,dR3=dR3,dR4=dR4,dR5=dR5,N0vec=N0vec,...
+                    Tfadevec=Tfadevec,dV0vec=dV0vec,dR0vec=dR0vec,dAHvec=dAHvec,...
+                    dRleakvec=dRleakvec,dR1vec=dR1vec,dR2vec=dR2vec,dR3vec=dR3vec,...
+                    dR4vec=dR4vec,dR5vec=dR5vec,dV0mat=dV0mat,dR0mat=dR0mat,...
+                    dAHmat=dAHmat,dRleakmat=dRleakmat,dR1mat=dR1mat,dR2mat=dR2mat,...
+                    dR3mat=dR3mat,dR4mat=dR4mat,dR5mat=dR5mat,...
+                    thermal_port=thermal_port,thermal_mass=cellThermalMass,...
+                    stateOfCharge={value=cellSOC0(i),priority=priority.high} ,...
+                    cell_temperature={value=cellTemp0(i),priority=priority.high});
+            end
+        end
+    else
+         for i=1:Ns*Np
+            components(ExternalAccess=observe)
+            	battery_thermal(i) = ee.sources.table_battery(...
+                    SOC_vec=LUTpointsSOC,T_dependence=T_dependence,T_vec=LUTpointsTemp,...
+                    prm_dir=prm_dir,V0_mat=V0_mat,...
+                    R0_mat=R0_mat*moduleCellR0PercentVar(i),...
+                    R0_dis_mat=R0_dis_mat*moduleCellR0PercentVar(i),R0_ch_mat=R0_ch_mat*moduleCellR0PercentVar(i),...
+                    AH=cellAH*moduleCellAHpercentVar(i),...
+                    prm_leak=prm_leak,Rleak_vec=Rleak_vec*moduleCellLeakPercentVar(i),...
+                    extrapolation_option=extrapolation_option,SOC_port=SOC_port,...
+                    prm_dyn=prm_dyn,R1_mat=R1_mat,tau1_mat=tau1_mat,R2_mat=R2_mat,tau2_mat=tau2_mat,...
+                    R3_mat=R3_mat,tau3_mat=tau3_mat,R4_mat=R4_mat,tau4_mat=tau4_mat,...
+                    R5_mat=R5_mat,tau5_mat=tau5_mat,...
+                    prm_fade=prm_fade,N0=N0,dV0=dV0,dR0=dR0,dAH=dAH,dRleak=dRleak,...
+                    dR1=dR1,dR2=dR2,dR3=dR3,dR4=dR4,dR5=dR5,N0vec=N0vec,...
+                    Tfadevec=Tfadevec,dV0vec=dV0vec,dR0vec=dR0vec,dAHvec=dAHvec,...
+                    dRleakvec=dRleakvec,dR1vec=dR1vec,dR2vec=dR2vec,dR3vec=dR3vec,...
+                    dR4vec=dR4vec,dR5vec=dR5vec,dV0mat=dV0mat,dR0mat=dR0mat,...
+                    dAHmat=dAHmat,dRleakmat=dRleakmat,dR1mat=dR1mat,dR2mat=dR2mat,...
+                    dR3mat=dR3mat,dR4mat=dR4mat,dR5mat=dR5mat,...
+                    thermal_port=thermal_port,thermal_mass=cellThermalMass,...
+                    stateOfCharge={value=cellSOC0(i),priority=priority.high} ,...
+                    cell_temperature={value=cellTemp0(i),priority=priority.high});
+            end
+        end       
+    end
+    %
+    if thermalManagement == batteryModule.batteryCoolingSystem.none
+        for i = 1:Ns*Np
+            components(ExternalAccess=observe)
+                % Cell heat loss to ambient (convective)
+                convection(i) = foundation.thermal.elements.convection(area=(if cell_type==1,...
+                    2*(cellHeight+cellWidth)*cellThickness+(i==1 | i==Ns*Np)*cellHeight*cellWidth;...
+                    else pi*cellDiameter*cellHeight;end),heat_tr_coeff=cellHeatTrCoeff);
+            end
+            % Connections to define convective heat loss from cell to ambient
+            connections
+                connect(battery_thermal(i).H,convection(i).B);
+                connect(H,convection(i).A);
+            end    
+        end
+    else
+        % =================================================================
+        % START of THERMAL PORT ===========================================
+        % =================================================================
+        % (1) BOTTOM - same for rectangular and cylindrical cells
+        if thermal_moduleBottom == batteryModule.batteryThermalPortSelection.thermalPortConn
+            for i = 1:Ns*Np
+                nodes(ExternalAccess=Observe)
+                    bottom_battConnect(i) = foundation.thermal.thermal;
+                end
+                branches
+                    bottom_battQ(i) : * -> bottom_battConnect(i).Q;
+                end
+                equations
+                    bottom_battConnect(i).T == {value(bottom_thermPort(1,i),'1'),'K'};
+                    bottom_battQ(i)         == {value(bottom_thermPort(2,i),'1'),'W'};
+                end
+                connections
+                    connect(bottom_battConnect(i),battery_thermal(i).H);
+                end
+            end
+        elseif thermal_moduleBottom == batteryModule.batteryThermalPortSelection.thermalPortLumped
+            % Lumped Thermal
+            for i = 1:Ns*Np
+                components(ExternalAccess=observe)
+                    conductionBottomLumped(i) = foundation.thermal.elements.conduction(area=...
+                    cellWidth*cellThickness,th_cond=cellThermalCond_inPlane,thickness=cellHeight/2);
+                end
+                connections
+                    connect(battery_thermal(i).H,conductionBottomLumped(i).A);
+                    connect(conductionBottomLumped(i).B,Qb);
+                end
+            end
+        elseif thermal_moduleBottom == batteryModule.batteryThermalPortSelection.thermalLUT
+            % Thermal LUT
+            for i =1:Ns*Np
+                components(ExternalAccess=observe)
+                    coldPlateBottom(i)=batteryModule.batteryCellThermalLUTmodel...
+                        (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                        heatTransferRate=moduleCooling0,Tcell=cellTemp0(i),icell=i)
+                end
+                connections
+                    connect(battery_thermal(i).H,coldPlateBottom(i).A);
+                    connect(coldPlateBottom(i).B,H);
+                    connect(frac_b,coldPlateBottom(i).frac);
+                    connect(delT_b,coldPlateBottom(i).delT);
+                end
+            end
+        else
+            % Link convection to Ambient port
+            for i = 1:Ns*Np
+                components(ExternalAccess=observe)
+                    convectionBottom(i) = foundation.thermal.elements.convection(area=(if cell_type==1,...
+                        cellWidth*cellThickness;else pi*cellDiameter*cellDiameter/4;...
+                        end),heat_tr_coeff=htc_bottom);
+                end
+                connections
+                    connect(battery_thermal(i).H,convectionBottom(i).B);
+                    connect(H,convectionBottom(i).A);
+                end 
+            end
+        end
+        % 
+        % -----------------------------------------------------------------
+        % (2) TOP - same for rectangular and cylindrical cells
+        if thermal_moduleTop == batteryModule.batteryThermalPortSelection.thermalPortConn
+            for i = 1:Ns*Np
+                nodes(ExternalAccess=Observe)
+                    top_battConnect(i) = foundation.thermal.thermal;
+                end
+                branches
+                    top_battQ(i) : * -> top_battConnect(i).Q;
+                end
+                equations
+                    top_battConnect(i).T == {value(top_thermPort(1,i),'1'),'K'};
+                    top_battQ(i)         == {value(top_thermPort(2,i),'1'),'W'};
+                end
+                connections
+                    connect(top_battConnect(i),battery_thermal(i).H);
+                end
+            end
+        elseif thermal_moduleTop == batteryModule.batteryThermalPortSelection.thermalPortLumped
+            % Lumped Thermal
+            for i = 1:Ns*Np
+                components(ExternalAccess=observe)
+                    conductionTopLumped(i) = foundation.thermal.elements.conduction(area=...
+                    cellWidth*cellThickness,th_cond=cellThermalCond_inPlane,thickness=cellHeight/2);
+                end
+                connections
+                    connect(battery_thermal(i).H,conductionTopLumped(i).A);
+                    connect(conductionTopLumped(i).B,Qt);
+                end
+            end
+        elseif thermal_moduleTop == batteryModule.batteryThermalPortSelection.thermalLUT
+            % Thermal LUT
+            for i =1:Ns*Np
+                components(ExternalAccess=observe)
+                    coldPlateTop(i)=batteryModule.batteryCellThermalLUTmodel...
+                        (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                        heatTransferRate=moduleCooling0,Tcell=cellTemp0(i),icell=i)
+                end
+                connections
+                    connect(battery_thermal(i).H,coldPlateTop(i).A);
+                    connect(coldPlateTop(i).B,H);
+                    connect(frac_t,coldPlateTop(i).frac);
+                    connect(delT_t,coldPlateTop(i).delT);
+                end
+            end
+        else
+            % Link convection to Ambient port
+            for i = 1:Ns*Np
+                components(ExternalAccess=observe)
+                    convectionTop(i) = foundation.thermal.elements.convection(area=(if cell_type==1,...
+                        cellWidth*cellThickness;else pi*cellDiameter*cellDiameter/4;...
+                        end),heat_tr_coeff=htc_top);
+                end
+                connections
+                    connect(battery_thermal(i).H,convectionTop(i).B);
+                    connect(H,convectionTop(i).A);
+                end 
+            end
+        end
+        %
+        % -------------------------------------------------------------
+        % 
+        if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+           cellTypeSelection == batteryModule.batteryTypeSelection.can) 
+            % -------------------------------------------------------------
+            % Rectangular shaped cells
+            % -------------------------------------------------------------
+            % (3) Left side
+            if thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalPortConn
+                for i = 1:Ns*Np 
+                    nodes(ExternalAccess=Observe)
+                        left_battConnect(i) = foundation.thermal.thermal;
+                    end
+                    branches
+                        left_battQ_R(i) : * -> left_battConnect(i).Q;
+                    end
+                    equations
+                        left_battConnect(i).T == {value(left_thermPort_R(1,i),'1'),'K'};
+                        left_battQ_R(i)       == {value(left_thermPort_R(2,i),'1'),'W'};
+                    end
+                    connections
+                        connect(left_battConnect(i),battery_thermal(i).H);
+                    end
+                end
+            elseif thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:Ns*Np
+                    components(ExternalAccess=observe)
+                        conductionLeftLumped(i) = foundation.thermal.elements.conduction(area=...
+                        cellHeight*cellThickness,th_cond=cellThermalCond_inPlane,thickness=cellWidth/2);
+                    end
+                    connections
+                        connect(battery_thermal(i).H,conductionLeftLumped(i).A);
+                        connect(conductionLeftLumped(i).B,Ql);
+                    end
+%                     connections
+%                         connect(Ql,battery_thermal(i).H);
+%                     end
+                end
+            elseif thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i =1:Ns*Np
+                    components(ExternalAccess=observe)
+                        coldPlateLeft(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=moduleCooling0,Tcell=cellTemp0(i),icell=i)
+                    end
+                    connections
+                        connect(battery_thermal(i).H,coldPlateLeft(i).A);
+                        connect(coldPlateLeft(i).B,H);
+                        connect(frac_l,coldPlateLeft(i).frac);
+                        connect(delT_l,coldPlateLeft(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                for i = 1:Ns*Np
+                    components(ExternalAccess=observe)
+                        convectionLeft(i) = foundation.thermal.elements.convection(...
+                            area=cellHeight*cellThickness,heat_tr_coeff=htc_left);
+                    end
+                    connections
+                        connect(battery_thermal(i).H,convectionLeft(i).B);
+                        connect(H,convectionLeft(i).A);
+                    end 
+                end
+            end        
+            % -------------------------------------------------------------
+            % (4) Right side
+            if thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalPortConn
+                for i = 1:Ns*Np
+                    nodes(ExternalAccess=Observe)
+                        right_battConnect(i) = foundation.thermal.thermal;
+                    end
+                    branches
+                        right_battQ_R(i) : * -> right_battConnect(i).Q;
+                    end
+                    equations
+                        right_battConnect(i).T == {value(right_thermPort_R(1,i),'1'),'K'};
+                        right_battQ_R(i)       == {value(right_thermPort_R(2,i),'1'),'W'};
+                    end
+                    connections
+                        connect(right_battConnect(i),battery_thermal(i).H);
+                    end
+                end
+            elseif thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:Ns*Np
+                    components(ExternalAccess=observe)
+                        conductionRightLumped(i) = foundation.thermal.elements.conduction(area=...
+                        cellHeight*cellThickness,th_cond=cellThermalCond_inPlane,thickness=cellWidth/2);
+                    end
+                    connections
+                        connect(battery_thermal(i).H,conductionRightLumped(i).A);
+                        connect(conductionRightLumped(i).B,Qr);
+                    end
+                end
+            elseif thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i =1:Ns*Np
+                    components(ExternalAccess=observe)
+                        coldPlateRight(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=moduleCooling0,Tcell=cellTemp0(i),icell=i)
+                    end
+                    connections
+                        connect(battery_thermal(i).H,coldPlateRight(i).A);
+                        connect(coldPlateRight(i).B,H);
+                        connect(frac_r,coldPlateRight(i).frac);
+                        connect(delT_r,coldPlateRight(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                for i = 1:Ns*Np
+                    components(ExternalAccess=observe)
+                        convectionRight(i) = foundation.thermal.elements.convection(...
+                            area=cellHeight*cellThickness,heat_tr_coeff=htc_right);
+                    end
+                    connections
+                        connect(battery_thermal(i).H,convectionRight(i).B);
+                        connect(H,convectionRight(i).A);
+                    end 
+                end
+            end
+            % -------------------------------------------------------------
+            % (5) posEnd side
+            if thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalPortConn
+                nodes(ExternalAccess=Observe)
+                    posEnd_battConnect = foundation.thermal.thermal;
+                end
+                branches
+                    posEnd_battQ_R(1) : * -> posEnd_battConnect.Q;
+                end
+                equations
+                    posEnd_battConnect.T == {value(posEnd_thermPort_R(1,1),'1'),'K'};
+                    posEnd_battQ_R(1)    == {value(posEnd_thermPort_R(2,1),'1'),'W'};
+                end
+                connections
+                    connect(posEnd_battConnect,battery_thermal(1).H);
+                end
+            elseif thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                components(ExternalAccess=observe)
+                    conductionPosLumped = foundation.thermal.elements.conduction(area=...
+                    cellHeight*cellWidth,th_cond=cellThermalCond_inPlane,thickness=cellThickness/2);
+                end
+                connections
+                    connect(battery_thermal(1).H,conductionPosLumped.A);
+                    connect(conductionPosLumped.B,Qp);
+                end
+            elseif thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i =1:Ns*Np
+                    components(ExternalAccess=observe)
+                        coldPlatePos(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=moduleCooling0,Tcell=cellTemp0(i),icell=i)
+                    end
+                    connections
+                        connect(battery_thermal(i).H,coldPlatePos(i).A);
+                        connect(coldPlatePos(i).B,H);
+                        connect(frac_p,coldPlatePos(i).frac);
+                        connect(delT_p,coldPlatePos(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                components(ExternalAccess=observe)
+                    convectionPos = foundation.thermal.elements.convection(...
+                        area=cellHeight*cellWidth,heat_tr_coeff=htc_pos);
+                end
+                connections
+                    connect(battery_thermal(1).H,convectionPos.B);
+                    connect(H,convectionPos.A);
+                end 
+            end
+            % -------------------------------------------------------------
+            % (6) negEnd side
+            if thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalPortConn
+                nodes(ExternalAccess=Observe)
+                    negEnd_battConnect = foundation.thermal.thermal;
+                end
+                branches
+                    negEnd_battQ_R(1) : * -> negEnd_battConnect.Q;
+                end
+                equations
+                    negEnd_battConnect.T == {value(negEnd_thermPort_R(1,1),'1'),'K'};
+                    negEnd_battQ_R(1)    == {value(negEnd_thermPort_R(2,1),'1'),'W'};
+                end
+                connections
+                    connect(negEnd_battConnect,battery_thermal(Ns*Np).H);
+                end
+            elseif thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                components(ExternalAccess=observe)
+                    conductionNegLumped = foundation.thermal.elements.conduction(area=...
+                    cellHeight*cellWidth,th_cond=cellThermalCond_inPlane,thickness=cellThickness/2);
+                end
+                connections
+                    connect(battery_thermal(Ns*Np).H,conductionNegLumped.A);
+                    connect(conductionNegLumped.B,Qn);
+                end
+            elseif thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i =1:Ns*Np
+                    components(ExternalAccess=observe)
+                        coldPlateNeg(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=moduleCooling0,Tcell=cellTemp0(i),icell=i)
+                    end
+                    connections
+                        connect(battery_thermal(i).H,coldPlateNeg(i).A);
+                        connect(coldPlateNeg(i).B,H);
+                        connect(frac_n,coldPlateNeg(i).frac);
+                        connect(delT_n,coldPlateNeg(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                components(ExternalAccess=observe)
+                    convectionNeg = foundation.thermal.elements.convection(...
+                        area=cellHeight*cellWidth,heat_tr_coeff=htc_neg);
+                end
+                connections
+                    connect(battery_thermal(Ns*Np).H,convectionNeg.B);
+                    connect(H,convectionNeg.A);
+                end 
+            end            
+        else
+            % -------------------------------------------------------------
+            % Cylindrical shaped cells
+            % -------------------------------------------------------------
+            % (3) Left side
+            if thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalPortConn
+                for i = 1:left_cells 
+                    nodes(ExternalAccess=Observe)
+                        left_battConnect(i) = foundation.thermal.thermal;
+                    end
+                    branches
+                        left_battQ_C(i) : * -> left_battConnect(i).Q;
+                    end
+                    equations
+                        left_battConnect(i).T == {value(left_thermPort_C(1,i),'1'),'K'};
+                        left_battQ_C(i)       == {value(left_thermPort_C(2,i),'1'),'W'};
+                    end
+                    connections
+                        connect(left_battConnect(i),battery_thermal(indexOfCylCellLeftEnd(i)).H);
+                    end
+                end
+            elseif thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:left_cells
+                    components(ExternalAccess=observe)
+                        conductionLeftLumped(i) = foundation.thermal.elements.conduction(area=...
+                        cellHeight*cellDiameter,th_cond=cellThermalCond_inPlane,thickness=cellDiameter/2);
+                    end
+                    connections
+                        connect(battery_thermal(indexOfCylCellLeftEnd(i)).H,conductionLeftLumped(i).A);
+                        connect(conductionLeftLumped(i).B,Ql);
+                    end
+                end
+            elseif thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i =1:Ns*Np
+                    components(ExternalAccess=observe)
+                        coldPlateLeft(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=moduleCooling0,Tcell=cellTemp0(i),icell=i)
+                    end
+                    connections
+                        connect(battery_thermal(i).H,coldPlateLeft(i).A);
+                        connect(coldPlateLeft(i).B,H);
+                        connect(frac_l,coldPlateLeft(i).frac);
+                        connect(delT_l,coldPlateLeft(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                for i = 1:left_cells
+                    components(ExternalAccess=observe)
+                        convectionLeft(i) = foundation.thermal.elements.convection(...
+                            area=cellHeight*cellThickness,heat_tr_coeff=htc_left);
+                    end
+                    connections
+                        connect(battery_thermal(indexOfCylCellLeftEnd(i)).H,convectionLeft(i).B);
+                        connect(H,convectionLeft(i).A);
+                    end 
+                end
+            end        
+            % -------------------------------------------------------------
+            % (4) Right side
+            if thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalPortConn
+                for i = 1:right_cells
+                    nodes(ExternalAccess=Observe)
+                        right_battConnect(i) = foundation.thermal.thermal;
+                    end
+                    branches
+                        right_battQ_C(i) : * -> right_battConnect(i).Q;
+                    end
+                    equations
+                        right_battConnect(i).T == {value(right_thermPort_C(1,i),'1'),'K'};
+                        right_battQ_C(i)       == {value(right_thermPort_C(2,i),'1'),'W'};
+                    end
+                    connections
+                        connect(right_battConnect(i),battery_thermal(indexOfCylCellRightEnd(i)).H);
+                    end
+                end
+            elseif thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:right_cells
+                    components(ExternalAccess=observe)
+                        conductionRightLumped(i) = foundation.thermal.elements.conduction(area=...
+                        cellHeight*cellDiameter,th_cond=cellThermalCond_inPlane,thickness=cellDiameter/2);
+                    end
+                    connections
+                        connect(battery_thermal(indexOfCylCellRightEnd(i)).H,conductionRightLumped(i).A);
+                        connect(conductionRightLumped(i).B,Qr);
+                    end
+                end
+            elseif thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i =1:Ns*Np
+                    components(ExternalAccess=observe)
+                        coldPlateRight(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=moduleCooling0,Tcell=cellTemp0(i),icell=i)
+                    end
+                    connections
+                        connect(battery_thermal(i).H,coldPlateRight(i).A);
+                        connect(coldPlateRight(i).B,H);
+                        connect(frac_r,coldPlateRight(i).frac);
+                        connect(delT_r,coldPlateRight(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                for i = 1:right_cells
+                    components(ExternalAccess=observe)
+                        convectionRight(i) = foundation.thermal.elements.convection(...
+                            area=cellHeight*cellThickness,heat_tr_coeff=htc_right);
+                    end
+                    connections
+                        connect(battery_thermal(indexOfCylCellRightEnd(i)).H,convectionRight(i).B);
+                        connect(H,convectionRight(i).A);
+                    end 
+                end
+            end
+            % -------------------------------------------------------------
+            % (5) posEnd side
+            if thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalPortConn
+                for i = 1:posEnd_cells
+                    nodes(ExternalAccess=Observe)
+                        posEnd_battConnect(i) = foundation.thermal.thermal;
+                    end
+                    branches
+                        posEnd_battQ_C(i) : * -> posEnd_battConnect(i).Q;
+                    end
+                    equations
+                        posEnd_battConnect(i).T == {value(posEnd_thermPort_C(1,i),'1'),'K'};
+                        posEnd_battQ_C(i)       == {value(posEnd_thermPort_C(2,i),'1'),'W'};
+                    end
+                    connections
+                        connect(posEnd_battConnect(i),battery_thermal(indexOfCylCellPosEnd(i)).H);
+                    end 
+                end
+            elseif thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:posEnd_cells
+                    components(ExternalAccess=observe)
+                        conductionPosLumped(i) = foundation.thermal.elements.conduction(area=...
+                        cellHeight*cellDiameter,th_cond=cellThermalCond_inPlane,thickness=cellDiameter/2);
+                    end
+                    connections
+                        connect(battery_thermal(indexOfCylCellPosEnd(i)).H,conductionPosLumped(i).A);
+                        connect(conductionPosLumped(i).B,Qp);
+                    end
+                end
+            elseif thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i =1:Ns*Np
+                    components(ExternalAccess=observe)
+                        coldPlatePos(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=moduleCooling0,Tcell=cellTemp0(i),icell=i)
+                    end
+                    connections
+                        connect(battery_thermal(i).H,coldPlatePos(i).A);
+                        connect(coldPlatePos(i).B,H);
+                        connect(frac_p,coldPlatePos(i).frac);
+                        connect(delT_p,coldPlatePos(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                for i = 1:posEnd_cells
+                    components(ExternalAccess=observe)
+                        convectionPosEnd(i) = foundation.thermal.elements.convection(...
+                            area=cellHeight*cellDiameter,heat_tr_coeff=htc_pos);
+                    end
+                    connections
+                        connect(battery_thermal(indexOfCylCellPosEnd(i)).H,convectionPosEnd(i).B);
+                        connect(H,convectionPosEnd(i).A);
+                    end 
+                end
+            end
+            % -------------------------------------------------------------
+            % (6) negEnd side
+            if thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalPortConn
+                for i = 1:negEnd_cells
+                    nodes(ExternalAccess=Observe)
+                        negEnd_battConnect(i) = foundation.thermal.thermal;
+                    end
+                    branches
+                        negEnd_battQ_C(i) : * -> negEnd_battConnect(i).Q;
+                    end
+                    equations
+                        negEnd_battConnect(i).T == {value(negEnd_thermPort_C(1,i),'1'),'K'};
+                        negEnd_battQ_C(i)       == {value(negEnd_thermPort_C(2,i),'1'),'W'};
+                    end
+                    connections
+                        connect(negEnd_battConnect(i),battery_thermal(indexOfCylCellNegEnd(i)).H);
+                    end 
+                end
+            elseif thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:negEnd_cells
+                    components(ExternalAccess=observe)
+                        conductionNegLumped(i) = foundation.thermal.elements.conduction(area=...
+                        cellHeight*cellDiameter,th_cond=cellThermalCond_inPlane,thickness=cellDiameter/2);
+                    end
+                    connections
+                        connect(battery_thermal(indexOfCylCellNegEnd(i)).H,conductionNegLumped(i).A);
+                        connect(conductionNegLumped(i).B,Qn);
+                    end
+                end
+            elseif thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i =1:Ns*Np
+                    components(ExternalAccess=observe)
+                        coldPlateNeg(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=moduleCooling0,Tcell=cellTemp0(i),icell=i)
+                    end
+                    connections
+                        connect(battery_thermal(i).H,coldPlateNeg(i).A);
+                        connect(coldPlateNeg(i).B,H);
+                        connect(frac_n,coldPlateNeg(i).frac);
+                        connect(delT_n,coldPlateNeg(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                for i = 1:negEnd_cells
+                    components(ExternalAccess=observe)
+                        convectionNegEnd(i) = foundation.thermal.elements.convection(...
+                            area=cellHeight*cellDiameter,heat_tr_coeff=htc_neg);
+                    end
+                    connections
+                        connect(battery_thermal(indexOfCylCellNegEnd(i)).H,convectionNegEnd(i).B);
+                        connect(H,convectionNegEnd(i).A);
+                    end 
+                end
+            end
+        end
+        % =================================================================
+        % END of THERMAL PORT =============================================
+        % =================================================================
+    end
+    %
+    % Electrical Connections within Array
+    for i=1:Ns*Np-Np
+        % Looping over 1 to (Ns*Np - Np) & NOT 1 to (Ns*Np - 1) as formula used below is NOT valid for last Np parallel strings
+        connections
+            connect(battery_thermal(i-mod(i-1,Np)+Np).p,battery_thermal(i).n); % -ve cell-tabs of parallel strings connected as a result of this and pack series connection established
+            connect(battery_thermal(i-mod(i-1,Np)).p,battery_thermal(i).p); % +ve cell-tabs of parallel strings connected
+        end
+    end
+
+    % End Electrical Connections
+    for i=1:Np
+        connections
+            % End Connections
+            connect(battery_thermal(i).p,Resistor.n); % all parallel +ve cell-tabs connencted to LUMPED Resistor -ve
+            connect(battery_thermal((Ns-1)*Np+i).n,n); % all parallel -ve cell-tabs connected to EXT -ve
+            % Last group of parallel strings
+            % Recall Above : Looping over 1 to (Ns*Np - Np) & NOT 1 to (Ns*Np - 1) as formula used below is NOT valid for last Np parallel strings
+            connect(battery_thermal((Ns-1)*Np+i).p,battery_thermal((Ns-1)*Np+1).p); % +ve cell-tabs of parallel strings connected
+        end
+    end
+    connections
+        connect(p,Resistor.p); % Connecting lumped Resistor to EXT +ve
+    end
+
+    % Conductive heat transfer between cells
+    if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+            cellTypeSelection == batteryModule.batteryTypeSelection.can)
+        for i=1:Ns*Np-1
+            components(ExternalAccess=observe)
+                conduction(i) = foundation.thermal.elements.conduction(area=...
+                    cellHeight*cellWidth,th_cond=cellThermalCond,thickness=cellThickness);
+            end
+            connections
+                connect(battery_thermal(i).H,conduction(i).A);
+                connect(battery_thermal(i+1).H,conduction(i).B);
+            end
+        end
+    elseif(cellTypeSelection == batteryModule.batteryTypeSelection.compactCylindrical)
+        % [s=cellCylinLine]
+        % COMPACT CONNECTION
+        % connect i-th cell to (i+1)
+        %                      MIN(Ns*Np,i+2*s-MOD(i,s)*2)
+        %                      MIN(Ns*Np,i+2*s-MOD(i,s)*2+1)
+        for i=1:Ns*Np-1
+            components(ExternalAccess=observe)
+                % from i to i+1
+                conduction1(i) = foundation.thermal.elements.conduction(area=...
+                    cellHeight*minLength,th_cond=cellThermalCond,thickness=cellDiameter/2);
+                % from i to MIN(Ns*Np,i+2*s-MOD(i,s)*2)
+                conduction2(i) = foundation.thermal.elements.conduction(area=...
+                    cellHeight*minLength,th_cond=...
+                    (if i+2*cellCylinLine-mod(i,cellCylinLine)*2>Ns*Np,...
+                        minThermalK; else cellThermalCond; end),thickness=cellDiameter/2);
+                % from i to MIN(Ns*Np,i+2*s-MOD(i,s)*2+1) 
+                conduction3(i) = foundation.thermal.elements.conduction(area=...
+                    cellHeight*minLength,th_cond=...
+                    (if i+2*cellCylinLine-mod(i,cellCylinLine)*2+1>Ns*Np,...
+                        minThermalK; else cellThermalCond; end),thickness=cellDiameter/2);
+            end
+            connections
+                connect(battery_thermal(i).H,conduction1(i).A);
+                connect(battery_thermal(i+1).H,conduction1(i).B);
+                connect(battery_thermal(i).H,conduction2(i).A);
+                connect(battery_thermal(min(Ns*Np,i+2*cellCylinLine-mod(i,cellCylinLine)*2)).H,conduction2(i).B);
+                connect(battery_thermal(i).H,conduction3(i).A);
+                connect(battery_thermal(min(Ns*Np,i+2*cellCylinLine-mod(i,cellCylinLine)*2+1)).H,conduction3(i).B);
+            end
+        end
+    else
+        % [s=cellCylinLine]
+        % REGULAR CONNECTION
+        % connect i-th cell to (i+1)
+        %                      MIN(Ns*Np,i+2*s-MOD(i,s)*2+1)
+        for i=1:Ns*Np-1
+            components(ExternalAccess=observe)
+                % from i to i+1
+                conduction1(i) = foundation.thermal.elements.conduction(area=...
+                    cellHeight*minLength,th_cond=cellThermalCond,thickness=cellDiameter/2);
+                % from i to MIN(Ns*Np,i+2*s-MOD(i,s)*2+1) 
+                conduction2(i) = foundation.thermal.elements.conduction(area=...
+                    cellHeight*minLength,th_cond=...
+                    (if i+2*cellCylinLine-mod(i,cellCylinLine)*2+1>Ns*Np,...
+                        minThermalK; else cellThermalCond; end),thickness=cellDiameter/2);
+            end
+            connections
+                connect(battery_thermal(i).H,conduction1(i).A);
+                connect(battery_thermal(i+1).H,conduction1(i).B);
+                connect(battery_thermal(i).H,conduction2(i).A);
+                connect(battery_thermal(min(Ns*Np,i+2*cellCylinLine-mod(i,cellCylinLine)*2+1)).H,conduction2(i).B);
+            end
+        end
+    end
+
+    % External heat load
+    for i=1:Ns*Np
+        components(ExternalAccess=observe)
+            extHeatLoad(i)=foundation.thermal.sources.heat_flow(heat_flow=moduleExtHeat(i));
+        end
+        connections
+            connect(extHeatLoad(i).A,H);
+            connect(battery_thermal(i).H,extHeatLoad(i).B);
+        end
+    end
+
+    % Cell balancing
+    if moduleCellBalancing == batteryModule.batteryCellBalancing.passive
+        % Attach resistor and switch for all series strings
+        for i=1:Ns
+            components(ExternalAccess=observe)
+                balancingSwitch(i)=foundation.electrical.elements.controlled_switch(...
+                        R_closed=passiveSWclosedR,G_open=passiveSWopenCond,...
+                        Threshold=passiveSWthreshold);
+                balancingResistor(i)=foundation.electrical.elements.resistor(R=passiveShuntR);
+            end
+            connections
+                connect(battery_thermal((i-1)*Np+1).p,balancingResistor(i).p);
+                connect(balancingResistor(i).n,balancingSwitch(i).p);
+                connect(balancingSwitch(i).n,battery_thermal((i-1)*Np+1).n);
+                connect(passiveSWonOff(i),balancingSwitch(i).vT);
+            end        
+        end
+    else
+        % No cell balancing
+    end
+     %
+elseif modelComplexity == batteryModule.batteryAbstractionLevel.grouped
+    % modelComplexity=batteryModule.batteryAbstractionLevel.grouped
+    % ----------------------------------------------------------------
+    if isDataVarPresent_R0 > 0 
+        equations
+            assert(indxCell1==indxCell1_R0 && indxCell2==indxCell2_R0,...
+                'Strong and Weak cell indices as per the Module Effective Cooling Rate and the Terminal Resistance R0 variation, is not the same.',...
+                Warn=true);
+        end
+    end
+    if isDataVarPresent_AH > 0 
+        equations
+            assert(indxCell1==indxCell1_AH && indxCell2==indxCell2_AH,...
+                'Strong and Weak cell indices as per the Module Effective Cooling Rate and the Cell Ampere-hour Rating variation, is not the same.',...
+                Warn=true);
+        end
+    end
+    if isDataVarPresent_Rleak > 0 
+        equations
+            assert(indxCell1==indxCell1_Rleak && indxCell2==indxCell2_Rleak,...
+                'Strong and Weak cell indices as per the Module Effective Cooling Rate and the Cell Self-discharge Resistance variation, is not the same.',...
+                Warn=true);
+        end
+    end
+    if isDataVarPresent_Q > 0 
+        equations
+            assert(indxCell1==indxCell1_Q && indxCell2==indxCell2_Q,...
+                'Strong and Weak cell indices as per the Module Effective Cooling Rate and the module External Heat variation, is not the same.',...
+                Warn=true);
+        end
+    end
+    equations
+    	% Record output
+        let 
+            tempVal = [battery_thermal_grouped.cell_temperature];
+            i=numCells5section(1);
+            j=numCells5section(2);
+            k=numCells5section(3);
+            l=numCells5section(4);
+            m=numCells5section(5);
+            tempVal1= ones(1,i)*tempVal(1);
+            tempVal2= ones(1,j)*tempVal(2);
+            tempVal3= ones(1,k)*tempVal(3);
+            tempVal4= ones(1,l)*tempVal(4);
+            tempVal5= ones(1,m)*tempVal(5);
+            SOCval  = [battery_thermal_grouped.stateOfCharge];
+            SOCval1 = ones(1,i)*SOCval(1);
+            SOCval2 = ones(1,j)*SOCval(2);
+            SOCval3 = ones(1,k)*SOCval(3);
+            SOCval4 = ones(1,l)*SOCval(4);
+            SOCval5 = ones(1,m)*SOCval(5);
+            % Voltage is assumed to be dropping equally among all series strings
+            cellVoltval  = [battery_thermal_grouped.v];
+            cellVoltval1 = ones(1,i)*cellVoltval(1)/(Np*i);
+            cellVoltval2 = ones(1,j)*cellVoltval(2)/(Np*j);
+            cellVoltval3 = ones(1,k)*cellVoltval(3)/(Np*k);
+            cellVoltval4 = ones(1,l)*cellVoltval(4)/(Np*l);
+            cellVoltval5 = ones(1,m)*cellVoltval(5)/(Np*m);
+        in
+            outputCellTemp == [tempVal1,tempVal2,tempVal3,tempVal4,tempVal5];
+            outputCellSOC  == [SOCval1,SOCval2,SOCval3,SOCval4,SOCval5];
+            outputCellV    == [cellVoltval1,cellVoltval2,cellVoltval3,cellVoltval4,cellVoltval5];
+        end
+    end
+    %
+    if prm_leak == ee.enum.battery.prm_leak.disabled
+        for i=1:numOfSections
+            components(ExternalAccess=observe)
+                battery_thermal_grouped(i) = ee.sources.table_battery(...
+                    SOC_vec=LUTpointsSOC,T_dependence=T_dependence,T_vec=LUTpointsTemp,...
+                    prm_dir=prm_dir,V0_mat=V0_mat*numCells5section(i)/Np,...
+                    R0_mat=R0_mat*grouped_moduleCellR0PercentVar(i)*numCells5section(i)/(Np*Np),...
+                    R0_dis_mat=R0_dis_mat*grouped_moduleCellR0PercentVar(i)*numCells5section(i)/(Np*Np),...
+                    R0_ch_mat=R0_ch_mat*grouped_moduleCellR0PercentVar(i)*numCells5section(i)/(Np*Np),...
+                    AH=lumped_cellAH*grouped_moduleCellAHpercentVar(i),...
+                    prm_leak=prm_leak,Rleak_vec=Rleak_vec,...
+                    extrapolation_option=extrapolation_option,...
+                    SOC_port=SOC_port,prm_dyn=prm_dyn,...
+                    R1_mat=R1_mat*numCells5section(i)/(Np*Np),tau1_mat=tau1_mat,...
+                    R2_mat=R2_mat*numCells5section(i)/(Np*Np),tau2_mat=tau2_mat,...
+                    R3_mat=R3_mat*numCells5section(i)/(Np*Np),tau3_mat=tau3_mat,...
+                    R4_mat=R4_mat*numCells5section(i)/(Np*Np),tau4_mat=tau4_mat,...
+                    R5_mat=R5_mat*numCells5section(i)/(Np*Np),tau5_mat=tau5_mat,...
+                    prm_fade=prm_fade,N0=N0,dV0=dV0,dR0=dR0,dAH=dAH,dRleak=dRleak,...
+                    dR1=dR1,dR2=dR2,dR3=dR3,dR4=dR4,dR5=dR5,N0vec=N0vec,...
+                    Tfadevec=Tfadevec,dV0vec=dV0vec,dR0vec=dR0vec,dAHvec=dAHvec,...
+                    dRleakvec=dRleakvec,dR1vec=dR1vec,dR2vec=dR2vec,dR3vec=dR3vec,...
+                    dR4vec=dR4vec,dR5vec=dR5vec,dV0mat=dV0mat,dR0mat=dR0mat,...
+                    dAHmat=dAHmat,dRleakmat=dRleakmat,dR1mat=dR1mat,dR2mat=dR2mat,...
+                    dR3mat=dR3mat,dR4mat=dR4mat,dR5mat=dR5mat,thermal_port=thermal_port,...
+                    thermal_mass=numCells5section(i)*cellThermalMass,...
+                    stateOfCharge={value=cellSOC0(cellIndex5Section(i)),priority=priority.high} ,...
+                    cell_temperature={value=cellTemp0(cellIndex5Section(i)),priority=priority.high});                
+            end
+        end
+    else
+        for i=1:numOfSections
+            components(ExternalAccess=observe)
+                battery_thermal_grouped(i) = ee.sources.table_battery(...
+                    SOC_vec=LUTpointsSOC,T_dependence=T_dependence,T_vec=LUTpointsTemp,...
+                    prm_dir=prm_dir,V0_mat=V0_mat*numCells5section(i)/Np,...
+                    R0_mat=R0_mat*grouped_moduleCellR0PercentVar(i)*numCells5section(i)/(Np*Np),...
+                    R0_dis_mat=R0_dis_mat*grouped_moduleCellR0PercentVar(i)*numCells5section(i)/(Np*Np),...
+                    R0_ch_mat=R0_ch_mat*grouped_moduleCellR0PercentVar(i)*numCells5section(i)/(Np*Np),...
+                    AH=lumped_cellAH*grouped_moduleCellAHpercentVar(i),...
+                    prm_leak=prm_leak,Rleak_vec=Rleak_vec*grouped_moduleCellLeakPercentVar(i),...
+                    extrapolation_option=extrapolation_option,...
+                    SOC_port=SOC_port,prm_dyn=prm_dyn,...
+                    R1_mat=R1_mat*numCells5section(i)/(Np*Np),tau1_mat=tau1_mat,...
+                    R2_mat=R2_mat*numCells5section(i)/(Np*Np),tau2_mat=tau2_mat,...
+                    R3_mat=R3_mat*numCells5section(i)/(Np*Np),tau3_mat=tau3_mat,...
+                    R4_mat=R4_mat*numCells5section(i)/(Np*Np),tau4_mat=tau4_mat,...
+                    R5_mat=R5_mat*numCells5section(i)/(Np*Np),tau5_mat=tau5_mat,...
+                    prm_fade=prm_fade,N0=N0,dV0=dV0,dR0=dR0,dAH=dAH,dRleak=dRleak,...
+                    dR1=dR1,dR2=dR2,dR3=dR3,dR4=dR4,dR5=dR5,N0vec=N0vec,...
+                    Tfadevec=Tfadevec,dV0vec=dV0vec,dR0vec=dR0vec,dAHvec=dAHvec,...
+                    dRleakvec=dRleakvec,dR1vec=dR1vec,dR2vec=dR2vec,dR3vec=dR3vec,...
+                    dR4vec=dR4vec,dR5vec=dR5vec,dV0mat=dV0mat,dR0mat=dR0mat,...
+                    dAHmat=dAHmat,dRleakmat=dRleakmat,dR1mat=dR1mat,dR2mat=dR2mat,...
+                    dR3mat=dR3mat,dR4mat=dR4mat,dR5mat=dR5mat,...
+                    thermal_port=thermal_port,thermal_mass=numCells5section(i)*cellThermalMass,...
+                    stateOfCharge={value=cellSOC0(cellIndex5Section(i)),priority=priority.high} ,...
+                    cell_temperature={value=cellTemp0(cellIndex5Section(i)),priority=priority.high});
+            end
+        end
+    end
+    %
+    if thermalManagement == batteryModule.batteryCoolingSystem.none
+        for i=1:numOfSections
+            components(ExternalAccess=observe)
+                % Cell heat loss to ambient (convective)
+                convection_grouped(i)=foundation.thermal.elements.convection(area=(if cell_type==1,...
+                    numCells5section(i)*2*(cellHeight+cellWidth)*cellThickness+(i==1 | i==numOfSections)*cellWidth*cellHeight;...
+                    else numCells5section(i)*pi*cellDiameter*cellHeight;end),...
+                    heat_tr_coeff=cellHeatTrCoeff);
+            end
+            % Connections to define convective heat loss from cell to ambient
+            connections
+                connect(battery_thermal_grouped(i).H,convection_grouped(i).B);
+                connect(H,convection_grouped(i).A);
+            end 
+        end 
+    else
+        % Thermal ports
+        % =================================================================
+        % START of THERMAL PORT ===========================================
+        % =================================================================
+        % (1) BOTTOM - same for rectangular and cylindrical cells
+        if thermal_moduleBottom == batteryModule.batteryThermalPortSelection.thermalPortLumped
+            % Lumped Thermal
+            for i = 1:numOfSections
+                components(ExternalAccess=observe)
+                    conductionBottomLumped(i) = foundation.thermal.elements.conduction(area=...
+                    numCells5section(i)*cellWidth*cellThickness,th_cond=cellThermalCond_inPlane,...
+                    thickness=cellHeight/2);
+                end
+                connections
+                    connect(battery_thermal_grouped(i).H,conductionBottomLumped(i).A);
+                    connect(conductionBottomLumped(i).B,Qb);
+                end
+            end
+        elseif thermal_moduleBottom == batteryModule.batteryThermalPortSelection.thermalLUT
+            % Thermal LUT
+            for i=1:numOfSections
+                components(ExternalAccess=observe)
+                    coldPlateBottom_grouped(i)=batteryModule.batteryCellThermalLUTmodel...
+                        (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                        heatTransferRate=grouped_moduleCooling,Tcell=cellTemp0(cellIndex5Section(i)),...
+                        icell=cellIndex5Section(i))
+                end
+                connections
+                    connect(battery_thermal_grouped(i).H,coldPlateBottom_grouped(i).A);
+                    connect(coldPlateBottom_grouped(i).B,H);
+                    connect(frac_b,coldPlateBottom_grouped(i).frac);
+                    connect(delT_b,coldPlateBottom_grouped(i).delT);
+                end
+            end
+        else
+            % Link convection to Ambient port
+            for i = 1:numOfSections
+                components(ExternalAccess=observe)
+                    convectionBottom_grouped(i) = foundation.thermal.elements.convection(area=(if cell_type==1,...
+                        numCells5section(i)*cellWidth*cellThickness;...
+                        else numCells5section(i)*pi*cellDiameter*cellDiameter/4;end),...
+                        heat_tr_coeff=htc_bottom);
+                end
+                connections
+                    connect(battery_thermal_grouped(i).H,convectionBottom_grouped(i).B);
+                    connect(H,convectionBottom_grouped(i).A);
+                end 
+            end
+        end
+        % 
+        % -----------------------------------------------------------------
+        % (2) TOP - same for rectangular and cylindrical cells
+        if thermal_moduleTop == batteryModule.batteryThermalPortSelection.thermalPortLumped
+            % Lumped Thermal
+            for i = 1:numOfSections
+                components(ExternalAccess=observe)
+                    conductionTopLumped(i) = foundation.thermal.elements.conduction(area=...
+                    numCells5section(i)*cellWidth*cellThickness,th_cond=cellThermalCond_inPlane,...
+                    thickness=cellHeight/2);
+                end
+                connections
+                    connect(battery_thermal_grouped(i).H,conductionTopLumped(i).A);
+                    connect(conductionTopLumped(i).B,Qt);
+                end
+            end
+        elseif thermal_moduleTop == batteryModule.batteryThermalPortSelection.thermalLUT
+            % Thermal LUT
+            for i=1:numOfSections
+                components(ExternalAccess=observe)
+                    coldPlateTop_grouped(i)=batteryModule.batteryCellThermalLUTmodel...
+                        (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                        heatTransferRate=grouped_moduleCooling,Tcell=cellTemp0(cellIndex5Section(i)),...
+                        icell=cellIndex5Section(i))
+                end
+                connections
+                    connect(battery_thermal_grouped(i).H,coldPlateTop_grouped(i).A);
+                    connect(coldPlateTop_grouped(i).B,H);
+                    connect(frac_t,coldPlateTop_grouped(i).frac);
+                    connect(delT_t,coldPlateTop_grouped(i).delT);
+                end
+            end
+        else
+            % Link convection to Ambient port
+            for i = 1:numOfSections
+                components(ExternalAccess=observe)
+                    convectionTop_grouped(i) = foundation.thermal.elements.convection(area=(if cell_type==1,...
+                        numCells5section(i)*cellWidth*cellThickness;...
+                        else numCells5section(i)*pi*cellDiameter*cellDiameter/4;...
+                        end),heat_tr_coeff=htc_top);
+                end
+                connections
+                    connect(battery_thermal_grouped(i).H,convectionTop_grouped(i).B);
+                    connect(H,convectionTop_grouped(i).A);
+                end 
+            end
+        end
+        %
+        % -------------------------------------------------------------
+        % 
+        if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+           cellTypeSelection == batteryModule.batteryTypeSelection.can) 
+            % -------------------------------------------------------------
+            % Rectangular shaped cells
+            % -------------------------------------------------------------
+            % (3) Left side
+            if thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:numOfSections
+                    components(ExternalAccess=observe)
+                        conductionLeftLumped(i) = foundation.thermal.elements.conduction(area=...
+                        numCells5section(i)*cellHeight*cellThickness,th_cond=cellThermalCond_inPlane,...
+                        thickness=cellWidth/2);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,conductionLeftLumped(i).A);
+                        connect(conductionLeftLumped(i).B,Ql);
+                    end
+                end
+            elseif thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i=1:numOfSections
+                    components(ExternalAccess=observe)
+                        coldPlateLeft_grouped(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=grouped_moduleCooling,Tcell=cellTemp0(cellIndex5Section(i)),...
+                            icell=cellIndex5Section(i))
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,coldPlateLeft_grouped(i).A);
+                        connect(coldPlateLeft_grouped(i).B,H);
+                        connect(frac_l,coldPlateLeft_grouped(i).frac);
+                        connect(delT_l,coldPlateLeft_grouped(i).delT);
+                    end
+                end 
+            else
+                % Link convection to Ambient port
+                for i = 1:numOfSections
+                    components(ExternalAccess=observe)
+                        convectionLeft_grouped(i) = foundation.thermal.elements.convection(...
+                            area=numCells5section(i)*cellHeight*cellThickness,...
+                            heat_tr_coeff=htc_left);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,convectionLeft_grouped(i).B);
+                        connect(H,convectionLeft_grouped(i).A);
+                    end 
+                end
+            end        
+            % -------------------------------------------------------------
+            % (4) Right side
+            if thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:numOfSections
+                    components(ExternalAccess=observe)
+                        conductionRightLumped(i) = foundation.thermal.elements.conduction(area=...
+                        numCells5section(i)*cellHeight*cellThickness,th_cond=cellThermalCond_inPlane,...
+                        thickness=cellWidth/2);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,conductionRightLumped(i).A);
+                        connect(conductionRightLumped(i).B,Qr);
+                    end
+                end
+            elseif thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i=1:numOfSections
+                    components(ExternalAccess=observe)
+                        coldPlateRight_grouped(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=grouped_moduleCooling,Tcell=cellTemp0(cellIndex5Section(i)),...
+                            icell=cellIndex5Section(i))
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,coldPlateRight_grouped(i).A);
+                        connect(coldPlateRight_grouped(i).B,H);
+                        connect(frac_r,coldPlateRight_grouped(i).frac);
+                        connect(delT_r,coldPlateRight_grouped(i).delT);
+                    end
+                end    
+            else
+                % Link convection to Ambient port
+                for i = 1:numOfSections
+                    components(ExternalAccess=observe)
+                        convectionRight_grouped(i) = foundation.thermal.elements.convection(...
+                            area=numCells5section(i)*cellHeight*cellThickness,...
+                            heat_tr_coeff=htc_right);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,convectionRight_grouped(i).B);
+                        connect(H,convectionRight_grouped(i).A);
+                    end 
+                end
+            end
+            % -------------------------------------------------------------
+            % (5) posEnd side
+            if thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                components(ExternalAccess=observe)
+                    conductionPosLumped = foundation.thermal.elements.conduction(area=...
+                    cellHeight*cellWidth,th_cond=cellThermalCond_inPlane,thickness=cellThickness/2);
+                end
+                connections
+                    connect(battery_thermal_grouped(1).H,conductionPosLumped.A);
+                    connect(conductionPosLumped.B,Qp);
+                end
+            elseif thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i=1:numOfSections
+                    components(ExternalAccess=observe)
+                        coldPlatePos_grouped(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=grouped_moduleCooling,Tcell=cellTemp0(cellIndex5Section(i)),...
+                            icell=cellIndex5Section(i))
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,coldPlatePos_grouped(i).A);
+                        connect(coldPlatePos_grouped(i).B,H);
+                        connect(frac_p,coldPlatePos_grouped(i).frac);
+                        connect(delT_p,coldPlatePos_grouped(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                components(ExternalAccess=observe)
+                    convectionPos_grouped = foundation.thermal.elements.convection(...
+                        area=cellHeight*cellWidth,heat_tr_coeff=htc_pos);
+                end
+                connections
+                    connect(battery_thermal_grouped(1).H,convectionPos_grouped.B);
+                    connect(H,convectionPos_grouped.A);
+                end 
+            end
+            % -------------------------------------------------------------
+            % (6) negEnd side
+            if thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                components(ExternalAccess=observe)
+                    conductionNegLumped = foundation.thermal.elements.conduction(area=...
+                    cellHeight*cellWidth,th_cond=cellThermalCond_inPlane,thickness=cellThickness/2);
+                end
+                connections
+                    connect(battery_thermal_grouped(numOfSections).H,conductionNegLumped.A);
+                    connect(conductionNegLumped.B,Qn);
+                end
+            elseif thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i=1:numOfSections
+                    components(ExternalAccess=observe)
+                        coldPlateNeg_grouped(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=grouped_moduleCooling,Tcell=cellTemp0(cellIndex5Section(i)),...
+                            icell=cellIndex5Section(i))
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,coldPlateNeg_grouped(i).A);
+                        connect(coldPlateNeg_grouped(i).B,H);
+                        connect(frac_n,coldPlateNeg_grouped(i).frac);
+                        connect(delT_n,coldPlateNeg_grouped(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                components(ExternalAccess=observe)
+                    convectionNeg_grouped = foundation.thermal.elements.convection(...
+                        area=cellHeight*cellWidth,heat_tr_coeff=htc_neg);
+                end
+                connections
+                    connect(battery_thermal_grouped(numOfSections).H,convectionNeg_grouped.B);
+                    connect(H,convectionNeg_grouped.A);
+                end 
+            end            
+        else
+            % -------------------------------------------------------------
+            % Cylindrical shaped cells
+            % -------------------------------------------------------------
+            % (3) Left side
+            if thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:grouped_left_countSection
+                    components(ExternalAccess=observe)
+                        conductionLeftLumped(i) = foundation.thermal.elements.conduction(area=...
+                        cellHeight*cellDiameter,th_cond=cellThermalCond_inPlane,thickness=cellDiameter/2);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(grouped_left_referToSection(i)).H,conductionLeftLumped(i).A);
+                        connect(conductionLeftLumped(i).B,Ql);
+                    end
+                end
+            elseif thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i=1:numOfSections
+                    components(ExternalAccess=observe)
+                        coldPlateLeft_grouped(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=grouped_moduleCooling,Tcell=cellTemp0(cellIndex5Section(i)),...
+                            icell=cellIndex5Section(i))
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,coldPlateLeft_grouped(i).A);
+                        connect(coldPlateLeft_grouped(i).B,H);
+                        connect(frac_l,coldPlateLeft_grouped(i).frac);
+                        connect(delT_l,coldPlateLeft_grouped(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                for i = 1:grouped_left_countSection
+                    components(ExternalAccess=observe)
+                        convectionLeft_grouped(i) = foundation.thermal.elements.convection(...
+                            area=2*ceil((Ns*Np/cellCylinLine)/grouped_left_countSection)*cellHeight*cellThickness,...
+                            heat_tr_coeff=htc_left);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(grouped_left_referToSection(i)).H,convectionLeft_grouped(i).B);
+                        connect(H,convectionLeft_grouped(i).A);
+                    end 
+                end
+            end
+            % -------------------------------------------------------------
+            % (4) Right side
+            if thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:grouped_right_countSection
+                    components(ExternalAccess=observe)
+                        conductionRightLumped(i) = foundation.thermal.elements.conduction(area=...
+                        cellHeight*cellDiameter,th_cond=cellThermalCond_inPlane,thickness=cellDiameter/2);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(grouped_right_referToSection(i)).H,conductionRightLumped(i).A);
+                        connect(conductionRightLumped(i).B,Qr);
+                    end
+                end
+            elseif thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i=1:numOfSections
+                    components(ExternalAccess=observe)
+                        coldPlateRight_grouped(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=grouped_moduleCooling,Tcell=cellTemp0(cellIndex5Section(i)),...
+                            icell=cellIndex5Section(i))
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,coldPlateRight_grouped(i).A);
+                        connect(coldPlateRight_grouped(i).B,H);
+                        connect(frac_r,coldPlateRight_grouped(i).frac);
+                        connect(delT_r,coldPlateRight_grouped(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                for i = 1:grouped_right_countSection
+                    components(ExternalAccess=observe)
+                        convectionRight_grouped(i) = foundation.thermal.elements.convection(...
+                            area=2*ceil((Ns*Np/cellCylinLine)/grouped_right_countSection)*cellHeight*cellThickness,...
+                            heat_tr_coeff=htc_right);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(grouped_right_referToSection(i)).H,convectionRight_grouped(i).B);
+                        connect(H,convectionRight_grouped(i).A);
+                    end 
+                end
+            end
+            % -------------------------------------------------------------
+            % (5) posEnd side
+            if thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:grouped_posEnd_countSection
+                    components(ExternalAccess=observe)
+                        conductionPosLumped(i) = foundation.thermal.elements.conduction(area=...
+                        cellHeight*cellDiameter,th_cond=cellThermalCond_inPlane,thickness=cellDiameter/2);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(grouped_posEnd_referToSection(i)).H,conductionPosLumped(i).A);
+                        connect(conductionPosLumped(i).B,Qp);
+                    end
+                end
+            elseif thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i=1:numOfSections
+                    components(ExternalAccess=observe)
+                        coldPlatePos_grouped(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=grouped_moduleCooling,Tcell=cellTemp0(cellIndex5Section(i)),...
+                            icell=cellIndex5Section(i))
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,coldPlatePos_grouped(i).A);
+                        connect(coldPlatePos_grouped(i).B,H);
+                        connect(frac_p,coldPlatePos_grouped(i).frac);
+                        connect(delT_p,coldPlatePos_grouped(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                for i = 1:grouped_posEnd_countSection
+                    components(ExternalAccess=observe)
+                        convectionPos_grouped(i) = foundation.thermal.elements.convection(...
+                            area=2*ceil((Ns*Np/cellCylinLine)/grouped_posEnd_countSection)*cellHeight*cellThickness,...
+                            heat_tr_coeff=htc_pos);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(grouped_posEnd_referToSection(i)).H,convectionPos_grouped(i).B);
+                        connect(H,convectionPos_grouped(i).A);
+                    end 
+                end
+            end
+            % -------------------------------------------------------------
+            % (6) negEnd side
+            if thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalPortLumped
+                % Lumped Thermal
+                for i = 1:grouped_negEnd_countSection
+                    components(ExternalAccess=observe)
+                        conductionNegLumped(i) = foundation.thermal.elements.conduction(area=...
+                        cellHeight*cellDiameter,th_cond=cellThermalCond_inPlane,thickness=cellDiameter/2);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(grouped_negEnd_referToSection(i)).H,conductionNegLumped(i).A);
+                        connect(conductionNegLumped(i).B,Qn);
+                    end
+                end
+            elseif thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalLUT
+                % Thermal LUT
+                for i=1:numOfSections
+                    components(ExternalAccess=observe)
+                        coldPlateNeg_grouped(i)=batteryModule.batteryCellThermalLUTmodel...
+                            (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                            heatTransferRate=grouped_moduleCooling,Tcell=cellTemp0(cellIndex5Section(i)),...
+                            icell=cellIndex5Section(i))
+                    end
+                    connections
+                        connect(battery_thermal_grouped(i).H,coldPlateNeg_grouped(i).A);
+                        connect(coldPlateNeg_grouped(i).B,H);
+                        connect(frac_n,coldPlateNeg_grouped(i).frac);
+                        connect(delT_n,coldPlateNeg_grouped(i).delT);
+                    end
+                end
+            else
+                % Link convection to Ambient port
+                for i = 1:grouped_negEnd_countSection
+                    components(ExternalAccess=observe)
+                        convectionNeg_grouped(i) = foundation.thermal.elements.convection(...
+                            area=2*ceil((Ns*Np/cellCylinLine)/grouped_negEnd_countSection)*cellHeight*cellThickness,...
+                            heat_tr_coeff=htc_neg);
+                    end
+                    connections
+                        connect(battery_thermal_grouped(grouped_negEnd_referToSection(i)).H,convectionNeg_grouped(i).B);
+                        connect(H,convectionNeg_grouped(i).A);
+                    end 
+                end
+            end
+        end
+        % =================================================================
+        % END of THERMAL PORT =============================================
+        % =================================================================
+    end
+    
+    for i=1:numOfSections
+        components(ExternalAccess=observe)
+            extHeatLoad_grouped(i)=foundation.thermal.sources.heat_flow(heat_flow=grouped_extHeat(i));
+        end
+        % External heat
+        connections
+            connect(extHeatLoad_grouped(i).A,H);
+            connect(battery_thermal_grouped(i).H,extHeatLoad_grouped(i).B);
+        end
+    end
+    
+    connections
+        connect(p,Resistor.p);
+        connect(battery_thermal_grouped(numOfSections).n,n);
+        connect(battery_thermal_grouped(1).p,Resistor.n); 
+    end
+    for i=1:numOfSections-1
+        connections
+            connect(battery_thermal_grouped(i).n,battery_thermal_grouped(i+1).p);
+        end
+    end
+    % Conductive heat transfer between cells
+    if(cellTypeSelection == batteryModule.batteryTypeSelection.pouch || ...
+       cellTypeSelection == batteryModule.batteryTypeSelection.can)
+        for i=1:numOfSections-1
+            components(ExternalAccess=observe)
+                conduction_grouped(i) = foundation.thermal.elements.conduction(area=...
+                    cellHeight*cellWidth,th_cond=cellThermalCond,thickness=...
+                    cellThickness*(numCells5section(i)+numCells5section(i+1))/2);
+                % 
+            end
+            connections
+                connect(battery_thermal_grouped(i).H,conduction_grouped(i).A);
+                connect(battery_thermal_grouped(i+1).H,conduction_grouped(i).B);
+            end
+        end
+    else
+        %
+    end
+    %
+else
+    % modelComplexity=batteryModule.batteryAbstractionLevel.lumped
+    % ----------------------------------------------------------------
+    equations
+    	% Record output
+        outputCellTemp == [battery_thermal_lumped.cell_temperature];
+        outputCellSOC  == [battery_thermal_lumped.stateOfCharge];
+    end
+    %
+    components(ExternalAccess=observe)
+        battery_thermal_lumped = ee.sources.table_battery(...
+            SOC_vec=LUTpointsSOC,T_dependence=T_dependence,T_vec=LUTpointsTemp,...
+            prm_dir=prm_dir,V0_mat=lumped_V0_mat,R0_mat=lumped_R0_mat,...
+            R0_dis_mat=lumped_R0_dis_mat,R0_ch_mat=lumped_R0_ch_mat,...
+            AH=lumped_cellAH,...
+            prm_leak=prm_leak,Rleak_vec=lumped_Rleak,...
+            extrapolation_option=extrapolation_option,SOC_port=SOC_port,...
+            prm_dyn=prm_dyn,R1_mat=lumped_R1_mat,tau1_mat=tau1_mat,...
+            R2_mat=lumped_R2_mat,tau2_mat=tau2_mat,R3_mat=lumped_R3_mat,tau3_mat=tau3_mat,...
+            R4_mat=lumped_R4_mat,tau4_mat=tau4_mat,R5_mat=lumped_R5_mat,tau5_mat=tau5_mat,...
+            prm_fade=prm_fade,N0=N0,dV0=dV0,dR0=dR0,dAH=dAH,dRleak=dRleak,...
+            dR1=dR1,dR2=dR2,dR3=dR3,dR4=dR4,dR5=dR5,N0vec=N0vec,...
+            Tfadevec=Tfadevec,dV0vec=dV0vec,dR0vec=dR0vec,dAHvec=dAHvec,...
+            dRleakvec=dRleakvec,dR1vec=dR1vec,dR2vec=dR2vec,dR3vec=dR3vec,...
+            dR4vec=dR4vec,dR5vec=dR5vec,dV0mat=dV0mat,dR0mat=dR0mat,...
+            dAHmat=dAHmat,dRleakmat=dRleakmat,dR1mat=dR1mat,dR2mat=dR2mat,...
+            dR3mat=dR3mat,dR4mat=dR4mat,dR5mat=dR5mat,...
+            thermal_port=thermal_port,thermal_mass=Ns*Np*cellThermalMass,...
+            stateOfCharge={value=lumped_cellSOC0(1),priority=priority.high} ,...
+            cell_temperature={value=lumped_cellTemp0(1),priority=priority.high});
+    end
+    %
+    if thermalManagement == batteryModule.batteryCoolingSystem.none
+        components(ExternalAccess=none)
+            convection_lumped=foundation.thermal.elements.convection(area=(if cell_type==1,...
+                (Ns*Np)*(2*cellHeight*cellThickness+cellWidth*cellThickness)+2*cellHeight*cellWidth;...
+                else (Ns*Np)*pi*cellDiameter*cellHeight;end),...
+                heat_tr_coeff=cellHeatTrCoeff);
+        end
+        connections
+            connect(battery_thermal_lumped.H,convection_lumped.B);
+            connect(H,convection_lumped.A);
+        end
+    else
+        % Thermal ports
+        % =================================================================
+        % START of THERMAL PORT ===========================================
+        % =================================================================
+        % (1) BOTTOM - same for rectangular and cylindrical cells
+        if thermal_moduleBottom == batteryModule.batteryThermalPortSelection.thermalPortLumped
+            % Lumped Thermal
+            components(ExternalAccess=observe)
+                conductionBottomLumped = foundation.thermal.elements.conduction(area=...
+                (if cell_type==1, Ns*Np*cellThickness*cellWidth;...
+                else Ns*Np*cellDiameter*cellDiameter;end),th_cond=cellThermalCond_inPlane,...
+                thickness=cellHeight/2);
+            end
+            connections
+                connect(battery_thermal_lumped.H,conductionBottomLumped.A);
+                connect(conductionBottomLumped.B,Qb);
+            end
+        elseif thermal_moduleBottom == batteryModule.batteryThermalPortSelection.thermalLUT
+            components(ExternalAccess=none)
+                coldPlateBottom_lumped=batteryModule.batteryCellThermalLUTmodel...
+                    (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                    heatTransferRate=lumped_moduleCooling,Tcell=lumped_cellTemp0(1),icell=1)
+                % Very Imp : icell=1 as 'lumped_moduleCooling(:,:,1)' ONLY contains relevant data
+            end
+            connections
+                connect(battery_thermal_lumped.H,coldPlateBottom_lumped.A);
+                connect(coldPlateBottom_lumped.B,H);
+                connect(frac_b,coldPlateBottom_lumped.frac);
+                connect(delT_b,coldPlateBottom_lumped.delT);
+            end
+        else
+            % Link convection to Ambient port
+            components(ExternalAccess=none)
+                convectionBottom_lumped = foundation.thermal.elements.convection(area=(if cell_type==1,...
+                    Ns*Np*cellWidth*cellThickness;...
+                    else Ns*Np*pi*cellDiameter*cellDiameter/4;end),...
+                    heat_tr_coeff=htc_bottom);
+            end
+            connections
+                connect(battery_thermal_lumped.H,convectionBottom_lumped.B);
+                connect(H,convectionBottom_lumped.A);
+            end 
+        end
+        % (2) TOP - same for rectangular and cylindrical cells
+        if thermal_moduleTop == batteryModule.batteryThermalPortSelection.thermalPortLumped
+            % Lumped Thermal
+            components(ExternalAccess=observe)
+                conductionTopLumped = foundation.thermal.elements.conduction(area=...
+                (if cell_type==1, Ns*Np*cellThickness*cellWidth;...
+                else Ns*Np*cellDiameter*cellDiameter;end),th_cond=cellThermalCond_inPlane,...
+                thickness=cellHeight/2);
+            end
+            connections
+                connect(battery_thermal_lumped.H,conductionTopLumped.A);
+                connect(conductionTopLumped.B,Qt);
+            end
+        elseif thermal_moduleTop == batteryModule.batteryThermalPortSelection.thermalLUT
+            components(ExternalAccess=none)
+                coldPlateTop_lumped=batteryModule.batteryCellThermalLUTmodel...
+                    (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                    heatTransferRate=lumped_moduleCooling,Tcell=lumped_cellTemp0(1),icell=1)
+                % Very Imp : icell=1 as 'lumped_moduleCooling(:,:,1)' ONLY contains relevant data
+            end
+            connections
+                connect(battery_thermal_lumped.H,coldPlateTop_lumped.A);
+                connect(coldPlateTop_lumped.B,H);
+                connect(frac_t,coldPlateTop_lumped.frac);
+                connect(delT_t,coldPlateTop_lumped.delT);
+            end
+        else
+            % Link convection to Ambient port
+            components(ExternalAccess=none)
+                convectionTop_lumped = foundation.thermal.elements.convection(area=(if cell_type==1,...
+                    Ns*Np*cellWidth*cellThickness;...
+                    else Ns*Np*pi*cellDiameter*cellDiameter/4;end),...
+                    heat_tr_coeff=htc_top);
+            end
+            connections
+                connect(battery_thermal_lumped.H,convectionTop_lumped.B);
+                connect(H,convectionTop_lumped.A);
+            end 
+        end
+        % 
+        % (3) LEFT
+        if thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalPortLumped
+            % Lumped Thermal
+            components(ExternalAccess=observe)
+                conductionLeftLumped = foundation.thermal.elements.conduction(area=...
+                (if cell_type==1, Ns*Np*cellThickness*cellHeight;...
+                else cellCylinLine*cellDiameter*cellHeight;end),th_cond=cellThermalCond_inPlane,...
+                thickness=(if cell_type==1, cellWidth/2;else cellDiameter/2;end));
+            end
+            connections
+                connect(battery_thermal_lumped.H,conductionLeftLumped.A);
+                connect(conductionLeftLumped.B,Ql);
+            end
+        elseif thermal_moduleLeft == batteryModule.batteryThermalPortSelection.thermalLUT
+            components(ExternalAccess=none)
+                coldPlateLeft_lumped=batteryModule.batteryCellThermalLUTmodel...
+                    (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                    heatTransferRate=lumped_moduleCooling,Tcell=lumped_cellTemp0(1),icell=1)
+                % Very Imp : icell=1 as 'lumped_moduleCooling(:,:,1)' ONLY contains relevant data
+            end
+            connections
+                connect(battery_thermal_lumped.H,coldPlateLeft_lumped.A);
+                connect(coldPlateLeft_lumped.B,H);
+                connect(frac_l,coldPlateLeft_lumped.frac);
+                connect(delT_l,coldPlateLeft_lumped.delT);
+            end
+        else
+            % Link convection to Ambient port
+            components(ExternalAccess=none)
+                convectionLeft_lumped = foundation.thermal.elements.convection(area=(if cell_type==1,...
+                    Ns*Np*cellHeight*cellThickness;...
+                    else cellCylinLine*cellDiameter*cellHeight;end),...
+                    heat_tr_coeff=htc_left);
+            end
+            connections
+                connect(battery_thermal_lumped.H,convectionLeft_lumped.B);
+                connect(H,convectionLeft_lumped.A);
+            end 
+        end
+        % 
+        % (4) RIGHT
+        if thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalPortLumped
+            % Lumped Thermal
+            components(ExternalAccess=observe)
+                conductionRightLumped = foundation.thermal.elements.conduction(area=...
+                (if cell_type==1, Ns*Np*cellThickness*cellHeight;...
+                else cellCylinLine*cellDiameter*cellHeight;end),th_cond=cellThermalCond_inPlane,...
+                thickness=(if cell_type==1, cellWidth/2;else cellDiameter/2;end));
+            end
+            connections
+                connect(battery_thermal_lumped.H,conductionRightLumped.A);
+                connect(conductionRightLumped.B,Qr);
+            end
+        elseif thermal_moduleRight == batteryModule.batteryThermalPortSelection.thermalLUT
+            components(ExternalAccess=none)
+                coldPlateRight_lumped=batteryModule.batteryCellThermalLUTmodel...
+                    (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                    heatTransferRate=lumped_moduleCooling,Tcell=lumped_cellTemp0(1),icell=1)
+                % Very Imp : icell=1 as 'lumped_moduleCooling(:,:,1)' ONLY contains relevant data
+            end
+            connections
+                connect(battery_thermal_lumped.H,coldPlateRight_lumped.A);
+                connect(coldPlateRight_lumped.B,H);
+                connect(frac_r,coldPlateRight_lumped.frac);
+                connect(delT_r,coldPlateRight_lumped.delT);
+            end
+        else
+            % Link convection to Ambient port
+            components(ExternalAccess=none)
+                convectionRight_lumped = foundation.thermal.elements.convection(area=(if cell_type==1,...
+                    Ns*Np*cellHeight*cellThickness;...
+                    else cellCylinLine*cellDiameter*cellHeight;end),...
+                    heat_tr_coeff=htc_right);
+            end
+            connections
+                connect(battery_thermal_lumped.H,convectionRight_lumped.B);
+                connect(H,convectionRight_lumped.A);
+            end 
+        end
+        % 
+        % (5) POS END
+        if thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalPortLumped
+            % Lumped Thermal
+            components(ExternalAccess=observe)
+                conductionPosLumped = foundation.thermal.elements.conduction(area=...
+                (if cell_type==1, cellHeight*cellThickness;...
+                else (Ns*Np/cellCylinLine)*cellDiameter*cellHeight;end),th_cond=cellThermalCond_inPlane,...
+                thickness=(if cell_type==1, cellThickness/2;else cellDiameter/2;end));
+            end
+            connections
+                connect(battery_thermal_lumped.H,conductionPosLumped.A);
+                connect(conductionPosLumped.B,Qp);
+            end
+        elseif thermal_modulePos == batteryModule.batteryThermalPortSelection.thermalLUT
+            components(ExternalAccess=none)
+                coldPlatePos_lumped=batteryModule.batteryCellThermalLUTmodel...
+                    (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                    heatTransferRate=lumped_moduleCooling,Tcell=lumped_cellTemp0(1),icell=1)
+                % Very Imp : icell=1 as 'lumped_moduleCooling(:,:,1)' ONLY contains relevant data
+            end
+            connections
+                connect(battery_thermal_lumped.H,coldPlatePos_lumped.A);
+                connect(coldPlatePos_lumped.B,H);
+                connect(frac_p,coldPlatePos_lumped.frac);
+                connect(delT_p,coldPlatePos_lumped.delT);
+            end
+        else
+            % Link convection to Ambient port
+            components(ExternalAccess=none)
+                convectionPos_lumped = foundation.thermal.elements.convection(area=(if cell_type==1,...
+                    cellHeight*cellWidth;...
+                    else 2*ceil(Ns*Np/cellCylinLine)*cellDiameter*cellHeight;end),...
+                    heat_tr_coeff=htc_pos);
+            end
+            connections
+                connect(battery_thermal_lumped.H,convectionPos_lumped.B);
+                connect(H,convectionPos_lumped.A);
+            end 
+        end
+        % 
+        % (6) NEG END
+        if thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalPortLumped
+            % Lumped Thermal
+            components(ExternalAccess=observe)
+                conductionNegLumped = foundation.thermal.elements.conduction(area=...
+                (if cell_type==1, cellHeight*cellThickness;...
+                else (Ns*Np/cellCylinLine)*cellDiameter*cellHeight;end),th_cond=cellThermalCond_inPlane,...
+                thickness=(if cell_type==1, cellThickness/2;else cellDiameter/2;end));
+            end
+            connections
+                connect(battery_thermal_lumped.H,conductionNegLumped.A);
+                connect(conductionNegLumped.B,Qn);
+            end
+        elseif thermal_moduleNeg == batteryModule.batteryThermalPortSelection.thermalLUT
+            components(ExternalAccess=none)
+                coldPlateNeg_lumped=batteryModule.batteryCellThermalLUTmodel...
+                    (Tvec=LUTpointsTemp_coolant,Fvec=flowrate0,Ncell=Ns*Np,...
+                    heatTransferRate=lumped_moduleCooling,Tcell=lumped_cellTemp0(1),icell=1)
+                % Very Imp : icell=1 as 'lumped_moduleCooling(:,:,1)' ONLY contains relevant data
+            end
+            connections
+                connect(battery_thermal_lumped.H,coldPlateNeg_lumped.A);
+                connect(coldPlateNeg_lumped.B,H);
+                connect(frac_n,coldPlateNeg_lumped.frac);
+                connect(delT_n,coldPlateNeg_lumped.delT);
+            end
+        else
+            % Link convection to Ambient port
+            components(ExternalAccess=none)
+                convectionNeg_lumped = foundation.thermal.elements.convection(area=(if cell_type==1,...
+                    cellHeight*cellWidth;...
+                    else 2*ceil(Ns*Np/cellCylinLine)*cellDiameter*cellHeight;end),...
+                    heat_tr_coeff=htc_neg);
+            end
+            connections
+                connect(battery_thermal_lumped.H,convectionNeg_lumped.B);
+                connect(H,convectionNeg_lumped.A);
+            end 
+        end
+        % =================================================================
+        % END of THERMAL PORT =============================================
+        % =================================================================
+    end
+    % Electrical connections
+    connections
+        connect(p,Resistor.p); 
+        connect(battery_thermal_lumped.p,Resistor.n); 
+        connect(battery_thermal_lumped.n,n);
+    end
+    % External heat load
+    components(ExternalAccess=none)
+        extHeatLoad_lumped=foundation.thermal.sources.heat_flow(heat_flow=sum([moduleExtHeat]));
+    end
+    connections
+        connect(extHeatLoad_lumped.A,H);
+        connect(battery_thermal_lumped.H,extHeatLoad_lumped.B);
+    end
+end
+% 
+
+end

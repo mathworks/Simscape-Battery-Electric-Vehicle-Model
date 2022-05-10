@@ -44,8 +44,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2020-08-04T16:28:06Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2022-04-22T13:32:42Z</dcterms:modified>
-  <cp:revision>5.7</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2022-05-04T20:57:50Z</dcterms:modified>
+  <cp:revision>5.8</cp:revision>
   <cp:version>R2022a</cp:version>
 </cp:coreProperties>
 
@@ -67,11 +67,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2022a Release -->
 <MathWorks_version_info>
-  <version>9.12.0.1935954</version>
+  <version>9.12.0.1940184</version>
   <release>R2022a</release>
   <description>Update 2</description>
-  <date>Apr 15 2022</date>
-  <checksum>1378679883</checksum>
+  <date>Apr 20 2022</date>
+  <checksum>397506373</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -113,8 +113,8 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="RTWModifiedTimeStamp">572538757</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:5.7&gt;</P>
+      <P Name="RTWModifiedTimeStamp">573602266</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:5.8&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="MultithreadedSim">on</P>
@@ -948,8 +948,8 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.xml
 __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" defaultPackage="slid" packageUris="http://schema.mathworks.com/mf0/slid/R2020b_20191110">
-  <System type="System" uuid="77eb2cc0-a70a-41c9-b3a2-534dfc3f3099">
-    <Interface type="Interface" uuid="9f8ff12f-a771-4125-9ca9-3022268f6b6a"/>
+  <System type="System" uuid="f239c644-f306-48d4-a5a9-981940320410">
+    <Interface type="Interface" uuid="236be2a6-3dc1-49c4-8a13-ab51a9c2596d"/>
   </System>
 </MF0>
 __MWOPC_PART_BEGIN__ /simulink/plugins/SimscapeModelParametersPlugin.xml
@@ -961,16 +961,16 @@ __MWOPC_PART_BEGIN__ /simulink/plugins/SimscapeModelParametersPlugin.xml
 __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sltp_graph version="1.1" packageUris="http://schema.mathworks.com/mf0/sltp_mm/R2021b_202106150630">
-  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="7e25ea08-32bd-489b-b050-9e79a275cc50">
+  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="545b287b-6091-4193-a8b3-228f4753b983">
     <editorState type="sltp.mm.core.EditorState" uuid="434b8890-3c8a-4ca0-9000-1091625f456d">
       <panelState type="sltp.mm.core.EditorPanelState" uuid="c4c17e31-15e1-4244-a9e3-2e77a3c6286d"/>
     </editorState>
-    <rootTask type="sltp.mm.core.Task" uuid="13c263da-05ba-44ca-83eb-c7197ff21eec">
-      <context type="sltp.mm.core.Context" uuid="7e25ea08-32bd-489b-b050-9e79a275cc50"/>
+    <rootTask type="sltp.mm.core.Task" uuid="39be00d3-de7d-4927-9d29-802ce84675dc">
+      <context type="sltp.mm.core.Context" uuid="545b287b-6091-4193-a8b3-228f4753b983"/>
       <explicit>false</explicit>
       <name>Default</name>
       <priority>-2147483648</priority>
-      <subgraph type="sltp.mm.core.Graph" uuid="ef6e2f32-49af-410a-9165-745d336eec3b"/>
+      <subgraph type="sltp.mm.core.Graph" uuid="5aadaa99-c892-4231-89fc-7952d295ec86"/>
     </rootTask>
   </sltp.mm.core.Context>
 </sltp_graph>
@@ -1104,7 +1104,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_2223.xml
     <P Name="Src">2231#out:1</P>
     <P Name="Points">[5, 0]</P>
     <Branch>
-      <P Name="ZOrder">13</P>
+      <P Name="ZOrder">5</P>
       <P Name="Points">[0, -75; 25, 0]</P>
       <P Name="Dst">2227#in:1</P>
     </Branch>
@@ -1273,16 +1273,15 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <System>
   <P Name="Location">[30, 30, 1010, 750]</P>
   <P Name="SystemRect">[0.000000, 0.000000, 0.000000, 0.000000]</P>
-  <P Name="Open">on</P>
   <List ListType="InterfaceData">
     <P Name="Version">0</P>
-    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0d36222e-2121-49c4-97c7-cc13785f2822&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;ef57f7e9-b4fb-4289-88de-8b90bd0250cc&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;4cbd3d47-e41d-4fe0-955d-074f4f6b0702&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;VehSpdRef&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0d36222e-2121-49c4-97c7-cc13785f2822&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;km/hr&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;91f69747-ea89-4cac-860a-448553a83599&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;2f3a5fe6-75e0-4723-b59d-d436db9df1b8&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;4cbd3d47-e41d-4fe0-955d-074f4f6b0702&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;MotorSpdRef&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;ef57f7e9-b4fb-4289-88de-8b90bd0250cc&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rpm&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;b291d52d-1eca-457a-b270-fff0dfa6093a&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;ee8c0103-789c-49e6-922f-0ac99f5e3a38&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;4cbd3d47-e41d-4fe0-955d-074f4f6b0702&quot;},&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;3cc84953-a911-4b61-a230-8c7ff4e82baf&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
-    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;3cc84953-a911-4b61-a230-8c7ff4e82baf&quot;}}}</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3f28ae1a-b12a-480c-a3bf-6eb19e057340&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;8efb3aac-5333-4955-bae6-8fcb38eddb61&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;eb03ab57-0145-4389-8762-2412aadee094&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;VehSpdRef&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3f28ae1a-b12a-480c-a3bf-6eb19e057340&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;km/hr&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;cc2a5fa0-f7ee-4b39-8d0f-94a7f0498a52&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;130b39da-3b4b-453f-91e9-84bd25fea080&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;eb03ab57-0145-4389-8762-2412aadee094&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;MotorSpdRef&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;8efb3aac-5333-4955-bae6-8fcb38eddb61&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rpm&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;953a125b-0304-4d86-9bfa-d16e6c477d94&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;0f87b678-def9-4331-92f8-f60f71a7b274&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;eb03ab57-0145-4389-8762-2412aadee094&quot;},&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;802eeed3-d32d-4523-9780-cdbbaab4b1c1&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;802eeed3-d32d-4523-9780-cdbbaab4b1c1&quot;}}}</P>
   </List>
   <P Name="SetExecutionDomain">off</P>
   <P Name="ExecutionDomainType">Deduce</P>
   <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">48256</P>
+  <P Name="SIDHighWatermark">52259</P>
   <P Name="SimulinkSubDomain">Simulink</P>
   <Block BlockType="Inport" Name="FromPlant" SID="2239">
     <P Name="Position">[425, 183, 455, 197]</P>
@@ -1413,7 +1412,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="ZOrder">26248</P>
     <Port>
       <P Name="PortNumber">1</P>
-      <P Name="Name">BatteryCtrl</P>
+      <P Name="Name">HeatFlow</P>
     </Port>
   </Block>
   <Block BlockType="SubSystem" Name="Motor Speed Reference" SID="4">
@@ -1485,43 +1484,43 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Port">2</P>
   </Block>
   <Line>
-    <P Name="ZOrder">569</P>
+    <P Name="ZOrder">587</P>
     <P Name="Src">3#out:1</P>
     <P Name="Points">[24, 0]</P>
     <Branch>
-      <P Name="ZOrder">568</P>
+      <P Name="ZOrder">586</P>
       <P Name="Points">[0, -55]</P>
       <P Name="Dst">20#in:1</P>
     </Branch>
     <Branch>
-      <P Name="ZOrder">567</P>
+      <P Name="ZOrder">585</P>
       <P Name="Dst">4#in:1</P>
     </Branch>
   </Line>
   <Line>
-    <P Name="ZOrder">572</P>
+    <P Name="ZOrder">590</P>
     <P Name="Src">4#out:1</P>
     <P Name="Points">[26, 0]</P>
     <Branch>
-      <P Name="ZOrder">571</P>
+      <P Name="ZOrder">589</P>
       <P Name="Dst">21#in:1</P>
     </Branch>
     <Branch>
-      <P Name="ZOrder">570</P>
+      <P Name="ZOrder">588</P>
       <P Name="Points">[0, 80]</P>
       <P Name="Dst">2223#in:1</P>
     </Branch>
   </Line>
   <Line>
     <P Name="Name">RoadGrade</P>
-    <P Name="ZOrder">573</P>
+    <P Name="ZOrder">591</P>
     <P Name="Labels">[1, 1]</P>
     <P Name="Src">15#out:1</P>
     <P Name="Dst">2244#in:1</P>
   </Line>
   <Line>
     <P Name="Name">BrakeForce</P>
-    <P Name="ZOrder">574</P>
+    <P Name="ZOrder">592</P>
     <P Name="Labels">[3, 1]</P>
     <P Name="Src">2#out:1</P>
     <P Name="Points">[28, 0; 0, -35]</P>
@@ -1529,34 +1528,34 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   </Line>
   <Line>
     <P Name="Name">TorqueCmd</P>
-    <P Name="ZOrder">575</P>
+    <P Name="ZOrder">593</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">2223#out:1</P>
     <P Name="Dst">2247#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">576</P>
+    <P Name="ZOrder">594</P>
     <P Name="Src">2239#out:1</P>
     <P Name="Dst">2240#in:1</P>
   </Line>
   <Line>
     <P Name="Name">&lt;MotorSpd&gt;</P>
-    <P Name="ZOrder">577</P>
+    <P Name="ZOrder">595</P>
     <P Name="Labels">[0, 0]</P>
     <P Name="Src">2240#out:1</P>
     <P Name="Points">[-5, 0]</P>
     <P Name="Dst">2223#in:2</P>
   </Line>
   <Line>
-    <P Name="Name">BatteryCtrl</P>
-    <P Name="ZOrder">578</P>
+    <P Name="Name">HeatFlow</P>
+    <P Name="ZOrder">596</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">2243#out:1</P>
     <P Name="Dst">2246#in:1</P>
   </Line>
   <Line>
     <P Name="Name">CtrlEnv</P>
-    <P Name="ZOrder">579</P>
+    <P Name="ZOrder">597</P>
     <P Name="Labels">[2, 1]</P>
     <P Name="Src">2244#out:1</P>
     <P Name="Points">[-5, 0; 49, 0; 0, 105]</P>
@@ -1564,21 +1563,21 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   </Line>
   <Line>
     <P Name="Name">MotorCtrl</P>
-    <P Name="ZOrder">580</P>
+    <P Name="ZOrder">598</P>
     <P Name="Labels">[1, 1]</P>
     <P Name="Src">2247#out:1</P>
     <P Name="Dst">2245#in:2</P>
   </Line>
   <Line>
     <P Name="Name">BatteryCtrl</P>
-    <P Name="ZOrder">581</P>
+    <P Name="ZOrder">599</P>
     <P Name="Labels">[1, 1]</P>
     <P Name="Src">2246#out:1</P>
     <P Name="Points">[61, 0; 0, -40]</P>
     <P Name="Dst">2245#in:3</P>
   </Line>
   <Line>
-    <P Name="ZOrder">582</P>
+    <P Name="ZOrder">600</P>
     <P Name="Src">2245#out:1</P>
     <P Name="Dst">2248#in:1</P>
   </Line>
@@ -1591,7 +1590,7 @@ p, li { white-space: pre-wrap; }
     <P Name="Position">[516, 310, 743, 326]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-60</P>
+    <P Name="ZOrder">-11</P>
   </Annotation>
 </System>
 
@@ -1676,7 +1675,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">e60b3c51-1890-4c33-8fec-cf8028969947</P>
     </Object>
-    <P Name="BDUuid" Class="char"/>
+    <P Name="BDUuid" Class="char">d8d0cd64-1232-4206-97eb-37b5189c535a</P>
   </Object>
 </WindowsInfo>
 

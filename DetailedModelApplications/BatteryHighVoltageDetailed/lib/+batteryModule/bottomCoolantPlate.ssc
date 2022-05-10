@@ -1,0 +1,228 @@
+component bottomCoolantPlate
+% bottomCoolantPlate:7:rotates
+
+% Copyright 2020-2021 The MathWorks, Inc.
+
+    nodes
+        amb          = foundation.thermal.thermal;              % Amb
+        coolantIn    = foundation.thermal_liquid.thermal_liquid;% in
+        coolantOut   = foundation.thermal_liquid.thermal_liquid;% out
+    end
+    
+    outputs
+        tempSensor   = {0, 'K'}; % dT
+        presSensor   = {0, 'Pa'};% dP
+        dataForLUT   = {zeros(1,nCell),'W/K'}; % W/K
+    end
+    
+    inputs
+        Batt = {zeros(2,nCell), '1'}; % QT
+    end
+    
+    variables(Access=private)
+        BattHeat = {zeros(1,nCell),'W'};
+    end
+    
+    annotations
+        coolantIn  : Side=Bottom;
+        amb        : Side=Right;
+        dataForLUT : Side=Left;
+        tempSensor : Side=Left;
+        presSensor : Side=Left;
+        coolantOut : Side=Bottom;
+        Batt       : Side=Top;
+        UILayout = [UIGroup("Battery Module", cellTypeSelection, nCell, cellHeight, cellWidth, cellThickness, cellThCond) 
+                    UIGroup("Coolant Plate", coolantPlateTh, coolantThCond, coolantPlateDen, coolantPlateCp, initialCoolantTemp)
+                    UIGroup("Channel & distributor pipes", nChannels, channelDia, distributorDia, roughnessPipe)]
+    end
+    
+    parameters(Access=private)
+        plateLen = cellThickness*nCell;
+        plateWid = cellWidth;
+        coolantPlateIndx = round((nCell/(nChannels+1))*[1:nChannels]);
+        fracCellThCond = cellHeight/(cellHeight+coolantPlateTh);
+        fracPlateThCond = coolantPlateTh/(cellHeight+coolantPlateTh);
+    end
+    
+    parameters
+        cellTypeSelection=batteryModule.batteryTypeSelection.pouch; % Choose cell type
+        nCell = 10;                      % Number of cell
+        cellHeight={0.650,'m'};          % Cell height
+        cellWidth={0.200,'m'};           % Cell width
+        cellThickness={0.020,'m'};       % Cell thickness
+        cellThCond={0.8,'W/(m * K)'};    % Cell thermal conductivity
+        nChannels = 4;                   % Number of coolant channels
+        channelDia = {0.005, 'm'};       % Coolant channel diameter
+        distributorDia = {0.009, 'm'};   % Distributor pipe diameter
+        roughnessPipe = {1.5e-05, 'm'}   % Coolant channel and distributor roughness 
+        coolantPlateTh = {0.005, 'm'};   % Coolant plate thickness
+        coolantThCond={20,'W/(m * K)'};  % Coolant plate material thermal conductivity
+        coolantPlateDen={2500, 'kg/m^3'};% Coolant plate material density
+        coolantPlateCp={447, 'J/(kg*K)'} % Coolant plate material specific heat
+        initialCoolantTemp={300, 'K'};% Initial coolant plate and fluid temperature
+    end
+    
+    parameters(Access=private)
+        dynamic_compressibility = int32(0);
+        elevation_spec = int32(1);
+        elevation_gain = {0, 'm'};
+        gravity = {9.81, 'm/s^2'};
+        pressure_loss_spec = 1;
+        length_add = {1, 'm'};
+        shape_factor = 64;
+        Re_lam = 2000;
+        Re_tur = 4000;
+        heat_transfer_spec = 1;
+        Nu_lam = 3.66;
+    end
+    
+    if cellTypeSelection == batteryModule.batteryTypeSelection.compactCylindrical || ...
+       cellTypeSelection == batteryModule.batteryTypeSelection.regularCylindrical     
+        equations
+            assert('Cell type supported are Pouch and Can cells. Cylindrical cells are not supported');
+        end
+    else
+        equations
+            assert(channelDia*nChannels < plateLen,'Reduce number of coolant channels to fit with battery module');
+        end
+    end
+    
+    for i = 1:nCell
+        components(ExternalAccess=none)
+            coolantPlateElement(i) = foundation.thermal.elements.mass(...
+                mass = (plateLen*plateWid*coolantPlateTh*coolantPlateDen)/nCell,...
+                sp_heat = coolantPlateCp, T = initialCoolantTemp);
+            coolantPlateToCellCond(i) = foundation.thermal.elements.conduction(...
+                area = cellThickness*cellWidth,...
+                th_cond = coolantThCond,...
+                thickness = (coolantPlateTh+cellHeight)/2);
+        end
+    end
+    for i = 1:nCell-1
+        components(ExternalAccess=none)
+            coolantPlateCond(i) = foundation.thermal.elements.conduction(...
+                area = coolantPlateTh*plateWid,...
+                th_cond = coolantThCond,...
+                thickness = plateLen/nCell);
+        end
+        connections
+            connect(coolantPlateElement(i).M,coolantPlateCond(i).A);
+            connect(coolantPlateCond(i).B,coolantPlateElement(i+1).M);
+        end
+    end
+    
+    for i = 1:nChannels
+        components(ExternalAccess=none) 
+%             channelPipe(i) = fluids.thermal_liquid.pipes_fittings.pipe(...
+%                 dynamic_compressibility = dynamic_compressibility, ...
+%                 pipe_length = plateWid,area = pi*channelDia*channelDia/4,...
+%                 Dh = channelDia, elevation_spec = elevation_spec,...
+%                 elevation_gain = elevation_gain, g = gravity, ...
+%                 pressure_loss_spec = pressure_loss_spec,...
+%                 length_add = length_add, roughness = roughnessPipe, ...
+%                 shape_factor = shape_factor,Re_lam = Re_lam, Re_tur = Re_tur,...
+%                 heat_transfer_spec = heat_transfer_spec, Nu_lam = Nu_lam,...
+%                 T0_vec = initialCoolantTemp);
+            channelPipe(i) = foundation.thermal_liquid.elements.pipe(...
+                length = plateWid, area = pi*channelDia*channelDia/4,...
+                Dh = channelDia, length_add = length_add, roughness = roughnessPipe,...
+                Re_lam = Re_lam, Re_tur = Re_tur, shape_factor = shape_factor,...
+                Nu_lam = Nu_lam, dynamic_compressibility = dynamic_compressibility,...
+                T0 = initialCoolantTemp);
+            channelConn_l(i) = fluids.thermal_liquid.pipes_fittings.sudden_area_change(...
+                loss_spec = int32(1), ...
+                area_A = pi*distributorDia*distributorDia/4,...
+                area_B = pi*channelDia*channelDia/4, ...
+                length = {.002, 'm'}, ...
+                Re_critical = 10, K_c = 1, K_e = 1);
+            channelConn_r(i) = fluids.thermal_liquid.pipes_fittings.sudden_area_change(...
+                loss_spec = int32(1), ...
+                area_A = pi*distributorDia*distributorDia/4,...
+                area_B = pi*channelDia*channelDia/4, ...
+                length = {.002, 'm'}, ...
+                Re_critical = 10, K_c = 1, K_e = 1);           
+%             distributor_l(i) = fluids.thermal_liquid.pipes_fittings.pipe(...
+%                 dynamic_compressibility = int32(0), pipe_length = plateLen/nChannels,...
+%                 area = pi*distributorDia*distributorDia/4,...
+%                 Dh = distributorDia, elevation_spec = int32(1),...
+%                 elevation_gain = {0, 'm'}, g = {9.81, 'm/s^2'}, pressure_loss_spec = 1,...
+%                 length_add = {1, 'm'}, roughness = roughnessPipe, shape_factor = 64,...
+%                 Re_lam = 2000, Re_tur = 4000, heat_transfer_spec = 1, Nu_lam = 3.66,...
+%                 T0_vec = initialCoolantTemp);
+            distributor_l(i) = foundation.thermal_liquid.elements.pipe(...
+                length = plateLen/nChannels, area = pi*distributorDia*distributorDia/4,...
+                Dh = distributorDia, length_add = length_add, roughness = roughnessPipe,...
+                Re_lam = Re_lam, Re_tur = Re_tur, shape_factor = shape_factor,...
+                Nu_lam = Nu_lam, dynamic_compressibility = dynamic_compressibility,...
+                T0 = initialCoolantTemp);
+            distributor_r(i) = foundation.thermal_liquid.elements.pipe(...
+                length = plateLen/nChannels, area = pi*distributorDia*distributorDia/4,...
+                Dh = distributorDia, length_add = length_add, roughness = roughnessPipe,...
+                Re_lam = Re_lam, Re_tur = Re_tur, shape_factor = shape_factor,...
+                Nu_lam = Nu_lam, dynamic_compressibility = dynamic_compressibility,...
+                T0 = initialCoolantTemp);
+%             distributor_r(i) = fluids.thermal_liquid.pipes_fittings.pipe(...
+%                 dynamic_compressibility = int32(0), pipe_length = {0.005, 'm'},...
+%                 area = pi*distributorDia*distributorDia/4,...
+%                 Dh = distributorDia, elevation_spec = int32(1),...
+%                 elevation_gain = {0, 'm'}, g = {9.81, 'm/s^2'}, pressure_loss_spec = 1,...
+%                 length_add = {1, 'm'}, roughness = roughnessPipe, shape_factor = 64,...
+%                 Re_lam = 2000, Re_tur = 4000, heat_transfer_spec = 1, Nu_lam = 3.66,...
+%                 T0_vec = initialCoolantTemp);
+        end
+    end
+    components(ExternalAccess=none)
+        presTempSensor = foundation.thermal_liquid.sensors.pressure_temperature_sensor;
+    end
+   
+    for i = 1:nChannels
+        connections
+            connect(distributor_l(i).B,channelConn_l(i).A);
+            connect(channelConn_l(i).B,channelPipe(i).A);
+            connect(channelPipe(i).B,channelConn_r(i).B);
+            connect(channelConn_r(i).A,distributor_r(i).A);
+            % distributor_l(i).A & distributor_r(i).B still need to be connected
+            % to build full channel pipe network
+            connect(distributor_l(i).H,amb);
+            connect(distributor_r(i).H,amb);
+            % Connnect to ccoolant plate thermal mass
+            connect(coolantPlateElement(coolantPlateIndx(i)).M,channelPipe(i).H);
+        end
+    end
+    for i = 1:nChannels-1
+        % Connecting distributor_l(i).A & distributor_r(i).B
+        % nChannels-1 as the final connection is to (visible) Component Node
+        connections
+            connect(distributor_l(i).A,distributor_l(i+1).B);
+            connect(distributor_r(i).B,distributor_r(i+1).A);
+        end
+    end
+    connections
+        connect(distributor_l(nChannels).A,coolantIn);
+        connect(distributor_r(nChannels).B,coolantOut);
+        connect(presTempSensor.T,tempSensor);
+        connect(presTempSensor.P,presSensor);
+        connect(presTempSensor.A,coolantIn);
+        connect(presTempSensor.B,coolantOut);
+    end
+    % 
+    % Thermal connection with Battery Module
+    for i = 1:nCell
+        nodes(ExternalAccess=Observe)
+            connectToCoolant(i) = foundation.thermal.thermal;
+        end
+        branches
+            BattHeat(i) : connectToCoolant(i).Q -> *;
+        end
+        equations
+            connectToCoolant(i).T == {value(Batt(1,i),'1'),'K'};
+            BattHeat(i)           == {value(Batt(2,i),'1'),'W'};
+            dataForLUT(1,i)       == BattHeat(i)/max({1e-3,'K'},...
+                                     {value(Batt(1,i),'1'),'K'}-coolantIn.T);
+        end
+        connections
+            connect(connectToCoolant(i),coolantPlateToCellCond(i).A);
+            connect(coolantPlateToCellCond(i).B,coolantPlateElement(i).M);
+        end
+    end
+end

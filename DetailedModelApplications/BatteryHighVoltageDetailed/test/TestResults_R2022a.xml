@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" name="BatteryHVDetailed_UnitTest" skipped="0" tests="2" time="81.2799">
+    <testcase classname="BatteryHVDetailed_UnitTest" name="run_harness_model_with_SingleModuleApproximation" time="18.6753"/>
+    <testcase classname="BatteryHVDetailed_UnitTest" name="run_harness_model_with_MultiModule" time="62.6046"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="BatteryHVDetailed_BEV_UnitTest" skipped="0" tests="4" time="277.4242">
+    <testcase classname="BatteryHVDetailed_BEV_UnitTest" name="run_BEV_model_with_Basic_hvbattery" time="17.2939"/>
+    <testcase classname="BatteryHVDetailed_BEV_UnitTest" name="run_BEV_model_with_GroupedSingleModule_hvbattery" time="19.7"/>
+    <testcase classname="BatteryHVDetailed_BEV_UnitTest" name="run_BEV_model_with_MultiModule_hvbattery" time="136.8076"/>
+    <testcase classname="BatteryHVDetailed_BEV_UnitTest" name="run_BEV_workflow_script" time="103.6228"/>
+  </testsuite>
+</testsuites>
