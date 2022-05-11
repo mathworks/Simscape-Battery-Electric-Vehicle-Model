@@ -1,4 +1,4 @@
-%% Model Parameters for BEV Drive Cycle Basic Model
+%% Model Parameters for Battery Electric Vehicle System Model
 
 % Copyright 2020-2022 The MathWorks, Inc.
 
@@ -23,16 +23,46 @@ smoothing.vehicle_axleSpeedThreshold_rpm = 1;
 initial.vehicle_speed_kph = 0;
 
 %% High Voltage Battery
-batteryHV.nominalCapacity_kWh = 4;
-batteryHV.voltagePerCell_V = 3.7;  % Open Circuit Voltage. 3.5V to 3.7V assuming Lithium-ion
-batteryHV.packVoltage_V = 350;
-batteryHV.batteryPackAhr_ini = ...
-  batteryHV.nominalCapacity_kWh / batteryHV.packVoltage_V * 1000;
-batteryHV.internal_R_Ohm = 0.01;
-batteryHV.AmbTemp=293.15; % Kelvin
+% For simplicity, load parameters for three high-voltage battery components at once.
 
-initial.hvBatterySOC_pct = 70;
-initial.hvBatteryCharge_Ah = batteryHV.batteryPackAhr_ini * initial.hvBatterySOC_pct/100;
+%---
+% Basic Battery (isothermal)
+
+batteryHV.nominalVoltage_V = 350;
+batteryHV.internalResistance_Ohm = 0.01;
+batteryHV.nominalCapacity_kWh = 20;
+batteryHV.voltagePerCell_V = 3.7;  % Open Circuit Voltage. 3.5V to 3.7V assuming Lithium-ion
+batteryHV.nominalCharge_Ahr = ...
+  batteryHV.nominalCapacity_kWh / batteryHV.nominalVoltage_V * 1000;
+
+% Initial conditions
+initial.hvBattery_SOC_pct = 70;
+initial.hvBattery_Charge_Ahr = batteryHV.nominalCharge_Ahr * initial.hvBattery_SOC_pct/100;
+
+%---
+% For Thermal HV Battery 1 (Battery block from Driveline)
+
+batteryHV.measuredCharge_Ahr = batteryHV.nominalCharge_Ahr * 0.5;
+batteryHV.measuredVoltage_V = batteryHV.nominalVoltage_V * 0.9;
+batteryHV.RadiationArea_m2 = 1;
+batteryHV.RadiationCoeff_W_per_K4m2 = 3e-9;
+batteryHV.thermalMass_kJ_per_K = 0.1;
+
+initial.hvBattery_Temperature_K = ambient.temp_K;
+
+ambient.mass_t = 10000;
+ambient.SpecificHeat_J_per_Kkg = 1000;
+
+initial.ambientTemp_K = ambient.temp_K;
+
+%---
+% For Thermal HV Battery 2 (Battery block from Electrical)
+
+batteryHV.measurementTemperature_K = 273.15 + 25;
+batteryHV.secondMeasurementTemperature_K = 273.15 + 0;
+batteryHV.secondNominalVoltage_V = batteryHV.nominalVoltage_V * 0.95;
+batteryHV.secondInternalResistance_Ohm = batteryHV.internalResistance_Ohm * 2;
+batteryHV.secondMeasuredVoltage_V = batteryHV.nominalVoltage_V * 0.9;
 
 %% Reduction Gear
 bevGear.gearRatio = 7.0;

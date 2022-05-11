@@ -8,10 +8,8 @@ arguments
   modelName (1,:) {mustBeTextScalar} = "BEV_system_model"
 end
 
-load_system(modelName)
-
 blkpath = modelName + "/High Voltage Battery";
-set_param(blkpath, ReferencedSubsystem = "BatteryHighVoltageBasic_refsub");
+set_param(blkpath, ReferencedSubsystem = "BatteryHV_refsub_Basic");
 set_param(blkpath, ZoomFactor = "FitSystem");
 set_param(blkpath, ZoomFactor = "100");
 

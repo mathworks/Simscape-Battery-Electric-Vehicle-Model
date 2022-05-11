@@ -63,6 +63,9 @@ function run_BEV_model_with_GroupedSingleModule_hvbattery(testCase)
 
 end  % function
 
+%{
+% This test can have a sporadic memory allocation issue during test,
+% and thus excluded.
 function run_BEV_model_with_MultiModule_hvbattery(testCase)
 %% Open the model and run simulation.
 % Check that the model runs without any warnings or errors.
@@ -89,6 +92,7 @@ function run_BEV_model_with_MultiModule_hvbattery(testCase)
   bdclose all
 
 end  % function
+%}
 
 %% Test for Scripts
 % Check that scripts run without any warnings or errors.

@@ -2,11 +2,7 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/82250-battery-electric-vehicle-model-in-simscape)
 
-Version 1.1
-
-Copyright 2020-2021 The MathWorks, Inc.
-
-https://www.mathworks.com/
+Version 1.2
 
 ## Introduction
 
@@ -33,26 +29,35 @@ from the slow but detailed motor drive unit and use the result
 as the block parameter of the simple but fast motor drive block
 in the BEV model.
 
-![Model Screenshot](utils/BevDriveCycleModel.png)
+<img src="BEV/images/image_BEV_system_model.png"
+ alt="Screenshot of the battery electric vehicle model"
+ width="700">
 
-![Plot of Simulation Result](utils/simulationResultPlot.png)
+<img src="BEV/images/image_BEV_sim_result_plots.png"
+ alt="Screenshot of the simulation result plots"
+ width="700">
 
 Watch the [YouTube video][url_yt] introducing the model.
 
 [url_yt]:https://www.youtube.com/watch?v=i07MNXZc42c
 
-## What's New in 1.1
+## What's New in 1.2 (May, 2022)
 
-- A detailed high-voltage battery pack component is added.
-- The BEV model supports three different component configurations
-  using Subsystem Reference:
-  1) All basic comopnents (same as version 1.0).
-  2) [New] With a detailed high-voltage battery as grouped-single module.
-  3) [New] With a detailed high-voltage battery as multi-module.
-- A live script evaluating the BEV model with
-  high-voltage battery component at different fidelity levels
-  is added.
-- This project requires MATLAB R2020b or newer.
+- Unit tests were added to some models.
+- GitHub Actions continuous integration is used
+  to automatically run tests when the repository
+  at github.com receives a push.
+- This project requires MATLAB R2022a or newer.
+- Abstract high-voltage battery component has
+  three different fidelity levels;
+  **isothermal** (same as before),
+  **simple thermal** (newly added using
+  System-Level Battery block from Simscape Driveline),
+  and **thermal** (newly added using
+  Battery block from Simscape Electrical).
+  They all run fast.
+
+See [Change Log](ChangeLog.md) for more details.
 
 ## Tool Requirements
 
@@ -87,8 +92,10 @@ Then search for the submission name,
 navigate to the submission page,
 click **Add** button, and select **Save to MATLAB Drive**.
 
-[url_online]:https://www.mathworks.com/products/matlab-online.html
+[url_online]: https://www.mathworks.com/products/matlab-online.html
 
 ## License
 
 See [`LICENSE.txt`](LICENSE.txt).
+
+_Copyright 2020-2022 The MathWorks, Inc._
