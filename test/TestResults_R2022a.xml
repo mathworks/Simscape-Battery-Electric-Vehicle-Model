@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" name="BEV_UnitTest" skipped="0" tests="2" time="45.3523">
+    <testcase classname="BEV_UnitTest" name="run_system_model" time="10.0418"/>
+    <testcase classname="BEV_UnitTest" name="run_main_script" time="35.3104"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="BatteryHV_UnitTest" skipped="0" tests="15" time="56.6778">
+    <testcase classname="BatteryHV_UnitTest" name="blockParameters_BatteryHV_Basic" time="1.808"/>
+    <testcase classname="BatteryHV_UnitTest" name="blockParameters_BatteryHV_Driveline" time="0.97265"/>
+    <testcase classname="BatteryHV_UnitTest" name="blockParameters_BatteryHV_Electrical" time="1.7472"/>
+    <testcase classname="BatteryHV_UnitTest" name="run_harness_model_with_Basic_refsub" time="5.994"/>
+    <testcase classname="BatteryHV_UnitTest" name="run_harness_model_with_Driveline_refsub" time="3.2364"/>
+    <testcase classname="BatteryHV_UnitTest" name="run_harness_model_with_Electrical_refsub" time="4.3192"/>
+    <testcase classname="BatteryHV_UnitTest" name="input_Constant" time="0.042655"/>
+    <testcase classname="BatteryHV_UnitTest" name="input_Charge" time="3.6424"/>
+    <testcase classname="BatteryHV_UnitTest" name="input_Discharge" time="0.62744"/>
+    <testcase classname="BatteryHV_UnitTest" name="input_LoadCurrentStep3" time="3.851"/>
+    <testcase classname="BatteryHV_UnitTest" name="run_testcase_Charge" time="5.4289"/>
+    <testcase classname="BatteryHV_UnitTest" name="run_testcase_Discharge" time="4.5996"/>
+    <testcase classname="BatteryHV_UnitTest" name="run_testcase_LoadCurrentStep3" time="4.1169"/>
+    <testcase classname="BatteryHV_UnitTest" name="run_main_script_1" time="4.4866"/>
+    <testcase classname="BatteryHV_UnitTest" name="run_takeScreenshots" time="11.8049"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="Vehicle1D_UnitTest" skipped="0" tests="14" time="58.1021">
+    <testcase classname="Vehicle1D_UnitTest" name="blockParameters_Vehicle1D_Driveline" time="0.5238"/>
+    <testcase classname="Vehicle1D_UnitTest" name="blockParameters_Vehicle1D_Custom" time="2.3216"/>
+    <testcase classname="Vehicle1D_UnitTest" name="run_harness_model_1" time="3.0466"/>
+    <testcase classname="Vehicle1D_UnitTest" name="block_info_script_1" time="1.771"/>
+    <testcase classname="Vehicle1D_UnitTest" name="input_Constant" time="0.079867"/>
+    <testcase classname="Vehicle1D_UnitTest" name="input_Brake3" time="0.54298"/>
+    <testcase classname="Vehicle1D_UnitTest" name="input_RoadGrade3" time="0.45102"/>
+    <testcase classname="Vehicle1D_UnitTest" name="input_DriveAxle" time="1.9389"/>
+    <testcase classname="Vehicle1D_UnitTest" name="run_testcase_2" time="3.9912"/>
+    <testcase classname="Vehicle1D_UnitTest" name="run_testcase_3" time="3.7014"/>
+    <testcase classname="Vehicle1D_UnitTest" name="run_testcase_4" time="3.518"/>
+    <testcase classname="Vehicle1D_UnitTest" name="run_testcase_5" time="3.8968"/>
+    <testcase classname="Vehicle1D_UnitTest" name="run_main_script_1" time="19.783"/>
+    <testcase classname="Vehicle1D_UnitTest" name="harness_with_non_default_refsub_1" time="12.536"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="BatteryHVDetailed_BEV_UnitTest" skipped="0" tests="4" time="518.1436">
+    <testcase classname="BatteryHVDetailed_BEV_UnitTest" name="run_BEV_model_with_Basic_hvbattery" time="10.7229"/>
+    <testcase classname="BatteryHVDetailed_BEV_UnitTest" name="run_BEV_model_with_GroupedSingleModule_hvbattery" time="22.8584"/>
+    <testcase classname="BatteryHVDetailed_BEV_UnitTest" name="run_BEV_model_with_MultiModule_hvbattery" time="383.126"/>
+    <testcase classname="BatteryHVDetailed_BEV_UnitTest" name="run_BEV_workflow_script" time="101.4364"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="BatteryHVDetailed_UnitTest" skipped="0" tests="3" time="97.2736">
+    <testcase classname="BatteryHVDetailed_UnitTest" name="run_harness_model_with_SingleModuleApproximation" time="8.0444"/>
+    <testcase classname="BatteryHVDetailed_UnitTest" name="run_harness_model_with_MultiModule" time="66.8491"/>
+    <testcase classname="BatteryHVDetailed_UnitTest" name="build_Simscape_custom_library" time="22.3801"/>
+  </testsuite>
+  <testsuite errors="1" failures="1" name="BEV_UnitTest" skipped="0" tests="2" time="2.341">
+    <testcase classname="BEV_UnitTest" name="testMATLABVersion_20b" time="2.2912">
+      <failure type="VerificationFailure">Verification failed in BEV_UnitTest/testMATLABVersion_20b.
+    ---------------------
+    Framework Diagnostic:
+    ---------------------
+    verifyEqual failed.
+    --&gt; The strings are not equal.
+    
+    Actual Value:
+        "R2022a"
+    Expected Value:
+        "R2020b"
+    ------------------
+    Stack Information:
+    ------------------
+    In D:\sandbox\isaacito\github-bev\22a-bev\test\stash\BEV_UnitTest.m (BEV_UnitTest.testMATLABVersion_20b) at 11</failure>
+    </testcase>
+    <testcase classname="BEV_UnitTest" name="minimalTest_BevDriveCycleModel_Basic_10s" time="0.049781">
+      <error>Error occurred in BEV_UnitTest/minimalTest_BevDriveCycleModel_Basic_10s and it did not run to completion.
+    ---------
+    Error ID:
+    ---------
+    'Simulink:Commands:OpenSystemUnknownSystem'
+    --------------
+    Error Details:
+    --------------
+    Error using load_system
+    No system or file called 'BevDriveCycleModel' found.
+    
+    Error in BEV_UnitTest/minimalTest_BevDriveCycleModel_Basic_10s (line 17)
+        if not(bdIsLoaded(mdl)), load_system(mdl); end</error>
+    </testcase>
+  </testsuite>
+  <testsuite errors="0" failures="1" name="BEV_UnitTest_local" skipped="0" tests="2" time="143.7296">
+    <testcase classname="BEV_UnitTest_local" name="projectRunChecks" time="40.378">
+      <failure type="VerificationFailure">Verification failed in BEV_UnitTest_local/projectRunChecks.
+    ---------------------
+    Framework Diagnostic:
+    ---------------------
+    verifyEqual failed.
+    --&gt; The logical values are not equal.
+    
+    Actual Value:
+      logical
+    
+       0
+    Expected Value:
+      logical
+    
+       1
+    ------------------
+    Stack Information:
+    ------------------
+    In D:\sandbox\isaacito\github-bev\22a-bev\test\stash\BEV_UnitTest_local.m (BEV_UnitTest_local.projectRunChecks) at 16</failure>
+    </testcase>
+    <testcase classname="BEV_UnitTest_local" name="test_BevBatteryPlantWorkflow" time="103.3517"/>
+  </testsuite>
+</testsuites>
