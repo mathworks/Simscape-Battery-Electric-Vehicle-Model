@@ -3,6 +3,10 @@
 
 % Copyright 2020-2022 The MathWorks, Inc.
 
+%% Ambient
+
+ambient.temp_K = 273.15 + 20;
+
 %% Vehicle
 
 vehicle.roadGrade = 0;

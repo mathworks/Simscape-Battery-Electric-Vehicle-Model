@@ -1,5 +1,11 @@
 # Change Log
 
+## Version 1.2.2 (December, 2022)
+
+- Fixed a broken link in the main script.
+- Minor change in the value of road-load parameter A
+  for the main BEV model.
+
 ## Version 1.2 (May, 2022)
 
 Highlight

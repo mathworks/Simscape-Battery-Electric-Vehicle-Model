@@ -6,10 +6,10 @@ name: MATLAB R2022a
 
 on:
   push:
-    branches: [ main, R2022a ]
+    branches: R2022a
 
   pull_request:
-    branches: [ main, R2022a ]
+    branches: R2022a
 
 jobs:
   matlab-R2022a-test:

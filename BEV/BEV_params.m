@@ -12,7 +12,7 @@ ambient.temp_K = 273.15 + 20;
 vehicle.mass_kg = 1600;
 vehicle.tireRollingRadius_m = 0.3;
 
-vehicle.roadLoadA_N = 100;
+vehicle.roadLoadA_N = 240;
 vehicle.roadLoadB_N_per_kph = 0;
 vehicle.roadLoadC_N_per_kph2 = 0.035;
 vehicle.roadLoad_gravAccel_m_per_s2 = 9.81;
