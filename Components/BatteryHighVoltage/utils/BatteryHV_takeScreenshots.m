@@ -40,10 +40,14 @@ name = "Basic";
 setRefSub(name)
 takeScreenshot(name);
 
-name = "Driveline";
+name = "SystemLevel";
 setRefSub(name)
 takeScreenshot(name);
 
-name = "Electrical";
+name = "SystemLevelSimple";
+setRefSub(name)
+takeScreenshot(name);
+
+name = "SystemLevelTableBased";
 setRefSub(name)
 takeScreenshot(name);

@@ -1,19 +1,41 @@
-function fig = BatteryHV_plotInputs(inputSignalVariableName, nvpairs)
-%% Plots input signals from base workspace variable
+function fig = BatteryHV_plotInputs(nvpairs)
+%% Plots input signals defined in a model
+%
+% This assumes that the model is loaded.
 
-% Copyright 2022 The MathWorks, Inc.
+% Copyright 2022-2023 The MathWorks, Inc.
 
 arguments
-  inputSignalVariableName {mustBeTextScalar} = "batteryHV_InputSignals"
+  nvpairs.ModelName {mustBeText} = "BatteryHV_harness_model"
+  nvpairs.BlockPath_LoadCurrent {mustBeText} = "/Inputs/Load current"
+  nvpairs.BlockPath_HeatFlow {mustBeText} = "/Inputs/Heat flow"
   nvpairs.WindowName {mustBeTextScalar} = ""
   nvpairs.Width {mustBePositive, mustBeInteger} = 400
   nvpairs.Height {mustBePositive, mustBeInteger} = 300
   nvpairs.Visible (1,1) matlab.lang.OnOffSwitchState = "on"
 end
 
-% This assumes that a variable exists in the base workspace.
-inSigs = evalin("base", inputSignalVariableName);
+loadCurrent = nvpairs.ModelName + nvpairs.BlockPath_LoadCurrent;
+heatFlow = nvpairs.ModelName + nvpairs.BlockPath_HeatFlow;
 
+curr_dataPoints = get_param(loadCurrent, "dataPoints");
+curr_deltaT =  get_param(loadCurrent, "deltaT");
+
+currSignal = SignalDesigner("continuous");
+currSignal.XYData = curr_dataPoints;
+currSignal.DeltaX = curr_deltaT;
+
+heatflow_dataPoints = get_param(heatFlow, "dataPoints");
+heatflow_deltaT = get_param(heatFlow, "deltaT");
+
+heatflowSignal = SignalDesigner("continuous");
+heatflowSignal.XYData = heatflow_dataPoints;
+heatflowSignal.DeltaX = heatflow_deltaT;
+
+plotDataPoints(currSignal);
+% plotDataPoints(heatflowSignal);
+
+%{
 % Get timetable objects.
 LoadCurr_tt = inSigs.LoadCurrent;
 
@@ -64,5 +86,7 @@ setMinimumYRange( ...
   dy_threshold = threshold_value );
 ylabel(unitStr(timetbl_obj))
 title(varNameStr(timetbl_obj), Interpreter="none")
+
+%}
 
 end  % function

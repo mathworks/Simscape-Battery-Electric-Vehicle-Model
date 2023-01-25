@@ -2,6 +2,11 @@
 
 % Copyright 2020-2022 The MathWorks, Inc.
 
+%% Connection Bus definitions
+
+defineBus_HighVoltage
+defineBus_Rotational
+
 %% Ambient
 
 % Used when thermal model is enabled. Default setting does not use this.
