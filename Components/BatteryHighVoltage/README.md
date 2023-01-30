@@ -1,35 +1,67 @@
 # Component / High Voltage Battery
 
-Component to simulate the electrical
-(and optionally thermal) dynamics
+This is a component to simulate the abstract dynamics
 of a high voltage battery pack.
 
-The most basic version `BatteryHV_refsub_Basic` computes
-the voltage and current of the battery
+This component provides four different models of a high voltage battery,
+all of which are abstract and run fast.
+
+"**Basic**" model (`BatteryHV_refsub_Basic`) is the simplest model and
+computes the voltage and current of the battery
 with no temperature dependence.
 
-To consider the battery temperature,
-`BatteryHV_refsub_Driveline` uses
-the [Battery block from Simscape Driveline][url-drv-batt].
+"**Simple system**" model (`BatteryHV_refsub_SystemSimple`) is
+the second simplest model,
+built with [Battery (System-Level) block][url-battery-driveline]
+from Simscape Driveline.
+This model has a simple equation-based terminal voltage model
+computed from the state of charge (SOC).
+This model also computes the battery temperature
+from dissipated energy.
 
-[url-drv-batt]: https://www.mathworks.com/help/physmod/sdl/ref/batterysystemlevel.html
+[url-battery-driveline]: https://www.mathworks.com/help/sdl/ref/batterysystemlevel.html
 
-For more battery behaviors such aging,
-`BatteryHV_refsub_Electrical` uses
-the [Battery block from Simscape Electrical][url-elec-batt]
+"**System**" model (`BatteryHV_refsub_System`) is
+a model built with [Battery block][url-battery-elec]
+from Simscape Battery and Simscape Electrical.
+This model can simulate the terminal voltage more accurately
+(using more parameters) than the simple system model above.
+Optionally, this model can also simulate charging dynamics, fade, and aging.
 
-[url-elec-batt]: https://www.mathworks.com/help/physmod/sps/ref/battery.html
+[url-battery-elec]: https://www.mathworks.com/help/sps/ref/battery.html
+
+"**Table-based system**" model (`BatteryHV_refsub_SystemTable`) is
+a model built with [Battery (Table-Based) block][url-table-battery-elec]
+from Simscape Battery and Simscape Electrical.
+This model takes tabulated data for
+open-circuit voltage and terminal resistance
+as a function of temperature and SOC.
+This model also needs the number of cells
+and their series-parallel circuit configuration information.
+Similar to the system model above,
+this model can optionally simulate charging dynamics, fade, and aging too.
+
+[url-table-battery-elec]: https://www.mathworks.com/help/sps/ref/batterytablebased.html
 
 ## Harness Model
+
+Battery models are provided as [referenced subsystems][url-subref]
+to componentize the models.
+They are used as a component of Battery Electric Vehicle model
+for vehicle system-level simulation,
+but they can also be used with a component harness model (`BatteryHV_harness_model`)
+to run simulation focusing on the battery model.
+
+[url-subref]: https://www.mathworks.com/help/simulink/ug/referenced-subsystem-1.html
 
 <img src="images/image_BatteryHV_harness_model.png"
  width="700" alt="Harness Model for High Voltage Battery Component">
 
-## Main Component Subsystem
+As an example,
+the harness model is used in the test case scripts (`BatteryHV_testcase_*`)
+to test the battery models and visually inspect simulation results.
 
-Basic version
+To select a battery model in the harness,
+navigate to the Configuration subsystem block.
 
-<img src="images/image_BatteryHV_refsub_Basic.png"
- width="600" alt="Vehicle 1D Component">
-
-*Copyright 2022 The MathWorks, Inc.*
+*Copyright 2022-2023 The MathWorks, Inc.*

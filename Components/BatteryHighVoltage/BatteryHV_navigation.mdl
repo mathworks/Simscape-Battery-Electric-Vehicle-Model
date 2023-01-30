@@ -43,8 +43,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2023-01-23T16:19:43Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2023-01-24T16:47:04Z</dcterms:modified>
-  <cp:revision>1.9</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2023-01-30T09:17:53Z</dcterms:modified>
+  <cp:revision>1.18</cp:revision>
   <cp:version>R2022b</cp:version>
 </cp:coreProperties>
 
@@ -66,11 +66,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2022b Release -->
 <MathWorks_version_info>
-  <version>9.13.0.2166757</version>
+  <version>9.13.0.2176732</version>
   <release>R2022b</release>
-  <description>Update 4</description>
-  <date>Jan 11 2023</date>
-  <checksum>3121792574</checksum>
+  <description>Update 5</description>
+  <date>Jan 23 2023</date>
+  <checksum>2732432939</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -111,7 +111,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.9&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.18&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -931,23 +931,23 @@ __MWOPC_PART_BEGIN__ /simulink/hdlParams.xml
 __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" defaultPackage="slid" packageUris="http://schema.mathworks.com/mf0/slid/R2022b_20220222">
-  <System type="System" uuid="633dddbb-507d-4163-bf54-38dcbfb8a3a6">
-    <Interface type="Interface" uuid="29c753f1-c924-4d49-9805-f0a9129e4154"/>
+  <System type="System" uuid="f99896cc-7d3d-424f-bfab-1ab5065f7e1e">
+    <Interface type="Interface" uuid="f139991e-3bc3-48a9-bb7b-a6f62901c6c6"/>
   </System>
 </MF0>
 __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sltp_graph version="1.1" packageUris="http://schema.mathworks.com/mf0/sltp_mm/R2022b_202203181029">
-  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="6c2632fb-190f-4a39-befc-3408681c2bbc">
+  <sltp.mm.core.Context type="sltp.mm.core.Context" uuid="71238102-9bf5-4f4e-9237-fac7febb6e48">
     <editorState type="sltp.mm.core.EditorState" uuid="c10c48b9-050a-4c2e-9625-e1abca4feaad">
       <panelState type="sltp.mm.core.EditorPanelState" uuid="5201ec29-d860-4a9c-91ad-6517356a39e8"/>
     </editorState>
-    <rootTask type="sltp.mm.core.Task" uuid="11c3b4cc-348a-4d5e-bba4-e7f8e330a72c">
-      <context type="sltp.mm.core.Context" uuid="6c2632fb-190f-4a39-befc-3408681c2bbc"/>
+    <rootTask type="sltp.mm.core.Task" uuid="0f896429-d472-4301-91ba-17a64fae11f2">
+      <context type="sltp.mm.core.Context" uuid="71238102-9bf5-4f4e-9237-fac7febb6e48"/>
       <explicit>false</explicit>
       <name>Default</name>
       <priority>-2147483648</priority>
-      <subgraph type="sltp.mm.core.Graph" uuid="0a8e41f7-200c-4389-a06c-2d36c6303862"/>
+      <subgraph type="sltp.mm.core.Graph" uuid="6a45abb5-5d0c-4be2-8188-3d783cdf914b"/>
     </rootTask>
   </sltp.mm.core.Context>
 </sltp_graph>
@@ -970,69 +970,71 @@ __MWOPC_PART_BEGIN__ /simulink/ScheduleEditor.xml
 __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[194, 148, 1334, 788]</P>
+  <P Name="Location">[160, 56, 1300, 696]</P>
   <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">9</P>
-  <Block BlockType="CallbackButton" Name="Charge" SID="3">
-    <P Name="Position">[-190, 125, -80, 160]</P>
+  <P Name="SIDHighWatermark">10</P>
+  <Block BlockType="CallbackButton" Name="Charge current" SID="3">
+    <P Name="Position">[-455, 140, -345, 175]</P>
     <P Name="ZOrder">47</P>
-    <P Name="NameLocation">right</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="ClickFcn">edit(&quot;BatteryHV_testcase_Charge.mlx&quot;)
+    <P Name="ClickFcn">edit(&quot;BatteryHV_testcase_Charge&quot;)
 </P>
-    <P Name="ButtonText">Open script</P>
+    <P Name="ButtonText">Charge</P>
   </Block>
-  <Block BlockType="CallbackButton" Name="Constant" SID="9">
-    <P Name="Position">[-190, 90, -80, 125]</P>
+  <Block BlockType="CallbackButton" Name="Constant load current" SID="9">
+    <P Name="Position">[-595, 140, -485, 175]</P>
     <P Name="ZOrder">51</P>
-    <P Name="NameLocation">right</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="ClickFcn">edit(&quot;BatteryHV_testcase_Constant.mlx&quot;)</P>
-    <P Name="ButtonText">Open script</P>
+    <P Name="ButtonText">Constant</P>
   </Block>
-  <Block BlockType="CallbackButton" Name="Discharge" SID="1">
-    <P Name="Position">[-190, 160, -80, 195]</P>
+  <Block BlockType="CallbackButton" Name="Discharge current" SID="1">
+    <P Name="Position">[-315, 140, -205, 175]</P>
     <P Name="ZOrder">46</P>
-    <P Name="NameLocation">right</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="ClickFcn">edit(&quot;BatteryHV_testcase_Discharge.mlx&quot;)
+    <P Name="ClickFcn">edit(&quot;BatteryHV_testcase_Discharge&quot;)
 </P>
-    <P Name="ButtonText">Open script</P>
+    <P Name="ButtonText">Discharge</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Harness model" SID="8">
-    <P Name="Position">[-435, 55, -325, 90]</P>
+    <P Name="Position">[-670, 10, -560, 45]</P>
     <P Name="ZOrder">50</P>
-    <P Name="NameLocation">right</P>
-    <P Name="HideAutomaticName">off</P>
+    <P Name="ShowName">off</P>
     <P Name="ClickFcn">open_system(&quot;BatteryHV_harness_model&quot;)
 </P>
-    <P Name="ButtonText">Open model</P>
+    <P Name="ButtonText">Harness</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Main script" SID="6">
-    <P Name="Position">[-435, 90, -325, 125]</P>
+    <P Name="Position">[-550, 10, -440, 45]</P>
     <P Name="ZOrder">49</P>
-    <P Name="NameLocation">right</P>
-    <P Name="HideAutomaticName">off</P>
+    <P Name="ShowName">off</P>
     <P Name="ClickFcn">edit(&quot;BatteryHV_main_script.mlx&quot;)
 </P>
-    <P Name="ButtonText">Open script</P>
+    <P Name="ButtonText">Main script</P>
+  </Block>
+  <Block BlockType="CallbackButton" Name="README file" SID="10">
+    <P Name="Position">[-790, 10, -680, 45]</P>
+    <P Name="ZOrder">52</P>
+    <P Name="ShowName">off</P>
+    <P Name="ClickFcn">BatteryHV_openREADME
+</P>
+    <P Name="ButtonText">README</P>
   </Block>
   <Block BlockType="CallbackButton" Name="Random current" SID="4">
-    <P Name="Position">[-190, 195, -80, 230]</P>
+    <P Name="Position">[-175, 140, -65, 175]</P>
     <P Name="ZOrder">48</P>
-    <P Name="NameLocation">right</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="ClickFcn">edit(&quot;BatteryHV_testcase_Random.mlx&quot;)</P>
-    <P Name="ButtonText">Open script</P>
+    <P Name="ClickFcn">edit(&quot;BatteryHV_testcase_Random&quot;)</P>
+    <P Name="ButtonText">Random</P>
   </Block>
   <Annotation SID="7">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Sans Serif&apos;; font-size:16px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16px; font-weight:600;&quot;&gt;High Voltage Battery Componednt&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[-458, 2, -147, 23]</P>
+&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:16px; font-weight:600;&quot;&gt;High Voltage Battery Component&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[-791, -21, -492, 0]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
     <P Name="ZOrder">-1</P>
@@ -1042,8 +1044,8 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;; font-size:14px; font-weight:600;&quot;&gt;Test case scripts&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[-190, 63, -58, 82]</P>
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans Serif&apos;,&apos;Liberation Sans&apos;; font-size:14px; font-weight:600;&quot;&gt;Testcase scripts&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[-595, 100, -485, 118]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
     <P Name="ZOrder">-1</P>
@@ -1054,7 +1056,7 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:12px;&quot;&gt;Copyright 2022-2023 The MathWorks, Inc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[-96, 316, 131, 332]</P>
+    <P Name="Position">[-435, 275, -208, 291]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
     <P Name="ZOrder">-60</P>
@@ -1067,7 +1069,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
   <Object PropName="BdWindowsInfo" ObjectID="1" ClassName="Simulink.BDWindowsInfo">
     <Object PropName="WindowsInfo" ObjectID="2" ClassName="Simulink.WindowInfo">
       <P Name="IsActive" Class="logical">1</P>
-      <P Name="Location" Class="double">[194.0, 148.0, 1140.0, 640.0]</P>
+      <P Name="Location" Class="double">[160.0, 56.0, 1140.0, 640.0]</P>
       <Object PropName="ModelBrowserInfo" ObjectID="3" ClassName="Simulink.ModelBrowserInfo">
         <P Name="Visible" Class="logical">1</P>
         <P Name="DockPosition" Class="char">Left</P>
@@ -1084,25 +1086,13 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
         <P Name="IsTabbed" Class="logical">1</P>
         <P Name="ViewObjType" Class="char">SimulinkTopLevel</P>
         <P Name="LoadSaveID" Class="char">0</P>
-        <P Name="Extents" Class="double">[996.0, 385.0]</P>
+        <P Name="Extents" Class="double">[986.0, 374.0]</P>
         <P Name="ZoomFactor" Class="double">1.0</P>
-        <P Name="Offset" Class="double">[-499.75, -23.0]</P>
-        <P Name="SceneRectInView" Class="double">[-499.75, -23.0, 996.0, 385.0]</P>
+        <P Name="Offset" Class="double">[-839.3046875, -50.0]</P>
+        <P Name="SceneRectInView" Class="double">[-839.3046875, -50.0, 986.0, 374.0]</P>
       </Object>
       <Array PropName="DockComponentsInfo" Type="Simulink.DockComponentInfo" Dimension="1*2">
         <Object ObjectID="6">
-          <P Name="Type" Class="char">GLUE2:PropertyInspector</P>
-          <P Name="ID" Class="char">Property Inspector</P>
-          <P Name="Visible" Class="logical">1</P>
-          <P Name="CreateCallback" Class="char"/>
-          <P Name="UserData" Class="char"/>
-          <P Name="Floating" Class="logical">0</P>
-          <P Name="DockPosition" Class="char">Right</P>
-          <P Name="Width" Class="int32">640</P>
-          <P Name="Height" Class="int32">480</P>
-          <P Name="Minimized" Class="char">On</P>
-        </Object>
-        <Object ObjectID="7">
           <P Name="Type" Class="char">Simulink:Editor:ReferencedFiles</P>
           <P Name="ID" Class="char">Referenced Files</P>
           <P Name="Visible" Class="logical">0</P>
@@ -1115,8 +1105,20 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Height" Class="int32">480</P>
           <P Name="Minimized" Class="char">Unset</P>
         </Object>
+        <Object ObjectID="7">
+          <P Name="Type" Class="char">GLUE2:PropertyInspector</P>
+          <P Name="ID" Class="char">Property Inspector</P>
+          <P Name="Visible" Class="logical">1</P>
+          <P Name="CreateCallback" Class="char"/>
+          <P Name="UserData" Class="char"/>
+          <P Name="Floating" Class="logical">0</P>
+          <P Name="DockPosition" Class="char">Right</P>
+          <P Name="Width" Class="int32">640</P>
+          <P Name="Height" Class="int32">480</P>
+          <P Name="Minimized" Class="char">On</P>
+        </Object>
       </Array>
-      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAAC1AP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAA9QD///8AAAABAAAAAAAAAAD8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAAA/////wAAAawA////AAAAAwAAAAAAAAAA/AEAAAAB+/////8AAAAAAP////8AAAFZAP///wAABAoAAAHGAAAAAQAAAAIAAAABAAAAAvwAAAADAAAAAAAAAAEAAAA2AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBMAGUAZgB0AwAAAAD/////AAAAAAAAAAAAAAABAAAAAQAAADgAYwBvAGwAbABhAHAAcwBpAGIAbABlAFAAYQBuAGUAbABUAG8AbwBsAEIAYQByAFIAaQBnAGgAdAMAAAAA/////wAAAAAAAAAAAAAAAwAAAAEAAAA6AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBCAG8AdAB0AG8AbQAAAAAA/////wAAAAAAAAAA</P>
+      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAADSAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAABGQD///8AAAABAAAAAAAAAAD8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAAA/////wAAAawA////AAAAAwAAAAAAAAAA/AEAAAAB+/////8AAAAAAP////8AAAFZAP///wAABAAAAAHBAAAAAQAAAAIAAAABAAAAAvwAAAADAAAAAAAAAAEAAAA2AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBMAGUAZgB0AwAAAAD/////AAAAAAAAAAAAAAABAAAAAQAAADgAYwBvAGwAbABhAHAAcwBpAGIAbABlAFAAYQBuAGUAbABUAG8AbwBsAEIAYQByAFIAaQBnAGgAdAMAAAAA/////wAAAAAAAAAAAAAAAwAAAAEAAAA6AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBCAG8AdAB0AG8AbQAAAAAA/////wAAAAAAAAAA</P>
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">fae48301-35f7-4a3f-bfe3-4d6060918227</P>
     </Object>

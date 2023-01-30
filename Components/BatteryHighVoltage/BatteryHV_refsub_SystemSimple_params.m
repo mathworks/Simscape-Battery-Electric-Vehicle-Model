@@ -1,6 +1,6 @@
 %% Model parameters for high voltage battery component
 % This script contains parameters required by the following model only.
-% - Basic battery model
+% - System-level battery model, simple
 %
 % If you edit this file, make sure to run this to update variables
 % in the base workspace before running simulation.
@@ -11,7 +11,7 @@
 
 defineBus_HighVoltage
 
-%% Battery specifications
+%% Battery parameters
 
 batteryHV.nominalVoltage_V = 340;
 
@@ -25,9 +25,22 @@ batteryHV.nominalCharge_Ahr = ...
 
 batteryHV.internalResistance_Ohm = 0.01;
 
-% This is required by the Battery Status block but
-% does not affect any simulation behavior in the basic battery model.
+% Voltage is 90 % of the nominal when SOC is 50 %.
+batteryHV.measuredVoltage_V = batteryHV.nominalVoltage_V * 0.9;
+batteryHV.measuredCharge_Ahr = batteryHV.nominalCharge_Ahr * 0.5;
+
+batteryHV.ThermalMass_kJ_per_K = 0.1;
+
+%% Ambient parameters
+% Included in the battery component for thermal simulation
+
 batteryHV.ambientTemp_K = 273.15 + 20;
+
+batteryHV.ambientMass_t = 10000;
+batteryHV.ambientSpecificHeat_J_per_Kkg = 1000;
+
+batteryHV.RadiationArea_m2 = 1;
+batteryHV.RadiationCoeff_W_per_K4m2 = 5e-10;
 
 %% Initial conditions
 
@@ -38,3 +51,7 @@ initial.hvBattery_Charge_Ahr = ...
     Voltage_V = batteryHV.nominalVoltage_V, ...
     Capacity_kWh = batteryHV.nominalCapacity_kWh, ...
     StateOfCharge_pct = initial.hvBattery_SOC_pct );
+
+initial.hvBattery_Temperature_K = batteryHV.ambientTemp_K;
+
+initial.ambientTemp_K = batteryHV.ambientTemp_K;

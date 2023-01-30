@@ -13,13 +13,13 @@ function checkCallbackButton(targetModel, fileList)
 % if MATLAB is launched with -nodesktop option,
 % which is the case in Continuous Integration (CI) pipeline,
 % meaning that CI fails once `edit` is evaluated.
-% However, it is still important to programatically check that
-% `edit` works in interactive mode.
-% Thus, we check the existance of file passed to `edit`.
+% Because of this reason, tests during CI never use `edit`.
+% However, `edit` is used in some of the callbacks,
+% and it is important to make sure that it works in interactive uses.
 %
 % Callback Button blocks within referenced subsystems included in
 % the target model are not checked.
-% To check those blocks, pass the referenced subsystem to this function.
+% To check those blocks, pass the referenced subsystem directly to this function.
 
 % Copyright 2023 The MathWorks, Inc.
 
@@ -35,6 +35,8 @@ numButtons = numel(pathToCallbackButtons);
 if numButtons == 0
   return  % <======================================================= RETURN
 end
+
+disp(">>>>>> Checking: " + targetModel)
 
 disp("Found " + numButtons + " Callback Button block(s):")
 disp(pathToCallbackButtons)
@@ -69,9 +71,11 @@ for idx = 1 : numButtons
   % This is based on the assumption that
   % if edit is found, the code string only contains one line for edit.
 
-  pat = letterBoundary + "edit" + letterBoundary;
+  pattern_has_edit = letterBoundary + "edit" + letterBoundary;
 
-  if contains(codeStr, pat)
+  pattern_has_openREADME = "_openREADME" + letterBoundary;
+
+  if contains(codeStr, pattern_has_edit)
     disp("Found `edit` in ClickFcn. Check that the file passed to `edit` exists in the file list.")
 
     % Attempt to get the filename passed to edit.
@@ -79,11 +83,15 @@ for idx = 1 : numButtons
     % The check succeeds only if the line containing edit is
     % straightforward, like edit("foo.m").
 
-    % Get ("foo.m") from edit("foo.m")
-    filename = extractAfter(codeStr, pat);
-
-    % Get foo.m from ("foo.m") or ('foo.m')
-    filename = extractBetween(filename, "("+(""""|"'"), (""""|"'")+")");
+    % edit can be command form or function form.
+    %   edit foo
+    %   edit("foo")
+    %   edit('foo.m')
+    filename = string(strip(extractAfter(codeStr, pattern_has_edit)));
+    if startsWith(filename, "(" + (""""|"'")) && endsWith(filename, (""""|"'") + ")")
+      % Get foo.m from ("foo.m") or ('foo.m')
+      filename = extractBetween(filename, "("+(""""|"'"), (""""|"'")+")");
+    end
 
     disp("Filename passed to edit: " + filename)
 
@@ -110,6 +118,11 @@ for idx = 1 : numButtons
       disp("Found: " + fullPathToFile)
     end
 
+  elseif contains(codeStr, pattern_has_openREADME)
+    disp("Found openREADME function in ClickFcn. Check that the README.md file exists in the file list.")
+
+    fcnName = string(strip(codeStr));
+    eval(fcnName + "(TestRun=true)")
   else
     % If `edit` is not found in the ClickFcn code string, evaluate it.
     disp("  >>> Evaluating ClickFcn. This must finish without warning or error.")
