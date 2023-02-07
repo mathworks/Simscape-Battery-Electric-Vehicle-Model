@@ -1,0 +1,2625 @@
+# MathWorks OPC Text Package
+Model {
+  Version  10.6
+  Description "Simulink model saved in R2022b"
+}
+__MWOPC_PACKAGE_BEGIN__ R2022b
+__MWOPC_PART_BEGIN__ /[Content_Types].xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default ContentType="application/vnd.openxmlformats-package.relationships+xml" Extension="rels"/>
+  <Default ContentType="application/vnd.mathworks.simulink.mdl+xml" Extension="xml"/>
+  <Override ContentType="application/vnd.openxmlformats-package.core-properties+xml" PartName="/metadata/coreProperties.xml"/>
+  <Override ContentType="application/vnd.mathworks.package.coreProperties+xml" PartName="/metadata/mwcoreProperties.xml"/>
+  <Override ContentType="application/vnd.mathworks.package.corePropertiesExtension+xml" PartName="/metadata/mwcorePropertiesExtension.xml"/>
+  <Override ContentType="application/vnd.mathworks.package.corePropertiesReleaseInfo+xml" PartName="/metadata/mwcorePropertiesReleaseInfo.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.configSet+xml" PartName="/simulink/configSet0.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.configSetInfo+xml" PartName="/simulink/configSetInfo.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.graphicalInterface+xml" PartName="/simulink/graphicalInterface.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.mf0+xml" PartName="/simulink/modelDictionary.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.modelMask+xml" PartName="/simulink/modelMask.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.pluginParameters+xml" PartName="/simulink/plugins/SimscapeModelParametersPlugin.xml"/>
+  <Override ContentType="application/vnd.mathworks.stateflow.machine+xml" PartName="/simulink/stateflow/machine.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.blockDiagram+xml" PartName="/simulink/windowsInfo.xml"/>
+</Types>
+
+__MWOPC_PART_BEGIN__ /_rels/.rels
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="blockDiagram" Target="simulink/blockdiagram.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/blockDiagram"/>
+  <Relationship Id="blockDiagramDefaults" Target="simulink/bddefaults.xml" Type="http://schemas.mathworks.com/simulink/2017/relationships/blockDiagramDefaults"/>
+  <Relationship Id="configSetInfo" Target="simulink/configSetInfo.xml" Type="http://schemas.mathworks.com/simulink/2014/relationships/configSetInfo"/>
+  <Relationship Id="modelDictionary" Target="simulink/modelDictionary.xml" Type="http://schemas.mathworks.com/simulinkModel/2016/relationships/modelDictionary"/>
+  <Relationship Id="modelMask" Target="simulink/modelMask.xml" Type="http://schemas.mathworks.com/simulink/2015/relationships/modelMask"/>
+  <Relationship Id="rId1" Target="metadata/mwcoreProperties.xml" Type="http://schemas.mathworks.com/package/2012/relationships/coreProperties"/>
+  <Relationship Id="rId2" Target="metadata/mwcorePropertiesExtension.xml" Type="http://schemas.mathworks.com/package/2014/relationships/corePropertiesExtension"/>
+  <Relationship Id="rId3" Target="metadata/mwcorePropertiesReleaseInfo.xml" Type="http://schemas.mathworks.com/package/2019/relationships/corePropertiesReleaseInfo"/>
+  <Relationship Id="rId4" Target="metadata/coreProperties.xml" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties"/>
+</Relationships>
+
+__MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcmitype="http://purl.org/dc/dcmitype/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <cp:category>subsystem</cp:category>
+  <dcterms:created xsi:type="dcterms:W3CDTF">2020-07-02T15:36:37Z</dcterms:created>
+  <dc:creator>isaacito</dc:creator>
+  <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2023-02-07T15:52:45Z</dcterms:modified>
+  <cp:revision>6.24</cp:revision>
+  <cp:version>R2022b</cp:version>
+</cp:coreProperties>
+
+__MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<mwcoreProperties xmlns="http://schemas.mathworks.com/package/2012/coreProperties">
+  <contentType>application/vnd.mathworks.simulink.model</contentType>
+  <contentTypeFriendlyName>Simulink Model</contentTypeFriendlyName>
+  <matlabRelease>R2022b</matlabRelease>
+</mwcoreProperties>
+
+__MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<mwcoreProperties xmlns="http://schemas.mathworks.com/package/2014/corePropertiesExtension">
+  <uuid>49fbbd63-acd6-414f-8ea6-99a2baf7c080</uuid>
+</mwcoreProperties>
+
+__MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Version information for MathWorks R2022b Release -->
+<MathWorks_version_info>
+  <version>9.13.0.2182313</version>
+  <release>R2022b</release>
+  <description>Update 5</description>
+  <date>Jan 30 2023</date>
+  <checksum>578035734</checksum>
+</MathWorks_version_info>
+
+__MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="SimscapeModelParametersPlugin" Target="plugins/SimscapeModelParametersPlugin.xml" Type="http://schemas.mathworks.com/simulinkModel/2014/relationships/pluginParameters"/>
+  <Relationship Id="graphicalInterface" Target="graphicalInterface.xml" Type="http://schemas.mathworks.com/simulinkModel/2014/relationships/graphicalInterface"/>
+  <Relationship Id="stateflow_machine" Target="stateflow/machine.xml" Type="http://schemas.mathworks.com/simulinkModel/2014/relationships/stateflowMachine"/>
+  <Relationship Id="system_root" Target="systems/system_root.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
+  <Relationship Id="windowsInfo" Target="windowsInfo.xml" Type="http://schemas.mathworks.com/simulinkModel/2019/relationships/windowsInfo"/>
+</Relationships>
+
+__MWOPC_PART_BEGIN__ /simulink/_rels/configSetInfo.xml.rels
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="configSet0" Target="configSet0.xml" Type="http://schemas.mathworks.com/simulink/2014/relationships/configSet"/>
+</Relationships>
+
+__MWOPC_PART_BEGIN__ /simulink/bddefaults.xml
+<?xml version="1.0" encoding="utf-8"?>
+<BlockDiagramDefaults>
+  <MaskDefaults SelfModifiable="off">
+    <Display IconFrame="on" IconOpaque="opaque" RunInitForIconRedraw="analyze" IconRotate="none" PortRotate="default" IconUnits="autoscale"/>
+    <MaskParameter Evaluate="on" Tunable="on" NeverSave="off" Internal="off" ReadOnly="off" Enabled="on" Visible="on" ToolTip="on"/>
+    <DialogControl>
+      <ControlOptions Visible="on" Enabled="on" Row="new" HorizontalStretch="on" PromptLocation="top" Orientation="horizontal" Scale="linear" TextType="Plain Text" Expand="off" ShowFilter="on" ShowParameterName="on" WordWrap="on" AlignPrompts="off"/>
+    </DialogControl>
+  </MaskDefaults>
+</BlockDiagramDefaults>
+
+__MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
+<?xml version="1.0" encoding="utf-8"?>
+<ModelInformation Version="1.0">
+  <Subsystem>
+    <P Name="ModelUUID">96f0e9a5-910d-4c68-a84d-63a36d170c9e</P>
+    <P Name="LastSavedArchitecture">glnxa64</P>
+    <UserParameters>
+      <P Name="PhysicalModelingChecksum">2841648264</P>
+      <P Name="PhysicalModelingParameterChecksum">1028652604</P>
+      <P Name="PhysicalModelingProducts">SimDriveline|Simscape</P>
+    </UserParameters>
+    <ConfigManagerSettings>
+      <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
+      <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:6.24&gt;</P>
+    </ConfigManagerSettings>
+    <EditorSettings>
+      <P Name="ScheduleConnectors">off</P>
+      <P Name="MultithreadedSim">on</P>
+    </EditorSettings>
+    <SimulationSettings>
+      <P Name="SimulationMode">normal</P>
+      <Object PropName="DataLoggingOverride" ObjectID="1" ClassName="Simulink.SimulationData.ModelLoggingInfo">
+        <P Name="model_" Class="char">$bdroot</P>
+        <P Name="overrideMode_" Class="uint32">0U</P>
+        <Array PropName="logAsSpecifiedByModels_" Type="Cell" Dimension="1*1">
+          <Cell Class="char">$bdroot</Cell>
+        </Array>
+        <Array PropName="logAsSpecifiedByModelsSSIDs_" Type="Cell" Dimension="1*1">
+          <Cell Class="double">[]</Cell>
+        </Array>
+      </Object>
+      <Object PropName="InstrumentedSignals" ObjectID="2" ClassName="Simulink.HMI.InstrumentedSignals">
+        <Array PropName="Persistence" Type="Struct" Dimension="7*1">
+          <MATStruct>
+            <Field Name="UUID" Class="char">6e0b8c3b-8009-47e3-adec-c82b42c13fe6</Field>
+            <Field Name="BlockPath_" Class="char">Measurement/From</Field>
+            <Field Name="SID_" Class="char">3424</Field>
+            <Field Name="SubPath_" Class="char"/>
+            <Field Name="OutputPortIndex_" Class="double">1.0</Field>
+            <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
+            <Field Name="SignalName_" Class="char"/>
+            <Field Name="SubSysPath_" Class="char"/>
+            <Field Name="Decimation_" Class="double">1.0</Field>
+            <Field Name="MaxPoints_" Class="double">0.0</Field>
+            <Field Name="TargetBufferedStreaming_" Class="double">0.0</Field>
+            <Field Name="IsFrameBased_" Class="double">0.0</Field>
+            <Field Name="HideInSDI_" Class="double">0.0</Field>
+            <Field Name="DomainType_" Class="char"/>
+            <Array PropName="DomainParams_" Type="Struct" Dimension="1*1">
+              <MATStruct/>
+            </Array>
+            <Field Name="VisualType_" Class="char"/>
+          </MATStruct>
+          <MATStruct>
+            <Field Name="UUID" Class="char">a73d9ceb-64a1-41c7-9aa8-4de52dc251b9</Field>
+            <Field Name="BlockPath_" Class="char">Measurement/From1</Field>
+            <Field Name="SID_" Class="char">50108</Field>
+            <Field Name="SubPath_" Class="char"/>
+            <Field Name="OutputPortIndex_" Class="double">1.0</Field>
+            <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
+            <Field Name="SignalName_" Class="char"/>
+            <Field Name="SubSysPath_" Class="char"/>
+            <Field Name="Decimation_" Class="double">1.0</Field>
+            <Field Name="MaxPoints_" Class="double">0.0</Field>
+            <Field Name="TargetBufferedStreaming_" Class="double">0.0</Field>
+            <Field Name="IsFrameBased_" Class="double">0.0</Field>
+            <Field Name="HideInSDI_" Class="double">0.0</Field>
+            <Field Name="DomainType_" Class="char"/>
+            <Array PropName="DomainParams_" Type="Struct" Dimension="1*1">
+              <MATStruct/>
+            </Array>
+            <Field Name="VisualType_" Class="char"/>
+          </MATStruct>
+          <MATStruct>
+            <Field Name="UUID" Class="char">16c9875f-8915-4e9c-9921-2aff669ceb03</Field>
+            <Field Name="BlockPath_" Class="char">Measurement/From19</Field>
+            <Field Name="SID_" Class="char">3427</Field>
+            <Field Name="SubPath_" Class="char"/>
+            <Field Name="OutputPortIndex_" Class="double">1.0</Field>
+            <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
+            <Field Name="SignalName_" Class="char"/>
+            <Field Name="SubSysPath_" Class="char"/>
+            <Field Name="Decimation_" Class="double">1.0</Field>
+            <Field Name="MaxPoints_" Class="double">0.0</Field>
+            <Field Name="TargetBufferedStreaming_" Class="double">0.0</Field>
+            <Field Name="IsFrameBased_" Class="double">0.0</Field>
+            <Field Name="HideInSDI_" Class="double">0.0</Field>
+            <Field Name="DomainType_" Class="char"/>
+            <Array PropName="DomainParams_" Type="Struct" Dimension="1*1">
+              <MATStruct/>
+            </Array>
+            <Field Name="VisualType_" Class="char"/>
+          </MATStruct>
+          <MATStruct>
+            <Field Name="UUID" Class="char">00089295-0ff3-4794-934a-505aa3d59046</Field>
+            <Field Name="BlockPath_" Class="char">Measurement/From20</Field>
+            <Field Name="SID_" Class="char">3428</Field>
+            <Field Name="SubPath_" Class="char"/>
+            <Field Name="OutputPortIndex_" Class="double">1.0</Field>
+            <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
+            <Field Name="SignalName_" Class="char"/>
+            <Field Name="SubSysPath_" Class="char"/>
+            <Field Name="Decimation_" Class="double">1.0</Field>
+            <Field Name="MaxPoints_" Class="double">0.0</Field>
+            <Field Name="TargetBufferedStreaming_" Class="double">0.0</Field>
+            <Field Name="IsFrameBased_" Class="double">0.0</Field>
+            <Field Name="HideInSDI_" Class="double">0.0</Field>
+            <Field Name="DomainType_" Class="char"/>
+            <Array PropName="DomainParams_" Type="Struct" Dimension="1*1">
+              <MATStruct/>
+            </Array>
+            <Field Name="VisualType_" Class="char"/>
+          </MATStruct>
+          <MATStruct>
+            <Field Name="UUID" Class="char">45085889-c89b-4e6c-b3f7-c5e32eb601ea</Field>
+            <Field Name="BlockPath_" Class="char">Measurement/From21</Field>
+            <Field Name="SID_" Class="char">3429</Field>
+            <Field Name="SubPath_" Class="char"/>
+            <Field Name="OutputPortIndex_" Class="double">1.0</Field>
+            <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
+            <Field Name="SignalName_" Class="char"/>
+            <Field Name="SubSysPath_" Class="char"/>
+            <Field Name="Decimation_" Class="double">1.0</Field>
+            <Field Name="MaxPoints_" Class="double">0.0</Field>
+            <Field Name="TargetBufferedStreaming_" Class="double">0.0</Field>
+            <Field Name="IsFrameBased_" Class="double">0.0</Field>
+            <Field Name="HideInSDI_" Class="double">0.0</Field>
+            <Field Name="DomainType_" Class="char"/>
+            <Array PropName="DomainParams_" Type="Struct" Dimension="1*1">
+              <MATStruct/>
+            </Array>
+            <Field Name="VisualType_" Class="char"/>
+          </MATStruct>
+          <MATStruct>
+            <Field Name="UUID" Class="char">2deee8d5-a58a-4c81-a9aa-1d71c0b9e930</Field>
+            <Field Name="BlockPath_" Class="char">Measurement/From27</Field>
+            <Field Name="SID_" Class="char">3430</Field>
+            <Field Name="SubPath_" Class="char"/>
+            <Field Name="OutputPortIndex_" Class="double">1.0</Field>
+            <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
+            <Field Name="SignalName_" Class="char"/>
+            <Field Name="SubSysPath_" Class="char"/>
+            <Field Name="Decimation_" Class="double">1.0</Field>
+            <Field Name="MaxPoints_" Class="double">0.0</Field>
+            <Field Name="TargetBufferedStreaming_" Class="double">0.0</Field>
+            <Field Name="IsFrameBased_" Class="double">0.0</Field>
+            <Field Name="HideInSDI_" Class="double">0.0</Field>
+            <Field Name="DomainType_" Class="char"/>
+            <Array PropName="DomainParams_" Type="Struct" Dimension="1*1">
+              <MATStruct/>
+            </Array>
+            <Field Name="VisualType_" Class="char"/>
+          </MATStruct>
+          <MATStruct>
+            <Field Name="UUID" Class="char">8e2b116d-a23d-429c-8e3a-04c0679cd120</Field>
+            <Field Name="BlockPath_" Class="char">Measurement/From34</Field>
+            <Field Name="SID_" Class="char">3432</Field>
+            <Field Name="SubPath_" Class="char"/>
+            <Field Name="OutputPortIndex_" Class="double">1.0</Field>
+            <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
+            <Field Name="SignalName_" Class="char"/>
+            <Field Name="SubSysPath_" Class="char"/>
+            <Field Name="Decimation_" Class="double">1.0</Field>
+            <Field Name="MaxPoints_" Class="double">0.0</Field>
+            <Field Name="TargetBufferedStreaming_" Class="double">0.0</Field>
+            <Field Name="IsFrameBased_" Class="double">0.0</Field>
+            <Field Name="HideInSDI_" Class="double">0.0</Field>
+            <Field Name="DomainType_" Class="char"/>
+            <Array PropName="DomainParams_" Type="Struct" Dimension="1*1">
+              <MATStruct/>
+            </Array>
+            <Field Name="VisualType_" Class="char"/>
+          </MATStruct>
+        </Array>
+      </Object>
+    </SimulationSettings>
+    <EngineSettings>
+      <P Name="ConfigurableSubsystemUsage">warning</P>
+    </EngineSettings>
+    <ConcurrentExecutionSettings>
+      <Object PropName="DataTransfer" ObjectID="3" ClassName="Simulink.GlobalDataTransfer">
+        <P Name="DefaultTransitionBetweenSyncTasks" Class="char">Ensure deterministic transfer (maximum delay)</P>
+        <P Name="DefaultTransitionBetweenAsyncTasks" Class="char">Ensure data integrity only</P>
+        <P Name="DefaultTransitionBetweenContTasks" Class="char">Ensure deterministic transfer (minimum delay)</P>
+        <P Name="DefaultExtrapolationMethodBetweenContTasks" Class="char">None</P>
+      </Object>
+    </ConcurrentExecutionSettings>
+    <System Ref="system_root"/>
+  </Subsystem>
+</ModelInformation>
+
+__MWOPC_PART_BEGIN__ /simulink/configSet0.xml
+<?xml version="1.0" encoding="utf-8"?>
+<ConfigSet>
+  <Object Version="22.1.0" ClassName="Simulink.ConfigSet">
+    <P Name="DisabledProps" Class="double">[]</P>
+    <P Name="Description"/>
+    <Array PropName="Components" Type="Handle" Dimension="1*11">
+      <Object ObjectID="2" Version="22.1.0" ClassName="Simulink.SolverCC">
+        <P Name="DisabledProps" Class="double">[]</P>
+        <P Name="Description"/>
+        <P Name="Components" Class="double">[]</P>
+        <P Name="StartTime">0.0</P>
+        <P Name="StopTime">10.0</P>
+        <P Name="AbsTol">auto</P>
+        <P Name="AutoScaleAbsTol">on</P>
+        <P Name="FixedStep">auto</P>
+        <P Name="InitialStep">auto</P>
+        <P Name="MaxOrder">5</P>
+        <P Name="ZcThreshold">auto</P>
+        <P Name="ConsecutiveZCsStepRelTol">10*128*eps</P>
+        <P Name="MaxConsecutiveZCs">1000</P>
+        <P Name="ExtrapolationOrder">4</P>
+        <P Name="NumberNewtonIterations">1</P>
+        <P Name="MaxStep">auto</P>
+        <P Name="MinStep">auto</P>
+        <P Name="MaxConsecutiveMinStep">1</P>
+        <P Name="RelTol">1e-3</P>
+        <P Name="EnableMultiTasking">off</P>
+        <P Name="AllowMultiTaskInputOutput">off</P>
+        <P Name="ConcurrentTasks">off</P>
+        <P Name="SolverName">VariableStepAuto</P>
+        <P Name="SolverJacobianMethodControl">auto</P>
+        <P Name="DaesscMode">auto</P>
+        <P Name="ShapePreserveControl">DisableAll</P>
+        <P Name="ZeroCrossControl">UseLocalSettings</P>
+        <P Name="ZeroCrossAlgorithm">Nonadaptive</P>
+        <P Name="AlgebraicLoopSolver">TrustRegion</P>
+        <P Name="SolverInfoToggleStatus">off</P>
+        <P Name="IsAutoAppliedInSIP">off</P>
+        <P Name="SolverResetMethod">Fast</P>
+        <P Name="PositivePriorityOrder">off</P>
+        <P Name="AutoInsertRateTranBlk">off</P>
+        <P Name="SampleTimeConstraint">Unconstrained</P>
+        <P Name="InsertRTBMode">Whenever possible</P>
+        <P Name="SampleTimeProperty" Class="double">[]</P>
+        <P Name="DecoupledContinuousIntegration">off</P>
+        <P Name="MinimalZcImpactIntegration">off</P>
+        <P Name="ODENIntegrationMethod">ode3</P>
+        <P Name="EnableFixedStepZeroCrossing">off</P>
+        <P Name="MaxZcPerStep">2</P>
+        <P Name="MaxZcBracketingIterations">10</P>
+      </Object>
+      <Object ObjectID="3" Version="22.1.0" ClassName="Simulink.DataIOCC">
+        <P Name="DisabledProps" Class="double">[]</P>
+        <P Name="Description"/>
+        <P Name="Components" Class="double">[]</P>
+        <P Name="Decimation">1</P>
+        <P Name="ExternalInput">[t, u]</P>
+        <P Name="FinalStateName">xFinal</P>
+        <P Name="InitialState">xInitial</P>
+        <P Name="LimitDataPoints">off</P>
+        <P Name="MaxDataPoints">1000</P>
+        <P Name="LoadExternalInput">off</P>
+        <P Name="LoadInitialState">off</P>
+        <P Name="SaveFinalState">off</P>
+        <P Name="SaveOperatingPoint">off</P>
+        <P Name="SaveFormat">Dataset</P>
+        <P Name="SignalLoggingSaveFormat">Dataset</P>
+        <P Name="SaveOutput">on</P>
+        <P Name="SaveState">off</P>
+        <P Name="SignalLogging">on</P>
+        <P Name="DSMLogging">on</P>
+        <P Name="StreamToWks">on</P>
+        <P Name="InspectSignalLogs">off</P>
+        <P Name="VisualizeSimOutput">on</P>
+        <P Name="StreamToWorkspace">off</P>
+        <P Name="StreamVariableName">streamout</P>
+        <P Name="SaveTime">on</P>
+        <P Name="ReturnWorkspaceOutputs">on</P>
+        <P Name="StateSaveName">xout</P>
+        <P Name="TimeSaveName">tout</P>
+        <P Name="OutputSaveName">yout</P>
+        <P Name="SignalLoggingName">logsout</P>
+        <P Name="DSMLoggingName">dsmout</P>
+        <P Name="OutputOption">RefineOutputTimes</P>
+        <P Name="OutputTimes">[]</P>
+        <P Name="ReturnWorkspaceOutputsName">out</P>
+        <P Name="Refine">1</P>
+        <P Name="LoggingToFile">off</P>
+        <P Name="DatasetSignalFormat">timeseries</P>
+        <P Name="LoggingFileName">out.mat</P>
+        <P Name="LoggingIntervals">[-inf, inf]</P>
+      </Object>
+      <Object ObjectID="4" Version="22.1.0" ClassName="Simulink.OptimizationCC">
+        <Array PropName="DisabledProps" Type="Cell" Dimension="1*9">
+          <Cell Class="char">BooleansAsBitfields</Cell>
+          <Cell Class="char">PassReuseOutputArgsAs</Cell>
+          <Cell Class="char">PassReuseOutputArgsThreshold</Cell>
+          <Cell Class="char">ZeroExternalMemoryAtStartup</Cell>
+          <Cell Class="char">ZeroInternalMemoryAtStartup</Cell>
+          <Cell Class="char">OptimizeModelRefInitCode</Cell>
+          <Cell Class="char">NoFixptDivByZeroProtection</Cell>
+          <Cell Class="char">UseSpecifiedMinMax</Cell>
+          <Cell Class="char">EfficientTunableParamExpr</Cell>
+        </Array>
+        <P Name="Description"/>
+        <P Name="Components" Class="double">[]</P>
+        <P Name="BlockReduction">on</P>
+        <P Name="BooleanDataType">on</P>
+        <P Name="ConditionallyExecuteInputs">on</P>
+        <P Name="DefaultParameterBehavior">Tunable</P>
+        <P Name="UseDivisionForNetSlopeComputation">off</P>
+        <P Name="GainParamInheritBuiltInType">off</P>
+        <P Name="UseFloatMulNetSlope">off</P>
+        <P Name="InheritOutputTypeSmallerThanSingle">off</P>
+        <P Name="DefaultUnderspecifiedDataType">double</P>
+        <P Name="UseSpecifiedMinMax">off</P>
+        <P Name="InlineInvariantSignals">off</P>
+        <P Name="OptimizeBlockIOStorage">on</P>
+        <P Name="BufferReuse">on</P>
+        <P Name="ReuseModelBlockBuffer">off</P>
+        <P Name="EnhancedBackFolding">off</P>
+        <P Name="CachingGlobalReferences">off</P>
+        <P Name="GlobalBufferReuse">on</P>
+        <P Name="StrengthReduction">off</P>
+        <P Name="AdvancedOptControl"/>
+        <P Name="ExpressionFolding">on</P>
+        <P Name="BooleansAsBitfields">off</P>
+        <P Name="BitfieldContainerType">uint_T</P>
+        <P Name="BitwiseOrLogicalOp">Same as modeled</P>
+        <P Name="EnableMemcpy">on</P>
+        <P Name="MemcpyThreshold">64</P>
+        <P Name="PassReuseOutputArgsAs">Structure reference</P>
+        <P Name="PassReuseOutputArgsThreshold">12</P>
+        <P Name="ExpressionDepthLimit">128</P>
+        <P Name="LocalBlockOutputs">on</P>
+        <P Name="RollThreshold">5</P>
+        <P Name="StateBitsets">off</P>
+        <P Name="DataBitsets">off</P>
+        <P Name="ActiveStateOutputEnumStorageType">Native Integer</P>
+        <P Name="ZeroExternalMemoryAtStartup">on</P>
+        <P Name="ZeroInternalMemoryAtStartup">on</P>
+        <P Name="InitFltsAndDblsToZero">off</P>
+        <P Name="NoFixptDivByZeroProtection">off</P>
+        <P Name="EfficientFloat2IntCast">off</P>
+        <P Name="EfficientMapNaN2IntZero">on</P>
+        <P Name="LifeSpan">auto</P>
+        <P Name="MaxStackSize">Inherit from target</P>
+        <P Name="BufferReusableBoundary">on</P>
+        <P Name="SimCompilerOptimization">off</P>
+        <P Name="AccelVerboseBuild">off</P>
+        <P Name="OptimizeBlockOrder">off</P>
+        <P Name="OptimizeDataStoreBuffers">on</P>
+        <P Name="BusAssignmentInplaceUpdate">on</P>
+        <P Name="DifferentSizesBufferReuse">off</P>
+        <P Name="UseRowMajorAlgorithm">off</P>
+        <P Name="OptimizationLevel">level2</P>
+        <P Name="OptimizationPriority">Balanced</P>
+        <P Name="OptimizationCustomize">on</P>
+        <P Name="LabelGuidedReuse">off</P>
+        <P Name="MultiThreadedLoops">off</P>
+        <P Name="DenormalBehavior">GradualUnderflow</P>
+        <P Name="EfficientTunableParamExpr">off</P>
+      </Object>
+      <Object ObjectID="5" Version="22.1.0" ClassName="Simulink.DebuggingCC">
+        <Array PropName="DisabledProps" Type="Cell" Dimension="1*1">
+          <Cell Class="char">UseOnlyExistingSharedCode</Cell>
+        </Array>
+        <P Name="Description"/>
+        <P Name="Components" Class="double">[]</P>
+        <P Name="RTPrefix">error</P>
+        <P Name="ConsistencyChecking">none</P>
+        <P Name="ArrayBoundsChecking">none</P>
+        <P Name="SignalInfNanChecking">none</P>
+        <P Name="StringTruncationChecking">error</P>
+        <P Name="SignalRangeChecking">none</P>
+        <P Name="ReadBeforeWriteMsg">UseLocalSettings</P>
+        <P Name="WriteAfterWriteMsg">UseLocalSettings</P>
+        <P Name="WriteAfterReadMsg">UseLocalSettings</P>
+        <P Name="AlgebraicLoopMsg">warning</P>
+        <P Name="ArtificialAlgebraicLoopMsg">warning</P>
+        <P Name="SaveWithDisabledLinksMsg">warning</P>
+        <P Name="SaveWithParameterizedLinksMsg">warning</P>
+        <P Name="CheckSSInitialOutputMsg">on</P>
+        <P Name="UnderspecifiedInitializationDetection">Simplified</P>
+        <P Name="MergeDetectMultiDrivingBlocksExec">error</P>
+        <P Name="CheckExecutionContextPreStartOutputMsg">off</P>
+        <P Name="SignalResolutionControl">UseLocalSettings</P>
+        <P Name="BlockPriorityViolationMsg">warning</P>
+        <P Name="MinStepSizeMsg">warning</P>
+        <P Name="TimeAdjustmentMsg">none</P>
+        <P Name="MaxConsecutiveZCsMsg">error</P>
+        <P Name="MaskedZcDiagnostic">warning</P>
+        <P Name="IgnoredZcDiagnostic">warning</P>
+        <P Name="SolverPrmCheckMsg">none</P>
+        <P Name="InheritedTsInSrcMsg">warning</P>
+        <P Name="MultiTaskDSMMsg">error</P>
+        <P Name="MultiTaskCondExecSysMsg">error</P>
+        <P Name="MultiTaskRateTransMsg">error</P>
+        <P Name="SingleTaskRateTransMsg">none</P>
+        <P Name="TasksWithSamePriorityMsg">warning</P>
+        <P Name="ExportedTasksRateTransMsg">none</P>
+        <P Name="SigSpecEnsureSampleTimeMsg">warning</P>
+        <P Name="CheckMatrixSingularityMsg">none</P>
+        <P Name="IntegerOverflowMsg">warning</P>
+        <P Name="Int32ToFloatConvMsg">warning</P>
+        <P Name="ParameterDowncastMsg">error</P>
+        <P Name="ParameterOverflowMsg">error</P>
+        <P Name="ParameterUnderflowMsg">none</P>
+        <P Name="ParameterPrecisionLossMsg">warning</P>
+        <P Name="ParameterTunabilityLossMsg">warning</P>
+        <P Name="FixptConstUnderflowMsg">none</P>
+        <P Name="FixptConstOverflowMsg">none</P>
+        <P Name="FixptConstPrecisionLossMsg">none</P>
+        <P Name="UnderSpecifiedDataTypeMsg">none</P>
+        <P Name="UnnecessaryDatatypeConvMsg">none</P>
+        <P Name="VectorMatrixConversionMsg">none</P>
+        <P Name="FcnCallInpInsideContextMsg">error</P>
+        <P Name="SignalLabelMismatchMsg">none</P>
+        <P Name="UnconnectedInputMsg">warning</P>
+        <P Name="UnconnectedOutputMsg">warning</P>
+        <P Name="UnconnectedLineMsg">warning</P>
+        <P Name="UseOnlyExistingSharedCode">error</P>
+        <P Name="SFcnCompatibilityMsg">none</P>
+        <P Name="FrameProcessingCompatibilityMsg">error</P>
+        <P Name="UniqueDataStoreMsg">none</P>
+        <P Name="BusObjectLabelMismatch">warning</P>
+        <P Name="RootOutportRequireBusObject">warning</P>
+        <P Name="AssertControl">UseLocalSettings</P>
+        <P Name="AllowSymbolicDim">on</P>
+        <P Name="RowMajorDimensionSupport">off</P>
+        <P Name="ModelReferenceIOMsg">none</P>
+        <P Name="ModelReferenceMultiInstanceNormalModeStructChecksumCheck">error</P>
+        <P Name="ModelReferenceVersionMismatchMessage">none</P>
+        <P Name="ModelReferenceIOMismatchMessage">none</P>
+        <P Name="UnknownTsInhSupMsg">warning</P>
+        <P Name="ModelReferenceDataLoggingMessage">warning</P>
+        <P Name="ModelReferenceNoExplicitFinalValueMsg">none</P>
+        <P Name="ModelReferenceSymbolNameMessage">warning</P>
+        <P Name="ModelReferenceExtraNoncontSigs">error</P>
+        <P Name="StateNameClashWarn">none</P>
+        <P Name="OperatingPointInterfaceChecksumMismatchMsg">warning</P>
+        <P Name="NonCurrentReleaseOperatingPointMsg">error</P>
+        <P Name="PregeneratedLibrarySubsystemCodeDiagnostic">warning</P>
+        <P Name="MatchCodeGenerationContextForUpdateDiagram">none</P>
+        <P Name="InitInArrayFormatMsg">warning</P>
+        <P Name="StrictBusMsg">ErrorLevel1</P>
+        <P Name="BusNameAdapt">WarnAndRepair</P>
+        <P Name="NonBusSignalsTreatedAsBus">none</P>
+        <P Name="SymbolicDimMinMaxWarning">warning</P>
+        <P Name="LossOfSymbolicDimsSimulationWarning">warning</P>
+        <P Name="LossOfSymbolicDimsCodeGenerationWarning">error</P>
+        <P Name="SymbolicDimsDataTypeCodeGenerationDiagnostic">error</P>
+        <P Name="BlockIODiagnostic">none</P>
+        <P Name="SFUnusedDataAndEventsDiag">warning</P>
+        <P Name="SFUnexpectedBacktrackingDiag">error</P>
+        <P Name="SFInvalidInputDataAccessInChartInitDiag">warning</P>
+        <P Name="SFNoUnconditionalDefaultTransitionDiag">error</P>
+        <P Name="SFTransitionOutsideNaturalParentDiag">warning</P>
+        <P Name="SFUnreachableExecutionPathDiag">warning</P>
+        <P Name="SFUndirectedBroadcastEventsDiag">warning</P>
+        <P Name="SFTransitionActionBeforeConditionDiag">warning</P>
+        <P Name="SFOutputUsedAsStateInMooreChartDiag">error</P>
+        <P Name="SFTemporalDelaySmallerThanSampleTimeDiag">warning</P>
+        <P Name="SFSelfTransitionDiag">warning</P>
+        <P Name="SFExecutionAtInitializationDiag">warning</P>
+        <P Name="SFMachineParentedDataDiag">warning</P>
+        <P Name="IntegerSaturationMsg">warning</P>
+        <P Name="AllowedUnitSystems">all</P>
+        <P Name="UnitsInconsistencyMsg">warning</P>
+        <P Name="AllowAutomaticUnitConversions">on</P>
+        <P Name="RCSCRenamedMsg">warning</P>
+        <P Name="RCSCObservableMsg">warning</P>
+        <P Name="ForceCombineOutputUpdateInSim">off</P>
+        <P Name="UnitDatabase"/>
+        <P Name="UnderSpecifiedDimensionMsg">none</P>
+        <P Name="DebugExecutionForFMUViaOutOfProcess">off</P>
+        <P Name="ArithmeticOperatorsInVariantConditions">error</P>
+        <P Name="VariantConditionMismatch">none</P>
+        <P Name="InheritVATfromSVC">warning</P>
+        <P Name="VariantConfigNotUsedByTopModel">warning</P>
+      </Object>
+      <Object ObjectID="6" Version="22.1.0" ClassName="Simulink.HardwareCC">
+        <P Name="DisabledProps" Class="double">[]</P>
+        <P Name="Description"/>
+        <P Name="Components" Class="double">[]</P>
+        <P Name="ProdBitPerChar">8</P>
+        <P Name="ProdBitPerShort">16</P>
+        <P Name="ProdBitPerInt">32</P>
+        <P Name="ProdBitPerLong">32</P>
+        <P Name="ProdBitPerLongLong">64</P>
+        <P Name="ProdBitPerFloat">32</P>
+        <P Name="ProdBitPerDouble">64</P>
+        <P Name="ProdBitPerPointer">64</P>
+        <P Name="ProdBitPerSizeT">64</P>
+        <P Name="ProdBitPerPtrDiffT">64</P>
+        <P Name="ProdLargestAtomicInteger">Char</P>
+        <P Name="ProdLargestAtomicFloat">Float</P>
+        <P Name="ProdIntDivRoundTo">Zero</P>
+        <P Name="ProdEndianess">LittleEndian</P>
+        <P Name="ProdWordSize">64</P>
+        <P Name="ProdShiftRightIntArith">on</P>
+        <P Name="ProdLongLongMode">off</P>
+        <P Name="ProdHWDeviceType">Intel-&gt;x86-64 (Windows64)</P>
+        <P Name="TargetBitPerChar">8</P>
+        <P Name="TargetBitPerShort">16</P>
+        <P Name="TargetBitPerInt">32</P>
+        <P Name="TargetBitPerLong">32</P>
+        <P Name="TargetBitPerLongLong">64</P>
+        <P Name="TargetBitPerFloat">32</P>
+        <P Name="TargetBitPerDouble">64</P>
+        <P Name="TargetBitPerPointer">32</P>
+        <P Name="TargetBitPerSizeT">32</P>
+        <P Name="TargetBitPerPtrDiffT">32</P>
+        <P Name="TargetLargestAtomicInteger">Char</P>
+        <P Name="TargetLargestAtomicFloat">None</P>
+        <P Name="TargetShiftRightIntArith">on</P>
+        <P Name="TargetLongLongMode">off</P>
+        <P Name="TargetIntDivRoundTo">Undefined</P>
+        <P Name="TargetEndianess">Unspecified</P>
+        <P Name="TargetWordSize">32</P>
+        <P Name="TargetPreprocMaxBitsSint">32</P>
+        <P Name="TargetPreprocMaxBitsUint">32</P>
+        <P Name="TargetHWDeviceType">Specified</P>
+        <P Name="TargetUnknown">off</P>
+        <P Name="ProdEqTarget">on</P>
+        <P Name="UseEmbeddedCoderFeatures">on</P>
+        <P Name="UseSimulinkCoderFeatures">on</P>
+        <P Name="HardwareBoardFeatureSet">EmbeddedCoderHSP</P>
+      </Object>
+      <Object ObjectID="7" Version="22.1.0" ClassName="Simulink.ModelReferenceCC">
+        <P Name="DisabledProps" Class="double">[]</P>
+        <P Name="Description"/>
+        <P Name="Components" Class="double">[]</P>
+        <P Name="UpdateModelReferenceTargets">IfOutOfDateOrStructuralChange</P>
+        <P Name="EnableRefExpFcnMdlSchedulingChecks">on</P>
+        <P Name="CheckModelReferenceTargetMessage">error</P>
+        <P Name="EnableParallelModelReferenceBuilds">off</P>
+        <P Name="ParallelModelReferenceErrorOnInvalidPool">on</P>
+        <P Name="ParallelModelReferenceMATLABWorkerInit">None</P>
+        <P Name="ModelReferenceNumInstancesAllowed">Multi</P>
+        <P Name="PropagateVarSize">Infer from blocks in model</P>
+        <P Name="ModelDependencies"/>
+        <P Name="ModelReferencePassRootInputsByReference">on</P>
+        <P Name="ModelReferenceMinAlgLoopOccurrences">off</P>
+        <P Name="PropagateSignalLabelsOutOfModel">on</P>
+        <P Name="SupportModelReferenceSimTargetCustomCode">off</P>
+        <P Name="UseModelRefSolver">off</P>
+      </Object>
+      <Object ObjectID="8" Version="22.1.0" ClassName="Simulink.SFSimCC">
+        <P Name="DisabledProps" Class="double">[]</P>
+        <P Name="Description"/>
+        <P Name="Components" Class="double">[]</P>
+        <P Name="SimCustomSourceCode"/>
+        <P Name="SimCustomHeaderCode"/>
+        <P Name="SimCustomInitializer"/>
+        <P Name="SimCustomTerminator"/>
+        <P Name="SimReservedNameArray" Class="double">[]</P>
+        <P Name="SimUserSources"/>
+        <P Name="SimUserIncludeDirs"/>
+        <P Name="SimUserLibraries"/>
+        <P Name="SimUserDefines"/>
+        <P Name="SimCustomCompilerFlags"/>
+        <P Name="SimCustomLinkerFlags"/>
+        <P Name="SFSimEcho">on</P>
+        <P Name="SimCtrlC">on</P>
+        <P Name="SimIntegrity">on</P>
+        <P Name="SimUseLocalCustomCode">on</P>
+        <P Name="SimParseCustomCode">on</P>
+        <P Name="SimAnalyzeCustomCode">off</P>
+        <P Name="SimDebugExecutionForCustomCode">off</P>
+        <P Name="SimGenImportedTypeDefs">off</P>
+        <P Name="ModelFunctionsGlobalVisibility">on</P>
+        <P Name="CompileTimeRecursionLimit">50</P>
+        <P Name="EnableRuntimeRecursion">on</P>
+        <P Name="EnableImplicitExpansion">on</P>
+        <P Name="MATLABDynamicMemAlloc">on</P>
+        <P Name="MATLABDynamicMemAllocThreshold">65536</P>
+        <P Name="LegacyBehaviorForPersistentVarInContinuousTime">off</P>
+        <P Name="CustomCodeFunctionArrayLayout" Class="double">[]</P>
+        <P Name="DefaultCustomCodeFunctionArrayLayout">NotSpecified</P>
+        <P Name="CustomCodeUndefinedFunction">FilterOut</P>
+        <P Name="CustomCodeGlobalsAsFunctionIO">off</P>
+        <P Name="DefaultCustomCodeDeterministicFunctions">None</P>
+        <P Name="CustomCodeDeterministicFunctions"/>
+        <P Name="SimHardwareAcceleration">generic</P>
+        <P Name="SimTargetLang">C</P>
+        <P Name="GPUAcceleration">off</P>
+        <P Name="SimGPUMallocThreshold">200</P>
+        <P Name="SimGPUStackLimitPerThread">1024</P>
+        <P Name="SimGPUErrorChecks">off</P>
+        <P Name="SimGPUCustomComputeCapability"/>
+        <P Name="SimGPUCompilerFlags"/>
+        <P Name="SimDLTargetLibrary">mkl-dnn</P>
+        <P Name="SimDLAutoTuning">on</P>
+      </Object>
+      <Object BackupClass="Simulink.RTWCC" ObjectID="9" Version="22.1.0" ClassName="Simulink.RTWCC">
+        <Array PropName="DisabledProps" Type="Cell" Dimension="1*16">
+          <Cell Class="char">IncludeHyperlinkInReport</Cell>
+          <Cell Class="char">GenerateTraceInfo</Cell>
+          <Cell Class="char">GenerateTraceReport</Cell>
+          <Cell Class="char">GenerateTraceReportSl</Cell>
+          <Cell Class="char">GenerateTraceReportSf</Cell>
+          <Cell Class="char">GenerateTraceReportEml</Cell>
+          <Cell Class="char">PortableWordSizes</Cell>
+          <Cell Class="char">GenerateWebview</Cell>
+          <Cell Class="char">GenerateCodeMetricsReport</Cell>
+          <Cell Class="char">GenerateCodeReplacementReport</Cell>
+          <Cell Class="char">GenerateMissedCodeReplacementReport</Cell>
+          <Cell Class="char">GenerateErtSFunction</Cell>
+          <Cell Class="char">CreateSILPILBlock</Cell>
+          <Cell Class="char">CodeProfilingInstrumentation</Cell>
+          <Cell Class="char">CodeStackProfiling</Cell>
+          <Cell Class="char">EmbeddedCoderDictionary</Cell>
+        </Array>
+        <P Name="Description"/>
+        <P Name="SystemTargetFile">grt.tlc</P>
+        <P Name="EmbeddedCoderDictionary"/>
+        <P Name="HardwareBoard">None</P>
+        <P Name="ShowCustomHardwareApp">off</P>
+        <P Name="ShowEmbeddedHardwareApp">off</P>
+        <P Name="TLCOptions"/>
+        <P Name="GenCodeOnly">off</P>
+        <P Name="MakeCommand">make_rtw</P>
+        <P Name="GenerateMakefile">on</P>
+        <P Name="PackageGeneratedCodeAndArtifacts">off</P>
+        <P Name="PackageName"/>
+        <P Name="TemplateMakefile">grt_default_tmf</P>
+        <P Name="PostCodeGenCommand"/>
+        <P Name="GenerateReport">off</P>
+        <P Name="RTWVerbose">on</P>
+        <P Name="RetainRTWFile">off</P>
+        <P Name="RTWBuildHooks" Class="double">[]</P>
+        <P Name="ProfileTLC">off</P>
+        <P Name="TLCDebug">off</P>
+        <P Name="TLCCoverage">off</P>
+        <P Name="TLCAssert">off</P>
+        <P Name="RTWUseLocalCustomCode">on</P>
+        <P Name="RTWUseSimCustomCode">off</P>
+        <P Name="CustomSourceCode"/>
+        <P Name="CustomHeaderCode"/>
+        <P Name="CustomInclude"/>
+        <P Name="CustomSource"/>
+        <P Name="CustomLibrary"/>
+        <P Name="CustomDefine"/>
+        <P Name="CustomBLASCallback"/>
+        <P Name="CustomLAPACKCallback"/>
+        <P Name="CustomFFTCallback"/>
+        <P Name="CustomInitializer"/>
+        <P Name="CustomTerminator"/>
+        <P Name="Toolchain">Automatically locate an installed toolchain</P>
+        <P Name="BuildConfiguration">Faster Builds</P>
+        <P Name="CustomToolchainOptions" Class="double">[]</P>
+        <P Name="IncludeHyperlinkInReport">off</P>
+        <P Name="LaunchReport">off</P>
+        <P Name="PortableWordSizes">off</P>
+        <P Name="CreateSILPILBlock">None</P>
+        <P Name="CodeExecutionProfiling">off</P>
+        <P Name="CodeExecutionProfileVariable">executionProfile</P>
+        <P Name="CodeProfilingSaveOptions">SummaryOnly</P>
+        <P Name="CodeProfilingInstrumentation">off</P>
+        <P Name="CodeStackProfiling">off</P>
+        <P Name="CodeStackProfileVariable">stackProfile</P>
+        <P Name="SILDebugging">off</P>
+        <P Name="TargetLang">C</P>
+        <P Name="GenerateGPUCode">None</P>
+        <P Name="IncludeBusHierarchyInRTWFileBlockHierarchyMap">off</P>
+        <P Name="GenerateTraceInfo">off</P>
+        <P Name="GenerateTraceReport">off</P>
+        <P Name="GenerateTraceReportSl">off</P>
+        <P Name="GenerateTraceReportSf">off</P>
+        <P Name="GenerateTraceReportEml">off</P>
+        <P Name="GenerateWebview">off</P>
+        <P Name="GenerateCodeMetricsReport">off</P>
+        <P Name="GenerateCodeReplacementReport">off</P>
+        <P Name="GenerateMissedCodeReplacementReport">off</P>
+        <P Name="RTWCompilerOptimization">off</P>
+        <P Name="ObjectivePriorities" Class="double">[]</P>
+        <P Name="RTWCustomCompilerOptimizations"/>
+        <P Name="CheckMdlBeforeBuild">Off</P>
+        <P Name="SharedConstantsCachingThreshold">1024</P>
+        <P Name="GPUKernelNamePrefix"/>
+        <P Name="GPUDeviceID">-1</P>
+        <P Name="GPUMallocMode">discrete</P>
+        <P Name="GPUMallocThreshold">200</P>
+        <P Name="GPUEnableMemoryManager">off</P>
+        <P Name="GPUStackLimitPerThread">1024</P>
+        <P Name="GPUcuBLAS">on</P>
+        <P Name="GPUcuSOLVER">on</P>
+        <P Name="GPUcuFFT">on</P>
+        <P Name="GPUErrorChecks">off</P>
+        <P Name="GPUComputeCapability">3.5</P>
+        <P Name="GPUCustomComputeCapability"/>
+        <P Name="GPUCompilerFlags"/>
+        <P Name="GPUMaximumBlocksPerKernel">0</P>
+        <P Name="DLTargetLibrary">none</P>
+        <P Name="DLAutoTuning">on</P>
+        <P Name="DLArmComputeVersion">19.05</P>
+        <P Name="DLArmComputeArch">unspecified</P>
+        <Array PropName="Components" Type="Handle" Dimension="1*2">
+          <Object ObjectID="10" Version="22.1.0" ClassName="Simulink.CodeAppCC">
+            <Array PropName="DisabledProps" Type="Cell" Dimension="1*28">
+              <Cell Class="char">IgnoreCustomStorageClasses</Cell>
+              <Cell Class="char">IgnoreTestpoints</Cell>
+              <Cell Class="char">BlockCommentType</Cell>
+              <Cell Class="char">InsertBlockDesc</Cell>
+              <Cell Class="char">InsertPolySpaceComments</Cell>
+              <Cell Class="char">SFDataObjDesc</Cell>
+              <Cell Class="char">MATLABFcnDesc</Cell>
+              <Cell Class="char">SimulinkDataObjDesc</Cell>
+              <Cell Class="char">DefineNamingRule</Cell>
+              <Cell Class="char">SignalNamingRule</Cell>
+              <Cell Class="char">ParamNamingRule</Cell>
+              <Cell Class="char">InternalIdentifier</Cell>
+              <Cell Class="char">InlinedPrmAccess</Cell>
+              <Cell Class="char">CustomSymbolStr</Cell>
+              <Cell Class="char">CustomSymbolStrGlobalVar</Cell>
+              <Cell Class="char">CustomSymbolStrType</Cell>
+              <Cell Class="char">CustomSymbolStrField</Cell>
+              <Cell Class="char">CustomSymbolStrFcn</Cell>
+              <Cell Class="char">CustomSymbolStrModelFcn</Cell>
+              <Cell Class="char">CustomSymbolStrFcnArg</Cell>
+              <Cell Class="char">CustomSymbolStrBlkIO</Cell>
+              <Cell Class="char">CustomSymbolStrTmpVar</Cell>
+              <Cell Class="char">CustomSymbolStrMacro</Cell>
+              <Cell Class="char">CustomSymbolStrUtil</Cell>
+              <Cell Class="char">CustomSymbolStrEmxType</Cell>
+              <Cell Class="char">CustomSymbolStrEmxFcn</Cell>
+              <Cell Class="char">CustomUserTokenString</Cell>
+              <Cell Class="char">ReqsInCode</Cell>
+            </Array>
+            <P Name="Description"/>
+            <P Name="Components" Class="double">[]</P>
+            <P Name="Comment"/>
+            <P Name="ForceParamTrailComments">off</P>
+            <P Name="GenerateComments">on</P>
+            <P Name="CommentStyle">Auto</P>
+            <P Name="IgnoreCustomStorageClasses">on</P>
+            <P Name="IgnoreTestpoints">off</P>
+            <P Name="MaxIdLength">31</P>
+            <P Name="PreserveName">off</P>
+            <P Name="PreserveNameWithParent">off</P>
+            <P Name="ShowEliminatedStatement">off</P>
+            <P Name="OperatorAnnotations">off</P>
+            <P Name="SimulinkDataObjDesc">off</P>
+            <P Name="SFDataObjDesc">off</P>
+            <P Name="MATLABFcnDesc">off</P>
+            <P Name="MangleLength">1</P>
+            <P Name="SharedChecksumLength">8</P>
+            <P Name="CustomSymbolStrGlobalVar">$R$N$M</P>
+            <P Name="CustomSymbolStrType">$N$R$M_T</P>
+            <P Name="CustomSymbolStrField">$N$M</P>
+            <P Name="CustomSymbolStrFcn">$R$N$M$F</P>
+            <P Name="CustomSymbolStrModelFcn">$R$N</P>
+            <P Name="CustomSymbolStrFcnArg">rt$I$N$M</P>
+            <P Name="CustomSymbolStrBlkIO">rtb_$N$M</P>
+            <P Name="CustomSymbolStrTmpVar">$N$M</P>
+            <P Name="CustomSymbolStrMacro">$R$N$M</P>
+            <P Name="CustomSymbolStrUtil">$N$C</P>
+            <P Name="CustomSymbolStrEmxType">emxArray_$M$N</P>
+            <P Name="CustomSymbolStrEmxFcn">emx$M$N</P>
+            <P Name="CustomUserTokenString"/>
+            <P Name="CustomCommentsFcn"/>
+            <P Name="DefineNamingRule">None</P>
+            <P Name="DefineNamingFcn"/>
+            <P Name="ParamNamingRule">None</P>
+            <P Name="ParamNamingFcn"/>
+            <P Name="SignalNamingRule">None</P>
+            <P Name="SignalNamingFcn"/>
+            <P Name="InsertBlockDesc">off</P>
+            <P Name="InsertPolySpaceComments">off</P>
+            <P Name="SimulinkBlockComments">on</P>
+            <P Name="BlockCommentType">BlockPathComment</P>
+            <P Name="StateflowObjectComments">off</P>
+            <P Name="MATLABSourceComments">off</P>
+            <P Name="EnableCustomComments">off</P>
+            <P Name="InternalIdentifierFile"/>
+            <P Name="InternalIdentifier">Shortened</P>
+            <P Name="InlinedPrmAccess">Literals</P>
+            <P Name="ReqsInCode">off</P>
+            <P Name="UseSimReservedNames">off</P>
+            <P Name="ReservedNameArray" Class="double">[]</P>
+            <P Name="EnumMemberNameClash">error</P>
+          </Object>
+          <Object BackupClass="Simulink.TargetCC" ObjectID="11" Version="22.1.0" ClassName="Simulink.GRTTargetCC">
+            <Array PropName="DisabledProps" Type="Cell" Dimension="1*19">
+              <Cell Class="char">IncludeMdlTerminateFcn</Cell>
+              <Cell Class="char">SuppressErrorStatus</Cell>
+              <Cell Class="char">ERTCustomFileBanners</Cell>
+              <Cell Class="char">GenerateSampleERTMain</Cell>
+              <Cell Class="char">ExistingSharedCode</Cell>
+              <Cell Class="char">GenerateTestInterfaces</Cell>
+              <Cell Class="char">ModelStepFunctionPrototypeControlCompliant</Cell>
+              <Cell Class="char">GenerateAllocFcn</Cell>
+              <Cell Class="char">PurelyIntegerCode</Cell>
+              <Cell Class="char">SupportComplex</Cell>
+              <Cell Class="char">SupportAbsoluteTime</Cell>
+              <Cell Class="char">SupportContinuousTime</Cell>
+              <Cell Class="char">SupportNonInlinedSFcns</Cell>
+              <Cell Class="char">RemoveDisableFunc</Cell>
+              <Cell Class="char">RemoveResetFunc</Cell>
+              <Cell Class="char">PreserveStateflowLocalDataDimensions</Cell>
+              <Cell Class="char">ParenthesesLevel</Cell>
+              <Cell Class="char">ERTMultiwordTypeDef</Cell>
+              <Cell Class="char">MultiwordTypeDef</Cell>
+            </Array>
+            <P Name="Description"/>
+            <P Name="Components" Class="double">[]</P>
+            <P Name="TargetFcnLib">ansi_tfl_table_tmw.mat</P>
+            <P Name="TargetLibSuffix"/>
+            <P Name="TargetPreCompLibLocation"/>
+            <P Name="GenFloatMathFcnCalls">NOT IN USE</P>
+            <P Name="TargetLangStandard">C99 (ISO)</P>
+            <P Name="CodeReplacementLibrary">None</P>
+            <P Name="UtilityFuncGeneration">Auto</P>
+            <P Name="MultiwordTypeDef">System defined</P>
+            <P Name="MultiwordLength">2048</P>
+            <P Name="DynamicStringBufferSize">256</P>
+            <P Name="GenerateFullHeader">on</P>
+            <P Name="InferredTypesCompatibility">off</P>
+            <P Name="ExistingSharedCode"/>
+            <P Name="GenerateSampleERTMain">off</P>
+            <P Name="GenerateTestInterfaces">off</P>
+            <P Name="ModelReferenceCompliant">on</P>
+            <P Name="ParMdlRefBuildCompliant">on</P>
+            <P Name="CompOptLevelCompliant">on</P>
+            <P Name="ConcurrentExecutionCompliant">on</P>
+            <P Name="IncludeMdlTerminateFcn">on</P>
+            <P Name="CombineOutputUpdateFcns">on</P>
+            <P Name="CombineSignalStateStructs">off</P>
+            <P Name="GroupInternalDataByFunction">off</P>
+            <P Name="SuppressErrorStatus">off</P>
+            <P Name="IncludeFileDelimiter">Auto</P>
+            <P Name="ERTCustomFileBanners">off</P>
+            <P Name="SupportAbsoluteTime">on</P>
+            <P Name="LogVarNameModifier">rt_</P>
+            <P Name="MatFileLogging">on</P>
+            <P Name="CodeInterfacePackaging">Nonreusable function</P>
+            <P Name="PurelyIntegerCode">off</P>
+            <P Name="SupportNonFinite">on</P>
+            <P Name="SupportComplex">on</P>
+            <P Name="SupportContinuousTime">on</P>
+            <P Name="SupportNonInlinedSFcns">on</P>
+            <P Name="RemoveDisableFunc">off</P>
+            <P Name="RemoveResetFunc">off</P>
+            <P Name="SupportVariableSizeSignals">off</P>
+            <P Name="ParenthesesLevel">Nominal</P>
+            <P Name="CastingMode">Nominal</P>
+            <P Name="MATLABClassNameForMDSCustomization">Simulink.SoftwareTarget.GRTCustomization</P>
+            <P Name="ModelStepFunctionPrototypeControlCompliant">off</P>
+            <P Name="CPPClassGenCompliant">on</P>
+            <P Name="AutosarCompliant">off</P>
+            <P Name="MDXCompliant">off</P>
+            <P Name="GRTInterface">off</P>
+            <P Name="GenerateAllocFcn">off</P>
+            <P Name="UseToolchainInfoCompliant">on</P>
+            <P Name="GenerateSharedConstants">on</P>
+            <P Name="CoderGroups" Class="double">[]</P>
+            <P Name="AccessMethods" Class="double">[]</P>
+            <P Name="LookupTableObjectStructAxisOrder">1,2,3,4,...</P>
+            <P Name="LUTObjectStructOrderExplicitValues">Size,Breakpoints,Table</P>
+            <P Name="LUTObjectStructOrderEvenSpacing">Size,Breakpoints,Table</P>
+            <P Name="ArrayLayout">Column-major</P>
+            <P Name="UnsupportedSFcnMsg">error</P>
+            <P Name="ERTHeaderFileRootName">$R$E</P>
+            <P Name="ERTSourceFileRootName">$R$E</P>
+            <P Name="ERTDataFileRootName">$R_data</P>
+            <Array PropName="InstructionSetExtensions" Type="Cell" Dimension="1*1">
+              <Cell Class="char">None</Cell>
+            </Array>
+            <P Name="OptimizeReductions">off</P>
+            <P Name="UseMalloc">off</P>
+            <P Name="ExtMode">off</P>
+            <P Name="ExtModeStaticAlloc">off</P>
+            <P Name="ExtModeTesting">off</P>
+            <P Name="ExtModeAutomaticAllocSize">on</P>
+            <P Name="ExtModeMaxTrigDuration">10</P>
+            <P Name="ExtModeStaticAllocSize">1000000</P>
+            <P Name="ExtModeTransport">0</P>
+            <P Name="ExtModeMexFile">ext_comm</P>
+            <P Name="ExtModeMexArgs"/>
+            <P Name="ExtModeIntrfLevel">Level1</P>
+            <P Name="RTWCAPISignals">off</P>
+            <P Name="RTWCAPIParams">off</P>
+            <P Name="RTWCAPIStates">off</P>
+            <P Name="RTWCAPIRootIO">off</P>
+            <P Name="GenerateASAP2">off</P>
+            <P Name="MultiInstanceErrorCode">Error</P>
+          </Object>
+        </Array>
+      </Object>
+      <Object ObjectID="12" Version="22.1.0" ClassName="SlCovCC.ConfigComp">
+        <P Name="DisabledProps" Class="double">[]</P>
+        <P Name="Description">Simulink Coverage Configuration Component</P>
+        <P Name="Components" Class="double">[]</P>
+        <P Name="Name">Simulink Coverage</P>
+        <P Name="CovEnable">off</P>
+        <P Name="CovScope">EntireSystem</P>
+        <P Name="CovIncludeTopModel">on</P>
+        <P Name="RecordCoverage">off</P>
+        <P Name="CovPath">/</P>
+        <P Name="CovSaveName">covdata</P>
+        <P Name="CovCompData"/>
+        <P Name="CovMetricSettings">dwe</P>
+        <P Name="CovFilter"/>
+        <P Name="CovHTMLOptions"/>
+        <P Name="CovNameIncrementing">off</P>
+        <P Name="CovForceBlockReductionOff">on</P>
+        <P Name="CovEnableCumulative">on</P>
+        <P Name="CovSaveCumulativeToWorkspaceVar">off</P>
+        <P Name="CovSaveSingleToWorkspaceVar">off</P>
+        <P Name="CovCumulativeVarName">covCumulativeData</P>
+        <P Name="CovCumulativeReport">off</P>
+        <P Name="CovSaveOutputData">on</P>
+        <P Name="CovOutputDir">slcov_output/$ModelName$</P>
+        <P Name="CovDataFileName">$ModelName$_cvdata</P>
+        <P Name="CovReportOnPause">on</P>
+        <P Name="CovModelRefEnable">off</P>
+        <P Name="CovModelRefExcluded"/>
+        <P Name="CovExternalEMLEnable">on</P>
+        <P Name="CovSFcnEnable">on</P>
+        <P Name="CovBoundaryAbsTol">1e-05</P>
+        <P Name="CovBoundaryRelTol">0.01</P>
+        <P Name="CovUseTimeInterval">off</P>
+        <P Name="CovStartTime">0</P>
+        <P Name="CovStopTime">0</P>
+        <P Name="CovMcdcMode">Masking</P>
+        <P Name="CovExcludeInactiveVariants">off</P>
+      </Object>
+      <Object ObjectID="13" Version="22.1.0" ClassName="hdlcoderui.hdlcc">
+        <P Name="DisabledProps" Class="double">[]</P>
+        <P Name="Description">HDL Coder custom configuration component</P>
+        <P Name="Components" Class="double">[]</P>
+        <P Name="Name">HDL Coder</P>
+        <Array PropName="HDLConfigFile" Type="Cell" Dimension="1*1">
+          <Cell Class="char"> </Cell>
+        </Array>
+        <P Name="HDLCActiveTab">0</P>
+      </Object>
+      <Object ObjectID="14" Version="1.0" ClassName="SSC.SimscapeCC">
+        <P Name="DisabledProps" Class="double">[]</P>
+        <P Name="Description"/>
+        <Array PropName="Components" Type="Handle" Dimension="1*1">
+          <Object ObjectID="15" Version="22.1.0" ClassName="simmechanics.ConfigurationSet">
+            <P Name="DisabledProps" Class="double">[]</P>
+            <P Name="Description">Simscape Multibody</P>
+            <Array PropName="Components" Type="Handle" Dimension="1*2">
+              <Object ObjectID="16" Version="22.1.0" ClassName="simmechanics.DiagnosticsConfigSet">
+                <P Name="DisabledProps" Class="double">[]</P>
+                <P Name="Description">Diagnostics</P>
+                <P Name="Components" Class="double">[]</P>
+                <P Name="Name">DiagnosticsConfigSet</P>
+                <P Name="SimMechanicsInvalidVisualProperty">warning</P>
+                <P Name="SimMechanicsCrossSectionNullEdge">warning</P>
+                <P Name="SimMechanicsUnconnectedFramePorts">warning</P>
+                <P Name="SimMechanicsUnconnectedGeometryPorts">warning</P>
+                <P Name="SimMechanicsRedundantBlock">warning</P>
+                <P Name="SimMechanicsConflictingReferenceFrames">warning</P>
+                <P Name="SimMechanicsRigidlyBoundBlock">error</P>
+                <P Name="SimMechanicsUnsatisfiedHighPriorityTargets">warning</P>
+                <P Name="SimMechanicsJointTargetOverSpecification">error</P>
+              </Object>
+              <Object ObjectID="17" Version="22.1.0" ClassName="simmechanics.ExplorerConfigSet">
+                <P Name="DisabledProps" Class="double">[]</P>
+                <P Name="Description">Explorer</P>
+                <P Name="Components" Class="double">[]</P>
+                <P Name="Name">ExplorerConfigSet</P>
+                <P Name="SimMechanicsOpenEditorOnUpdate">on</P>
+                <P Name="InternalSimMechanicsExplorerSettings"/>
+              </Object>
+            </Array>
+            <P Name="Name">SimscapeMultibody</P>
+          </Object>
+        </Array>
+        <P Name="Name">Simscape</P>
+        <P Name="EditingMode">Full</P>
+        <P Name="ExplicitSolverDiagnosticOptions">warning</P>
+        <P Name="GlobalZcOffDiagnosticOptions">warning</P>
+        <P Name="SimscapeNormalizeSystem">on</P>
+        <P Name="SimscapeNominalValues">[{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;A&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;bar&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;cm^2&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;cm^3/s&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;kJ/kg&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;kW&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;l&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;N&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;N*m&quot;},{&quot;value&quot;:&quot;1&quot;,&quot;unit&quot;:&quot;V&quot;}]</P>
+        <P Name="SimscapeLogType">none</P>
+        <P Name="SimscapeLogSimulationStatistics">off</P>
+        <P Name="SimscapeLogToSDI">off</P>
+        <P Name="SimscapeLogOpenViewer">off</P>
+        <P Name="SimscapeLogName">simlog</P>
+        <P Name="SimscapeLogDecimation">1</P>
+        <P Name="SimscapeLogLimitData">on</P>
+        <P Name="SimscapeLogDataHistory">5000</P>
+        <P Name="SimscapeUseOperatingPoints">off</P>
+        <P Name="SimscapeOperatingPoint"/>
+        <P Name="SimscapeCompileComponentReuse">off</P>
+        <P Name="SelectedTab"/>
+      </Object>
+    </Array>
+    <P Name="Name">Configuration</P>
+    <P Name="CurrentDlgPage">Solver</P>
+    <P Name="ConfigPrmDlgPosition">[ 0, 0, 0, 0 ]</P>
+    <P Name="ExtraOptions"/>
+  </Object>
+</ConfigSet>
+
+__MWOPC_PART_BEGIN__ /simulink/configSetInfo.xml
+<?xml version="1.0" encoding="utf-8"?>
+<ConfigSetInfo>
+  <ConfigSet PartName="/simulink/configSet0.xml" Active="true">Configuration</ConfigSet>
+</ConfigSetInfo>
+
+__MWOPC_PART_BEGIN__ /simulink/graphicalInterface.xml
+<?xml version="1.0" encoding="utf-8"?>
+<GraphicalInterface>
+  <P Name="NumRootInports">1</P>
+  <Inport Name="Inputs">
+    <P Name="BusObject"/>
+    <P Name="BusData">{&quot;busObjects&quot;:null,&quot;leafNodes&quot;:[&quot;RoadGrade&quot;,&quot;BrakeForce&quot;],&quot;version&quot;:&quot;0&quot;}</P>
+    <P Name="OutputFunctionCall">off</P>
+    <P Name="InportServerType">off</P>
+    <P Name="SampleTime">-1</P>
+    <P Name="UnitExpr">inherit</P>
+  </Inport>
+  <P Name="NumRootOutports">1</P>
+  <Outport Name="Info">
+    <P Name="BusObject"/>
+    <P Name="BusOutputAsStruct">off</P>
+    <P Name="UnitExpr">inherit</P>
+    <P Name="OutportClientType">off</P>
+  </Outport>
+  <P Name="ParameterArgumentNames"/>
+  <P Name="NumModelReferences">0</P>
+  <P Name="NumTestPointedSignals">7</P>
+  <TestPointedSignal>
+    <P Name="SignalName">Vehicle G force</P>
+    <P Name="FullBlockPath">$bdroot/Measurement/From</P>
+    <P Name="LogSignal">1</P>
+    <P Name="MaxPoints">5000</P>
+    <P Name="Decimation">2</P>
+  </TestPointedSignal>
+  <TestPointedSignal>
+    <P Name="SignalName">Vehicle speed mph</P>
+    <P Name="FullBlockPath">$bdroot/Measurement/From1</P>
+    <P Name="LogSignal">1</P>
+    <P Name="MaxPoints">5000</P>
+    <P Name="Decimation">2</P>
+  </TestPointedSignal>
+  <TestPointedSignal>
+    <P Name="SignalName">Vehicle speed kph</P>
+    <P Name="FullBlockPath">$bdroot/Measurement/From19</P>
+    <P Name="LogSignal">1</P>
+    <P Name="MaxPoints">5000</P>
+    <P Name="Decimation">2</P>
+  </TestPointedSignal>
+  <TestPointedSignal>
+    <P Name="SignalName">Road Grade</P>
+    <P Name="FullBlockPath">$bdroot/Measurement/From20</P>
+    <P Name="LogSignal">1</P>
+    <P Name="MaxPoints">5000</P>
+    <P Name="Decimation">2</P>
+  </TestPointedSignal>
+  <TestPointedSignal>
+    <P Name="SignalName">Brake force</P>
+    <P Name="FullBlockPath">$bdroot/Measurement/From21</P>
+    <P Name="LogSignal">1</P>
+    <P Name="MaxPoints">5000</P>
+    <P Name="Decimation">2</P>
+  </TestPointedSignal>
+  <TestPointedSignal>
+    <P Name="SignalName">Axle speed</P>
+    <P Name="FullBlockPath">$bdroot/Measurement/From27</P>
+    <P Name="LogSignal">1</P>
+    <P Name="MaxPoints">5000</P>
+    <P Name="Decimation">2</P>
+  </TestPointedSignal>
+  <TestPointedSignal>
+    <P Name="SignalName">Incline</P>
+    <P Name="FullBlockPath">$bdroot/Measurement/From34</P>
+    <P Name="LogSignal">1</P>
+    <P Name="MaxPoints">5000</P>
+    <P Name="Decimation">2</P>
+  </TestPointedSignal>
+  <P Name="NumProvidedFunctions">0</P>
+  <P Name="NumRequiredFunctions">0</P>
+  <P Name="NumResetEvents">0</P>
+  <P Name="HasInitializeEvent">0</P>
+  <P Name="HasTerminateEvent">0</P>
+  <P Name="PreCompExecutionDomainType">Unset</P>
+  <P Name="UseModelRefSolver">0</P>
+  <P Name="SolverName">VariableStepAuto</P>
+  <P Name="IsExportFunctionModel">0</P>
+  <P Name="SimulinkSubDomainType">Simulink</P>
+  <P Name="NumParameterArguments">0</P>
+  <P Name="NumExternalFileReferences">7</P>
+  <ExternalFileReference>
+    <P Name="Reference">sdl_lib/Tires &amp; Vehicles/Longitudinal Vehicle</P>
+    <P Name="Path">$bdroot/Longitudinal Vehicle</P>
+    <P Name="SID">3746</P>
+    <P Name="Type">LIBRARY_BLOCK</P>
+  </ExternalFileReference>
+  <ExternalFileReference>
+    <P Name="Reference">nesl_utility/PS-Simulink
+Converter</P>
+    <P Name="Path">$bdroot/PS-Simulink Converter</P>
+    <P Name="SID">1</P>
+    <P Name="Type">LIBRARY_BLOCK</P>
+  </ExternalFileReference>
+  <ExternalFileReference>
+    <P Name="Reference">nesl_utility/PS-Simulink
+Converter</P>
+    <P Name="Path">$bdroot/PS-Simulink Converter2</P>
+    <P Name="SID">2</P>
+    <P Name="Type">LIBRARY_BLOCK</P>
+  </ExternalFileReference>
+  <ExternalFileReference>
+    <P Name="Reference">nesl_utility/PS-Simulink
+Converter</P>
+    <P Name="Path">$bdroot/PS-Simulink Converter3</P>
+    <P Name="SID">3750</P>
+    <P Name="Type">LIBRARY_BLOCK</P>
+  </ExternalFileReference>
+  <ExternalFileReference>
+    <P Name="Reference">nesl_utility/Simulink-PS
+Converter</P>
+    <P Name="Path">$bdroot/Simulink-PS Converter</P>
+    <P Name="SID">2139</P>
+    <P Name="Type">LIBRARY_BLOCK</P>
+  </ExternalFileReference>
+  <ExternalFileReference>
+    <P Name="Reference">nesl_utility/Simulink-PS
+Converter</P>
+    <P Name="Path">$bdroot/Simulink-PS Converter1</P>
+    <P Name="SID">2140</P>
+    <P Name="Type">LIBRARY_BLOCK</P>
+  </ExternalFileReference>
+  <ExternalFileReference>
+    <P Name="Reference">fl_lib/Mechanical/Mechanical Sensors/Ideal Rotational
+Motion Sensor</P>
+    <P Name="Path">$bdroot/Speed Sensor</P>
+    <P Name="SID">3751</P>
+    <P Name="Type">LIBRARY_BLOCK</P>
+  </ExternalFileReference>
+  <P Name="OrderedModelArguments">1</P>
+</GraphicalInterface>
+
+__MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<MF0 version="1.1" defaultPackage="slid" packageUris="http://schema.mathworks.com/mf0/slid/R2022b_20220222">
+  <System type="System" uuid="f462992a-c31c-46b7-932d-2a0c9ee2fc4d">
+    <Interface type="Interface" uuid="52405e32-1569-4391-8c64-9802c4b7dda5"/>
+  </System>
+</MF0>
+__MWOPC_PART_BEGIN__ /simulink/modelMask.xml
+<?xml version="1.0" encoding="utf-8"?>
+<Mask>
+  <Display IconOpaque="opaque-with-ports" RunInitForIconRedraw="off">image(&quot;Vehicle1D-icon-abstract.png&quot;);
+
+pos = get_param(gcb, &quot;Position&quot;);
+blockWidth = pos(3) - pos(1);
+blockHeight = pos(4) - pos(2);
+
+text(blockWidth*0.5, blockHeight*0.82, ...
+  &quot;Basic&quot;, ...
+  HorizontalAlignment = &apos;center&apos;);
+
+%% Corner decorations for subsystem reference
+
+% size of corner triangle
+L = 10;
+
+% lower right corner
+plot([blockWidth - L, blockWidth], [0, L])
+
+% top left corner
+plot([0, L], [blockHeight - L, blockHeight])
+</Display>
+  <DialogControl Type="Group" Name="DescGroupVar">
+    <Prompt>%&lt;MaskType&gt;</Prompt>
+    <DialogControl Type="Text" Name="DescTextVar">
+      <Prompt>%&lt;MaskDescription&gt;</Prompt>
+    </DialogControl>
+  </DialogControl>
+  <DialogControl Type="Group" Name="ParameterGroupVar">
+    <Prompt>Parameters</Prompt>
+  </DialogControl>
+</Mask>
+
+__MWOPC_PART_BEGIN__ /simulink/plugins/SimscapeModelParametersPlugin.xml
+<?xml version="1.0" encoding="utf-8"?>
+<SimscapeModelParametersPlugin>
+  <P Name="SimscapeDaeAutoSolver">ode23t</P>
+</SimscapeModelParametersPlugin>
+
+__MWOPC_PART_BEGIN__ /simulink/stateflow/machine.xml
+<?xml version="1.0" encoding="utf-8"?>
+<Stateflow>
+  <machine id="1">
+    <P Name="sfVersion">80000051</P>
+    <Children>
+      <target id="2" name="sfun">
+        <P Name="description">Default Simulink S-Function Target.</P>
+      </target>
+    </Children>
+  </machine>
+</Stateflow>
+
+__MWOPC_PART_BEGIN__ /simulink/systems/_rels/system_50148.xml.rels
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="system_50178" Target="system_50178.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
+  <Relationship Id="system_50186" Target="system_50186.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
+</Relationships>
+
+__MWOPC_PART_BEGIN__ /simulink/systems/_rels/system_root.xml.rels
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="system_3421" Target="system_3421.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
+  <Relationship Id="system_50148" Target="system_50148.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
+</Relationships>
+
+__MWOPC_PART_BEGIN__ /simulink/systems/system_3421.xml
+<?xml version="1.0" encoding="utf-8"?>
+<System>
+  <P Name="Location">[60, 60, 1200, 700]</P>
+  <Block BlockType="Inport" Name="Info" SID="50184">
+    <P Name="Position">[-355, -137, -325, -123]</P>
+    <P Name="ZOrder">26239</P>
+  </Block>
+  <Block BlockType="BusSelector" Name="Bus&#xA;Selector" SID="50185">
+    <PortCounts in="1" out="7"/>
+    <P Name="Position">[-280, -225, -275, -35]</P>
+    <P Name="ZOrder">26240</P>
+    <P Name="OutputSignals">VehSpdKph,VehSpdMph,G,AxleSpd,BrkF,Incline,Grade</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">&lt;VehSpdKph&gt;</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">&lt;VehSpdMph&gt;</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">&lt;G&gt;</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="Name">&lt;AxleSpd&gt;</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="Name">&lt;BrkF&gt;</P>
+      </Port>
+      <Port Type="out" Index="6">
+        <P Name="Name">&lt;Incline&gt;</P>
+      </Port>
+      <Port Type="out" Index="7">
+        <P Name="Name">&lt;Grade&gt;</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From" SID="3424">
+    <P Name="Position">[105, -165, 235, -145]</P>
+    <P Name="ZOrder">427</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">veh_G</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Vehicle G force</P>
+        <P Name="PropagatedSignals">G</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From1" SID="50108">
+    <P Name="Position">[105, -190, 235, -170]</P>
+    <P Name="ZOrder">26236</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">VehSpdMph</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Vehicle speed mph</P>
+        <P Name="PropagatedSignals">VehSpdMph</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From19" SID="3427">
+    <P Name="Position">[105, -215, 235, -195]</P>
+    <P Name="ZOrder">430</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">VehSpdKph</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Vehicle speed kph</P>
+        <P Name="PropagatedSignals">VehSpdKph</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From20" SID="3428">
+    <P Name="Position">[105, -65, 235, -45]</P>
+    <P Name="ZOrder">431</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">RoadGrade</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Road Grade</P>
+        <P Name="PropagatedSignals">Grade</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From21" SID="3429">
+    <P Name="Position">[105, -115, 235, -95]</P>
+    <P Name="ZOrder">432</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">BrakeForce</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Brake force</P>
+        <P Name="PropagatedSignals">BrkF</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From27" SID="3430">
+    <P Name="Position">[105, -140, 235, -120]</P>
+    <P Name="ZOrder">434</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">AxleSpd</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Axle speed</P>
+        <P Name="PropagatedSignals">AxleSpd</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From34" SID="3432">
+    <P Name="Position">[105, -90, 235, -70]</P>
+    <P Name="ZOrder">438</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">Incline</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Incline</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Goto" Name="Goto1" SID="3439">
+    <P Name="Position">[-175, -165, -45, -145]</P>
+    <P Name="ZOrder">441</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">veh_G</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto16" SID="3440">
+    <P Name="Position">[-175, -140, -45, -120]</P>
+    <P Name="ZOrder">440</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">AxleSpd</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto2" SID="3462">
+    <P Name="Position">[-175, -90, -45, -70]</P>
+    <P Name="ZOrder">449</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">Incline</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto3" SID="3463">
+    <P Name="Position">[-175, -115, -45, -95]</P>
+    <P Name="ZOrder">450</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">BrakeForce</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto33" SID="3441">
+    <P Name="Position">[-175, -215, -45, -195]</P>
+    <P Name="ZOrder">444</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">VehSpdKph</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto4" SID="3467">
+    <P Name="Position">[-175, -65, -45, -45]</P>
+    <P Name="ZOrder">452</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">RoadGrade</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto5" SID="50107">
+    <P Name="Position">[-175, -190, -45, -170]</P>
+    <P Name="ZOrder">26235</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">VehSpdMph</P>
+  </Block>
+  <Block BlockType="Scope" Name="Scope Vehicle" SID="3436">
+    <PortCounts in="7"/>
+    <P Name="Position">[390, -222, 455, -38]</P>
+    <P Name="ZOrder">437</P>
+    <P Name="ScopeSpecificationString">Simulink.scopes.TimeScopeBlockCfg(&apos;CurrentConfiguration&apos;, extmgr.ConfigurationSet(extmgr.Configuration(&apos;Core&apos;,&apos;General UI&apos;,true),extmgr.Configuration(&apos;Core&apos;,&apos;Source UI&apos;,true),extmgr.Configuration(&apos;Sources&apos;,&apos;WiredSimulink&apos;,true,&apos;DataLoggingVariableName&apos;,&apos;ScopeData1&apos;),extmgr.Configuration(&apos;Visuals&apos;,&apos;Time Domain&apos;,true,&apos;SerializedDisplays&apos;,{struct(&apos;MinYLimReal&apos;,&apos;-12.00926&apos;,&apos;MaxYLimReal&apos;,&apos;102.7511&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0.00000&apos;,&apos;MaxYLimMag&apos;,&apos;102.7511&apos;,&apos;LegendVisibility&apos;,&apos;Off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,0,&apos;LineNames&apos;,{{[]}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,1),struct(&apos;MinYLimReal&apos;,&apos;-0.23457&apos;,&apos;MaxYLimReal&apos;,&apos;0.27692&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0&apos;,&apos;MaxYLimMag&apos;,&apos;10&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,0,&apos;LineNames&apos;,{{[]}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,2),struct(&apos;MinYLimReal&apos;,&apos;-106.18518&apos;,&apos;MaxYLimReal&apos;,&apos;908.5192&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0&apos;,&apos;MaxYLimMag&apos;,&apos;10&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,0,&apos;LineNames&apos;,{{[]}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,3),struct(&apos;MinYLimReal&apos;,&apos;-1.00000&apos;,&apos;MaxYLimReal&apos;,&apos;1.00000&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0&apos;,&apos;MaxYLimMag&apos;,&apos;10&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,0,&apos;LineNames&apos;,{{[]}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,4),struct(&apos;MinYLimReal&apos;,&apos;-0.125&apos;,&apos;MaxYLimReal&apos;,&apos;1.125&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0&apos;,&apos;MaxYLimMag&apos;,&apos;10&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,0,&apos;LineNames&apos;,{{[]}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,5),struct(&apos;MinYLimReal&apos;,&apos;-1000.00000&apos;,&apos;MaxYLimReal&apos;,&apos;9000.00000&apos;,&apos;YLabelReal&apos;,&apos;&apos;,&apos;MinYLimMag&apos;,&apos;0&apos;,&apos;MaxYLimMag&apos;,&apos;10&apos;,&apos;LegendVisibility&apos;,&apos;off&apos;,&apos;XGrid&apos;,true,&apos;YGrid&apos;,true,&apos;PlotMagPhase&apos;,false,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863],&apos;Title&apos;,&apos;%&lt;SignalLabel&gt;&apos;,&apos;LinePropertiesCache&apos;,{{}},&apos;UserDefinedChannelNames&apos;,{{}},&apos;NumLines&apos;,0,&apos;LineNames&apos;,{{[]}},&apos;ShowContent&apos;,true,&apos;Placement&apos;,6)},&apos;DisplayPropertyDefaults&apos;,struct(&apos;YLabelReal&apos;,&apos;&apos;,&apos;AxesColor&apos;,[0 0 0],&apos;AxesTickColor&apos;,[0.686274509803922 0.686274509803922 0.686274509803922],&apos;ColorOrder&apos;,[0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;1 1 0.0666666666666667;0.717647058823529 0.274509803921569 1;0.392156862745098 0.831372549019608 0.0745098039215686;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863]),&apos;DisplayLayoutDimensions&apos;,[3 2],&apos;DisplayContentCache&apos;,[]),extmgr.Configuration(&apos;Tools&apos;,&apos;Plot Navigation&apos;,true,&apos;ExpandOnly&apos;,false,&apos;AutoscaleMode&apos;,&apos;Auto&apos;),extmgr.Configuration(&apos;Tools&apos;,&apos;Measurements&apos;,true,&apos;Version&apos;,&apos;2021a&apos;)),&apos;Version&apos;,&apos;2021a&apos;,&apos;Position&apos;,[92.3333333333333 921.666666666667 560 420])</P>
+    <P Name="NumInputPorts">7</P>
+    <P Name="Floating">off</P>
+  </Block>
+  <Line>
+    <P Name="Name">&lt;Incline&gt;</P>
+    <P Name="ZOrder">1</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">50185#out:6</P>
+    <P Name="Dst">3462#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;Grade&gt;</P>
+    <P Name="ZOrder">2</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">50185#out:7</P>
+    <P Name="Dst">3467#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;BrkF&gt;</P>
+    <P Name="ZOrder">3</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">50185#out:5</P>
+    <P Name="Dst">3463#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;AxleSpd&gt;</P>
+    <P Name="ZOrder">4</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">50185#out:4</P>
+    <P Name="Dst">3440#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;G&gt;</P>
+    <P Name="ZOrder">5</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">50185#out:3</P>
+    <P Name="Dst">3439#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;VehSpdMph&gt;</P>
+    <P Name="ZOrder">6</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">50185#out:2</P>
+    <P Name="Dst">50107#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;VehSpdKph&gt;</P>
+    <P Name="ZOrder">7</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">50185#out:1</P>
+    <P Name="Dst">3441#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">8</P>
+    <P Name="Src">50184#out:1</P>
+    <P Name="Dst">50185#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">Vehicle speed mph</P>
+    <P Name="ZOrder">9</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">50108#out:1</P>
+    <P Name="Dst">3436#in:2</P>
+  </Line>
+  <Line>
+    <P Name="Name">Road Grade</P>
+    <P Name="ZOrder">10</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">3428#out:1</P>
+    <P Name="Dst">3436#in:7</P>
+  </Line>
+  <Line>
+    <P Name="Name">Incline</P>
+    <P Name="ZOrder">11</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">3432#out:1</P>
+    <P Name="Dst">3436#in:6</P>
+  </Line>
+  <Line>
+    <P Name="Name">Brake force</P>
+    <P Name="ZOrder">12</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">3429#out:1</P>
+    <P Name="Dst">3436#in:5</P>
+  </Line>
+  <Line>
+    <P Name="Name">Axle speed</P>
+    <P Name="ZOrder">13</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">3430#out:1</P>
+    <P Name="Dst">3436#in:4</P>
+  </Line>
+  <Line>
+    <P Name="Name">Vehicle G force</P>
+    <P Name="ZOrder">14</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">3424#out:1</P>
+    <P Name="Dst">3436#in:3</P>
+  </Line>
+  <Line>
+    <P Name="Name">Vehicle speed kph</P>
+    <P Name="ZOrder">15</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">3427#out:1</P>
+    <P Name="Dst">3436#in:1</P>
+  </Line>
+</System>
+
+__MWOPC_PART_BEGIN__ /simulink/systems/system_50148.xml
+<?xml version="1.0" encoding="utf-8"?>
+<System>
+  <P Name="Location">[60, 60, 1200, 700]</P>
+  <List ListType="InterfaceData">
+    <P Name="Version">0</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;9f9290fc-3c27-4a39-ba3f-b79a6f4ff9c5&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;def5ef6a-7f0f-45cf-8d4e-4728eec12f55&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;af13b0db-8194-4638-9c44-f4a28c739d69&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;7410843c-fef2-4825-be0b-c3bd5b96694d&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;d82d8eab-5ba7-4be4-8e5e-fe119cb4953d&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;865b9156-ff68-4d2a-aed0-2c8a71a2c389&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;46083849-d2b3-4777-8938-230900f8e547&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;4737c2aa-d439-464e-8621-b91e1a100614&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;G&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;9f9290fc-3c27-4a39-ba3f-b79a6f4ff9c5&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;1&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;655b5884-2c98-4df4-956e-ea283ebb9618&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;4777eeab-4f9e-4e64-ac4c-270e18a1db0c&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;4737c2aa-d439-464e-8621-b91e1a100614&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;VehSpdKph&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;def5ef6a-7f0f-45cf-8d4e-4728eec12f55&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;km/hr&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;dd4389bf-3d31-426f-abb6-b1b991c20723&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;36b0e1a2-b260-4dae-9333-0022cd86b3c6&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;4737c2aa-d439-464e-8621-b91e1a100614&quot;},&quot;indexOne&quot;:3,&quot;name&quot;:&quot;VehSpdMph&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;af13b0db-8194-4638-9c44-f4a28c739d69&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;mph&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;c7a48d7d-348a-46fd-afb6-b447392f234f&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;7362d7a9-a3dd-4c15-b6ba-887c1b0b4bd1&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;4737c2aa-d439-464e-8621-b91e1a100614&quot;},&quot;indexOne&quot;:4,&quot;name&quot;:&quot;Incline&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;7410843c-fef2-4825-be0b-c3bd5b96694d&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;deg&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;fdf19672-d0c9-4b57-b687-c54c8db19585&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;43eea5bc-3131-48b0-b555-fbe96f12c636&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;4737c2aa-d439-464e-8621-b91e1a100614&quot;},&quot;indexOne&quot;:5,&quot;name&quot;:&quot;AxleSpd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;d82d8eab-5ba7-4be4-8e5e-fe119cb4953d&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rpm&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;cd6c2fb8-0ea7-4bff-a308-bea0b0c6428c&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;b13ec134-3c06-4585-b60e-a45aca720885&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;4737c2aa-d439-464e-8621-b91e1a100614&quot;},&quot;indexOne&quot;:6,&quot;name&quot;:&quot;Grade&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;865b9156-ff68-4d2a-aed0-2c8a71a2c389&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;%&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;a51637c9-3628-440c-a646-eb813bc7e0f7&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;9b482140-de0c-48f6-b157-a21d24658b00&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;4737c2aa-d439-464e-8621-b91e1a100614&quot;},&quot;indexOne&quot;:7,&quot;name&quot;:&quot;BrkF&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;46083849-d2b3-4777-8938-230900f8e547&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;c766168f-cd8a-4df1-979d-afede588b5c9&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;61d9cd69-2604-4504-90a2-855652b2db53&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;4737c2aa-d439-464e-8621-b91e1a100614&quot;},&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;84ce6edb-5f54-49a0-8081-c0d5a5956339&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;84ce6edb-5f54-49a0-8081-c0d5a5956339&quot;}}}</P>
+  </List>
+  <Block BlockType="Inport" Name="Grade" SID="50149">
+    <P Name="Position">[-225, -252, -195, -238]</P>
+    <P Name="ZOrder">451</P>
+    <P Name="NameLocation">left</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Unit">%</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">RoadGrade</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Inport" Name="BrkF" SID="50151">
+    <P Name="Position">[-225, -147, -195, -133]</P>
+    <P Name="ZOrder">445</P>
+    <P Name="NameLocation">left</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Port">2</P>
+    <P Name="Unit">N</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">BrakeForce</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Inport" Name="AxleSpd" SID="50152">
+    <P Name="Position">[-225, -107, -195, -93]</P>
+    <P Name="ZOrder">446</P>
+    <P Name="NameLocation">left</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Port">3</P>
+    <P Name="Unit">rpm</P>
+  </Block>
+  <Block BlockType="Inport" Name="VehKph" SID="50153">
+    <P Name="Position">[-225, -62, -195, -48]</P>
+    <P Name="ZOrder">447</P>
+    <P Name="NameLocation">left</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Port">4</P>
+    <P Name="Unit">km/hr</P>
+  </Block>
+  <Block BlockType="Inport" Name="G" SID="50155">
+    <P Name="Position">[-225, 38, -195, 52]</P>
+    <P Name="ZOrder">448</P>
+    <P Name="NameLocation">left</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Port">5</P>
+    <P Name="Unit">1</P>
+  </Block>
+  <Block BlockType="SubSystem" Name="Road Grade to Angle" SID="50178">
+    <PortCounts in="1" out="1"/>
+    <P Name="Position">[-50, -221, 50, -179]</P>
+    <P Name="ZOrder">26239</P>
+    <System Ref="system_50178"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="kph to mph" SID="50186">
+    <PortCounts in="1" out="1"/>
+    <P Name="Position">[-35, -38, 35, 8]</P>
+    <P Name="ZOrder">26240</P>
+    <System Ref="system_50186"/>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out" SID="50171">
+    <P Name="Position">[-90, 40, -80, 50]</P>
+    <P Name="ZOrder">26229</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">G</P>
+      <P Name="PortBlockIndex">1</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out1" SID="50172">
+    <P Name="Position">[150, -60, 160, -50]</P>
+    <P Name="ZOrder">26230</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">VehSpdKph</P>
+      <P Name="PortBlockIndex">2</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out2" SID="50173">
+    <P Name="Position">[150, -20, 160, -10]</P>
+    <P Name="ZOrder">26231</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">VehSpdMph</P>
+      <P Name="PortBlockIndex">3</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out3" SID="50174">
+    <P Name="Position">[150, -205, 160, -195]</P>
+    <P Name="ZOrder">26232</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">Incline</P>
+      <P Name="PortBlockIndex">4</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out4" SID="50175">
+    <P Name="Position">[-90, -105, -80, -95]</P>
+    <P Name="ZOrder">26233</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">AxleSpd</P>
+      <P Name="PortBlockIndex">5</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out5" SID="50176">
+    <P Name="Position">[150, -250, 160, -240]</P>
+    <P Name="ZOrder">26237</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">Grade</P>
+      <P Name="PortBlockIndex">6</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out6" SID="50177">
+    <P Name="Position">[-90, -145, -80, -135]</P>
+    <P Name="ZOrder">26238</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">BrkF</P>
+      <P Name="PortBlockIndex">7</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Line>
+    <P Name="ZOrder">1</P>
+    <P Name="Src">50186#out:1</P>
+    <P Name="Dst">50173#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">2</P>
+    <P Name="Src">50178#out:1</P>
+    <P Name="Dst">50174#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">3</P>
+    <P Name="Src">50149#out:1</P>
+    <P Name="Points">[65, 0]</P>
+    <Branch>
+      <P Name="ZOrder">4</P>
+      <P Name="Dst">50176#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">5</P>
+      <P Name="Points">[0, 45]</P>
+      <P Name="Dst">50178#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="ZOrder">6</P>
+    <P Name="Src">50151#out:1</P>
+    <P Name="Dst">50177#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">7</P>
+    <P Name="Src">50155#out:1</P>
+    <P Name="Dst">50171#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">8</P>
+    <P Name="Src">50153#out:1</P>
+    <P Name="Points">[43, 0]</P>
+    <Branch>
+      <P Name="ZOrder">9</P>
+      <P Name="Points">[297, 0]</P>
+      <P Name="Dst">50172#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">10</P>
+      <P Name="Points">[0, 40]</P>
+      <P Name="Dst">50186#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="ZOrder">11</P>
+    <P Name="Src">50152#out:1</P>
+    <P Name="Dst">50175#in:1</P>
+  </Line>
+</System>
+
+__MWOPC_PART_BEGIN__ /simulink/systems/system_50178.xml
+<?xml version="1.0" encoding="utf-8"?>
+<System>
+  <P Name="Location">[1321, 133, 2334, 930]</P>
+  <Block BlockType="Inport" Name="Grade" SID="50179">
+    <P Name="Position">[20, 103, 50, 117]</P>
+    <P Name="ZOrder">-1</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Unit">%</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">RoadGrade</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Gain" Name="Gain" SID="50180">
+    <P Name="Position">[110, 95, 155, 125]</P>
+    <P Name="ZOrder">3</P>
+    <P Name="Gain">0.01</P>
+  </Block>
+  <Block BlockType="Gain" Name="Gain1" SID="50181">
+    <P Name="Position">[305, 95, 350, 125]</P>
+    <P Name="ZOrder">5</P>
+    <P Name="Gain">180/pi</P>
+  </Block>
+  <Block BlockType="Trigonometry" Name="Trigonometric&#xA;Function" SID="50182">
+    <PortCounts in="1" out="1"/>
+    <P Name="Position">[215, 95, 245, 125]</P>
+    <P Name="ZOrder">4</P>
+    <P Name="ShowName">off</P>
+    <P Name="Operator">atan</P>
+  </Block>
+  <Block BlockType="Outport" Name="Incline" SID="50183">
+    <P Name="Position">[400, 103, 430, 117]</P>
+    <P Name="ZOrder">-2</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Unit">deg</P>
+  </Block>
+  <Line>
+    <P Name="ZOrder">1</P>
+    <P Name="Src">50180#out:1</P>
+    <P Name="Dst">50182#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">2</P>
+    <P Name="Src">50179#out:1</P>
+    <P Name="Dst">50180#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">3</P>
+    <P Name="Src">50182#out:1</P>
+    <P Name="Dst">50181#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">4</P>
+    <P Name="Src">50181#out:1</P>
+    <P Name="Dst">50183#in:1</P>
+  </Line>
+</System>
+
+__MWOPC_PART_BEGIN__ /simulink/systems/system_50186.xml
+<?xml version="1.0" encoding="utf-8"?>
+<System>
+  <P Name="Location">[128, 50, 1240, 740]</P>
+  <Block BlockType="Inport" Name="kph" SID="50187">
+    <P Name="Position">[110, 103, 140, 117]</P>
+    <P Name="ZOrder">-1</P>
+    <P Name="Unit">km/h</P>
+  </Block>
+  <Block BlockType="UnitConversion" Name="Unit Conversion" SID="50189">
+    <P Name="Position">[215, 89, 285, 131]</P>
+    <P Name="ZOrder">2</P>
+  </Block>
+  <Block BlockType="Outport" Name="mph" SID="50188">
+    <P Name="Position">[360, 103, 390, 117]</P>
+    <P Name="ZOrder">-2</P>
+    <P Name="Unit">mph</P>
+  </Block>
+  <Line>
+    <P Name="ZOrder">1</P>
+    <P Name="Src">50189#out:1</P>
+    <P Name="Dst">50188#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">2</P>
+    <P Name="Src">50187#out:1</P>
+    <P Name="Dst">50189#in:1</P>
+  </Line>
+</System>
+
+__MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
+<?xml version="1.0" encoding="utf-8"?>
+<System>
+  <P Name="Location">[60, 60, 1200, 700]</P>
+  <List ListType="InterfaceData">
+    <P Name="Version">0</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;ad1d29de-710d-4dfa-867e-6ee8707393a1&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;8a3cfa45-deae-45e7-8b3e-4f9581627953&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;bda571ae-f4dc-4b96-aa2c-95430b53f317&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;RoadGrade&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;ad1d29de-710d-4dfa-867e-6ee8707393a1&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;%&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;c22ee427-1ca7-4b44-98c1-919dccf107e4&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;9cc720a4-6557-4aa9-b53a-be991a3a1a8d&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;bda571ae-f4dc-4b96-aa2c-95430b53f317&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;BrakeForce&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;8a3cfa45-deae-45e7-8b3e-4f9581627953&quot;},&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;371b6c61-e273-4584-9da5-bc025389e206&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;3f21a306-a5c1-4b00-92a2-98fe3c63da5d&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;bda571ae-f4dc-4b96-aa2c-95430b53f317&quot;},&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;5ea28773-b6d0-4dcd-8780-bb31869f1474&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;5ea28773-b6d0-4dcd-8780-bb31869f1474&quot;}}}</P>
+  </List>
+  <P Name="ReportName">simulink-default.rpt</P>
+  <P Name="SIDHighWatermark">50190</P>
+  <Block BlockType="Inport" Name="In Bus Element" SID="2141">
+    <P Name="Position">[-35, -25, -25, -15]</P>
+    <P Name="ZOrder">26203</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Inputs</P>
+      <P Name="Element">RoadGrade</P>
+      <P Name="PortBlockIndex">1</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Inport" Name="In Bus Element1" SID="2142">
+    <P Name="Position">[-35, 65, -25, 75]</P>
+    <P Name="ZOrder">26204</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Inputs</P>
+      <P Name="Element">BrakeForce</P>
+      <P Name="PortBlockIndex">2</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="From" Name="From" SID="3449">
+    <P Name="Position">[360, -33, 420, -17]</P>
+    <P Name="ZOrder">26217</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">axle</P>
+  </Block>
+  <Block BlockType="From" Name="From2" SID="3453">
+    <P Name="Position">[360, -63, 420, -47]</P>
+    <P Name="ZOrder">26221</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">brake</P>
+  </Block>
+  <Block BlockType="From" Name="From3" SID="3456">
+    <P Name="Position">[360, -3, 420, 13]</P>
+    <P Name="ZOrder">26224</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">VehKph</P>
+  </Block>
+  <Block BlockType="From" Name="From4" SID="3457">
+    <P Name="Position">[360, 27, 420, 43]</P>
+    <P Name="ZOrder">26225</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">G</P>
+  </Block>
+  <Block BlockType="From" Name="From5" SID="3465">
+    <P Name="Position">[360, -93, 420, -77]</P>
+    <P Name="ZOrder">26227</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">grade</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto2" SID="3448">
+    <P Name="Position">[70, 212, 115, 228]</P>
+    <P Name="ZOrder">26216</P>
+    <P Name="GotoTag">axle</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto3" SID="3452">
+    <P Name="Position">[65, 31, 130, 49]</P>
+    <P Name="ZOrder">26220</P>
+    <P Name="NameLocation">top</P>
+    <P Name="GotoTag">brake</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto4" SID="3454">
+    <P Name="Position">[425, 107, 495, 123]</P>
+    <P Name="ZOrder">26222</P>
+    <P Name="NameLocation">top</P>
+    <P Name="GotoTag">VehKph</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto5" SID="3455">
+    <P Name="Position">[425, 152, 495, 168]</P>
+    <P Name="ZOrder">26223</P>
+    <P Name="GotoTag">G</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto6" SID="3464">
+    <P Name="Position">[65, -68, 120, -52]</P>
+    <P Name="ZOrder">26226</P>
+    <P Name="NameLocation">top</P>
+    <P Name="GotoTag">grade</P>
+  </Block>
+  <Block BlockType="Reference" Name="Longitudinal Vehicle" SID="3746">
+    <PortCounts lconn="3" rconn="2"/>
+    <P Name="Position">[160, 94, 302, 183]</P>
+    <P Name="ZOrder">26229</P>
+    <P Name="HideAutomaticName">off</P>
+    <P Name="AttributesFormatString">%&lt;V_x&gt; [%&lt;V_x_unit&gt;]
+Priority: %&lt;V_x_priority&gt;</P>
+    <P Name="LibraryVersion">10006000.1</P>
+    <P Name="SourceBlock">sdl_lib/Tires &amp; Vehicles/Longitudinal Vehicle</P>
+    <P Name="SourceType">Longitudinal Vehicle</P>
+    <InstanceData>
+      <P Name="LogSimulationData">off</P>
+      <P Name="SourceFile">sdl.tires.vehicle_longitudinal</P>
+      <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;Axle&quot;,&quot;label&quot;:&quot;Axle&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;v_out&quot;,&quot;label&quot;:&quot;VehSpd&quot;,&quot;type&quot;:&quot;output&quot;},{&quot;id&quot;:&quot;G_out&quot;,&quot;label&quot;:&quot;G&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[{&quot;id&quot;:&quot;brkF&quot;,&quot;label&quot;:&quot;Brake&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;grade_norm&quot;,&quot;label&quot;:&quot;NG&quot;,&quot;type&quot;:&quot;input&quot;}]}</P>
+      <P Name="SscBlockScalableBuild">off</P>
+      <P Name="ComponentPath">sdl.tires.vehicle_longitudinal</P>
+      <P Name="ComponentVariants">[&quot;sdl.tires.vehicle_longitudinal&quot;]</P>
+      <P Name="ComponentVariantNames">[&quot;vehicle_longitudinal&quot;]</P>
+      <P Name="ClassName">vehicle_longitudinal</P>
+      <P Name="SchemaVersion">1</P>
+      <P Name="vehParamType">sdl.enum.VehicleParameterizationType.RoadLoad</P>
+      <P Name="vehParamType_unit">1</P>
+      <P Name="vehParamType_conf">compiletime</P>
+      <P Name="M_vehicle">vehicle.mass_kg</P>
+      <P Name="M_vehicle_unit">kg</P>
+      <P Name="M_vehicle_conf">runtime</P>
+      <P Name="R_tireroll">vehicle.tireRollingRadius_m</P>
+      <P Name="R_tireroll_unit">m</P>
+      <P Name="R_tireroll_conf">runtime</P>
+      <P Name="C_tireroll">0.0136</P>
+      <P Name="C_tireroll_unit">1</P>
+      <P Name="C_tireroll_conf">compiletime</P>
+      <P Name="C_airdrag">0.31</P>
+      <P Name="C_airdrag_unit">1</P>
+      <P Name="C_airdrag_conf">compiletime</P>
+      <P Name="A_front">2.3</P>
+      <P Name="A_front_unit">m^2</P>
+      <P Name="A_front_conf">compiletime</P>
+      <P Name="A_rl">vehicle.roadLoadA_N</P>
+      <P Name="A_rl_unit">N</P>
+      <P Name="A_rl_conf">runtime</P>
+      <P Name="B_rl">vehicle.roadLoadB_N_per_kph</P>
+      <P Name="B_rl_unit">N/(km/hr)</P>
+      <P Name="B_rl_conf">runtime</P>
+      <P Name="C_rl">vehicle.roadLoadC_N_per_kph2</P>
+      <P Name="C_rl_unit">N/(km/hr)^2</P>
+      <P Name="C_rl_conf">runtime</P>
+      <P Name="g">vehicle.roadLoad_gravAccel_m_per_s2</P>
+      <P Name="g_unit">m/s^2</P>
+      <P Name="g_conf">runtime</P>
+      <P Name="V_1">smoothing.vehicle_speedThreshold_kph</P>
+      <P Name="V_1_unit">km/hr</P>
+      <P Name="V_1_conf">runtime</P>
+      <P Name="w_1">smoothing.vehicle_axleSpeedThreshold_rpm</P>
+      <P Name="w_1_unit">rpm</P>
+      <P Name="w_1_conf">runtime</P>
+      <P Name="ShowBrakeIn">simscape.enum.onoff.on</P>
+      <P Name="ShowBrakeIn_unit">1</P>
+      <P Name="ShowBrakeIn_conf">compiletime</P>
+      <P Name="ShowSlopeIn">simscape.enum.onoff.on</P>
+      <P Name="ShowSlopeIn_unit">1</P>
+      <P Name="ShowSlopeIn_conf">compiletime</P>
+      <P Name="SlopeInputType">sdl.enum.VehicleLongitudinalRoadSlopeInputType.Grade</P>
+      <P Name="SlopeInputType_unit">1</P>
+      <P Name="SlopeInputType_conf">compiletime</P>
+      <P Name="ShowWindIn">simscape.enum.onoff.off</P>
+      <P Name="ShowWindIn_unit">1</P>
+      <P Name="ShowWindIn_conf">compiletime</P>
+      <P Name="ShowGOut">simscape.enum.onoff.on</P>
+      <P Name="ShowGOut_unit">1</P>
+      <P Name="ShowGOut_conf">compiletime</P>
+      <P Name="air_density">1.184</P>
+      <P Name="air_density_unit">kg/m^3</P>
+      <P Name="air_density_conf">compiletime</P>
+      <P Name="V_x_specify">on</P>
+      <P Name="V_x_priority">High</P>
+      <P Name="V_x">initial.vehicle_speed_kph</P>
+      <P Name="V_x_unit">km/hr</P>
+      <P Name="V_x_nominal_specify">off</P>
+      <P Name="V_x_nominal_unit">m/s</P>
+      <P Name="V_x_nominal_value">1</P>
+      <P Name="trq_specify">off</P>
+      <P Name="trq_priority">None</P>
+      <P Name="trq">0</P>
+      <P Name="trq_unit">N*m</P>
+      <P Name="trq_nominal_specify">off</P>
+      <P Name="trq_nominal_unit">N*m</P>
+      <P Name="trq_nominal_value">1</P>
+      <P Name="w_specify">off</P>
+      <P Name="w_priority">None</P>
+      <P Name="w">0</P>
+      <P Name="w_unit">rad/s</P>
+      <P Name="w_nominal_specify">off</P>
+      <P Name="w_nominal_unit">rad/s</P>
+      <P Name="w_nominal_value">1</P>
+    </InstanceData>
+    <PortProperties>
+      <Port Type="lconn" Index="1">
+        <P Name="Rotation">0.0</P>
+        <P Name="Position">[156, 140]</P>
+      </Port>
+      <Port Type="lconn" Index="2">
+        <P Name="Rotation">-1.5707963267948966</P>
+        <P Name="Position">[195, 90]</P>
+      </Port>
+      <Port Type="lconn" Index="3">
+        <P Name="Rotation">-1.5707963267948966</P>
+        <P Name="Position">[265, 90]</P>
+      </Port>
+      <Port Type="rconn" Index="1">
+        <P Name="Rotation">0.0</P>
+        <P Name="Position">[306, 115]</P>
+      </Port>
+      <Port Type="rconn" Index="2">
+        <P Name="Rotation">0.0</P>
+        <P Name="Position">[306, 160]</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="SubSystem" Name="Measurement" SID="3421">
+    <PortCounts in="1"/>
+    <P Name="Position">[600, 5, 655, 45]</P>
+    <P Name="ZOrder">49116</P>
+    <System Ref="system_3421"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="Outputs" SID="50148">
+    <PortCounts in="5" out="1"/>
+    <P Name="Position">[460, -95, 530, 45]</P>
+    <P Name="ZOrder">49119</P>
+    <System Ref="system_50148"/>
+  </Block>
+  <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter" SID="1">
+    <PortCounts out="1" lconn="1"/>
+    <P Name="Position">[365, 107, 380, 123]</P>
+    <P Name="ZOrder">26177</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="LibraryVersion">7.0</P>
+    <P Name="SourceBlock">nesl_utility/PS-Simulink
+Converter</P>
+    <P Name="SourceType">PS-Simulink
+Converter</P>
+    <InstanceData>
+      <P Name="RTWMemSecFuncInitTerm">Inherit from model</P>
+      <P Name="RTWMemSecFuncExecute">Inherit from model</P>
+      <P Name="RTWMemSecDataConstants">Inherit from model</P>
+      <P Name="RTWMemSecDataInternal">Inherit from model</P>
+      <P Name="RTWMemSecDataParameters">Inherit from model</P>
+      <P Name="ContentPreviewEnabled">on</P>
+      <P Name="PhysicalDomain">network_engine_domain</P>
+      <P Name="SubClassName">ps_output</P>
+      <P Name="LeftPortType">input</P>
+      <P Name="RightPortType">output</P>
+      <P Name="PseudoPeriodic">off</P>
+      <P Name="Frequencies">[]</P>
+      <P Name="VectorFormat">1-D array</P>
+      <P Name="Unit">km/hr</P>
+      <P Name="AffineConversion">off</P>
+    </InstanceData>
+  </Block>
+  <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter2" SID="2">
+    <PortCounts out="1" lconn="1"/>
+    <P Name="Position">[365, 152, 380, 168]</P>
+    <P Name="ZOrder">26179</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="LibraryVersion">7.0</P>
+    <P Name="SourceBlock">nesl_utility/PS-Simulink
+Converter</P>
+    <P Name="SourceType">PS-Simulink
+Converter</P>
+    <InstanceData>
+      <P Name="RTWMemSecFuncInitTerm">Inherit from model</P>
+      <P Name="RTWMemSecFuncExecute">Inherit from model</P>
+      <P Name="RTWMemSecDataConstants">Inherit from model</P>
+      <P Name="RTWMemSecDataInternal">Inherit from model</P>
+      <P Name="RTWMemSecDataParameters">Inherit from model</P>
+      <P Name="ContentPreviewEnabled">on</P>
+      <P Name="PhysicalDomain">network_engine_domain</P>
+      <P Name="SubClassName">ps_output</P>
+      <P Name="LeftPortType">input</P>
+      <P Name="RightPortType">output</P>
+      <P Name="PseudoPeriodic">off</P>
+      <P Name="Frequencies">[]</P>
+      <P Name="VectorFormat">1-D array</P>
+      <P Name="Unit">1</P>
+      <P Name="AffineConversion">off</P>
+    </InstanceData>
+  </Block>
+  <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter3" SID="3750">
+    <PortCounts out="1" lconn="1"/>
+    <P Name="Position">[15, 212, 30, 228]</P>
+    <P Name="ZOrder">26232</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="LibraryVersion">7.0</P>
+    <P Name="SourceBlock">nesl_utility/PS-Simulink
+Converter</P>
+    <P Name="SourceType">PS-Simulink
+Converter</P>
+    <InstanceData>
+      <P Name="RTWMemSecFuncInitTerm">Inherit from model</P>
+      <P Name="RTWMemSecFuncExecute">Inherit from model</P>
+      <P Name="RTWMemSecDataConstants">Inherit from model</P>
+      <P Name="RTWMemSecDataInternal">Inherit from model</P>
+      <P Name="RTWMemSecDataParameters">Inherit from model</P>
+      <P Name="ContentPreviewEnabled">on</P>
+      <P Name="PhysicalDomain">network_engine_domain</P>
+      <P Name="SubClassName">ps_output</P>
+      <P Name="LeftPortType">input</P>
+      <P Name="RightPortType">output</P>
+      <P Name="PseudoPeriodic">off</P>
+      <P Name="Frequencies">[]</P>
+      <P Name="VectorFormat">1-D array</P>
+      <P Name="Unit">rpm</P>
+      <P Name="AffineConversion">off</P>
+    </InstanceData>
+  </Block>
+  <Block BlockType="CallbackButton" Name="Plot vehicle properties" SID="50190">
+    <P Name="Position">[545, 210, 655, 245]</P>
+    <P Name="ZOrder">49120</P>
+    <P Name="HideAutomaticName">off</P>
+    <P Name="ClickFcn">Vehicle1D_plotProperties_Basic( ...
+  ModelName = bdroot, ...
+  BlockPathToTargetSubsystem = ...
+    &quot;/Longitudinal Vehicle&quot;, ...
+  TargetBlockName = &quot;Longitudinal Vehicle&quot; );
+</P>
+    <P Name="ButtonText">Properties</P>
+  </Block>
+  <Block BlockType="SimscapeBus" Name="Simscape Bus" SID="50102">
+    <PortCounts lconn="1" rconn="1"/>
+    <P Name="Position">[-130, 124, -50, 156]</P>
+    <P Name="ZOrder">49111</P>
+    <P Name="BlockMirror">on</P>
+    <P Name="HideAutomaticName">off</P>
+    <P Name="AttributesFormatString">%&lt;ConnectionType&gt;</P>
+    <P Name="HierarchyStrings">AngSpd</P>
+    <P Name="ConnectionType">Bus: Bus_Rotational</P>
+  </Block>
+  <Block BlockType="Reference" Name="Simulink-PS&#xA;Converter" SID="2139">
+    <PortCounts in="1" rconn="1"/>
+    <P Name="Position">[215, -28, 230, -12]</P>
+    <P Name="ZOrder">26201</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="LibraryVersion">7.0</P>
+    <P Name="SourceBlock">nesl_utility/Simulink-PS
+Converter</P>
+    <P Name="SourceType">Simulink-PS
+Converter</P>
+    <InstanceData>
+      <P Name="RTWMemSecFuncInitTerm">Inherit from model</P>
+      <P Name="RTWMemSecFuncExecute">Inherit from model</P>
+      <P Name="RTWMemSecDataConstants">Inherit from model</P>
+      <P Name="RTWMemSecDataInternal">Inherit from model</P>
+      <P Name="RTWMemSecDataParameters">Inherit from model</P>
+      <P Name="ContentPreviewEnabled">off</P>
+      <P Name="PhysicalDomain">network_engine_domain</P>
+      <P Name="SubClassName">ps_input</P>
+      <P Name="LeftPortType">input</P>
+      <P Name="RightPortType">output</P>
+      <P Name="PseudoPeriodic">off</P>
+      <P Name="Frequencies">[]</P>
+      <P Name="NoiseDistribution">none</P>
+      <P Name="NoiseParameters">[]</P>
+      <P Name="Unit">1</P>
+      <P Name="AffineConversion">off</P>
+      <P Name="FilteringAndDerivatives">filter</P>
+      <P Name="SimscapeFilterOrder">1</P>
+      <P Name="InputFilterTimeConstant">0.001</P>
+      <P Name="UdotUserProvided">0</P>
+    </InstanceData>
+  </Block>
+  <Block BlockType="Reference" Name="Simulink-PS&#xA;Converter1" SID="2140">
+    <PortCounts in="1" rconn="1"/>
+    <P Name="Position">[60, 62, 75, 78]</P>
+    <P Name="ZOrder">26202</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="LibraryVersion">7.0</P>
+    <P Name="SourceBlock">nesl_utility/Simulink-PS
+Converter</P>
+    <P Name="SourceType">Simulink-PS
+Converter</P>
+    <InstanceData>
+      <P Name="RTWMemSecFuncInitTerm">Inherit from model</P>
+      <P Name="RTWMemSecFuncExecute">Inherit from model</P>
+      <P Name="RTWMemSecDataConstants">Inherit from model</P>
+      <P Name="RTWMemSecDataInternal">Inherit from model</P>
+      <P Name="RTWMemSecDataParameters">Inherit from model</P>
+      <P Name="ContentPreviewEnabled">off</P>
+      <P Name="PhysicalDomain">network_engine_domain</P>
+      <P Name="SubClassName">ps_input</P>
+      <P Name="LeftPortType">input</P>
+      <P Name="RightPortType">output</P>
+      <P Name="PseudoPeriodic">off</P>
+      <P Name="Frequencies">[]</P>
+      <P Name="NoiseDistribution">none</P>
+      <P Name="NoiseParameters">[]</P>
+      <P Name="Unit">N</P>
+      <P Name="AffineConversion">off</P>
+      <P Name="FilteringAndDerivatives">filter</P>
+      <P Name="SimscapeFilterOrder">1</P>
+      <P Name="InputFilterTimeConstant">0.001</P>
+      <P Name="UdotUserProvided">0</P>
+    </InstanceData>
+  </Block>
+  <Block BlockType="Reference" Name="Speed Sensor" SID="3751">
+    <PortCounts lconn="1" rconn="1"/>
+    <P Name="Position">[-30, 160, 10, 200]</P>
+    <P Name="ZOrder">26231</P>
+    <P Name="BlockRotation">90</P>
+    <P Name="NameLocation">right</P>
+    <P Name="HideAutomaticName">off</P>
+    <P Name="LibraryVersion">10006000.1</P>
+    <P Name="SourceBlock">fl_lib/Mechanical/Mechanical Sensors/Ideal Rotational
+Motion Sensor</P>
+    <P Name="SourceType">Ideal Rotational
+Motion Sensor</P>
+    <InstanceData>
+      <P Name="LogSimulationData">off</P>
+      <P Name="SourceFile">foundation.mechanical.sensors.angular_velocity</P>
+      <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;R&quot;,&quot;label&quot;:&quot;R&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;W&quot;,&quot;label&quot;:&quot;W&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
+      <P Name="SscBlockScalableBuild">off</P>
+      <P Name="ComponentPath">foundation.mechanical.sensors.angular_velocity</P>
+      <P Name="ComponentVariants">[&quot;foundation.mechanical.sensors.angular_velocity&quot;]</P>
+      <P Name="ComponentVariantNames">[&quot;angular_velocity&quot;]</P>
+      <P Name="ClassName">angular_velocity</P>
+      <P Name="SchemaVersion">1</P>
+      <P Name="reference">foundation.enum.MeasurementReference.absolute</P>
+      <P Name="reference_unit">1</P>
+      <P Name="reference_conf">compiletime</P>
+      <P Name="acceleration_port">false</P>
+      <P Name="acceleration_port_unit">1</P>
+      <P Name="acceleration_port_conf">compiletime</P>
+      <P Name="velocity_port">true</P>
+      <P Name="velocity_port_unit">1</P>
+      <P Name="velocity_port_conf">compiletime</P>
+      <P Name="position_port">false</P>
+      <P Name="position_port_unit">1</P>
+      <P Name="position_port_conf">compiletime</P>
+      <P Name="wrap_angle">simscape.enum.onoff.off</P>
+      <P Name="wrap_angle_unit">1</P>
+      <P Name="wrap_angle_conf">compiletime</P>
+      <P Name="offset">0</P>
+      <P Name="offset_unit">rad</P>
+      <P Name="offset_conf">compiletime</P>
+    </InstanceData>
+  </Block>
+  <Block BlockType="UnitConversion" Name="Unit Conversion" SID="2189">
+    <P Name="Position">[60, -34, 130, -6]</P>
+    <P Name="ZOrder">26209</P>
+    <P Name="HideAutomaticName">off</P>
+    <P Name="OutputType">Inherit: Inherit via back propagation</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">0-1 value</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="PMIOPort" Name="Axle" SID="50103">
+    <P Name="Position">[-190, 133, -160, 147]</P>
+    <P Name="ZOrder">49112</P>
+    <P Name="Side">Left</P>
+  </Block>
+  <Block BlockType="Outport" Name="Info" SID="50115">
+    <P Name="Position">[615, -32, 645, -18]</P>
+    <P Name="ZOrder">49115</P>
+  </Block>
+  <Line LineType="Connection">
+    <P Name="ZOrder">298</P>
+    <P Name="Src">50102#lconn:1</P>
+    <P Name="Points">[25, 0]</P>
+    <Branch ConnectType="DEST_SRC">
+      <P Name="Dst">3746#lconn:1</P>
+    </Branch>
+    <Branch ConnectType="DEST_DEST">
+      <P Name="Src">3751#lconn:1</P>
+      <P Name="Points">[0, -5]</P>
+    </Branch>
+  </Line>
+  <Line LineType="Connection">
+    <P Name="ZOrder">18326</P>
+    <P Name="Src">3746#rconn:1</P>
+    <P Name="Dst">1#lconn:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">18327</P>
+    <P Name="Src">3750#out:1</P>
+    <P Name="Dst">3448#in:1</P>
+  </Line>
+  <Line LineType="Connection">
+    <P Name="ZOrder">18328</P>
+    <P Name="Src">3751#rconn:1</P>
+    <P Name="Points">[0, 5]</P>
+    <P Name="Dst">3750#lconn:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">0-1 value</P>
+    <P Name="ZOrder">18329</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">2189#out:1</P>
+    <P Name="Dst">2139#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">18332</P>
+    <P Name="Src">2142#out:1</P>
+    <P Name="Points">[45, 0]</P>
+    <Branch>
+      <P Name="ZOrder">18331</P>
+      <P Name="Dst">2140#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">18330</P>
+      <P Name="Points">[0, -30]</P>
+      <P Name="Dst">3452#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="ZOrder">18335</P>
+    <P Name="Src">2141#out:1</P>
+    <P Name="Points">[44, 0]</P>
+    <Branch>
+      <P Name="ZOrder">18334</P>
+      <P Name="Dst">2189#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">18333</P>
+      <P Name="Points">[0, -40]</P>
+      <P Name="Dst">3464#in:1</P>
+    </Branch>
+  </Line>
+  <Line LineType="Connection">
+    <P Name="ZOrder">18336</P>
+    <P Name="Src">3746#lconn:2</P>
+    <P Name="Points">[0, -9]</P>
+    <P Name="Dst">2140#rconn:1</P>
+  </Line>
+  <Line LineType="Connection">
+    <P Name="ZOrder">18337</P>
+    <P Name="Src">3746#lconn:3</P>
+    <P Name="Points">[0, -99]</P>
+    <P Name="Dst">2139#rconn:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">18338</P>
+    <P Name="Src">2#out:1</P>
+    <P Name="Dst">3455#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">18339</P>
+    <P Name="Src">1#out:1</P>
+    <P Name="Dst">3454#in:1</P>
+  </Line>
+  <Line LineType="Connection">
+    <P Name="ZOrder">18340</P>
+    <P Name="Src">3746#rconn:2</P>
+    <P Name="Dst">2#lconn:1</P>
+  </Line>
+  <Line LineType="Connection">
+    <P Name="ZOrder">18341</P>
+    <P Name="Src">50103#rconn:1</P>
+    <P Name="Dst">50102#rconn:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">18342</P>
+    <P Name="Src">3465#out:1</P>
+    <P Name="Dst">50148#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">18343</P>
+    <P Name="Src">3453#out:1</P>
+    <P Name="Dst">50148#in:2</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">18344</P>
+    <P Name="Src">3449#out:1</P>
+    <P Name="Dst">50148#in:3</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">18345</P>
+    <P Name="Src">3456#out:1</P>
+    <P Name="Dst">50148#in:4</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">18346</P>
+    <P Name="Src">3457#out:1</P>
+    <P Name="Dst">50148#in:5</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">18349</P>
+    <P Name="Src">50148#out:1</P>
+    <P Name="Points">[24, 0]</P>
+    <Branch>
+      <P Name="ZOrder">18348</P>
+      <P Name="Points">[0, 50]</P>
+      <P Name="Dst">3421#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">18347</P>
+      <P Name="Dst">50115#in:1</P>
+    </Branch>
+  </Line>
+  <Annotation SID="2187">
+    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:12px;&quot;&gt;Copyright 2020-2023 The MathWorks, Inc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[117, 256, 344, 272]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="Interpreter">rich</P>
+    <P Name="ZOrder">-10</P>
+  </Annotation>
+</System>
+
+__MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
+<?xml version="1.0" encoding="utf-8"?>
+<WindowsInfo>
+  <Object PropName="BdWindowsInfo" ObjectID="1" ClassName="Simulink.BDWindowsInfo">
+    <Object PropName="WindowsInfo" ObjectID="2" ClassName="Simulink.WindowInfo">
+      <P Name="IsActive" Class="logical">1</P>
+      <P Name="Location" Class="double">[60.0, 60.0, 1140.0, 640.0]</P>
+      <Object PropName="ModelBrowserInfo" ObjectID="3" ClassName="Simulink.ModelBrowserInfo">
+        <P Name="Visible" Class="logical">0</P>
+        <P Name="DockPosition" Class="char">Left</P>
+        <P Name="Width" Class="int32">50</P>
+        <P Name="Height" Class="int32">50</P>
+        <P Name="Filter" Class="int32">9</P>
+        <P Name="Minimized" Class="char">Unset</P>
+      </Object>
+      <Object PropName="ExplorerBarInfo" ObjectID="4" ClassName="Simulink.ExplorerBarInfo">
+        <P Name="Visible" Class="logical">1</P>
+      </Object>
+      <Array PropName="EditorsInfo" Type="Simulink.EditorInfo" Dimension="1*4">
+        <Object ObjectID="5">
+          <P Name="IsActive" Class="logical">1</P>
+          <P Name="IsTabbed" Class="logical">1</P>
+          <P Name="ViewObjType" Class="char">SimulinkTopLevel</P>
+          <P Name="LoadSaveID" Class="char">0</P>
+          <P Name="Extents" Class="double">[1094.0, 409.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-312.4921875, -116.0]</P>
+          <P Name="SceneRectInView" Class="double">[-312.4921875, -116.0, 1094.0, 409.0]</P>
+        </Object>
+        <Object ObjectID="6">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">3231</P>
+          <P Name="Extents" Class="double">[1048.0, 458.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-298.4453125, -115.25]</P>
+          <P Name="SceneRectInView" Class="double">[-298.4453125, -115.25, 1048.0, 458.0]</P>
+        </Object>
+        <Object ObjectID="7">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">3442</P>
+          <P Name="Extents" Class="double">[1048.0, 458.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-349.0, -169.0]</P>
+          <P Name="SceneRectInView" Class="double">[-349.0, -169.0, 1048.0, 458.0]</P>
+        </Object>
+        <Object ObjectID="8">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">3421</P>
+          <P Name="Extents" Class="double">[1563.0, 696.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-336.7734375, -287.5]</P>
+          <P Name="SceneRectInView" Class="double">[-336.7734375, -287.5, 1042.0, 464.0]</P>
+        </Object>
+      </Array>
+      <Array PropName="DockComponentsInfo" Type="Simulink.DockComponentInfo" Dimension="1*2">
+        <Object ObjectID="9">
+          <P Name="Type" Class="char">Simulink:Editor:ReferencedFiles</P>
+          <P Name="ID" Class="char">Referenced Files</P>
+          <P Name="Visible" Class="logical">0</P>
+          <P Name="CreateCallback" Class="char"/>
+          <P Name="UserData" Class="char">{&quot;filterShowRefModels&quot;:&quot;true&quot;,&quot;filterShowRefSubs&quot;:&quot;true&quot;,&quot;filterShowOnlyDirtyFiles&quot;:&quot;false&quot;}
+</P>
+          <P Name="Floating" Class="logical">0</P>
+          <P Name="DockPosition" Class="char">Left</P>
+          <P Name="Width" Class="int32">640</P>
+          <P Name="Height" Class="int32">480</P>
+          <P Name="Minimized" Class="char">Unset</P>
+        </Object>
+        <Object ObjectID="10">
+          <P Name="Type" Class="char">GLUE2:PropertyInspector</P>
+          <P Name="ID" Class="char">Property Inspector</P>
+          <P Name="Visible" Class="logical">0</P>
+          <P Name="CreateCallback" Class="char"/>
+          <P Name="UserData" Class="char"/>
+          <P Name="Floating" Class="logical">0</P>
+          <P Name="DockPosition" Class="char">Right</P>
+          <P Name="Width" Class="int32">640</P>
+          <P Name="Height" Class="int32">480</P>
+          <P Name="Minimized" Class="char">Unset</P>
+        </Object>
+      </Array>
+      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABnAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAkAD///8AAAABAAABxgAAAy78AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAC1AAADLgAAAawA////AAAAAwAAAAAAAAAA/AEAAAAB+/////8AAAAAAP////8AAAFZAP///wAABGwAAAHWAAAAAQAAAAIAAAABAAAAAvwAAAAA</P>
+      <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
+      <P Name="WindowUuid" Class="char">c9547b93-6186-4af6-90e8-27432ca8acbd</P>
+    </Object>
+    <P Name="BDUuid" Class="char">aef9fdec-3de8-4f72-89fb-c3449d2dd8cd</P>
+  </Object>
+</WindowsInfo>
+
+__MWOPC_PACKAGE_END__

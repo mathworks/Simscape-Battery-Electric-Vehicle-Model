@@ -41,7 +41,7 @@ batteryHV.secondInternalResistance_Ohm = batteryHV.internalResistance_Ohm * 2;
 batteryHV.secondMeasuredVoltage_V = batteryHV.nominalVoltage_V * 0.9;
 
 %% Ambient parameters
-% Included in the battery component for thermal simulation
+% for thermal simulation
 
 batteryHV.ambientTemp_K = 273.15 + 20;
 

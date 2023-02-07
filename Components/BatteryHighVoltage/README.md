@@ -54,7 +54,7 @@ to run simulation focusing on the battery model.
 
 [url-subref]: https://www.mathworks.com/help/simulink/ug/referenced-subsystem-1.html
 
-<img src="images/image_BatteryHV_harness_model.png"
+<img src="Images/BatteryHV_harness_model_screenshot.png"
  width="700" alt="Harness Model for High Voltage Battery Component">
 
 As an example,

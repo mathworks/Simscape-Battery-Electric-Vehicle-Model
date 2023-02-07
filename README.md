@@ -2,7 +2,7 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/82250-battery-electric-vehicle-model-in-simscape)
 
-Version 1.2
+Version 1.3
 
 ## Introduction
 
@@ -40,6 +40,17 @@ in the BEV model.
 Watch the [YouTube video][url_yt] introducing the model.
 
 [url_yt]:https://www.youtube.com/watch?v=i07MNXZc42c
+
+## What's New in 1.3 (January, 2023)
+
+- High voltage battery component has been refactored.
+  It is easier to explore the battery model with the harness model.
+  Table-based battery model has been added too.
+- Detailed battery model built with custom Simscape library
+  has been removed.
+  An alternative will be provided using Simscape Battery
+  in another project.
+  This BEV project will focus on the vehicle system-level simulation.
 
 ## What's New in 1.2 (May, 2022)
 

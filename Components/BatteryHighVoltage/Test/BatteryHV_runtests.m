@@ -7,9 +7,7 @@
 RelStr = matlabRelease().Release;
 disp("This is MATLAB " + RelStr + ".")
 
-PrjRoot = currentProject().RootFolder;
-TopFolder = fullfile(PrjRoot, "Components", "BatteryHighVoltage");
-assert(isfolder(TopFolder))
+TopFolder = fullfile(currentProject().RootFolder, "Components", "BatteryHighVoltage");
 
 %% Test Suite & Runner
 
@@ -26,7 +24,6 @@ runner = matlab.unittest.TestRunner.withTextOutput( ...
 
 %% JUnit Style Test Result
 
-% Test result file is created. Don't check its existance.
 TestResultFile = "BatteryHV_TestResults_" + RelStr + ".xml";
 
 plugin = matlab.unittest.plugins.XMLPlugin.producingJUnitFormat( ...

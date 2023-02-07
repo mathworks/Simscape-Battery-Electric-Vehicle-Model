@@ -43,8 +43,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2022-10-24T09:48:52Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2023-01-29T09:01:52Z</dcterms:modified>
-  <cp:revision>1.34</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2023-02-06T14:20:58Z</dcterms:modified>
+  <cp:revision>1.37</cp:revision>
   <cp:version>R2022b</cp:version>
 </cp:coreProperties>
 
@@ -66,11 +66,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2022b Release -->
 <MathWorks_version_info>
-  <version>9.13.0.2176732</version>
+  <version>9.13.0.2182313</version>
   <release>R2022b</release>
   <description>Update 5</description>
-  <date>Jan 23 2023</date>
-  <checksum>2732432939</checksum>
+  <date>Jan 30 2023</date>
+  <checksum>578035734</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -114,7 +114,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.34&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.37&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -1467,15 +1467,37 @@ __MWOPC_PART_BEGIN__ /simulink/hdlParams.xml
 __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" defaultPackage="slid" packageUris="http://schema.mathworks.com/mf0/slid/R2022b_20220222">
-  <System type="System" uuid="d5c5410e-5977-49c3-8143-27971f968047">
-    <Interface type="Interface" uuid="636f1ef2-05d4-468f-987a-fab728fb1abf"/>
+  <System type="System" uuid="31a7f1f4-db45-4c16-b33b-875308600b11">
+    <Interface type="Interface" uuid="3d968d9c-eee0-4639-ac79-fe1ef132e982"/>
   </System>
 </MF0>
 __MWOPC_PART_BEGIN__ /simulink/modelMask.xml
 <?xml version="1.0" encoding="utf-8"?>
 <Mask>
-  <Display IconOpaque="transparent" RunInitForIconRedraw="off">image(&quot;BatteryHV-icon-abstract.png&quot;);
-disp(&quot;System-Level Table-Based&quot;)
+  <Display IconOpaque="opaque-with-ports" RunInitForIconRedraw="off">image(&quot;BatteryHV-icon-abstract.png&quot;);
+
+pos = get_param(gcb, &quot;Position&quot;);
+blockWidth = pos(3) - pos(1);
+blockHeight = pos(4) - pos(2);
+
+text(blockWidth*0.5, blockHeight*0.82, ...
+  &quot;System-Level&quot;, ...
+  HorizontalAlignment = &apos;center&apos;);
+
+text(blockWidth*0.5, blockHeight*0.6, ...
+  &quot;Table-Based&quot;, ...
+  HorizontalAlignment = &apos;center&apos;);
+
+%% Corner decorations for subsystem reference
+
+% size of corner triangle
+L = 10;
+
+% lower right corner
+plot([blockWidth - L, blockWidth], [0, L])
+
+% top left corner
+plot([0, L], [blockHeight - L, blockHeight])
 </Display>
   <DialogControl Type="Group" Name="DescGroupVar">
     <Prompt>%&lt;MaskType&gt;</Prompt>
@@ -3557,6 +3579,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[123, 64, 1267, 704]</P>
+  <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
   <P Name="SIDHighWatermark">3621</P>
   <Block BlockType="Inport" Name="Inputs" SID="17">
@@ -3915,7 +3938,6 @@ Converter</P>
     <P Name="NameLocation">right</P>
     <P Name="Port">2</P>
     <P Name="Side">Right</P>
-    <P Name="ConnectionType">Bus: Bus_HighVoltage</P>
   </Block>
   <Block BlockType="Outport" Name="Info" SID="7">
     <P Name="Position">[565, 18, 595, 32]</P>
@@ -4082,7 +4104,7 @@ Converter</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">-44</P>
+    <P Name="ZOrder">4</P>
     <P Name="FontSize">12</P>
   </Annotation>
   <Annotation SID="51">
@@ -4095,7 +4117,7 @@ Converter</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">-45</P>
+    <P Name="ZOrder">6</P>
     <P Name="FontSize">12</P>
   </Annotation>
   <Annotation SID="55">
@@ -4108,7 +4130,7 @@ Converter</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="DropShadow">on</P>
     <P Name="AnnotationType">area_annotation</P>
-    <P Name="ZOrder">-46</P>
+    <P Name="ZOrder">5</P>
     <P Name="FontSize">12</P>
   </Annotation>
   <Annotation SID="105">
@@ -4166,10 +4188,10 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="IsTabbed" Class="logical">1</P>
           <P Name="ViewObjType" Class="char">SimulinkTopLevel</P>
           <P Name="LoadSaveID" Class="char">0</P>
-          <P Name="Extents" Class="double">[1098.0, 375.0]</P>
+          <P Name="Extents" Class="double">[1098.0, 409.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-389.25, -138.46198584139347]</P>
-          <P Name="SceneRectInView" Class="double">[-389.25, -138.46198584139347, 1098.0, 375.0]</P>
+          <P Name="Offset" Class="double">[-389.25, -154.99049646034837]</P>
+          <P Name="SceneRectInView" Class="double">[-389.25, -154.99049646034837, 1098.0, 409.0]</P>
         </Object>
         <Object ObjectID="6">
           <P Name="IsActive" Class="logical">0</P>
@@ -4214,6 +4236,18 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       </Array>
       <Array PropName="DockComponentsInfo" Type="Simulink.DockComponentInfo" Dimension="1*2">
         <Object ObjectID="10">
+          <P Name="Type" Class="char">GLUE2:PropertyInspector</P>
+          <P Name="ID" Class="char">Property Inspector</P>
+          <P Name="Visible" Class="logical">0</P>
+          <P Name="CreateCallback" Class="char"/>
+          <P Name="UserData" Class="char"/>
+          <P Name="Floating" Class="logical">0</P>
+          <P Name="DockPosition" Class="char">Right</P>
+          <P Name="Width" Class="int32">640</P>
+          <P Name="Height" Class="int32">480</P>
+          <P Name="Minimized" Class="char">Unset</P>
+        </Object>
+        <Object ObjectID="11">
           <P Name="Type" Class="char">Simulink:Editor:ReferencedFiles</P>
           <P Name="ID" Class="char">Referenced Files</P>
           <P Name="Visible" Class="logical">0</P>
@@ -4226,20 +4260,8 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Height" Class="int32">480</P>
           <P Name="Minimized" Class="char">Unset</P>
         </Object>
-        <Object ObjectID="11">
-          <P Name="Type" Class="char">GLUE2:PropertyInspector</P>
-          <P Name="ID" Class="char">Property Inspector</P>
-          <P Name="Visible" Class="logical">0</P>
-          <P Name="CreateCallback" Class="char"/>
-          <P Name="UserData" Class="char"/>
-          <P Name="Floating" Class="logical">0</P>
-          <P Name="DockPosition" Class="char">Right</P>
-          <P Name="Width" Class="int32">640</P>
-          <P Name="Height" Class="int32">480</P>
-          <P Name="Minimized" Class="char">Unset</P>
-        </Object>
       </Array>
-      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAADJAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAABDwD///8AAAABAAAAAAAAAAD8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAAA/////wAAAawA////AAAAAwAAAAAAAAAA/AEAAAAB+/////8AAAAAAP////8AAAFZAP///wAABHAAAAHCAAAAAQAAAAIAAAABAAAAAvwAAAAA</P>
+      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABnAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAkAD///8AAAABAAAAAAAAAAD8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAAA/////wAAAawA////AAAAAwAAAAAAAAAA/AEAAAAB+/////8AAAAAAP////8AAAFZAP///wAABHAAAAHWAAAAAQAAAAIAAAABAAAAAvwAAAAA</P>
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">8f1b661c-3bd8-4d52-b524-462d77ec6368</P>
     </Object>
