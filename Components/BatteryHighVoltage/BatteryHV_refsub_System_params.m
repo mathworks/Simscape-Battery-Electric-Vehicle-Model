@@ -13,9 +13,9 @@ defineBus_HighVoltage
 
 %% Battery parameters
 
-batteryHV.nominalVoltage_V = 350;
+batteryHV.nominalVoltage_V = 340;
 
-batteryHV.nominalCapacity_kWh = 4;
+batteryHV.nominalCapacity_kWh = 60;
 
 batteryHV.nominalCharge_Ahr = ...
   BatteryHV_getAmpereHourRating( ...

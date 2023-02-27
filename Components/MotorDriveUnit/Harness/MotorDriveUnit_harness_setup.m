@@ -16,7 +16,8 @@ defineBus_Rotational
 % Parameters used by
 % - Basic
 % - Basic, thermal
-% - Tabulated
+% - System
+% - System, tabulated losses
 motorDriveUnit.trqMax_Nm = 420;
 motorDriveUnit.powerMax_kW = 220;
 motorDriveUnit.responseTime_s = 0.02;
@@ -28,18 +29,26 @@ motorDriveUnit.rotorDamping_Nm_per_radps = 1e-5;
 % Parameters used by
 % - Basic
 % - Basic, thermal
+% - System
 motorDriveUnit.efficiency_pct = 95;
 motorDriveUnit.spd_eff_rpm = 2000;
 motorDriveUnit.trq_eff_Nm = 50;
 
 % ==================
 % Parameters used by
+% - System
+motorDriveUnit.ironLoss_W = 55;
+motorDriveUnit.fixedLoss_W = 40;
+
+% ==================
+% Parameters used by
 % - Basic, thermal
+% - System
 motorDriveUnit.ThermalMass_J_per_K = 90e3;
 
 % ==================
 % Parameters used by
-% - Tabulated
+% - System, tabulated losses
 
 % Independent variables for loss table.
 motorDriveUnit.spdVec_rpm = [100, 450, 800, 1150, 1500];
@@ -61,12 +70,14 @@ motorDriveUnit.electricalLosses_W = ...
 % Parameters used by
 % - Basic
 % - Basic, thermal
+% - System
 
 motorDriveUnit.ambientTemp_K = 273.15 + 20;
 
 % ==================
 % Parameters used by
 % - Basic, thermal
+% - System
 
 motorDriveUnit.ambientMass_t = 10000;
 motorDriveUnit.ambientSpecificHeat_J_per_Kkg = 1000;
@@ -91,6 +102,7 @@ initial.motorDriveUnit_RotorSpd_rpm = 0;
 % ==================
 % Parameters used by
 % - Battery, thermal
+% - System
 
 initial.motorDriveUnit_Temperature_K = motorDriveUnit.ambientTemp_K;
 initial.ambientTemp_K = motorDriveUnit.ambientTemp_K;

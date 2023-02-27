@@ -1,25 +1,18 @@
-# Component / Vehicle 1D
+# Vehicle1D component
 
-Component to compute the longitudinal speed of a road vehicle.
+This is a component to compute the longitudinal speed of a road vehicle.
+The main block of this component is
+[Longitudinal Vehicle block][url-veh] from Simscape Driveline
+which is an abstract model parameterized with commonly available
+vehicle specifications such as vehicle weight, tire rolling radius, etc.
 
-The default main component subsystem uses
-[Longitudinal Vehicle block][url-1] from Simscape Driveline.
+[url-veh]:https://www.mathworks.com/help/physmod/sdl/ref/longitudinalvehicle.html
 
-[url-1]:https://www.mathworks.com/help/physmod/sdl/ref/longitudinalvehicle.html
+A vehicle is characterized by resisting force and power as shown below.
+These properties are the key information to design
+overall vehicle performance.
 
-## Harness Model
-
-<img src="images/image_Vehicle1D_harness_model.png"
- width="700" alt="Harness Model for Longitudinal Vehicle Component">
-
-## Main Component Subsystem
-
-<img src="images/image_Vehicle1D_refsub_Driveline.png"
- width="700" alt="Vehicle 1D Component">
-
-## Vehicle Property
-
-<img src="images/image_Vehicle1D_Driveline_ResistingForcePower.png"
+<img src="Utility/Images/Vehicle1D_refsub_Basic_ResistingForcePower.png"
  width="500" alt="Vehicle resisting force and power">
 
-*Copyright 2022 The MathWorks, Inc.*
+*Copyright 2022-2023 The MathWorks, Inc.*

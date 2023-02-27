@@ -1,6 +1,5 @@
-%% Takes screenshots and saves them to file.
-% This functions takes screenshots of the top layer
-% and some subsystems specified in this function.
+%% Takes screenshots and saves to file.
+% This script takes screenshots of the top layer and some subsystems.
 
 % Copyright 2022-2023 The MathWorks, Inc.
 
@@ -13,7 +12,7 @@ block_path = mdl + "/High Voltage Battery";
 BatteryHV_harness_setup
 
 imageSaveFolder = fullfile( currentProject().RootFolder, ...
-                    "Components", "BatteryHighVoltage", "Images" );
+  "Components", "BatteryHighVoltage", "Utility", "Images" );
 
 % Set referenced subsystem.
 set_param(block_path, ReferencedSubsystem = "BatteryHV_refsub_Basic")

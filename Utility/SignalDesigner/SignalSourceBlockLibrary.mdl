@@ -40,8 +40,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2023-01-05T09:17:32Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2023-01-23T08:02:12Z</dcterms:modified>
-  <cp:revision>1.23</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2023-02-20T13:22:35Z</dcterms:modified>
+  <cp:revision>1.27</cp:revision>
   <cp:version>R2022b</cp:version>
 </cp:coreProperties>
 
@@ -63,11 +63,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2022b Release -->
 <MathWorks_version_info>
-  <version>9.13.0.2166757</version>
+  <version>9.13.0.2193358</version>
   <release>R2022b</release>
-  <description>Update 4</description>
-  <date>Jan 11 2023</date>
-  <checksum>3121792574</checksum>
+  <description>Update 5</description>
+  <date>Feb 10 2023</date>
+  <checksum>3805212900</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -106,7 +106,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.23&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.27&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -885,8 +885,8 @@ __MWOPC_PART_BEGIN__ /simulink/hdlParams.xml
 __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" defaultPackage="slid" packageUris="http://schema.mathworks.com/mf0/slid/R2022b_20220222">
-  <System type="System" uuid="3be76502-454b-477e-9182-1eadf4ee9f2c">
-    <Interface type="Interface" uuid="4a3a465f-c998-4ccb-ab9b-86a25bc25d07"/>
+  <System type="System" uuid="c5a23168-9320-4453-9d7e-6909c01cdd94">
+    <Interface type="Interface" uuid="338306ef-0cdb-4a65-a1df-797d5b32cdfc"/>
   </System>
 </MF0>
 __MWOPC_PART_BEGIN__ /simulink/systems/_rels/system_root.xml.rels
@@ -901,7 +901,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/_rels/system_root.xml.rels
 __MWOPC_PART_BEGIN__ /simulink/systems/system_1.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[17, 54, 1011, 645]</P>
+  <P Name="Location">[27, 141, 1167, 781]</P>
   <Block BlockType="Lookup_n-D" Name="1-D Lookup Table" SID="2">
     <PortCounts in="1" out="1"/>
     <P Name="Position">[225, 78, 290, 142]</P>
@@ -909,8 +909,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_1.xml
     <P Name="HideAutomaticName">off</P>
     <P Name="InputPortMap">u0</P>
     <P Name="NumberOfTableDimensions">1</P>
-    <P Name="BreakpointsForDimension1">[0           1        1.05         1.1        1.15         1.2        1.25         1.3        1.35         1.4        1.45         1.5        1.55         1.6        1.65         1.7        1.75         1.8        1.85         1.9        1.95           2        2.05         2.1        2.15         2.2        2.25         2.3        2.35         2.4        2.45         2.5        2.55         2.6        2.65         2.7        2.75         2.8        2.85         2.9        2.95           3        3.05         3.1        3.15         3.2        3.25         3.3        3.35         3.4        3.45         3.5        3.55         3.6        3.65         3.7        3.75         3.8        3.85         3.9        3.95           4        4.05         4.1        4.15         4.2        4.25         4.3        4.35         4.4        4.45         4.5        4.55         4.6        4.65         4.7        4.75         4.8        4.85         4.9        4.95           5        5.05         5.1        5.15         5.2        5.25         5.3        5.35         5.4        5.45         5.5        5.55         5.6        5.65         5.7        5.75         5.8        5.85         5.9        5.95           6           8]</P>
-    <P Name="Table">[0           0    0.016594     0.06525     0.14428       0.252     0.38672     0.54675     0.73041       0.936      1.1618      1.4062      1.6675       1.944       2.234      2.5358      2.8477       3.168      3.4951      3.8273      4.1628         4.5      4.8372      5.1728      5.5049       5.832      6.1523      6.4643       6.766       7.056      7.3325      7.5938      7.8382       8.064      8.2696      8.4533      8.6133       8.748      8.8557      8.9348      8.9834           9      8.9984      8.9935      8.9855      8.9745      8.9606       8.944      8.9247      8.9028      8.8785      8.8519       8.823       8.792       8.759      8.7241      8.6875      8.6492      8.6093       8.568      8.5254      8.4815      8.4365      8.3905      8.3436       8.296      8.2477      8.1988      8.1495      8.0999        8.05           8        7.95      7.9001      7.8505      7.8012      7.7523       7.704      7.6564      7.6095      7.5635      7.5185      7.4746       7.432      7.3907      7.3508      7.3125      7.2759       7.241       7.208       7.177      7.1481      7.1215      7.0972      7.0753       7.056      7.0394      7.0255      7.0145      7.0065      7.0016           7           7]</P>
+    <P Name="BreakpointsForDimension1">sig.Data.X</P>
+    <P Name="Table">sig.Data.Y</P>
     <P Name="InternalRulePriority">Speed</P>
     <P Name="RndMeth">Simplest</P>
   </Block>
@@ -966,7 +966,7 @@ Initial output: %&lt;InitialOutput&gt;
 __MWOPC_PART_BEGIN__ /simulink/systems/system_16.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[17, 54, 1011, 645]</P>
+  <P Name="Location">[27, 141, 1167, 781]</P>
   <Block BlockType="Lookup_n-D" Name="1-D Lookup Table" SID="17">
     <PortCounts in="1" out="1"/>
     <P Name="Position">[225, 78, 290, 142]</P>
@@ -974,8 +974,10 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_16.xml
     <P Name="HideAutomaticName">off</P>
     <P Name="InputPortMap">u0</P>
     <P Name="NumberOfTableDimensions">1</P>
-    <P Name="BreakpointsForDimension1">[0        0.05         0.1        0.15         0.2        0.25         0.3        0.35         0.4        0.45         0.5        0.55         0.6        0.65         0.7        0.75         0.8        0.85         0.9        0.95           1        1.05         1.1        1.15         1.2        1.25         1.3        1.35         1.4        1.45         1.5        1.55         1.6        1.65         1.7        1.75         1.8        1.85         1.9        1.95           2        2.05         2.1        2.15         2.2        2.25         2.3        2.35         2.4        2.45         2.5        2.55         2.6        2.65         2.7        2.75         2.8        2.85         2.9        2.95           3        3.05         3.1        3.15         3.2        3.25         3.3        3.35         3.4        3.45         3.5        3.55         3.6        3.65         3.7        3.75         3.8        3.85         3.9        3.95           4        4.05         4.1        4.15         4.2        4.25         4.3        4.35         4.4        4.45         4.5        4.55         4.6        4.65         4.7        4.75         4.8        4.85         4.9        4.95           5]</P>
-    <P Name="Table">[0   -0.090264     -0.1733    -0.24874    -0.31619    -0.37528    -0.42563    -0.46685    -0.49857    -0.52041    -0.53199    -0.53294    -0.52286    -0.50138    -0.46812    -0.42271    -0.36476     -0.2939    -0.20973    -0.11189           0     0.14369     0.33286     0.56179     0.82476      1.1161        1.43      1.7608      2.1029      2.4504      2.7976      3.1389      3.4686      3.7808        4.07      4.3304      4.5562      4.7418      4.8814      4.9694           5      4.9949      4.9798      4.9553      4.9218      4.8799        4.83      4.7728      4.7086      4.6379      4.5614      4.4794      4.3925      4.3012      4.2059      4.1073      4.0057      3.9017      3.7958      3.6886      3.5804      3.4718      3.3633      3.2554      3.1486      3.0434      2.9403      2.8398      2.7425      2.6488      2.5592      2.4742      2.3943        2.32      2.2519      2.1904      2.1361      2.0893      2.0508      2.0208           2      1.9842      1.9689      1.9544      1.9409      1.9284      1.9173      1.9077      1.8997      1.8936      1.8895      1.8876      1.8881      1.8912      1.8971      1.9058      1.9177      1.9329      1.9515      1.9739           2]</P>
+    <P Name="BreakpointsForDimension1">sig.Data.X</P>
+    <P Name="Table">sig.Data.Y</P>
+    <P Name="ExtrapMethod">Clip</P>
+    <P Name="UseLastTableValue">on</P>
     <P Name="InternalRulePriority">Speed</P>
     <P Name="RndMeth">Simplest</P>
   </Block>
@@ -1031,7 +1033,7 @@ Initial output: %&lt;InitialOutput&gt;
 __MWOPC_PART_BEGIN__ /simulink/systems/system_25.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[59, 568, 1199, 1208]</P>
+  <P Name="Location">[27, 141, 1167, 781]</P>
   <Block BlockType="Lookup_n-D" Name="1-D Lookup Table" SID="26">
     <PortCounts in="1" out="1"/>
     <P Name="Position">[225, 78, 290, 142]</P>
@@ -1039,8 +1041,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_25.xml
     <P Name="HideAutomaticName">off</P>
     <P Name="InputPortMap">u0</P>
     <P Name="NumberOfTableDimensions">1</P>
-    <P Name="BreakpointsForDimension1">[0            3          3.1          3.2          3.3          3.4          3.5          3.6          3.7          3.8          3.9            4          4.1          4.2          4.3          4.4          4.5          4.6          4.7          4.8          4.9            5           11         11.1         11.2         11.3         11.4         11.5         11.6         11.7         11.8         11.9           12         12.1         12.2         12.3         12.4         12.5         12.6         12.7         12.8         12.9           13         13.1         13.2         13.3         13.4         13.5         13.6         13.7         13.8         13.9           14         14.1         14.2         14.3         14.4         14.5         14.6         14.7         14.8         14.9           15         15.1         15.2         15.3         15.4         15.5         15.6         15.7         15.8         15.9           16           26         26.1         26.2         26.3         26.4         26.5         26.6         26.7         26.8         26.9           27         27.1         27.2         27.3         27.4         27.5         27.6         27.7         27.8         27.9           28         28.1         28.2         28.3         28.4         28.5         28.6         28.7         28.8         28.9           29           33]</P>
-    <P Name="Table">[0           0      0.0145       0.056      0.1215       0.208      0.3125       0.432      0.5635       0.704      0.8505           1      1.1495       1.296      1.4365       1.568      1.6875       1.792      1.8785       1.944      1.9855           2           2      2.0024      2.0093      2.0207      2.0364       2.056      2.0795      2.1066      2.1372      2.1711       2.208      2.2478      2.2903      2.3353      2.3826       2.432      2.4833      2.5364       2.591      2.6469       2.704       2.762      2.8209      2.8803        2.94           3        3.06      3.1197      3.1791       3.238       3.296      3.3531       3.409      3.4636      3.5167       3.568      3.6174      3.6647      3.7097      3.7522       3.792      3.8289      3.8628      3.8934      3.9205       3.944      3.9636      3.9793      3.9907      3.9976           4           4       3.987       3.949       3.888      3.8056      3.7037       3.584      3.4483      3.2984       3.136       2.963       2.781       2.592      2.3976      2.1997           2      1.8003      1.6024       1.408       1.219       1.037       0.864     0.70163      0.5517       0.416      0.2963     0.19437       0.112    0.050963    0.013037           0           0]</P>
+    <P Name="BreakpointsForDimension1">sig.Data.X</P>
+    <P Name="Table">sig.Data.Y</P>
     <P Name="InternalRulePriority">Speed</P>
     <P Name="RndMeth">Simplest</P>
   </Block>
@@ -1096,7 +1098,7 @@ Initial output: %&lt;InitialOutput&gt;
 __MWOPC_PART_BEGIN__ /simulink/systems/system_5.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[17, 54, 1011, 645]</P>
+  <P Name="Location">[27, 141, 1167, 781]</P>
   <Block BlockType="Lookup_n-D" Name="1-D Lookup Table" SID="6">
     <PortCounts in="1" out="1"/>
     <P Name="Position">[225, 78, 290, 142]</P>
@@ -1104,8 +1106,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_5.xml
     <P Name="HideAutomaticName">off</P>
     <P Name="InputPortMap">u0</P>
     <P Name="NumberOfTableDimensions">1</P>
-    <P Name="BreakpointsForDimension1">[0  2  4  5]</P>
-    <P Name="Table">[1  3  2  2]</P>
+    <P Name="BreakpointsForDimension1">sig.Data.X</P>
+    <P Name="Table">sig.Data.Y</P>
     <P Name="InterpMethod">Flat</P>
     <P Name="InternalRulePriority">Speed</P>
     <P Name="RndMeth">Simplest</P>
@@ -1162,10 +1164,10 @@ Initial output: %&lt;InitialOutput&gt;
 __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[60, 60, 1200, 700]</P>
+  <P Name="Location">[47, 111, 1187, 751]</P>
   <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">28</P>
+  <P Name="SIDHighWatermark">32</P>
   <Block BlockType="SubSystem" Name="Continuous" SID="16">
     <PortCounts out="1"/>
     <P Name="Position">[435, 101, 510, 129]</P>
@@ -1188,10 +1190,6 @@ sig.XYData = dataPoints;
 sig.DeltaX = deltaT;
 
 update(sig)
-
-SignalSourceBlockCallback.setDataToLookupTableBlock( ...
-  SignalObject = sig, ...
-  PathToBlock = [gcb &apos;/1-D Lookup Table&apos;]);
 </Initialization>
       <MaskParameter Name="dataPoints" Type="edit">
         <Prompt>Data points</Prompt>
@@ -1285,10 +1283,6 @@ sig.XYData = dataPoints;
 sig.DeltaX = deltaT;
 
 update(sig)
-
-SignalSourceBlockCallback.setDataToLookupTableBlock( ...
-  SignalObject = sig, ...
-  PathToBlock = [gcb &apos;/1-D Lookup Table&apos;]);
 </Initialization>
       <MaskParameter Name="dataPoints" Type="edit">
         <Prompt>Data points</Prompt>
@@ -1381,10 +1375,6 @@ sig = SignalDesigner(&quot;PieceWiseConstant&quot;);
 sig.XYData = dataPoints;
 
 update(sig)
-
-SignalSourceBlockCallback.setDataToLookupTableBlock( ...
-  SignalObject = sig, ...
-  PathToBlock = [gcb &apos;/1-D Lookup Table&apos;]);
 </Initialization>
       <MaskParameter Name="dataPoints" Type="edit">
         <Prompt>Data points</Prompt>
@@ -1436,11 +1426,10 @@ set_param(gcb, CopyFcn = &quot;&quot;);</P>
 </Display>
       <Description>This block generates a smooth signal consisting of flat segments.</Description>
       <Initialization>
-sig = SignalDesignUtility.buildTrace( ...
+xydata = SignalDesignUtility.buildXYData( ...
   RandomSeed = randomSeed, ...
   XScale = tScale, ...
   YScale = yScale, ...
-  InterpolationStepSize = interpolationStepSize, ...
   XInitialFlatLength = tInitialFlatLength, ...
   YInitialValue = yInitialValue, ...
   NumTransitions  = numTransitions, ...
@@ -1451,21 +1440,23 @@ sig = SignalDesignUtility.buildTrace( ...
   XFinalFlatLength = tFinalFlatDuration, ...
   YFinalValue = yFinalValue );
 
-SignalSourceBlockCallback.setDataToLookupTableBlock( ...
-  SignalObject = sig, ...
-  PathToBlock = [gcb &apos;/1-D Lookup Table&apos;]);
+sig = SignalDesigner(&quot;ContinuousMultiStep&quot;);
+sig.XYData = xydata;
+sig.DeltaX = interpolationStepSize;
+
+update(sig)
 </Initialization>
-      <MaskParameter Name="randomSeed" Type="edit">
-        <Prompt>Random seed</Prompt>
-        <Value>5</Value>
+      <MaskParameter Name="yScale" Type="edit">
+        <Prompt>Data value scaler</Prompt>
+        <Value>1</Value>
       </MaskParameter>
       <MaskParameter Name="tScale" Type="edit">
         <Prompt>Time scaler</Prompt>
         <Value>1</Value>
       </MaskParameter>
-      <MaskParameter Name="yScale" Type="edit">
-        <Prompt>Data value scaler</Prompt>
-        <Value>1</Value>
+      <MaskParameter Name="randomSeed" Type="edit">
+        <Prompt>Random seed</Prompt>
+        <Value>5</Value>
       </MaskParameter>
       <MaskParameter Name="interpolationStepSize" Type="edit">
         <Prompt>Interpolation step [s]</Prompt>
@@ -1519,14 +1510,6 @@ SignalSourceBlockCallback.setDataToLookupTableBlock( ...
           <Prompt>Random seed</Prompt>
           <ControlOptions PromptLocation="left"/>
         </DialogControl>
-        <DialogControl Type="Edit" Name="tScale">
-          <Prompt>Time scaler</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="Edit" Name="yScale">
-          <Prompt>Data value scaler</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
         <DialogControl Type="Edit" Name="interpolationStepSize">
           <Prompt>Interpolation step [s]</Prompt>
           <ControlOptions PromptLocation="left"/>
@@ -1567,6 +1550,17 @@ SignalSourceBlockCallback.setDataToLookupTableBlock( ...
           <Prompt>Final data value</Prompt>
           <ControlOptions PromptLocation="left"/>
         </DialogControl>
+        <DialogControl Type="CollapsiblePanel" Name="Container3">
+          <Prompt>Advanced</Prompt>
+          <DialogControl Type="Edit" Name="yScale">
+            <Prompt>Data value scaler</Prompt>
+            <ControlOptions PromptLocation="left"/>
+          </DialogControl>
+          <DialogControl Type="Edit" Name="tScale">
+            <Prompt>Time scaler</Prompt>
+            <ControlOptions PromptLocation="left"/>
+          </DialogControl>
+        </DialogControl>
       </DialogControl>
       <DialogControl Type="Text" Name="Control3">
         <Prompt>horizontal spacer 1</Prompt>
@@ -1603,6 +1597,7 @@ p, li { white-space: pre-wrap; }
     <P Name="Position">[589, 37, 847, 73]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
+    <P Name="ZOrder">-1</P>
   </Annotation>
   <Annotation SID="12">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1675,7 +1670,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
   <Object PropName="BdWindowsInfo" ObjectID="1" ClassName="Simulink.BDWindowsInfo">
     <Object PropName="WindowsInfo" ObjectID="2" ClassName="Simulink.WindowInfo">
       <P Name="IsActive" Class="logical">1</P>
-      <P Name="Location" Class="double">[60.0, 60.0, 1140.0, 640.0]</P>
+      <P Name="Location" Class="double">[47.0, 111.0, 1140.0, 640.0]</P>
       <Object PropName="ModelBrowserInfo" ObjectID="3" ClassName="Simulink.ModelBrowserInfo">
         <P Name="Visible" Class="logical">1</P>
         <P Name="DockPosition" Class="char">Left</P>
@@ -1687,40 +1682,60 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Object PropName="ExplorerBarInfo" ObjectID="4" ClassName="Simulink.ExplorerBarInfo">
         <P Name="Visible" Class="logical">1</P>
       </Object>
-      <Array PropName="EditorsInfo" Type="Simulink.EditorInfo" Dimension="1*3">
+      <Array PropName="EditorsInfo" Type="Simulink.EditorInfo" Dimension="1*5">
         <Object ObjectID="5">
           <P Name="IsActive" Class="logical">1</P>
           <P Name="IsTabbed" Class="logical">1</P>
           <P Name="ViewObjType" Class="char">SimulinkTopLevel</P>
           <P Name="LoadSaveID" Class="char">0</P>
-          <P Name="Extents" Class="double">[998.0, 387.0]</P>
+          <P Name="Extents" Class="double">[1028.0, 409.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-80.265625, -55.5]</P>
-          <P Name="SceneRectInView" Class="double">[-80.265625, -55.5, 998.0, 387.0]</P>
+          <P Name="Offset" Class="double">[-95.265625, -66.5]</P>
+          <P Name="SceneRectInView" Class="double">[-95.265625, -66.5, 1028.0, 409.0]</P>
         </Object>
         <Object ObjectID="6">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">5</P>
-          <P Name="Extents" Class="double">[858.0, 344.0]</P>
+          <P Name="LoadSaveID" Class="char">16</P>
+          <P Name="Extents" Class="double">[1028.0, 409.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-168.49609375, -53.5]</P>
-          <P Name="SceneRectInView" Class="double">[-168.49609375, -53.5, 858.0, 344.0]</P>
+          <P Name="Offset" Class="double">[-265.7109375, -60.5]</P>
+          <P Name="SceneRectInView" Class="double">[-265.7109375, -60.5, 1028.0, 409.0]</P>
         </Object>
         <Object ObjectID="7">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">1</P>
-          <P Name="Extents" Class="double">[858.0, 343.0]</P>
+          <P Name="LoadSaveID" Class="char">25</P>
+          <P Name="Extents" Class="double">[1028.0, 409.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-180.7109375, -28.5]</P>
-          <P Name="SceneRectInView" Class="double">[-180.7109375, -28.5, 858.0, 343.0]</P>
+          <P Name="Offset" Class="double">[-265.7109375, -60.5]</P>
+          <P Name="SceneRectInView" Class="double">[-265.7109375, -60.5, 1028.0, 409.0]</P>
+        </Object>
+        <Object ObjectID="8">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">1</P>
+          <P Name="Extents" Class="double">[1028.0, 409.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-265.7109375, -61.0]</P>
+          <P Name="SceneRectInView" Class="double">[-265.7109375, -61.0, 1028.0, 409.0]</P>
+        </Object>
+        <Object ObjectID="9">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">5</P>
+          <P Name="Extents" Class="double">[1028.0, 409.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-265.7109375, -61.0]</P>
+          <P Name="SceneRectInView" Class="double">[-265.7109375, -61.0, 1028.0, 409.0]</P>
         </Object>
       </Array>
       <Array PropName="DockComponentsInfo" Type="Simulink.DockComponentInfo" Dimension="1*2">
-        <Object ObjectID="8">
+        <Object ObjectID="10">
           <P Name="Type" Class="char">GLUE2:PropertyInspector</P>
           <P Name="ID" Class="char">Property Inspector</P>
           <P Name="Visible" Class="logical">1</P>
@@ -1732,7 +1747,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Height" Class="int32">480</P>
           <P Name="Minimized" Class="char">On</P>
         </Object>
-        <Object ObjectID="9">
+        <Object ObjectID="11">
           <P Name="Type" Class="char">Simulink:Editor:ReferencedFiles</P>
           <P Name="ID" Class="char">Referenced Files</P>
           <P Name="Visible" Class="logical">0</P>
@@ -1746,7 +1761,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Minimized" Class="char">Unset</P>
         </Object>
       </Array>
-      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAACwAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAA7wD///8AAAABAAAAAAAAAAD8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAAA/////wAAAawA////AAAAAwAAAAAAAAAA/AEAAAAB+/////8AAAAAAP////8AAAFZAP///wAABAwAAAHHAAAAAQAAAAIAAAABAAAAAvwAAAADAAAAAAAAAAEAAAA2AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBMAGUAZgB0AwAAAAD/////AAAAAAAAAAAAAAABAAAAAQAAADgAYwBvAGwAbABhAHAAcwBpAGIAbABlAFAAYQBuAGUAbABUAG8AbwBsAEIAYQByAFIAaQBnAGgAdAMAAAAA/////wAAAAAAAAAAAAAAAwAAAAEAAAA6AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBCAG8AdAB0AG8AbQAAAAAA/////wAAAAAAAAAA</P>
+      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAC9AAAB+PwCAAAABPsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAABsAP////sAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAlgD///8AAAABAAAAAAAAAAD8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgAAAAAA/////wAAAawA////AAAAAwAAAAAAAAAA/AEAAAAB+/////8AAAAAAP////8AAAFZAP///wAABCoAAAHWAAAAAQAAAAIAAAABAAAAAvwAAAADAAAAAAAAAAEAAAA2AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBMAGUAZgB0AwAAAAD/////AAAAAAAAAAAAAAABAAAAAQAAADgAYwBvAGwAbABhAHAAcwBpAGIAbABlAFAAYQBuAGUAbABUAG8AbwBsAEIAYQByAFIAaQBnAGgAdAMAAAAA/////wAAAAAAAAAAAAAAAwAAAAEAAAA6AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBCAG8AdAB0AG8AbQAAAAAA/////wAAAAAAAAAA</P>
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">3fce3d09-803e-468d-8408-e10978d48109</P>
     </Object>

@@ -32,19 +32,21 @@ function blockParameters_Vehicle1D_Driveline(testCase)
   blkpath = mdl + "/Longitudinal Vehicle";
 
   actual = get_param(blkpath, 'vehParamType');
-  verifyEqual(testCase, actual, 'sdl.enum.VehicleParameterizationType.RoadLoad')
+  verifyEqual(testCase, actual, 'sdl.enum.VehicleParameterizationType.Regular')
+%   verifyEqual(testCase, actual, 'sdl.enum.VehicleParameterizationType.RoadLoad')
 
   verifyParameter(testCase, blkpath, 'M_vehicle', 'vehicle.mass_kg', 'kg')
 
   verifyParameter(testCase, blkpath, 'R_tireroll', 'vehicle.tireRollingRadius_m', 'm')
 
-  verifyParameter(testCase, blkpath, 'A_rl', 'vehicle.roadLoadA_N', 'N')
+  verifyParameter(testCase, blkpath, 'C_tireroll', 'vehicle.tireRollingCoeff', '1')
+  verifyParameter(testCase, blkpath, 'C_airdrag', 'vehicle.airDragCoeff', '1')
+  verifyParameter(testCase, blkpath, 'A_front', 'vehicle.frontalArea_m2', 'm^2')
+%   verifyParameter(testCase, blkpath, 'A_rl', 'vehicle.roadLoadA_N', 'N')
+%   verifyParameter(testCase, blkpath, 'B_rl', 'vehicle.roadLoadB_N_per_kph', 'N/(km/hr)')
+%   verifyParameter(testCase, blkpath, 'C_rl', 'vehicle.roadLoadC_N_per_kph2', 'N/(km/hr)^2')
 
-  verifyParameter(testCase, blkpath, 'B_rl', 'vehicle.roadLoadB_N_per_kph', 'N/(km/hr)')
-
-  verifyParameter(testCase, blkpath, 'C_rl', 'vehicle.roadLoadC_N_per_kph2', 'N/(km/hr)^2')
-
-  verifyParameter(testCase, blkpath, 'g', 'vehicle.roadLoad_gravAccel_m_per_s2', 'm/s^2')
+  verifyParameter(testCase, blkpath, 'g', 'vehicle.gravAccel_m_per_s2', 'm/s^2')
 
   verifyParameter(testCase, blkpath, 'V_1', 'smoothing.vehicle_speedThreshold_kph', 'km/hr')
 

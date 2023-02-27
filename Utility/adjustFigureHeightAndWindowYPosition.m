@@ -1,25 +1,22 @@
-function windowPosition = adjustFigureHeightAndWindowYPosition(fig, NewHeight)
-%% Adjusts the figure height and the Y position of Figure window.
-% Making the figure taller than the default plot window height can
-% make the top part of the window go outside the monitor screen.
-% To prevent it, lower the Y position of the window,
-% assuming that lowering the window position is more acceptable
-% because the visibility of the window top is more important/convenient
-% that of the window bottom.
+function newPosition = adjustFigureHeightAndWindowYPosition(fig)
+%% Adjusts/lowers the Y position of Figure window.
+% The top part of the figure window can go above the monitor screen,
+% making it invisible.
+% This function lowers the Y position of the window.
 
 % Copyright 2022 The MathWorks, Inc.
 
 arguments
   fig (1,1) matlab.ui.Figure
-  NewHeight (1,1) {mustBeInteger, mustBePositive}
 end
 
-pos = fig.Position;
+iniPos = fig.Position;
 
-figHeight_orig = 420;  % Default figure height
+iniY = iniPos(2);
 
-new_Y_pos = pos(2) - (NewHeight - figHeight_orig);
+% Lower the Y position.
+newY = iniY - 420;
 
-windowPosition = [pos(1), new_Y_pos, pos(3), NewHeight];
+newPosition = [iniPos(1), newY, iniPos(3), iniPos(4)];
 
 end

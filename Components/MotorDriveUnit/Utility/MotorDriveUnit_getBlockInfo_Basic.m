@@ -19,7 +19,7 @@ function info = MotorDriveUnit_getBlockInfo_Basic(fullpathToBlock, nvpairs)
 % (mechanical power, copper loss, iron loss, and nominal loss)
 % at efficiency measurement point.
 %
-% By default, the data are computed by assuming that
+% By default, data are computed by assuming that
 % the ratio of iron loss to nominal loss
 % at efficiency measurement speed is 10 percent.
 % You can specify the ratio (in percent) by passing a value to this function
@@ -33,54 +33,44 @@ function info = MotorDriveUnit_getBlockInfo_Basic(fullpathToBlock, nvpairs)
 
 arguments
   fullpathToBlock {mustBeText} = gcb
-  nvpairs.IronLossToNominalLossRatio (1,1) double {mustBeNonnegative} = 0.1;
+  nvpairs.IronToNominalLossRatio_pct (1,1) double {mustBeNonnegative} = 10;
 end
-
-% Collect mask workspace variables.
-% They have been evaluated.
-% See the documentation for Simulink.VariableUsage.
-maskVars = get_param(fullpathToBlock, "MaskWSVariables");
-varNames = string({maskVars.Name});
-varValues = {maskVars.Value};
-
-getPar = @(varName) varValues{varNames == varName};
-
-% Block parameters can have physical units.
-% To use correct units, first get the value and unit of a parameter
-% and build a Simscape value object using sscVal defined here:
-sscVal = @(varName) simscape.Value(getPar(varName), getPar(varName + "_unit"));
-% Then obtain the value in the expected unit using the value function.
 
 % ================
 % Block parameters
 
 % Maximum torque
-sv = sscVal("torque_max");
-info.MaxTorque_Nm = value(sv, "N*m");
+sv = getSimscapeValueFromBlockParameter(fullpathToBlock, "torque_max");
+maxTorque_Nm = value(sv, "N*m");
+info.MaxTorque_Nm = maxTorque_Nm;
 
 % Maximum power
-sv = sscVal("power_max");
-info.MaxPower_kW = value(sv, "kW");
+sv = getSimscapeValueFromBlockParameter(fullpathToBlock, "power_max");
+maxPower_kW = value(sv, "kW");
+info.MaxPower_kW = maxPower_kW;
 
 % Torque control time constant, Tc
-sv = sscVal("Tc");
+sv = getSimscapeValueFromBlockParameter(fullpathToBlock, "Tc");
 info.ResponseTime_s = value(sv, "s");
 
 % Motor and driver overall efficiency (percent)
-% No unit is associated. Directly get the value.
-info.Efficiency_pct = getPar("eff");
-eff_norm = info.Efficiency_pct / 100;
+% No unit is associated to this block parameter.
+sv = getSimscapeValueFromBlockParameter(fullpathToBlock, "eff");
+% Get the value by specifying "1" for unit.
+eff_pct = value(sv, "1");
+info.Efficiency_pct = eff_pct;
+eff_norm = eff_pct / 100;
 
 % Speed at which efficiency is measured
-sv = sscVal("w_eff");
-spd_eff_rpm = value(sv, "rpm");
-info.SpeedAtEfficiencyMeasurement_rpm = spd_eff_rpm;
-spd_eff_radps = spd_eff_rpm*2*pi/60;
+sv = getSimscapeValueFromBlockParameter(fullpathToBlock, "w_eff");
+spd_meas_rpm = value(sv, "rpm");
+info.Speed_measured_rpm = spd_meas_rpm;
+spd_meas_radps = spd_meas_rpm*2*pi/60;
 
 % Torque at which efficiency is measured
-sv = sscVal("T_eff");
-trq_eff_Nm = value(sv, "N*m");
-info.TorqueAtEfficiencyMeasurement_Nm = trq_eff_Nm;
+sv = getSimscapeValueFromBlockParameter(fullpathToBlock, "T_eff");
+trq_meas_Nm = value(sv, "N*m");
+info.Torque_measured_Nm = trq_meas_Nm;
 
 %{
 % Thermal port
@@ -96,21 +86,23 @@ end
 % Additional data
 
 % Mechanical power at efficiency measurement point
-mechpow_eff = spd_eff_radps * trq_eff_Nm;
-info.MechanicalPowerAtEfficiencyMeasurement_kW = mechpow_eff / 1000;
-assert( info.MechanicalPowerAtEfficiencyMeasurement_kW < info.MaxPower_kW, ...
+mechpow_eff = spd_meas_radps * trq_meas_Nm;
+mechpow_meas_kW = mechpow_eff / 1000;
+info.MechanicalPower_measurement_kW = mechpow_meas_kW;
+assert( mechpow_meas_kW < maxPower_kW, ...
   "Power at efficiency measurement speed must be smaller than maximum power.")
 
 % Nominal loss (total loss) at efficiency measurement point
-nominal_loss_eff = (1/eff_norm - 1) * mechpow_eff;
-info.NominalLossAtEfficiencyMeasurement_W = nominal_loss_eff;
+nominal_loss_meas_W = (1/eff_norm - 1) * mechpow_eff;
+info.NominalLoss_measured_W = nominal_loss_meas_W;
 
-iron_to_nominal_loss_ratio = nvpairs.IronLossToNominalLossRatio;
+iron_to_nominal_loss_ratio = nvpairs.IronToNominalLossRatio_pct / 100;
 % Iron losses at measurement speed, Piron
-iron_loss_eff = iron_to_nominal_loss_ratio * nominal_loss_eff;
-info.IronLossAtEfficiencyMeasurement_W = iron_loss_eff;
+iron_loss_meas_W = iron_to_nominal_loss_ratio * nominal_loss_meas_W;
+info.IronLoss_measured_W = iron_loss_meas_W;
 
 % Copper loss at efficiency measurement point
-info.CopperLossAtEfficiencyMeasurement_W = nominal_loss_eff - iron_loss_eff;
+copper_loss_meas_W = nominal_loss_meas_W - iron_loss_meas_W;
+info.CopperLoss_measured_W = copper_loss_meas_W;
 
 end  % function

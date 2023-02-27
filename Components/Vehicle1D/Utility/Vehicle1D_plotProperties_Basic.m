@@ -57,4 +57,8 @@ allAxes = findall(fig, type="axes");
 linkaxes(allAxes, "x")
 xlim(gca, [0 plotSpeedUpperBound_kph])
 
+% Lower the position of the plot window
+% because the top part of the plot window goes outside of the screen.
+fig.Position(2) = fig.Position(2) - 100;
+
 end  % function

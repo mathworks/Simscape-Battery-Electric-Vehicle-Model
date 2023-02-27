@@ -11,7 +11,7 @@
 
 defineBus_HighVoltage
 
-%% Battery specifications
+%% Battery parameters
 
 batteryHV.nominalVoltage_V = 340;
 

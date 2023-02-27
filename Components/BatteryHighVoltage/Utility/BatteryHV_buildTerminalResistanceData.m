@@ -25,6 +25,9 @@ BatteryHV_buildTerminalResistanceData( ...
   MakePlot = true )
 %}
 % Note that the temperature points must be sorted in strictly increasing order.
+%
+% This function is used in the BatteryHV_TableBased_buildParameters script.
+% Running the script serves as a test of this function too.
 
 % Copyright 2023 The MathWorks, Inc.
 

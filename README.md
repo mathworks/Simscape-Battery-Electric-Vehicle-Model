@@ -2,12 +2,12 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/82250-battery-electric-vehicle-model-in-simscape)
 
-Version 1.3
+Version 2.0
 
 ## Introduction
 
 This is a MATLAB&reg; Project containing
-a Battery Electric Vehicle (BEV) model and
+a [Battery Electric Vehicle (BEV) model](BEV/README.md) and
 its components such as
 motor, high voltage battery, and longitudinal vehicle.
 This project demonstrates Simscape's modular and
@@ -29,11 +29,11 @@ from the slow but detailed motor drive unit and use the result
 as the block parameter of the simple but fast motor drive block
 in the BEV model.
 
-<img src="BEV/images/image_BEV_system_model.png"
+<img src="BEV/Utility/Images/BEV_system_model_screenshot.png"
  alt="Screenshot of the battery electric vehicle model"
  width="700">
 
-<img src="BEV/images/image_BEV_sim_result_plots.png"
+<img src="BEV/results/BEV_SimulationResultPlot.png"
  alt="Screenshot of the simulation result plots"
  width="700">
 
@@ -41,32 +41,32 @@ Watch the [YouTube video][url_yt] introducing the model.
 
 [url_yt]:https://www.youtube.com/watch?v=i07MNXZc42c
 
-## What's New in 1.3 (January, 2023)
+## What's New in 2.0 (February, 2023)
 
-- High voltage battery component has been refactored.
-  It is easier to explore the battery model with the harness model.
-  Table-based battery model has been added too.
-- Detailed battery model built with custom Simscape library
+- BEV system model uses updated components and
+  has simpler and easier configurability
+  for selecting vehicle speed reference input.
+- High voltage battery component provides
+  four different models:
+  **Basic**, **System simple**, **System**, and **System tabulated**.
+  They are all system level models and abstract,
+  but they prodive different fidelity levels of the model.
+  See [README](./Components/BatteryHighVoltage/README.md) in
+  **Components > BatteryHighVoltage** for more details.
+- Motor drive unit component provides
+  four different models:
+  **Basic**, **Basic thermal**, **System**, and **System tabulated**.
+  They are all system level models and abstract,
+  but they prodive different fidelity levels of the model.
+  See [README](./Components/MotorDriveUnit/README.md) in
+  **Components > MotorDriveUnit** for more details.
+- A detailed battery model built with a custom Simscape library
   has been removed.
-  An alternative will be provided using Simscape Battery
-  in another project.
-  This BEV project will focus on the vehicle system-level simulation.
-
-## What's New in 1.2 (May, 2022)
-
-- Unit tests were added to some models.
-- GitHub Actions continuous integration is used
-  to automatically run tests when the repository
-  at github.com receives a push.
-- This project requires MATLAB R2022a or newer.
-- Abstract high-voltage battery component has
-  three different fidelity levels;
-  **isothermal** (same as before),
-  **simple thermal** (newly added using
-  System-Level Battery block from Simscape Driveline),
-  and **thermal** (newly added using
-  Battery block from Simscape Electrical).
-  They all run fast.
+  [This project][url-bev] will remain focused
+  on vehicle system-level applications using abstract models
+  in future updates.
+  A new project [Electric Vehicle Design with Simscape][url-bev-design]
+  serves as an alternative for detailed model applications.
 
 See [Change Log](ChangeLog.md) for more details.
 
@@ -105,8 +105,33 @@ click **Add** button, and select **Save to MATLAB Drive**.
 
 [url_online]: https://www.mathworks.com/products/matlab-online.html
 
+## Additional Notes
+
+- [Using MATLAB Project](docs/Using-MATLAB-Project.md)
+
+- [MATLAB Testing Framework and Beyond](docs/MATLAB-Testing-Framework.md)
+
+## See Also
+
+[Electric Vehicle Design with Simscape][url-bev-design]
+provides BEV design workflows using detailed models
+for detailed analysis.
+Note that the [BEV model in Simscape][url-bev] project is focused on
+vehicle system-level applications using abstract models.
+
+[Hybrid Electric Vehicle Model in Simscape][url-hev-powersplit]
+provides an abstract power-split HEV model.
+The level of abstraction is similar to
+the [BEV model in Simscape][url-bev] project.
+
+[url-bev]: https://www.mathworks.com/matlabcentral/fileexchange/82250
+[url-bev-design]: https://www.mathworks.com/matlabcentral/fileexchange/124795
+[url-hev-powersplit]: https://www.mathworks.com/matlabcentral/fileexchange/92820
+
 ## License
 
 See [`LICENSE.txt`](LICENSE.txt).
 
-_Copyright 2020-2022 The MathWorks, Inc._
+<hr>
+
+_Copyright 2020-2023 The MathWorks, Inc._

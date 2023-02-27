@@ -1,14 +1,14 @@
 function htmlFilePath = generateHTML()
 %% Generates HTML files from some files in the project.
-% This function returns a string containing the path to the HTML file.
+% Currently this file is considered experimental.
+%
+% This function exports a Live Script to an HTML file and saves it
+% in the `docs` folder.
+% This returns a string containing the path to the HTML file.
 % If the source file is not found, it returns an empty string.
-
-
 % If two or more files match, the first file is used.
 
-
-
-% Copyright 2022 The MathWorks, Inc.
+% Copyright 2022-2023 The MathWorks, Inc.
 
 prj = currentProject;
 rootfolder = prj.RootFolder;
@@ -35,4 +35,4 @@ htmlFilePath =  fullfile(rootfolder, "docs", htmlBaseFileName+".html");
 
 export(sourceFile, htmlFilePath, Run=true, HideCode=false);
 
-end
+end  % function

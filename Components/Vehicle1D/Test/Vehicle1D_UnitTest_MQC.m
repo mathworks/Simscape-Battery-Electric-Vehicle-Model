@@ -96,7 +96,7 @@ end
 function MQC_TestCase_1(~)
   close all
   bdclose all
-  Vehicle1D_testcase_Accelerate
+  Vehicle1D_simulationCase_Accelerate
   close all
   bdclose all
 end
@@ -104,7 +104,7 @@ end
 function MQC_TestCase_2(~)
   close all
   bdclose all
-  Vehicle1D_testcase_Braking
+  Vehicle1D_simulationCase_Braking
   close all
   bdclose all
 end
@@ -112,7 +112,7 @@ end
 function MQC_TestCase_3(~)
   close all
   bdclose all
-  Vehicle1D_testcase_Coastdown
+  Vehicle1D_simulationCase_Coastdown
   close all
   bdclose all
 end
@@ -120,7 +120,7 @@ end
 function MQC_TestCase_4(~)
   close all
   bdclose all
-  Vehicle1D_testcase_Constant
+  Vehicle1D_simulationCase_Constant
   close all
   bdclose all
 end

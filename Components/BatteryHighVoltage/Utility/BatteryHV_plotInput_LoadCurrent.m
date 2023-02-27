@@ -1,8 +1,8 @@
 function fig = BatteryHV_plotInput_LoadCurrent(nvpairs)
 %% Plots input signal defined in a model
-%
-% This functions reads the block parameters of Continuous Multi-Step block
-% and makes a plot. The model must be loaded for this function to work.
+% This functions reads the block parameters of
+% Continuous Multi-Step block and makes a plot.
+% The model must be loaded for this function to work.
 
 % Copyright 2022-2023 The MathWorks, Inc.
 
@@ -24,7 +24,7 @@ varValues = {maskVars.Value};
 dataPoints = varValues{varNames == "dataPoints"};
 deltaT = varValues{varNames == "deltaT"};
 
-sig = SignalDesigner("continuous");
+sig = SignalDesigner("ContinuousMultiStep");
 sig.XYData = dataPoints;
 sig.DeltaX = deltaT;
 

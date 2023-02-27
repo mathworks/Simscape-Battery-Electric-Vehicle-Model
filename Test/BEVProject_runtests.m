@@ -5,29 +5,16 @@
 
 % Copyright 2021-2023 The MathWorks, Inc.
 
-RelStr = matlabRelease().Release;
-disp("This is MATLAB " + RelStr + ".")
+relStr = matlabRelease().Release;
+disp("This is MATLAB " + relStr + ".")
 
-TopFolder = currentProject().RootFolder;
+topFolder = currentProject().RootFolder;
 
 %% Create test suite
 
-suite_0 = matlab.unittest.TestSuite.fromFile( ...
-  fullfile(TopFolder, "Test", "BEVProject_UnitTest_MQC.m"));
+suite = matlab.unittest.TestSuite.fromProject( currentProject );
 
-disp("Building test suite for component-level tests.")
-suite_1 = matlab.unittest.TestSuite.fromFolder( ...
-  fullfile(TopFolder, "Components"), ...
-  IncludingSubfolders = true);
-
-disp("Building test suite for system-level tests.")
-suite_2 = matlab.unittest.TestSuite.fromFolder( ...
-  fullfile(TopFolder, "BEV"), ...
-  IncludingSubfolders = true);
-
-suite = [suite_0, suite_1, suite_2];
-
-disp("### Not building test suite for detailed model applications.")
+%disp("### Not building test suite for detailed model applications.")
 
 %% Create test runner
 
@@ -37,12 +24,58 @@ runner = matlab.unittest.TestRunner.withTextOutput( ...
 %% JUnit style test result
 
 plugin = matlab.unittest.plugins.XMLPlugin.producingJUnitFormat( ...
-  fullfile(TopFolder, "Test", "BEV_TestResults_"+RelStr+".xml"));
+  fullfile(topFolder, "Test", "BEV_TestResults_"+relStr+".xml"));
+
+addPlugin(runner, plugin)
+
+%% MATLAB Code Coverage Report
+
+coverageReportFolder = fullfile(topFolder, "coverage" + relStr);
+if not(isfolder(coverageReportFolder))
+  mkdir(coverageReportFolder)
+end
+
+coverageReport = matlab.unittest.plugins.codecoverage.CoverageReport( ...
+  coverageReportFolder, ...
+  MainFile = "Project_Coverage_" + relStr + ".html" );
+
+plugin = matlab.unittest.plugins.CodeCoveragePlugin.forFile( ...
+  [ ...
+  fullfile(topFolder, "Interface", "defineBus_HighVoltage.m")
+  fullfile(topFolder, "Interface", "defineBus_Rotational.m")
+  ...
+  fullfile(topFolder, "Test", "CheckProject", "BEVProject_CheckProject.mlx")
+  ...
+  fullfile(topFolder, "Utility", "Checks", "checkCallbackButton.m")
+  ...
+  fullfile(topFolder, "Utility", "SignalDesigner", "+SignalDesignUtility", "buildTrace.m")
+  fullfile(topFolder, "Utility", "SignalDesigner", "+SignalDesignUtility", "buildXYData.m")
+  fullfile(topFolder, "Utility", "SignalDesigner", "+SignalSourceBlockCallback", "plotContinuous.m")
+  fullfile(topFolder, "Utility", "SignalDesigner", "+SignalSourceBlockCallback", "plotContinuousMultiStep.m")
+  fullfile(topFolder, "Utility", "SignalDesigner", "+SignalSourceBlockCallback", "plotPieceWiseConstant.m")
+  fullfile(topFolder, "Utility", "SignalDesigner", "+SignalSourceBlockCallback", "plotTraceGenerator.m")
+  fullfile(topFolder, "Utility", "SignalDesigner", "+SignalSourceBlockCallback", "setDataToLookupTableBlock.m")
+  fullfile(topFolder, "Utility", "SignalDesigner", "SignalDesigner.m")
+  fullfile(topFolder, "Utility", "SignalDesigner", "SignalDesigner_example.mlx")
+  ...
+  fullfile(topFolder, "Utility", "AboutBEVProject.mlx")
+  fullfile(topFolder, "Utility", "adjustFigureHeightAndWindowYPosition.m")
+  fullfile(topFolder, "Utility", "atProjectStartUp.m")
+  fullfile(topFolder, "Utility", "generateHTML.m")
+  fullfile(topFolder, "Utility", "getSimscapeValueFromBlockParameter.m")
+  fullfile(topFolder, "Utility", "plotSimulationResultSignal.m")
+  fullfile(topFolder, "Utility", "setMinimumYRange.m")
+  fullfile(topFolder, "Utility", "verifyBlockCheckbox_custom.m")
+  fullfile(topFolder, "Utility", "verifyBlockDropdown_custom.m")
+  fullfile(topFolder, "Utility", "verifyBlockInitialPriority_custom.m")
+  fullfile(topFolder, "Utility", "verifyBlockParameter_custom.m")
+  ...
+  fullfile(topFolder, "BEVProject_main_script.mlx")
+  ], ...
+  Producing = coverageReport );
 
 addPlugin(runner, plugin)
 
 %% Run tests
-
 results = run(runner, suite);
-
 assertSuccess(results)

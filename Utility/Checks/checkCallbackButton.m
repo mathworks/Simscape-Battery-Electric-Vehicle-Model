@@ -38,7 +38,11 @@ end
 
 disp(">>>>>> Checking: " + targetModel)
 
-disp("Found " + numButtons + " Callback Button block(s):")
+if numButtons >= 2
+  disp("Found " + numButtons + " Callback Button block:")
+else
+  disp("Found " + numButtons + " Callback Button blocks:")
+end
 disp(pathToCallbackButtons)
 disp(" ")
 

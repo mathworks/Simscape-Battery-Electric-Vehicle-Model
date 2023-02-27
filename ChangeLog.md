@@ -1,31 +1,73 @@
 # Change Log
 
-## Version 1.3 (January, 2023)
+## Version 2.0 (February, 2023)
 
-- Component inteface is defined by two types of Connection Bus objects.
+Architecture
+
+- BEV system model uses updated components and
+  has simpler and easier configurability
+  for selecting vehicle speed reference input.
+- Components have been updated with cleaner architectures.
+- Component inteface is defined by two types
+  of [**Connection Bus**][url-cbus] objects.
   One is for high voltage electrical connection,
   the other is for rotational connection.
   Connection bus definitons help separate architecture and implementation,
   making component connection robust and scalable in large system modeling.
-  Definition files can be found at `Interface` folder.
-- High Voltage Battery component has been revamped by
-  refactoring the models and scripts.
-  It now has a table-based battery model too.
-  Tests have also been updated.
-- A custom Simulink library of Signal Source Blocks
+  Definition files can be found in the `Interface` folder.
+
+[url-cbus]: https://www.mathworks.com/help/simulink/slref/simulink.connectionbus.html
+
+Testing
+
+- Components have individual harness models and tests.
+- Tests for each component can be run by a test runner script
+  which runs all tests in one go in each component
+  and reports pass/fail summary.
+- Test runner also measures MATLAB code coverage
+  and generates a report.
+  This allows us to perform test driven development.
+
+Components
+
+- High voltage battery component provides
+  four different models:
+  **Basic**, **System simple**, **System**, and **System tabulated**.
+  They are all system level models and abstract,
+  but they prodive different fidelity levels of the model.
+  See [README](./Components/BatteryHighVoltage/README.md) in
+  **Components > BatteryHighVoltage** for more details.
+- Motor drive unit component provides
+  four different models:
+  **Basic**, **Basic thermal**, **System**, and **System tabulated**.
+  They are all system level models and abstract,
+  but they prodive different fidelity levels of the model.
+  See [README](./Components/MotorDriveUnit/README.md) in
+  **Components > MotorDriveUnit** for more details.
+
+Input signal design
+
+- A custom Simulink library providing Signal Source Blocks
   has been added.
-  It streamlines input signal design and use.
-  Blocks are built with a custom Signal Designer class.
-  These are included in `Utility` > `SignalDesigner`.
-  In this version, the updated high voltage battery component
-  uses this tool.
-  This will be deployed to other components and BEV system model
-  in future updates.
-- Detailed battery model built with custom Simscape library
+  It streamlines the design, use, and modification of
+  input signal patterns, both continuous and discrete ones.
+  Blocks are built with a custom **Signal Designer** class.
+  These are included in the `Utility` > `SignalDesigner` folder.
+
+Detailed model applications
+
+- A detailed battery model built with a custom Simscape library
   has been removed.
-  An alternative will be provided using Simscape Battery
-  in another project.
-  This BEV project will focus on the vehicle system-level simulation.
+- [This project][url-bev] will focus on the vehicle system-level applications
+  in future updates.
+- A recently released new project
+  [Electric Vehicle Design with Simscape][url-bev-design]
+  serves as an alternative to explore detailed model applications.
+  It provides BEV design workflows using detailed models
+  for detailed analysis.
+
+[url-bev]: https://www.mathworks.com/matlabcentral/fileexchange/82250
+[url-bev-design]: https://www.mathworks.com/matlabcentral/fileexchange/124795
 
 ## Version 1.2.2 (December, 2022)
 
@@ -92,4 +134,8 @@ Models
 
 Initial release
 
-_Copyright 2021-2022 The MathWorks, Inc._
+<hr>
+
+Go to [README](../README.md) at the project top folder.
+
+_Copyright 2021-2023 The MathWorks, Inc._

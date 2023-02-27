@@ -1,6 +1,6 @@
-# Component / High Voltage Battery
+# High Voltage Battery Component
 
-This is a component to simulate the abstract dynamics
+This is a road vehicle component to simulate the abstract dynamics
 of a high voltage battery pack.
 
 This component provides four different models of a high voltage battery,
@@ -16,7 +16,7 @@ built with [Battery (System-Level) block][url-battery-driveline]
 from Simscape Driveline.
 This model has a simple equation-based terminal voltage model
 computed from the state of charge (SOC).
-This model also computes the battery temperature
+This model computes the battery temperature
 from dissipated energy.
 
 [url-battery-driveline]: https://www.mathworks.com/help/sdl/ref/batterysystemlevel.html
@@ -54,14 +54,15 @@ to run simulation focusing on the battery model.
 
 [url-subref]: https://www.mathworks.com/help/simulink/ug/referenced-subsystem-1.html
 
-<img src="Images/BatteryHV_harness_model_screenshot.png"
+<img src="Utility/Images/BatteryHV_harness_model_screenshot.png"
  width="700" alt="Harness Model for High Voltage Battery Component">
 
 As an example,
-the harness model is used in the test case scripts (`BatteryHV_testcase_*`)
+the harness model is used in simulation case scripts
+(`BatteryHV_simulationCestcase_*`) in the `SimulationCases` folder
 to test the battery models and visually inspect simulation results.
 
 To select a battery model in the harness,
-navigate to the Configuration subsystem block.
+navigate to the **Configuration** subsystem block.
 
 *Copyright 2022-2023 The MathWorks, Inc.*

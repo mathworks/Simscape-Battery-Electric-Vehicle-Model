@@ -1,6 +1,5 @@
 function fig = MotorDriveUnit_plotEfficiency(nvpairs)
-%% Makes a plot of power conversion efficiency for motor drive unit
-%
+%% Makes a plot of power conversion efficiency/losses for motor drive unit
 % This function takes arguments corresponding to block parameters
 % of the following blocks:
 %
@@ -21,30 +20,38 @@ function fig = MotorDriveUnit_plotEfficiency(nvpairs)
 %     - Parameterized by: Maximum torque and power
 %   Electrical Losses
 %     - Parameterize losses by: Single efficiency measurement
+%
+% To make an efficiency plot for other cases
+% in Motor & Drive (System Level) block,
+% use the "Plot efficiency map" link in the block Description.
 
 % Copyright 2021-2023 The MathWorks, Inc.
 
 arguments
-  nvpairs.MaxTorque_Nm (1,1) double {mustBePositive} = 163;
-  nvpairs.MaxSpeed_rpm (1,1) double {mustBePositive} = 17000;
-  nvpairs.MaxPower_kW (1,1) double {mustBePositive} = 53;
+  % In road vehicle applications,
+  % maximum motor speed is determined by vehicle top speed,
+  % tire rolling radius, and reduction gear ratio. 
+  nvpairs.MaxSpeed_rpm (1,1) double {mustBePositive} = 17000
 
-  nvpairs.Efficiency_pct (1,1) double {mustBePositive} = 95;
-  nvpairs.SpeedAtEfficiencyMeasurement_rpm (1,1) double {mustBeNonnegative} = 2000;
-  nvpairs.TorqueAtEfficiencyMeasurement_Nm (1,1) double {mustBeNonnegative} = 50;
+  nvpairs.MaxTorque_Nm (1,1) double {mustBePositive} = 163
+  nvpairs.MaxPower_kW (1,1) double {mustBePositive} = 53
 
-  % In Motor & Drive block from Siomscape Driveline,
+  nvpairs.Efficiency_pct (1,1) double {mustBePositive} = 95
+  nvpairs.Speed_measured_rpm (1,1) double {mustBeNonnegative} = 2000
+  nvpairs.Torque_measured_Nm (1,1) double {mustBeNonnegative} = 50
+
+  % In Motor & Drive block from Simscape Driveline,
   % iron loss, constant electrical loss, and rotor friction are not modelled,
   % i.e., they are 0. 
-  nvpairs.IronLossToNominalLossRatio (1,1) double {mustBeNonnegative} = 0.1;
-  nvpairs.ConstantElectricalLoss_W (1,1) double {mustBeNonnegative} = 40;
-  nvpairs.RotorDamp_Nm_per_radps (1,1) double {mustBeNonnegative} = 0.05;
+  nvpairs.IronToNominalLossRatio_pct (1,1) double {mustBeNonnegative} = 0.1
+  nvpairs.FixedLoss_W (1,1) double {mustBeNonnegative} = 40
+  nvpairs.RotorDamping_Nm_per_radps (1,1) double {mustBeNonnegative} = 0.05
 
   % Contour levels need 3 or more points for lower bound, upper bound,
   % and one or more points in between.
-  nvpairs.ContourLevels_pct (1,:) double {mustBeNonnegative} = [1 60 80 90 92 94 96 97 98 99];
+  nvpairs.ContourLevels_pct (1,:) double {mustBeNonnegative} = [1 60 80 90 92 94 96 97 98 99]
 
-  nvpairs.PlotResolution (1,1) {mustBeInteger, mustBePositive} = 500;
+  nvpairs.PlotResolution (1,1) {mustBeInteger, mustBePositive} = 500
 end
 
 trq_max_Nm = nvpairs.MaxTorque_Nm;
@@ -55,15 +62,16 @@ power_max_W = 1000* nvpairs.MaxPower_kW;
 
 eff_norm = nvpairs.Efficiency_pct/100;
 
-spd_eff_rpm = nvpairs.SpeedAtEfficiencyMeasurement_rpm;
+spd_eff_rpm = nvpairs.Speed_measured_rpm;
 
-trq_eff_Nm = nvpairs.TorqueAtEfficiencyMeasurement_Nm;
+trq_eff_Nm = nvpairs.Torque_measured_Nm;
 
-iron_to_nominal_loss_ratio = nvpairs.IronLossToNominalLossRatio;
+% normalized
+iron_to_nominal_loss_ratio = nvpairs.IronToNominalLossRatio_pct / 100;
 
-loss_const_W = nvpairs.ConstantElectricalLoss_W;
+loss_const_W = nvpairs.FixedLoss_W;
 
-k_damp = nvpairs.RotorDamp_Nm_per_radps;
+k_damp = nvpairs.RotorDamping_Nm_per_radps;
 
 contour_levels = nvpairs.ContourLevels_pct;
 assert(numel(contour_levels) > 2, ...

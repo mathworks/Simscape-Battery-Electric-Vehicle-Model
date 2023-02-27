@@ -8,7 +8,7 @@ TopFolder = currentProject().RootFolder;
 suite = matlab.unittest.TestSuite.fromFile( ...
   fullfile(TopFolder, "Components", "BatteryHighVoltage", "Test", "BatteryHV_UnitTest_MQC.m"));
 
-selectedTests = selectIf(suite, ParameterName = "@BatteryHV_useRefsub_SystemTable");
+selectedTests = selectIf(suite, ParameterName = "@BatteryHV_useRefsub_System");
 
 disp("Running these tests:")
 names = string({selectedTests.Name}');

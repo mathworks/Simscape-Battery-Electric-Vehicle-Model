@@ -1,5 +1,30 @@
 function params = BatteryHV_getBatteryPackParameters(nvpairs)
-%% Computes paramters for high voltage battery pack
+%% Computes paramters for high voltage battery pack from 
+% This function takes the following information
+%
+% - Pack nominal capacity (kWh)
+% - Pack terminal voltage (V)
+% - Cell voltage (V)
+% - Cell charge (Ah)
+%
+% and computes the following data characterising the battery
+%
+% - Cell capacity (kWh)
+% - Pack nominal charge (Ahr)
+% - Number of cells in series
+% - Charge in single string (Ahr)
+% - Number of strings in parallel
+% - Number of total cells
+%
+% and additionally the following data to help validate calculation result
+%
+% - Simulated capacity (kWh)
+% - Difference between specified and simulated capacities (kWh)
+% - Simulated terminal voltage (V)
+% - Difference in specified and simulated terminal voltage (V)
+%
+% Arguments of this function have default values.
+% You can run this function without any arguments to test that it works.
 
 % Copyright 2023 The MathWorks, Inc.
 
@@ -19,8 +44,6 @@ arguments
   %nvpairs.CellCharge_Ahr = 3.153;
   nvpairs.CellCharge_Ahr = 4.8;
 
-%   nvpairs.InitialStateOfCharge_pct (1,1) double ...
-%     {mustBeInRange(nvpairs.InitialStateOfCharge_pct, 0, 100)} = 70
 end
 
 packNominalCapacity_kWh = nvpairs.PackNominalCapacity_kWh;

@@ -1,5 +1,5 @@
 classdef MotorDriveUnit_UnitTest_MQC < matlab.unittest.TestCase
-% Class implementation of unit test
+%% Class implementation of unit test
 %
 % These are tests to achieve the Minimum Quality Criteria (MQC).
 % MQC is achieved when all runnables (models, scripts, functions) run
@@ -12,6 +12,39 @@ classdef MotorDriveUnit_UnitTest_MQC < matlab.unittest.TestCase
 % measures code coverage report.
 
 % Copyright 2021-2023 The MathWorks, Inc.
+
+%% Test combinations of battery models and simulation cases
+
+properties (TestParameter)
+  useRefSubFunction = {
+    @MotorDriveUnit_useRefsub_Basic
+    @MotorDriveUnit_useRefsub_BasicThermal
+    @MotorDriveUnit_useRefsub_System
+    @MotorDriveUnit_useRefsub_SystemTable
+    }
+  loadSimulationCaseFunction = {
+    @MotorDriveUnit_loadSimulationCase_Constant
+    @MotorDriveUnit_loadSimulationCase_Drive
+    @MotorDriveUnit_loadSimulationCase_Random
+    @MotorDriveUnit_loadSimulationCase_RegenBrake
+    }
+end
+
+methods (Test)
+  function MQC_Harness_combination_1(~, useRefSubFunction, loadSimulationCaseFunction)
+    close all
+    bdclose all
+    mdl = "MotorDriveUnit_harness_model";
+    load_system(mdl)
+    useRefSubFunction()
+    loadSimulationCaseFunction()
+    sim(mdl);
+    close all
+    bdclose all
+  end  % function
+end  % methods
+
+%% Simple tests ... just run runnables
 
 methods (Test)
 
@@ -36,7 +69,15 @@ end
 function MQC_TopFolder_3(~)
   close all
   bdclose all
-  MotorDriveUnit_refsub_Tabulated_params
+  MotorDriveUnit_refsub_System_params
+  close all
+  bdclose all
+end
+
+function MQC_TopFolder_4(~)
+  close all
+  bdclose all
+  MotorDriveUnit_refsub_SystemTable_params
   close all
   bdclose all
 end
@@ -128,7 +169,15 @@ end
 function MQC_Configurarion_useRefsub_4(~)
   close all
   bdclose all
-  MotorDriveUnit_useRefsub_Tabulated
+  MotorDriveUnit_useRefsub_System
+  close all
+  bdclose all
+end
+
+function MQC_Configurarion_useRefsub_5(~)
+  close all
+  bdclose all
+  MotorDriveUnit_useRefsub_SystemTable
   close all
   bdclose all
 end
@@ -166,7 +215,7 @@ end
 function MQC_Notes_2(~)
   close all
   bdclose all
-  MotorDriveUnit_note_Efficiency_BasicThermal
+  MotorDriveUnit_note_Efficiency_System
   close all
   bdclose all
 end
@@ -176,7 +225,7 @@ end
 function MQC_TestCases_1(~)
   close all
   bdclose all
-  MotorDriveUnit_testcase_Constant
+  MotorDriveUnit_simulationCase_Constant
   close all
   bdclose all
 end
@@ -184,7 +233,7 @@ end
 function MQC_TestCases_2(~)
   close all
   bdclose all
-  MotorDriveUnit_testcase_Drive
+  MotorDriveUnit_simulationCase_Drive
   close all
   bdclose all
 end
@@ -192,7 +241,7 @@ end
 function MQC_TestCases_3(~)
   close all
   bdclose all
-  MotorDriveUnit_testcase_Random
+  MotorDriveUnit_simulationCase_Random
   close all
   bdclose all
 end
@@ -200,7 +249,7 @@ end
 function MQC_TestCases_4(~)
   close all
   bdclose all
-  MotorDriveUnit_testcase_RegenBrake
+  MotorDriveUnit_simulationCase_RegenBrake
   close all
   bdclose all
 end
@@ -248,4 +297,34 @@ end
 % cannot run by itself, but it is called from live scripts.
 
 end  % methods (Test)
+
+%% Test callback buttons
+
+properties
+  FilesAndFolders {mustBeText} = ""
+end
+
+methods (TestClassSetup)
+  function buildFilesFoldersList(testCase)
+    projectFiles = [currentProject().Files.Path]';
+    folderChar = characterListPattern("/\");
+    ptn = "Components" + folderChar + "MotorDriveUnit" + folderChar;
+    % logical index
+    lix = contains(projectFiles, ptn);
+    testCase.FilesAndFolders = projectFiles(lix);
+  end  % function
+end  % methods
+
+methods (Test)
+  function MQC_CallbackButtons_1(testCase)
+    close all
+    bdclose all
+    mdl = "MotorDriveUnit_harness_model";
+    load_system(mdl)
+    checkCallbackButton(mdl, testCase.FilesAndFolders)
+    close all
+    bdclose all
+  end  % function
+end  % methods
+
 end  % classdef

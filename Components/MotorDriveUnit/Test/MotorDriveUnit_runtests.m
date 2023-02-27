@@ -39,29 +39,37 @@ coverageReport = matlab.unittest.plugins.codecoverage.CoverageReport( ...
 
 plugin = matlab.unittest.plugins.CodeCoveragePlugin.forFile( ...
   [ ...
-  fullfile(TopFolder, "Configuration", "MotorDriveUnit_loadSimulationCase.m")
-  fullfile(TopFolder, "Configuration", "MotorDriveUnit_loadSimulationCase_Constant.m")
-  fullfile(TopFolder, "Configuration", "MotorDriveUnit_loadSimulationCase_Drive.m")
-  fullfile(TopFolder, "Configuration", "MotorDriveUnit_loadSimulationCase_Random.m")
-  fullfile(TopFolder, "Configuration", "MotorDriveUnit_loadSimulationCase_RegenBrake.m")
-  fullfile(TopFolder, "Configuration", "MotorDriveUnit_setInitialConditions.m")
-  fullfile(TopFolder, "Configuration", "MotorDriveUnit_useRefsub.m")
-  fullfile(TopFolder, "Configuration", "MotorDriveUnit_useRefsub_Basic.m")
-  fullfile(TopFolder, "Configuration", "MotorDriveUnit_useRefsub_BasicThermal.m")
-  fullfile(TopFolder, "Configuration", "MotorDriveUnit_useRefsub_Tabulated.m")
   fullfile(TopFolder, "Harness", "MotorDriveUnit_harness_setup.m")
-  fullfile(TopFolder, "Notes", "MotorDriveUnit_note_Efficiency_Basic.mlx")
-  fullfile(TopFolder, "Notes", "MotorDriveUnit_note_Efficiency_BasicThermal.mlx")
-  fullfile(TopFolder, "TestCases", "MotorDriveUnit_testcase_Constant.mlx")
-  fullfile(TopFolder, "TestCases", "MotorDriveUnit_testcase_Drive.mlx")
-  fullfile(TopFolder, "TestCases", "MotorDriveUnit_testcase_Random.mlx")
-  fullfile(TopFolder, "TestCases", "MotorDriveUnit_testcase_RegenBrake.mlx")
+  ...
+  fullfile(TopFolder, "Notes-Efficiency", "MotorDriveUnit_note_Efficiency_Basic.mlx")
+  fullfile(TopFolder, "Notes-Efficiency", "MotorDriveUnit_note_Efficiency_System.mlx")
+  ...
+  fullfile(TopFolder, "SimulationCases", "MotorDriveUnit_simulationCase_Constant.mlx")
+  fullfile(TopFolder, "SimulationCases", "MotorDriveUnit_simulationCase_Drive.mlx")
+  fullfile(TopFolder, "SimulationCases", "MotorDriveUnit_simulationCase_Random.mlx")
+  fullfile(TopFolder, "SimulationCases", "MotorDriveUnit_simulationCase_RegenBrake.mlx")
+  ...
+  fullfile(TopFolder, "Utility", "Configuration", "MotorDriveUnit_loadSimulationCase.m")
+  fullfile(TopFolder, "Utility", "Configuration", "MotorDriveUnit_loadSimulationCase_Constant.m")
+  fullfile(TopFolder, "Utility", "Configuration", "MotorDriveUnit_loadSimulationCase_Drive.m")
+  fullfile(TopFolder, "Utility", "Configuration", "MotorDriveUnit_loadSimulationCase_Random.m")
+  fullfile(TopFolder, "Utility", "Configuration", "MotorDriveUnit_loadSimulationCase_RegenBrake.m")
+  fullfile(TopFolder, "Utility", "Configuration", "MotorDriveUnit_setInitialConditions.m")
+  fullfile(TopFolder, "Utility", "Configuration", "MotorDriveUnit_useRefsub.m")
+  fullfile(TopFolder, "Utility", "Configuration", "MotorDriveUnit_useRefsub_Basic.m")
+  fullfile(TopFolder, "Utility", "Configuration", "MotorDriveUnit_useRefsub_BasicThermal.m")
+  fullfile(TopFolder, "Utility", "Configuration", "MotorDriveUnit_useRefsub_System.m")
+  fullfile(TopFolder, "Utility", "Configuration", "MotorDriveUnit_useRefsub_SystemTable.m")
+  ...
   fullfile(TopFolder, "Utility", "MotorDriveUnit_getBlockInfo_Basic.m")
   fullfile(TopFolder, "Utility", "MotorDriveUnit_plotEfficiency.m")
   fullfile(TopFolder, "Utility", "MotorDriveUnit_plotEfficiency_Basic.m")
+  fullfile(TopFolder, "Utility", "MotorDriveUnit_plotResults.m")
+  ...
   fullfile(TopFolder, "MotorDriveUnit_refsub_Basic_params.m")
   fullfile(TopFolder, "MotorDriveUnit_refsub_BasicThermal_params.m")
-  fullfile(TopFolder, "MotorDriveUnit_refsub_Tabulated_params.m")
+  fullfile(TopFolder, "MotorDriveUnit_refsub_System_params.m")
+  fullfile(TopFolder, "MotorDriveUnit_refsub_SystemTable_params.m")
   ], ...
   Producing = coverageReport );
 

@@ -29,7 +29,7 @@ batteryHV.internalResistance_Ohm = 0.01;
 batteryHV.measuredVoltage_V = batteryHV.nominalVoltage_V * 0.9;
 batteryHV.measuredCharge_Ahr = batteryHV.nominalCharge_Ahr * 0.5;
 
-batteryHV.ThermalMass_kJ_per_K = 0.1;
+batteryHV.ThermalMass_J_per_K = 300;
 
 %% Ambient parameters
 % Included in the battery component for thermal simulation

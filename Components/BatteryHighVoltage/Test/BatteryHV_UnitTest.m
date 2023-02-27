@@ -16,6 +16,7 @@ function blockParameters_BatteryHV_Basic(testCase)
   bdclose all
 
   mdl = "BatteryHV_refsub_Basic";
+  BatteryHV_refsub_Basic_params
   load_system(mdl)
 
   blkpath = mdl + "/DC Voltage Source";
@@ -48,6 +49,7 @@ function blockParameters_BatteryHV_Driveline(testCase)
   bdclose all
 
   mdl = "BatteryHV_refsub_SystemSimple";
+  BatteryHV_refsub_SystemSimple_params
   load_system(mdl)
 
   blkpath = mdl + sprintf("/Battery"+newline+"(System-Level)");
@@ -107,6 +109,7 @@ function blockParameters_BatteryHV_Electrical(testCase)
   bdclose all
 
   mdl = "BatteryHV_refsub_System";
+  BatteryHV_refsub_System_params
   load_system(mdl)
 
   blkpath = mdl + "/Battery";
