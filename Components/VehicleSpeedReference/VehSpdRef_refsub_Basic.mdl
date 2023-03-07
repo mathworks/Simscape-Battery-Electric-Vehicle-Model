@@ -44,8 +44,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2023-02-09T11:05:38Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2023-02-24T11:05:29Z</dcterms:modified>
-  <cp:revision>1.42</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2023-02-28T13:05:24Z</dcterms:modified>
+  <cp:revision>1.43</cp:revision>
   <cp:version>R2022b</cp:version>
 </cp:coreProperties>
 
@@ -67,11 +67,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2022b Release -->
 <MathWorks_version_info>
-  <version>9.13.0.2202790</version>
+  <version>9.13.0.2204877</version>
   <release>R2022b</release>
   <description>Update 5</description>
-  <date>Feb 19 2023</date>
-  <checksum>3375598125</checksum>
+  <date>Feb 21 2023</date>
+  <checksum>3104305520</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -111,7 +111,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.42&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.43&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -967,8 +967,8 @@ __MWOPC_PART_BEGIN__ /simulink/hdlParams.xml
 __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" defaultPackage="slid" packageUris="http://schema.mathworks.com/mf0/slid/R2022b_20220222">
-  <System type="System" uuid="0d41481c-e4cf-4a03-b31f-5dcfc0a3bcd8">
-    <Interface type="Interface" uuid="7eb28e51-d3fa-4bda-8936-0cbf97630471"/>
+  <System type="System" uuid="24f603fd-0a15-485b-bae2-01ccf96ccb5e">
+    <Interface type="Interface" uuid="99ee5eee-8cf6-45ca-9255-adecc0452810"/>
   </System>
 </MF0>
 __MWOPC_PART_BEGIN__ /simulink/modelMask.xml
@@ -1081,16 +1081,16 @@ Initial output: %&lt;InitialOutput&gt;
     <P Name="ZOrder">-2</P>
   </Block>
   <Line>
-    <P Name="ZOrder">1</P>
-    <P Name="Src">802#out:1</P>
-    <P Name="Dst">804#in:1</P>
-  </Line>
-  <Line>
     <P Name="Name">time</P>
-    <P Name="ZOrder">2</P>
+    <P Name="ZOrder">1</P>
     <P Name="Labels">[1, 1]</P>
     <P Name="Src">803#out:1</P>
     <P Name="Dst">802#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">2</P>
+    <P Name="Src">802#out:1</P>
+    <P Name="Dst">804#in:1</P>
   </Line>
 </System>
 
@@ -1146,16 +1146,16 @@ Initial output: %&lt;InitialOutput&gt;
     <P Name="ZOrder">-2</P>
   </Block>
   <Line>
-    <P Name="Name">time</P>
     <P Name="ZOrder">1</P>
+    <P Name="Src">806#out:1</P>
+    <P Name="Dst">808#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">time</P>
+    <P Name="ZOrder">2</P>
     <P Name="Labels">[1, 1]</P>
     <P Name="Src">807#out:1</P>
     <P Name="Dst">806#in:1</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">2</P>
-    <P Name="Src">806#out:1</P>
-    <P Name="Dst">808#in:1</P>
   </Line>
 </System>
 
@@ -1211,16 +1211,16 @@ Initial output: %&lt;InitialOutput&gt;
     <P Name="ZOrder">-2</P>
   </Block>
   <Line>
-    <P Name="ZOrder">1</P>
-    <P Name="Src">810#out:1</P>
-    <P Name="Dst">812#in:1</P>
-  </Line>
-  <Line>
     <P Name="Name">time</P>
-    <P Name="ZOrder">2</P>
+    <P Name="ZOrder">1</P>
     <P Name="Labels">[1, 1]</P>
     <P Name="Src">811#out:1</P>
     <P Name="Dst">810#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">2</P>
+    <P Name="Src">810#out:1</P>
+    <P Name="Dst">812#in:1</P>
   </Line>
 </System>
 
@@ -1229,7 +1229,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <System>
   <P Name="Location">[42, 154, 1182, 794]</P>
   <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">52834</P>
+  <P Name="SIDHighWatermark">55331</P>
   <Block BlockType="SubSystem" Name="Constant" SID="809">
     <PortCounts out="1"/>
     <P Name="Position">[250, 171, 325, 199]</P>
@@ -1703,6 +1703,7 @@ update(sig)
   <Block BlockType="Constant" Name="Simulation Case" SID="1">
     <P Name="Position">[360, -80, 390, -50]</P>
     <P Name="ZOrder">26296</P>
+    <P Name="Value">4</P>
   </Block>
   <Block BlockType="Outport" Name="VehSpdRef" SID="12">
     <P Name="Position">[545, 53, 575, 67]</P>
@@ -1711,52 +1712,41 @@ update(sig)
     <P Name="Unit">km/h</P>
   </Block>
   <Line>
-    <P Name="ZOrder">254</P>
-    <P Name="Src">52327#out:1</P>
-    <P Name="Dst">11#in:5</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">255</P>
-    <P Name="Src">809#out:1</P>
-    <P Name="Dst">11#in:6</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">256</P>
-    <P Name="Src">11#out:1</P>
-    <P Name="Dst">12#in:1</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">257</P>
-    <P Name="Src">1#out:1</P>
-    <P Name="Dst">11#in:1</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">258</P>
-    <P Name="Src">801#out:1</P>
-    <P Name="Dst">11#in:2</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">259</P>
-    <P Name="Src">805#out:1</P>
-    <P Name="Dst">11#in:3</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">260</P>
+    <P Name="ZOrder">261</P>
     <P Name="Src">10#out:1</P>
     <P Name="Points">[50, 0; 0, 100]</P>
     <P Name="Dst">11#in:4</P>
   </Line>
-  <Annotation SID="13">
-    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:12px;&quot;&gt;Copyright 2023 The MathWorks, Inc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[65, 232, 261, 248]</P>
-    <P Name="InternalMargins">[0, 0, 0, 0]</P>
-    <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-90</P>
-  </Annotation>
+  <Line>
+    <P Name="ZOrder">262</P>
+    <P Name="Src">805#out:1</P>
+    <P Name="Dst">11#in:3</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">263</P>
+    <P Name="Src">801#out:1</P>
+    <P Name="Dst">11#in:2</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">264</P>
+    <P Name="Src">1#out:1</P>
+    <P Name="Dst">11#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">265</P>
+    <P Name="Src">11#out:1</P>
+    <P Name="Dst">12#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">266</P>
+    <P Name="Src">809#out:1</P>
+    <P Name="Dst">11#in:6</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">267</P>
+    <P Name="Src">52327#out:1</P>
+    <P Name="Dst">11#in:5</P>
+  </Line>
   <Annotation SID="52328">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -1769,18 +1759,29 @@ p, li { white-space: pre-wrap; }
     <P Name="Position">[-241, 29, -58, 95]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-91</P>
+    <P Name="ZOrder">-12</P>
+  </Annotation>
+  <Annotation SID="13">
+    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:12px;&quot;&gt;Copyright 2023 The MathWorks, Inc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[65, 232, 261, 248]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="Interpreter">rich</P>
+    <P Name="ZOrder">-13</P>
   </Annotation>
   <Connector>
     <P Name="Annotation">52328</P>
-    <P Name="Target">Block:52327</P>
+    <P Name="Target">Block:10</P>
     <P Name="MarkupType">model</P>
     <P Name="StrokeWidth">2</P>
     <P Name="Color">[0.000000, 0.000000, 0.700000]</P>
   </Connector>
   <Connector>
     <P Name="Annotation">52328</P>
-    <P Name="Target">Block:10</P>
+    <P Name="Target">Block:52327</P>
     <P Name="MarkupType">model</P>
     <P Name="StrokeWidth">2</P>
     <P Name="Color">[0.000000, 0.000000, 0.700000]</P>
@@ -1846,7 +1847,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">8bc14801-6706-4a24-a221-00273b187e76</P>
     </Object>
-    <P Name="BDUuid" Class="char">12e5bcaa-246e-4211-86bc-d906f3002552</P>
+    <P Name="BDUuid" Class="char">cf52b97c-ed3a-4f6e-a1da-1c5d9ec21a95</P>
   </Object>
 </WindowsInfo>
 

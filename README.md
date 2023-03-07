@@ -73,7 +73,7 @@ See [Change Log](ChangeLog.md) for more details.
 ## Tool Requirements
 
 Supported MATLAB Version:
-R2020b and newer releases
+R2022b and newer releases
 
 Required:
 [MATLAB](https://www.mathworks.com/products/matlab.html),
@@ -130,7 +130,7 @@ the [BEV model in Simscape][url-bev] project.
 
 ## License
 
-See [`LICENSE.txt`](LICENSE.txt).
+See [`license.txt`](license.txt).
 
 <hr>
 

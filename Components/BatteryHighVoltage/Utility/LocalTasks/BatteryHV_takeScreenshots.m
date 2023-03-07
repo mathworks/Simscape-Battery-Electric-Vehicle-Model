@@ -27,7 +27,7 @@ screenshotSimulink( ...
   SaveFolder = imageSaveFolder );
 
 %% Take screenshots of subsystems
-
+%{
 setRefSub = @(name) ...
   set_param(block_path, ReferencedSubsystem = "BatteryHV_refsub_" + name);
 
@@ -53,3 +53,4 @@ takeScreenshot(name);
 name = "SystemTable";
 setRefSub(name)
 takeScreenshot(name);
+%}

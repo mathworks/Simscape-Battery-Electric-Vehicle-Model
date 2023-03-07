@@ -46,6 +46,8 @@ MATLAB code files at the end of the test.
   is a component containing a BEV Controller and driving environment
   for BEV system model.
 
+<hr/>
+
 Go to [BEV Project](../README.md).
 
 _Copyright 2023 the MathWorks, Inc._

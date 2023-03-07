@@ -59,10 +59,14 @@ to run simulation focusing on the battery model.
 
 As an example,
 the harness model is used in simulation case scripts
-(`BatteryHV_simulationCestcase_*`) in the `SimulationCases` folder
+(`BatteryHV_simulationCase_*`) in the `SimulationCases` folder
 to test the battery models and visually inspect simulation results.
 
 To select a battery model in the harness,
 navigate to the **Configuration** subsystem block.
+
+<hr/>
+
+Go to [BEV Project](../README.md).
 
 *Copyright 2022-2023 The MathWorks, Inc.*
