@@ -15,7 +15,7 @@ name: CI using MATLAB
 
 on:
   push:
-    branches: [ R2022b ]
+    branches: [ R2023a ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
@@ -25,7 +25,7 @@ on:
       - '**.xml'
 
   pull_request:
-    branches: [ R2022b ]
+    branches: [ R2023a ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
@@ -46,7 +46,7 @@ jobs:
       - name: Setup MATLAB
         uses: matlab-actions/setup-matlab@v1
         with:
-          release: R2022b
+          release: R2023a
 
       - name: Run tests
         uses: matlab-actions/run-command@v1
@@ -67,7 +67,7 @@ jobs:
       - name: Setup MATLAB
         uses: matlab-actions/setup-matlab@v1
         with:
-          release: R2022b
+          release: R2023a
 
       - name: Run tests
         uses: matlab-actions/run-command@v1
