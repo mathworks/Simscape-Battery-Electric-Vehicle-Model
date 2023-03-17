@@ -9,7 +9,7 @@
 
 defineBus_Rotational
 
-%% Reducer specifications
+%% Reducer parameters
 
 reducer.GearRatio = 9.1;
 

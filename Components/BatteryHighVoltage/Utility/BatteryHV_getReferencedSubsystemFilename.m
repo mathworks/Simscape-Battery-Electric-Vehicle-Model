@@ -9,6 +9,10 @@ arguments
   nvpairs.ReferencedSubsystemPrefix (1,1) {mustBeTextScalar} = "BatteryHV_refsub_"
 end
 
+% if not(bdIsLoaded(nvpairs.ModelName))
+%   load_system(nvpairs.ModelName)
+% end
+
 % Find the referenced subsystem filename of High Voltage Battery block.
 % Returned data can contain multiple elements.
 refsubName = Simulink.SubsystemReference.getAllReferencedSubsystemBlockDiagrams(nvpairs.ModelName);

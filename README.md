@@ -2,7 +2,7 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/82250-battery-electric-vehicle-model-in-simscape)
 
-Version 2.0
+Version 2.1
 
 ## Introduction
 
@@ -41,6 +41,15 @@ Watch the [YouTube video][url_yt] introducing the model.
 
 [url_yt]:https://www.youtube.com/watch?v=i07MNXZc42c
 
+## What's New in 2.1 (March, 2023)
+
+- The project has been updated to MATLAB R2023a.
+- A shortcut button to open **MATLAB Test Manager**
+  is added in the Project Shortcuts tab of the toolstrip.
+  MATLAB Test Manager requires the **MATLAB Test** license.
+
+See [Change Log](ChangeLog.md) for more details.
+
 ## What's New in 2.0 (February, 2023)
 
 - BEV system model uses updated components and
@@ -73,7 +82,7 @@ See [Change Log](ChangeLog.md) for more details.
 ## Tool Requirements
 
 Supported MATLAB Version:
-R2022b and newer releases
+R2023a and newer releases
 
 Required:
 [MATLAB](https://www.mathworks.com/products/matlab.html),
@@ -84,6 +93,7 @@ Required:
 [Simscape Electrical&trade;](https://www.mathworks.com/products/simscape-electrical.html)
 
 Optional:
+[MATLAB Test (from R2023a)](https://www.mathworks.com/products/matlab-test.html)
 [Parallel Computing Toolbox&trade;](https://www.mathworks.com/products/parallel-computing.html)
 
 ## How to Use

@@ -1,5 +1,19 @@
 # Change Log
 
+## Version 2.1 (March, 2023)
+
+- The project has been updated to MATLAB R2023a.
+- A shortcut button to open **MATLAB Test Manager**
+  is added in the Project Shortcuts tab of the toolstrip.
+  MATLAB Test Manager requires the **MATLAB Test** license.
+- Callback Button blocks for configuring simulation cases were removed
+  from all models.
+
+## Version 2.0.1 (March, 2023)
+
+- Updated screenshots of some models.
+- Fixed a broken link to the license file in README.
+
 ## Version 2.0 (February, 2023)
 
 Architecture

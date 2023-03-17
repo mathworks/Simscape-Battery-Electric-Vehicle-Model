@@ -27,7 +27,7 @@ end
 hold on
 grid on
 
-plot(fig, t, y, LineWidth = 2)
+plot(t, y, LineWidth = 2)
 
 % This prevents the plot range of Y axis from getting too narrow
 % by limiting the range to be at least 0.02 of the signal.

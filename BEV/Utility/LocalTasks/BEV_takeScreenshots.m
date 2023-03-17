@@ -1,6 +1,12 @@
 %% Takes screenshots and saves to file.
 % This script takes screenshots of the top layer and some subsystems.
 
+% Taking screenshot with `screenshotSimulink` uses `print` function.
+% `print` is not supported in `-nodisplay` option for MATLAB,
+% but `-nodisplay` is used in CI.
+% Thus, running this in CI causes failure in CI process.
+
+
 % Copyright 2022-2023 The MathWorks, Inc.
 
 mdl = "BEV_system_model";
