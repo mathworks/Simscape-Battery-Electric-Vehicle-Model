@@ -1,11 +1,11 @@
-function openFile(filename)
+function openFile(target_name)
 % Opens a script file or a model file in the project.
 % Before opening the file, this script opens the Project if not open.
 
 % Copyright 2021-2022 The MathWorks, inc.
 
 arguments
-  filename (1,1) string = "BEVProject_main_script.mlx"
+  target_name (1,1) string = "BEVProject_main_script.mlx"
 end
 
 thisProjectFile = "BatteryElectricVehicle.prj";
@@ -24,14 +24,9 @@ else
   openProject(thisProjectFile);
 end
 
-if endsWith(filename, {'.m', '.mlx'})
-  disp("Opening script: " + filename)
-  edit(filename)
-elseif endsWith(filename, {'.slx', '.mdl'})
-  disp("Opening model: " + filename)
-  open_system(filename)
-else
-  error('Unknown file type: %s', filename)
-end
+% Provide visual feedback.
+disp("Opening: " + target_name)
 
-end
+open(target_name)
+
+end  % function
