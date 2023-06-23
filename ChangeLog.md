@@ -1,7 +1,8 @@
 # Change Log
 
-## Version 2.2 (April, 2023)
+## Version 2.1.2 (June, 2023)
 
+- Added hyperlinks in HTML files to open scripts or models in MATLAB.
 - Models that were saved in previous release have been saved in R2023a.
 - Electric ground block in the top layer of BEV system model has been
   moved into battery component so that
