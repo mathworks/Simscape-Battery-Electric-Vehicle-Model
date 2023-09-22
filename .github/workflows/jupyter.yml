@@ -37,10 +37,23 @@ jobs:
           Xvfb :99 &
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
+      - name: Cache MATLAB
+        id: cache-matlab
+        uses: actions/cache@v3
+        with:
+          path: ${{ runner.tool_cache }}/MATLAB
+          key: r2023b
+
       - name: Setup MATLAB
-        uses: matlab-actions/setup-matlab@v1
+        uses: matlab-actions/setup-matlab@v2-beta
         with:
           release: R2023b
+          products: |
+            Simulink
+            Simscape
+            Simscape_Electrical
+            Simscape_Driveline
+            Powertrain_Blockset
 
       - name: Run project checks, lint, and tests
         uses: matlab-actions/run-build@v1
