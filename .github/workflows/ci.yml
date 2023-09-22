@@ -101,6 +101,13 @@ jobs:
           name:  Test Results
           path: results/test-results.pdf
 
+      - name: Upload All Artifacts 
+        if: always() 
+        uses: actions/upload-artifact@v2
+        with:
+          name:  All Artifacts
+          path: results
+
       - name: Publish coverage
         uses: 5monkeys/cobertura-action@master
         continue-on-error: true
