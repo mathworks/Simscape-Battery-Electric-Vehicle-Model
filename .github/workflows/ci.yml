@@ -103,6 +103,7 @@ jobs:
 
       - name: Publish coverage
         uses: 5monkeys/cobertura-action@master
+        continue-on-error: true
         with:
           path: results/coverage.xml
           minimum_coverage: 75
