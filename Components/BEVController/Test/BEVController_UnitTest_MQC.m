@@ -1,4 +1,4 @@
-classdef BEVController_UnitTest_MQC < matlab.unittest.TestCase
+classdef BEVController_UnitTest_MQC < BEVTestCase
 % Class implementation of unit test
 %
 % These are tests to achieve the Minimum Quality Criteria (MQC).
@@ -18,41 +18,25 @@ methods (Test)
 %% Harness folder
 
 function MQC_Harness_1(~)
-  close all
-  bdclose all
   mdl = "BEVController_harness_model";
   load_system(mdl)
   sim(mdl);
-  close all
-  bdclose all
 end
 
 function MQC_Harness_2(~)
-  close all
-  bdclose all
   BEVController_harness_setup
-  close all
-  bdclose all
 end
 
 %% SimulationCases folder
 
 function MQC_SimulationCase_1(~)
-  close all
-  bdclose all
   BEVController_simulationCase
-  close all
-  bdclose all
 end
 
 %% Component top folder
 
 function MQC_TopFolder_1(~)
-  close all
-  bdclose all
   BEVController_refsub_Basic_params
-  close all
-  bdclose all
 end
 
 end  % methods (Test)

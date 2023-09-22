@@ -36,7 +36,7 @@ on:
 
 jobs:
 
-  job-check-project:
+  job-build-project:
     runs-on: ubuntu-latest
     steps:
 
@@ -46,30 +46,9 @@ jobs:
       - name: Setup MATLAB
         uses: matlab-actions/setup-matlab@v1
         with:
-          release: R2023a
+          release: R2023b
 
-      - name: Run tests
-        uses: matlab-actions/run-command@v1
+      - name: Run project checks, lint, and tests
+        uses: matlab-actions/run-build@v1
         with:
-          command: openProject(pwd); BEVProject_CheckProject_runtests;
-
-  job-run-tests:
-
-    # This job starts only if the previous job is successful.
-    needs: job-check-project
-
-    runs-on: ubuntu-latest
-    steps:
-
-      - name: Check out repository
-        uses: actions/checkout@v3
-
-      - name: Setup MATLAB
-        uses: matlab-actions/setup-matlab@v1
-        with:
-          release: R2023a
-
-      - name: Run tests
-        uses: matlab-actions/run-command@v1
-        with:
-          command: openProject(pwd); BEVProject_runtests;
+          tasks: qualify
