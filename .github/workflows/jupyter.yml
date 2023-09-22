@@ -55,7 +55,7 @@ jobs:
             Simscape_Driveline
             Powertrain_Blockset
 
-      - name: Run project checks, lint, and tests
+      - name: Build Jupyter notebooks
         uses: matlab-actions/run-build@v1
         with:
           tasks: jupyter
