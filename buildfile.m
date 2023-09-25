@@ -26,7 +26,7 @@ function jupyterTask(ctx)
 
 mlxFiles = ctx.Task.Inputs.paths;
 ipynbFiles = ctx.Task.Outputs.paths;
-parfor idx = 1:numel(mlxFiles) 
+for idx = 1:numel(mlxFiles) 
     disp("Building jupyter notebook from " + mlxFiles(idx))
     export(mlxFiles(idx), ipynbFiles(idx), Run=true);
 end
@@ -37,7 +37,7 @@ function docTask(ctx)
 
 mlxFiles = ctx.Task.Inputs.paths;
 docFiles = ctx.Task.Outputs.paths;
-parfor idx = 1:numel(mlxFiles) 
+for idx = 1:numel(mlxFiles) 
     disp("Building html doc from " + mlxFiles(idx))
     export(mlxFiles(idx), docFiles(idx), Run=true);
 end
