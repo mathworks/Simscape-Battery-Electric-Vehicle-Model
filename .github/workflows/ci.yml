@@ -37,6 +37,8 @@ on:
   schedule:
     - cron:  '55/61 20/25 1/6 * *' # schedule a weekly-ish build
 
+  workflow_dispatch:
+
 jobs:
 
   job-build-project:
