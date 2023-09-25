@@ -1,22 +1,22 @@
 function plan = buildfile
 plan = buildplan(localfunctions);
 import matlab.buildtool.tasks.*;
-import matlab.buildtool.Task;
+
+plan("lint") = CodeIssuesTask(Results="results/issues.sarif");
 
 plan("test") = TestTask(...
     TestResults=["results/test-results.xml", "results/test-results.pdf"], ...
     CodeCoverageResults=["results/coverage.html", "results/coverage.xml"], ...
     SourceFiles=pwd);
 
-plan("lint") = CodeIssuesTask(Results="results/issues.sarif");
-
-plan("qualify") = Task(Dependencies=["check", "lint", "test"]);
-
 plan("jupyter").Inputs = "**/*.mlx";
 plan("jupyter").Outputs = replace(plan("jupyter").Inputs, ".mlx",".ipynb");
 
 plan("doc").Inputs = "**/*.mlx";
 plan("doc").Outputs = replace(plan("doc").Inputs, ".mlx",".html");
+
+plan.DefaultTasks = ["check", "lint", "test"];
+
 end
 
 function jupyterTask(ctx)

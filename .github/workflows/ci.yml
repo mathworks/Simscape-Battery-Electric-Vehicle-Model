@@ -78,8 +78,6 @@ jobs:
       - name: Run project checks, lint, and tests
         uses: matlab-actions/run-build@v1
         continue-on-error: true
-        with:
-          tasks: qualify
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
