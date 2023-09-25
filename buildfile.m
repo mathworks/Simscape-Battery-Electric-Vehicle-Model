@@ -15,6 +15,8 @@ plan("jupyter").Outputs = replace(plan("jupyter").Inputs, ".mlx",".ipynb");
 plan("doc").Inputs = "**/*.mlx";
 plan("doc").Outputs = replace(plan("doc").Inputs, ".mlx",".html");
 
+plan("clean") = CleanTask;
+
 plan.DefaultTasks = ["check", "lint", "test"];
 
 end
