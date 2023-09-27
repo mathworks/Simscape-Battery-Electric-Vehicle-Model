@@ -5,7 +5,7 @@ function [OCV_V, SOC_pct] = BatteryHV_buildOpenCircuitVoltageData(Temperature_de
 % this function builds and returns a matrix which can be used as
 % Open-circuit voltage V0(SOC,T) paramter of Tabled-Based Battery block
 % in Simscape Electrical.
-% The returned data are smoothly interpolated at the interval of 1 degree Selcius.
+% The returned data are smoothly interpolated at the interval of 1 degree Celsius.
 % This function also returns a vector of SOC as a second return element.
 %
 % This function requires Signal Designer (SignalDesigner.m).

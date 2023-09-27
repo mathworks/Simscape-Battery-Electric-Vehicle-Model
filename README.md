@@ -2,7 +2,7 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/82250-battery-electric-vehicle-model-in-simscape)
 
-Version 2.1
+Version 2.2
 
 ## Introduction
 
@@ -40,6 +40,19 @@ in the BEV model.
 Watch the [YouTube video][url_yt] introducing the model.
 
 [url_yt]:https://www.youtube.com/watch?v=i07MNXZc42c
+
+## What's New in 2.2 (September, 2023)
+
+- The project has been updated to MATLAB R2023b.
+- [MATLAB Build Tool][url-buildtool] is used to automate tasks
+  to generate HTML files and Jupyter notebooks from all Live Scripts
+  in the project.
+- GitHub Actions has been updated to generate and upload
+  test report and coverage report.
+- GitHub Actions also generates Jupyter notebooks from Live Scripts.
+  Jupyter notebooks can be viewed in the repo in the browser.
+
+[url-buildtool]: https://www.mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html
 
 ## What's New in 2.1 (March, 2023)
 
@@ -82,7 +95,7 @@ See [Change Log](ChangeLog.md) for more details.
 ## Tool Requirements
 
 Supported MATLAB Version:
-R2023a and newer releases
+R2023b or newer releases
 
 Required:
 [MATLAB](https://www.mathworks.com/products/matlab.html),
@@ -93,13 +106,13 @@ Required:
 [Simscape Electrical&trade;](https://www.mathworks.com/products/simscape-electrical.html)
 
 Optional:
-[MATLAB Test (from R2023a)](https://www.mathworks.com/products/matlab-test.html)
+[MATLAB Test](https://www.mathworks.com/products/matlab-test.html),
 [Parallel Computing Toolbox&trade;](https://www.mathworks.com/products/parallel-computing.html)
 
 ## How to Use
 
 Open `BatteryElectricVehicle.prj` in MATLAB, and
-it will automatically open the Live Script `BEV_main_script.mlx`.
+it will automatically open the project main page `BEV_main_script.html`.
 The script contains the description of the model and
 hyperlinks to models and scripts.
 
@@ -126,7 +139,8 @@ click **Add** button, and select **Save to MATLAB Drive**.
 [Electric Vehicle Design with Simscape][url-bev-design]
 provides BEV design workflows using detailed models
 for detailed analysis.
-Note that the [BEV model in Simscape][url-bev] project is focused on
+Note that the [BEV model in Simscape][url-bev] project
+(the current project you are viewing) is focused on
 vehicle system-level applications using abstract models.
 
 [Hybrid Electric Vehicle Model in Simscape][url-hev-powersplit]
