@@ -20,7 +20,7 @@ end
 
 files = [prj.Files.Path]';
 
-idx = contains(files, "AboutBEVProject");
+idx = contains(files, "AboutBEVProject.mlx");
 sourceFile = files(idx);
 
 if isempty(sourceFile)

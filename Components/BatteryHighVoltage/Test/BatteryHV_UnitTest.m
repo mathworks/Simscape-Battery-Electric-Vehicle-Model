@@ -1,4 +1,5 @@
-classdef BatteryHV_UnitTest < matlab.unittest.TestCase
+classdef BatteryHV_UnitTest < BEVTestCase
+
 % Class implementation of unit test
 
 % Copyright 2021-2022 The MathWorks, Inc.
@@ -11,9 +12,6 @@ methods (Test)
 
 function blockParameters_BatteryHV_Basic(testCase)
 %% Check that block parameters are properly set up
-
-  close all
-  bdclose all
 
   mdl = "BatteryHV_refsub_Basic";
   BatteryHV_refsub_Basic_params
@@ -44,9 +42,6 @@ end  % function
 
 function blockParameters_BatteryHV_Driveline(testCase)
 %% Check that block parameters are properly set up
-
-  close all
-  bdclose all
 
   mdl = "BatteryHV_refsub_SystemSimple";
   BatteryHV_refsub_SystemSimple_params
@@ -104,9 +99,6 @@ end  % function
 
 function blockParameters_BatteryHV_Electrical(testCase)
 %% Check that block parameters are properly set up
-
-  close all
-  bdclose all
 
   mdl = "BatteryHV_refsub_System";
   BatteryHV_refsub_System_params

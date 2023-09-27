@@ -1,4 +1,4 @@
-classdef Vehicle1D_UnitTest < matlab.unittest.TestCase
+classdef Vehicle1D_UnitTest < BEVTestCase
 % Class implementation of unit test
 
 % Copyright 2021-2022 The MathWorks, Inc.
@@ -12,9 +12,6 @@ methods (Test)
 function blockParameters_Vehicle1D_Driveline(testCase)
 %% Check that block parameters are properly set up
 % Default referenced subsystem
-
-  close all
-  bdclose all
 
   mdl = "Vehicle1D_refsub_Basic";
   load_system(mdl)
