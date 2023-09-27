@@ -15,7 +15,7 @@ name: CI using MATLAB
 
 on:
   push:
-    branches: [ R2023a ]
+    branches: [ R2023b ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
@@ -25,7 +25,7 @@ on:
       - '**.xml'
 
   pull_request:
-    branches: [ R2023a ]
+    branches: [ R2023b ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
@@ -34,42 +34,84 @@ on:
       - '**.txt'
       - '**.xml'
 
+  schedule:
+    - cron:  '55/61 20/25 1/6 * *' # schedule a weekly-ish build
+
+  workflow_dispatch:
+
 jobs:
 
-  job-check-project:
+  job-build-project:
     runs-on: ubuntu-latest
+    permissions:
+      # required for sarif upload
+      security-events: write
+      checks: write # required for junit test result publishing
+
     steps:
 
       - name: Check out repository
         uses: actions/checkout@v3
 
-      - name: Setup MATLAB
-        uses: matlab-actions/setup-matlab@v1
+      - name: Cache MATLAB
+        id: cache-matlab
+        uses: actions/cache@v3
         with:
-          release: R2023a
-
-      - name: Run tests
-        uses: matlab-actions/run-command@v1
-        with:
-          command: openProject(pwd); BEVProject_CheckProject_runtests;
-
-  job-run-tests:
-
-    # This job starts only if the previous job is successful.
-    needs: job-check-project
-
-    runs-on: ubuntu-latest
-    steps:
-
-      - name: Check out repository
-        uses: actions/checkout@v3
+          path: ${{ runner.tool_cache }}/MATLAB
+          key: r2023b
 
       - name: Setup MATLAB
-        uses: matlab-actions/setup-matlab@v1
+        uses: matlab-actions/setup-matlab@v2-beta
         with:
-          release: R2023a
+          release: R2023b
+          products: |
+            Simulink
+            Simscape
+            Simscape_Electrical
+            Simscape_Driveline
+            Powertrain_Blockset
+            
+      - name: Start display server
+        run: |
+          sudo apt-get install xvfb
+          Xvfb :99 &
+          echo "DISPLAY=:99" >> $GITHUB_ENV
 
-      - name: Run tests
-        uses: matlab-actions/run-command@v1
+      - name: Run project checks, lint, and tests
+        uses: matlab-actions/run-build@v1
+        continue-on-error: true
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        if: always()         
         with:
-          command: openProject(pwd); BEVProject_runtests;
+          sarif_file: results/issues.sarif
+          category: matlab-analysis
+
+      - name: Publish Test Report
+        uses: mikepenz/action-junit-report@v4
+        if: always() 
+        with:
+          report_paths: 'results/test-results.xml'
+
+      - name: Upload Test Report  
+        if: always() 
+        uses: actions/upload-artifact@v2
+        with:
+          name:  Test Results
+          path: results/test-results.pdf
+
+      - name: Upload All Artifacts 
+        if: always() 
+        uses: actions/upload-artifact@v2
+        with:
+          name:  All Artifacts
+          path: results
+
+      - name: Publish coverage
+        uses: 5monkeys/cobertura-action@master
+        continue-on-error: true
+        with:
+          path: results/coverage.xml
+          minimum_coverage: 75
+

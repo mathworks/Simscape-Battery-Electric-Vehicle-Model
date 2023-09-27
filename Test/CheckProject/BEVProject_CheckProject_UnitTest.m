@@ -1,4 +1,4 @@
-classdef BEVProject_CheckProject_UnitTest < matlab.unittest.TestCase
+classdef BEVProject_CheckProject_UnitTest < BEVTestCase
 % Class implementation of unit test
 
 % Copyright 2023 The MathWorks, Inc.
@@ -6,11 +6,7 @@ classdef BEVProject_CheckProject_UnitTest < matlab.unittest.TestCase
 methods (Test)
 
 function CheckProject(~)
-  close all
-  bdclose all
   BEVProject_CheckProject
-  close all
-  bdclose all
 end
 
 end  % methods (Test)
