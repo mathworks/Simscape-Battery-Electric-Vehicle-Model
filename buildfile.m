@@ -3,20 +3,10 @@ plan = buildplan(localfunctions);
 import matlab.buildtool.tasks.*;
 
 plan("lint") = CodeIssuesTask(Results="results/issues.sarif");
-
-if isempty(matlab.project.rootProject)
-    p = matlab.project.loadProject(pwd);
-    cl = onCleanup(@() p.close);
-end
-designFiles = replace(...
-    [p.Files.findLabel("Classification","Design").File], ...
-    p.RootFolder + filesep, "");
-designFiles(~designFiles.endsWith([".m",".mlx"])) = [];
-
 plan("test") = TestTask(...
     TestResults=["results/test-results.xml", "results/test-results.pdf"], ...
     CodeCoverageResults=["results/coverage.html", "results/coverage.xml"], ...
-    SourceFiles=designFiles);
+    SourceFiles=pwd);
 
 plan("jupyter").Inputs = "**/*.mlx";
 plan("jupyter").Outputs = replace(plan("jupyter").Inputs, ".mlx",".ipynb");
