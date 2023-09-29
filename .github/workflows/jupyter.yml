@@ -11,10 +11,11 @@
 
 # Copyright 2021-2023 The MathWorks, Inc.
 
-name: Create jupyter notebooks fom mlx
+name: Create Jupyter notebooks from Live Scripts
 
 on:
   workflow_dispatch:
+
 jobs:
 
   job-generate-jupyter-files:
@@ -24,7 +25,6 @@ jobs:
       # Give the default GITHUB_TOKEN write permission to commit jupyter 
       # notebooks to the repository
       contents: write
-
 
     steps:
 
@@ -64,4 +64,3 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           file_pattern: '*.ipynb'
-
