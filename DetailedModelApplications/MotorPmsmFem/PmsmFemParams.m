@@ -6,14 +6,19 @@
 
 % Load flux linkage data. The following script is included as an example in
 % Simscape Electrical.
-ee_ece_table
-PmsmFem.NumPolePairs = N; % Number of pole pairs
+
+% ee_ece_table
+load("newParameterizationData.mat")
+
+PmsmFem.NumPolePairs = 4; % Number of pole pairs
 PmsmFem.idVec_A = idVec; % Direct-asis current vector, iD
 PmsmFem.iqVec_A = iqVec; % Quadrature-axis current vector, iQ
-PmsmFem.angleVec_deg = angleVec; % Rotor angle vector, theta
-PmsmFem.fluxD_Wb = fluxD; % D-axis flux linkage, Fd(iD,iQ,theta)
-PmsmFem.fluxQ_Wb = fluxQ; % Q-axis flux linkage, Fq(iD,iQ,theta)
-PmsmFem.torque_Nm = torque; % Torque matrix, T(iD,iQ,theta)
+PmsmFem.angleVec_deg = angleVec2; % Rotor angle vector, theta
+PmsmFem.flux = flux2;
+% PmsmFem.fluxD_Wb = fluxD; % D-axis flux linkage, Fd(iD,iQ,theta)
+% PmsmFem.fluxQ_Wb = fluxQ; % Q-axis flux linkage, Fq(iD,iQ,theta)
+PmsmFem.torque_Nm = torque2; % Torque matrix, T(iD,iQ,theta)
+
 clear N idVec iqVec angleVec fluxD fluxQ torque flux0
 
 PmsmFem.Rs_Ohm = 0.07; % Stator resistance per phase, Rs
