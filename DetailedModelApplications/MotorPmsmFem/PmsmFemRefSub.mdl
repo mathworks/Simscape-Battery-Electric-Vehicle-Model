@@ -42,8 +42,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dc:creator>isaacito</dc:creator>
   <dc:description>Referenced subsystem of Parameterized-FEM block</dc:description>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2023-10-11T10:16:14Z</dcterms:modified>
-  <cp:revision>8.0</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2023-10-11T12:20:13Z</dcterms:modified>
+  <cp:revision>8.1</cp:revision>
   <cp:version>R2023b</cp:version>
 </cp:coreProperties>
 
@@ -115,7 +115,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:8.0&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:8.1&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="MultithreadedSim">on</P>
@@ -1001,8 +1001,8 @@ PMSM</P>
 __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <MF0 version="1.1" defaultPackage="slid" packageUris="http://schema.mathworks.com/mf0/slid/R2023a_20220628">
-  <System type="System" uuid="f3332233-3818-4bfa-8e86-99bcea7cf4f2">
-    <Interface type="Interface" uuid="17c7d3c7-328f-4e6d-aba4-e7f0b51c5b67"/>
+  <System type="System" uuid="620894a3-22c2-4258-9131-876d7bea9cad">
+    <Interface type="Interface" uuid="db0e63fc-46e2-4907-af41-c446b17a5296"/>
   </System>
 </MF0>
 __MWOPC_PART_BEGIN__ /simulink/plugins/SimscapeModelParametersPlugin.xml
@@ -1376,27 +1376,27 @@ PMSM</P>
     <P Name="Side">Right</P>
   </Block>
   <Line LineType="Connection">
-    <P Name="ZOrder">51</P>
+    <P Name="ZOrder">56</P>
     <P Name="Src">4#rconn:1</P>
     <P Name="Dst">1#lconn:2</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">52</P>
+    <P Name="ZOrder">57</P>
     <P Name="Src">3#rconn:1</P>
     <P Name="Dst">1#lconn:1</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">53</P>
+    <P Name="ZOrder">58</P>
     <P Name="Src">1#rconn:2</P>
     <P Name="Dst">6#rconn:1</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">54</P>
+    <P Name="ZOrder">59</P>
     <P Name="Src">2#rconn:1</P>
     <P Name="Dst">1#rconn:1</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">55</P>
+    <P Name="ZOrder">60</P>
     <P Name="Src">5#rconn:1</P>
     <P Name="Dst">1#lconn:3</P>
   </Line>
@@ -1414,7 +1414,7 @@ p, li { white-space: pre-wrap; }
     <P Name="FixedHeight">on</P>
     <P Name="FixedWidth">on</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-3</P>
+    <P Name="ZOrder">-15</P>
     <P Name="FontName">MS Shell Dlg 2</P>
     <P Name="FontSize">14</P>
   </Annotation>
@@ -1422,12 +1422,12 @@ p, li { white-space: pre-wrap; }
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Arial&apos;; font-size:12px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Copyright 2020 The MathWorks, Inc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[157, 388, 386, 406]</P>
+&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Arial&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Copyright 2020-2023 The MathWorks, Inc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[139, 386, 404, 404]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-4</P>
+    <P Name="ZOrder">-16</P>
   </Annotation>
 </System>
 
@@ -1490,7 +1490,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">623f88e5-f2b1-4003-b25d-0cd17f9e2d0c</P>
     </Object>
-    <P Name="BDUuid" Class="char">55b63ddd-3e42-4545-b03c-53371fade14e</P>
+    <P Name="BDUuid" Class="char">2da76f52-b70a-4b71-b4a7-972ac475c456</P>
   </Object>
 </WindowsInfo>
 
