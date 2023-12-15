@@ -1,5 +1,29 @@
 function plan = buildfile
 %% Define and run tasks.
+
+% Copyright 2023 The MathWorks, Inc.
+
+top_folder = currentProject().RootFolder;
+
+test_definitions = [
+  fullfile(top_folder, "BEV", "Test", "BEV_UnitTest_MQC.m")
+  ...
+  fullfile(top_folder, "Components", "BatteryHighVoltage", "Test", "BatteryHV_UnitTest.m")
+  fullfile(top_folder, "Components", "BatteryHighVoltage", "Test", "BatteryHV_UnitTest_MQC.m")
+  ...
+  fullfile(top_folder, "Components", "BEVController", "Test", "BEVController_UnitTest_MQC.m")
+  ...
+  fullfile(top_folder, "Components", "ControllerAndEnvironment", "Test", "CtrlEnv_UnitTest_MQC.m")
+  ...
+  fullfile(top_folder, "Components", "MotorDriveUnit", "Test", "MotorDriveUnit_UnitTest_MQC.m")
+  ...
+  fullfile(top_folder, "Components", "Vehicle1D", "Test", "Vehicle1D_UnitTest_MQC.m")
+  ...
+  fullfile(top_folder, "Components", "VehicleSpeedReference", "Test", "VehSpdRef_UnitTest_MQC.m")
+  ...
+  fullfile(top_folder, "Test", "BEVProject_UnitTest_MQC.m")
+  ];
+
 % This function runs tasks such as identifing code issues,
 % running tests, or performing your custom tasks.
 % To see available tasks, run the following command in MATLAB Command Window.
@@ -20,8 +44,14 @@ function plan = buildfile
 % - Task for running tests
 %   https://mathworks.com/help/matlab/ref/matlab.buildtool.tasks.testtask-class.html
 
-% Copyright 2023 The MathWorks, Inc.
+%   buildtool -tasks
+%   buildtool CodeIssues
+%   buildtool CheckProject
+%   buildtool Test
+%   buildtool LiveScriptToJupyterNotebook
+%   buildtool Clean
 
+%%
 % Create a build plan from task functions.
 %
 % `localfunctions` returns a cell array of function handles
@@ -34,27 +64,30 @@ plan = buildplan(localfunctions);
 
 % Add a task to identify code issues.
 plan("CodeIssues") = matlab.buildtool.tasks.CodeIssuesTask( ...
-  Results = "results/issues.sarif");
+  Results = "buildtool-results/code-issues.sarif");
+
+plan("CheckProject").Dependencies = "CodeIssues";
 
 % Add a task to run tests.
 plan("Test") = matlab.buildtool.tasks.TestTask( ...
-  TestResults = ["results/test-results.xml", "results/test-results.pdf"], ...
-  CodeCoverageResults = ["results/coverage.html", "results/coverage.xml"], ...
-  SourceFiles = pwd);
+  SourceFiles = pwd, ...
+  TestResults = ["buildtool-results/test-results.xml", "buildtool-results/test-results.pdf"], ...
+  CodeCoverageResults = ["buildtool-results/code-coverage.html", "buildtool-results/code-coverage.xml"] );
+
+plan("Test").Dependencies = ["CodeIssues" "CheckProject"];
+
+plan("Test").Tests = test_definitions;
 
 plan("Clean") = matlab.buildtool.tasks.CleanTask;
 
-%{
-plan("jupyter").Inputs = "**/*.mlx";
-plan("jupyter").Outputs = replace(plan("jupyter").Inputs, ".mlx", ".ipynb");
-%}
+plan("LiveScriptToJupyterNotebook").Inputs = "**/*.mlx";
+plan("LiveScriptToJupyterNotebook").Outputs = replace(plan("LiveScriptToJupyterNotebook").Inputs, ".mlx", ".ipynb");
 
-%{
-plan("LiveScriptToHTML").Inputs = "**/*.mlx";
-plan("LiveScriptToHTML").Outputs = replace(plan("LiveScriptToHTML").Inputs, ".mlx", ".html");
-%}
-
-plan.DefaultTasks = ["CodeIssues", "lint", "Test"];
+plan.DefaultTasks = [
+  "CodeIssues"
+  "CheckProject"
+  "Test"
+  ];
 
 end  % function
 
@@ -74,9 +107,11 @@ end  % function
 %   often called the H1 line, of the task function as the task description.
 
 
-%{
 function LiveScriptToJupyterNotebookTask(context)
 %% Export Live Scripts to Jupyter notebooks
+%
+%   buildtool LiveScriptToJupyterNotebook
+
 arguments
   context (1,1) matlab.buildtool.TaskContext
 end
@@ -86,34 +121,16 @@ for idx = 1:numel(mlxFiles)
   disp("Generating Jupyter notebook from Live Script:")
   disp("  " + mlxFiles(idx))
 
-  export(mlxFiles(idx), ipynbFiles(idx), Run=true)
+  export(mlxFiles(idx), ipynbFiles(idx), Run=true);
 
 end  % for
 end  % function
-%}
-
-
-%{
-function LiveScriptToHTMLTask(context)
-%% Export Live Scripts to HTML
-arguments
-  context (1,1) matlab.buildtool.TaskContext
-end
-mlxFiles = context.Task.Inputs.paths;
-docFiles = context.Task.Outputs.paths;
-for idx = 1:numel(mlxFiles)
-  disp("Generating HTML from Live Script:")
-  disp("  " + mlxFiles(idx))
-
-  export(mlxFiles(idx), docFiles(idx), Run=true)
-
-end  % for
-end  % function
-%}
 
 
 function CheckProjectTask(~)
 %% Run MATLAB project integrity checks
+%
+%   buildtool CheckProject
 
 BEVProject_CheckProject
 
