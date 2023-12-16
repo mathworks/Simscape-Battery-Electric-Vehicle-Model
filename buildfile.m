@@ -64,15 +64,21 @@ plan = buildplan(localfunctions);
 
 % Add a task to identify code issues.
 plan("CodeIssues") = matlab.buildtool.tasks.CodeIssuesTask( ...
-  Results = "buildtool-results/code-issues.sarif");
+  Results = "cache/buildtool-results/code-issues.sarif");
 
 plan("CheckProject").Dependencies = "CodeIssues";
 
 % Add a task to run tests.
 plan("Test") = matlab.buildtool.tasks.TestTask( ...
   SourceFiles = pwd, ...
-  TestResults = ["buildtool-results/test-results.xml", "buildtool-results/test-results.pdf"], ...
-  CodeCoverageResults = ["buildtool-results/code-coverage.html", "buildtool-results/code-coverage.xml"] );
+  TestResults = [
+  "cache/buildtool-results/test-results.xml"
+  "cache/buildtool-results/test-results.pdf"
+  ], ...
+  CodeCoverageResults = [
+  "cache/buildtool-results/code-coverage.html"
+  "cache/buildtool-results/code-coverage.xml"
+  ] );
 
 plan("Test").Dependencies = ["CodeIssues" "CheckProject"];
 
@@ -81,7 +87,8 @@ plan("Test").Tests = test_definitions;
 plan("Clean") = matlab.buildtool.tasks.CleanTask;
 
 plan("LiveScriptToJupyterNotebook").Inputs = "**/*.mlx";
-plan("LiveScriptToJupyterNotebook").Outputs = replace(plan("LiveScriptToJupyterNotebook").Inputs, ".mlx", ".ipynb");
+plan("LiveScriptToJupyterNotebook").Outputs = ...
+  replace(plan("LiveScriptToJupyterNotebook").Inputs, ".mlx", ".ipynb");
 
 plan.DefaultTasks = [
   "CodeIssues"
