@@ -1,0 +1,1020 @@
+{
+  "version": "2.1.0",
+  "properties": {
+    "Date": "16-Dec-2023 09:50:30",
+    "Release": "R2023b",
+    "CodeAnalyzerConfiguration": "active"
+  },
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Code Analyzer"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/BEV_main_script.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/BEV_setup.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/SimulationCases/BEV_simulationCase_Constant_Basic.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/SimulationCases/BEV_simulationCase_Constant_Thermal.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/SimulationCases/BEV_simulationCase_FTP75_Basic.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/SimulationCases/BEV_simulationCase_HighSpeed_Basic.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/SimulationCases/BEV_simulationCase_SimpleDrivePattern_Basic.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/SimulationCases/BEV_simulationCase_SimpleDrivePattern_Thermal.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/SimulationCases/BEV_simulationCase_WLTP_Basic.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/Test/BEV_runtests.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/Test/BEV_UnitTest_MQC.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/Utility/BEV_getMotorSpeedFromVehicleSpeed.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/Utility/BEV_plotResultsCompact.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/Utility/Configuration/BEV_useComponents_Basic.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/Utility/Configuration/BEV_useComponents_Thermal.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEV/Utility/LocalTasks/BEV_takeScreenshots.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/BEVProject_main_script.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/buildfile.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/BatteryHV_main_script.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/BatteryHV_refsub_Basic_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/BatteryHV_refsub_SystemSimple_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/BatteryHV_refsub_SystemTable_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/BatteryHV_refsub_System_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/buildfile.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Harness/BatteryHV_harness_setup.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Model-TabledBased/BatteryHV_TableBased_buildParameters.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Model-TabledBased/BatteryHV_TableBased_visualizeParameters.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/SimulationCases/BatteryHV_simulationCase_Charge.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/SimulationCases/BatteryHV_simulationCase_Constant.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/SimulationCases/BatteryHV_simulationCase_Discharge.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/SimulationCases/BatteryHV_simulationCase_Random.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Test/BatteryHV_runSelectedTests_TableBased.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Test/BatteryHV_runtests.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Test/BatteryHV_UnitTest.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Test/BatteryHV_UnitTest_MQC.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/BatteryHV_buildOpenCircuitVoltageData.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/BatteryHV_buildTerminalResistanceData.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/BatteryHV_getAmpereHourRating.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/BatteryHV_getBatteryPackParameters.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/BatteryHV_getReferencedSubsystemFilename.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/BatteryHV_plotInput_LoadCurrent.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/BatteryHV_plotResults.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/Configuration/BatteryHV_loadSimulationCase.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/Configuration/BatteryHV_loadSimulationCase_Charge.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/Configuration/BatteryHV_loadSimulationCase_Constant.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/Configuration/BatteryHV_loadSimulationCase_Discharge.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/Configuration/BatteryHV_loadSimulationCase_Random.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/Configuration/BatteryHV_setInitialConditions.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/Configuration/BatteryHV_useRefsub.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/Configuration/BatteryHV_useRefsub_Basic.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/Configuration/BatteryHV_useRefsub_System.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/Configuration/BatteryHV_useRefsub_SystemSimple.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/Configuration/BatteryHV_useRefsub_SystemTable.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/LocalTasks/BatteryHV_openREADME.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BatteryHighVoltage/Utility/LocalTasks/BatteryHV_takeScreenshots.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BEVController/BEVController_refsub_Basic_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BEVController/Harness/BEVController_harness_setup.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BEVController/SimulationCases/BEVController_simulationCase.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BEVController/Test/BEVController_runtests.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BEVController/Test/BEVController_UnitTest_MQC.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BEVController/Utility/Configuration/BEVController_useRefsub.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/BEVController/Utility/Configuration/BEVController_useRefsub_Basic.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/CtrlEnv_refsub_Basic_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Harness/Components/Vehicle/CtrlEnv_Vehicle_refsub_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Harness/Components/Vehicle/Harness/CtrlEnv_Vehicle_harness_setup.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Harness/Components/Vehicle/SimulationCases/CtrlEnv_Vehicle_simulationCase.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Harness/Components/Vehicle/Test/CtrlEnv_Vehicle_runtests.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Harness/Components/Vehicle/Test/CtrlEnv_Vehicle_UnitTest_MQC.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Harness/Components/Vehicle/Utility/Configuration/CtrlEnv_Vehicle_loadSimulationCase.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Harness/Components/Vehicle/Utility/Configuration/CtrlEnv_Vehicle_setInitialConditions.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Harness/Components/Vehicle/Utility/CtrlEnv_Vehicle_getMotorSpeedFromVehicleSpeed.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Harness/Components/Vehicle/Utility/CtrlEnv_Vehicle_plotResults.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Harness/CtrlEnv_harness_setup.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/SimulationCases/CtrlEnv_simulationCase_Constant.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/SimulationCases/CtrlEnv_simulationCase_FTP75.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/SimulationCases/CtrlEnv_simulationCase_HighSpeed.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/SimulationCases/CtrlEnv_simulationCase_SimpleDrivePattern.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/SimulationCases/CtrlEnv_simulationCase_WLTP.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Test/CtrlEnv_runtests.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Test/CtrlEnv_UnitTest_MQC.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Utility/Configuration/CtrlEnv_loadSimulationCase.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Utility/Configuration/CtrlEnv_loadSimulationCase_Constant.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Utility/Configuration/CtrlEnv_loadSimulationCase_FTP75.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Utility/Configuration/CtrlEnv_loadSimulationCase_HighSpeed.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Utility/Configuration/CtrlEnv_loadSimulationCase_SimpleDrivePattern.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Utility/Configuration/CtrlEnv_loadSimulationCase_WLTP.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/ControllerAndEnvironment/Utility/CtrlEnv_plotResults.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Harness/MotorDriveUnit_harness_setup.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/MotorDriveUnit_main_script.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/MotorDriveUnit_refsub_BasicThermal_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/MotorDriveUnit_refsub_Basic_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/MotorDriveUnit_refsub_SystemTable_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/MotorDriveUnit_refsub_System_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Notes-Efficiency/MotorDriveUnit_note_Efficiency_Basic.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Notes-Efficiency/MotorDriveUnit_note_Efficiency_System.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/SimulationCases/MotorDriveUnit_simulationCase_Constant.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/SimulationCases/MotorDriveUnit_simulationCase_Drive.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/SimulationCases/MotorDriveUnit_simulationCase_Random.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/SimulationCases/MotorDriveUnit_simulationCase_RegenBrake.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Test/MotorDriveUnit_runtests.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Test/MotorDriveUnit_UnitTest_MQC.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/Configuration/MotorDriveUnit_loadSimulationCase.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/Configuration/MotorDriveUnit_loadSimulationCase_Constant.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/Configuration/MotorDriveUnit_loadSimulationCase_Drive.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/Configuration/MotorDriveUnit_loadSimulationCase_Random.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/Configuration/MotorDriveUnit_loadSimulationCase_RegenBrake.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/Configuration/MotorDriveUnit_setInitialConditions.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/Configuration/MotorDriveUnit_useRefsub.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/Configuration/MotorDriveUnit_useRefsub_Basic.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/Configuration/MotorDriveUnit_useRefsub_BasicThermal.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/Configuration/MotorDriveUnit_useRefsub_System.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/Configuration/MotorDriveUnit_useRefsub_SystemTable.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/MotorDriveUnit_getBlockInfo_Basic.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/MotorDriveUnit_getBlockInfo_System.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/MotorDriveUnit_plotEfficiency.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/MotorDriveUnit_plotEfficiency_Basic.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/MotorDriveUnit/Utility/MotorDriveUnit_plotResults.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Reducer/Reducer_refsub_Basic_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Custom/+Vehicle1DUtility/getVehicle1DCustomBlockInfo.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Custom/+Vehicle1DUtility/getVehicle1DDrivelineBlockInfo.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Custom/+Vehicle1DUtility/plotRoadLoad.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Custom/+Vehicle1DUtility/reportVehicle1DCustomBlock.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Custom/Vehicle1D_plotProperties_Custom.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Harness/Vehicle1D_harness_setup.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/SimulationCases/Vehicle1D_simulationCase_Accelerate.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/SimulationCases/Vehicle1D_simulationCase_Braking.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/SimulationCases/Vehicle1D_simulationCase_Coastdown.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/SimulationCases/Vehicle1D_simulationCase_Constant.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Test/Vehicle1D_runtests.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Test/Vehicle1D_UnitTest.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Test/Vehicle1D_UnitTest_MQC.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Utility/Configuration/Vehicle1D_loadSimulationCase.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Utility/Configuration/Vehicle1D_loadSimulationCase_Accelerate.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Utility/Configuration/Vehicle1D_loadSimulationCase_Braking.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Utility/Configuration/Vehicle1D_loadSimulationCase_Coastdown.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Utility/Configuration/Vehicle1D_loadSimulationCase_Constant.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Utility/Configuration/Vehicle1D_setInitialConditions.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Utility/Vehicle1D_getLongitudinalVehicleInfo.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Utility/Vehicle1D_plotInputs.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Utility/Vehicle1D_plotProperties_Basic.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Utility/Vehicle1D_plotResults.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Utility/Vehicle1D_resetHarnessModel.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/Vehicle1D/Vehicle1D_refsub_Basic_params.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/SimulationCases/VehSpdRef_simulationCase_Constant.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/SimulationCases/VehSpdRef_simulationCase_FTP75.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/SimulationCases/VehSpdRef_simulationCase_HighSpeed.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/SimulationCases/VehSpdRef_simulationCase_SimpleDrivePattern.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/SimulationCases/VehSpdRef_simulationCase_WLTP.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/Test/VehSpdRef_runtests.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/Test/VehSpdRef_UnitTest_MQC.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/Utility/Configuration/VehSpdRef_loadSimulationCase.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/Utility/Configuration/VehSpdRef_loadSimulationCase_Constant.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/Utility/Configuration/VehSpdRef_loadSimulationCase_FTP75.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/Utility/Configuration/VehSpdRef_loadSimulationCase_HighSpeed.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/Utility/Configuration/VehSpdRef_loadSimulationCase_SimpleDrivePattern.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/Utility/Configuration/VehSpdRef_loadSimulationCase_WLTP.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Components/VehicleSpeedReference/Utility/VehSpdRef_plotResults.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/DetailedModelApplications/BEVProject_DetailedModelApplications.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/DetailedModelApplications/MotorDrivePmsmFem/MotorDriveElecLossParams_text.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/DetailedModelApplications/MotorDrivePmsmFem/MotorDrivePmsmFemParams.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/DetailedModelApplications/MotorDrivePmsmFem/MotorDrive_calcElectricEfficiency.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/DetailedModelApplications/MotorDrivePmsmFem/MotorDrive_runSim.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/DetailedModelApplications/MotorDrivePmsmFem/MotorDrive_testParams.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/DetailedModelApplications/MotorPmsmFem/PmsmFemParams.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Interface/defineBus_HighVoltage.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Interface/defineBus_Rotational.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Test/BEVProject_runtests.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Test/BEVProject_UnitTest_MQC.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Test/CheckProject/BEVProject_CheckProject.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Test/CheckProject/BEVProject_CheckProject_runtests.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Test/CheckProject/BEVProject_CheckProject_UnitTest.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/AboutBEVProject.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/adjustFigureHeightAndWindowYPosition.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/atProjectStartUp.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/Checks/checkCallbackButton.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/generateHTML.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/getSimscapeValueFromBlockParameter.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/LocalTasks/LiveScript_Utility.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/LocalTasks/openFile.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/LocalTasks/openFile_SignalDesignerExample.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/LocalTasks/saveModels.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/LocalTasks/screenshotSimulink.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/LocalTasks/setModelWindowPositionAndSize.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/openTestManager.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/plotSimulationResultSignal.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/setMinimumYRange.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/SignalDesigner/+SignalDesignUtility/buildTrace.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/SignalDesigner/+SignalDesignUtility/buildXYData.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/SignalDesigner/+SignalSourceBlockCallback/plotContinuous.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/SignalDesigner/+SignalSourceBlockCallback/plotContinuousMultiStep.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/SignalDesigner/+SignalSourceBlockCallback/plotPieceWiseConstant.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/SignalDesigner/+SignalSourceBlockCallback/plotTraceGenerator.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/SignalDesigner/+SignalSourceBlockCallback/setDataToLookupTableBlock.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/SignalDesigner/SignalDesigner.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/SignalDesigner/SignalDesigner_example.mlx"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/TestTools/BEVTestCase.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/verifyBlockCheckbox_custom.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/verifyBlockDropdown_custom.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/verifyBlockInitialPriority_custom.m"
+          }
+        },
+        {
+          "location": {
+            "uri": "file:///C:/local/github-issacito12/fork-bev/Utility/verifyBlockParameter_custom.m"
+          }
+        }
+      ],
+      "results": []
+    }
+  ]
+}

@@ -41,8 +41,12 @@ on:
 
 jobs:
 
-  job-build-project:
+  job-buildtool-23b:
+
+    name: Test in R2023b
+
     runs-on: ubuntu-latest
+
     permissions:
       # required for sarif upload
       security-events: write
@@ -64,48 +68,48 @@ jobs:
             Simscape_Electrical
             Simscape_Driveline
             Powertrain_Blockset
-            
+
       - name: Start display server
         run: |
           sudo apt-get install xvfb
           Xvfb :99 &
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
-      - name: Run project checks, lint, and tests
-        uses: matlab-actions/run-build@v1
-        continue-on-error: true
+      - name: Run buildtool using buildfile.m
+        uses: matlab-actions/run-command@v1
+        with:
+          command: openProject(pwd); buildtool Test
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v2
         if: always()         
         with:
-          sarif_file: results/issues.sarif
+          sarif_file: cache/buildtool-results/code-issues.sarif
           category: matlab-analysis
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v4
         if: always() 
         with:
-          report_paths: 'results/test-results.xml'
+          report_paths: 'cache/buildtool-results/test-results.xml'
 
       - name: Upload Test Report  
         if: always() 
         uses: actions/upload-artifact@v2
         with:
-          name:  Test Results
-          path: results/test-results.pdf
+          name: Test Results
+          path: cache/buildtool-results/test-results.pdf
 
       - name: Upload All Artifacts 
         if: always() 
         uses: actions/upload-artifact@v2
         with:
-          name:  All Artifacts
-          path: results
+          name: All Artifacts
+          path: cache/buildtool-results
 
       - name: Publish coverage
         uses: 5monkeys/cobertura-action@master
         continue-on-error: true
         with:
-          path: results/coverage.xml
+          path: cache/buildtool-results/code-coverage.xml
           minimum_coverage: 75
-

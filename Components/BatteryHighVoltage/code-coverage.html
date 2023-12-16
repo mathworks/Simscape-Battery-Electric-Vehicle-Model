@@ -1,0 +1,48 @@
+<!--Copyright 2021 The MathWorks, Inc.-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="release/index-css.css"  type="text/css" />
+    
+</head>
+
+<body class="tundra">
+	<div class = "bodyContainerDiv">
+        <h1 id="MainTitle"></h1>
+        <p class = "mainDescription" id="MainDescription"></p>
+
+        <h2 id="CoverageSummaryTitle"></h2>
+        <p class = "sectionDescription" id="CoverageSummaryDescription"></p>
+        <div id="summaryTableContainer" class = "flexContainerRow">
+            <div id="TotalFilesContainer" class = "flexContainerColumn">
+                <div id="TotalFilesTitleContainer"></div>
+                <div id="TotalFilesValueContainer"></div>
+            </div>
+            <div id="CoverageSummaryDataContainer"></div>
+        </div>
+        <div id="FilterBannerContainer" class = "flexContainerRow">
+            <div id="EnabledMetricNamesContainer"></div> 
+            <div id="FilterDropboxContainer"></div>
+        </div>
+        <hr>
+        
+        <h2 id="BreakdownBySourceTitle"></h2>
+        <p class = "sectionDescription" id="BreakDownBySourceDescription"></p>
+        <div id="toggleButtonRadioButtonContainer" class = "flexContainerRow">   
+            <div id="toggleButtonRadioButton1Container"></div>
+            <div id="toggleButtonRadioButton2Container"></div>
+        </div>
+        <div id="divForRootLocation"></div> 
+        <div id="breakdownBySourceTableContainer"></div>
+        <hr>
+        
+        <h2 id="SourceDetailsTitle"></h2>
+        <p class = "sectionDescription" id="SourceDetailsDescription"></p>
+        <div id="sourceDetailsTableContainer" class = "flexContainerRowWithoutAlign">
+        </div>
+    </div>
+    <script src="release/matlab_codecov_js-ui/dojoConfig-release-global.js"></script>
+    <script src="release/bundle.index.js"></script>
+</body>
+</html>
