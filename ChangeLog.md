@@ -1,5 +1,10 @@
 # Change Log
 
+## Version 2.4.1 (January 2025)
+
+- GitHub Actions workflow has been updated to use the latest version of
+  `matlab-actions/setup-matlab@v3` action.
+
 ## Version 2.4.0 (November, 2024)
 
 - The project has been updated to MATLAB R2024b with some clean ups.

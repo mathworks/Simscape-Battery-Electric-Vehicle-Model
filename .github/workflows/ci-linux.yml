@@ -9,9 +9,9 @@
 # For details about the syntax of this file, see
 # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
 
-# Copyright 2021-2024 The MathWorks, Inc.
+# Copyright 2021-2025 The MathWorks, Inc.
 
-name: CI using MATLAB
+name: CI using MATLAB on Linux
 
 on:
   push:
@@ -41,11 +41,20 @@ on:
 
 jobs:
 
-  job-buildtool-24b:
-
-    name: Test in R2024b
+  job-buildtool:
 
     runs-on: ubuntu-latest
+
+    # Matrix strategy is used to run the job in various MATLAB versions.
+    # For information about matrix strategy, see the documentation.
+    # - Running variations of jobs in a workflow
+    #   https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow
+    strategy:
+      matrix:
+        matlab_version: [R2024b]
+        #matlab_version: [R2024b, R2025a]
+
+    name: Test in ${{ matrix.matlab_version }} on Linux
 
     permissions:
       # required for sarif upload
@@ -55,12 +64,12 @@ jobs:
     steps:
 
       - name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup MATLAB
+      - name: Setup MATLAB ${{ matrix.matlab_version }}
         uses: matlab-actions/setup-matlab@v2
         with:
-          release: R2024b
+          release: ${{ matrix.matlab_version }}
           cache: true
           products: |
             Simulink
@@ -69,16 +78,18 @@ jobs:
             Simscape_Driveline
             Powertrain_Blockset
 
-      - name: Start display server
+      - name: Start display server for running headless Linux with graphics
         run: |
           sudo apt-get install xvfb
           Xvfb :99 &
           echo "DISPLAY=:99" >> $GITHUB_ENV
 
-      - name: Run buildtool using buildfile.m
-        uses: matlab-actions/run-command@v1
+      - name: Run tests via buildtool using buildfile.m
+        uses: matlab-actions/run-command@v2
         with:
-          command: openProject(pwd); buildtool CodeIssues CheckProject Test
+          command: |
+            openProject(pwd);
+            buildtool CodeIssues CheckProject Test
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v3

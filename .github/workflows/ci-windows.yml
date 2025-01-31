@@ -1,0 +1,74 @@
+# GitHub Actions Workflow with MATLAB Actions
+#
+# For a general overview of GitHub Actions, see
+# https://docs.github.com/en/actions
+#
+# For using MathWorks products in GitHub Actions, see
+# https://github.com/matlab-actions/overview
+#
+# For details about the syntax of this file, see
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+
+# Copyright 2025 The MathWorks, Inc.
+
+name: CI using MATLAB on Windows
+
+on:
+  push:
+    branches: [ R2024b ]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '**.png'
+      - '**.svg'
+      - '**.txt'
+      - '**.xml'
+
+  pull_request:
+    branches: [ R2024b ]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '**.png'
+      - '**.svg'
+      - '**.txt'
+      - '**.xml'
+
+  workflow_dispatch:
+
+jobs:
+
+  job-buildtool:
+
+    runs-on: windows-latest
+
+    strategy:
+      matrix:
+        matlab_version: [R2024b]
+        #matlab_version: [R2024b, R2025a]
+
+    name: Test in ${{ matrix.matlab_version }} on Windows
+
+    steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Setup MATLAB ${{ matrix.matlab_version }}
+        uses: matlab-actions/setup-matlab@v2
+        with:
+          release: ${{ matrix.matlab_version }}
+          cache: true
+          products: |
+            Simulink
+            Simscape
+            Simscape_Electrical
+            Simscape_Driveline
+            Powertrain_Blockset
+
+      - name: Run buildtool using buildfile.m
+        uses: matlab-actions/run-command@v2
+        with:
+          command: |
+            openProject(pwd);
+            buildtool CodeIssues CheckProject Test
