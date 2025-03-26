@@ -1,9 +1,13 @@
 # Change Log
 
+## Version 2.4.2 (March 2025)
+
+- Motor PMSM FEM: Update the link to the shipping example.
+
 ## Version 2.4.1 (January 2025)
 
-- GitHub Actions workflow has been updated to use the latest version of
-  `matlab-actions/setup-matlab@v3` action.
+- GitHub Actions workflow has been updated to run tests on Windows
+  in addition to Linux.
 
 ## Version 2.4.0 (November, 2024)
 
