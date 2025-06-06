@@ -5,7 +5,7 @@ function App = MotorDriveUnitApp()
 % Copyright 2025 The MathWorks, Inc.
 
 app_setup.ErrorID = "MotorDriveUnitApp:";
-app_setup.ComponentTopFolder = fullfile(currentProject().RootFolder, "Application", "MotorDrive-v2", "MotorDriveUnit");
+app_setup.ComponentTopFolder = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit");
 app_setup.ModelName = "MotorDriveUnit_harness_model";
 app_setup.HarnessSetupScript = "MotorDriveUnit_harness_setup";
 app_setup.InputsBlockPath = "MotorDriveUnit_harness_model/Inputs";
@@ -272,7 +272,7 @@ AppUIStruct.InputSignalPlotPanel.BorderType = "line";
     logical_index = sim_case_display_keyword == AppUIStruct.SimulationCaseDropDownUI.Items;
     sim_case_keyword = simulation_case_items(logical_index);
 
-    sim_case_setup = "MotorDriveUnit_loadCase_" + sim_case_keyword;
+    sim_case_setup = "MotorDriveUnit_setSimCase_" + sim_case_keyword;
 
     % Create hyperlinks that run functions
     % https://www.mathworks.com/help/matlab/matlab_prog/create-hyperlinks-that-run-functions.html
