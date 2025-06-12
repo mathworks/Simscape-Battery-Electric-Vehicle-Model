@@ -8,17 +8,46 @@ app_setup.ErrorID = "MotorDriveUnitApp:";
 app_setup.ComponentTopFolder = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit");
 app_setup.ModelName = "MotorDriveUnit_harness_model";
 app_setup.HarnessSetupScript = "MotorDriveUnit_harness_setup";
+app_setup.MainBlockPath = "MotorDriveUnit_harness_model/Motor Drive Unit";
 app_setup.InputsBlockPath = "MotorDriveUnit_harness_model/Inputs";
 app_setup.ScopePath = "MotorDriveUnit_harness_model/Measurement/Scope MDU Harness";
 
-% -----------------------------------------------------------------------------
+app_setup.MDUItems = ["Basic", "BasicThermal", "SystemThermal", "SystemTable"];
+app_setup.MDUDisplayItems = [
+  LiteApp5.Utility.i18n("Basic model")
+  LiteApp5.Utility.i18n("Basic thermal model")
+  LiteApp5.Utility.i18n("System-level thermal model")
+  LiteApp5.Utility.i18n("System-level model with tabulated losses")];
 
-callbackOpenSystem(app_setup.ModelName)
+% -----------------------------------------------------------------------------
+% Setup before buidling app
+
+disp(LiteApp5.Utility.i18n("Loading model: ") + app_setup.ModelName)
+load_system(app_setup.ModelName)
+
+% Get the currently selected refsub's name.
+% Select it in the app's MDU block drop down later.
+current_refsub = get_param(app_setup.MainBlockPath, "ReferencedSubsystem");
+refsub_name = extractAfter(current_refsub, "MotorDriveUnit_refsub_");
+logical_index = refsub_name == app_setup.MDUItems;
+mdu_display_value = app_setup.MDUDisplayItems(logical_index);
+
+% -----------------------------------------------------------------------------
+% Build app UI
 
 app_ui = build_app_ui(app_setup);
 
-Show(app_ui.Window)
 % -----------------------------------------------------------------------------
+% Setup initial model and simulation case in the app.
+% Do this after the app is built.
+
+app_ui.TargetBlockDropDownUI.Value = mdu_display_value;
+app_ui.SimulationCaseDropDownUI.Value = LiteApp5.Utility.i18n("Drive");
+
+refreshInitialConditions(app_ui)
+
+% -----------------------------------------------------------------------------
+Show(app_ui.Window)
 if nargout > 0
   App = app_ui;
 end  % if
@@ -37,13 +66,8 @@ end  % arguments
 
 % -----------------------------------------------------------------------------
 
-mdu_display_items = [
-  LiteApp5.Utility.i18n("Basic model")
-  LiteApp5.Utility.i18n("Basic thermal model")
-  LiteApp5.Utility.i18n("System-level model")
-  LiteApp5.Utility.i18n("System-level model with tabulated losses")];
-
-mdu_items = ["Basic", "BasicThermal", "System", "SystemTable"];
+mdu_display_items = AppSetup.MDUDisplayItems;
+mdu_items = AppSetup.MDUItems;
 
 simulation_case_display_items = [
   LiteApp5.Utility.i18n("Constant inputs")
@@ -68,7 +92,7 @@ AppUIStruct.Window.HeaderUI.AppSourceName = mfilename;
 
 AppUIStruct.Window.Name = LiteApp5.Utility.i18n("Motor Drive Unit App");
 
-AppUIStruct.Window.Width = 700;
+AppUIStruct.Window.Width = 550;
 
 AppUIStruct.Window.Height = 650;
 input_plot_panel_height = 360;
@@ -83,9 +107,13 @@ column = NewColumn(layout, area);
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
+target_file = "MotorDriveUnitDescription.html";
+% Check that the file exists.
+LiteApp5.Utility.getFileFullPath(target_file);
+
 AppUIStruct.DocLinkUI = LiteApp5.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
 AppUIStruct.DocLinkUI.HyperlinkText = "Description";
-AppUIStruct.DocLinkUI.HyperlinkClickedCallback = @() web(fullfile(AppSetup.ComponentTopFolder, LiteApp5.Utility.i18n("MotorDriveUnit_main_script.html")));
+AppUIStruct.DocLinkUI.HyperlinkClickedCallback = @() web(target_file);
 AppUIStruct.DocLinkUI.MainHyperlink.Tooltip = LiteApp5.Utility.i18n("Open the component description page.");
 % Adjust the height and vertical alignment of the hyperlink component:
 AppUIStruct.DocLinkUI.ComponentHeight = oneline_height + 4;
@@ -95,7 +123,12 @@ AppUIStruct.OpenModelButtonUI = LiteApp5.Component.Button(NewSlot(layout, row, W
 AppUIStruct.OpenModelButtonUI.ComponentWidth = button_width;
 AppUIStruct.OpenModelButtonUI.Text = LiteApp5.Utility.i18n("Open model");
 AppUIStruct.OpenModelButtonUI.MainButton.Tooltip = LiteApp5.Utility.i18n("Open the harness model.");
-AppUIStruct.OpenModelButtonUI.ButtonPushedCallback = @() callbackOpenSystem(AppSetup.ModelName);
+AppUIStruct.OpenModelButtonUI.ButtonPushedCallback = @() dispAndOpenSystem(AppSetup.ModelName);
+
+  function dispAndOpenSystem(modelName)
+    disp(LiteApp5.Utility.i18n("Opening model: ") + modelName)
+    open_system(modelName)
+  end  % nested function
 
 AppUIStruct.OpenSetupButtonUI= LiteApp5.Component.Button(NewSlot(layout, row, Width="fit"));
 AppUIStruct.OpenSetupButtonUI.ComponentWidth = button_width;
@@ -139,7 +172,6 @@ label_ui.Text = LiteApp5.Utility.i18n("Simulation case");
 
 AppUIStruct.SimulationCaseDropDownUI = LiteApp5.Component.DropDown(NewSlot(layout, row));
 AppUIStruct.SimulationCaseDropDownUI.Items = simulation_case_display_items;
-% AppUIStruct.SimulationCaseDropDownUI.Value = "Drive";
 AppUIStruct.SimulationCaseDropDownUI.HorizontalAlignment = "left";
 AppUIStruct.SimulationCaseDropDownUI.ValueChangedCallback = @() update_simulation_case(AppUIStruct.SimulationCaseDropDownUI.Value);
 
@@ -158,7 +190,7 @@ button_ui.ComponentWidth = button_width;
 button_ui.HorizontalAlignment = "left";
 button_ui.Text = LiteApp5.Utility.i18n("Refresh");
 button_ui.MainButton.Tooltip = LiteApp5.Utility.i18n("Load workspace variables.");
-button_ui.ButtonPushedCallback = @() callback_RefreshInitialConditions();
+button_ui.ButtonPushedCallback = @() refreshInitialConditions(AppUIStruct);
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
@@ -169,7 +201,11 @@ AppUIStruct.LoadSpeedUI.NameUIWidth = name_ui_width;
 AppUIStruct.LoadSpeedUI.Value = "initial.loadInertiaSpd_rpm";
 AppUIStruct.LoadSpeedUI.Unit = "rpm";
 AppUIStruct.LoadSpeedUI.ValueReadOnly = true;
-AppUIStruct.LoadSpeedUI.ValueEditFieldUI.MainEditField.Tooltip = LiteApp5.Utility.i18n("To modify, edit the setup script.");
+AppUIStruct.LoadSpeedUI.ValueEditFieldUI.MainEditField.Tooltip = buildTooltipText(AppUIStruct.LoadSpeedUI.Value);
+
+  function str = buildTooltipText(value_text)
+    str = value_text + newline + LiteApp5.Utility.i18n("(To modify, edit the setup script.)");
+  end  % nested function
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
@@ -180,7 +216,7 @@ AppUIStruct.MotorSpeedUI.NameUIWidth = name_ui_width;
 AppUIStruct.MotorSpeedUI.Value = "initial.motorSpd_rpm";
 AppUIStruct.MotorSpeedUI.Unit = "rpm";
 AppUIStruct.MotorSpeedUI.ValueReadOnly = true;
-AppUIStruct.MotorSpeedUI.ValueEditFieldUI.MainEditField.Tooltip = LiteApp5.Utility.i18n("To modify, edit the setup script.");
+AppUIStruct.MotorSpeedUI.ValueEditFieldUI.MainEditField.Tooltip = buildTooltipText(AppUIStruct.MotorSpeedUI.Value);
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
@@ -191,7 +227,7 @@ AppUIStruct.MotorTemperatureUI.NameUIWidth = name_ui_width;
 AppUIStruct.MotorTemperatureUI.Value = "initial.motorDriveUnit_Temperature_K";
 AppUIStruct.MotorTemperatureUI.Unit = "K";
 AppUIStruct.MotorTemperatureUI.ValueReadOnly = true;
-AppUIStruct.MotorTemperatureUI.ValueEditFieldUI.MainEditField.Tooltip = LiteApp5.Utility.i18n("To modify, edit the setup script.");
+AppUIStruct.MotorTemperatureUI.ValueEditFieldUI.MainEditField.Tooltip = buildTooltipText(AppUIStruct.MotorTemperatureUI.Value);
 
 area_number = layout.A;
 column_number = layout.C;
@@ -207,7 +243,7 @@ AppUIStruct.AmbientTemperatureUI.NameUIWidth = name_ui_width;
 AppUIStruct.AmbientTemperatureUI.Value = "initial.ambientTemp_K";
 AppUIStruct.AmbientTemperatureUI.Unit = "K";
 AppUIStruct.AmbientTemperatureUI.ValueReadOnly = true;
-AppUIStruct.AmbientTemperatureUI.ValueEditFieldUI.MainEditField.Tooltip = LiteApp5.Utility.i18n("To modify, edit the setup script.");
+AppUIStruct.AmbientTemperatureUI.ValueEditFieldUI.MainEditField.Tooltip = buildTooltipText(AppUIStruct.AmbientTemperatureUI.Value);
 
 row_number_AmbTempUI = layout.R;
 
@@ -223,18 +259,9 @@ row = NewRow(layout, column);
 
 AppUIStruct.InputSignalPlotPanel = LiteApp5.Graphics.Panel(NewSlot(layout, row));
 AppUIStruct.InputSignalPlotPanel.ComponentHeight = input_plot_panel_height;
-AppUIStruct.InputSignalPlotPanel.BorderType = "line";
 
-  % ---------------------------------------------------------------------------
-  % callbacks
-
-  function callback_RefreshInitialConditions()
-    %%
-    AppUIStruct.LoadSpeedUI.Value = "initial.loadInertiaSpd_rpm";
-    AppUIStruct.MotorSpeedUI.Value = "initial.motorSpd_rpm";
-    AppUIStruct.MotorTemperatureUI.Value = "initial.motorDriveUnit_Temperature_K";
-    AppUIStruct.AmbientTemperatureUI.Value = "initial.ambientTemp_K";
-  end  % nested function
+% ---------------------------------------------------------------------------
+% callbacks
 
   function update_referenced_subsystem(SelectedItem)
     %%
@@ -287,53 +314,91 @@ AppUIStruct.InputSignalPlotPanel.BorderType = "line";
 
   end  % nested function
 
-  % ---------------------------------------------------------------------------
-  % Final step of building app UI
-  % Get the current subsystem reference name from the model, and update the app's refsub drop down UI.
-  current_refsub = string(get_param(AppSetup.ModelName + "/Motor Drive Unit", "ReferencedSubsystem"));
-  refsub_keyword = extractAfter(current_refsub, "MotorDriveUnit_refsub_");
-  logical_index = refsub_keyword == mdu_items;
-  AppUIStruct.TargetBlockDropDownUI.Value = mdu_display_items(logical_index);
+% ---------------------------------------------------------------------------
+% Final step of building app UI
+
+% Get the current subsystem reference name from the model, and update the app's refsub drop down UI.
+current_refsub = string(get_param(AppSetup.ModelName + "/Motor Drive Unit", "ReferencedSubsystem"));
+refsub_keyword = extractAfter(current_refsub, "MotorDriveUnit_refsub_");
+logical_index = refsub_keyword == mdu_items;
+AppUIStruct.TargetBlockDropDownUI.Value = mdu_display_items(logical_index);
+
+refreshInitialConditions(AppUIStruct)
 end  % function
+
+%% ============================================================================
+% Callbacks
+
+function refreshInitialConditions(app_ui)
+%%
+app_ui.LoadSpeedUI.Value = "initial.loadInertiaSpd_rpm";
+app_ui.MotorSpeedUI.Value = "initial.motorSpd_rpm";
+app_ui.MotorTemperatureUI.Value = "initial.motorDriveUnit_Temperature_K";
+app_ui.AmbientTemperatureUI.Value = "initial.ambientTemp_K";
+end  % nested function
 
 function updateInputSignalPlots(refsub_keyword, input_block_path, graphics_parent)
 %%
+layout = tiledlayout(graphics_parent, "vertical", TileSpacing="tight");
+
+motor_torque_str = "Motor torque command";
+axle_torque_str = "Axle torque";
+axle_clutch_str = "Axle clutch switch";
+axle_speed_str = "Axle speed";
+heat_flow_str = "Heat flow command";
+
 switch refsub_keyword
   case "Basic"
-    motor_torque = buildTimetable(input_block_path, "Motor torque command");
-    axle_torque = buildTimetable(input_block_path, "Axle torque");
+    motor_torque = buildTimetable(input_block_path, motor_torque_str);
+    axle_torque = buildTimetable(input_block_path, axle_torque_str);
     data = synchronize(motor_torque, axle_torque, "regular", "linear", "TimeStep", seconds(1));
 
-  case "BasicThermal"
-    motor_torque = buildTimetable(input_block_path, "Motor torque command");
-    axle_torque = buildTimetable(input_block_path, "Axle torque");
-    axle_clutch = buildTimetable(input_block_path, "Axle clutch switch");
-    axle_speed = buildTimetable(input_block_path, "Axle speed");
-    heat_flow = buildTimetable(input_block_path, "Heat flow command");
-    data = synchronize(motor_torque, axle_torque, axle_clutch, axle_speed, heat_flow, ...
-      "regular", "linear", "TimeStep", seconds(1));
+    TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=motor_torque_str, SignalUnit="N*m", XLabel="")
+    TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=axle_torque_str, SignalUnit="N*m")
 
-  case "System"
-    motor_torque = buildTimetable(input_block_path, "Motor torque command");
-    axle_torque = buildTimetable(input_block_path, "Axle torque");
-    axle_clutch = buildTimetable(input_block_path, "Axle clutch switch");
-    axle_speed = buildTimetable(input_block_path, "Axle speed");
-    heat_flow = buildTimetable(input_block_path, "Heat flow command");
-    data = synchronize(motor_torque, axle_torque, axle_clutch, axle_speed, heat_flow, ...
-      "regular", "linear", "TimeStep", seconds(1));
+  case "BasicThermal"
+    motor_torque = buildTimetable(input_block_path, motor_torque_str);
+    axle_torque = buildTimetable(input_block_path, axle_torque_str);
+    axle_clutch = buildTimetable(input_block_path, axle_clutch_str);
+    axle_speed = buildTimetable(input_block_path, axle_speed_str);
+    heat_flow = buildTimetable(input_block_path, heat_flow_str);
+    data = synchronize(motor_torque, axle_torque, axle_clutch, axle_speed, heat_flow, "regular", "linear", "TimeStep", seconds(1));
+
+    TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=motor_torque_str, SignalUnit="N*m", XLabel="")
+    TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=axle_torque_str, SignalUnit="N*m", XLabel="")
+    % TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=axle_clutch_str, SignalUnit="", XLabel="")
+    % TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=axle_speed_str, SignalUnit="rpm", XLabel="")
+    TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=heat_flow_str, SignalUnit="W", XLabel="")
+
+  case "SystemThermal"
+    motor_torque = buildTimetable(input_block_path, motor_torque_str);
+    axle_torque = buildTimetable(input_block_path, axle_torque_str);
+    axle_clutch = buildTimetable(input_block_path, axle_clutch_str);
+    axle_speed = buildTimetable(input_block_path, axle_speed_str);
+    heat_flow = buildTimetable(input_block_path, heat_flow_str);
+    data = synchronize(motor_torque, axle_torque, axle_clutch, axle_speed, heat_flow, "regular", "linear", "TimeStep", seconds(1));
+
+    TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=motor_torque_str, SignalUnit="N*m", XLabel="")
+    TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=axle_torque_str, SignalUnit="N*m", XLabel="")
+    % TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=axle_clutch_str, SignalUnit="", XLabel="")
+    % TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=axle_speed_str, SignalUnit="rpm", XLabel="")
+    TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=heat_flow_str, SignalUnit="W", XLabel="")
 
   case "SystemTable"
-    motor_torque = buildTimetable(input_block_path, "Motor torque command");
-    axle_torque = buildTimetable(input_block_path, "Axle torque");
-    axle_clutch = buildTimetable(input_block_path, "Axle clutch switch");
-    axle_speed = buildTimetable(input_block_path, "Axle speed");
-    data = synchronize(motor_torque, axle_torque, axle_clutch, axle_speed, ...
-      "regular", "linear", "TimeStep", seconds(1));
+    motor_torque = buildTimetable(input_block_path, motor_torque_str);
+    axle_torque = buildTimetable(input_block_path, axle_torque_str);
+    axle_clutch = buildTimetable(input_block_path, axle_clutch_str);
+    axle_speed = buildTimetable(input_block_path, axle_speed_str);
+    heat_flow = buildTimetable(input_block_path, heat_flow_str);
+    data = synchronize(motor_torque, axle_torque, axle_clutch, axle_speed, heat_flow, "regular", "linear", "TimeStep", seconds(1));
+
+    TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=motor_torque_str, SignalUnit="N*m", XLabel="")
+    TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=axle_torque_str, SignalUnit="N*m", XLabel="")
+    % TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=axle_clutch_str, SignalUnit="", XLabel="")
+    % TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=axle_speed_str, SignalUnit="rpm", XLabel="")
+    % TimetableSingleSignalPlot(ParentAxes=nexttile(layout), Timetable=data, SignalName=heat_flow_str, SignalUnit="W", XLabel="")
 
 end  % switch
-
-stackedplot(graphics_parent, data, LineWidth=1)
-
 end  %function
 
 function tt = buildTimetable(input_block_path, signale_name)
@@ -350,9 +415,3 @@ y = LiteApp5.Utility.getNumberArrayFromString(y_str);
 tt = timetable(Time, y);
 tt.Properties.VariableNames = signale_name;
 end  % nested function
-
-function callbackOpenSystem(modelName)
-%%
-disp(LiteApp5.Utility.i18n("Opening the model: ") + modelName)
-open_system(modelName)
-end  % function

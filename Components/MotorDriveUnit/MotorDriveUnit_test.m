@@ -59,15 +59,15 @@ classdef MotorDriveUnit_test < matlab.unittest.TestCase
     end  % function
 
     function MQC_main_script_1(~)
-      MotorDriveUnit_main_script  % !test-target
+      MotorDriveUnitDescription  % !test-target
     end  % function
 
     %%
 
     function main_html_1(testcase)
-      % Check that thete is an HTML version of the main script.
+      % Check that the project has the HTML version of the description page.
       all_project_files = [currentProject().Files.Path]';
-      logical_index = endsWith(all_project_files, "MotorDriveUnit_main_script.html");  % !test-target
+      logical_index = endsWith(all_project_files, "MotorDriveUnitDescription.html");  % !test-target
       verifyEqual(testcase, nnz(logical_index), 1)
     end  % function
 

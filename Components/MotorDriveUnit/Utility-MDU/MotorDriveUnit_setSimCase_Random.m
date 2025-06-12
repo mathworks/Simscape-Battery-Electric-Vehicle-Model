@@ -4,10 +4,8 @@ function MotorDriveUnit_setSimCase_Random(nvpairs)
 % - Simulation stop time
 % - Input signals
 % - Initial conditions
-%
-% Model must be loaded for this function to work.
 
-% Copyright 2023 The MathWorks, Inc.
+% Copyright 2023-2025 The MathWorks, Inc.
 
 arguments
   nvpairs.RandomSeed (1,1) {mustBePositive} = 543

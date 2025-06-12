@@ -8,11 +8,11 @@ vehicle specifications such as vehicle weight, tire rolling radius, etc.
 
 [url-veh]:https://www.mathworks.com/help/physmod/sdl/ref/longitudinalvehicle.html
 
-A vehicle is characterized by resisting force and power as shown below.
+A vehicle is characterized by longitudinal force and power as shown below.
 These properties are the key information to design
 overall vehicle performance.
 
-<img src="Utility/Images/Vehicle1D_refsub_Basic_ResistingForcePower.png"
+<img src="Utility/Images/screenshot-Vehicle1D-performance-plot.png"
  width="500" alt="Vehicle resisting force and power">
 
-*Copyright 2022-2023 The MathWorks, Inc.*
+*Copyright 2022-2025 The MathWorks, Inc.*

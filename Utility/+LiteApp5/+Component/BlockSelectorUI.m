@@ -35,7 +35,6 @@ classdef BlockSelectorUI < LiteApp5.Component.LiteAppComponentBase
     % -------------------------------------------------------------------------
     % Optional proeprties
 
-    BlockPath (1,1) string = ""
     HighlightedBlock (1,1) string = ""
     ModelName (1,1) string = ""
 
@@ -61,7 +60,18 @@ classdef BlockSelectorUI < LiteApp5.Component.LiteAppComponentBase
 
   properties (Dependent)
 
+    % Assign a full path to a model file to this property, and it adds
+    % the specified model file to the Model file drop down and selects it.
+    % If the specified model file already exists in the drop down items,
+    % the existing item is selected.
+    %
+    % The target block is also selected. If the model has more than two blocks
+    % that matche TargetBlockNames, the first match is selected.
     ModelFileFullPath (1,1) string
+
+    % Assign a block path to this property, and it selects the Block path drop down.
+    % The block path must exist in the drop down items.
+    BlockPath (1,1) string
 
   end  % properties
 
@@ -127,6 +137,55 @@ classdef BlockSelectorUI < LiteApp5.Component.LiteAppComponentBase
 
     end  %  function
 
+    function x= get.BlockPath(component)
+      %%
+      x = replace(component.BlockPathDropDownUI.Value, " / ", "/");
+    end  % function
+
+    function set.BlockPath(component, block_path)
+      %%
+      % Assignment like the following triggers this method.
+      %   app_object.selector_object.BlockPath = "mysystem1/tagetblock"
+      %
+      % The above code sets the Block path drop down of the selector UI to the specified one.
+      % The specified block path must already exist in the drop down items.
+
+      styled_block_path = replace(block_path, "/", " / ");
+
+      if not(any(component.BlockPathDropDownUI.Items == styled_block_path))
+        title_word = LiteApp5.Utility.i18n("Error");
+        msg = LiteApp5.Utility.i18n("Specified block path is not in the block path drop down items: ") + block_path;
+
+        if component.MainFigure.Visible
+          uialert(component.MainFigure, msg, title_word)
+
+          return
+
+        else
+          id = component.errorID + "InvalidBlockPath";
+
+          throw(MException(id, msg))
+
+        end  % if
+      end  % if
+
+      component.BlockPathDropDownUI.Value = styled_block_path;
+
+      [system_path, block_name, ~] = fileparts(block_path);
+      % Select the (sub)system containing the target block.
+      set_param(0, "CurrentSystem", system_path)
+      % Select the target block.
+      set_param(gcs, "CurrentBlock", block_name)
+    end  % function
+
+    function openSystemWithBlockHighlight(component)
+      %%
+      % Assuming that the model is loaded and the block is selected,
+      % this function opens the model and highlights the target block.
+      component.HilitBlockUI.Value = true;
+      callback_hilit(component)
+    end  % function
+
     function callback_change_modelfile_dropdown(component)
       %%
       selected_modelfile_dropdown_item = component.ModelFileDropDownUI.Value;
@@ -137,7 +196,6 @@ classdef BlockSelectorUI < LiteApp5.Component.LiteAppComponentBase
         component.BlockPathDropDownUI.Items = "";
         component.BlockPathDropDownUI.Value = "";
         component.BlockPathDropDownUI.MainDropDown.Tooltip = "";
-        component.BlockPath = "";
         component.HilitBlockUI.MainButton.Enable = "off";
         component.GetParametersFromBlockUI.MainButton.Enable = "off";
         component.SetParametersToBlockUI.MainButton.Enable = "off";
@@ -154,7 +212,6 @@ classdef BlockSelectorUI < LiteApp5.Component.LiteAppComponentBase
         msg = LiteApp5.Utility.i18n("Empty text is not allowed for TargetBlockNames.");
 
         if isempty(component.MainFigure)
-          LiteApp5.Utility.ReportTimeAndFileLocation(title_word)
           id = component.errorID + "InvalidBlockName";
 
           throw(MException(id, msg))
@@ -177,7 +234,6 @@ classdef BlockSelectorUI < LiteApp5.Component.LiteAppComponentBase
 
       end  % try, catch
 
-      % logical_index = result_table.BlockType=="SimscapeBlock" & result_table.MaskType==component.TargetBlockName;
       logical_index = false;
       for idx = 1 : numel(component.TargetBlockNames)
         logical_index = logical_index | result_table.MaskType==component.TargetBlockNames(idx);
@@ -206,11 +262,10 @@ classdef BlockSelectorUI < LiteApp5.Component.LiteAppComponentBase
       component.BlockPathDropDownUI.MainDropDown.Enable = "on";
 
       % Fill the Block path drop-down list.
-      block_paths = replace(block_paths, "/", " / ");
-      component.BlockPathDropDownUI.Items = [""; block_paths];
+      styled_block_paths = replace(block_paths, "/", " / ");
+      component.BlockPathDropDownUI.Items = [""; styled_block_paths];
       % Select the first block.
-      component.BlockPath = component.BlockPathDropDownUI.Items(2);
-      component.BlockPathDropDownUI.Value = component.BlockPath;
+      component.BlockPathDropDownUI.Value = component.BlockPathDropDownUI.Items(2);
 
       if not(bdIsLoaded(component.ModelName))
         load_system(component.ModelName)
@@ -270,11 +325,19 @@ classdef BlockSelectorUI < LiteApp5.Component.LiteAppComponentBase
         end  % if
       end  % if
 
-      component.BlockPath = replace(component.BlockPathDropDownUI.Value, " / ", "/");
+      block_path = replace(component.BlockPathDropDownUI.Value, " / ", "/");
 
       % The top level system or a subsystem block may be currently being selected.
       % Make sure the target block is selected.
-      [system_path, block_name, ~] = fileparts(component.BlockPath);
+      [system_path, block_name, ~] = fileparts(block_path);
+      if contains(system_path, "/")
+        model_name = extractBefore(system_path, "/");
+      else
+        model_name = system_path;
+      end  % if
+      if not(bdIsLoaded(model_name))
+        load_system(model_name)
+      end  % if
       set_param(0, "CurrentSystem", system_path)
       set_param(gcs, "CurrentBlock", block_name)  % Select the target block in the model.
 
@@ -353,7 +416,6 @@ classdef BlockSelectorUI < LiteApp5.Component.LiteAppComponentBase
         component.BlockPathDropDownUI.MainDropDown.Value = "";
 
         component.BlockPathDropDownUI.MainDropDown.Tooltip = "";
-        component.BlockPath = "";
         component.HilitBlockUI.MainButton.Enable = "off";
         component.GetParametersFromBlockUI.MainButton.Enable = "off";
         component.SetParametersToBlockUI.MainButton.Enable = "off";
@@ -372,17 +434,13 @@ classdef BlockSelectorUI < LiteApp5.Component.LiteAppComponentBase
       component.GetParametersFromBlockUI.MainButton.Enable = "on";
       component.SetParametersToBlockUI.MainButton.Enable = "on";
 
-      component.BlockPath = replace(selected_block_display_path, " / ", "/");
-
-      model_name = extractBefore(component.BlockPath, "/");
+      block_path = component.BlockPath;
+      model_name = extractBefore(block_path, "/");
       load_system(model_name)
 
       % The target block may not exist if the user removed the block from the model.
-      if getSimulinkBlockHandle(component.BlockPath) <= 0
-        invalid_block_path = component.BlockPath;
-        component.BlockPath = "";
-
-        msg = LiteApp5.Utility.i18n("Block was not found: " + invalid_block_path);
+      if getSimulinkBlockHandle(block_path) <= 0
+        msg = LiteApp5.Utility.i18n("Block was not found: " + block_path);
         title_word = LiteApp5.Utility.i18n("Error");
         uialert(component.MainFigure, msg, title_word)
 

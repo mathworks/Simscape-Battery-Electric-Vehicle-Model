@@ -15,12 +15,18 @@ function sscVal = getSimscapeValueFromBlockParameter(fullpathToBlock, parameterN
 % this function returns a Simscape  value object with unit of "1".
 % This is the case, for example, for percent values. 
 
-% Copyright 2023 The MathWorks, Inc.
+% Copyright 2023-2025 The MathWorks, Inc.
 
-arguments
+arguments (Input)
   fullpathToBlock {mustBeText} = ""
   parameterName {mustBeText} = ""
-end
+end  % arguments
+
+arguments (Output)
+  sscVal (1,1) simscape.Value
+end  % arguments
+
+errorID = "getSimscapeValueFromBlockParameter:";
 
 % Collect mask workspace variables.
 % They have been evaluated.
@@ -31,6 +37,16 @@ varNames = string({maskVars.Name});
 varValues = {maskVars.Value};
 
 variable = varValues{varNames == parameterName};
+
+if isempty(variable)
+  % This can happen for example when the parameter is referring to a workspace variable
+  % but it is not loaded in the workspace.
+  id = errorID + "EmptyParameter";
+  msg = LiteApp5.Utility.i18n("Empty variable is not allowed: ") + parameterName;
+
+  throw(MException(id, msg))
+
+end  % if
 
 variable_unit = varValues{varNames == parameterName+"_unit"};
 if variable_unit == ""

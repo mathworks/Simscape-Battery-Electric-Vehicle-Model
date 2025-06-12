@@ -36,7 +36,7 @@ which is the same block as the above Basic model uses,
 but with thermal model enabled
 to simulate motor temperature dynamics.
 
-**System-level model** (`MotorDriveUnit_refsub_System`)
+**System-level thermal model** (`MotorDriveUnit_refsub_System`)
 uses [Motor & Drive (System-Level) block][url-motordrive-elec]
 from Simscape Electrical
 to compute power conversion between electrical and mechanical powers.
@@ -46,7 +46,7 @@ the **single efficiency measurement model**,
 but irons loss and fixed loss are also considered in this model.
 Below is an example plot of efficiency contour of the System-level model.
 
-<img src="screenshot-MDU-Efficiency-System.png"
+<img src="screenshot-MDU-Efficiency-SystemThermal.png"
  alt="Efficiency contour plot of the basic model of motor drive unit"
  width="400">
 

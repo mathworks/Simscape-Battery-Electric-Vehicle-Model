@@ -4,10 +4,8 @@ function MotorDriveUnit_setSimCase_Constant
 % - Simulation stop time
 % - Input signals
 % - Initial conditions
-%
-% Model must be loaded for this function to work.
 
-% Copyright 2023 The MathWorks, Inc.
+% Copyright 2023-2025 The MathWorks, Inc.
 
 MotorDriveUnit_setSimulationCase( ...
   CaseName = "Constant inputs", ...

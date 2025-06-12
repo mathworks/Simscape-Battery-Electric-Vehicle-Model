@@ -6,8 +6,6 @@ function App = MotorDriveUnitEfficiencyApp_Basic()
 
 % Copyright 2025 The MathWorks, Inc.
 
-app_setup.ComponentTopFolder = fullfile(currentProject().RootFolder, "Application", "MotorDrive-v2", "MotorDriveUnit");
-
 app_setup.ParameterFile = "MotorDriveUnit_refsub_Basic_params";
 
 app_setup.ModelName = "MotorDriveUnit_refsub_Basic";
@@ -105,9 +103,13 @@ join([
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
+target_file = LiteApp5.Utility.i18n("MotorDriveUnitDescription.html");
+% Check that the file exists. If not, this prevents the app from showing up.
+LiteApp5.Utility.getFileFullPath(target_file);
+
 AppUIStruct.DocLinkUI = LiteApp5.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
 AppUIStruct.DocLinkUI.HyperlinkText = "Description";
-AppUIStruct.DocLinkUI.HyperlinkClickedCallback = @() web(fullfile(AppSetup.ComponentTopFolder, LiteApp5.Utility.i18n("MotorDriveUnit_main_script.html")));
+AppUIStruct.DocLinkUI.HyperlinkClickedCallback = @() web(target_file);
 AppUIStruct.DocLinkUI.MainHyperlink.Tooltip = LiteApp5.Utility.i18n("Open the component description page.");
 % Adjust the height and vertical alignment of the hyperlink component:
 AppUIStruct.DocLinkUI.ComponentHeight = oneline_height + 4;

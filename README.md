@@ -2,7 +2,7 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/82250-battery-electric-vehicle-model-in-simscape)
 
-Version 2.4
+Version 2.5
 
 ## Introduction
 
@@ -37,9 +37,51 @@ in the BEV model.
  alt="Screenshot of the simulation result plots"
  width="700">
 
-<img src="Components/Vehicle1D/Utility/Images/screenshot_Vehicle1DPerformanceDesignApp.png"
+BEV Project navigator App
+
+<img src="Utility/screenshot-BEV-project-navigator-app.png"
+ alt="Screenshot of the longitudinal vehicle performance design app"
+ width="450">
+
+Vehicle1D Performance Design App
+
+<img src="Components/Vehicle1D/Utility-Vehicle1D/screenshot-Vehicle1DPerformanceDesignApp.png"
  alt="Screenshot of the longitudinal vehicle performance design app"
  width="700">
+
+Motor Drive Unit Efficiency App for System Thermal Model
+
+<img src="Components/MotorDriveUnit/Model-SystemThermal/screenshot-MotorDriveUnitEfficiencyApp_SystemThermal.png"
+ alt="Screenshot of the motor drive unit efficiency app for system thermal model"
+ width="700">
+
+Motor Drive Unit App
+
+<img src="Components/MotorDriveUnit/Utility-MDU/screenshot-MotorDriveUnitApp.png"
+ alt="Screenshot of the motor drive unit app"
+ width="440">
+
+## What's New in 2.5 (June, 2025)
+
+BEV Project
+
+- The BEV Project Navigator app has been updated.
+
+Motor Drive Unit component
+
+- The folder organization of the component has been updated.
+  Different models are stored in different folders.
+  Related files for a model such as test scripts and apps are put in the same folder.
+- Motor Drive Unit Efficiency apps have been added to the Basic model and
+  the System Thermal model.
+- Motor Drive Unit App has been added to help select MDU model and simulation case.
+- The Build Tool is used to check code and run tests.
+
+Vehicle1D component
+
+- The folder organization of the component has been updated.
+- Vehicle1D Performance Design app has been updated.
+- The Build Tool is used to check code and run tests.
 
 ## What's New in 2.4 (November, 2024)
 

@@ -15,11 +15,24 @@ test_definitions = [
   ...
   fullfile(top_folder, "Components", "ControllerAndEnvironment", "Test", "CtrlEnv_UnitTest_MQC.m")
   ...
-  fullfile(top_folder, "Components", "MotorDriveUnit", "Test", "MotorDriveUnit_UnitTest_MQC.m")
+  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-Basic", "MotorDriveUnit_test_Basic.m")
+  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-Basic", "SimulationCases", "MotorDriveUnit_test_Basic_simulation_cases.m")
+  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-BasicThermal", "MotorDriveUnit_test_BasicThermal.m")
+  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-BasicThermal", "SimulationCases", "MotorDriveUnit_test_BasicThermal_simulation_cases.m")
+  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-SystemTable", "MotorDriveUnit_test_SystemTable.m")
+  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-SystemTable", "SimulationCases", "MotorDriveUnit_test_System_simulation_cases.m")
+  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-SystemThermal", "MotorDriveUnit_test_SystemThermal.m")
+  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-SystemThermal", "SimulationCases", "MotorDriveUnit_test_SystemThermal_simulation_cases.m")
+  fullfile(top_folder, "Components", "MotorDriveUnit", "Utility-MDU", "MotorDriveUnit_test_Utility_MDU.m")
+  fullfile(top_folder, "Components", "MotorDriveUnit", "MotorDriveUnit_test.m")
   ...
-  fullfile(top_folder, "Components", "Vehicle1D", "Test", "Vehicle1D_UnitTest.m")
-  fullfile(top_folder, "Components", "Vehicle1D", "Test", "Vehicle1D_UnitTest_MQC.m")
-  fullfile(top_folder, "Components", "Vehicle1D", "Test", "Vehicle1DPerformanceDesignApp_uitest.m")
+  fullfile(top_folder, "Components", "Vehicle1D", "Model-Basic", "SimulationCases", "Vehicle1D_test_Basic_simulation_cases.m")
+  fullfile(top_folder, "Components", "Vehicle1D", "Model-Basic", "Vehicle1D_Basic_test.m")
+  fullfile(top_folder, "Components", "Vehicle1D", "Utility-Vehicle1D", "Vehicle1D_test_Utility.m")
+  fullfile(top_folder, "Components", "Vehicle1D", "Utility-Vehicle1D", "Vehicle1DPerformance_test.m")
+  fullfile(top_folder, "Components", "Vehicle1D", "Utility-Vehicle1D", "Vehicle1DPerformance_uitest.m")
+  fullfile(top_folder, "Components", "Vehicle1D", "Vehicle1D_test.m")
+  fullfile(top_folder, "Components", "Vehicle1D", "Vehicle1DPerformanceDesignApp_uitest.m")
   ...
   fullfile(top_folder, "Components", "VehicleSpeedReference", "VehSpdRef_harness_model_test.m")
   fullfile(top_folder, "Components", "VehicleSpeedReference", "SimulationCases", "VehSpdRef_Case_test.m")
