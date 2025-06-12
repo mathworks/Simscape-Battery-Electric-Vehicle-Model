@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+aria-label="LiteApp"
+role="img" viewBox="0 0 600 600">
+<!-- Copyright 2023-2024 The MathWorks, Inc. -->
+<!--
+Origin is at top left.
+X grows to the right.
+Y grows downwards.
+An object is drawn in front of the previous one.
+-->
+
+<!-- background circle -->
+<rect fill-opacity="1" fill="cyan" x="0" width="600" y="0" height="600" ry="300" />
+
+<g id="Lite-L-shape"
+transform="translate(120 10) skewX(-20)"
+fill-opacity="1"
+fill="blue">
+<!-- This L is composed of column, row, and a cell,
+representing the foundational design concept of Lite App API. -->
+
+    <!-- Vertical element of L ... The Column -->
+    <rect
+    fill="limegreen"
+    x="-100" width="200" 
+    y="-230" height="440" ry="40"
+    transform="translate(230, 280)" />
+
+    <!-- Horizontal elment of L ... The Row -->
+    <rect
+    fill="navy"
+    x="-205" width="410"
+    y="-70" height="140" ry="40"
+    transform="translate(334, 420)" />
+
+    <!-- Bottom left corner elment of L ... The Cell -->
+    <rect
+    fill="teal"
+    x="-70" width="140"
+    y="-40" height="80" ry="20"
+    transform="translate(230, 420)" />
+
+</g>
+
+</svg>
