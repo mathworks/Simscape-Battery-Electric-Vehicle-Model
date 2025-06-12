@@ -96,7 +96,7 @@ classdef Vehicle1DPerformance_uitest < matlab.uitest.TestCase
     function test_option_BlockPath_warning_1(testcase)
       verifyWarning(testcase, @() target(), "Vehicle1DPerformanceDesignAppMain:ErrorInGetParametersFromBlock")
       function target()
-        testcase.App = Vehicle1DPerformanceDesignAppMain(BlockPath=testcase.ModelName+"/Longitudinal (road-load)");
+        testcase.App = Vehicle1DPerformanceDesignAppMain(BlockPath="Vehicle1DPerformance_model_for_test/Longitudinal (road-load)");
       end  % nested function
     end  % function
 

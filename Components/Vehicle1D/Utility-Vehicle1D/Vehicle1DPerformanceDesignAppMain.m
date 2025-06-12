@@ -169,7 +169,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
           % Fallback data are loaded in case of an error.
           App.BlockIsReady = false;
           msg = exception.message;
-          if App.UseGUI && isprop(App, "Window") && isprop(App.Window, "MainFigure") && App.Window.MainFigure.Visible
+          if App.UseGUI && isprop(App, "Window") && not(isempty(isprop(App.Window, "MainFigure"))) && App.Window.MainFigure.Visible
             uialert(App.Window.MainFigure, msg, LiteApp5.Utility.i18n("Alert"))
           else
             % App is not visible.
