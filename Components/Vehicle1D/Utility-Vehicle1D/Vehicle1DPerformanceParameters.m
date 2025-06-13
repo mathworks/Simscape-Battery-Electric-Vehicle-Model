@@ -305,6 +305,7 @@ classdef Vehicle1DPerformanceParameters
       Param.MaximumForce = simscape.Value(val_F, "N");
     end  % function
 
+    %{
     function ParamString = Stringify(Param)
       %%
       arguments (Output)
@@ -330,9 +331,14 @@ classdef Vehicle1DPerformanceParameters
       end  % for
       ParamString = join(line_str, newline);
     end  % function
+    %}
 
     function Param = getParametersFromBlock(Param, BlockPath)
       %%
+      % This function collects block parameters from the specified block and
+      % stores the parameters as simscape.Value objects.
+      % If a block parameter is a workspace variable, it is evaluated to get a numeric value.
+
       arguments (Input)
         Param
         BlockPath (1,1) string = ""
@@ -381,7 +387,18 @@ classdef Vehicle1DPerformanceParameters
       function sscval = get_simscape_value(name)
         v = double(block_properties(name));
         if isnan(v)
-          v = evalin("base", block_properties(name));
+          try
+            v = evalin("base", block_properties(name));
+          catch exception
+            % This exception can happen when, for example, the block property is referring to
+            % a workspace variable which is not loaded.
+            id = Param.errorID + "EvalutionFailureForBlockProperty";
+            msg = LiteApp5.Utility.i18n("The evaluation of the specified block property failed: ") + name + newline + ...
+              LiteApp5.Utility.i18n("The property value was " + block_properties(name));
+
+            throw(MException(id, msg))
+
+          end  % if
         end  % if
         u = block_properties(name + "_unit");
         sscval = simscape.Value(v, u);
