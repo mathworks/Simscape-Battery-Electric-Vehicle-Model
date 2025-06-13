@@ -19,7 +19,7 @@ win = LiteApp5.LiteAppWindow(SourceFilename=mfilename);
 
 win.Name = "BEV Project Navigator";
 win.Width = 560;
-win.Height = 660;
+win.Height = 680;
 
 width_unit = LiteApp5.Utility.Constant.Width{"unitwidth"};
 indent = width_unit * 2;
@@ -119,11 +119,23 @@ label_ui.Text = "\textbf{Vehicle1D}";
 row = NewRow(layout, column);
 LiteApp5.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-target_app = "Vehicle1DPerformanceDesignApp";
+target_description_page = "Vehicle1D_Description.html";
+LiteApp5.Utility.getFileFullPath(target_description_page);
+
+link_ui = LiteApp5.Component.Hyperlink(NewSlot(layout, row));
+link_ui.HyperlinkText = "Vehicle1D description";
+link_ui.Tooltip = "Open page: " + target_description_page;
+link_ui.HyperlinkClickedCallback = @() open_target_page(target_description_page);
+
+%%
+row = NewRow(layout, column);
+LiteApp5.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+
+target_app = "Vehicle1DPerformanceDesignApp_Basic";
 LiteApp5.Utility.getFileFullPath(target_app);
 
 link_ui = LiteApp5.Component.Hyperlink(NewSlot(layout, row));
-link_ui.HyperlinkText = "Vehicle1D performance design app";
+link_ui.HyperlinkText = "Vehicle1D performance design app for Basic model";
 link_ui.Tooltip = "Open app: " + target_app;
 link_ui.HyperlinkClickedCallback = @() open_app(target_app);
 
@@ -141,7 +153,7 @@ target_description_page = "MotorDriveUnitDescription.html";
 LiteApp5.Utility.getFileFullPath(target_description_page);
 
 link_ui = LiteApp5.Component.Hyperlink(NewSlot(layout, row));
-link_ui.HyperlinkText = "MDU description page";
+link_ui.HyperlinkText = "MDU description";
 link_ui.Tooltip = "Open page: " + target_description_page;
 link_ui.HyperlinkClickedCallback = @() open_target_page(target_description_page);
 

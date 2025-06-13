@@ -37,7 +37,7 @@ in the BEV model.
  alt="Screenshot of the simulation result plots"
  width="700">
 
-BEV Project navigator App
+BEV Project Navigator App
 
 <img src="Utility/screenshot-BEV-project-navigator-app.png"
  alt="Screenshot of the longitudinal vehicle performance design app"
@@ -212,4 +212,4 @@ vehicle system-level applications using abstract models.
 
 See [`license.txt`](license.txt).
 
-_Copyright 2020-2024 The MathWorks, Inc._
+_Copyright 2020-2025 The MathWorks, Inc._

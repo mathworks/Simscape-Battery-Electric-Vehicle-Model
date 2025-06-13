@@ -143,6 +143,8 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
         App.SelectorUI.ModelFileFullPath = modelfile_fullpath;
         % Block path in the drop down uses " / " as the subsystem separator.
         App.SelectorUI.BlockPathDropDownUI.Value = replace(App.BlockPath, "/", " / ");
+
+        App.SelectorUI.GetParametersFromBlockCallback()
       end  % if
 
       Show(App.Window)
@@ -185,26 +187,71 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
 
     function getParametersFromVehicleBlock(App)
       %%
+      % This function collects parameters from the block in the model specified by
+      % the block selector.
+      % If a block parameter is a workspace variable, it must have been loaded
+      % in the base workspace. If it's not loaded, the physical value UI component
+      % shows an inline error.
 
       App.ModelName = App.SelectorUI.ModelName;
       App.BlockPath = App.SelectorUI.BlockPath;
 
-      previous_parameters = App.Parameters;
-      App.Parameters = setup_all_data(App);
+      % Before updating UI components, turn off the plot auto-update because
+      % all UI components whose value changes call auto-update,
+      % which is unecessary and noticeably slows down the update.
+      previous_auto_update_value = App.AutoUpdateUI.Value;
+      App.AutoUpdateUI.Value = false;
 
-      if not(App.BlockIsReady)
-        % There was an issue in getting parameters from the block.
-        % Recover the previous state.
-        App.Parameters = previous_parameters;
-        App.BlockPath = "";
+      % Full enum name is returned, e.g., "sdl.enum.VehicleParameterizationType.Regular".
+      full_enum_name = get_param(App.BlockPath, "vehParamType");
+      % Get the last part, which is the enum element name, e.g. "Regular".
+      enum_element_name = extractAfter(full_enum_name,  asManyOfPattern(wildcardPattern + "."));
 
-        return
+      if enum_element_name ~= "Regular"
+        id = App.errorID + ":InvalidBlockParameter";
+        msg = LiteApp5.Utility.i18n("Only ""Regular"" Parameterization type for Longitudinal Vehicle block is supported.");
+
+        throw(MException(id, msg))
 
       end  % if
 
-      setParametersToUIComponents(App)
-      auto_update_plot(App)
+      App.VehicleMassUI.ValueEditFieldUI.Value = get_param(App.BlockPath, "M_vehicle");
+      App.VehicleMassUI.UnitDropDownUI.MainDropDown.Value = get_param(App.BlockPath, "M_vehicle_unit");
 
+      % R_tireroll (tire rolling radius) is skipped because it is not used in the app.
+
+      App.TireRollingCoefficientUI.Value = get_param(App.BlockPath, "C_tireroll");
+
+      App.AirDragCoefficientUI.Value = get_param(App.BlockPath, "C_airdrag");
+
+      App.FrontalAreaUI.Value = get_param(App.BlockPath, "A_front");
+      App.FrontalAreaUI.Unit = get_param(App.BlockPath, "A_front_unit");
+
+      App.GravitationalAccelerationUI.Value = get_param(App.BlockPath, "g");
+      App.GravitationalAccelerationUI.Unit = get_param(App.BlockPath, "g_unit");
+
+      % !todo: Air density should be public in Longitudinal Vehicle block.
+      % App.AirDensityUI.Value = get_param(App.BlockPath, "air_density");
+      % App.AirDensityUI.Unit = get_param(App.BlockPath, "air_density_unit");
+
+      % Deselect the preset because parameters are read from the specified block.
+      App.PresetUI.MainListBox.Value = {};
+
+      % -----------------------------------------------------------------------
+
+      % Synchronize the Parameters property based on the updated UI components
+      % and update other UI components for the derived parameters.
+      getParametersFromUIComponents(App)
+      App.Parameters = update_states(App.Parameters);
+      App.RoadLoadAUI.SimscapeValue = App.Parameters.RoadLoadA;
+      App.RoadLoadCUI.SimscapeValue = App.Parameters.RoadLoadC;
+      App.MaximumForceUI.SimscapeValue = App.Parameters.MaximumForce;
+      App.MaximumClimbPowerUI.SimscapeValue = App.Parameters.MaximumClimbPower;
+
+      % Recover the previous auto-update state for the plot button.
+      App.AutoUpdateUI.Value = previous_auto_update_value;
+
+      auto_update_plot(App)
     end  % function
 
     function setParametersToVehicleBlock(App)
@@ -263,14 +310,6 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
 
     function getParametersFromUIComponents(App)
       %%
-
-      if App.UseGUI
-        id = App.errorID + "AppNotVisible";
-        msg = "App must be visible before calling getParametersFromUIComponents";
-        % When this assertion fails, the app is not visible yet.
-        % Thus, show the error message in the Command Window.
-        assert(App.Window.MainFigure.Visible == "on", id, msg)
-      end  % if
 
       % Vehicle ---------------------------------------------------------------
 
@@ -771,31 +810,6 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
         App.UpdateButtonUI.MainButton.Enable = "on";
       end  % if
     end  % function
-
-%{
-    function callback_LoadParametersFromBlock(App)
-      %%
-      [App.Parameters, error_message] = getParametersFromBlock(App.Parameters, App.BlockPath);
-      if error_message ~= ""
-        % Do not issue an error and return from here.
-        % Fallback data are loaded in case of an error.
-        % if App.UseGUI && isprop(App, "Window") && isprop(App.Window, "MainFigure") && App.Window.MainFigure.Visible
-          uialert(App.Window.MainFigure, error_message, "Alert")
-        % else
-        %   % App is not visible.
-        %   warning("Vehicle1DPerformanceDesignAppMain:ErrorInGetParametersFromBlock", error_message);
-        % end  % if, App UI or Command Window
-      end  % if, error
-
-      App.Parameters = update_states(App.Parameters);
-
-      setParametersToComponents(App)
-
-      if App.AutoUpdateUI.Value
-        performancePlot(App, ParentAxes=App.ParentAxes)
-      end  % if, propagation
-    end  % function
-%}
  
     function setParametersToUIComponents(App, NameValuePairs)
       %%
