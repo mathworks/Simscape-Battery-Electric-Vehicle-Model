@@ -2,7 +2,7 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/82250-battery-electric-vehicle-model-in-simscape)
 
-Version 2.5
+Version 2.6
 
 ## Introduction
 
@@ -37,29 +37,41 @@ in the BEV model.
  alt="Screenshot of the simulation result plots"
  width="700">
 
-BEV Project Navigator App
+Use **BEV Project Navigator App** to quickly access some key files and tools.
 
 <img src="Utility/screenshot-BEV-project-navigator-app.png"
  alt="Screenshot of the longitudinal vehicle performance design app"
  width="450">
 
-Vehicle1D Performance Design App
+Use **Vehicle1D Performance Design App** to design the basic performance parameters
+of a road vehicle.
 
 <img src="Components/Vehicle1D/Utility-Vehicle1D/screenshot-Vehicle1DPerformanceDesignApp.png"
  alt="Screenshot of the longitudinal vehicle performance design app"
  width="700">
 
-Motor Drive Unit Efficiency App for System Thermal Model
+Use **Motor Drive Unit Efficiency App for System Thermal Model** to understand
+how the model parameters are affecting the motor efficiency.
 
 <img src="Components/MotorDriveUnit/Model-SystemThermal/screenshot-MotorDriveUnitEfficiencyApp_SystemThermal.png"
  alt="Screenshot of the motor drive unit efficiency app for system thermal model"
  width="700">
 
-Motor Drive Unit App
+Use **Motor Drive Unit App** to select model and run simulation for the Motor Drive Unit.
 
 <img src="Components/MotorDriveUnit/Utility-MDU/screenshot-MotorDriveUnitApp.png"
  alt="Screenshot of the motor drive unit app"
  width="440">
+
+## What's New in 2.6 (June, 2025)
+
+- The project has been updated to MATLAB R2025a with some clean ups.
+- Some Live Scripts have been converted to
+  the new [plain text Live Code file format][doc-text-live-script] (`.m`)
+  which works well with source control.
+- Past What's New contents up to version 2.4 have been moved to `ChangeLog.md`.
+
+[doc-text-live-script]: https://www.mathworks.com/help/matlab/matlab_prog/plain-text-file-format-for-live-scripts.html
 
 ## What's New in 2.5 (June, 2025)
 
@@ -83,75 +95,12 @@ Vehicle1D component
 - Vehicle1D Performance Design app has been updated.
 - The Build Tool is used to check code and run tests.
 
-## What's New in 2.4 (November, 2024)
-
-- The project has been updated to MATLAB R2024b with some clean ups.
-- Added brief entry-point descriptions about MATLAB project and Git
-  to [Using MATLAB Project](docs/Using-MATLAB-Project.md).
-  The page also provides links to product documentation for more information.
-
-## What's New in 2.3 (June, 2024)
-
-- The project has been updated to MATLAB R2024a.
-- Vehicle1D performance design app is added.
-- For veiwing Live Scripts in the GitHub web site in the browser,
-  they are converted to Markdown files and collected in the Markdown folder.
-
-## What's New in 2.2 (September, 2023)
-
-- The project has been updated to MATLAB R2023b.
-- [MATLAB Build Tool][url-buildtool] is used to automate tasks
-  to generate HTML files and Jupyter notebooks from all Live Scripts
-  in the project.
-- GitHub Actions has been updated to generate and upload
-  test report and coverage report.
-- GitHub Actions also generates Jupyter notebooks from Live Scripts.
-  Jupyter notebooks can be viewed in the repo in the browser.
-
-[url-buildtool]: https://www.mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html
-
-## What's New in 2.1 (March, 2023)
-
-- The project has been updated to MATLAB R2023a.
-- A shortcut button to open **MATLAB Test Manager**
-  is added in the Project Shortcuts tab of the toolstrip.
-  MATLAB Test Manager requires the **MATLAB Test** license.
-
-See [Change Log](ChangeLog.md) for more details.
-
-## What's New in 2.0 (February, 2023)
-
-- BEV system model uses updated components and
-  has simpler and easier configurability
-  for selecting vehicle speed reference input.
-- High voltage battery component provides
-  four different models:
-  **Basic**, **System simple**, **System**, and **System tabulated**.
-  They are all system level models and abstract,
-  but they prodive different fidelity levels of the model.
-  See [README](./Components/BatteryHighVoltage/README.md) in
-  **Components > BatteryHighVoltage** for more details.
-- Motor drive unit component provides
-  four different models:
-  **Basic**, **Basic thermal**, **System**, and **System tabulated**.
-  They are all system level models and abstract,
-  but they prodive different fidelity levels of the model.
-  See [README](./Components/MotorDriveUnit/README.md) in
-  **Components > MotorDriveUnit** for more details.
-- A detailed battery model built with a custom Simscape library
-  has been removed.
-  [This project][url-bev] will remain focused
-  on vehicle system-level applications using abstract models
-  in future updates.
-  A new project [Electric Vehicle Design with Simscape][url-bev-design]
-  serves as an alternative for detailed model applications.
-
 See [Change Log](ChangeLog.md) for more details.
 
 ## Tool Requirements
 
 Supported MATLAB Version:
-R2024b or newer releases
+R2025a or newer releases
 
 Required:
 [MATLAB](https://www.mathworks.com/products/matlab.html),

@@ -15,7 +15,7 @@ name: CI using MATLAB on Linux
 
 on:
   push:
-    branches: [ R2024b ]
+    branches: [ R2025a ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
@@ -25,7 +25,7 @@ on:
       - '**.xml'
 
   pull_request:
-    branches: [ R2024b ]
+    branches: [ R2025a ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
@@ -33,9 +33,6 @@ on:
       - '**.svg'
       - '**.txt'
       - '**.xml'
-
-#  schedule:
-#    - cron:  '55/61 20/25 1/6 * *' # schedule a weekly-ish build
 
   workflow_dispatch:
 
@@ -51,8 +48,8 @@ jobs:
     #   https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/running-variations-of-jobs-in-a-workflow
     strategy:
       matrix:
-        matlab_version: [R2024b]
-        #matlab_version: [R2024b, R2025a]
+        matlab_version: [R2025a]
+        #matlab_version: [R2025a, R2025b]
 
     name: Test in ${{ matrix.matlab_version }} on Linux
 

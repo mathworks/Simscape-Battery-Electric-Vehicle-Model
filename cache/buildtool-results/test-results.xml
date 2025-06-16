@@ -1,223 +1,266 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <testsuites>
-  <testsuite errors="0" failures="0" name="BEV_UnitTest_MQC" skipped="0" tests="14" time="105.0658">
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_CallbackButtons_1" time="8.2442"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_TopFolder_1" time="15.7831"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_TopFolder_2" time="0.25378"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_TopFolder_3" time="7.6649"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_1_1" time="9.3279"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_1_2" time="16.8179"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_1_3" time="9.401"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_1_4" time="8.0368"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_2_1" time="10.269"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_2_2" time="9.4577"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_Configuration_1" time="1.0628"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_Configuration_2" time="1.2063"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_Utility_1" time="0.0072345"/>
-    <testcase classname="BEV_UnitTest_MQC" name="MQC_Utility_2" time="7.5333"/>
+  <testsuite errors="0" failures="0" name="BEV_UnitTest_MQC" skipped="0" tests="14" time="104.6449">
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_CallbackButtons_1" time="6.0819"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_TopFolder_1" time="12.4968"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_TopFolder_2" time="0.3107"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_TopFolder_3" time="7.7185"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_1_1" time="9.6591"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_1_2" time="19.0391"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_1_3" time="10.0824"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_1_4" time="8.5352"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_2_1" time="10.6931"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_SimulationCases_2_2" time="9.6819"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_Configuration_1" time="0.94427"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_Configuration_2" time="1.2621"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_Utility_1" time="0.0036145"/>
+    <testcase classname="BEV_UnitTest_MQC" name="MQC_Utility_2" time="8.1362"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="BatteryHV_UnitTest" skipped="0" tests="3" time="1.6952">
-    <testcase classname="BatteryHV_UnitTest" name="blockParameters_BatteryHV_Basic" time="0.39161"/>
-    <testcase classname="BatteryHV_UnitTest" name="blockParameters_BatteryHV_Driveline" time="0.49697"/>
-    <testcase classname="BatteryHV_UnitTest" name="blockParameters_BatteryHV_Electrical" time="0.80658"/>
+  <testsuite errors="0" failures="0" name="BatteryHV_UnitTest" skipped="0" tests="3" time="1.3355">
+    <testcase classname="BatteryHV_UnitTest" name="blockParameters_BatteryHV_Basic" time="0.36172"/>
+    <testcase classname="BatteryHV_UnitTest" name="blockParameters_BatteryHV_Driveline" time="0.44583"/>
+    <testcase classname="BatteryHV_UnitTest" name="blockParameters_BatteryHV_Electrical" time="0.52799"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="BatteryHV_UnitTest_MQC" skipped="0" tests="43" time="63.3229">
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_CallbackButtons_1" time="2.8061"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_2" time="2.3688"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_3" time="2.1108"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_4" time="2.1821"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Model_TableBased_1" time="0.65823"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Model_TableBased_2" time="1.2505"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_SimulationCase_1" time="3.9385"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_SimulationCase_2" time="3.7997"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_SimulationCase_3" time="3.6224"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_SimulationCase_4" time="3.4559"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_1" time="0.19418"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_2" time="0.20743"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_3" time="0.1941"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_4" time="0.16135"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_5" time="0.22158"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_6" time="0.0054697"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_7" time="0.42024"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_8" time="0.42068"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_9" time="0.46676"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_10" time="0.54378"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_11" time="0.35819"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Utility_1" time="0.0061973"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Utility_2" time="0.011395"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Utility_3" time="0.35154"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Utility_4" time="0.75616"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Utility_5" time="3.8557"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_TopFolder_1" time="0.006441"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_TopFolder_2" time="0.011471"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_TopFolder_3" time="0.0098745"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_TopFolder_4" time="0.011558"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_TopFolder_5" time="0.020134"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_Basic,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Constant)" time="2.0427"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_Basic,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Charge)" time="2.0204"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_Basic,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Discharge)" time="2.0397"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_Basic,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Random)" time="2.1094"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_SystemSimple,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Constant)" time="2.3545"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_SystemSimple,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Charge)" time="2.3849"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_SystemSimple,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Discharge)" time="2.3552"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_SystemSimple,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Random)" time="2.3639"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_System,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Constant)" time="2.8243"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_System,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Charge)" time="2.7069"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_System,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Discharge)" time="2.8166"/>
-    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_System,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Random)" time="2.8772"/>
+  <testsuite errors="0" failures="0" name="BatteryHV_UnitTest_MQC" skipped="0" tests="43" time="66.9173">
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_CallbackButtons_1" time="1.9429"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_2" time="3.0968"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_3" time="2.71"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_4" time="2.3742"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Model_TableBased_1" time="0.27092"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Model_TableBased_2" time="0.70049"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_SimulationCase_1" time="4.1906"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_SimulationCase_2" time="3.8399"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_SimulationCase_3" time="3.8301"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_SimulationCase_4" time="3.7431"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_1" time="0.18014"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_2" time="0.17952"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_3" time="0.16306"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_4" time="0.16184"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_5" time="0.18962"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_6" time="0.0037872"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_7" time="0.40685"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_8" time="0.39212"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_9" time="0.42337"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_10" time="0.41232"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Configuration_11" time="0.28456"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Utility_1" time="0.0053973"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Utility_2" time="0.0041874"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Utility_3" time="0.27335"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Utility_4" time="0.40904"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Utility_5" time="3.6426"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_TopFolder_1" time="0.0020301"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_TopFolder_2" time="0.0074943"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_TopFolder_3" time="0.0084409"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_TopFolder_4" time="0.0080083"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_TopFolder_5" time="0.015036"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_Basic,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Constant)" time="2.3365"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_Basic,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Charge)" time="2.3672"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_Basic,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Discharge)" time="2.6344"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_Basic,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Random)" time="2.4334"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_SystemSimple,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Constant)" time="2.671"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_SystemSimple,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Charge)" time="2.6819"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_SystemSimple,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Discharge)" time="2.9102"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_SystemSimple,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Random)" time="2.6889"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_System,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Constant)" time="3.1205"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_System,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Charge)" time="3.0129"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_System,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Discharge)" time="2.9781"/>
+    <testcase classname="BatteryHV_UnitTest_MQC" name="MQC_Harness_combination_1(useRefSubFunction=@BatteryHV_useRefsub_System,loadSimulationCaseFunction=@BatteryHV_loadSimulationCase_Random)" time="3.2108"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="BEVController_UnitTest_MQC" skipped="0" tests="4" time="2.1597">
-    <testcase classname="BEVController_UnitTest_MQC" name="MQC_Harness_1" time="0.68636"/>
-    <testcase classname="BEVController_UnitTest_MQC" name="MQC_Harness_2" time="0.0031654"/>
-    <testcase classname="BEVController_UnitTest_MQC" name="MQC_SimulationCase_1" time="1.4653"/>
-    <testcase classname="BEVController_UnitTest_MQC" name="MQC_TopFolder_1" time="0.0048989"/>
+  <testsuite errors="0" failures="0" name="BEVController_UnitTest_MQC" skipped="0" tests="4" time="1.7817">
+    <testcase classname="BEVController_UnitTest_MQC" name="MQC_Harness_1" time="0.78799"/>
+    <testcase classname="BEVController_UnitTest_MQC" name="MQC_Harness_2" time="0.0023858"/>
+    <testcase classname="BEVController_UnitTest_MQC" name="MQC_SimulationCase_1" time="0.98703"/>
+    <testcase classname="BEVController_UnitTest_MQC" name="MQC_TopFolder_1" time="0.0042503"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="CtrlEnv_UnitTest_MQC" skipped="0" tests="13" time="65.0546">
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_CallbackButtons_1" time="5.9647"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Harness_1" time="6.8816"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Harness_2" time="0.0062282"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_SimulationCase_1" time="9.6994"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_SimulationCase_2" time="13.4595"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_SimulationCase_3" time="9.5465"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_SimulationCase_4" time="9.0434"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Configuration_1" time="0.29634"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Configuration_2" time="0.27423"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Configuration_3" time="0.27143"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Configuration_4" time="0.27383"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Configuration_5" time="0.27197"/>
-    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Utility_1" time="9.0654"/>
+  <testsuite errors="0" failures="0" name="CtrlEnv_UnitTest_MQC" skipped="0" tests="13" time="54.2061">
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_CallbackButtons_1" time="4.6837"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Harness_1" time="6.65"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Harness_2" time="0.005067"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_SimulationCase_1" time="7.5548"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_SimulationCase_2" time="11.7091"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_SimulationCase_3" time="7.9791"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_SimulationCase_4" time="7.1154"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Configuration_1" time="0.30624"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Configuration_2" time="0.28493"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Configuration_3" time="0.27965"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Configuration_4" time="0.29766"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Configuration_5" time="0.31696"/>
+    <testcase classname="CtrlEnv_UnitTest_MQC" name="MQC_Utility_1" time="7.0234"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_Basic" skipped="0" tests="6" time="1.8414">
-    <testcase classname="MotorDriveUnit_test_Basic" name="MQC_load_parameters_1" time="0.019311"/>
-    <testcase classname="MotorDriveUnit_test_Basic" name="MQC_load_refsub_1" time="0.13176"/>
-    <testcase classname="MotorDriveUnit_test_Basic" name="MQC_refsub_setup_1" time="0.47835"/>
-    <testcase classname="MotorDriveUnit_test_Basic" name="MQC_BasicModelEfficiencyPlot_1" time="0.41226"/>
-    <testcase classname="MotorDriveUnit_test_Basic" name="MQC_note_BasicModelEfficiency_1" time="0.54483"/>
-    <testcase classname="MotorDriveUnit_test_Basic" name="test_MotorDriveUnit_getBlockInfo_Basic_1" time="0.25486"/>
+  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_Basic" skipped="0" tests="6" time="2.0206">
+    <testcase classname="MotorDriveUnit_test_Basic" name="MQC_load_parameters_1" time="0.014652"/>
+    <testcase classname="MotorDriveUnit_test_Basic" name="MQC_load_refsub_1" time="0.12607"/>
+    <testcase classname="MotorDriveUnit_test_Basic" name="MQC_refsub_setup_1" time="0.57975"/>
+    <testcase classname="MotorDriveUnit_test_Basic" name="MQC_BasicModelEfficiencyPlot_1" time="0.49024"/>
+    <testcase classname="MotorDriveUnit_test_Basic" name="MQC_note_BasicModelEfficiency_1" time="0.53627"/>
+    <testcase classname="MotorDriveUnit_test_Basic" name="test_MotorDriveUnit_getBlockInfo_Basic_1" time="0.2736"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_Basic_simulation_cases" skipped="0" tests="4" time="24.5073">
-    <testcase classname="MotorDriveUnit_test_Basic_simulation_cases" name="MQC_Constant_1" time="7.6302"/>
-    <testcase classname="MotorDriveUnit_test_Basic_simulation_cases" name="MQC_Drive_1" time="5.6664"/>
-    <testcase classname="MotorDriveUnit_test_Basic_simulation_cases" name="MQC_Random_1" time="5.9785"/>
-    <testcase classname="MotorDriveUnit_test_Basic_simulation_cases" name="MQC_RegenBrake_1" time="5.2323"/>
+  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_Basic_simulation_cases" skipped="0" tests="4" time="18.5992">
+    <testcase classname="MotorDriveUnit_test_Basic_simulation_cases" name="MQC_Constant_1" time="5.4968"/>
+    <testcase classname="MotorDriveUnit_test_Basic_simulation_cases" name="MQC_Drive_1" time="4.3901"/>
+    <testcase classname="MotorDriveUnit_test_Basic_simulation_cases" name="MQC_Random_1" time="4.707"/>
+    <testcase classname="MotorDriveUnit_test_Basic_simulation_cases" name="MQC_RegenBrake_1" time="4.0053"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_BasicThermal" skipped="0" tests="3" time="0.78644">
-    <testcase classname="MotorDriveUnit_test_BasicThermal" name="MQC_load_parameters_1" time="0.022331"/>
-    <testcase classname="MotorDriveUnit_test_BasicThermal" name="MQC_load_refsub_1" time="0.40214"/>
-    <testcase classname="MotorDriveUnit_test_BasicThermal" name="MQC_set_refsub_1" time="0.36197"/>
+  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_BasicThermal" skipped="0" tests="3" time="0.70755">
+    <testcase classname="MotorDriveUnit_test_BasicThermal" name="MQC_load_parameters_1" time="0.01659"/>
+    <testcase classname="MotorDriveUnit_test_BasicThermal" name="MQC_load_refsub_1" time="0.37745"/>
+    <testcase classname="MotorDriveUnit_test_BasicThermal" name="MQC_set_refsub_1" time="0.31351"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_BasicThermal_simulation_cases" skipped="0" tests="4" time="24.5977">
-    <testcase classname="MotorDriveUnit_test_BasicThermal_simulation_cases" name="MQC_Constant_1" time="6.6283"/>
-    <testcase classname="MotorDriveUnit_test_BasicThermal_simulation_cases" name="MQC_Drive_1" time="5.6949"/>
-    <testcase classname="MotorDriveUnit_test_BasicThermal_simulation_cases" name="MQC_Random_1" time="6.468"/>
-    <testcase classname="MotorDriveUnit_test_BasicThermal_simulation_cases" name="MQC_RegenBrake_1" time="5.8065"/>
+  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_BasicThermal_simulation_cases" skipped="0" tests="4" time="17.55">
+    <testcase classname="MotorDriveUnit_test_BasicThermal_simulation_cases" name="MQC_Constant_1" time="4.4319"/>
+    <testcase classname="MotorDriveUnit_test_BasicThermal_simulation_cases" name="MQC_Drive_1" time="4.2695"/>
+    <testcase classname="MotorDriveUnit_test_BasicThermal_simulation_cases" name="MQC_Random_1" time="4.6618"/>
+    <testcase classname="MotorDriveUnit_test_BasicThermal_simulation_cases" name="MQC_RegenBrake_1" time="4.1868"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_SystemTable" skipped="0" tests="3" time="1.1344">
-    <testcase classname="MotorDriveUnit_test_SystemTable" name="MQC_load_parameters_1" time="0.019354"/>
-    <testcase classname="MotorDriveUnit_test_SystemTable" name="MQC_load_refsub_1" time="0.5637"/>
-    <testcase classname="MotorDriveUnit_test_SystemTable" name="MQC_set_refsub_1" time="0.55136"/>
+  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_SystemTable" skipped="0" tests="3" time="1.0781">
+    <testcase classname="MotorDriveUnit_test_SystemTable" name="MQC_load_parameters_1" time="0.022169"/>
+    <testcase classname="MotorDriveUnit_test_SystemTable" name="MQC_load_refsub_1" time="0.5913"/>
+    <testcase classname="MotorDriveUnit_test_SystemTable" name="MQC_set_refsub_1" time="0.46468"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_System_simulation_cases" skipped="0" tests="4" time="24.4492">
-    <testcase classname="MotorDriveUnit_test_System_simulation_cases" name="MQC_Constant_1" time="7.189"/>
-    <testcase classname="MotorDriveUnit_test_System_simulation_cases" name="MQC_Drive_1" time="5.628"/>
-    <testcase classname="MotorDriveUnit_test_System_simulation_cases" name="MQC_Random_1" time="6.0801"/>
-    <testcase classname="MotorDriveUnit_test_System_simulation_cases" name="MQC_RegenBrake_1" time="5.5522"/>
+  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_System_simulation_cases" skipped="0" tests="4" time="18.625">
+    <testcase classname="MotorDriveUnit_test_System_simulation_cases" name="MQC_Constant_1" time="4.6402"/>
+    <testcase classname="MotorDriveUnit_test_System_simulation_cases" name="MQC_Drive_1" time="4.7189"/>
+    <testcase classname="MotorDriveUnit_test_System_simulation_cases" name="MQC_Random_1" time="4.9681"/>
+    <testcase classname="MotorDriveUnit_test_System_simulation_cases" name="MQC_RegenBrake_1" time="4.2978"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_SystemThermal" skipped="0" tests="5" time="2.0996">
-    <testcase classname="MotorDriveUnit_test_SystemThermal" name="MQC_load_parameters_1" time="0.016671"/>
-    <testcase classname="MotorDriveUnit_test_SystemThermal" name="MQC_load_refsub_1" time="0.52627"/>
-    <testcase classname="MotorDriveUnit_test_SystemThermal" name="MQC_set_refsub_1" time="0.47669"/>
-    <testcase classname="MotorDriveUnit_test_SystemThermal" name="MQC_note_SystemModelEfficiency_1" time="0.74755"/>
-    <testcase classname="MotorDriveUnit_test_SystemThermal" name="test_MotorDriveUnit_getBlockInfo_System_1" time="0.33242"/>
+  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_SystemThermal" skipped="0" tests="5" time="2.1372">
+    <testcase classname="MotorDriveUnit_test_SystemThermal" name="MQC_load_parameters_1" time="0.019004"/>
+    <testcase classname="MotorDriveUnit_test_SystemThermal" name="MQC_load_refsub_1" time="0.60751"/>
+    <testcase classname="MotorDriveUnit_test_SystemThermal" name="MQC_set_refsub_1" time="0.54949"/>
+    <testcase classname="MotorDriveUnit_test_SystemThermal" name="MQC_note_SystemModelEfficiency_1" time="0.61207"/>
+    <testcase classname="MotorDriveUnit_test_SystemThermal" name="test_MotorDriveUnit_getBlockInfo_System_1" time="0.34913"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_SystemThermal_simulation_cases" skipped="0" tests="4" time="26.9395">
-    <testcase classname="MotorDriveUnit_test_SystemThermal_simulation_cases" name="MQC_Constant_1" time="7.0407"/>
-    <testcase classname="MotorDriveUnit_test_SystemThermal_simulation_cases" name="MQC_Drive_1" time="7.1233"/>
-    <testcase classname="MotorDriveUnit_test_SystemThermal_simulation_cases" name="MQC_Random_1" time="6.9995"/>
-    <testcase classname="MotorDriveUnit_test_SystemThermal_simulation_cases" name="MQC_RegenBrake_1" time="5.7761"/>
+  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_SystemThermal_simulation_cases" skipped="0" tests="4" time="18.9512">
+    <testcase classname="MotorDriveUnit_test_SystemThermal_simulation_cases" name="MQC_Constant_1" time="4.6746"/>
+    <testcase classname="MotorDriveUnit_test_SystemThermal_simulation_cases" name="MQC_Drive_1" time="4.5043"/>
+    <testcase classname="MotorDriveUnit_test_SystemThermal_simulation_cases" name="MQC_Random_1" time="5.2059"/>
+    <testcase classname="MotorDriveUnit_test_SystemThermal_simulation_cases" name="MQC_RegenBrake_1" time="4.5663"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_Utility_MDU" skipped="0" tests="8" time="3.1449">
-    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_EfficiencyPlot_1" time="0.24257"/>
-    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setInitialConditions_1" time="0.010833"/>
-    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setReferencedSubsystem_1" time="0.49151"/>
-    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setSimulationCase_1" time="0.44382"/>
-    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setSimCase_Constant_1" time="0.39819"/>
-    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setSimCase_Drive_1" time="0.40769"/>
-    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setSimCase_Random_1" time="0.73897"/>
-    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setSimCase_RegenBrake_1" time="0.41135"/>
+  <testsuite errors="0" failures="0" name="MotorDriveUnit_test_Utility_MDU" skipped="0" tests="8" time="3.3332">
+    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_EfficiencyPlot_1" time="0.12965"/>
+    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setInitialConditions_1" time="0.011456"/>
+    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setReferencedSubsystem_1" time="0.63015"/>
+    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setSimulationCase_1" time="0.48599"/>
+    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setSimCase_Constant_1" time="0.45244"/>
+    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setSimCase_Drive_1" time="0.44271"/>
+    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setSimCase_Random_1" time="0.75887"/>
+    <testcase classname="MotorDriveUnit_test_Utility_MDU" name="MQC_setSimCase_RegenBrake_1" time="0.42198"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="MotorDriveUnit_test" skipped="0" tests="6" time="12.618">
-    <testcase classname="MotorDriveUnit_test" name="MQC_setup_1" time="0.018172"/>
-    <testcase classname="MotorDriveUnit_test" name="MQC_load_1" time="0.1881"/>
-    <testcase classname="MotorDriveUnit_test" name="MQC_sim_1" time="2.9893"/>
-    <testcase classname="MotorDriveUnit_test" name="MQC_main_script_1" time="0.01173"/>
-    <testcase classname="MotorDriveUnit_test" name="main_html_1" time="0.94699"/>
-    <testcase classname="MotorDriveUnit_test" name="test_OpenApp_CallbackButton_1" time="8.4637"/>
+  <testsuite errors="0" failures="0" name="MotorDriveUnit_test" skipped="0" tests="6" time="12.6708">
+    <testcase classname="MotorDriveUnit_test" name="MQC_setup_1" time="0.017158"/>
+    <testcase classname="MotorDriveUnit_test" name="MQC_load_1" time="0.19939"/>
+    <testcase classname="MotorDriveUnit_test" name="MQC_sim_1" time="3.4415"/>
+    <testcase classname="MotorDriveUnit_test" name="MQC_main_script_1" time="0.013338"/>
+    <testcase classname="MotorDriveUnit_test" name="main_html_1" time="0.25289"/>
+    <testcase classname="MotorDriveUnit_test" name="test_OpenApp_CallbackButton_1" time="8.7465"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="Vehicle1D_test_Basic_simulation_cases" skipped="0" tests="4" time="19.4381">
-    <testcase classname="Vehicle1D_test_Basic_simulation_cases" name="MQC_Accelerate_1" time="4.2656"/>
-    <testcase classname="Vehicle1D_test_Basic_simulation_cases" name="MQC_Braking_1" time="5.0051"/>
-    <testcase classname="Vehicle1D_test_Basic_simulation_cases" name="MQC_Coastdown_1" time="4.9201"/>
-    <testcase classname="Vehicle1D_test_Basic_simulation_cases" name="MQC_Constant_1" time="5.2473"/>
+  <testsuite errors="0" failures="0" name="Vehicle1D_test_Basic_simulation_cases" skipped="0" tests="4" time="11.4458">
+    <testcase classname="Vehicle1D_test_Basic_simulation_cases" name="MQC_Accelerate_1" time="2.9625"/>
+    <testcase classname="Vehicle1D_test_Basic_simulation_cases" name="MQC_Braking_1" time="3.0319"/>
+    <testcase classname="Vehicle1D_test_Basic_simulation_cases" name="MQC_Coastdown_1" time="2.6392"/>
+    <testcase classname="Vehicle1D_test_Basic_simulation_cases" name="MQC_Constant_1" time="2.8122"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="Vehicle1D_Basic_test" skipped="0" tests="2" time="0.26937">
-    <testcase classname="Vehicle1D_Basic_test" name="MQC_params_1" time="0.0075693"/>
-    <testcase classname="Vehicle1D_Basic_test" name="blockParameters_Vehicle1D_Driveline" time="0.2618"/>
+  <testsuite errors="0" failures="0" name="Vehicle1D_Basic_test" skipped="0" tests="2" time="0.32482">
+    <testcase classname="Vehicle1D_Basic_test" name="MQC_params_1" time="0.0078159"/>
+    <testcase classname="Vehicle1D_Basic_test" name="blockParameters_Vehicle1D_Driveline" time="0.31701"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="Vehicle1D_test_Utility" skipped="0" tests="10" time="26.1073">
-    <testcase classname="Vehicle1D_test_Utility" name="MQC_plot_input_signals_1" time="0.74431"/>
-    <testcase classname="Vehicle1D_test_Utility" name="MQC_reset_harness_model_1" time="0.38178"/>
-    <testcase classname="Vehicle1D_test_Utility" name="MQC_set_initial_conditions_1" time="0.0056646"/>
-    <testcase classname="Vehicle1D_test_Utility" name="MQC_setSimulationCase_1" time="0.36753"/>
-    <testcase classname="Vehicle1D_test_Utility" name="MQC_setSimCase_Constant_1" time="0.28712"/>
-    <testcase classname="Vehicle1D_test_Utility" name="MQC_setSimCase_Accelerate_1" time="0.29299"/>
-    <testcase classname="Vehicle1D_test_Utility" name="MQC_setSimCase_Braking_1" time="0.32515"/>
-    <testcase classname="Vehicle1D_test_Utility" name="MQC_setSimCase_Coastdown_1" time="0.3035"/>
-    <testcase classname="Vehicle1D_test_Utility" name="MQC_take_app_screenshot" time="22.3049"/>
-    <testcase classname="Vehicle1D_test_Utility" name="check_markdowns_uptodate_1" time="1.0944"/>
+  <testsuite errors="0" failures="0" name="Vehicle1D_test_Utility" skipped="0" tests="9" time="4.5018">
+    <testcase classname="Vehicle1D_test_Utility" name="MQC_plot_input_signals_1" time="1.6976"/>
+    <testcase classname="Vehicle1D_test_Utility" name="MQC_reset_harness_model_1" time="0.73094"/>
+    <testcase classname="Vehicle1D_test_Utility" name="MQC_set_initial_conditions_1" time="0.008006"/>
+    <testcase classname="Vehicle1D_test_Utility" name="MQC_setSimulationCase_1" time="0.47794"/>
+    <testcase classname="Vehicle1D_test_Utility" name="MQC_setSimCase_Constant_1" time="0.35339"/>
+    <testcase classname="Vehicle1D_test_Utility" name="MQC_setSimCase_Accelerate_1" time="0.27539"/>
+    <testcase classname="Vehicle1D_test_Utility" name="MQC_setSimCase_Braking_1" time="0.29943"/>
+    <testcase classname="Vehicle1D_test_Utility" name="MQC_setSimCase_Coastdown_1" time="0.29322"/>
+    <testcase classname="Vehicle1D_test_Utility" name="check_markdowns_uptodate_1" time="0.36591"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="Vehicle1DPerformance_test" skipped="0" tests="3" time="0.19828">
-    <testcase classname="Vehicle1DPerformance_test" name="MQC_plot_1" time="0.14571"/>
-    <testcase classname="Vehicle1DPerformance_test" name="MQC_parameters_1" time="0.013187"/>
-    <testcase classname="Vehicle1DPerformance_test" name="MQC_parameter_presets_1" time="0.039384"/>
+  <testsuite errors="0" failures="0" name="Vehicle1DPerformance_test" skipped="0" tests="3" time="0.69915">
+    <testcase classname="Vehicle1DPerformance_test" name="MQC_plot_1" time="0.56595"/>
+    <testcase classname="Vehicle1DPerformance_test" name="MQC_parameters_1" time="0.063982"/>
+    <testcase classname="Vehicle1DPerformance_test" name="MQC_parameter_presets_1" time="0.069217"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="Vehicle1DPerformance_uitest" skipped="0" tests="9" time="138.5535">
-    <testcase classname="Vehicle1DPerformance_uitest" name="MQC_AppMain_1" time="15.3397"/>
-    <testcase classname="Vehicle1DPerformance_uitest" name="test_option_BlockPath_1" time="14.9758"/>
-    <testcase classname="Vehicle1DPerformance_uitest" name="test_option_BlockPath_2" time="14.4122"/>
-    <testcase classname="Vehicle1DPerformance_uitest" name="test_option_BlockPath_warning_1" time="15.0361"/>
-    <testcase classname="Vehicle1DPerformance_uitest" name="uitest_Information" time="14.9769"/>
-    <testcase classname="Vehicle1DPerformance_uitest" name="uitest_EditField_Mass" time="14.6232"/>
-    <testcase classname="Vehicle1DPerformance_uitest" name="uitest_Preset" time="17.3551"/>
-    <testcase classname="Vehicle1DPerformance_uitest" name="uitest_OpenFigure" time="15.8064"/>
-    <testcase classname="Vehicle1DPerformance_uitest" name="uitest_UpdateButton" time="16.0281"/>
+  <testsuite errors="0" failures="0" name="Vehicle1DPerformance_uitest" skipped="0" tests="9" time="148.5863">
+    <testcase classname="Vehicle1DPerformance_uitest" name="MQC_AppMain_1" time="14.4869"/>
+    <testcase classname="Vehicle1DPerformance_uitest" name="test_option_BlockPath_1" time="13.493"/>
+    <testcase classname="Vehicle1DPerformance_uitest" name="test_option_BlockPath_2" time="12.5553"/>
+    <testcase classname="Vehicle1DPerformance_uitest" name="test_option_BlockPath_warning_1" time="12.3948"/>
+    <testcase classname="Vehicle1DPerformance_uitest" name="uitest_Information" time="21.2079"/>
+    <testcase classname="Vehicle1DPerformance_uitest" name="uitest_EditField_Mass" time="18.122"/>
+    <testcase classname="Vehicle1DPerformance_uitest" name="uitest_Preset" time="19.9486"/>
+    <testcase classname="Vehicle1DPerformance_uitest" name="uitest_OpenFigure" time="18.2389"/>
+    <testcase classname="Vehicle1DPerformance_uitest" name="uitest_UpdateButton" time="18.139"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="Vehicle1D_test" skipped="0" tests="1" time="0.0075231">
-    <testcase classname="Vehicle1D_test" name="MQC_harness_setup_1" time="0.0075231"/>
+  <testsuite errors="0" failures="0" name="Vehicle1D_test" skipped="0" tests="1" time="0.013005">
+    <testcase classname="Vehicle1D_test" name="MQC_harness_setup_1" time="0.013005"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="Vehicle1DPerformanceDesignApp_uitest" skipped="0" tests="3" time="48.1448">
-    <testcase classname="Vehicle1DPerformanceDesignApp_uitest" name="MQC_App_1" time="15.043"/>
-    <testcase classname="Vehicle1DPerformanceDesignApp_uitest" name="uitest_EditField_Mass" time="15.1123"/>
-    <testcase classname="Vehicle1DPerformanceDesignApp_uitest" name="uitest_Preset" time="17.9895"/>
+  <testsuite errors="0" failures="0" name="Vehicle1DPerformanceDesignApp_uitest" skipped="0" tests="3" time="46.5467">
+    <testcase classname="Vehicle1DPerformanceDesignApp_uitest" name="MQC_App_1" time="9.1103"/>
+    <testcase classname="Vehicle1DPerformanceDesignApp_uitest" name="uitest_EditField_Mass" time="18.4965"/>
+    <testcase classname="Vehicle1DPerformanceDesignApp_uitest" name="uitest_Preset" time="18.9398"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="VehSpdRef_harness_model_test" skipped="0" tests="1" time="4.1701">
-    <testcase classname="VehSpdRef_harness_model_test" name="MQC_sim_1" time="4.1701"/>
+  <testsuite errors="0" failures="0" name="VehSpdRef_harness_model_test" skipped="0" tests="1" time="4.4416">
+    <testcase classname="VehSpdRef_harness_model_test" name="MQC_sim_1" time="4.4416"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="VehSpdRef_Case_test" skipped="0" tests="4" time="18.03">
-    <testcase classname="VehSpdRef_Case_test" name="MQC_SimCase_Constant_1" time="4.7101"/>
-    <testcase classname="VehSpdRef_Case_test" name="MQC_SimCase_FTP75_1" time="4.5187"/>
-    <testcase classname="VehSpdRef_Case_test" name="MQC_SimCase_HighSpeed_1" time="4.2614"/>
-    <testcase classname="VehSpdRef_Case_test" name="MQC_SimCase_SimpleDrivePattern_1" time="4.5398"/>
+  <testsuite errors="0" failures="0" name="VehSpdRef_Case_test" skipped="0" tests="4" time="17.607">
+    <testcase classname="VehSpdRef_Case_test" name="MQC_SimCase_Constant_1" time="5.0544"/>
+    <testcase classname="VehSpdRef_Case_test" name="MQC_SimCase_FTP75_1" time="4.2301"/>
+    <testcase classname="VehSpdRef_Case_test" name="MQC_SimCase_HighSpeed_1" time="4.2191"/>
+    <testcase classname="VehSpdRef_Case_test" name="MQC_SimCase_SimpleDrivePattern_1" time="4.1035"/>
   </testsuite>
-  <testsuite errors="0" failures="0" name="BEVProject_UnitTest_MQC" skipped="0" tests="9" time="28.2991">
-    <testcase classname="BEVProject_UnitTest_MQC" name="MQC_SignalDesigner_1" time="0.027624"/>
-    <testcase classname="BEVProject_UnitTest_MQC" name="MQC_SignalDesigner_2" time="0.0097191"/>
-    <testcase classname="BEVProject_UnitTest_MQC" name="MQC_SignalDesigner_3" time="2.638"/>
-    <testcase classname="BEVProject_UnitTest_MQC" name="MQC_SignalDesigner_4" time="0.020574"/>
-    <testcase classname="BEVProject_UnitTest_MQC" name="MQC_SignalDesigner_5" time="2.5172"/>
-    <testcase classname="BEVProject_UnitTest_MQC" name="MQC_Utility_1" time="2.0274"/>
-    <testcase classname="BEVProject_UnitTest_MQC" name="MQC_Utility_2" time="0.0077854"/>
-    <testcase classname="BEVProject_UnitTest_MQC" name="MQC_Utility_3" time="20.5058"/>
-    <testcase classname="BEVProject_UnitTest_MQC" name="MQC_Utility_4" time="0.54506"/>
+  <testsuite errors="0" failures="0" name="SignalDesigner_test" skipped="0" tests="5" time="1.2973">
+    <testcase classname="SignalDesigner_test" name="MQC_buildTrace_1" time="0.048343"/>
+    <testcase classname="SignalDesigner_test" name="MQC_buildXYData_2" time="0.0055294"/>
+    <testcase classname="SignalDesigner_test" name="MQC_SignalDesigner_1" time="0.013548"/>
+    <testcase classname="SignalDesigner_test" name="MQC_SignalDesigner_example_1" time="0.69082"/>
+    <testcase classname="SignalDesigner_test" name="MQC_SignalDesigner_3" time="0.53902"/>
+  </testsuite>
+  <testsuite errors="1" failures="0" name="BEVProject_Utility_test" skipped="0" tests="3" time="7.9799">
+    <testcase classname="BEVProject_Utility_test" name="MQC_atProjectStartUp_2" time="0.004076"/>
+    <testcase classname="BEVProject_Utility_test" name="MQC_BEVProject_CheckProject_1" time="7.4797">
+      <error>Error occurred in BEVProject_Utility_test/MQC_BEVProject_CheckProject_1 and it did not run to completion.
+    ---------
+    Error ID:
+    ---------
+    'MATLAB:assertion:failed'
+    --------------
+    Error Details:
+    --------------
+    Error using assert
+    Assertion failed.
+    
+    Error in BEVProject_CheckProject (line 10)
+    assert(all(resultTable.Passed==true))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Error in BEVProject_Utility_test/MQC_BEVProject_CheckProject_1 (line 20)
+          BEVProject_CheckProject
+          ^^^^^^^^^^^^^^^^^^^^^^^</error>
+    </testcase>
+    <testcase classname="BEVProject_Utility_test" name="MQC_ProjectStats_1" time="0.4961"/>
+  </testsuite>
+  <testsuite errors="0" failures="1" name="BEVProject_test" skipped="0" tests="2" time="1.2524">
+    <testcase classname="BEVProject_test" name="MQC_Description_1" time="0.012425"/>
+    <testcase classname="BEVProject_test" name="test_Description_html_1" time="1.24">
+      <failure type="VerificationFailure">Verification failed in BEVProject_test/test_Description_html_1.
+    ---------------------
+    Framework Diagnostic:
+    ---------------------
+    verifyEqual failed.
+    --&gt; The numeric values are not equal using "isequaln".
+    --&gt; Failure table:
+            Actual    Expected    Error    RelativeError
+            ______    ________    _____    _____________
+                                                        
+              0          1         -1           -1      
+    
+    Actual Value:
+         0
+    Expected Value:
+         1
+    ------------------
+    Stack Information:
+    ------------------
+    In C:\local\mw\gh-isaacito12-bev-work\fork-bev\BEVProject_test.m (BEVProject_test.test_Description_html_1) at 42</failure>
+    </testcase>
   </testsuite>
 </testsuites>
