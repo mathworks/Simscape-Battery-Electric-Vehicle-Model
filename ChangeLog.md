@@ -1,4 +1,4 @@
-# Change Log
+# Change Log and What's New
 
 ## Version 2.4.2 (March 2025)
 
@@ -17,6 +17,14 @@
   The page also provides links to product documentation for more information.
 - Vehicle1D copmonent has been updated to check that all Live Scripts
   in SimulaitonCases folder are exported to Markdown files.
+
+## What's New in 2.4 (November, 2024)
+
+- The project has been updated to MATLAB R2024b with some clean ups.
+- Added brief entry-point descriptions about MATLAB project and Git
+  to [Using MATLAB Project](docs/Using-MATLAB-Project.md).
+  The page also provides links to product documentation for more information.
+
 
 ## Version 2.3.2 (August, 2024)
 
@@ -56,6 +64,13 @@ GitHub Actions
 
 - Use matlab-actions/setup-matlab@v2 in GitHub Actions workflow.
 
+## What's New in 2.3 (June, 2024)
+
+- The project has been updated to MATLAB R2024a.
+- Vehicle1D performance design app is added.
+- For veiwing Live Scripts in the GitHub web site in the browser,
+  they are converted to Markdown files and collected in the Markdown folder.
+
 ## Version 2.2.2 (December, 2023)
 
 - `buildfile.m` for MATLAB Build Tool to run tests has been updated.
@@ -77,6 +92,19 @@ GitHub Actions
 
 [url-buildtool]: https://www.mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html
 
+## What's New in 2.2 (September, 2023)
+
+- The project has been updated to MATLAB R2023b.
+- [MATLAB Build Tool][url-buildtool] is used to automate tasks
+  to generate HTML files and Jupyter notebooks from all Live Scripts
+  in the project.
+- GitHub Actions has been updated to generate and upload
+  test report and coverage report.
+- GitHub Actions also generates Jupyter notebooks from Live Scripts.
+  Jupyter notebooks can be viewed in the repo in the browser.
+
+[url-buildtool]: https://www.mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html
+
 ## Version 2.1.2 (June, 2023)
 
 - Added hyperlinks in HTML files to open scripts or models in MATLAB.
@@ -93,6 +121,15 @@ GitHub Actions
   MATLAB Test Manager requires the **MATLAB Test** license.
 - Callback Button blocks for configuring simulation cases were removed
   from all models.
+
+## What's New in 2.1 (March, 2023)
+
+- The project has been updated to MATLAB R2023a.
+- A shortcut button to open **MATLAB Test Manager**
+  is added in the Project Shortcuts tab of the toolstrip.
+  MATLAB Test Manager requires the **MATLAB Test** license.
+
+See [Change Log](ChangeLog.md) for more details.
 
 ## Version 2.0.1 (March, 2023)
 
@@ -167,6 +204,33 @@ Detailed model applications
 
 [url-bev]: https://www.mathworks.com/matlabcentral/fileexchange/82250
 [url-bev-design]: https://www.mathworks.com/matlabcentral/fileexchange/124795
+
+## What's New in 2.0 (February, 2023)
+
+- BEV system model uses updated components and
+  has simpler and easier configurability
+  for selecting vehicle speed reference input.
+- High voltage battery component provides
+  four different models:
+  **Basic**, **System simple**, **System**, and **System tabulated**.
+  They are all system level models and abstract,
+  but they prodive different fidelity levels of the model.
+  See [README](./Components/BatteryHighVoltage/README.md) in
+  **Components > BatteryHighVoltage** for more details.
+- Motor drive unit component provides
+  four different models:
+  **Basic**, **Basic thermal**, **System**, and **System tabulated**.
+  They are all system level models and abstract,
+  but they prodive different fidelity levels of the model.
+  See [README](./Components/MotorDriveUnit/README.md) in
+  **Components > MotorDriveUnit** for more details.
+- A detailed battery model built with a custom Simscape library
+  has been removed.
+  [This project][url-bev] will remain focused
+  on vehicle system-level applications using abstract models
+  in future updates.
+  A new project [Electric Vehicle Design with Simscape][url-bev-design]
+  serves as an alternative for detailed model applications.
 
 ## Version 1.2.2 (December, 2022)
 

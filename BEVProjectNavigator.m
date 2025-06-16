@@ -39,7 +39,7 @@ label_ui.Text = "\textbf{Project}";
 row = NewRow(layout, column);
 LiteApp5.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-target_project_description_page = "BEVProjectDescription.html";
+target_project_description_page = "BEVProject_Description.html";
 % Check that the file exists.
 LiteApp5.Utility.getFileFullPath(target_project_description_page);
 

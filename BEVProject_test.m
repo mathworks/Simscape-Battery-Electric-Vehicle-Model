@@ -29,7 +29,7 @@ classdef BEVProject_test < matlab.unittest.TestCase
       % Check that it runs cleanly.
       verifyWarningFree(testcase, @() test_target())
       function test_target()
-        BEVProjectDescription  % !test-target
+        BEVProject_Description  % !test-target
       end  % nested function
     end  % function
 
@@ -38,7 +38,7 @@ classdef BEVProject_test < matlab.unittest.TestCase
     function test_Description_html_1(testcase)
       % Check that the project has the HTML version of the description page.
       all_project_files = [currentProject().Files.Path]';
-      logical_index = endsWith(all_project_files, "BEVProjectDescription.html");  % !test-target
+      logical_index = endsWith(all_project_files, "BEVProject_Description.html");  % !test-target
       verifyEqual(testcase, nnz(logical_index), 1)
     end  % function
 

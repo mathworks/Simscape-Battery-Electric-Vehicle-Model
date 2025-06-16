@@ -37,7 +37,10 @@ test_definitions = [
   fullfile(top_folder, "Components", "VehicleSpeedReference", "VehSpdRef_harness_model_test.m")
   fullfile(top_folder, "Components", "VehicleSpeedReference", "SimulationCases", "VehSpdRef_Case_test.m")
   ...
-  fullfile(top_folder, "Test", "BEVProject_UnitTest_MQC.m")
+  fullfile(top_folder, "Utility", "SignalDesigner", "SignalDesigner_test.m")
+  fullfile(top_folder, "Utility", "BEVProject_Utility_test")
+  ...
+  fullfile(top_folder, "BEVProject_test.m")
   ];
 
 % This function runs tasks such as identifing code issues,
