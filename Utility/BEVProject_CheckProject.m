@@ -7,7 +7,7 @@ checkResultArray = runChecks(currentProject);
 resultTable = table(checkResultArray);
 disp(resultTable(:, ["Passed", "Description"])) %[output:683e6c75]
 %[text] Check all passed.
-assert(all(resultTable.Passed==true))
+assert(all(resultTable.Passed))
 %[text] *Copyright 2022-2025 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

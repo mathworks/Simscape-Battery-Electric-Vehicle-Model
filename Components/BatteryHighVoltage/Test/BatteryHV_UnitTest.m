@@ -64,7 +64,7 @@ classdef BatteryHV_UnitTest < matlab.unittest.TestCase
       %% Check that block parameters are properly set up
 
       mdl = "BatteryHV_refsub_SystemSimple";
-      BatteryHV_refsub_SystemSimple_params
+      BatteryHV_refsub_SimpleSystem_params
       load_system(mdl)
 
       blkpath = mdl + sprintf("/Battery"+newline+"(System-Level)");

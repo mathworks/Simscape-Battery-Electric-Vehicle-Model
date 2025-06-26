@@ -48,7 +48,7 @@ classdef LocalTask_test < matlab.unittest.TestCase
     %%
 
     function openFile_1(~)
-      openFile("BEVPoject_system_model")  % !test-target
+      openFile("BEV_system_model")  % !test-target
     end  % function
 
   end  % methods

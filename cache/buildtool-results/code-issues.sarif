@@ -1,7 +1,7 @@
 {
   "version": "2.1.0",
   "properties": {
-    "Date": "16-Jun-2025 15:56:21",
+    "Date": "25-Jun-2025 09:34:01",
     "Release": "R2025a",
     "CodeAnalyzerConfiguration": "active"
   },
@@ -14,7 +14,7 @@
       },
       "originalUriBaseIds": {
         "SourceRoot": {
-          "uri": "file:///C:/local/mw/gh-isaacito12-bev-work/fork-bev/"
+          "uri": "file:///C:/local/gh-isaacito12-bev/bev25a/"
         }
       },
       "artifacts": [
@@ -33,55 +33,91 @@
         {
           "location": {
             "uriBaseId": "SourceRoot",
-            "uri": "BEV/SimulationCases/BEV_Case_Constant_Basic.mlx"
+            "uri": "BEV/Model-Basic/BEV_useBasic.m"
           }
         },
         {
           "location": {
             "uriBaseId": "SourceRoot",
-            "uri": "BEV/SimulationCases/BEV_Case_Constant_Thermal.mlx"
+            "uri": "BEV/Model-Basic/SimulationCases/BEV_Basic_Constant.m"
           }
         },
         {
           "location": {
             "uriBaseId": "SourceRoot",
-            "uri": "BEV/SimulationCases/BEV_Case_FTP75_Basic.mlx"
+            "uri": "BEV/Model-Basic/SimulationCases/BEV_Basic_FTP75.m"
           }
         },
         {
           "location": {
             "uriBaseId": "SourceRoot",
-            "uri": "BEV/SimulationCases/BEV_Case_HighSpeed_Basic.mlx"
+            "uri": "BEV/Model-Basic/SimulationCases/BEV_Basic_generateMarkdown.m"
           }
         },
         {
           "location": {
             "uriBaseId": "SourceRoot",
-            "uri": "BEV/SimulationCases/BEV_Case_SimpleDrivePattern_Basic.mlx"
+            "uri": "BEV/Model-Basic/SimulationCases/BEV_Basic_HighSpeed.m"
           }
         },
         {
           "location": {
             "uriBaseId": "SourceRoot",
-            "uri": "BEV/SimulationCases/BEV_Case_SimpleDrivePattern_Thermal.mlx"
+            "uri": "BEV/Model-Basic/SimulationCases/BEV_Basic_SimpleDrivePattern.m"
           }
         },
         {
           "location": {
             "uriBaseId": "SourceRoot",
-            "uri": "BEV/SimulationCases/BEV_Case_test.m"
+            "uri": "BEV/Model-Basic/Test/BEV_Basic_passing_test.m"
           }
         },
         {
           "location": {
             "uriBaseId": "SourceRoot",
-            "uri": "BEV/Test/BEV_runtests.m"
+            "uri": "BEV/Model-Basic/Test/BEV_Basic_test.m"
           }
         },
         {
           "location": {
             "uriBaseId": "SourceRoot",
-            "uri": "BEV/Test/BEV_UnitTest_MQC.m"
+            "uri": "BEV/Model-Thermal/BEV_useThermal.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "BEV/Model-Thermal/SimulationCases/BEV_Thermal_Constant.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "BEV/Model-Thermal/SimulationCases/BEV_Thermal_FTP75.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "BEV/Model-Thermal/SimulationCases/BEV_Thermal_generateMarkdown.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "BEV/Model-Thermal/SimulationCases/BEV_Thermal_SimpleDrivePattern.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "BEV/selectiveLogging_sample.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "BEV/Utility/BEV_generateMarkdown.m"
           }
         },
         {
@@ -93,31 +129,13 @@
         {
           "location": {
             "uriBaseId": "SourceRoot",
-            "uri": "BEV/Utility/BEV_plotResultsCompact.m"
+            "uri": "BEV/Utility/BEV_ResultsCompactPlot.m"
           }
         },
         {
           "location": {
             "uriBaseId": "SourceRoot",
-            "uri": "BEV/Utility/Configuration/BEV_useComponents_Basic.m"
-          }
-        },
-        {
-          "location": {
-            "uriBaseId": "SourceRoot",
-            "uri": "BEV/Utility/Configuration/BEV_useComponents_Thermal.m"
-          }
-        },
-        {
-          "location": {
-            "uriBaseId": "SourceRoot",
-            "uri": "BEV/Utility/LocalTasks/BEV_generateMarkdown.m"
-          }
-        },
-        {
-          "location": {
-            "uriBaseId": "SourceRoot",
-            "uri": "BEV/Utility/LocalTasks/BEV_takeScreenshots.m"
+            "uri": "BEV/Utility/BEV_takeScreenshots.m"
           }
         },
         {
@@ -1587,6 +1605,54 @@
         {
           "location": {
             "uriBaseId": "SourceRoot",
+            "uri": "Utility/LocalTasks/+FileTool/batchGenerateMarkdowns.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "Utility/LocalTasks/+FileTool/exportToMarkdown.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "Utility/LocalTasks/+FileTool/generateMarkdownsFromLiveScripts.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "Utility/LocalTasks/+FileTool/getFileFullPath.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "Utility/LocalTasks/+FileTool/isLiveScript.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "Utility/LocalTasks/+FileTool/isPlainTextLiveScript.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "Utility/LocalTasks/+FileTool/mustBeLiveScript.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "Utility/LocalTasks/+FileTool/sourceFileIsNewer.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
             "uri": "Utility/LocalTasks/generateMarkdown_fromLiveScript.m"
           }
         },
@@ -1642,6 +1708,24 @@
           "location": {
             "uriBaseId": "SourceRoot",
             "uri": "Utility/LocalTasks/setModelWindowPositionAndSize.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "Utility/LocalTasks/Test/FileTool_livescript_for_test_1.mlx"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "Utility/LocalTasks/Test/FileTool_livescript_for_test_2.m"
+          }
+        },
+        {
+          "location": {
+            "uriBaseId": "SourceRoot",
+            "uri": "Utility/LocalTasks/Test/FileTool_test.m"
           }
         },
         {
@@ -1768,8 +1852,8 @@
                   "uri": "BEV/BEV_main_script.m"
                 },
                 "region": {
-                  "startLine": 107,
-                  "endLine": 107,
+                  "startLine": 105,
+                  "endLine": 105,
                   "startColumn": 14,
                   "endColumn": 15
                 }
@@ -1791,8 +1875,8 @@
                   "uri": "BEV/BEV_main_script.m"
                 },
                 "region": {
-                  "startLine": 108,
-                  "endLine": 108,
+                  "startLine": 106,
+                  "endLine": 106,
                   "startColumn": 10,
                   "endColumn": 11
                 }
@@ -1814,8 +1898,54 @@
                   "uri": "BEV/BEV_main_script.m"
                 },
                 "region": {
-                  "startLine": 110,
-                  "endLine": 110,
+                  "startLine": 108,
+                  "endLine": 108,
+                  "startColumn": 19,
+                  "endColumn": 20
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "NOPTS",
+          "level": "note",
+          "message": {
+            "text": "Add a semicolon after the statement to hide the output (in a script)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uriBaseId": "SourceRoot",
+                  "uri": "BEV/BEV_main_script.m"
+                },
+                "region": {
+                  "startLine": 116,
+                  "endLine": 116,
+                  "startColumn": 19,
+                  "endColumn": 20
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "NOPTS",
+          "level": "note",
+          "message": {
+            "text": "Add a semicolon after the statement to hide the output (in a script)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uriBaseId": "SourceRoot",
+                  "uri": "BEV/BEV_main_script.m"
+                },
+                "region": {
+                  "startLine": 117,
+                  "endLine": 117,
                   "startColumn": 19,
                   "endColumn": 20
                 }
@@ -1839,54 +1969,31 @@
                 "region": {
                   "startLine": 118,
                   "endLine": 118,
-                  "startColumn": 19,
-                  "endColumn": 20
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "NOPTS",
-          "level": "note",
-          "message": {
-            "text": "Add a semicolon after the statement to hide the output (in a script)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uriBaseId": "SourceRoot",
-                  "uri": "BEV/BEV_main_script.m"
-                },
-                "region": {
-                  "startLine": 119,
-                  "endLine": 119,
-                  "startColumn": 19,
-                  "endColumn": 20
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "NOPTS",
-          "level": "note",
-          "message": {
-            "text": "Add a semicolon after the statement to hide the output (in a script)."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uriBaseId": "SourceRoot",
-                  "uri": "BEV/BEV_main_script.m"
-                },
-                "region": {
-                  "startLine": 120,
-                  "endLine": 120,
                   "startColumn": 32,
                   "endColumn": 33
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "NOPTS",
+          "level": "note",
+          "message": {
+            "text": "Add a semicolon after the statement to hide the output (in a script)."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uriBaseId": "SourceRoot",
+                  "uri": "BEV/selectiveLogging_sample.m"
+                },
+                "region": {
+                  "startLine": 12,
+                  "endLine": 12,
+                  "startColumn": 16,
+                  "endColumn": 17
                 }
               }
             }

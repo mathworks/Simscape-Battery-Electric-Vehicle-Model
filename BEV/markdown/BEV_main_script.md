@@ -1,17 +1,20 @@
 
+<a id="T_0F8BC05C"></a>
+
 # <span style="color:rgb(213,80,0)">Battery Electric Vehicle (BEV) System Level Model</span>
-<a name="beginToc"></a>
+<!-- Begin Toc -->
 
 ## Table of Contents
-&emsp;[Introduction](#introduction)
+&emsp;[Introduction](#H_A0C28D4F)
  
-&emsp;[Run Simulation](#run-simulation)
+&emsp;[Run Simulation](#H_EC484CEF)
  
-&emsp;[Save Result](#save-result)
+&emsp;[Save Result](#H_EF7BCF44)
  
-&emsp;[Analyse Result](#analyse-result)
+&emsp;[Analyse Result](#H_81E3C32A)
  
-<a name="endToc"></a>
+<!-- End Toc -->
+<a id="H_A0C28D4F"></a>
 
 # Introduction
 
@@ -25,6 +28,8 @@ This script shows an example workflow to programmatically open model, run simula
 
 
 You can find more scripts demonstrating other simulation cases in the **SimulationCases** folder.
+
+<a id="H_EC484CEF"></a>
 
 # Run Simulation
 
@@ -41,7 +46,7 @@ BEV_useComponents_Basic
 ```
 
 ```matlabTextOutput
-Use Basic models for all components.
+Unrecognized function or variable 'BEV_useComponents_Basic'.
 ```
 
 ```matlab
@@ -51,13 +56,6 @@ VehSpdRef_loadCase_SimpleDrivePattern( ...
   TargetSubsystemPath = ...
     "/Controller & Environment" + ...
     "/Vehicle speed reference" )
-```
-
-```matlabTextOutput
-Setting up simulation...
-Simulation case: Simple drive pattern
-Setting simulation stop time to 100 sec.
-Selecting simulation case 1.
 ```
 
 If you want to change some parameter values, do it here:
@@ -77,9 +75,7 @@ prjRoot = currentProject().RootFolder;
 imgFilename = "BEV_SimulationResultPlot.png";
 exportgraphics(fig, fullfile(prjRoot, "BEV", "results", imgFilename))
 ```
-
-<center><img src="media/BEV_main_script_media/figure_0.png" width="702" alt="figure_0.png"></center>
-
+<a id="H_EF7BCF44"></a>
 
 # Save Result
 
@@ -109,17 +105,6 @@ varUnits = string(simData.Properties.VariableUnits');
 % disp(varUnits)
 varNames2 = varNames + " (" + varUnits + ")";
 disp(varNames2)
-```
-
-```matlabTextOutput
-    "HV Battery SOC (%)"
-    "HV Battery Power (kW)"
-    "HV Battery Current (A)"
-    "G-Force (1)"
-    "Vehicle Speed (km/hr) (km/hr)"
-```
-
-```matlab
 simData.Properties.VariableNames = varNames2;
 
 % Save data to CSV file.
@@ -129,6 +114,8 @@ writetimetable(simData, simResultFile_FullPath)
 ```
 
 Open the saved CSV file in text editor and check that the variable names are saved at the first line as expected.
+
+<a id="H_81E3C32A"></a>
 
 # Analyse Result
 
@@ -150,17 +137,6 @@ varNames_with_unit = data.Properties.VariableNames';
 % disp(varNames_with_unit)
 varNames = extractBefore(varNames_with_unit, " (");
 disp(varNames)
-```
-
-```matlabTextOutput
-    {'HV Battery SOC'    }
-    {'HV Battery Power'  }
-    {'HV Battery Current'}
-    {'G-Force'           }
-    {'Vehicle Speed'     }
-```
-
-```matlab
 varUnits = strings(5, 1);
 for idx = 1 : numel(varNames_with_unit)
   % Return value from extractBetween is an N-by-1 cell array
@@ -171,17 +147,6 @@ for idx = 1 : numel(varNames_with_unit)
   varUnits{idx} = tmpUnits{1};
 end
 disp(varUnits)
-```
-
-```matlabTextOutput
-    "%"
-    "kW"
-    "A"
-    "1"
-    "km/hr"
-```
-
-```matlab
 data.Properties.VariableNames = varNames;
 data.Properties.VariableUnits = varUnits;
 
@@ -204,33 +169,9 @@ dataVehSpd = data.("Vehicle Speed");
 unitStr = varUnits(varNames == "Vehicle Speed");
 vehicleSpeed = simscape.Value(dataVehSpd, unitStr{:});
 averageSpeed = sum(vehicleSpeed)/numel(vehicleSpeed)
-```
-
-```matlabTextOutput
-averageSpeed = 
-   37.4472 (km/hr)
-
-```
-
-```matlab
 maxSpeed = max(vehicleSpeed)
-```
-
-```matlabTextOutput
-maxSpeed = 
-   70.0078 (km/hr)
-
-```
-
-```matlab
 tmpDistance = sum(vehicleSpeed(2:end).*dt);
 travelledDistance = tidyUnit( tmpDistance, "km" )
-```
-
-```matlabTextOutput
-travelledDistance = 
-    0.9626 (km)
-
 ```
 
 G Force
@@ -240,11 +181,6 @@ G = data.("G-Force");
 min(G), max(G)
 ```
 
-```matlabTextOutput
-ans = -0.0771
-ans = 0.1985
-```
-
 Battery Power
 
 ```matlab
@@ -252,31 +188,9 @@ dataBattPwr = data.("HV Battery Power");
 unitStr = varUnits(varNames == "HV Battery Power");
 batteryPower = simscape.Value(dataBattPwr, unitStr{:});  % J/s
 batteryEnergyUsed = sum(batteryPower(2:end).*dt)
-```
-
-```matlabTextOutput
-batteryEnergyUsed = 
-  518.2258 (kW*s)
-
-```
-
-```matlab
 batteryEnergyUsed = tidyUnit(batteryEnergyUsed, "kW*hr")
-```
-
-```matlabTextOutput
-batteryEnergyUsed = 
-    0.1440 (hr*kW)
-
-```
-
-```matlab
 energyEfficiency_kWh_per_100km = 100 * value(batteryEnergyUsed / travelledDistance, "kW*hr/km")
 ```
 
-```matlabTextOutput
-energyEfficiency_kWh_per_100km = 14.9539
-```
-
-*Copyright 2022\-2024 The MathWorks, Inc.*
+*Copyright 2022\-2025 The MathWorks, Inc.*
 

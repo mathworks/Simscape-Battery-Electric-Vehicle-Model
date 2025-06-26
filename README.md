@@ -29,11 +29,11 @@ from the slow but detailed motor drive unit and use the result
 as the block parameter of the simple but fast motor drive block
 in the BEV model.
 
-<img src="BEV/Utility/Images/BEV_system_model_screenshot.png"
+<img src="BEV/Utility/screenshot-BEV_system_model.png"
  alt="Screenshot of the battery electric vehicle model"
  width="700">
 
-<img src="BEV/results/BEV_SimulationResultPlot.png"
+<img src="BEV/Model-Basic/SimulationCases/markdown/media/BEV_Basic_FTP75_media/figure_0.png"
  alt="Screenshot of the simulation result plots"
  width="700">
 

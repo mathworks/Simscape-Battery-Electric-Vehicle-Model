@@ -46,7 +46,7 @@ classdef BatteryHV_test < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function MQC_setup_1(~)
-      BatteryHV_harness_setup  % !test-target
+      BatteryHV_ComponentTestParameters  % !test-target
     end  % function
 
     function MQC_load_1(testcase)

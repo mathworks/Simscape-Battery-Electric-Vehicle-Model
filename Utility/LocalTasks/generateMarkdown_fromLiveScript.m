@@ -1,29 +1,29 @@
 function NumConversions = generateMarkdown_fromLiveScript(NameValuePairs)
-%% Generates Markdown files from Live Scripts
+%% Batch-generate Markdown files from Live Scripts in the specified folder
 
-% This function finds project-registered Live Scripts in the specified folder
-% and exports them to Markdown files.
-% Live Scripts that are not registered in MATLAB project are skipped.
+% This function finds project-registered ".m" and ".mlx" files
+% in the specified folder and exports them to Markdown files.
+% Files that are not registered in MATLAB project are skipped.
 %
 % By default, all the generated Markdown files are saved in the "markdown" folder.
 % Use MarkdownFolderPath option to change the folder to save Markdown files.
 %
-% If an up-to-date Markdown file already exists for the corresponding Live Script,
+% If an up-to-date Markdown file already exists for the corresponding file,
 % no new Markdown file is generated. To generate a Markdown file,
 % set ForceExport option to true.
-%
-% By default, this function displays messages about Live script files found and
-% where exported Markdown files were saved.
-% To surpress messages, set Quiet option to true.
 
-% Copyright 2024 The MathWorks, Inc.
+% Copyright 2024-2025 The MathWorks, Inc.
 
 arguments (Input)
   NameValuePairs.LiveScriptFolderNames (:,1) string {mustBeFolder} = "."
   NameValuePairs.MarkdownFolderPath (1,1) string = "markdown"
   NameValuePairs.ForceExport (1,1) logical = false
-  NameValuePairs.DisplayInfo (1,1) logical = false
-end
+  NameValuePairs.DisplayInfo (1,1) logical = true
+end  % arguments
+
+arguments (Output)
+  NumConversions (1,1) {mustBeNonnegative}
+end  % arguments
 
 display_info = NameValuePairs.DisplayInfo;
 
@@ -44,7 +44,7 @@ for k = 1 : num_folders
 
   % Get mlx files that are in the k-th specified folder.
   % Don't get mlx files that are in the subfolders of the target folder.
-  logical_index = endsWith(all_project_files_in_live_script_folder, ".mlx") ...
+  logical_index = endsWith(all_project_files_in_live_script_folder, (".m"|".mlx")) ...
     & not( startsWith( all_project_files_in_live_script_folder, ...
     live_script_folder_path + filesep + wildcardPattern(1,inf) + filesep));
 

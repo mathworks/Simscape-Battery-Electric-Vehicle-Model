@@ -1,74 +1,15 @@
 function plan = buildfile
-%% Define and run tasks.
-
-% Copyright 2023 The MathWorks, Inc.
-
-top_folder = currentProject().RootFolder;
-
-test_definitions = [ 
-  fullfile(top_folder, "BEV", "Test", "BEV_UnitTest_MQC.m")
-  ...
-  fullfile(top_folder, "Components", "BatteryHighVoltage", "Test", "BatteryHV_UnitTest.m")
-  fullfile(top_folder, "Components", "BatteryHighVoltage", "Test", "BatteryHV_UnitTest_MQC.m")
-  ...
-  fullfile(top_folder, "Components", "BEVController", "Test", "BEVController_UnitTest_MQC.m")
-  ...
-  fullfile(top_folder, "Components", "ControllerAndEnvironment", "Test", "CtrlEnv_UnitTest_MQC.m")
-  ...
-  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-Basic", "MotorDriveUnit_test_Basic.m")
-  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-Basic", "SimulationCases", "MotorDriveUnit_test_Basic_simulation_cases.m")
-  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-BasicThermal", "MotorDriveUnit_test_BasicThermal.m")
-  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-BasicThermal", "SimulationCases", "MotorDriveUnit_test_BasicThermal_simulation_cases.m")
-  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-SystemTable", "MotorDriveUnit_test_SystemTable.m")
-  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-SystemTable", "SimulationCases", "MotorDriveUnit_test_System_simulation_cases.m")
-  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-SystemThermal", "MotorDriveUnit_test_SystemThermal.m")
-  fullfile(top_folder, "Components", "MotorDriveUnit", "Model-SystemThermal", "SimulationCases", "MotorDriveUnit_test_SystemThermal_simulation_cases.m")
-  fullfile(top_folder, "Components", "MotorDriveUnit", "Utility-MDU", "MotorDriveUnit_test_Utility_MDU.m")
-  fullfile(top_folder, "Components", "MotorDriveUnit", "MotorDriveUnit_test.m")
-  ...
-  fullfile(top_folder, "Components", "Vehicle1D", "Model-Basic", "SimulationCases", "Vehicle1D_test_Basic_simulation_cases.m")
-  fullfile(top_folder, "Components", "Vehicle1D", "Model-Basic", "Vehicle1D_Basic_test.m")
-  fullfile(top_folder, "Components", "Vehicle1D", "Utility-Vehicle1D", "Vehicle1D_test_Utility.m")
-  fullfile(top_folder, "Components", "Vehicle1D", "Utility-Vehicle1D", "Vehicle1DPerformance_test.m")
-  fullfile(top_folder, "Components", "Vehicle1D", "Utility-Vehicle1D", "Vehicle1DPerformance_uitest.m")
-  fullfile(top_folder, "Components", "Vehicle1D", "Vehicle1D_test.m")
-  fullfile(top_folder, "Components", "Vehicle1D", "Vehicle1DPerformanceDesignApp_uitest.m")
-  ...
-  fullfile(top_folder, "Components", "VehicleSpeedReference", "VehSpdRef_harness_model_test.m")
-  fullfile(top_folder, "Components", "VehicleSpeedReference", "SimulationCases", "VehSpdRef_Case_test.m")
-  ...
-  fullfile(top_folder, "Utility", "SignalDesigner", "SignalDesigner_test.m")
-  fullfile(top_folder, "Utility", "BEVProject_Utility_test")
-  ...
-  fullfile(top_folder, "BEVProject_test.m")
-  ];
-
-% This function runs tasks such as identifing code issues,
-% running tests, or performing your custom tasks.
-% To see available tasks, run the following command in MATLAB Command Window.
+%% Check code, check project, and run tests
+% This function is used by MATLAB Build Tool to automate tasks such as
+% checking code, checking project, or running tests.
 %
-%   buildtool -tasks
+% Overview of MATLAB Build Tool
+% https://www.mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html
 %
-% This function uses MATLAB build tool API, which was first released in R2022b.
-% Incremental builds are supported since R2023a.
-% Task for running tests is supported since R2023b.
-% For information about MATLAB build tool, see the documentation:
-%
-% - Overview of MATLAB Build Tool
-%   https://mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html
-%
-% - Improve Performance with Incremental Builds
-%   https://mathworks.com/help/matlab/matlab_prog/improve-performance-with-incremental-builds.html
-%
-% - Task for running tests
-%   https://mathworks.com/help/matlab/ref/matlab.buildtool.tasks.testtask-class.html
+% Run Build from Toolstrip
+% https://www.mathworks.com/help/matlab/matlab_prog/run-build-from-toolstrip.html
 
-%   buildtool -tasks
-%   buildtool CodeIssues
-%   buildtool CheckProject
-%   buildtool Test
-%   buildtool Clean
-%   buildtool CodeIssues CheckProject Test
+% Copyright 2023-2025 The MathWorks, Inc.
 
 %%
 % Create a build plan from task functions.
@@ -81,15 +22,33 @@ test_definitions = [
 %
 plan = buildplan(localfunctions);
 
-% Add a task to identify code issues.
-plan("CodeIssues") = matlab.buildtool.tasks.CodeIssuesTask( ...
-  Results = "cache/buildtool-results/code-issues.sarif");
+% Default tasks must finish quickly.
+% The Test task can take long time, thus it is not added to the default tasks.
+plan.DefaultTasks = "CodeIssues";
 
+plan("CodeIssues") = matlab.buildtool.tasks.CodeIssuesTask( ...
+  SourceFiles = ".", ...
+  IncludeSubfolders = true, ...
+  Results = [ ...
+  "cache/buildtool-results/code-issues.mat" ...
+  "cache/buildtool-results/code-issues.sarif" ...
+  ] );
+
+% This is a custom task. See the CheckProjectTask local function implemented
+% below this function.
 plan("CheckProject").Dependencies = "CodeIssues";
 
-% Add a task to run tests.
 plan("Test") = matlab.buildtool.tasks.TestTask( ...
-  SourceFiles = pwd, ...
+  Dependencies = ["CodeIssues", "CheckProject"], ...
+  ...
+  SourceFiles = [
+  "BEV"
+  "Components"
+  "Interface"
+  "Utility"
+  ], ...
+  IncludeSubfolders = true, ...
+  ...
   TestResults = [
   "cache/buildtool-results/test-results.xml"
   "cache/buildtool-results/test-results.pdf"
@@ -99,24 +58,13 @@ plan("Test") = matlab.buildtool.tasks.TestTask( ...
   "cache/buildtool-results/code-coverage.xml"
   ] );
 
-plan("Test").Dependencies = "CodeIssues";
-
-plan("Test").Tests = test_definitions;
-
-plan("Clean") = matlab.buildtool.tasks.CleanTask;
+%plan("Clean") = matlab.buildtool.tasks.CleanTask;
 
 % plan("LiveScriptToJupyterNotebook").Inputs = "**/*.mlx";
 % plan("LiveScriptToJupyterNotebook").Outputs = ...
 %   replace(plan("LiveScriptToJupyterNotebook").Inputs, ".mlx", ".ipynb");
 
-plan.DefaultTasks = [
-  "CodeIssues"
-  "CheckProject"
-  "Test"
-  ];
-
 end  % function
-
 
 %% Local functions == task functions
 % Task functions are local functions in the build file (this file).
@@ -131,7 +79,6 @@ end  % function
 %
 % - The build tool treats the first help text line,
 %   often called the H1 line, of the task function as the task description.
-
 
 %{
 function LiveScriptToMarkdownTask(context)
@@ -154,7 +101,6 @@ for idx = 1:numel(mlxFiles)
 end  % for
 end  % function
 %}
-
 
 function CheckProjectTask(~)
 %% Run MATLAB project integrity checks

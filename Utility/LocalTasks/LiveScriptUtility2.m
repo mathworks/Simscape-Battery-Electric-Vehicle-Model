@@ -22,7 +22,7 @@ if the source Live Script is not updated.
 
   %}
 
-  % Copyright 2023-2024 The MathWorks, Inc.
+  % Copyright 2023-2025 The MathWorks, Inc.
 
   methods (Static)
 
@@ -59,7 +59,8 @@ if the source Live Script is not updated.
         converted (1,:) logical
       end
 
-      assert(all(endsWith(LiveScriptFilenames, ".mlx")), "File extension must be "".mlx""")
+      % From R2025a, ".m" file can also be Live Script.
+      % assert(all(endsWith(LiveScriptFilenames, ".mlx")), "File extension must be "".mlx""")
 
       assert(NameValuePairs.MarkdownFolderPath ~= ".", "MarkdownFolderPath must not be the current folder.")
 
@@ -179,7 +180,8 @@ if the source Live Script is not updated.
         NameValuePairs.DisplayInfo (1,1) logical = false
       end
 
-      assert(endsWith(LiveScriptFilename, ".mlx"), "File extension must be "".mlx""")
+      % From R2025a, ".m" file can also be Live Script.
+      % assert(endsWith(LiveScriptFilename, ".mlx"), "File extension must be "".mlx""")
 
       assert(NameValuePairs.MarkdownFolderPath ~= ".", "MarkdownFolderPath must not be the current folder.")
 

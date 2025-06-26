@@ -12,14 +12,14 @@ classdef BatteryHV_UnitTest_MQC < matlab.unittest.TestCase
   properties (TestParameter)
     useRefSubFunction = {
       @BatteryHV_useRefsub_Basic
-      @BatteryHV_useRefsub_SystemSimple
+      @BatteryHV_useRefsub_SimpleSystem
       @BatteryHV_useRefsub_System
       }
     loadSimulationCaseFunction = {
-      @BatteryHV_loadSimulationCase_Constant
-      @BatteryHV_loadSimulationCase_Charge
-      @BatteryHV_loadSimulationCase_Discharge
-      @BatteryHV_loadSimulationCase_Random
+      @BatteryHV_setSimCase_Constant
+      @BatteryHV_setSimCase_Charge
+      @BatteryHV_setSimCase_Discharge
+      @BatteryHV_setSimCase_Random
       }
   end
 
@@ -60,7 +60,7 @@ classdef BatteryHV_UnitTest_MQC < matlab.unittest.TestCase
       mdl = "BatteryHV_harness_model";
       load_system(mdl)
       BatteryHV_useRefsub_Basic;
-      BatteryHV_loadSimulationCase_Charge( ...
+      BatteryHV_setSimCase_Charge( ...
         CRate = -1, ...  Negative value for charge
         StateOfCharge_pct = 0 );
       sim(mdl);
@@ -70,7 +70,7 @@ classdef BatteryHV_UnitTest_MQC < matlab.unittest.TestCase
       mdl = "BatteryHV_harness_model";
       load_system(mdl)
       BatteryHV_useRefsub_Basic;
-      BatteryHV_loadSimulationCase_Discharge( ...
+      BatteryHV_setSimCase_Discharge( ...
         CRate = 1, ...  Positive value for discharge
         StateOfCharge_pct = 100 );
       sim(mdl);
@@ -80,7 +80,7 @@ classdef BatteryHV_UnitTest_MQC < matlab.unittest.TestCase
       mdl = "BatteryHV_harness_model";
       load_system(mdl)
       BatteryHV_useRefsub_Basic;
-      BatteryHV_loadSimulationCase_Random( ...
+      BatteryHV_setSimCase_Random( ...
         RandomSeed = 124, ...
         NumTransitions = 10, ...
         InitialSOC_pct = 60 );
@@ -90,56 +90,56 @@ classdef BatteryHV_UnitTest_MQC < matlab.unittest.TestCase
     %% Model-TableBased folder
 
     function MQC_Model_TableBased_1(~)
-      BatteryHV_Table_buildParameters
+      BatteryHV_TableBasedSystem_buildParameters
     end
 
     function MQC_Model_TableBased_2(~)
-      BatteryHV_Table_visualizeParameters
+      BatteryHV_TableBasedSystem_visualizeParameters
     end
 
     %% Simulation Cases folder
 
     function MQC_SimulationCase_1(~)
-      BatteryHV_Case_Charge
+      BatteryHV_Basic_Charge
     end
 
     function MQC_SimulationCase_2(~)
-      BatteryHV_Case_Constant
+      BatteryHV_Basic_Constant
     end
 
     function MQC_SimulationCase_3(~)
-      BatteryHV_Case_Discharge
+      BatteryHV_Basic_Discharge
     end
 
     function MQC_SimulationCase_4(~)
-      BatteryHV_Case_Random
+      BatteryHV_Basic_Random
     end
 
     %% Utility > Configuration folder
 
     function MQC_Configuration_1(~)
       load_system("BatteryHV_harness_model")
-      BatteryHV_loadSimulationCase
+      BatteryHV_setSimulationCase
     end
 
     function MQC_Configuration_2(~)
       load_system("BatteryHV_harness_model")
-      BatteryHV_loadSimulationCase_Charge
+      BatteryHV_setSimCase_Charge
     end
 
     function MQC_Configuration_3(~)
       load_system("BatteryHV_harness_model")
-      BatteryHV_loadSimulationCase_Constant
+      BatteryHV_setSimCase_Constant
     end
 
     function MQC_Configuration_4(~)
       load_system("BatteryHV_harness_model")
-      BatteryHV_loadSimulationCase_Discharge
+      BatteryHV_setSimCase_Discharge
     end
 
     function MQC_Configuration_5(~)
       load_system("BatteryHV_harness_model")
-      BatteryHV_loadSimulationCase_Random
+      BatteryHV_setSimCase_Random
     end
 
     function MQC_Configuration_6(~)
@@ -163,12 +163,12 @@ classdef BatteryHV_UnitTest_MQC < matlab.unittest.TestCase
 
     function MQC_Configuration_10(~)
       load_system("BatteryHV_harness_model")
-      BatteryHV_useRefsub_SystemSimple
+      BatteryHV_useRefsub_SimpleSystem
     end
 
     function MQC_Configuration_11(~)
       load_system("BatteryHV_harness_model")
-      BatteryHV_useRefsub_SystemTable
+      BatteryHV_useRefsub_TableBasedSystem
     end
 
     %% Utility folder
@@ -231,11 +231,11 @@ classdef BatteryHV_UnitTest_MQC < matlab.unittest.TestCase
     end
 
     function MQC_TopFolder_4(~)
-      BatteryHV_refsub_SystemSimple_params
+      BatteryHV_refsub_SimpleSystem_params
     end
 
     function MQC_TopFolder_5(~)
-      BatteryHV_refsub_SystemTable_params
+      BatteryHV_refsub_TableBasedSystem_params
     end
 
   end  % methods (Test)
