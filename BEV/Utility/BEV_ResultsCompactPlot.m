@@ -49,7 +49,7 @@ if plotTemp
 else
   % Make 3-by-2 plots
   tl = tiledlayout(parent, 3, 2);
-end
+end  % if
 
 tl.TileSpacing = "tight";
 tl.Padding = "tight";

@@ -1,5 +1,8 @@
 # Signal Designer and Signal Source Block Library
 
+⚠️ Signal Designer and Signal Source Block Library will retire and
+be replaced by the new **Signal Tool**.
+
 ## Overview
 
 This is a simple tool to design and use signal traces
@@ -66,4 +69,4 @@ this tools' git repository and
 lets you use git to update the tool
 in your project repository.
 
-_Copyright 2022-2023 The MathWorks, Inc._
+_Copyright 2022-2025 The MathWorks, Inc._

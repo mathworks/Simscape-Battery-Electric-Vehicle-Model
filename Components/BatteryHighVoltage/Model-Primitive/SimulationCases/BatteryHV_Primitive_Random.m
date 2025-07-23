@@ -1,14 +1,13 @@
 %[text] %[text:anchor:T_D48C173C] # High Voltage Battery - Simulation Case
 %[text] %[text:anchor:H_1B376934] ## Random current
-mdl = "BatteryHV_ComponentTestModel";
+mdl = "BatteryHV_TestModel";
 load_system(mdl)
 
 % Load model parameters.
-BatteryHV_ComponentTestParameters
+BatteryHV_TestModelSetup
 
 % Select battery model.
-% BatteryHV_useRefsub_Basic
-BatteryHV_useRefsub_Primitive %[output:291404f5]
+BatteryHV_setRefsub_Primitive %[output:291404f5]
 % Setup simulation case.
 BatteryHV_setSimCase_Random( ... %[output:group:2403226e] %[output:296f7f2b]
   RandomSeed = 125, ... %[output:296f7f2b]

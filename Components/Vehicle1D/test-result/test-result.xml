@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" name="test_Vehicle1D" skipped="0" tests="2" time="0.20981">
+    <testcase classname="test_Vehicle1D" name="PassingTest_1" time="0.074833"/>
+    <testcase classname="test_Vehicle1D" name="description_html_is_uptodate" time="0.13497"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="testui_Vehicle1DPerformanceDesignApp" skipped="0" tests="3" time="44.9025">
+    <testcase classname="testui_Vehicle1DPerformanceDesignApp" name="MQC_App_1" time="9.7526"/>
+    <testcase classname="testui_Vehicle1DPerformanceDesignApp" name="uitest_EditField_Mass" time="17.4149"/>
+    <testcase classname="testui_Vehicle1DPerformanceDesignApp" name="uitest_Preset" time="17.735"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="test_Vehicle1DPerformance" skipped="0" tests="3" time="0.26318">
+    <testcase classname="test_Vehicle1DPerformance" name="MQC_plot_1" time="0.19053"/>
+    <testcase classname="test_Vehicle1DPerformance" name="MQC_parameters_1" time="0.018271"/>
+    <testcase classname="test_Vehicle1DPerformance" name="MQC_parameter_presets_1" time="0.054374"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="testui_Vehicle1DPerformanceApp" skipped="0" tests="9" time="123.5991">
+    <testcase classname="testui_Vehicle1DPerformanceApp" name="PassingTest_1" time="8.1069"/>
+    <testcase classname="testui_Vehicle1DPerformanceApp" name="test_option_BlockPath_1" time="11.5689"/>
+    <testcase classname="testui_Vehicle1DPerformanceApp" name="test_option_BlockPath_2" time="10.608"/>
+    <testcase classname="testui_Vehicle1DPerformanceApp" name="test_option_BlockPath_warning_1" time="9.8858"/>
+    <testcase classname="testui_Vehicle1DPerformanceApp" name="uitest_Information" time="17.0194"/>
+    <testcase classname="testui_Vehicle1DPerformanceApp" name="uitest_EditField_Mass" time="15.3182"/>
+    <testcase classname="testui_Vehicle1DPerformanceApp" name="uitest_Preset" time="17.6473"/>
+    <testcase classname="testui_Vehicle1DPerformanceApp" name="uitest_OpenFigure" time="15.821"/>
+    <testcase classname="testui_Vehicle1DPerformanceApp" name="uitest_UpdateButton" time="17.6235"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="test_Vehicle1D_Basic" skipped="0" tests="2" time="1.5116">
+    <testcase classname="test_Vehicle1D_Basic" name="MQC_params_1" time="0.010192"/>
+    <testcase classname="test_Vehicle1D_Basic" name="blockParameters_Vehicle1D_Driveline" time="1.5014"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="testui_Vehicle1DPerformanceDesignApp_Basic" skipped="0" tests="3" time="31.8306">
+    <testcase classname="testui_Vehicle1DPerformanceDesignApp_Basic" name="MQC_App_1" time="9.7975"/>
+    <testcase classname="testui_Vehicle1DPerformanceDesignApp_Basic" name="test_vehicle_mass" time="10.8329"/>
+    <testcase classname="testui_Vehicle1DPerformanceDesignApp_Basic" name="test_frontal_area" time="11.2002"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="test_Vehicle1D_Basic_SimulationCases" skipped="0" tests="4" time="18.6535">
+    <testcase classname="test_Vehicle1D_Basic_SimulationCases" name="PassingTest_1" time="8.5586"/>
+    <testcase classname="test_Vehicle1D_Basic_SimulationCases" name="PassingTest_2" time="3.5636"/>
+    <testcase classname="test_Vehicle1D_Basic_SimulationCases" name="PassingTest_3" time="3.3133"/>
+    <testcase classname="test_Vehicle1D_Basic_SimulationCases" name="PassingTest_4" time="3.218"/>
+  </testsuite>
+  <testsuite errors="1" failures="0" name="test_Vehicle1D_Utility" skipped="0" tests="9" time="4.9838">
+    <testcase classname="test_Vehicle1D_Utility" name="MQC_plot_input_signals_1" time="2.4276"/>
+    <testcase classname="test_Vehicle1D_Utility" name="MQC_reset_TestModel_1" time="0.61863"/>
+    <testcase classname="test_Vehicle1D_Utility" name="MQC_set_initial_conditions_1" time="0.0054745"/>
+    <testcase classname="test_Vehicle1D_Utility" name="MQC_setSimulationCase_1" time="0.32049"/>
+    <testcase classname="test_Vehicle1D_Utility" name="MQC_setSimCase_Constant_1" time="0.29362"/>
+    <testcase classname="test_Vehicle1D_Utility" name="MQC_setSimCase_Accelerate_1" time="0.27213"/>
+    <testcase classname="test_Vehicle1D_Utility" name="MQC_setSimCase_Braking_1" time="0.31136"/>
+    <testcase classname="test_Vehicle1D_Utility" name="MQC_setSimCase_Coastdown_1" time="0.28531"/>
+    <testcase classname="test_Vehicle1D_Utility" name="check_markdowns_uptodate_1" time="0.44915">
+      <error>Error occurred in test_Vehicle1D_Utility/check_markdowns_uptodate_1 and it did not run to completion.
+    ---------
+    Error ID:
+    ---------
+    'isLiveScript:NotFile'
+    --------------
+    Error Details:
+    --------------
+    Error using FileTool1.isLiveScript (line 31)
+    Specified filename is invalid: README.md
+    
+    Error in FileTool1.batchGenerateMarkdowns (line 47)
+      logical_index = FileTool1.isLiveScript(filenames);
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Error in Vehicle1D_generateMarkdown (line 20)
+    NumConversions = FileTool1.batchGenerateMarkdowns( ...
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    Error in test_Vehicle1D_Utility/check_markdowns_uptodate_1 (line 84)
+          num = Vehicle1D_generateMarkdown(DisplayInfo=false);
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</error>
+    </testcase>
+  </testsuite>
+</testsuites>

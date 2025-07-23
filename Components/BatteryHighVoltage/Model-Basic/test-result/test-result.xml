@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" name="BatteryHV_test_Basic" skipped="0" tests="3" time="3.7807">
+    <testcase classname="BatteryHV_test_Basic" name="MQC_BatteryHV_Basic_params_1" time="0.019021"/>
+    <testcase classname="BatteryHV_test_Basic" name="MQC_BatteryHV_useRefsub_Basic_1" time="0.5282"/>
+    <testcase classname="BatteryHV_test_Basic" name="test_sim_ends_within_10_seconds" time="3.2335"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" name="BatteryHV_test_Basic_SimulationCases" skipped="0" tests="5" time="16.7152">
+    <testcase classname="BatteryHV_test_Basic_SimulationCases" name="MQC_Charge_1" time="4.8882"/>
+    <testcase classname="BatteryHV_test_Basic_SimulationCases" name="MQC_Constant_1" time="3.9808"/>
+    <testcase classname="BatteryHV_test_Basic_SimulationCases" name="MQC_Discharge_1" time="4.021"/>
+    <testcase classname="BatteryHV_test_Basic_SimulationCases" name="MQC_Random_1" time="3.387"/>
+    <testcase classname="BatteryHV_test_Basic_SimulationCases" name="check_markdowns" time="0.43817"/>
+  </testsuite>
+</testsuites>

@@ -11,21 +11,13 @@ function plan = buildfile
 
 % Copyright 2023-2025 The MathWorks, Inc.
 
-%%
-% Create a build plan from task functions.
-%
-% `localfunctions` returns a cell array of function handles
-% to all local functions in the current file.
-%
-% For information about buildplan, see the documentation:
-% - https://mathworks.com/help/matlab/ref/buildplan.html
-%
+% Create a build plan from local functions.
 plan = buildplan(localfunctions);
 
-% Default tasks must finish quickly.
-% The Test task can take long time, thus it is not added to the default tasks.
+% CodeIssues task finish quickly. Use it as the default task.
 plan.DefaultTasks = "CodeIssues";
 
+% https://www.mathworks.com/help/matlab/ref/matlab.buildtool.tasks.codeissuestask-class.html
 plan("CodeIssues") = matlab.buildtool.tasks.CodeIssuesTask( ...
   SourceFiles = ".", ...
   IncludeSubfolders = true, ...
@@ -34,10 +26,9 @@ plan("CodeIssues") = matlab.buildtool.tasks.CodeIssuesTask( ...
   "cache/buildtool-results/code-issues.sarif" ...
   ] );
 
-% This is a custom task. See the CheckProjectTask local function implemented
-% below this function.
 plan("CheckProject").Dependencies = "CodeIssues";
 
+% https://www.mathworks.com/help/matlab/ref/matlab.buildtool.tasks.testtask-class.html
 plan("Test") = matlab.buildtool.tasks.TestTask( ...
   Dependencies = ["CodeIssues", "CheckProject"], ...
   ...
@@ -58,55 +49,9 @@ plan("Test") = matlab.buildtool.tasks.TestTask( ...
   "cache/buildtool-results/code-coverage.xml"
   ] );
 
-%plan("Clean") = matlab.buildtool.tasks.CleanTask;
-
-% plan("LiveScriptToJupyterNotebook").Inputs = "**/*.mlx";
-% plan("LiveScriptToJupyterNotebook").Outputs = ...
-%   replace(plan("LiveScriptToJupyterNotebook").Inputs, ".mlx", ".ipynb");
-
 end  % function
-
-%% Local functions == task functions
-% Task functions are local functions in the build file (this file).
-%
-% - Function name must end with the word "Task", which is case insensitive.
-%   The build tool generates task names from task function names
-%   by removing the "Task" suffix.
-%   For example, a task function `testTask` results in a task named "test".
-%
-% - A task function must accept a TaskContext object as its first input,
-%   even if the task ignores it.
-%
-% - The build tool treats the first help text line,
-%   often called the H1 line, of the task function as the task description.
-
-%{
-function LiveScriptToMarkdownTask(context)
-%% Export Live Scripts to Markdown files
-%
-%   buildtool LiveScriptToMarkdown
-
-arguments
-  context (1,1) matlab.buildtool.TaskContext
-end
-mlxFiles = context.Task.Inputs.paths;
-mdFiles = context.Task.Outputs.paths;
-for idx = 1:numel(mlxFiles)
-  disp("Generating Markdown file from Live Script:")
-  disp("  " + mlxFiles(idx))
-
-  LiveScript_Utility.CheckAndGenerateMarkdown(mlxFiles(idx))
-  % export(mlxFiles(idx), mdFiles(idx), Run=true);
-
-end  % for
-end  % function
-%}
 
 function CheckProjectTask(~)
 %% Run MATLAB project integrity checks
-%
-%   buildtool CheckProject
-
 BEVProject_CheckProject
-
 end  % function

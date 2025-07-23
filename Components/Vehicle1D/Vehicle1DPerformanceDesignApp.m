@@ -10,7 +10,7 @@ function App = Vehicle1DPerformanceDesignApp()
 
 arguments (Output)
   App (1,:) Vehicle1DPerformanceDesignAppMain
-end  % arguments
+end  %
 
 % The AppMain is implemented as a MATLAB class, thus the app remains open even after this function exits.
 vehicle_app = Vehicle1DPerformanceDesignAppMain;

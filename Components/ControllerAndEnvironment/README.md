@@ -13,12 +13,11 @@ This component uses two subcomponents:
 [readme-vehspdref]: ../VehicleSpeedReference/README.md
 [readme-bevctrl]: ../BEVController/README.md
 
-The harness model (`CtrlEnv_harness_model`)
-in the `Harness` folder is used to test that
+The test model (`CtrlEnv_TestModel`) is used to test that
 the Controller and Environment component loads and runs
 in a closed loop model with a very simplistic vehicle plant.
-Note that the vehicle plant used in the harness is
+Note that the vehicle plant used in the test model is
 only for basic testing purpose,
-and it should not be used for other purposes.
+and it is not designed for other purposes.
 
-_Copyright 2023 The MathWorks, Inc._
+_Copyright 2023-2025 The MathWorks, Inc._

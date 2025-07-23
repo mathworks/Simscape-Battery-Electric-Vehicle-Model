@@ -42,21 +42,32 @@ modelName = "BEV_system_model";
 load_system(modelName)
 
 % Set referenced subsystems and load parameters.
-BEV_useComponents_Basic
+BEV_setBasic
 ```
 
 ```matlabTextOutput
-Unrecognized function or variable 'BEV_useComponents_Basic'.
+Use Basic models for all components.
+Loading in base workspace: Vehicle1D_Basic_params
+Loading in base workspace: BatteryHV_Basic_params
+Loading in base workspace: MotorDriveUnit_Basic_params
+Loading in base workspace: Reducer_Basic_params
+Loading in base workspace: BEVController_Basic_params
 ```
 
 ```matlab
 % Load drive cycle.
-VehSpdRef_loadCase_SimpleDrivePattern( ...
+VehSpdRef_setSimCase_SimpleDrivePattern( ...
   ModelName = modelName, ...
-  TargetSubsystemPath = ...
-    "/Controller & Environment" + ...
-    "/Vehicle speed reference" )
+  TargetSubsystemPath = "/Controller & Environment/Vehicle speed reference" )
 ```
+
+```matlabTextOutput
+Setting up simulation...
+Simulation case: Simple drive pattern
+Setting simulation stop time to 100 sec.
+Selecting simulation case 1.
+```
+
 
 If you want to change some parameter values, do it here:
 
@@ -69,12 +80,15 @@ Run simulation, collect logged data, and visualize the result.
 ```matlab
 simOut = sim(modelName);
 simData = extractTimetable(simOut.logsout);
-fig = BEV_plotResultsCompact( SimData=simData, PlotTemperature=false );
+fig = BEV_ResultsCompactPlot( SimData=simData, PlotTemperature=false );
 % Save the plot to a PNG file.
 prjRoot = currentProject().RootFolder;
 imgFilename = "BEV_SimulationResultPlot.png";
-exportgraphics(fig, fullfile(prjRoot, "BEV", "results", imgFilename))
+exportgraphics(fig, fullfile(prjRoot, "BEV", "simulation-results", imgFilename))
 ```
+
+<center><img src="media/BEV_main_script_media/figure_0.png" width="702" alt="figure_0.png"></center>
+
 <a id="H_EF7BCF44"></a>
 
 # Save Result
@@ -105,11 +119,22 @@ varUnits = string(simData.Properties.VariableUnits');
 % disp(varUnits)
 varNames2 = varNames + " (" + varUnits + ")";
 disp(varNames2)
+```
+
+```matlabTextOutput
+    "HV Battery SOC (%)"
+    "HV Battery Power (kW)"
+    "HV Battery Current (A)"
+    "G-Force (1)"
+    "Vehicle Speed (km/hr) (km/hr)"
+```
+
+```matlab
 simData.Properties.VariableNames = varNames2;
 
 % Save data to CSV file.
 simResultFilename  = "BEV_SimulationResult_1.csv";
-simResultFile_FullPath = fullfile(prjRoot, "BEV", "results", simResultFilename);
+simResultFile_FullPath = fullfile(prjRoot, "BEV", "simulation-results", simResultFilename);
 writetimetable(simData, simResultFile_FullPath)
 ```
 
@@ -124,7 +149,7 @@ This section reads a simulation result CSV file which was saved in the previous 
 ```matlab
 prjRoot = currentProject().RootFolder;
 simResultFilename  = "BEV_SimulationResult_1.csv";
-simResultFile_FullPath = fullfile(prjRoot, "BEV", "results", simResultFilename);
+simResultFile_FullPath = fullfile(prjRoot, "BEV", "simulation-results", simResultFilename);
 
 % Read a CSV file containing simulation result and store it to a timetable.
 data = readtimetable(simResultFile_FullPath, VariableNamingRule="preserve");
@@ -137,6 +162,17 @@ varNames_with_unit = data.Properties.VariableNames';
 % disp(varNames_with_unit)
 varNames = extractBefore(varNames_with_unit, " (");
 disp(varNames)
+```
+
+```matlabTextOutput
+    {'HV Battery SOC'    }
+    {'HV Battery Power'  }
+    {'HV Battery Current'}
+    {'G-Force'           }
+    {'Vehicle Speed'     }
+```
+
+```matlab
 varUnits = strings(5, 1);
 for idx = 1 : numel(varNames_with_unit)
   % Return value from extractBetween is an N-by-1 cell array
@@ -147,6 +183,17 @@ for idx = 1 : numel(varNames_with_unit)
   varUnits{idx} = tmpUnits{1};
 end
 disp(varUnits)
+```
+
+```matlabTextOutput
+    "%"
+    "kW"
+    "A"
+    "1"
+    "km/hr"
+```
+
+```matlab
 data.Properties.VariableNames = varNames;
 data.Properties.VariableUnits = varUnits;
 
@@ -169,10 +216,35 @@ dataVehSpd = data.("Vehicle Speed");
 unitStr = varUnits(varNames == "Vehicle Speed");
 vehicleSpeed = simscape.Value(dataVehSpd, unitStr{:});
 averageSpeed = sum(vehicleSpeed)/numel(vehicleSpeed)
+```
+
+```matlabTextOutput
+averageSpeed = 
+   37.2886 (km/hr)
+
+```
+
+```matlab
 maxSpeed = max(vehicleSpeed)
+```
+
+```matlabTextOutput
+maxSpeed = 
+   70.0078 (km/hr)
+
+```
+
+```matlab
 tmpDistance = sum(vehicleSpeed(2:end).*dt);
 travelledDistance = tidyUnit( tmpDistance, "km" )
 ```
+
+```matlabTextOutput
+travelledDistance = 
+    0.9626 (km)
+
+```
+
 
 G Force
 
@@ -181,6 +253,12 @@ G = data.("G-Force");
 min(G), max(G)
 ```
 
+```matlabTextOutput
+ans = -0.0771
+ans = 0.1985
+```
+
+
 Battery Power
 
 ```matlab
@@ -188,9 +266,32 @@ dataBattPwr = data.("HV Battery Power");
 unitStr = varUnits(varNames == "HV Battery Power");
 batteryPower = simscape.Value(dataBattPwr, unitStr{:});  % J/s
 batteryEnergyUsed = sum(batteryPower(2:end).*dt)
+```
+
+```matlabTextOutput
+batteryEnergyUsed = 
+  518.4123 (kW*s)
+
+```
+
+```matlab
 batteryEnergyUsed = tidyUnit(batteryEnergyUsed, "kW*hr")
+```
+
+```matlabTextOutput
+batteryEnergyUsed = 
+    0.1440 (hr*kW)
+
+```
+
+```matlab
 energyEfficiency_kWh_per_100km = 100 * value(batteryEnergyUsed / travelledDistance, "kW*hr/km")
 ```
+
+```matlabTextOutput
+energyEfficiency_kWh_per_100km = 14.9594
+```
+
 
 *Copyright 2022\-2025 The MathWorks, Inc.*
 

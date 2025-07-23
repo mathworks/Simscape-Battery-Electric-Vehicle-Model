@@ -1,15 +1,14 @@
 %[text] %[text:anchor:T_1FFD3858] # High Voltage Battery - Simulation Case
 %[text] %[text:anchor:H_1B376934] ## Constant inputs
 %[text] Use this to check that simulation runs ok.
-mdl = "BatteryHV_ComponentTestModel";
+mdl = "BatteryHV_TestModel";
 load_system(mdl)
 
 % Load model parameters.
-BatteryHV_ComponentTestParameters
+BatteryHV_TestModelSetup
 
 % Select battery model.
-% BatteryHV_useRefsub_Basic
-BatteryHV_useRefsub_Primitive %[output:1232a880]
+BatteryHV_setRefsub_Primitive %[output:1232a880]
 % Setup simulation case.
 BatteryHV_setSimCase_Constant %[output:5dd93059]
 set_param(mdl, StopTime="3600")
@@ -20,7 +19,7 @@ simOut = sim(mdl);
 % The basic version of the battery block does not simulate battery temperature.
 logged_signals = extractTimetable(simOut.logsout);
 BatteryHV_ResultsPlot(Timetable=logged_signals); %[output:345b34bf]
-%[text] *Copyright 2020-2023 The Mathworks, Inc.*
+%[text] *Copyright 2020-2025 The Mathworks, Inc.*
 
 %[appendix]{"version":"1.0"}
 %---

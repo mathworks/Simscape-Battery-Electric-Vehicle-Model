@@ -9,7 +9,7 @@
 %[text] ## Vehicle Components
 %[text] ### Longitudinal Vehicle
 %[text] Longitudinal abstract vehicle model can be used to find required powertrain performance (such as motor torque and power etc.) given basic vehicle performance specifications.
-%[text] Open the [Vehicle 1D harness model](matlab:openFile('Vehicle1D_harness_model')). You can simulate and analyse basic vehicle performance with the Vehicle1D harness model.
+%[text] Open the [Vehicle 1D harness model](matlab:openFile('Vehicle1D_TestModel')). You can simulate and analyse basic vehicle performance with the Vehicle1D harness model.
 %[text] See **README.md** in the **Components \> Vehicle1D** folder for more informaton.
 %[text]{"align":"center"} ![untitled.png](text:image:0873)
 %[text] ### High Voltage Battery Pack
@@ -18,7 +18,7 @@
 %[text] - **Simple system** model simulates voltage, current, and temperature using equation-based model.
 %[text] - **System** model simulates voltage, current, temperature as well as charing dynamics, fading, and aging using equation-based model.
 %[text] - **Table-based system** model simulates the same quantities as System model, but uses table data for terminal voltage and resistance. \
-%[text] Open the [High voltage battery harness model](matlab:openFile('BatteryHV_harness_model')).
+%[text] Open the [High voltage battery harness model](matlab:openFile('BatteryHV_TestModel')).
 %[text] See **README.md** in the **Components \> BatteryHighVoltage** folder for more informaton.
 %[text] 
 %[text] ### Motor Drive Unit
@@ -27,7 +27,7 @@
 %[text] - **Basic thermal** model is similar to Basic model, but this model considers temperature dynamics too.
 %[text] - **System-level thermal** model is similar to the above models, but this model considers irons loss and constant/fixed loss too.
 %[text] - **System-level model with tabulated losses** is similar to the above models, but this model uses tabulated data for power conversion efficiency or losses. \
-%[text] Open the [Motor drive unit harness model](matlab:openFile('MotorDriveUnit_harness_model')).
+%[text] Open the [Motor drive unit harness model](matlab:openFile('MotorDriveUnit_TestModel')).
 %[text] See **README.md** in the **Components \> MotorDriveUnit** folder for more informaton including **single efficiency measurement model** used in Basic, Basic thermal, and System-level models for electro-mechanical power conversion.
 %[text] 
 %[text] ### Other components

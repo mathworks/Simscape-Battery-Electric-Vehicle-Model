@@ -1,5 +1,36 @@
 # Change Log and What's New
 
+## What's New in 2.6 (June, 2025)
+
+- The project has been updated to MATLAB R2025a with some clean ups.
+- Some Live Scripts have been converted to
+  the new [plain text Live Code file format][doc-text-live-script] (`.m`)
+  which works well with source control.
+
+[doc-text-live-script]: https://www.mathworks.com/help/matlab/matlab_prog/plain-text-file-format-for-live-scripts.html
+
+## What's New in 2.5 (June, 2025)
+
+BEV Project
+
+- The BEV Project Navigator app has been updated.
+
+Motor Drive Unit component
+
+- The folder organization of the component has been updated.
+  Different models are stored in different folders.
+  Related files for a model such as test scripts and apps are put in the same folder.
+- Motor Drive Unit Efficiency apps have been added to the Basic model and
+  the System Thermal model.
+- Motor Drive Unit App has been added to help select MDU model and simulation case.
+- The Build Tool is used to check code and run tests.
+
+Vehicle1D component
+
+- The folder organization of the component has been updated.
+- Vehicle1D Performance Design app has been updated.
+- The Build Tool is used to check code and run tests.
+
 ## Version 2.4.2 (March 2025)
 
 - Motor PMSM FEM: Update the link to the shipping example.

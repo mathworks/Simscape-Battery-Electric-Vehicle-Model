@@ -2,7 +2,7 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/82250-battery-electric-vehicle-model-in-simscape)
 
-Version 2.6
+Version 3.0
 
 ## Introduction
 
@@ -29,11 +29,21 @@ from the slow but detailed motor drive unit and use the result
 as the block parameter of the simple but fast motor drive block
 in the BEV model.
 
-<img src="BEV/Utility/screenshot-BEV_system_model.png"
+BEV system model:
+
+<img src="BEV/screenshot-BEV_system_model.png"
  alt="Screenshot of the battery electric vehicle model"
  width="700">
 
+FTP75 drive cycle simulation result:
+
 <img src="BEV/Model-Basic/SimulationCases/markdown/media/BEV_Basic_FTP75_media/figure_0.png"
+ alt="Screenshot of the simulation result plots"
+ width="700">
+
+Simple drive pattern simulation result:
+
+<img src="BEV/Model-Basic/SimulationCases/markdown/media/BEV_Basic_SimpleDrivePattern_media/figure_0.png"
  alt="Screenshot of the simulation result plots"
  width="700">
 
@@ -46,56 +56,100 @@ Use **BEV Project Navigator App** to quickly access some key files and tools.
 Use **Vehicle1D Performance Design App** to design the basic performance parameters
 of a road vehicle.
 
-<img src="Components/Vehicle1D/Utility-Vehicle1D/screenshot-Vehicle1DPerformanceDesignApp.png"
+<img src="Components/Vehicle1D/Utility/screenshot-Vehicle1DPerformanceDesignApp.png"
  alt="Screenshot of the longitudinal vehicle performance design app"
  width="700">
 
 Use **Motor Drive Unit Efficiency App for System Thermal Model** to understand
 how the model parameters are affecting the motor efficiency.
 
-<img src="Components/MotorDriveUnit/Model-SystemThermal/screenshot-MotorDriveUnitEfficiencyApp_SystemThermal.png"
+<img src="Components/MotorDriveUnit/Model-SystemThermal/screenshot-MDU-SystemThermalModelEfficiencyApp.png"
  alt="Screenshot of the motor drive unit efficiency app for system thermal model"
  width="700">
 
 Use **Motor Drive Unit App** to select model and run simulation for the Motor Drive Unit.
 
-<img src="Components/MotorDriveUnit/Utility-MDU/screenshot-MotorDriveUnitApp.png"
+<img src="Components/MotorDriveUnit/screenshot-MotorDriveUnitApp.png"
  alt="Screenshot of the motor drive unit app"
  width="440">
 
-## What's New in 2.6 (June, 2025)
+## Whats' New in 3.0 (July 2025)
 
-- The project has been updated to MATLAB R2025a with some clean ups.
-- Some Live Scripts have been converted to
-  the new [plain text Live Code file format][doc-text-live-script] (`.m`)
-  which works well with source control.
-- Past What's New contents up to version 2.4 have been moved to `ChangeLog.md`.
+Past What's New contents have been moved to [Change Log](ChangeLog.md).
 
-[doc-text-live-script]: https://www.mathworks.com/help/matlab/matlab_prog/plain-text-file-format-for-live-scripts.html
+### Plain-text Live Scripts
 
-## What's New in 2.5 (June, 2025)
+From R2025a, you can save Live Scripts as plain-text files.
 
-BEV Project
+- MATLAB: [Live Code File Format (.m)][doc-m-live-script]
 
-- The BEV Project Navigator app has been updated.
+All Live Scripts in the project are now plain-text with `.m` extensions.
+The use of plain-text files improves the compatibility with source control systems.
+Text-based search and replace work with not only conventional MATLAB code files but
+also all Live Script files in the project.
 
-Motor Drive Unit component
+[doc-m-live-script]: https://www.mathworks.com/help/matlab/matlab_prog/plain-text-file-format-for-live-scripts.html
 
-- The folder organization of the component has been updated.
-  Different models are stored in different folders.
-  Related files for a model such as test scripts and apps are put in the same folder.
-- Motor Drive Unit Efficiency apps have been added to the Basic model and
-  the System Thermal model.
-- Motor Drive Unit App has been added to help select MDU model and simulation case.
-- The Build Tool is used to check code and run tests.
+### Revamped Component Folders
 
-Vehicle1D component
+A model for testing a component is now placed in the component top folder.
+This improves the discoverability of models for component testing.
 
-- The folder organization of the component has been updated.
-- Vehicle1D Performance Design app has been updated.
-- The Build Tool is used to check code and run tests.
+Component models that are built as Referenced Subsystems such as Basic model or System model
+are stored in separate subfolders, such as Model-Basic or Model-System, respectively.
+Related resources for a referenced subsystem including simulation case scripts and
+test code files are saved in the same folder, improving the isolation of each component model.
 
-See [Change Log](ChangeLog.md) for more details.
+### Unit testing with Build Tool and `buildfile.m`
+
+For running unit tests,
+the project now uses the Build Tool with `buildfile.m`.
+
+- MATLAB: [Overview of MATLAB Build Tool][doc-buildtool]
+
+From R2025a, you can run Build Tool tasks using the Run Build button in the Toolstrips
+in addition to using the `buildtool` command on the Command Window.
+
+- MATLAB: [Run Build from Toolstrip][doc-buildtool-toolstrip]
+
+This project has several `buildfile.m` files.
+The Editor recognizes the `buildfile.m` file as a Build Tool file
+and shows the Run Build button in the Editor Toolstrip.
+The project finds the `buildfile.m` file in the project root folder
+and shows the Run Build button in the Project Toolstrip.
+
+[doc-buildtool]: https://www.mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html
+[doc-buildtool-toolstrip]: https://www.mathworks.com/help/matlab/matlab_prog/run-build-from-toolstrip.html
+
+### Updated Reducer Component
+
+Reducer component now has a test model and supporting files.
+
+Also, the Reducer component uses Simscape selective data logging, which
+simplifies the way data in Simscape blocks is logged during simulation.
+Other components will use the same approach in the future.
+
+- Simscape: [Log Selected Block Variables][doc-simscape-logging-graphical]
+- Simscape: [Log Selected Variables Programmatically][doc-simscape-logging-programmatic]
+
+[doc-simscape-logging-graphical]: https://www.mathworks.com/help/simscape/ug/log-individual-block-variables.html
+[doc-simscape-logging-programmatic]: https://www.mathworks.com/help/simscape/ug/manage-selective-logging-instrumentation-programmatically.html
+
+#### Signal Design App
+
+To edit physical input signals for PS Lookup Table (1D) blocks
+in the Reducer component, Signal Tool is used.
+
+- For graphically editing signals, you can use `SignalDesignApp`
+  which is included in the project and you can find in Project root > Utility > SignalTool folder.
+
+  <img src="Utility/SignalTool/screenshot-SignalDesignApp.png"
+   alt="Screenshot of the longitudinal vehicle performance design app"
+   width="700">
+
+- For programmatically editing signals, you can use functions in the `SignalTool1` name space.
+  See the Live Scripts in Project root > Components > Reducer > Model-Basic > SimulationCases
+  folder for example usages.
 
 ## Tool Requirements
 
@@ -133,6 +187,39 @@ click **Add** button, and select **Save to MATLAB Drive**.
 
 [url_online]: https://www.mathworks.com/products/matlab-online.html
 
+## Testing and quality assurance
+
+BEV system model and its components are tested using [MATLAB Unit Testing framework][doc-test].
+
+- Some tests are _passing tests_ that check if code runs or not and
+  do not use the `verify*` functions.
+  They simply run scripts, functions, classes,
+  or models, and check that they run without errors.
+  Passing tests are designed to finish quickly so that they can be used
+  in day-to-day development activities in a short iteration cycle.
+
+- This project uses the [buildtool][doc-buildtool] with `buildfile.m` to
+  check code, run tests, measure code coverage, and generate test reports and
+  code coverage reports.
+  See `buildfile.m` in this project for how the buildtool is configured.
+  Checking code with the buildtool is done by [Code Analyzer][doc-codeissues].
+
+[doc-test]: https://www.mathworks.com/help/matlab/matlab_prog/class-based-unit-tests.html
+[doc-buildtool]: https://www.mathworks.com/help/matlab/ref/buildtool.html
+[doc-codeissues]: https://www.mathworks.com/help/matlab/ref/matlab.buildtool.tasks.codeissuestask-class.html
+
+## Remote test automation / Continuous integration
+
+[The git repository of this project in github.com/mathworks][url-gh-bev] is set up for
+test automation using [GitHub Actions][doc-github-actions] and [MATLAB Actions][doc-mlactions].
+Unit tests in this project are run automatically
+when changes are pushed to the repository in github.
+See the [`.github/workflows` folder](.github/workflows) for configuration files.
+
+[doc-github-actions]: https://docs.github.com/en/actions
+[doc-mlactions]: https://github.com/matlab-actions
+[url-gh-bev]: https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model
+
 ## Additional Notes
 
 - [Using MATLAB Project](docs/Using-MATLAB-Project.md)
@@ -141,21 +228,23 @@ click **Add** button, and select **Save to MATLAB Drive**.
 
 ## See Also
 
-[Hybrid Electric Vehicle Model in Simscape][url-hev-powersplit]
-provides an abstract power-split HEV model.
-The level of abstraction is similar to
-this [BEV model in Simscape][url-bev] project.
+### MATLAB Central File Exchange
 
-[Electric Vehicle Design with Simscape][url-bev-design]
-provides BEV design workflows using detailed models
-for detailed analysis.
-Note that the [BEV model in Simscape][url-bev] project
-(the current project you are viewing) is focused on
-vehicle system-level applications using abstract models.
+Visit the File Exchange page of this project.
 
-[url-bev]: https://www.mathworks.com/matlabcentral/fileexchange/82250
-[url-bev-design]: https://www.mathworks.com/matlabcentral/fileexchange/124795
-[url-hev-powersplit]: https://www.mathworks.com/matlabcentral/fileexchange/92820
+- https://www.mathworks.com/matlabcentral/fileexchange/82250
+
+Hybrid Electric Vehicle Model in Simscape
+
+- Provides an abstract power-split HEV model.
+  The level of abstraction is similar to this project.
+- https://www.mathworks.com/matlabcentral/fileexchange/92820
+
+Electric Vehicle Design with Simscape
+
+- Provides BEV design workflows using detailed models
+  for detailed analysis.
+- https://www.mathworks.com/matlabcentral/fileexchange/124795
 
 ## License
 

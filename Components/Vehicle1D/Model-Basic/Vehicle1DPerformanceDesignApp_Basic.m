@@ -7,8 +7,8 @@ arguments (Output)
   App (1,:) Vehicle1DPerformanceDesignAppMain
 end  % arguments
 
-parameter_file = "Vehicle1D_refsub_Basic_params";
-block_path = "Vehicle1D_refsub_Basic/Longitudinal Vehicle";
+parameter_file = "Vehicle1D_Basic_params";
+block_path = "Vehicle1D_Basic_refsub/Longitudinal Vehicle";
 
 % Load block parameters to the base workspace.
 disp("Loading parameters: <a href=""matlab:edit('"+ parameter_file +"')"">" + parameter_file + "</a>")

@@ -3,20 +3,20 @@
 ```matlab
 modelName = "BEV_system_model";
 load_system(modelName)
-BEV_useBasic
+BEV_setBasic
 ```
 
 ```matlabTextOutput
 Use Basic models for all components.
-Loading parameters: Vehicle1D_refsub_Basic_params
-Loading parameters: BatteryHV_refsub_Basic_params
-Loading parameters: MotorDriveUnit_refsub_Basic_params
-Loading parameters: Reducer_refsub_Basic_params
-Loading parameters: BEVController_refsub_Basic_params
+Loading in base workspace: Vehicle1D_Basic_params
+Loading in base workspace: BatteryHV_Basic_params
+Loading in base workspace: MotorDriveUnit_Basic_params
+Loading in base workspace: Reducer_Basic_params
+Loading in base workspace: BEVController_Basic_params
 ```
 
 ```matlab
-VehSpdRef_loadCase_FTP75( ...
+VehSpdRef_setSimCase_FTP75( ...
   ModelName = modelName, ...
   TargetSubsystemPath = "/Controller & Environment/Vehicle speed reference")
 ```

@@ -1,14 +1,13 @@
 %[text] %[text:anchor:T_1FFD3858] # High Voltage Battery - Simulation Case
 %[text] %[text:anchor:H_1B376934] ## Charge
-mdl = "BatteryHV_ComponentTestModel";
+mdl = "BatteryHV_TestModel";
 load_system(mdl)
 
 % Load model parameters.
-BatteryHV_ComponentTestParameters
+BatteryHV_TestModelSetup
 
 % Select battery model.
-% BatteryHV_useRefsub_Basic
-BatteryHV_useRefsub_Primitive %[output:62b567fa]
+BatteryHV_setRefsub_Primitive %[output:62b567fa]
 % Setup simulation case.
 BatteryHV_setSimCase_Charge( ... %[output:group:94b09ca2] %[output:91e370e5]
   CRate = -0.1, ...  Negative value for charge %[output:91e370e5]

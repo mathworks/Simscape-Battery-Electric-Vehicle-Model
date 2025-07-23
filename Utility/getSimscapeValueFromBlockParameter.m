@@ -42,7 +42,7 @@ if isempty(variable)
   % This can happen for example when the parameter is referring to a workspace variable
   % but it is not loaded in the workspace.
   id = errorID + "EmptyParameter";
-  msg = LiteApp5.Utility.i18n("Empty variable is not allowed: ") + parameterName;
+  msg = LiteApp6.Utility.i18n("Empty variable is not allowed: ") + parameterName;
 
   throw(MException(id, msg))
 
@@ -51,7 +51,7 @@ end  % if
 variable_unit = varValues{varNames == parameterName+"_unit"};
 if variable_unit == ""
   variable_unit = "1";
-end
+end  % if
 
 sscVal = simscape.Value(variable, variable_unit);
 
