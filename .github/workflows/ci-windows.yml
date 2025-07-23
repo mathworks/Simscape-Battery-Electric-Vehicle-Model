@@ -15,7 +15,7 @@ name: CI using MATLAB on Windows
 
 on:
   push:
-    branches: [ R2025a ]
+    branches: [ R2025a, R2025a-devel ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
@@ -25,7 +25,7 @@ on:
       - '**.xml'
 
   pull_request:
-    branches: [ R2025a ]
+    branches: [ R2025a, R2025a-devel ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
