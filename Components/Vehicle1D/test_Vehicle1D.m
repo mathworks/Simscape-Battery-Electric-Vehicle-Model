@@ -40,7 +40,7 @@ classdef test_Vehicle1D < matlab.unittest.TestCase
       Vehicle1D_TestModelSetup
     end  % function
 
-    %% Other tests
+    %% Up-to-date tests
 
     function description_html_is_uptodate(testcase)
       % Make sure the description HTML file is up to date.

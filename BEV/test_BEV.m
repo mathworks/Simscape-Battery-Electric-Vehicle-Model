@@ -89,7 +89,7 @@ classdef test_BEV < matlab.unittest.TestCase
 
     end  % function
 
-    function screenshot_is_uptodate(testcase)
+    function model_screenshot_is_uptodate(testcase)
       model_name = "BEV_system_model";
       image_filename = "screenshot-BEV_system_model.png";
 

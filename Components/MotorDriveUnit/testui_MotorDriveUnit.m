@@ -52,10 +52,8 @@ classdef testui_MotorDriveUnit < matlab.uitest.TestCase
       % Even if the execution of a test ends with an error, the teardown function runs.
       addTeardown(testcase, @closeAll)
 
-      % closeAll()
       close all
       bdclose all
-
     end  % function
 
   end  % methods
@@ -67,7 +65,9 @@ classdef testui_MotorDriveUnit < matlab.uitest.TestCase
     %% Minimum quality check
     % Check that models, scripts, functions, and classes run right out of the box.
 
-    function PassingTest_1(testcase)
+    function WarningFreeTest_1(testcase)
+      % Warnings can be displayed even when the app opens and starts working seemingly normally.
+      % Make surfe there is no warning when opening an app.
       verifyWarningFree(testcase, @() target())
       function target()
         testcase.App = MotorDriveUnitApp;  % !test-target
@@ -78,6 +78,7 @@ classdef testui_MotorDriveUnit < matlab.uitest.TestCase
 
     function app_screenshot_is_uptodate(testcase)
 
+      target_app = @MotorDriveUnitApp;
       source_fullpath = FileTool1.getFileFullPath("MotorDriveUnitApp.m");
       destination_fullpath = FileTool1.getFileFullPath("screenshot-MotorDriveUnitApp.png");
 
@@ -86,7 +87,7 @@ classdef testui_MotorDriveUnit < matlab.uitest.TestCase
         % Display the time stamps.
         FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
 
-        testcase.App = MotorDriveUnitApp;
+        testcase.App = target_app();
 
         % Take screenshot
         disp("Update screenshot")

@@ -1,4 +1,4 @@
-function App = Vehicle1DPerformanceDesignApp()
+function App = Vehicle1DPerformanceDesignApp(BlockPath)
 %% Vehicle1D performance design app
 % With BlockPath option, you can specify the block path to Longitudinal Vehicle block in a model,
 % and the app loads the parameters from the block when the app opens.
@@ -8,12 +8,15 @@ function App = Vehicle1DPerformanceDesignApp()
 
 % Copyright 2025 The MathWorks, Inc.
 
+arguments (Input)
+  BlockPath (1,1) string = ""
+end
+
 arguments (Output)
-  App (1,:) Vehicle1DPerformanceDesignAppMain
+  App Vehicle1DPerformanceDesignAppMain {mustBeScalarOrEmpty}
 end  %
 
-% The AppMain is implemented as a MATLAB class, thus the app remains open even after this function exits.
-vehicle_app = Vehicle1DPerformanceDesignAppMain;
+vehicle_app = Vehicle1DPerformanceDesignAppMain(BlockPath=BlockPath);
 
 vehicle_app.Window.HeaderUI.AppSourceName = mfilename;
 

@@ -90,7 +90,7 @@ classdef test_BatteryHV < matlab.unittest.TestCase
 
     end  % function
 
-    function screenshot_is_uptodate(testcase)
+    function model_screenshot_is_uptodate(testcase)
       model_name = "BatteryHV_TestModel";
       image_filename = "screenshot-" + model_name + ".png";
 

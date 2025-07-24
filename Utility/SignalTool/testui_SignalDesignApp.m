@@ -1,13 +1,11 @@
 classdef testui_SignalDesignApp < matlab.uitest.TestCase
-  %% Class implementation of UI test
+  %% Class-based unit test for app
+
   % Overview of App Testing Framework
   % https://www.mathworks.com/help/matlab/matlab_prog/overview-of-app-testing-framework.html
   %
   % Table of Verifications, Assertions, and Other Qualifications
   % https://www.mathworks.com/help/matlab/matlab_prog/types-of-qualifications.html
-
-  % Overview of App Testing Framework
-  % https://www.mathworks.com/help/matlab/matlab_prog/overview-of-app-testing-framework.html
 
   % Copyright 2024-2025 The MathWorks, Inc.
 
@@ -26,35 +24,36 @@ classdef testui_SignalDesignApp < matlab.uitest.TestCase
 
     function test_method_setup(testcase)
       %%
-      close all
-      bdclose all
+      function closeAll
+        % Delete the app's figure object from memory.
+        if class(testcase.App) ~= "double"
+          if isstruct(testcase.App)
+            % Function-based app
+            if not(isfield(testcase.App, "Window"))
+              % There is no window to close.
+
+              return
+
+            end  % if
+            % App.Window is a struct field which does not trigger destructor.
+            % Delete the figure directly.
+            delete(testcase.App.Window.MainFigure)
+          else
+            % Class-based app
+            % App.Window's destructor deletes the figure.
+            delete(testcase.App.Window)
+          end  % if
+        end  % if
+        close all
+        bdclose all
+      end  % nested function
 
       % addTeardown adds a function which always runs after each test.
       % Even if the execution of a test ends with an error, the teardown function runs.
-      addTeardown(testcase, @close_all)
+      addTeardown(testcase, @closeAll)
 
-      function close_all
-        close all
-        bdclose all
-
-        % Delete the app's figure object from memory.
-        if isstruct(testcase.App)
-          % Function-based app
-          if not(isfield(testcase.App, "Window"))
-            % There is no window to close.
-
-            return
-
-          end  % if
-          % App.Window is a struct field which does not trigger destructor.
-          % Delete the figure directly.
-          delete(testcase.App.Window.MainFigure)
-        else
-          % Class-based app
-          % App.Window's destructor deletes the figure.
-          delete(testcase.App.Window)
-        end  % if
-      end  % nested function
+      close all
+      bdclose all
     end  % function
 
   end  % methods
@@ -66,7 +65,9 @@ classdef testui_SignalDesignApp < matlab.uitest.TestCase
     %% Minimum quality check
     % Check that models, scripts, functions, and classes run right out of the box.
 
-    function PassingTest_1(testcase)
+    function WarningFreeTest_1(testcase)
+      % Warnings can be displayed even when the app opens and starts working seemingly normally.
+      % Make surfe there is no warning when opening an app.
       verifyWarningFree(testcase, @() target())
       function target()
         testcase.App = SignalDesignApp;  % !test-target

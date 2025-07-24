@@ -37,7 +37,7 @@ classdef test_BatteryHV_Basic < matlab.unittest.TestCase
   methods (TestMethodSetup)
     % Functions in this section always run before each test defined in the Test section runs.
 
-    function test_method_setup_2(testcase)
+    function test_method_setup_1(testcase)
       function closeAll
         close all
         bdclose all
