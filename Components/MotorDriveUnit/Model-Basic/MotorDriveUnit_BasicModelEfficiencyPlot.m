@@ -27,7 +27,7 @@ arguments (Input)
 
   NameValuePair.PlotResolution (1,1) {mustBeInteger, mustBePositive} = 500
 
-  NameValuePair.ParentAxes matlab.graphics.axis.Axes {mustBeAxesOrEmpty}
+  NameValuePair.ParentAxes matlab.graphics.axis.Axes {mustBeScalarOrEmpty}
 
   % These are valid only when ParentAxes is NOT specified.
   NameValuePair.Theme {mustBeMember(NameValuePair.Theme, ["light", "dark"])} = "light"
@@ -38,7 +38,7 @@ arguments (Output)
   fig matlab.ui.Figure {mustBeScalarOrEmpty}
 end  % arguments
 
-if isfield(NameValuePair, "ParentAxes") % && (class(NameValuePair.ParentAxes) == "matlab.graphics.axis.Axes")
+if isfield(NameValuePair, "ParentAxes")
   ax = NameValuePair.ParentAxes;
 else
   tmp_fig = figure;
