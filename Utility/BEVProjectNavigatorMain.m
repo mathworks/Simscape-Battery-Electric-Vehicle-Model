@@ -167,11 +167,11 @@ end  % argumentsend  %
       row = NewRow(layout, column);
       LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_app = "Vehicle1DPerformanceDesignApp_Basic";
+      target_app = "Vehicle1DPerformanceDesignApp";
       check_link(target_app);
 
       link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "Vehicle1D performance design app for Basic model";
+      link_ui.HyperlinkText = "Vehicle1D performance design app";
       link_ui.Tooltip = "Open app: " + target_app;
       link_ui.HyperlinkClickedCallback = @() open_app(target_app);
 
@@ -221,7 +221,7 @@ end  % argumentsend  %
       row = NewRow(layout, column);
       LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_app = "test_MotorDriveUnit_SystemThermalModelEfficiencyApp";
+      target_app = "testui_MotorDriveUnit_SystemThermalModelEfficiencyApp";
       check_link(target_app);
 
       link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));

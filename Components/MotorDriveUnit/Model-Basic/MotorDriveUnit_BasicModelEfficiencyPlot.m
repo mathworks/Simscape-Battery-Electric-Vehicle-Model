@@ -27,7 +27,7 @@ arguments (Input)
 
   NameValuePair.PlotResolution (1,1) {mustBeInteger, mustBePositive} = 500
 
-  NameValuePair.ParentAxes (1,:) matlab.graphics.axis.Axes {mustBeScalarOrEmpty}
+  NameValuePair.ParentAxes matlab.graphics.axis.Axes {mustBeAxesOrEmpty}
 
   % These are valid only when ParentAxes is NOT specified.
   NameValuePair.Theme {mustBeMember(NameValuePair.Theme, ["light", "dark"])} = "light"
@@ -35,14 +35,24 @@ arguments (Input)
 end  % arguments
 
 arguments (Output)
-  fig (1,1) matlab.ui.Figure
+  fig matlab.ui.Figure {mustBeScalarOrEmpty}
 end  % arguments
+
+if isfield(NameValuePair, "ParentAxes") % && (class(NameValuePair.ParentAxes) == "matlab.graphics.axis.Axes")
+  ax = NameValuePair.ParentAxes;
+else
+  tmp_fig = figure;
+  tmp_fig.Theme = NameValuePair.Theme;
+  tmp_fig.ThemeMode = NameValuePair.ThemeMode;
+
+  ax = axes(tmp_fig);
+end  % if
 
 % In Motor & Drive block from Simscape Driveline,
 % iron loss, constant electrical loss, and rotor friction are not modelled,
 % i.e., they are 0. 
-fig = MotorDriveUnit_EfficiencyPlot( ...
-  ParentAxes = NameValuePair.ParentAxes, ...
+tmp_fig = MotorDriveUnit_EfficiencyPlot( ...
+  ParentAxes = ax, ...
   MaxTorque = NameValuePair.MaxTorque, ...
   MaxSpeed = NameValuePair.MaxSpeed, ...
   MaxPower = NameValuePair.MaxPower, ...
@@ -57,4 +67,7 @@ fig = MotorDriveUnit_EfficiencyPlot( ...
   Theme = NameValuePair.Theme, ...
   ThemeMode = NameValuePair.ThemeMode );
 
+if nargout > 0
+  fig = tmp_fig;
+end  % if
 end  % function

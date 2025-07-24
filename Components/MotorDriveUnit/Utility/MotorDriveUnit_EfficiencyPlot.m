@@ -30,7 +30,7 @@ function fig = MotorDriveUnit_EfficiencyPlot(NameValuePair)
 % Copyright 2021-2025 The MathWorks, Inc.
 
 arguments (Input)
-  NameValuePair.ParentAxes (1,:) matlab.graphics.axis.Axes {mustBeScalarOrEmpty}
+  NameValuePair.ParentAxes matlab.graphics.axis.Axes {mustBeScalarOrEmpty}
 
   % In road vehicle applications,
   % maximum motor speed is determined by vehicle top speed,
@@ -63,7 +63,7 @@ arguments (Input)
 end  % arguments
 
 arguments (Output)
-  fig (1,1) matlab.ui.Figure
+  fig matlab.ui.Figure {mustBeScalarOrEmpty}
 end  % arguments
 
 trq_max_Nm = value(NameValuePair.MaxTorque, "N*m");
@@ -152,13 +152,13 @@ eff = valid_region_mat .* eff;
 
 if isfield(NameValuePair, "ParentAxes") && (class(NameValuePair.ParentAxes) == "matlab.graphics.axis.Axes")
   ax = NameValuePair.ParentAxes;
-  fig = ax.Parent;
+  tmp_fig = ax.Parent;
 else
-  fig = figure;
-  fig.Theme = NameValuePair.Theme;
-  fig.ThemeMode = NameValuePair.ThemeMode;
+  tmp_fig = figure;
+  tmp_fig.Theme = NameValuePair.Theme;
+  tmp_fig.ThemeMode = NameValuePair.ThemeMode;
 
-  ax = axes(fig);
+  ax = axes(tmp_fig);
 end  % if
 
 hold(ax, "on")
@@ -175,4 +175,7 @@ xlabel(ax, LiteApp6.Utility.i18n("Speed, $\omega$ (rpm)"), Interpreter="latex")
 ylabel(ax, LiteApp6.Utility.i18n("Torque, $\tau$ (Nm)"), Interpreter="latex")
 title(ax, LiteApp6.Utility.i18n("Overall Efficiency of Motor Drive Unit (%)"))
 
+if nargout > 0
+  fig = tmp_fig;
+end  % if
 end  % function
