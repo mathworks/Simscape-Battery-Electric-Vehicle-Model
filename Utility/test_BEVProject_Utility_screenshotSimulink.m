@@ -35,6 +35,8 @@ classdef test_BEVProject_Utility_screenshotSimulink < matlab.unittest.TestCase
         StandaloneTest = true, ...
         PaddingHorizontal_px = 10, ...
         PaddingVertical_px = 10)
+
+      delete("screenshot-untitled.png")
     end  % function
 
     function PassingTest_2(~)
@@ -49,6 +51,8 @@ classdef test_BEVProject_Utility_screenshotSimulink < matlab.unittest.TestCase
         OutputFileName = "screenshot-test-model-top.png", ...
         SimulinkModelName = model_name, ...
         SaveFolder = pwd );
+
+      delete("screenshot-test-model-top.png")
     end  % function
 
     function PassingTest_3(~)
@@ -67,6 +71,8 @@ classdef test_BEVProject_Utility_screenshotSimulink < matlab.unittest.TestCase
         PaddingVertical_px = 0, ...
         PaddingColorRGB = [1, 1, 0], ...
         SaveFolder = pwd );
+
+      delete("screenshot-test-model-subsystem-without-padding.png")
     end  % function
 
     function PassingTest_4(~)
@@ -85,6 +91,8 @@ classdef test_BEVProject_Utility_screenshotSimulink < matlab.unittest.TestCase
         PaddingVertical_px = 20, ...
         PaddingColorRGB = [1, 1, 0], ...
         SaveFolder = pwd );
+
+      delete("screenshot-test-model-subsystem-with-padding-vertical-20px.png")
     end  % function
 
     function PassingTest_5(~)
@@ -103,6 +111,8 @@ classdef test_BEVProject_Utility_screenshotSimulink < matlab.unittest.TestCase
         PaddingVertical_px = 0, ...
         PaddingColorRGB = [1, 1, 0], ...
         SaveFolder = pwd );
+
+      delete("screenshot-test-model-subsystem-with-padding-horizontal-20px.png")
     end  % function
 
   end  % methods

@@ -1,8 +1,8 @@
 # .gitignore
 #
-# Copyright 2020 The MathWorks, Inc.
+# Copyright 2020-2025 The MathWorks, Inc.
 
-stash/
+*.js
 
 *.pdf
 *.pptx
@@ -14,4 +14,10 @@ stash/
 sfprj/
 slprj/
 
-coverageR2022a/
+buildtool-results/
+screenshot-test-*.png
+screenshot-untitled.png
+untitled.m
+untitled.mdl
+untitled.mlx
+untitled.slx
