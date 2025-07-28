@@ -30,7 +30,7 @@ classdef test_BEVProject_Utility < matlab.unittest.TestCase
 
   methods (Test)
 
-    %% Minimum quality check (MQC)
+    %% Minimum quality check
     % Make sure that scripts, functions, classes, and models run right out of the box.
 
     function PassingTest_1(~)

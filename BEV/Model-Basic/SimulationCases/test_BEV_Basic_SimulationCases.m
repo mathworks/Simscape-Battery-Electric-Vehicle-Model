@@ -72,6 +72,7 @@ classdef test_BEV_Basic_SimulationCases < matlab.unittest.TestCase
       actual = nnz(file_exists);
       expected = numel(live_script_file_collection.paths);
 
+      verifyTrue(testcase, actual > 0)
       verifyEqual(testcase, actual, expected)
 
     end  % function
