@@ -125,7 +125,8 @@ classdef test_BEVProject < matlab.unittest.TestCase
       buildfile_collection = matlab.buildtool.io.FileCollection.fromPaths(buildfile_pattern);
       verifyTrue(testcase, not(isempty(buildfile_collection)))
 
-      buildfile_paths = extractAfter(transpose(buildfile_collection.paths), pwd);
+      % buildfile_paths = extractAfter(transpose(buildfile_collection.paths), pwd);
+      buildfile_paths = transpose(buildfile_collection.paths);
       verifyTrue(testcase, numel(buildfile_paths) > 0)
 
       for idx = 1 : numel(buildfile_paths)
