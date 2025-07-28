@@ -4,7 +4,7 @@ function FileFullPath = getFileFullPath(FileName, NameValuePair)
 % MATLAB Project paths if a project is loaded, and returns the full path to it.
 %
 % If two or more matches are found, an error is issued by default.
-% To allow multiple matches, set WarningOnMultipleMatch to true and
+% To allow multiple matches, set true to WarningOnMultipleMatch and
 % this function returns the first match.
 %
 % isfile() takes either a full path or a relative path where

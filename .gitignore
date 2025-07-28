@@ -14,8 +14,14 @@
 sfprj/
 slprj/
 
+# The Build Tool creates the .buildtool folder, which git must ignore.
+# See the documentation about Cache Folder in MATLAB Incremental Builds.
+# https://www.mathworks.com/help/matlab/matlab_prog/improve-performance-with-incremental-builds.html#mw_55e5581e-57fd-4abb-9b38-a3de482e713f
 .buildtool/
-buildtool-results/
+
+# The Buildfile.m files in this project are configured to save results in the test-result folder, which git must ignore.
+test-result/
+
 screenshot-test-*.png
 screenshot-untitled.png
 untitled.m

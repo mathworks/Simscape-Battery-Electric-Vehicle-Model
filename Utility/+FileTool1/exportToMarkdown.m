@@ -62,7 +62,7 @@ arguments (Input)
   % If the folder does not exist, it is created.
   NameValuePair.MediaFolderName (1,1) string = "media"
 
-  NameValuePair.DisplayInfo (1,1) logical = false
+  NameValuePair.DisplayInfo (1,1) logical = true
 end  % arguments
 
 assert(NameValuePair.MarkdownFolderPath ~= ".", "MarkdownFolderPath must not be the current folder.")

@@ -1,5 +1,8 @@
 
 # <span style="color:rgb(213,80,0)">BEV System Model \- Simulation Case</span>
+
+Using constant inputs, just make sure the model loads and simulation runs.
+
 ```matlab
 modelName = "BEV_system_model";
 load_system(modelName)

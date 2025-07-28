@@ -53,6 +53,29 @@ classdef test_BEV_Basic_SimulationCases < matlab.unittest.TestCase
 
     %% Up-to-date tests
 
+    function markdown_files_exist(testcase)
+      % Check that Markdown files exist for all plain-text Live Script files in pwd.
+      % Markdowns files are assumed to be in the markdown folder in pwd.
+
+      % Use FileCollection to select Live Scripts.
+      mfile_collection = matlab.buildtool.io.FileCollection.fromPaths(fullfile(pwd, "*.m"));
+
+      % Select Live Scripts.
+      % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
+      live_script_file_collection = select(mfile_collection, @(p) FileTool1.isPlainTextLiveScript(p));
+
+      [folder_path, base_file_name, ~] = fileparts(live_script_file_collection.paths');
+      markdown_files = fullfile(folder_path, "markdown", base_file_name + ".md");
+
+      file_exists = isfile(markdown_files);
+
+      actual = nnz(file_exists);
+      expected = numel(live_script_file_collection.paths);
+
+      verifyEqual(testcase, actual, expected)
+
+    end  % function
+
     function markdowns_are_uptodate(testcase)
       % Make sure that all Live Scripts have been converted to markdown files.
       n = FileTool1.batchGenerateMarkdowns( ...

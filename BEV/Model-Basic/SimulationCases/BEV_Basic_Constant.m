@@ -1,4 +1,5 @@
 %[text] # BEV System Model - Simulation Case
+%[text] Using constant inputs, just make sure the model loads and simulation runs.
 modelName = "BEV_system_model";
 load_system(modelName)
 BEV_setBasic %[output:09c0e256]

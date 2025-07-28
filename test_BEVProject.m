@@ -40,6 +40,64 @@ classdef test_BEVProject < matlab.unittest.TestCase
 
     %% Other tests
 
+    function check_buildfile(testcase)
+      % Check that the buildfile.m files are configured to save results in the test-result folder.
+
+      buildfile_pattern = fullfile(pwd, "**/buildfile.m");
+      buildfile_collection = matlab.buildtool.io.FileCollection.fromPaths(buildfile_pattern);
+      verifyTrue(testcase, not(isempty(buildfile_collection)))
+ 
+      buildfile_paths = extractAfter(transpose(buildfile_collection.paths), pwd);
+      verifyTrue(testcase, numel(buildfile_paths) > 0)
+
+      for idx = 1 : numel(buildfile_paths)
+        target_buildfile = buildfile_paths(idx);
+        disp("Checking " + target_buildfile)
+
+        has_gitignore = isfile(".gitignore");
+        verifyTrue(testcase, has_gitignore)
+        buildfile_lines = readlines(target_buildfile);
+
+        match_index = contains(buildfile_lines, """test-result/");
+        num_matches = nnz(match_index);
+        verifyTrue(testcase, num_matches > 0)
+
+      end  % for
+    end  % function
+
+    function check_git(testcase)
+      % Check that, if git is used, git is configured to ignore the .buildtool and test-result folders.
+      %
+      % The Build Tool uses .buildtool folder which git must ignore.
+      % The buildfile.m files in this project are configured to save results iin the test-result folder,
+      % which git must ignore too.
+      %
+      % This test assumes that this test file, the .git folder, and the .gitignore file are
+      % in the same folder.
+      %
+      % See the documentation about Cache Folder section in MATLAB Incremental Builds.
+      % https://www.mathworks.com/help/matlab/matlab_prog/improve-performance-with-incremental-builds.html#mw_55e5581e-57fd-4abb-9b38-a3de482e713f
+
+      if not(isfolder(".git"))
+        % Skip this test if git is not used.
+        disp("Git is not used in this project. Skipping this test.")
+        return
+      end  % if
+
+      has_gitignore = isfile(".gitignore");
+      verifyTrue(testcase, has_gitignore)
+      gitignore_lines = readlines(".gitignore");
+
+      target_pattern = lineBoundary("start") + ".buildtool" + optionalPattern("/");
+      ignore_buildtool_folder = contains(gitignore_lines, target_pattern);
+      verifyTrue(testcase, any(ignore_buildtool_folder))
+
+      target_pattern = lineBoundary("start") + "test-result" + optionalPattern("/");
+      ignore_buildtool_folder = contains(gitignore_lines, target_pattern);
+      verifyTrue(testcase, any(ignore_buildtool_folder))
+
+    end  % function
+    
     function project_has_description_html(testcase)
       % Check that the project has the HTML version of the description page.
       all_project_files = [currentProject().Files.Path]';
@@ -69,18 +127,14 @@ classdef test_BEVProject < matlab.unittest.TestCase
 
     function test_no_MLX_files(testcase)
       % Use plain-text Live Scripts (*.m) rather than binary ones.
-      files = [currentProject().Files.Path]';
-      result = files(endsWith(files, ".mlx"));
-      num_MLX_files = numel(result);
-      verifyEqual(testcase, num_MLX_files, 0);
+      file_paths = matlab.buildtool.io.FileCollection.fromPaths(fullfile(pwd, "**/*.mlx")).paths';
+      verifyEqual(testcase, numel(file_paths), 0);
     end  % function
 
     function test_no_SLX_files(testcase)
       % Use plain-text model files (*.mdl) rather than binary ones.
-      files = [currentProject().Files.Path]';
-      result = files(endsWith(files, ".slx"));
-      num_SLX_files = numel(result);
-      verifyEqual(testcase, num_SLX_files, 0);
+      file_paths = matlab.buildtool.io.FileCollection.fromPaths(fullfile(pwd, "**/*.slx")).paths';
+      verifyEqual(testcase, numel(file_paths), 0);
     end  % function
 
   end  % methods
