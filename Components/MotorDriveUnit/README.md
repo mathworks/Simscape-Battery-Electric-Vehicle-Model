@@ -1,57 +1,57 @@
-# Motor Drive Unit Component
+# Motor drive unit (MDU) component
 
-This folder contains a few models of Motor Drive Unit (MDU),
+This folder contains a few models of motor drive unit (MDU),
 which is a system consisting of an electric motor and a controller.
 The MDU models in this component are all abstract
-and simulate the high-level behavior of power conversion
+and simulate the high-level behavior of conversion
 between electric and mechanical powers
 by considering power conversion efficiency or losses.
 
-## Models
+## MDU models
 
-This component provides the following four models.
+This component provides the following MDU models.
 
-**Basic model** (`MotorDriveUnit_refsub_Basic`)
+**Basic model** (`MotorDriveUnit_Basic_refsub`)
 is the simplest model with the fewest parameters
-among the four models.
+among the provided models.
 It uses [Motor & Drive block][url-motordrive-driveline]
 from Simscape Driveline.
 This model takes torque command and computes
-power conversion between electrical and mechanical powers
+electrical and mechanical power conversion
 using the **single efficiency measurement model**
 to compute copper loss coefficient.
 Irons loss and fixed loss are not modeled.
 This model does not simulate temperature dynamics.
 Below is an example plot of efficiency contour of the Basic model.
 
-<img src="screenshot-MDU-Efficiency-Basic.png"
+<img src="Model-Basic/screenshot-MDU-BasicModelEfficiencyPlot.png"
  alt="Efficiency contour plot of the basic model of motor drive unit"
  width="400">
 
 [url-motordrive-driveline]: https://www.mathworks.com/help/sdl/ref/motordrive.html
 
-**Basic thermal model** (`MotorDriveUnit_refsub_BasicThermal`)
+**Basic thermal model** (`MotorDriveUnit_BasicThermal_refsub`)
 uses [Motor & Drive block][url-motordrive-driveline],
 which is the same block as the above Basic model uses,
 but with thermal model enabled
 to simulate motor temperature dynamics.
 
-**System-level thermal model** (`MotorDriveUnit_refsub_System`)
+**System-level thermal model** (`MotorDriveUnit_System_refsub`)
 uses [Motor & Drive (System-Level) block][url-motordrive-elec]
 from Simscape Electrical
 to compute power conversion between electrical and mechanical powers.
 Thermal model is enabled too.
-Power conversion model is the same as the one
-the **single efficiency measurement model**,
+Power conversion model is the same as the Basic model,
+which is the **single efficiency measurement model**,
 but irons loss and fixed loss are also considered in this model.
 Below is an example plot of efficiency contour of the System-level model.
 
-<img src="screenshot-MDU-Efficiency-SystemThermal.png"
+<img src="Model-SystemThermal/screenshot-MDU-SystemThermalModelEfficiencyPlot.png"
  alt="Efficiency contour plot of the basic model of motor drive unit"
  width="400">
 
 **System-level model with tabulated losses**
-(`MotorDriveUnit_refsub_SystemTable`) uses
+(`MotorDriveUnit_SystemTable_refsub`) uses
 [Motor & Drive (System-Level) block][url-motordrive-elec]
 from Simscape Electrical.
 It takes torque command and computes motor speed
@@ -66,21 +66,21 @@ measured at two different temperatures.
 [url-motordrive-driveline]: https://www.mathworks.com/help/sdl/ref/motordrive.html
 [url-motordrive-elec]: https://www.mathworks.com/help/sps/ref/motordrivesystemlevel.html
 
-## Harness model
+## Test model
 
-To run simulation with the above models, use a harness model.
+To run simulation with the above models, use a test model.
 
-- `MotorDriveUnit_harness_model.mdl`
+- `MotorDriveUnit_TestModel.mdl`
 
 ## Simulation Cases
 
-For each model, there is 'SimulationCases` folder containing
+For each model, there is `SimulationCases` folder containing
 Live Scripts that are used to visually inspect the simulation behaviors
 of the models in various simulation scenarios as follows.
 
 - Constant ...
   All inputs are constant.
-  This is used to check that the harness model runs.
+  This is used to check that the test model runs.
 
 - Drive ...
   MDU drives axle by consuming electric power.

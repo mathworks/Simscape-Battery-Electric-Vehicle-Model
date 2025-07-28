@@ -12,16 +12,16 @@ classdef SignalDesigner_test < matlab.unittest.TestCase
     % each test defined in the "Test" section runs.
 
     function TestSetup(testcase)
-      function close_all
+      function closeAll
         close all
         bdclose all
       end  % nested function
 
-      close_all
+      closeAll
 
       % addTeardown adds a function which always runs after each test.
       % Even if the execution of a test ends with an error, the teardown function runs.
-      addTeardown(testcase, @close_all)
+      addTeardown(testcase, @closeAll)
     end  % function
 
   end  % methods
@@ -31,25 +31,25 @@ classdef SignalDesigner_test < matlab.unittest.TestCase
     %% Minimum quality check (MQC)
     % Make sure that scripts, functions, classes, and models run right out of the box.
 
-    function MQC_buildTrace_1(~)
+    function PassingTest_1(~)
       SignalDesignUtility.buildTrace
     end
 
-    function MQC_buildXYData_2(~)
+    function PassingTest_2(~)
       SignalDesignUtility.buildXYData
     end
 
-    function MQC_SignalDesigner_1(~)
+    function PassingTest_3(~)
       SignalDesigner
     end
 
-    function MQC_SignalDesigner_example_1(~)
+    function PassingTest_4(~)
       SignalDesigner_example
     end
 
     %% Test with models
 
-    function MQC_SignalDesigner_3(~)
+    function test_plots_1(~)
       mdl = "SignalSourceBlocks_example";
       load_system(mdl)
       SignalSourceBlockCallback.plotContinuous(mdl + "/Continuous")

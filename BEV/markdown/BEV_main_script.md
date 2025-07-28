@@ -1,17 +1,20 @@
 
+<a id="T_0F8BC05C"></a>
+
 # <span style="color:rgb(213,80,0)">Battery Electric Vehicle (BEV) System Level Model</span>
-<a name="beginToc"></a>
+<!-- Begin Toc -->
 
 ## Table of Contents
-&emsp;[Introduction](#introduction)
+&emsp;[Introduction](#H_A0C28D4F)
  
-&emsp;[Run Simulation](#run-simulation)
+&emsp;[Run Simulation](#H_EC484CEF)
  
-&emsp;[Save Result](#save-result)
+&emsp;[Save Result](#H_EF7BCF44)
  
-&emsp;[Analyse Result](#analyse-result)
+&emsp;[Analyse Result](#H_81E3C32A)
  
-<a name="endToc"></a>
+<!-- End Toc -->
+<a id="H_A0C28D4F"></a>
 
 # Introduction
 
@@ -26,6 +29,8 @@ This script shows an example workflow to programmatically open model, run simula
 
 You can find more scripts demonstrating other simulation cases in the **SimulationCases** folder.
 
+<a id="H_EC484CEF"></a>
+
 # Run Simulation
 
 This section sets up the model and runs simulation. To run this script at once, navigate Toolstrip > Live Editor tab, and click "Run" button. You can also run this section only by clicking "Run Section" button.
@@ -37,20 +42,23 @@ modelName = "BEV_system_model";
 load_system(modelName)
 
 % Set referenced subsystems and load parameters.
-BEV_useComponents_Basic
+BEV_setBasic
 ```
 
 ```matlabTextOutput
 Use Basic models for all components.
+Loading in base workspace: Vehicle1D_Basic_params
+Loading in base workspace: BatteryHV_Basic_params
+Loading in base workspace: MotorDriveUnit_Basic_params
+Loading in base workspace: Reducer_Basic_params
+Loading in base workspace: BEVController_Basic_params
 ```
 
 ```matlab
 % Load drive cycle.
-VehSpdRef_loadCase_SimpleDrivePattern( ...
+VehSpdRef_setSimCase_SimpleDrivePattern( ...
   ModelName = modelName, ...
-  TargetSubsystemPath = ...
-    "/Controller & Environment" + ...
-    "/Vehicle speed reference" )
+  TargetSubsystemPath = "/Controller & Environment/Vehicle speed reference" )
 ```
 
 ```matlabTextOutput
@@ -59,6 +67,7 @@ Simulation case: Simple drive pattern
 Setting simulation stop time to 100 sec.
 Selecting simulation case 1.
 ```
+
 
 If you want to change some parameter values, do it here:
 
@@ -71,15 +80,16 @@ Run simulation, collect logged data, and visualize the result.
 ```matlab
 simOut = sim(modelName);
 simData = extractTimetable(simOut.logsout);
-fig = BEV_plotResultsCompact( SimData=simData, PlotTemperature=false );
+fig = BEV_ResultsCompactPlot( SimData=simData, PlotTemperature=false );
 % Save the plot to a PNG file.
 prjRoot = currentProject().RootFolder;
 imgFilename = "BEV_SimulationResultPlot.png";
-exportgraphics(fig, fullfile(prjRoot, "BEV", "results", imgFilename))
+exportgraphics(fig, fullfile(prjRoot, "BEV", "simulation-results", imgFilename))
 ```
 
 <center><img src="media/BEV_main_script_media/figure_0.png" width="702" alt="figure_0.png"></center>
 
+<a id="H_EF7BCF44"></a>
 
 # Save Result
 
@@ -124,11 +134,13 @@ simData.Properties.VariableNames = varNames2;
 
 % Save data to CSV file.
 simResultFilename  = "BEV_SimulationResult_1.csv";
-simResultFile_FullPath = fullfile(prjRoot, "BEV", "results", simResultFilename);
+simResultFile_FullPath = fullfile(prjRoot, "BEV", "simulation-results", simResultFilename);
 writetimetable(simData, simResultFile_FullPath)
 ```
 
 Open the saved CSV file in text editor and check that the variable names are saved at the first line as expected.
+
+<a id="H_81E3C32A"></a>
 
 # Analyse Result
 
@@ -137,7 +149,7 @@ This section reads a simulation result CSV file which was saved in the previous 
 ```matlab
 prjRoot = currentProject().RootFolder;
 simResultFilename  = "BEV_SimulationResult_1.csv";
-simResultFile_FullPath = fullfile(prjRoot, "BEV", "results", simResultFilename);
+simResultFile_FullPath = fullfile(prjRoot, "BEV", "simulation-results", simResultFilename);
 
 % Read a CSV file containing simulation result and store it to a timetable.
 data = readtimetable(simResultFile_FullPath, VariableNamingRule="preserve");
@@ -208,7 +220,7 @@ averageSpeed = sum(vehicleSpeed)/numel(vehicleSpeed)
 
 ```matlabTextOutput
 averageSpeed = 
-   37.4472 (km/hr)
+   37.2886 (km/hr)
 
 ```
 
@@ -233,6 +245,7 @@ travelledDistance =
 
 ```
 
+
 G Force
 
 ```matlab
@@ -245,6 +258,7 @@ ans = -0.0771
 ans = 0.1985
 ```
 
+
 Battery Power
 
 ```matlab
@@ -256,7 +270,7 @@ batteryEnergyUsed = sum(batteryPower(2:end).*dt)
 
 ```matlabTextOutput
 batteryEnergyUsed = 
-  518.2258 (kW*s)
+  518.4123 (kW*s)
 
 ```
 
@@ -275,8 +289,9 @@ energyEfficiency_kWh_per_100km = 100 * value(batteryEnergyUsed / travelledDistan
 ```
 
 ```matlabTextOutput
-energyEfficiency_kWh_per_100km = 14.9539
+energyEfficiency_kWh_per_100km = 14.9594
 ```
 
-*Copyright 2022\-2024 The MathWorks, Inc.*
+
+*Copyright 2022\-2025 The MathWorks, Inc.*
 

@@ -1,13 +1,17 @@
 %[text] # Check MATLAB Project
 %[text] ## Programatically run MATLAB Project's Project Issues
 %[text] Running this script is basically the same as clicking the **Project Issues** button (in R2025a or newer) or the **Check Project** button (in R2024b or older) in the Project toolstrip.
+%[text] The main command is `runchecks`
+%[text] - [https://www.mathworks.com/help/matlab/ref/matlab.project.project.runchecks.html](https://www.mathworks.com/help/matlab/ref/matlab.project.project.runchecks.html) \
 disp("This is MATLAB " + matlabRelease().Release + ".") %[output:04d4bf83]
 updateDependencies(currentProject);
+
 checkResultArray = runChecks(currentProject);
+
 resultTable = table(checkResultArray);
 disp(resultTable(:, ["Passed", "Description"])) %[output:683e6c75]
 %[text] Check all passed.
-assert(all(resultTable.Passed==true))
+assert(all(resultTable.Passed))
 %[text] *Copyright 2022-2025 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

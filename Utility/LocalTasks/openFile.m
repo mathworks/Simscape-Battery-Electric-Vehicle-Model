@@ -8,7 +8,7 @@ function openFile(target_name)
 % Copyright 2021-2025 The MathWorks, inc.
 
 arguments (Input)
-  target_name (1,1) string = "BEVProject_main_script.mlx"
+  target_name (1,1) string = "BEVProject_Description.m"
 end  % arguments
 
 this_project_file = "BatteryElectricVehicle.prj";
