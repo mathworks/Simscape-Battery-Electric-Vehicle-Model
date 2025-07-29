@@ -27,28 +27,21 @@ and lets you run them all at once or individually.
 
 [url-testmanager]: https://www.mathworks.com/help/matlab-test/ref/matlabtestmanager-app.html
 
-Each unit test comes with a test runner script (`*_runtests.m`).
-You can use test runner scripts to run tests programmatically.
-These test files are stored in the `Test` folders.
-Similar to the Test Browser, the test runner script runs tests
-and reports pass/fail summary.
-It also measures MATLAB Code coverage for files listed in
-the test runner script and generates a coverage report.
-
-Starting from R2023b, you can also run tests
-with the new `buildtool` command from [MATLAB Build Tool][url-buildtool].
+You can run tests programmatically or interactively.
+To run tests programmatically, use the `buildtool` command
+provided by the [MATLAB Build Tool][url-buildtool].
+To run tests interactively, open the `buildfile.m` file in MATLAB Editor
+and use the Run Build button in the Editor toolstrip.
+The Project toolstrip also has a Run Build button which is linked to
+the `buildfile.m` file in the project root folder.
 MATLAB Build Tool supports not only unit test,
 but also code coverage measurement,
 code issues checking, custom tasks,
 building task dependencies, and more.
-Programmatic test execution in this project will eventually
-be migrated to MATLAB Build Tool.
 
 [url-buildtool]: https://mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html
 
 [Code Analyzer app][url-analyzer] can identify issues in the code files.
-You can open the app by clicking Code Analyzer shortcut button in
-the Project Shortcuts tab.
 
 [url-analyzer]: https://mathworks.com/help/matlab/ref/codeanalyzer-app.html
 
