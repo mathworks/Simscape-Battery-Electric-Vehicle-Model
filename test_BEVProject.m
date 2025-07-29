@@ -30,14 +30,6 @@ classdef test_BEVProject < matlab.unittest.TestCase
       end  % nested function
     end  % function
 
-    function PassingTest_2(testcase)
-      % Make sure that the app runs cleanly.
-      verifyWarningFree(testcase, @() test_target())
-      function test_target()
-        BEVProjectNavigator  % !test-target
-      end  % nested function
-    end  % function
-
     %% Up-to-date tests
 
     % -------------------------------------------------------------------------

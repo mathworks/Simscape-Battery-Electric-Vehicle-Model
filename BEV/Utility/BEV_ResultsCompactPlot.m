@@ -1,5 +1,5 @@
 function parent = BEV_ResultsCompactPlot(NameValuePair)
-%% Creates plots of simulation results
+%% Create plots of simulation results
 % To see how this function creates a plot, simply run this function without arguments.
 
 % Copyright 2022-2025 The MathWorks, Inc.
@@ -13,8 +13,8 @@ arguments (Input)
   % After simulation, create a timetable with extractTimetable.
   NameValuePair.SimData timetable = timetable(seconds([0;10]), [0;0], [0;0], [0;0], [0;0], [0;0], [0;0], [0;0], [0;0], [0;0], ...
     VariableNames = [ ...
-    "Vehicle Speed (km/hr)", ...
-    "Reference Vehicle Speed (km/hr)", ...
+    "Vehicle Speed kph", ...
+    "Reference Vehicle Speed kph", ...
     "G-Force", ...
     "Motor Torque Command", ...
     "Motor Temperature", ...
@@ -57,11 +57,11 @@ tl.TileIndexing = "columnmajor";
 
 ax = nexttile(tl);
 
-plot(ax, simData, "Time", "Vehicle Speed (km/hr)", LineWidth=2)
+plot(ax, simData, "Time", "Vehicle Speed kph", LineWidth=2)
 hold(ax, "on")
 grid(ax, "on")
-plot(ax, simData, "Time", "Reference Vehicle Speed (km/hr)", LineWidth=2)
-setMinimumYRange(ax, simData.("Reference Vehicle Speed (km/hr)"), dy_threshold=2);
+plot(ax, simData, "Time", "Reference Vehicle Speed kph", LineWidth=2)
+setMinimumYRange(ax, simData.("Reference Vehicle Speed kph"), dy_threshold=2);
 ylabel(ax, "")  % Hide variable name defined in the timetable.
 xlim(ax, "tight")
 xlabel(ax, "")
