@@ -52,7 +52,7 @@ Simple drive pattern simulation result:
 
 Use **BEV Project Navigator App** to quickly access some key files and tools.
 
-<img src="screenshot-BEVProjectNavigator.png"
+<img src="screenshot-BEVProjectNavigationApp.png"
  alt="Screenshot of the longitudinal vehicle performance design app"
  width="450">
 
