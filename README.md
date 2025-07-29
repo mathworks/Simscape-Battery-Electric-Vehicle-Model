@@ -52,7 +52,7 @@ Simple drive pattern simulation result:
 
 Use **BEV Project Navigator App** to quickly access some key files and tools.
 
-<img src="Utility/screenshot-BEV-project-navigator-app.png"
+<img src="screenshot-BEVProjectNavigationApp.png"
  alt="Screenshot of the longitudinal vehicle performance design app"
  width="450">
 
@@ -140,7 +140,7 @@ Other components will use the same approach in the future.
 
 #### Signal Design App
 
-To edit physical input signals for PS Lookup Table (1D) blocks
+To edit physical input signals using PS Lookup Table (1D) blocks
 in the Reducer component, Signal Tool is used.
 
 - For graphically editing signals, you can use `SignalDesignApp`

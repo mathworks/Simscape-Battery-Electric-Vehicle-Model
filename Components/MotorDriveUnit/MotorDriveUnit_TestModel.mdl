@@ -19,6 +19,7 @@ __MWOPC_PART_BEGIN__ /[Content_Types].xml
   <Override ContentType="application/vnd.mathworks.simulink.configSetInfo+xml" PartName="/simulink/configSetInfo.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.hdlparams+xml" PartName="/simulink/hdlParams.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.mf0+xml" PartName="/simulink/modelDictionary.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.pluginParameters+xml" PartName="/simulink/plugins/LogicAnalyzerPlugin.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.ScheduleCore+xml" PartName="/simulink/ScheduleCore.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.ScheduleEditor+xml" PartName="/simulink/ScheduleEditor.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.blockDiagram+xml" PartName="/simulink/windowsInfo.xml"/>
@@ -44,8 +45,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2022-04-27T10:50:21Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-15T15:02:44Z</dcterms:modified>
-  <cp:revision>7.5</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-29T09:50:04Z</dcterms:modified>
+  <cp:revision>7.6</cp:revision>
   <cp:version>R2025a</cp:version>
 </cp:coreProperties>
 
@@ -77,6 +78,7 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="LogicAnalyzerPlugin" Target="plugins/LogicAnalyzerPlugin.xml" Type="http://schemas.mathworks.com/simulinkModel/2014/relationships/pluginParameters"/>
   <Relationship Id="ScheduleCore" Target="ScheduleCore.xml" Type="http://schemas.mathworks.com/simulink/2013/relationships/ScheduleCore"/>
   <Relationship Id="ScheduleEditor" Target="ScheduleEditor.xml" Type="http://schemas.mathworks.com/simulink/2013/relationships/ScheduleEditor"/>
   <Relationship Id="SimscapeInstrumentationVariables_148" Target="bdmxdata/SimscapeInstrumentationVariables_148.mxarray" Type="http://schemas.mathworks.com/simulinkModel/2015/relationships/modelMxArray"/>
@@ -717,7 +719,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:7.5&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:7.6&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="ShowPortUnits">on</P>
@@ -2383,6 +2385,12 @@ __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
     <Interface type="Interface" uuid="56c60dcd-3256-4d5d-8f61-ced822df3f66"/>
   </System>
 </MF0>
+__MWOPC_PART_BEGIN__ /simulink/plugins/LogicAnalyzerPlugin.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LogicAnalyzerPlugin>
+  <P Name="LogicAnalyzerSignalOrdering">e52032b0-2d7c-4333-929b-fe9ab3474f79,6da78efc-80b3-4c39-b59f-26599f98bbeb,c2003cae-230b-46be-8f19-9525de205696,dafb1584-5f74-43c1-971b-aee48d805e76,bcc20163-b06c-4028-b5ba-be862c391387,fbb34e64-cdb4-474e-bbde-185b919bac4e,2673a578-e4de-40d7-b3c1-0e8ecc6b3e68,6a016bbb-daae-4a89-9f42-ddbbe58caf6f,ee7c47a3-cb04-46f9-a21b-1e634428e411,9a0dc7f2-57df-4fed-9f73-51ac43f2fb1d,843def79-d670-4f5f-83f3-2401252a6931,484600d9-2dd5-41c6-9110-89cbe02f1656,da8d9926-ce53-49ed-8aa6-6a25538eb046,b863474e-3914-43ee-a413-2ef9a5ec01f3,66fb51b0-c831-4621-aafa-c2f58d3abae5,c42367ec-2d15-4aa4-9122-0408547bf6e0,bb1a857c-e07d-4983-8674-ed06224c4d3f,2ae78a61-545d-48ac-abbd-743263407051,a4ecb7ae-0861-4967-8b8c-6553ca1f873f,f18865b2-42d9-4058-b7b9-3d604e27eafb,6e5a7bcf-9cee-4676-a9a7-b6377bd5b42d,1c683b61-9159-4f2e-bbdb-a40330e329de,d587da5c-fd9d-492c-b415-634ca92240ba,2e187490-4cd2-4a63-9525-396fb3faf922</P>
+</LogicAnalyzerPlugin>
+
 __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sltp_graph version="1.1" packageUris="http://schema.mathworks.com/mf0/sltp_mm/R2025a_202406271200">
@@ -5357,12 +5365,12 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_39.xml
     <P Name="Position">[560, -44, 655, 259]</P>
     <P Name="ZOrder">8</P>
     <P Name="GraphicalSettings">{&quot;GraphicalSettings&quot;:{&quot;LegacySettings&quot;:true,&quot;Style&quot;:{&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Auto&quot;,&quot;ShrinkYLimits&quot;:false},&quot;Style&quot;:{&quot;AxesColor&quot;:&quot;[0 0 0]&quot;,&quot;ChannelNames&quot;:[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;],&quot;ColorOrder&quot;:&quot;[1 0.909803921568627 0.392156862745098;0.149019607843137 0.549019607843137 0.866666666666667;0.96078431372549 0.466666666666667 0.16078431372549;0.286274509803922 0.858823529411765 0.250980392156863;0.752941176470588 0.36078431372549 0.984313725490196;0.423529411764706 0.956862745098039 1;0.949019607843137 0.403921568627451 0.772549019607843]&quot;,&quot;CurrentConfiguration&quot;:&quot;extmgr.ConfigurationSet&quot;,&quot;DefaultLegendLabel&quot;:[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;],&quot;LabelsColor&quot;:&quot;[0.686274509803922 0.686274509803922 0.686274509803922]&quot;,&quot;LineColor&quot;:[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;MinimizeControls&quot;:&quot;false&quot;,&quot;NumLines&quot;:[0,0,0,0,0,0,0,0,0,0,0,0],&quot;Placement&quot;:&quot;12&quot;,&quot;PlotType&quot;:&quot;Auto&quot;,&quot;Position&quot;:&quot;[585 238.6 930.4 521.6]&quot;,&quot;ShowContent&quot;:&quot;true&quot;,&quot;Version&quot;:&quot;2024b&quot;,&quot;Visible&quot;:[true,true,true,true,true,true,true,true,true,true,true,true],&quot;YGrid&quot;:&quot;true&quot;}}}}</P>
-    <P Name="WindowPosition">[216.000000,148.000000,1105.000000,568.000000,]</P>
+    <P Name="WindowPosition">[223.000000,182.000000,1105.000000,568.000000,]</P>
     <P Name="Visible">on</P>
     <P Name="ScopeFrameLocation">window</P>
     <P Name="WasSavedAsWebScope">on</P>
     <P Name="Floating">off</P>
-    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:318.75,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-368.75,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1.2499999999999998,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-11.25,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:120.9812680368251,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-88.869245700833631,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:266.15878968101521,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-195.512340541834,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:9703.1105996909919,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-9995.1306040081563,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:393.15,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:193.14999999999998,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1499.9999999999998,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-13500,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:293.02880187197115,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-186.90299762502923,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:861.8494172705033,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-549.71469889714479,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:345.49714698897139,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:331.38150582729503,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
+    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:368.75,&quot;MaxYLimReal&quot;:318.75,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-368.75,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:11.25,&quot;MaxYLimReal&quot;:1.2499999999999998,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-11.25,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:1,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:1,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:120.9812680368251,&quot;MaxYLimReal&quot;:120.9812680368251,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-88.869245700833631,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:266.15878968101521,&quot;MaxYLimReal&quot;:266.15878968101521,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-195.512340541834,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:9995.1306040081563,&quot;MaxYLimReal&quot;:9703.1105996909919,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-9995.1306040081563,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:393.15,&quot;MaxYLimReal&quot;:393.15,&quot;MinYLimMag&quot;:193.14999999999998,&quot;MinYLimReal&quot;:193.14999999999998,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:13500,&quot;MaxYLimReal&quot;:1499.9999999999998,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-13500,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:293.02880187197115,&quot;MaxYLimReal&quot;:293.02880187197115,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-186.90299762502923,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:861.8494172705033,&quot;MaxYLimReal&quot;:861.8494172705033,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-549.71469889714479,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:345.49714698897139,&quot;MaxYLimReal&quot;:345.49714698897139,&quot;MinYLimMag&quot;:331.38150582729503,&quot;MinYLimReal&quot;:331.38150582729503,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
     <P Name="NumInputPorts">12</P>
     <P Name="LayoutDimensionsString">[4 3]</P>
     <P Name="ActiveDisplayYMinimum">-368.75</P>
@@ -6014,21 +6022,21 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">283</P>
-          <P Name="Extents" Class="double">[1345.0, 511.0]</P>
+          <P Name="LoadSaveID" Class="char">39</P>
+          <P Name="Extents" Class="double">[1614.0, 622.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[172.0, 728.6]</P>
-          <P Name="SceneRectInView" Class="double">[172.0, 728.6, 1076.0, 408.8]</P>
+          <P Name="Offset" Class="double">[-307.5, -94.333333333333343]</P>
+          <P Name="SceneRectInView" Class="double">[-307.5, -94.333333333333343, 1076.0, 414.66666666666669]</P>
         </Object>
         <Object ObjectID="7">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">39</P>
+          <P Name="LoadSaveID" Class="char">283</P>
           <P Name="Extents" Class="double">[1345.0, 511.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-307.5, -93.9]</P>
-          <P Name="SceneRectInView" Class="double">[-307.5, -93.9, 1076.0, 408.8]</P>
+          <P Name="Offset" Class="double">[172.0, 728.6]</P>
+          <P Name="SceneRectInView" Class="double">[172.0, 728.6, 1076.0, 408.8]</P>
         </Object>
         <Object ObjectID="8">
           <P Name="IsActive" Class="logical">0</P>
@@ -6372,8 +6380,8 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="UserData" Class="char"/>
           <P Name="Floating" Class="logical">1</P>
           <P Name="DockPosition" Class="char">Right</P>
-          <P Name="Width" Class="int32">426</P>
-          <P Name="Height" Class="int32">320</P>
+          <P Name="Width" Class="int32">325</P>
+          <P Name="Height" Class="int32">808</P>
           <P Name="Minimized" Class="char">Off</P>
         </Object>
         <Object ObjectID="42">
@@ -6390,7 +6398,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Minimized" Class="char">On</P>
         </Object>
       </Array>
-      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAFAAAACC/wCAAAABvsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAACTAP////wAAAB5AAACDAAAAAAA////+gAAAAACAAAAAfsAAACUAEwAaQBiAHIAYQByAHkAQgByAG8AdwBzAGUAcgAyACAATABpAGIAcgBhAHIAeQBCAHIAbwB3AHMAZQByAFMAdAB1AGQAaQBvAEMAbwBtAHAAbwBuAGUAbgB0AC8ATQBvAHQAbwByAEQAcgBpAHYAZQBVAG4AaQB0AF8AaABhAHIAbgBlAHMAcwBfAG0AbwBkAGUAbAAAAAAA/////wAAAAAAAAAA/AAAAHkAAAILAAAAAAD////6AAAAAAIAAAAB+wAAAKgATABpAGIAcgBhAHIAeQBCAHIAbwB3AHMAZQByADIAIABMAGkAYgByAGEAcgB5AEIAcgBvAHcAcwBlAHIAUwB0AHUAZABpAG8AQwBvAG0AcABvAG4AZQBuAHQALwBNAG8AdABvAHIARAByAGkAdgBlAFUAbgBpAHQAXwBDAG8AbQBwAG8AbgBlAG4AdABfAGgAYQByAG4AZQBzAHMAXwBtAG8AZABlAGwAAAAAAP////8AAAAAAAAAAPsAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAxwD///8AAAABAAAB8gAAAkb8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgIAAARiAAAAfQAAAfIAAAL6AAAAAwAABW4AAADe/AEAAAAB/AAAACEAAAVuAAAAAAD////6/////wEAAAAC+wAAADYARwBMAFUARQAyADoAUwBwAHIAZQBhAGQAUwBoAGUAZQB0AC8ATQBvAGQAZQBsAEQAYQB0AGECAAABYwAAAFEAAAVuAAADk/v/////AAAAAAD/////AAADswD///8AAAaGAAACvAAAAAEAAAACAAAAAQAAAAL8AAAAAwAAAAAAAAABAAAANgBjAG8AbABsAGEAcABzAGkAYgBsAGUAUABhAG4AZQBsAFQAbwBvAGwAQgBhAHIATABlAGYAdAMAAAAA/////wAAAAAAAAAAAAAAAQAAAAEAAAA4AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBSAGkAZwBoAHQCAAAAAP////8AAAAAAAAAAAAAAAMAAAABAAAAOgBjAG8AbABsAGEAcABzAGkAYgBsAGUAUABhAG4AZQBsAFQAbwBvAGwAQgBhAHIAQgBvAHQAdABvAG0AAAAAAP////8AAAAAAAAAAA==</P>
+      <P Name="WindowState" Class="char">AAAA/wAAAAD9AAAAAwAAAAAAAAFAAAACC/wCAAAABvsAAAAWAEQAbwBjAGsAVwBpAGQAZwBlAHQAMwEAAAAxAAAB+AAAAAAAAAAA+wAAABYARABvAGMAawBXAGkAZABnAGUAdAA0AAAAAAD/////AAAAAAAAAAD7AAAAUgBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQALwBHAEwAVQBFADIAIAB0AHIAZQBlACAAYwBvAG0AcABvAG4AZQBuAHQAAAAAAP////8AAACTAP////wAAAB5AAACDAAAAAAA////+gAAAAACAAAAAfsAAACUAEwAaQBiAHIAYQByAHkAQgByAG8AdwBzAGUAcgAyACAATABpAGIAcgBhAHIAeQBCAHIAbwB3AHMAZQByAFMAdAB1AGQAaQBvAEMAbwBtAHAAbwBuAGUAbgB0AC8ATQBvAHQAbwByAEQAcgBpAHYAZQBVAG4AaQB0AF8AaABhAHIAbgBlAHMAcwBfAG0AbwBkAGUAbAAAAAAA/////wAAAAAAAAAA/AAAAHkAAAILAAAAAAD////6AAAAAAIAAAAB+wAAAKgATABpAGIAcgBhAHIAeQBCAHIAbwB3AHMAZQByADIAIABMAGkAYgByAGEAcgB5AEIAcgBvAHcAcwBlAHIAUwB0AHUAZABpAG8AQwBvAG0AcABvAG4AZQBuAHQALwBNAG8AdABvAHIARAByAGkAdgBlAFUAbgBpAHQAXwBDAG8AbQBwAG8AbgBlAG4AdABfAGgAYQByAG4AZQBzAHMAXwBtAG8AZABlAGwAAAAAAP////8AAAAAAAAAAPsAAABgAFMAaQBtAHUAbABpAG4AawA6AEUAZABpAHQAbwByADoAUgBlAGYAZQByAGUAbgBjAGUAZABGAGkAbABlAHMALwBSAGUAZgBlAHIAZQBuAGMAZQBkACAARgBpAGwAZQBzAAAAAAD/////AAAAxwD///8AAAABAAAB8gAAAkb8AgAAAAH7AAAAVABHAEwAVQBFADIAOgBQAHIAbwBwAGUAcgB0AHkASQBuAHMAcABlAGMAdABvAHIALwBQAHIAbwBwAGUAcgB0AHkAIABJAG4AcwBwAGUAYwB0AG8AcgIAAAboAAAAaQAAAfIAAATqAAAAAwAABW4AAADe/AEAAAAB/AAAACEAAAVuAAAAAAD////6/////wEAAAAC+wAAADYARwBMAFUARQAyADoAUwBwAHIAZQBhAGQAUwBoAGUAZQB0AC8ATQBvAGQAZQBsAEQAYQB0AGECAAABYwAAAFEAAAVuAAADk/v/////AAAAAAD/////AAADswD///8AAAaGAAACvAAAAAEAAAACAAAAAQAAAAL8AAAAAwAAAAAAAAABAAAANgBjAG8AbABsAGEAcABzAGkAYgBsAGUAUABhAG4AZQBsAFQAbwBvAGwAQgBhAHIATABlAGYAdAMAAAAA/////wAAAAAAAAAAAAAAAQAAAAEAAAA4AGMAbwBsAGwAYQBwAHMAaQBiAGwAZQBQAGEAbgBlAGwAVABvAG8AbABCAGEAcgBSAGkAZwBoAHQCAAAAAP////8AAAAAAAAAAAAAAAMAAAABAAAAOgBjAG8AbABsAGEAcABzAGkAYgBsAGUAUABhAG4AZQBsAFQAbwBvAGwAQgBhAHIAQgBvAHQAdABvAG0AAAAAAP////8AAAAAAAAAAA==</P>
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">a96fc7aa-11d9-479e-8d02-a70be0aebc6a</P>
     </Object>

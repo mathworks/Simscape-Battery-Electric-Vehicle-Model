@@ -9,7 +9,7 @@ Open the Project by double\-clicking **`BatteryElectricVehicle.prj`** file if yo
 This is a simple, fast running BEV model which can estimate the electrical efficiency of the vehicle. It is also suitable for further customizations for more focused analysis of individual components at vehicle system level.
 
 
-Open the [BEV system model](matlab:openFile('BEV_system_model')). You can also use the shortcut button **BEV system model** in the **Project Shortcuts** toolstrip.
+Open the [BEV system model](matlab:openFile('BEV_system_model')). You can also use the shortcut button **BEV model** in the **Project Shortcuts** toolstrip.
 
 
 Files related to the BEV system model can be found at **BEV** folder.
@@ -23,7 +23,7 @@ Files related to the BEV system model can be found at **BEV** folder.
 Longitudinal abstract vehicle model can be used to find required powertrain performance (such as motor torque and power etc.) given basic vehicle performance specifications.
 
 
-Open the [Vehicle 1D harness model](matlab:openFile('Vehicle1D_TestModel')). You can simulate and analyse basic vehicle performance with the Vehicle1D harness model.
+Open the [Vehicle 1D test model](matlab:openFile('Vehicle1D_TestModel')). You can simulate and analyse basic vehicle performance with the Vehicle1D test model.
 
 
 See **README.md** in the **Components > Vehicle1D** folder for more informaton.
@@ -40,7 +40,7 @@ Four different abstract models are available as a high voltage battery pack comp
 -  **System** model simulates voltage, current, temperature as well as charing dynamics, fading, and aging using equation\-based model. 
 -  **Table\-based system** model simulates the same quantities as System model, but uses table data for terminal voltage and resistance. 
 
-Open the [High voltage battery harness model](matlab:openFile('BatteryHV_TestModel')).
+Open the [High voltage battery test model](matlab:openFile('BatteryHV_TestModel')).
 
 
 See **README.md** in the **Components > BatteryHighVoltage** folder for more informaton.
@@ -54,7 +54,7 @@ Four different abstract models are available as a motor drive unit component.
 -  **System\-level thermal** model is similar to the above models, but this model considers irons loss and constant/fixed loss too. 
 -  **System\-level model with tabulated losses** is similar to the above models, but this model uses tabulated data for power conversion efficiency or losses. 
 
-Open the [Motor drive unit harness model](matlab:openFile('MotorDriveUnit_TestModel')).
+Open the [Motor drive unit test model](matlab:openFile('MotorDriveUnit_TestModel')).
 
 
 See **README.md** in the **Components > MotorDriveUnit** folder for more informaton including **single efficiency measurement model** used in Basic, Basic thermal, and System\-level models for electro\-mechanical power conversion.
@@ -62,14 +62,6 @@ See **README.md** in the **Components > MotorDriveUnit** folder for more informa
 ## Other components
 
 In addition to the above components, other components such as **Vehicle Speed Reference** component are stored in the **Components** folder too.
-
-# Detailed Model Application
-
-This project includes detailed model applications for permanent magnet synchronous motor (PMSM). See the **DetailedModelApplications > MotorDrivePmsmFem** folder for more information.
-
-# About this project
-
-For additional information about this project, see **About BEV Project** live script in the **Utility** folder.
 
 
 *Copyright 2020\-2025 The MathWorks, Inc.*

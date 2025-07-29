@@ -1,4 +1,4 @@
-function [OCV_V, SOC_pct] = BatteryHV_buildOpenCircuitVoltageData(Temperature_degC, OCVDataPoints_V, nvpairs)
+function [OCV_V, SOC_pct] = BatteryHV_buildOpenCircuitVoltageData(Temperature_degC, OCVDataPoints_V, NameValuePair)
 %% Builds a SOC-by-OCV matrix for table-based battery block
 % Given one or more pairs of temperature and data points representing
 % open-circuit voltage (OCV) as a function of state of charge (SOC),
@@ -8,7 +8,8 @@ function [OCV_V, SOC_pct] = BatteryHV_buildOpenCircuitVoltageData(Temperature_de
 % The returned data are smoothly interpolated at the interval of 1 degree Celsius.
 % This function also returns a vector of SOC as a second return element.
 %
-% This function requires Signal Designer (SignalDesigner.m).
+% This function requires Signal Designer (SignalDesigner.m) to
+% generate smooth data points.
 %
 % SOC-OCV data points for one temperature must be represented
 % in an N-by-2 matrix where first column is SOC in percent and
@@ -35,15 +36,21 @@ BatteryHV_buildOpenCircuitVoltageData( ...
 
 % Copyright 2023-2025 The MathWorks, Inc.
 
-arguments (Repeating)
+arguments (Input, Repeating)
   Temperature_degC (1,1) double {mustBeNonnegative}
   OCVDataPoints_V (:,2) double {mustBeNonnegative}
-end
+end  % arguments
 
-arguments
-  nvpairs.MakePlot (1,1) logical = false
-end
-doPlot = nvpairs.MakePlot;
+arguments (Input)
+  NameValuePair.MakePlot (1,1) logical = false
+end  % arguments
+
+arguments (Output)
+  OCV_V double
+  SOC_pct double
+end  % arguments
+
+doPlot = NameValuePair.MakePlot;
 
 temperature_vec = [Temperature_degC{:}];
 numCols = numel(temperature_vec);
@@ -56,11 +63,11 @@ if numCols >= 2
   dataLen = nan(1, numCols);
   for idx = 1 : numCols
     dataLen(idx) = height(OCVDataPoints_V{idx});
-  end
+  end  % for
   assert(all(diff(dataLen) == 0), ...
     "All OCV data point matrices must have the same number of rows: " ...
     + join(string(dataLen), ", "))
-end
+end  % if
 
 sig = SignalDesigner("Continuous");
 

@@ -1,12 +1,12 @@
-classdef BEVProjectNavigatorMain < handle
-  %% Main code of BEV project navigator app
-  % This is an entry-point app for a project to find some key models, scripts, etc.
+classdef BEVProjectNavigationAppMain < handle
+  %% Main code of BEV project navigation app
+  % This is a project entry-point app for a project to find some key models, scripts, etc.
   %
-  % The app won't start if the linked files are not found during start up process.
+  % The app does not start if a linked file is not found during start up.
   % If the app window appears, it means that all linked files were found.
   % To disable the link checking, set ForceStart to true:
   %
-  %   BEVProjectNavigatorMain(ForceStart = true)
+  %   BEVProjectNavigationAppMain(ForceStart = true)
 
   % Copyright 2024-2025 The MathWorks, Inc.
 
@@ -24,12 +24,12 @@ classdef BEVProjectNavigatorMain < handle
       delete(App.Window)
     end  % function
 
-    function App = BEVProjectNavigatorMain(NameValuePair)
+    function App = BEVProjectNavigationAppMain(NameValuePair)
 
       arguments (Input)
         % Start the app even if some links are invalid.
         NameValuePair.ForceStart (1,1) logical = false
-end  % argumentsend  %
+      end  % argumentsend  %
 
       App.force_start = NameValuePair.ForceStart;
 
@@ -54,8 +54,8 @@ end  % argumentsend  %
 
       app_window = LiteApp6.LiteAppWindow(SourceFilename=mfilename);
 
-      app_window.Name = "BEV Project Navigator";
-      app_window.Width = 560;
+      app_window.Name = "BEV Project Navigation App";
+      app_window.Width = 580;
       app_window.Height = 680;
 
       width_unit = LiteApp6.Utility.Constant.Width{"unitwidth"};
@@ -143,7 +143,7 @@ end  % argumentsend  %
       LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
       label_ui = LiteApp6.Component.Label(NewSlot(layout, row));
-      label_ui.Text = "See BEV / SimulationCases for more cases";
+      label_ui.Text = "See BEV / Model-* / SimulationCases for more cases";
 
       %% ============================================================================
       row = NewRow(layout, column);
@@ -243,7 +243,7 @@ end  % argumentsend  %
       check_link(target_hvbattery_TestModel);
 
       link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "High voltage battery harness model";
+      link_ui.HyperlinkText = "High voltage battery test model";
       link_ui.Tooltip = "Open model: " + target_hvbattery_TestModel;
       link_ui.HyperlinkClickedCallback = @() open_target_model(target_hvbattery_TestModel);
 
@@ -300,7 +300,7 @@ end  % argumentsend  %
       LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
       label_ui = LiteApp6.Component.Label(NewSlot(layout, row));
-      label_ui.Text = "See Components / BatteryHighVoltage / SimulationCases for more cases";
+      label_ui.Text = "See Components / BatteryHighVoltage / Model-* / SimulationCases for more cases";
 
       %% ============================================================================
       row = NewRow(layout, column);
@@ -368,10 +368,10 @@ end  % argumentsend  %
 
     % At least one callback function must be a class method of an app class.
     % This makes the object life cycle of app class resilient, i.e.,
-    % the app remains open even when workspace is cleared or 
+    % the app remains open even when workspace is cleared or
     % when a function which creates an app exits.
     function open_target_script(~, target_script)
-      disp("Navigator: Opening script: " + target_script)
+      disp("Navigation App: Opening script: <a href=""matlab:edit('" + target_script + "')"">" + target_script + "</a>")
       edit(target_script)
     end  % function
 
@@ -379,19 +379,19 @@ end  % argumentsend  %
 end  % classdef
 
 function open_target_model(target_model)
-disp("Navigator: Opening model: " + target_model)
+disp("Navigation App: Opening model: <a href=""matlab:" + target_model + """>" + target_model + "</a>")
 open_system(target_model)
-end  % function
+end  % local function
 
 function open_target_page(target_page)
-disp("Navigator: Opening page: " + target_page)
+disp("Navigation App: Opening page: <a href=""matlab:web('" + target_page + "')"">" + target_page + "</a>")
 % To open an HTML file, use the web command, not the open command.
 % web opens the page in MATLAB's web browser which supports
 % HTML hyperlinks to run MATLAB commands.
 web(target_page)
-end  % function
+end  % local function
 
 function open_app(target_app)
-disp("Navigator: Opening app: " + target_app)
+disp("Navigation App: Opening app: <a href=""matlab:" + target_app + """>" + target_app + "</a>")
 feval(target_app);
-end  % function
+end  % local function

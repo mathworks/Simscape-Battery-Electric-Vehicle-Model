@@ -33,5 +33,5 @@ BatteryHV_buildTerminalResistanceData( ...
 <center><img src="media/BatteryHV_SystemTable_DataBuild_sample_script_media/figure_1.png" width="602" alt="figure_1.png"></center>
 
 
-*Copyright 2023 The MathWorks, Inc.*
+*Copyright 2023\-2025 The MathWorks, Inc.*
 
