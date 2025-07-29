@@ -59,7 +59,7 @@ Use **BEV Project Navigator App** to quickly access some key files and tools.
 Use **Vehicle1D Performance Design App** to design the basic performance parameters
 of a road vehicle.
 
-<img src="Components/Vehicle1D/Utility/screenshot-Vehicle1DPerformanceDesignApp.png"
+<img src="Components/Vehicle1D/screenshot-Vehicle1DPerformanceDesignApp.png"
  alt="Screenshot of the longitudinal vehicle performance design app"
  width="700">
 
