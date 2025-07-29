@@ -3,7 +3,7 @@
 
 Open the Project by double\-clicking **`BatteryElectricVehicle.prj`** file if you have not opened the project yet. Use an app **`BEVProjectNavigator`** to explore models and scripts in the project. If you are viewing this page in MATLAB's web browser or its original Live Script file in Editor, you can open the project navigator app from the link below.
 
--  [BEV Project Navigator app](matlab:BEVProjectNavigator) 
+-  [BEV Project Navigation App](matlab:BEVProjectNavigationApp) 
 # Battery Electric Vehicle (BEV) Model for System Level Simulation
 
 This is a simple, fast running BEV model which can estimate the electrical efficiency of the vehicle. It is also suitable for further customizations for more focused analysis of individual components at vehicle system level.
