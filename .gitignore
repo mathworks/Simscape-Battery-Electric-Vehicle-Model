@@ -2,17 +2,45 @@
 #
 # Copyright 2020-2025 The MathWorks, Inc.
 
-*.js
-
 *.pdf
 *.pptx
 
-*.asv
 *.mldatx
+
+# Autosave files
+*.asv
+*.m~
+*.autosave
+*.slx.r*
+*.mdl.r*
+
+# Derived content-obscured files
+*.p
+
+# Compiled MEX files
+*.mex*
+
+# Packaged app and toolbox files
+*.mlappinstall
+*.mltbx
+
+# Deployable archives
+*.ctf
+
+# Generated helpsearch folders
+helpsearch*/
+
+# Code generation folders
+slprj/
+sccprj/
+codegen/
+sfprj/
+
+# Cache files
 *.slxc
 
-sfprj/
-slprj/
+# Cloud based storage dotfile
+.MATLABDriveTag
 
 # The Build Tool creates the .buildtool folder, which git must ignore.
 # See the documentation about Cache Folder in MATLAB Incremental Builds.
@@ -21,6 +49,14 @@ slprj/
 
 # The Buildfile.m files in this project are configured to save results in the test-result folder, which git must ignore.
 test-result/
+
+# Profiling simulation with Solver Profiler leaves the session data in a mat file.
+# It can be easily produced by running a profiling simulation.
+# https://www.mathworks.com/help/simulink/slref/solverprofiler.profilemodel.html
+#
+# The name of the session data file is arbitrary.
+# In this project, it is assumed to be "profiling_data.mat".
+profiling_data.mat
 
 screenshot-test-*.png
 screenshot-untitled.png

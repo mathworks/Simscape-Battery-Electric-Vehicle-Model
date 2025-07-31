@@ -108,22 +108,28 @@ classdef test_BEVProject < matlab.unittest.TestCase
 
     end  % function
 
-    %% Other tests
+    %% Set up tests
+
+    % -------------------------------------------------------------------------
+    % Build Tool set up
 
     function check_buildfile(testcase)
-      % Check that the buildfile.m files are configured to save results in the test-result folder.
+      % This project has a number of the buildfile.m files.
+      % Check that they are configured to save the result in the "test-result" folder.
 
       buildfile_pattern = fullfile(pwd, "**/buildfile.m");
       buildfile_collection = matlab.buildtool.io.FileCollection.fromPaths(buildfile_pattern);
       verifyTrue(testcase, not(isempty(buildfile_collection)))
 
-      % buildfile_paths = extractAfter(transpose(buildfile_collection.paths), pwd);
       buildfile_paths = transpose(buildfile_collection.paths);
-      verifyTrue(testcase, numel(buildfile_paths) > 0)
+      num_files = numel(buildfile_paths);
+      verifyTrue(testcase, num_files > 0)
 
-      for idx = 1 : numel(buildfile_paths)
+      disp("Number of the buildfile.m files found: " + num_files)
+
+      for idx = 1 : num_files
         target_buildfile = buildfile_paths(idx);
-        disp("Checking " + target_buildfile)
+        disp(idx + ": Checking: " + target_buildfile)
 
         has_gitignore = isfile(".gitignore");
         verifyTrue(testcase, has_gitignore)
@@ -136,7 +142,10 @@ classdef test_BEVProject < matlab.unittest.TestCase
       end  % for
     end  % function
 
-    function check_git(testcase)
+    % -------------------------------------------------------------------------
+    % .gitignore set up
+
+    function check_gitignore_file(testcase)
       % Check that, if git is used, git is configured to ignore the .buildtool and test-result folders.
       %
       % The Build Tool uses .buildtool folder which git must ignore.
@@ -157,17 +166,96 @@ classdef test_BEVProject < matlab.unittest.TestCase
 
       has_gitignore = isfile(".gitignore");
       verifyTrue(testcase, has_gitignore)
+
+    end  % function
+
+    function check_git_ignores_1(testcase)
+      % Check that, if git is used, git is configured to ignore the .buildtool folders.
+      %
+      % The Build Tool uses .buildtool folder which git must ignore.
+      %
+      % This test assumes that this test file, the .git folder, and the .gitignore file are
+      % in the same folder.
+      %
+      % See the documentation about Cache Folder section in MATLAB Incremental Builds.
+      % https://www.mathworks.com/help/matlab/matlab_prog/improve-performance-with-incremental-builds.html#mw_55e5581e-57fd-4abb-9b38-a3de482e713f
+
+      if not(isfolder(".git"))
+        % Skip this test if git is not used.
+        disp("Git is not used in this project. Skipping this test.")
+
+        return
+
+      end  % if
+      verifyTrue(testcase, isfile(".gitignore"))
       gitignore_lines = readlines(".gitignore");
 
       target_pattern = lineBoundary("start") + ".buildtool" + optionalPattern("/");
-      ignore_buildtool_folder = contains(gitignore_lines, target_pattern);
-      verifyTrue(testcase, any(ignore_buildtool_folder))
-
-      target_pattern = lineBoundary("start") + "test-result" + optionalPattern("/");
-      ignore_buildtool_folder = contains(gitignore_lines, target_pattern);
-      verifyTrue(testcase, any(ignore_buildtool_folder))
+      ignore = contains(gitignore_lines, target_pattern);
+      verifyTrue(testcase, any(ignore))
 
     end  % function
+
+    function check_git_ignores_2(testcase)
+      % Check that, if git is used, git is configured to ignore the test-result folders.
+      %
+      % The buildfile.m files in this project are configured to save results in the test-result folder,
+      % which git must ignore. The name of the folder, "test-result", is set in the buildfile.m.
+      % This test assumes that "test-result" is used in all buildfile.m files in the project.
+
+      if not(isfolder(".git"))
+        % Skip this test if git is not used.
+        disp("Git is not used in this project. Skipping this test.")
+
+        return
+
+      end  % if
+      verifyTrue(testcase, isfile(".gitignore"))
+      gitignore_lines = readlines(".gitignore");
+
+      target_pattern = lineBoundary("start") + "test-result" + optionalPattern("/");
+      ignore = contains(gitignore_lines, target_pattern);
+      verifyTrue(testcase, any(ignore))
+
+    end  % function
+
+    %% Link tests
+
+    function PassingTest_hyperlinked_command_1(~)
+      % Make sure there are no broken links.
+      % This test executes all the discovered MATLAB commands.
+
+      link_table = FileTool1.getLinkedCommandFromPlainTextLiveScript("BEVProject_Description.m");
+
+      if height(link_table) == 0
+        disp("No hyperlinked MATLAB commands were found.")
+
+        return
+
+      end  % if
+
+      for idx = 1 : height(link_table)
+        matlab_command = link_table.Command(idx);
+        disp("Hyperlinked MATLAB command: " + matlab_command)
+
+        % !todo: Check matlab_command and decide what to do, rather than just passing it to eval.
+        %
+        % If matlab_command is like "openFile('Some_TestModel')",
+        % maybe just check that 'Some_TestModel'exists.
+        % If matlab_command is "SomeApp", maybe just check SomeApp.m exists.
+        % These could be fine here because target files must be tested anyway.
+        %
+        % This might open a model, a script, an app, an HTML page, ...
+        eval(matlab_command)
+
+        % Close what opened to keep memory consumption low.
+        % !todo: Find a way to close an app.
+        close all
+        bdclose all
+      end  % for
+    end  % function
+
+    %% Other tests
 
     function test_no_MLX_files(testcase)
       % Use plain-text Live Scripts (*.m) rather than binary ones.
