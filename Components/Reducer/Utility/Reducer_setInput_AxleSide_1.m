@@ -10,15 +10,24 @@ design_matrix = [
   4 5 -50 ;
   6 7 50 ;
   8 10 0 ];
-dx = 0.01;
-x_unit = "s";
-f_unit = "N*m";
-interp_method = "Smooth";
-extrap_method = "Nearest";
 
 result = SignalTool1.getXYVectorsFromSignalDesignMatrix(design_matrix);
 x = result.X';
 f = result.Y';
+
+% "Table grid vector" parameter in PS Lookup Table (1D) block.
+x_text = LiteApp6.Utility.stringify(x);
+x_unit = "s";
+
+% "Table values" parameter in PS Lookup Table (1D) block.
+f_text = LiteApp6.Utility.stringify(f);
+f_unit = "N*m";
+
+interp_method = "Smooth";
+extrap_method = "Nearest";
+
+% Add the design matrix as text to the Description property of the target block.
+design_matrix_text = LiteApp6.Utility.stringify(design_matrix);
 
 SignalTool1.LookupTable1DPlot( ... %[output:group:2e6b65cc] %[output:2be01063]
   x, f, ... %[output:2be01063]
@@ -26,12 +35,9 @@ SignalTool1.LookupTable1DPlot( ... %[output:group:2e6b65cc] %[output:2be01063]
   YUnitText = f_unit, ... %[output:2be01063]
   Interpolation = interp_method, ... %[output:2be01063]
   Extrapolation = extrap_method, ... %[output:2be01063]
-  InterpolationInterval = dx, ... %[output:2be01063]
+  InterpolationInterval = 0.01, ... for visualization. adjust as needed. %[output:2be01063]
   PlotXLowerBound = x(1), ... %[output:2be01063]
   PlotXUpperBound = x(end) ); %[output:group:2e6b65cc] %[output:2be01063]
-x_text = LiteApp6.Utility.stringify(x);
-f_text = LiteApp6.Utility.stringify(f);
-design_matrix_text = LiteApp6.Utility.stringify(design_matrix);
 %%
 %[text] Set up the target PS Lookup Table (1D) block.
 load_system(model_name)

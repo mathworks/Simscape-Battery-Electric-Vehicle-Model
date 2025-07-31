@@ -44,8 +44,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2020-08-04T16:34:10Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-29T10:01:39Z</dcterms:modified>
-  <cp:revision>11.6</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-30T10:21:18Z</dcterms:modified>
+  <cp:revision>11.7</cp:revision>
   <cp:version>R2025a</cp:version>
 </cp:coreProperties>
 
@@ -67,11 +67,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2025a Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2943329</version>
+  <version>25.1.0.2973910</version>
   <release>R2025a</release>
-  <description></description>
-  <date>Apr 16 2025</date>
-  <checksum>423651790</checksum>
+  <description>Update 1</description>
+  <date>Jul 03 2025</date>
+  <checksum>1124574855</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -163,7 +163,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.6&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.7&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="MultithreadedSim">on</P>
@@ -1139,7 +1139,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_1"/>
       <P Name="SourceFile">sdl.gears.simple_gear</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;B&quot;,&quot;label&quot;:&quot;B&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;F&quot;,&quot;label&quot;:&quot;F&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -1251,6 +1250,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
       <P Name="v_backlash_nominal_specify">off</P>
       <P Name="v_backlash_nominal_value">1</P>
       <P Name="v_backlash_nominal_unit">m/s</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_1"/>
     </InstanceData>
   </Block>
   <Block BlockType="SimscapeBus" Name="Simscape Bus" SID="50421">
@@ -1371,7 +1371,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">82f58984-11e9-4f4b-aa61-27237540f9e3</P>
     </Object>
-    <P Name="BDUuid" Class="char">de16730f-7c4c-4cd5-93e8-dfc80b757cf9</P>
+    <P Name="BDUuid" Class="char">5951b139-455d-481f-ab04-bf50f1296f78</P>
   </Object>
 </WindowsInfo>
 

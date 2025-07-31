@@ -1,5 +1,5 @@
 function FolderFullPath = getFolderFullPath(FolderName)
-%% Returns full path to the given folder name.
+%% Return full path to the specified folder name.
 % This function searches the specified folder name in MATLAB paths
 % and returns the full path to it.
 % If two or more matches were found, the first one is returned.
