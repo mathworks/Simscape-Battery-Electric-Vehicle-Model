@@ -44,8 +44,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2020-08-04T16:40:34Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-15T15:08:56Z</dcterms:modified>
-  <cp:revision>11.1</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-05T07:48:04Z</dcterms:modified>
+  <cp:revision>11.5</cp:revision>
   <cp:version>R2025a</cp:version>
 </cp:coreProperties>
 
@@ -67,11 +67,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2025a Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2943329</version>
+  <version>25.1.0.2973910</version>
   <release>R2025a</release>
-  <description></description>
-  <date>Apr 16 2025</date>
-  <checksum>423651790</checksum>
+  <description>Update 1</description>
+  <date>Jul 03 2025</date>
+  <checksum>1124574855</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -490,7 +490,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.1&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.5&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="MultithreadedSim">on</P>
@@ -510,7 +510,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
       <Object PropName="InstrumentedSignals" ObjectID="2" ClassName="Simulink.HMI.InstrumentedSignals">
         <Array PropName="Persistence" Type="Struct" Dimension="12*1">
           <MATStruct>
-            <Field Name="UUID" Class="char">0033b959-6b44-4869-8a74-3eb50eeef59a</Field>
+            <Field Name="UUID" Class="char">9b522ecb-a4a9-495d-8d83-ac5c6aa069c6</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From</Field>
             <Field Name="SID_" Class="char">50654</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -530,7 +530,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
           <MATStruct>
-            <Field Name="UUID" Class="char">43828af4-0cd0-4b60-88a7-4f28c603b7a9</Field>
+            <Field Name="UUID" Class="char">53c8e0ca-a07e-4f67-bb5f-7b24826c1c6b</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From1</Field>
             <Field Name="SID_" Class="char">50655</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -550,7 +550,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
           <MATStruct>
-            <Field Name="UUID" Class="char">553b9742-fa44-4ded-b608-2b2d975fb016</Field>
+            <Field Name="UUID" Class="char">f8d00b58-f236-4bc5-83c5-9b701348af3e</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From10</Field>
             <Field Name="SID_" Class="char">50656</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -570,7 +570,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
           <MATStruct>
-            <Field Name="UUID" Class="char">e3a1c305-0f70-4aab-a16d-e00df57ffe5a</Field>
+            <Field Name="UUID" Class="char">b33c6503-e576-4434-9337-391af814527f</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From11</Field>
             <Field Name="SID_" Class="char">50657</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -590,7 +590,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
           <MATStruct>
-            <Field Name="UUID" Class="char">0bc9b69c-f482-4bbd-aa97-1efbc3bf8a71</Field>
+            <Field Name="UUID" Class="char">8f9b12c6-dfc7-4355-bc89-5f54a615c8b9</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From2</Field>
             <Field Name="SID_" Class="char">50658</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -610,7 +610,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
           <MATStruct>
-            <Field Name="UUID" Class="char">e82a749f-8351-41c2-b392-382cfbcd6e7a</Field>
+            <Field Name="UUID" Class="char">a30f9076-bc73-4f9d-8db6-70b448fc0045</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From3</Field>
             <Field Name="SID_" Class="char">50659</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -630,7 +630,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
           <MATStruct>
-            <Field Name="UUID" Class="char">c03f0a80-a0ae-46aa-9f0a-0e85ec5419b4</Field>
+            <Field Name="UUID" Class="char">d4018f10-84ef-4612-baa0-875dc1782fa7</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From4</Field>
             <Field Name="SID_" Class="char">50660</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -650,7 +650,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
           <MATStruct>
-            <Field Name="UUID" Class="char">4cc1b62a-8dde-41d6-b0c6-289a3c4582e5</Field>
+            <Field Name="UUID" Class="char">735a936e-8963-40df-b4d9-371eb27f32c5</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From5</Field>
             <Field Name="SID_" Class="char">50661</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -670,7 +670,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
           <MATStruct>
-            <Field Name="UUID" Class="char">63cb37ec-692c-465c-876c-9df771f8ec9f</Field>
+            <Field Name="UUID" Class="char">cd2abe46-59d5-4273-922c-671c71ec17e7</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From6</Field>
             <Field Name="SID_" Class="char">50662</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -690,7 +690,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
           <MATStruct>
-            <Field Name="UUID" Class="char">b00d32ee-8285-4cea-b302-f40e27754787</Field>
+            <Field Name="UUID" Class="char">12ebfb7c-c1af-4b03-923e-d041c4925a84</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From7</Field>
             <Field Name="SID_" Class="char">50663</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -710,7 +710,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
           <MATStruct>
-            <Field Name="UUID" Class="char">605da06a-7e29-4940-bf26-f0fa7fa2b61a</Field>
+            <Field Name="UUID" Class="char">b7820997-1a67-4cc9-a773-de08626fc83a</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From8</Field>
             <Field Name="SID_" Class="char">50664</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -730,7 +730,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
           <MATStruct>
-            <Field Name="UUID" Class="char">1be8ddee-61f8-4303-9831-9744eec54e02</Field>
+            <Field Name="UUID" Class="char">0ba82072-6806-48fd-b048-0247da5e164f</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From9</Field>
             <Field Name="SID_" Class="char">50665</Field>
             <Field Name="SubPath_" Class="char"/>
@@ -1935,7 +1935,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/_rels/system_root.xml.rels
 __MWOPC_PART_BEGIN__ /simulink/systems/system_50632.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[117, 62, 1257, 702]</P>
+  <P Name="Location">[117, 98, 1257, 738]</P>
   <Block BlockType="Reference" Name="Current Sensor" SID="50633">
     <PortCounts lconn="1" rconn="2"/>
     <P Name="Position">[180, 45, 220, 85]</P>
@@ -2992,8 +2992,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_50695.xml
   <P Name="Location">[81, 60, 1221, 700]</P>
   <List ListType="InterfaceData">
     <P Name="Version">0</P>
-    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;71c0defa-3b3e-4d51-bb9b-321d782cd2bf&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;456da1fe-505f-4e55-b98c-a2d1dc3e1157&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;d88d4db3-d77c-4174-acba-c04cadc383e6&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;52512d88-a1f1-40c5-8031-6314bcc9018d&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;5b17e284-fc37-46b3-bfe2-fc20b603956f&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;54265113-bd0b-4b11-8628-24bbd594a80a&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;9124e0b5-7f77-43f1-a6bc-ae92a778cd4a&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;33f81988-7434-4338-ad47-23f121d6a634&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;a290b682-7a47-4a93-8e27-139ab0dfceac&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;7fd9c20f-8106-40ff-aa55-1dad90d49938&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;84d1f97e-b676-4e12-a216-d76febabc0e5&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;4a175578-0215-4871-b47f-6b10e0ec46fe&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;MotorTrq&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;71c0defa-3b3e-4d51-bb9b-321d782cd2bf&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;606920ab-f9be-4241-b4f7-4405b74fc11f&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;MotorMechPwr&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;456da1fe-505f-4e55-b98c-a2d1dc3e1157&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;5d33fd17-6a03-4f14-89bf-c27610ce4519&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:3,&quot;name&quot;:&quot;MotorSpd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;d88d4db3-d77c-4174-acba-c04cadc383e6&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;0b216c3f-f447-42f0-b362-8964794949d7&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:4,&quot;name&quot;:&quot;MotorCurrent&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;52512d88-a1f1-40c5-8031-6314bcc9018d&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;59771ade-ee7a-45e0-96ed-a7c2e4c9576b&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:5,&quot;name&quot;:&quot;MotorElecPwr&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;5b17e284-fc37-46b3-bfe2-fc20b603956f&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;2e8fea0e-7cc8-430d-9bd3-733123348174&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:6,&quot;name&quot;:&quot;MotorVoltage&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;54265113-bd0b-4b11-8628-24bbd594a80a&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;0cb0c38e-6fe1-47c6-8953-55fbed9d00cb&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:7,&quot;name&quot;:&quot;MotorElecLoss&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;9124e0b5-7f77-43f1-a6bc-ae92a778cd4a&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;18642136-d7e1-4651-9294-b1f708232f74&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:8,&quot;name&quot;:&quot;MotorTemp&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;33f81988-7434-4338-ad47-23f121d6a634&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;K&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;5170136a-bcd3-4ee2-bb0a-9a7e15cb2bf1&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;641422a1-9f68-4d11-9832-e0943c357829&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:9,&quot;name&quot;:&quot;TrqCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;a290b682-7a47-4a93-8e27-139ab0dfceac&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;e8f2900e-e3b6-476a-87b1-0975db8beeb9&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:10,&quot;name&quot;:&quot;MotorPwrRate&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;7fd9c20f-8106-40ff-aa55-1dad90d49938&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;04624116-98e8-4350-a2d0-2e53b4f36d7c&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:11,&quot;name&quot;:&quot;HeatCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;84d1f97e-b676-4e12-a216-d76febabc0e5&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;f5414473-beb5-438a-9bd5-8c0723b81140&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;indexOne&quot;:12,&quot;name&quot;:&quot;AmbTemp&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;4a175578-0215-4871-b47f-6b10e0ec46fe&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;K&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;fcf174d9-13f7-457a-ab97-5e8932e1b4af&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;5d46d329-43a1-48d1-a32d-110c513449b9&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;ed17dfbc-d862-41bd-adbb-a15ba9670641&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;5dbb0081-0c7d-4985-9841-6b86dff9009b&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
-    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;5dbb0081-0c7d-4985-9841-6b86dff9009b&quot;}}}</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;551b9f16-098e-4d1e-8ebc-14bde32174ca&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;07f20744-af17-4a71-b9fb-58ea5012dbf6&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;fe9321c1-4fe8-4699-8cf8-8ba950b03c87&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;d88cdc8e-70ad-40d5-999f-ce72257a837e&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;717888cf-6247-470f-a646-86fb31adc02a&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3e629c15-09c1-428d-878a-ac6f7237c1ad&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;2df6f01a-252d-4106-adfc-95fdbd60df51&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1621b754-666d-43d8-8d98-68cbd2e3cc2d&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3bc343c0-d6ec-4f3c-b819-08caa5fd9a53&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1d608691-b090-42b4-9734-47f3caba56ee&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;b4b612c2-90d7-4e6b-889a-032bc3d59a48&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;b87c56f9-f232-4716-b182-564c3acd687f&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;MotorTrq&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;551b9f16-098e-4d1e-8ebc-14bde32174ca&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;c140be33-f4de-4009-860d-ef356f8707c6&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;MotorMechPwr&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;07f20744-af17-4a71-b9fb-58ea5012dbf6&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;c0bc5d7f-b245-41c6-816f-cc9b6ac2036e&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:3,&quot;name&quot;:&quot;MotorSpd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;fe9321c1-4fe8-4699-8cf8-8ba950b03c87&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;09b7972b-21a2-4a71-b08a-f294353da6eb&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:4,&quot;name&quot;:&quot;MotorCurrent&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;d88cdc8e-70ad-40d5-999f-ce72257a837e&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;a7ac17e0-7075-4df6-b4df-d3698145eeec&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:5,&quot;name&quot;:&quot;MotorElecPwr&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;717888cf-6247-470f-a646-86fb31adc02a&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;b6b83eb7-9036-4ef9-8748-c6d13ca91b54&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:6,&quot;name&quot;:&quot;MotorVoltage&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3e629c15-09c1-428d-878a-ac6f7237c1ad&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;1f4ddab8-821a-464f-881a-2b21c74ca4b0&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:7,&quot;name&quot;:&quot;MotorElecLoss&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;2df6f01a-252d-4106-adfc-95fdbd60df51&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;86bcb489-8d4a-49fe-9f33-44e940ed92cd&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:8,&quot;name&quot;:&quot;MotorTemp&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1621b754-666d-43d8-8d98-68cbd2e3cc2d&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;K&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;3103a0e4-a8b3-4e9e-82a9-a628caaa845f&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;233d62f2-0788-4032-966f-60b2edca1528&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:9,&quot;name&quot;:&quot;TrqCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3bc343c0-d6ec-4f3c-b819-08caa5fd9a53&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;af8f1a8a-de23-47e9-9a9d-b86c87f7d785&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:10,&quot;name&quot;:&quot;MotorPwrRate&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1d608691-b090-42b4-9734-47f3caba56ee&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;d36e58a4-9fe0-4b2b-94f9-3da5696ebd45&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:11,&quot;name&quot;:&quot;HeatCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;b4b612c2-90d7-4e6b-889a-032bc3d59a48&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;a4c183b0-96e3-4a6a-8213-d196a69ea580&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;indexOne&quot;:12,&quot;name&quot;:&quot;AmbTemp&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;b87c56f9-f232-4716-b182-564c3acd687f&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;K&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;b6f0bfcd-33a4-4642-b787-0b4eb7b5fb86&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;f3977c44-0831-4c68-8079-3e20b33c221a&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;e0c616ad-7112-4d3f-81ee-f825961db862&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;22743639-74f1-493c-b381-99eacd385fac&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;22743639-74f1-493c-b381-99eacd385fac&quot;}}}</P>
   </List>
   <Block BlockType="Inport" Name="TrqCmd" SID="50696">
     <P Name="Position">[-340, 58, -310, 72]</P>
@@ -3585,11 +3585,11 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   <P Name="Open">on</P>
   <List ListType="InterfaceData">
     <P Name="Version">0</P>
-    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;6414721a-a284-4fac-817d-ea04eabad7af&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;c12fb4e2-7a96-4965-a4ac-1d948ac5efb1&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;a599a653-342d-4d31-92e5-883b5c12c85d&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;TrqCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;6414721a-a284-4fac-817d-ea04eabad7af&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N*m&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;756c90c5-aa0d-4839-ba26-fc607dc95453&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;5f6de3c9-9f75-4ab8-8790-d575f0e08b5a&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;a599a653-342d-4d31-92e5-883b5c12c85d&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;HeatCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;c12fb4e2-7a96-4965-a4ac-1d948ac5efb1&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;W&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;c26f4067-f464-465f-85a1-c4f30a8fe350&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;1bdb2c9e-b737-416b-9b84-aba3c84a4e9e&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;a599a653-342d-4d31-92e5-883b5c12c85d&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;5477946a-d3ee-426c-a892-1e4ea5d84fbb&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
-    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;5477946a-d3ee-426c-a892-1e4ea5d84fbb&quot;}}}</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1998cf6f-19d8-4b84-84cb-21eb65366731&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;83f004be-2095-4a87-b9f9-bf6b72d1e96e&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;738bc176-b084-4b98-851c-aa6eb4367915&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;TrqCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1998cf6f-19d8-4b84-84cb-21eb65366731&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N*m&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;b2895c0a-c368-4439-8be3-c2ed2e00fd97&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;37183e38-aff6-41c3-ab5d-4e8ba458ddf0&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;738bc176-b084-4b98-851c-aa6eb4367915&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;HeatCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;83f004be-2095-4a87-b9f9-bf6b72d1e96e&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;W&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;3dbe4a0c-e0aa-454b-b0c7-c1e4a8b52e12&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;fa84bbe7-abf4-4f30-a6e3-f2fe61e896f6&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;738bc176-b084-4b98-851c-aa6eb4367915&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;70119e6b-bfb8-454f-96e1-c0a70056c1d0&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;70119e6b-bfb8-454f-96e1-c0a70056c1d0&quot;}}}</P>
   </List>
   <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">61673</P>
+  <P Name="SIDHighWatermark">62117</P>
   <Block BlockType="Inport" Name="In Bus Element" SID="50628">
     <P Name="Position">[360, 820, 370, 830]</P>
     <P Name="ZOrder">49199</P>
@@ -3624,7 +3624,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   </Block>
   <Block BlockType="SimscapeBus" Name=" Simscape Bus" SID="50630">
     <PortCounts lconn="2" rconn="1"/>
-    <P Name="Position">[285, 911, 330, 969]</P>
+    <P Name="Position">[270, 911, 315, 969]</P>
     <P Name="ZOrder">49198</P>
     <P Name="BlockMirror">on</P>
     <P Name="HideAutomaticName">off</P>
@@ -3836,14 +3836,14 @@ Rotational Reference</P>
       <P Name="temperature_nominal_unit">K</P>
     </InstanceData>
   </Block>
-  <Block BlockType="CustomCallbackButton" Name="Open app" SID="50742">
+  <Block BlockType="CustomCallbackButton" Name="Open motor efficiency app" SID="50742">
     <P Name="Position">[945, 1050, 1055, 1085]</P>
     <P Name="ZOrder">49224</P>
     <P Name="ForegroundColor">[0.011765, 0.011765, 0.011765]</P>
     <P Name="BackgroundColor">[0.956863, 0.956863, 0.956863]</P>
-    <P Name="ShowName">off</P>
+    <P Name="HideAutomaticName">off</P>
     <P Name="FontSize">12</P>
-    <P Name="Configuration">{&quot;components&quot;:[{&quot;name&quot;:&quot;BackgroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;position&quot;:[0,0,1,1]}},{&quot;name&quot;:&quot;ButtonStateComponent&quot;,&quot;settings&quot;:{&quot;buttonType&quot;:&quot;momentary&quot;,&quot;clickFcn&quot;:&quot;MotorDriveUnitEfficiencyApp_Basic&quot;,&quot;onValue&quot;:1,&quot;position&quot;:[0,0,1,1],&quot;pressDelay&quot;:&quot;500&quot;,&quot;pressFcn&quot;:&quot;&quot;,&quot;repeatInterval&quot;:&quot;0&quot;,&quot;states&quot;:[{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Open app&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Open app&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Open app&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Open app&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;}]}},{&quot;name&quot;:&quot;ForegroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;isForeground&quot;:1,&quot;position&quot;:[0,0,1,1]}}],&quot;derived&quot;:{&quot;blockParameters&quot;:{&quot;AutoActivate&quot;:true,&quot;ButtonText&quot;:&quot;Open app&quot;,&quot;ButtonType&quot;:&quot;Momentary&quot;,&quot;ClickFcn&quot;:&quot;MotorDriveUnitEfficiencyApp_Basic&quot;,&quot;OnValue&quot;:1,&quot;PressDelay&quot;:&quot;500&quot;,&quot;PressFcn&quot;:&quot;&quot;,&quot;RepeatInterval&quot;:&quot;0&quot;,&quot;fixedAspectRatio&quot;:&quot;off&quot;}},&quot;settings&quot;:{&quot;BindingType&quot;:&quot;standalone&quot;,&quot;autoActivate&quot;:true,&quot;backgroundColor&quot;:[244,244,244,1],&quot;backgroundOffset&quot;:0.2,&quot;backgroundOpacity&quot;:1,&quot;fixedAspectRatio&quot;:&quot;off&quot;,&quot;foregroundColor&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;migratedFromLegacy&quot;:true,&quot;useBackgroundColor&quot;:true,&quot;variant&quot;:&quot;callback&quot;,&quot;version&quot;:&quot;R2025a&quot;},&quot;type&quot;:&quot;Button&quot;}</P>
+    <P Name="Configuration">{&quot;components&quot;:[{&quot;name&quot;:&quot;BackgroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;position&quot;:[0,0,1,1]}},{&quot;name&quot;:&quot;ButtonStateComponent&quot;,&quot;settings&quot;:{&quot;buttonType&quot;:&quot;momentary&quot;,&quot;clickFcn&quot;:&quot;MotorDriveUnit_BasicModelEfficiencyApp&quot;,&quot;onValue&quot;:1,&quot;position&quot;:[0,0,1,1],&quot;pressDelay&quot;:&quot;500&quot;,&quot;pressFcn&quot;:&quot;&quot;,&quot;repeatInterval&quot;:&quot;0&quot;,&quot;states&quot;:[{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Open app&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Open app&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Open app&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Open app&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;}]}},{&quot;name&quot;:&quot;ForegroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;isForeground&quot;:1,&quot;position&quot;:[0,0,1,1]}}],&quot;derived&quot;:{&quot;blockParameters&quot;:{&quot;AutoActivate&quot;:true,&quot;ButtonText&quot;:&quot;Open app&quot;,&quot;ButtonType&quot;:&quot;Momentary&quot;,&quot;ClickFcn&quot;:&quot;MotorDriveUnit_BasicModelEfficiencyApp&quot;,&quot;OnValue&quot;:1,&quot;PressDelay&quot;:&quot;500&quot;,&quot;PressFcn&quot;:&quot;&quot;,&quot;RepeatInterval&quot;:&quot;0&quot;,&quot;fixedAspectRatio&quot;:&quot;off&quot;}},&quot;settings&quot;:{&quot;BindingType&quot;:&quot;standalone&quot;,&quot;autoActivate&quot;:true,&quot;backgroundColor&quot;:[244,244,244,1],&quot;backgroundOffset&quot;:0.2,&quot;backgroundOpacity&quot;:1,&quot;fixedAspectRatio&quot;:&quot;off&quot;,&quot;foregroundColor&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;migratedFromLegacy&quot;:true,&quot;useBackgroundColor&quot;:true,&quot;variant&quot;:&quot;callback&quot;,&quot;version&quot;:&quot;R2025a&quot;},&quot;type&quot;:&quot;Button&quot;}</P>
     <P Name="CustomBackgroundColor">{&quot;color&quot;:[0.9568627450980393,0.9568627450980393,0.9568627450980393],&quot;show&quot;:true}</P>
   </Block>
   <Block BlockType="Reference" Name="Rotor damper" SID="50740">
@@ -3891,6 +3891,7 @@ Rotational Reference</P>
     <P Name="ZOrder">49221</P>
     <P Name="BlockMirror">on</P>
     <P Name="BackgroundColor">automatic</P>
+    <P Name="NameLocation">top</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="LibraryVersion">25001000.1</P>
     <P Name="SourceBlock">fl_lib/Mechanical/Rotational Elements/Inertia</P>
@@ -3989,7 +3990,6 @@ Converter</P>
     <P Name="Position">[655, 1037, 705, 1063]</P>
     <P Name="ZOrder">49214</P>
     <P Name="BackgroundColor">automatic</P>
-    <P Name="NameLocation">top</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="LibraryVersion">25001000.1</P>
     <P Name="SourceBlock">sdl_lib/Couplings &amp; Drives/Torsional
@@ -4059,7 +4059,7 @@ Spring-Damper</P>
     </InstanceData>
   </Block>
   <Block BlockType="PMIOPort" Name="HighV" SID="50733">
-    <P Name="Position">[230, 933, 260, 947]</P>
+    <P Name="Position">[215, 933, 245, 947]</P>
     <P Name="ZOrder">49197</P>
     <P Name="Side">Left</P>
   </Block>
@@ -4075,11 +4075,15 @@ Spring-Damper</P>
     <P Name="ZOrder">49203</P>
   </Block>
   <Line LineType="Connection">
-    <P Name="ZOrder">508</P>
-    <P Name="Src">50632#rconn:2</P>
-    <P Name="Points">[0, 35]</P>
+    <P Name="ZOrder">308</P>
+    <P Name="Src">50630#lconn:2</P>
+    <P Name="Points">[16, 0; 0, 15; 94, 0]</P>
+    <Branch ConnectType="DEST_DEST">
+      <P Name="Src">50632#rconn:2</P>
+      <P Name="Points">[0, 7]</P>
+    </Branch>
     <Branch ConnectType="DEST_SRC">
-      <P Name="Points">[0, 37]</P>
+      <P Name="Points">[0, 65]</P>
       <Branch ConnectType="DEST_DEST">
         <P Name="Src">50627#rconn:1</P>
         <P Name="Points">[0, 15; -85, 0]</P>
@@ -4089,136 +4093,133 @@ Spring-Damper</P>
         <P Name="Points">[0, 0]</P>
       </Branch>
     </Branch>
-    <Branch ConnectType="DEST_DEST">
-      <P Name="Src">50630#lconn:2</P>
-      <P Name="Points">[18, 0; 0, 43; 77, 0]</P>
-    </Branch>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">513</P>
-    <P Name="Src">50627#lconn:3</P>
-    <P Name="Points">[0, -55]</P>
-    <Branch ConnectType="DEST_DEST">
+    <P Name="ZOrder">312</P>
+    <P Name="Points">[595, 885; 25, 0]</P>
+    <P Name="Dst">50739#rconn:1</P>
+    <Branch ConnectType="SRC_DEST">
+      <P Name="Src">50627#lconn:3</P>
+      <P Name="Points">[0, -55]</P>
+    </Branch>
+    <Branch ConnectType="SRC_DEST">
       <P Name="Src">50740#lconn:1</P>
       <P Name="Points">[-20, 0; 0, 60]</P>
     </Branch>
-    <Branch ConnectType="DEST_SRC">
-      <P Name="Dst">50739#rconn:1</P>
-    </Branch>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">3892</P>
+    <P Name="ZOrder">3938</P>
     <P Name="Src">50627#lconn:1</P>
     <P Name="Points">[0, -15]</P>
     <P Name="Dst">50632#rconn:1</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">3893</P>
+    <P Name="ZOrder">3939</P>
     <P Name="Src">50693#lconn:1</P>
     <P Name="Dst">50680#rconn:1</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">3894</P>
+    <P Name="ZOrder">3940</P>
     <P Name="Src">50627#lconn:2</P>
     <P Name="Points">[0, -115]</P>
     <P Name="Dst">50694#rconn:1</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">3895</P>
+    <P Name="ZOrder">3941</P>
     <P Name="Src">50630#lconn:1</P>
     <P Name="Dst">50632#lconn:1</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">3896</P>
+    <P Name="ZOrder">3942</P>
     <P Name="Src">50733#rconn:1</P>
     <P Name="Dst">50630#rconn:1</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">3897</P>
+    <P Name="ZOrder">3943</P>
     <P Name="Src">50732#rconn:1</P>
     <P Name="Dst">50679#lconn:1</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">3898</P>
+    <P Name="ZOrder">3944</P>
     <P Name="Src">50693#rconn:1</P>
     <P Name="Dst">50734#rconn:1</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">3899</P>
+    <P Name="ZOrder">3945</P>
     <P Name="Src">50627#rconn:3</P>
     <P Name="Points">[0, 30]</P>
     <P Name="Dst">50732#lconn:1</P>
   </Line>
   <Line>
     <P Name="Name">Elec</P>
-    <P Name="ZOrder">3900</P>
+    <P Name="ZOrder">3946</P>
     <P Name="Labels">[2, 0]</P>
     <P Name="Src">50632#out:1</P>
     <P Name="Points">[0, -8]</P>
     <P Name="Dst">50648#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">3901</P>
+    <P Name="ZOrder">3947</P>
     <P Name="Src">50647#out:1</P>
     <P Name="Dst">50695#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">3902</P>
+    <P Name="ZOrder">3948</P>
     <P Name="Src">50645#out:1</P>
     <P Name="Dst">50695#in:2</P>
   </Line>
   <Line>
     <P Name="Name">Mech</P>
-    <P Name="ZOrder">3903</P>
+    <P Name="ZOrder">3949</P>
     <P Name="Labels">[2, 0]</P>
     <P Name="Src">50680#out:1</P>
     <P Name="Points">[0, -12]</P>
     <P Name="Dst">50649#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">3904</P>
+    <P Name="ZOrder">3950</P>
     <P Name="Src">50629#out:1</P>
     <P Name="Dst">50731#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">3905</P>
+    <P Name="ZOrder">3951</P>
     <P Name="Src">50646#out:1</P>
     <P Name="Dst">50695#in:3</P>
   </Line>
   <Line>
-    <P Name="ZOrder">3908</P>
+    <P Name="ZOrder">3954</P>
     <P Name="Src">50628#out:1</P>
     <P Name="Points">[54, 0]</P>
     <Branch>
-      <P Name="ZOrder">3907</P>
+      <P Name="ZOrder">3953</P>
       <P Name="Points">[0, -25]</P>
       <P Name="Dst">50650#in:1</P>
     </Branch>
     <Branch>
-      <P Name="ZOrder">3906</P>
+      <P Name="ZOrder">3952</P>
       <P Name="Dst">50694#in:1</P>
     </Branch>
   </Line>
   <Line>
-    <P Name="ZOrder">3911</P>
+    <P Name="ZOrder">3957</P>
     <P Name="Src">50695#out:1</P>
     <P Name="Points">[20, 0]</P>
     <Branch>
-      <P Name="ZOrder">3910</P>
+      <P Name="ZOrder">3956</P>
       <P Name="Dst">50651#in:1</P>
     </Branch>
     <Branch>
-      <P Name="ZOrder">3909</P>
+      <P Name="ZOrder">3955</P>
       <P Name="Dst">50735#in:1</P>
     </Branch>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">3912</P>
+    <P Name="ZOrder">3958</P>
     <P Name="Src">50739#lconn:1</P>
     <P Name="Dst">50680#lconn:1</P>
   </Line>
   <Line LineType="Connection">
-    <P Name="ZOrder">3913</P>
+    <P Name="ZOrder">3959</P>
     <P Name="Src">50740#rconn:1</P>
     <P Name="Dst">50741#lconn:1</P>
   </Line>
@@ -4231,7 +4232,7 @@ p, li { white-space: pre-wrap; }
     <P Name="Position">[612, 1094, 839, 1110]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-46</P>
+    <P Name="ZOrder">-28</P>
   </Annotation>
   <Annotation SID="50736">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -4244,7 +4245,7 @@ p, li { white-space: pre-wrap; }
     <P Name="Position">[770, 953, 980, 1006]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-47</P>
+    <P Name="ZOrder">-29</P>
   </Annotation>
   <Annotation SID="50743">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -4255,7 +4256,7 @@ p, li { white-space: pre-wrap; }
     <P Name="Position">[864, 1023, 1141, 1042]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-48</P>
+    <P Name="ZOrder">-30</P>
   </Annotation>
   <Annotation SID="50746">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -4266,7 +4267,7 @@ p, li { white-space: pre-wrap; }
     <P Name="Position">[1035, 904, 1176, 923]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-49</P>
+    <P Name="ZOrder">-31</P>
   </Annotation>
   <Connector>
     <P Name="Annotation">50746</P>
@@ -4425,7 +4426,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">3c062bd7-51a1-4e99-ba3e-7d230cab410b</P>
     </Object>
-    <P Name="BDUuid" Class="char">aaa4586c-358b-437f-8a91-a8b49849f3f7</P>
+    <P Name="BDUuid" Class="char">1d1415d2-64f4-4056-b9ee-70f66d3f5cd5</P>
   </Object>
 </WindowsInfo>
 

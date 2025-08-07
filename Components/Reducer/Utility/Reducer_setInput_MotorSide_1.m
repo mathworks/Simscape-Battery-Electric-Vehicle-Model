@@ -17,11 +17,11 @@ f_unit = "N*m";
 interp_method = "Smooth";
 extrap_method = "Nearest";
 
-result = SignalTool1.getXYVectorsFromSignalDesignMatrix(design_matrix);
+result = SignalTool2.getXYVectorsFromSignalDesignMatrix(design_matrix);
 x = result.X';
 f = result.Y';
 
-SignalTool1.LookupTable1DPlot( ... %[output:group:2e6b65cc] %[output:2be01063]
+SignalTool2.plotLookupTable1D( ... %[output:group:2e6b65cc] %[output:2be01063]
   x, f, ... %[output:2be01063]
   XUnitText = x_unit, ... %[output:2be01063]
   YUnitText = f_unit, ... %[output:2be01063]
@@ -30,9 +30,9 @@ SignalTool1.LookupTable1DPlot( ... %[output:group:2e6b65cc] %[output:2be01063]
   InterpolationInterval = dx, ... %[output:2be01063]
   PlotXLowerBound = x(1), ... %[output:2be01063]
   PlotXUpperBound = x(end) ); %[output:group:2e6b65cc] %[output:2be01063]
-x_text = LiteApp6.Utility.stringify(x);
-f_text = LiteApp6.Utility.stringify(f);
-design_matrix_text = LiteApp6.Utility.stringify(design_matrix);
+x_text = CodeTool1.stringify(x);
+f_text = CodeTool1.stringify(f);
+design_matrix_text = CodeTool1.stringify(design_matrix);
 %%
 %[text] Set up the target PS Lookup Table (1D) block.
 load_system(model_name)

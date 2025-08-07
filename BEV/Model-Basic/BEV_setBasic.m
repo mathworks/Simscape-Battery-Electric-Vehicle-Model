@@ -19,18 +19,18 @@ if NameValuePair.DisplayMessage
 end  % if
 
 set_param(model_name + "/Longitudinal Vehicle", ReferencedSubsystem = "Vehicle1D_Basic_refsub");
-evalMFile("Vehicle1D_Basic_params")
+FileTool2.evalMFile("Vehicle1D_Basic_params")
 
 set_param(model_name + "/High Voltage Battery", ReferencedSubsystem = "BatteryHV_Basic_refsub");
-evalMFile("BatteryHV_Basic_params")
+FileTool2.evalMFile("BatteryHV_Basic_params")
 
 set_param(model_name + "/Motor Drive Unit", ReferencedSubsystem = "MotorDriveUnit_Basic_refsub");
-evalMFile("MotorDriveUnit_Basic_params")
+FileTool2.evalMFile("MotorDriveUnit_Basic_params")
 
 set_param(model_name + "/Reduction Gear", ReferencedSubsystem = "Reducer_Basic_refsub");
-evalMFile("Reducer_Basic_params")
+FileTool2.evalMFile("Reducer_Basic_params")
 
 set_param(model_name + "/Controller & Environment/BEV Controller", ReferencedSubsystem = "BEVController_Basic_refsub");
-evalMFile("BEVController_Basic_params")
+FileTool2.evalMFile("BEVController_Basic_params")
 
 end  % function

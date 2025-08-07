@@ -24,13 +24,13 @@ Reducer_setInput_MotorSide_Constant
 
 ```matlab
 simOut = sim(model_name);
-tt = SignalTool1.getTimetableFromLoggedSignal(simOut.logsout);
+tt = SignalTool2.getTimetableFromLoggedSignal(simOut.logsout);
 ```
 
 ```matlab
 varnames = string(tt.Properties.VariableNames);
 for idx = 1 : numel(varnames)
-  SignalTool1.TimedDataPlot(TimedData=tt, SignalName=varnames(idx));
+  SignalTool2.TimedDataPlot(TimedData=tt, SignalName=varnames(idx));
 end  % for
 ```
 

@@ -62,7 +62,7 @@ classdef test_Reducer_Basic < matlab.unittest.TestCase
     function PassingTest_1(testcase)
       % Run code, for example, Reducer_Basic_params.
       target_name = testcase.ComponentID + "_" + testcase.ModelID + "_params";
-      target_fullpath = FileTool1.getFileFullPath(target_name);
+      target_fullpath = FileTool2.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -74,7 +74,7 @@ classdef test_Reducer_Basic < matlab.unittest.TestCase
 
     function PassingTest_4(~)
       target_name = "Reducer_Basic_LoggingSetup";
-      target_fullpath = FileTool1.getFileFullPath(target_name);
+      target_fullpath = FileTool2.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function

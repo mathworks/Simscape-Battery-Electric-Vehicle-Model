@@ -44,8 +44,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2020-08-04T16:28:06Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-10T12:14:21Z</dcterms:modified>
-  <cp:revision>11.1</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-05T07:13:24Z</dcterms:modified>
+  <cp:revision>11.3</cp:revision>
   <cp:version>R2025a</cp:version>
 </cp:coreProperties>
 
@@ -67,11 +67,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2025a Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2943329</version>
+  <version>25.1.0.2973910</version>
   <release>R2025a</release>
-  <description></description>
-  <date>Apr 16 2025</date>
-  <checksum>423651790</checksum>
+  <description>Update 1</description>
+  <date>Jul 03 2025</date>
+  <checksum>1124574855</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -111,7 +111,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.1&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.3&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="MultithreadedSim">on</P>
@@ -967,10 +967,13 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
                     "_mw_element_type":"Opaque",
                     "busObjects":null,
                     "leafNodes":[
-                        "Vehicle",
-                        "Info",
-                        "MotorDrive",
-                        "BatteryHV"
+                        "Vehicle.RoadGrade",
+                        "Vehicle.BrakeForce",
+                        "Info.VehSpdRef",
+                        "Info.MotorSpdRef",
+                        "MotorDrive.TrqCmd",
+                        "MotorDrive.HeatCmd",
+                        "BatteryHV.HeatCmd"
                     ],
                     "version":"0"
                 },
@@ -1064,7 +1067,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/_rels/system_root.xml.rels
 __MWOPC_PART_BEGIN__ /simulink/systems/system_52303.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[59, 499, 1199, 1139]</P>
+  <P Name="Location">[117, 98, 1257, 738]</P>
   <Block BlockType="Inport" Name="RoadGrade" SID="52304">
     <P Name="Position">[175, 58, 205, 72]</P>
     <P Name="ZOrder">26287</P>
@@ -1226,7 +1229,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <System>
   <P Name="Location">[34, 147, 1174, 787]</P>
   <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">52505</P>
+  <P Name="SIDHighWatermark">62117</P>
   <Block BlockType="Inport" Name="FromPlant" SID="2239">
     <P Name="Position">[425, 223, 455, 237]</P>
     <P Name="ZOrder">26244</P>
@@ -1243,22 +1246,22 @@ open_system(gcb, &quot;force&quot;)
     <P Name="ReferencedSubsystem">BEVController_Basic_refsub</P>
     <PortProperties>
       <Port Type="in" Index="1">
-        <P Name="BlockName">Inport</P>
+        <P Name="BlockName">VehSpdRef</P>
       </Port>
       <Port Type="in" Index="2">
-        <P Name="BlockName">Inport1</P>
+        <P Name="BlockName">FromPlant</P>
       </Port>
       <Port Type="out" Index="1">
-        <P Name="BlockName">Outport</P>
+        <P Name="BlockName">Info</P>
       </Port>
       <Port Type="out" Index="2">
-        <P Name="BlockName">Outport1</P>
+        <P Name="BlockName">Vehicle</P>
       </Port>
       <Port Type="out" Index="3">
-        <P Name="BlockName">Outport2</P>
+        <P Name="BlockName">MotorDrive</P>
       </Port>
       <Port Type="out" Index="4">
-        <P Name="BlockName">Outport3</P>
+        <P Name="BlockName">BatteryHV</P>
       </Port>
     </PortProperties>
   </Block>
@@ -1266,7 +1269,6 @@ open_system(gcb, &quot;force&quot;)
     <PortCounts in="2" out="1"/>
     <P Name="Position">[730, 24, 830, 91]</P>
     <P Name="ZOrder">26292</P>
-    <P Name="ContentPreviewEnabled">on</P>
     <System Ref="system_52311"/>
   </Block>
   <Block BlockType="Constant" Name="Road Grade" SID="15">
@@ -1278,12 +1280,11 @@ open_system(gcb, &quot;force&quot;)
     <PortCounts in="2" out="1"/>
     <P Name="Position">[865, 121, 965, 199]</P>
     <P Name="ZOrder">26287</P>
-    <P Name="ContentPreviewEnabled">on</P>
     <System Ref="system_52303"/>
   </Block>
   <Block BlockType="SubSystem" Name="Vehicle speed reference" SID="52319">
     <PortCounts out="1"/>
-    <P Name="Position">[330, 77, 455, 163]</P>
+    <P Name="Position">[325, 79, 455, 121]</P>
     <P Name="ZOrder">26295</P>
     <P Name="OpenFcn">% Look under mask:
 open_system(gcb, &quot;force&quot;)
@@ -1357,59 +1358,59 @@ open_system(gcb, &quot;force&quot;)
     </List>
   </Block>
   <Line>
-    <P Name="ZOrder">961</P>
+    <P Name="ZOrder">985</P>
     <P Name="Src">2239#out:1</P>
     <P Name="Dst">52264#in:2</P>
   </Line>
   <Line>
-    <P Name="ZOrder">962</P>
+    <P Name="ZOrder">986</P>
     <P Name="Src">15#out:1</P>
     <P Name="Dst">52303#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">963</P>
+    <P Name="ZOrder">987</P>
     <P Name="Src">52264#out:2</P>
     <P Name="Dst">52303#in:2</P>
   </Line>
   <Line>
-    <P Name="ZOrder">964</P>
+    <P Name="ZOrder">988</P>
     <P Name="Src">52303#out:1</P>
     <P Name="Dst">52307#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">965</P>
+    <P Name="ZOrder">989</P>
     <P Name="Src">52264#out:3</P>
     <P Name="Dst">52309#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">966</P>
+    <P Name="ZOrder">990</P>
     <P Name="Src">52264#out:4</P>
     <P Name="Dst">52310#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">967</P>
+    <P Name="ZOrder">991</P>
     <P Name="Src">52264#out:1</P>
     <P Name="Points">[50, 0; 0, -70]</P>
     <P Name="Dst">52311#in:2</P>
   </Line>
   <Line>
-    <P Name="ZOrder">968</P>
+    <P Name="ZOrder">992</P>
     <P Name="Src">52311#out:1</P>
     <P Name="Dst">52308#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">971</P>
+    <P Name="ZOrder">995</P>
     <P Name="Src">52319#out:1</P>
     <P Name="Points">[53, 0]</P>
     <Branch>
-      <P Name="ZOrder">970</P>
-      <P Name="Points">[0, 45]</P>
-      <P Name="Dst">52264#in:1</P>
+      <P Name="ZOrder">994</P>
+      <P Name="Points">[0, -60]</P>
+      <P Name="Dst">52311#in:1</P>
     </Branch>
     <Branch>
-      <P Name="ZOrder">969</P>
-      <P Name="Points">[0, -80]</P>
-      <P Name="Dst">52311#in:1</P>
+      <P Name="ZOrder">993</P>
+      <P Name="Points">[0, 65]</P>
+      <P Name="Dst">52264#in:1</P>
     </Branch>
   </Line>
   <Annotation SID="2187">
@@ -1421,7 +1422,7 @@ p, li { white-space: pre-wrap; }
     <P Name="Position">[596, 308, 823, 324]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-34</P>
+    <P Name="ZOrder">-23</P>
   </Annotation>
 </System>
 
@@ -1526,7 +1527,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">e60b3c51-1890-4c33-8fec-cf8028969947</P>
     </Object>
-    <P Name="BDUuid" Class="char">47f7480b-da65-4dec-84ed-a1fd8fe55672</P>
+    <P Name="BDUuid" Class="char">70edec09-cd5f-475b-9c4d-b5c60257efa3</P>
   </Object>
 </WindowsInfo>
 

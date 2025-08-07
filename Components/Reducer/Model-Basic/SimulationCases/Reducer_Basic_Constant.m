@@ -9,11 +9,11 @@ Reducer_setInput_AxleSide_Constant %[output:98e7173e]
 Reducer_setInput_MotorSide_Constant %[output:0a11acf8]
 %[text] 
 simOut = sim(model_name);
-tt = SignalTool1.getTimetableFromLoggedSignal(simOut.logsout);
+tt = SignalTool2.getTimetableFromLoggedSignal(simOut.logsout);
 %[text] 
 varnames = string(tt.Properties.VariableNames);
 for idx = 1 : numel(varnames) %[output:group:00bd3969]
-  SignalTool1.TimedDataPlot(TimedData=tt, SignalName=varnames(idx)); %[output:55f937bf] %[output:6dd4454a] %[output:5cb72f79]
+  SignalTool2.plotTimedData(TimedData=tt, SignalName=varnames(idx)); %[output:55f937bf] %[output:6dd4454a] %[output:5cb72f79]
 end  % for %[output:group:00bd3969]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 

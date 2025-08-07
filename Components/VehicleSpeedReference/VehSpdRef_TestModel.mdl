@@ -46,8 +46,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2020-07-03T11:51:10Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-10T14:46:14Z</dcterms:modified>
-  <cp:revision>11.7</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-04T13:15:37Z</dcterms:modified>
+  <cp:revision>11.9</cp:revision>
   <cp:version>R2025a</cp:version>
 </cp:coreProperties>
 
@@ -69,11 +69,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2025a Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2943329</version>
+  <version>25.1.0.2973910</version>
   <release>R2025a</release>
-  <description></description>
-  <date>Apr 16 2025</date>
-  <checksum>423651790</checksum>
+  <description>Update 1</description>
+  <date>Jul 03 2025</date>
+  <checksum>1124574855</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -122,7 +122,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.7&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.9&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="ShowPortUnits">on</P>
@@ -194,7 +194,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
     <Array PropName="Components" Type="Simulink.ConfigComponent" Dimension="11*1">
       <Object ObjectID="2" ClassName="Simulink.SolverCC">
         <P Name="StartTime" Class="char">0.0</P>
-        <P Name="StopTime" Class="char">200</P>
+        <P Name="StopTime" Class="char">220</P>
         <P Name="AbsTol" Class="char">1e-3</P>
         <P Name="AutoScaleAbsTol" Class="char">off</P>
         <P Name="FixedStep" Class="char">auto</P>
@@ -1229,16 +1229,16 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Position">[890, 119, 920, 151]</P>
     <P Name="ZOrder">26348</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true],&quot;LineStyle&quot;:[&quot;-&quot;],&quot;LineWidth&quot;:[1.5],&quot;BarWidth&quot;:[0.9],&quot;LineColor&quot;:[&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1],&quot;LineEdgeAlpha&quot;:[1],&quot;Marker&quot;:[&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803]],&quot;ChannelNames&quot;:[&quot;&quot;],&quot;DefaultLegendLabel&quot;:[&quot;Vehicle speed reference kph&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[1],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:0,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Manual&quot;,&quot;ExpandOnly&quot;:true,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:true,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[1,1],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:78.75,&quot;MaxYLimReal&quot;:78.75,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-8.749999999999998,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:78.75,&quot;MaxYLimReal&quot;:78.75,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-8.749999999999998,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
+    <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true],&quot;LineStyle&quot;:[&quot;-&quot;],&quot;LineWidth&quot;:[1.5],&quot;BarWidth&quot;:[0.9],&quot;LineColor&quot;:[&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1],&quot;LineEdgeAlpha&quot;:[1],&quot;Marker&quot;:[&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803]],&quot;ChannelNames&quot;:[&quot;&quot;],&quot;DefaultLegendLabel&quot;:[&quot;Vehicle speed reference kph&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[1],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;Vehicle speed reference kph&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:0,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Manual&quot;,&quot;ExpandOnly&quot;:true,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:true,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[1,1],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:112.5,&quot;MaxYLimReal&quot;:112.5,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-12.499999999999996,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:112.5,&quot;MaxYLimReal&quot;:112.5,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-12.499999999999996,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
     <P Name="WindowPosition">[1163.000000,961.000000,560.000000,420.000000,]</P>
     <P Name="Visible">on</P>
     <P Name="ScopeFrameLocation">window</P>
     <P Name="WasSavedAsWebScope">on</P>
     <P Name="Floating">off</P>
-    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:111.375,&quot;MaxYLimReal&quot;:111.375,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-12.374999999999996,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
+    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:112.5,&quot;MaxYLimReal&quot;:112.5,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-12.499999999999996,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
     <P Name="NumInputPorts">1</P>
-    <P Name="ActiveDisplayYMinimum">-12.374999999999996</P>
-    <P Name="ActiveDisplayYMaximum">111.375</P>
+    <P Name="ActiveDisplayYMinimum">-12.499999999999996</P>
+    <P Name="ActiveDisplayYMaximum">112.5</P>
   </Block>
   <Block BlockType="TransferFcn" Name="Transfer Fcn" SID="808">
     <P Name="Position">[765, 39, 855, 81]</P>
@@ -1363,8 +1363,8 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="LoadSaveID" Class="char">457</P>
           <P Name="Extents" Class="double">[1614.0, 564.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-375.1640625, -140.0]</P>
-          <P Name="SceneRectInView" Class="double">[-375.1640625, -140.0, 1076.0, 376.0]</P>
+          <P Name="Offset" Class="double">[-329.62890625, -170.5]</P>
+          <P Name="SceneRectInView" Class="double">[-329.62890625, -170.5, 1076.0, 376.0]</P>
         </Object>
         <Object ObjectID="7">
           <P Name="IsActive" Class="logical">0</P>

@@ -57,10 +57,10 @@ classdef test_Reducer < matlab.unittest.TestCase
       model_name = "Reducer_TestModel";
       image_filename = "screenshot-" + model_name + ".png";
 
-      source_fullpath = FileTool1.getFileFullPath(model_name + ".mdl");
-      destination_fullpath = FileTool1.getFileFullPath(image_filename);
+      source_fullpath = FileTool2.getFileFullPath(model_name + ".mdl");
+      destination_fullpath = FileTool2.getFileFullPath(image_filename);
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         load_system(model_name)
 
@@ -69,13 +69,13 @@ classdef test_Reducer < matlab.unittest.TestCase
         % This also updates the canvas rendering.
         set_param(model_name, SimulationCommand = "update")
 
-        screenshotSimulink( ...
+        ModelTool1.screenshotSimulink( ...
           OutputFileName = image_filename, ...
           SimulinkModelName = model_name, ...
           SaveFolder = pwd );
       end  % if
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function

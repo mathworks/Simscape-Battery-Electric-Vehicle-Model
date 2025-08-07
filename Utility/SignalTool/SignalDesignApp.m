@@ -4,13 +4,17 @@ function App = SignalDesignApp(BlockPath)
 
 arguments (Input)
   BlockPath (1,1) string = ""
-end
+end  % arguments
 
-app_main = SignalTool1.SignalDesignAppMain(BlockPath=BlockPath);
+arguments (Output)
+  App SignalTool2.SignalDesignAppMain {mustBeScalarOrEmpty}
+end  % arguments
+
+app_main = SignalTool2.SignalDesignAppMain(BlockPath=BlockPath);
 
 app_main.Window.HeaderUI.AppSourceName = mfilename;
 
-if nargout >= 1
+if nargout > 0
   App = app_main;
 end  % if
 end  % function

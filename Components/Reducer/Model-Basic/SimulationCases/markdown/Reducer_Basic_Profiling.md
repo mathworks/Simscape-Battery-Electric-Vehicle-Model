@@ -1,24 +1,24 @@
 
-<a id="TMP_279a"></a>
+<a id="TMP_2110"></a>
 
 # <span style="color:rgb(213,80,0)">Profiling simulation with Reducer Basic model</span>
 <!-- Begin Toc -->
 
 ## Table of Contents
-&emsp;[Set up](#TMP_0d81)
+&emsp;[Set up](#TMP_7149)
  
-&emsp;[Run simulation normally](#TMP_4885)
+&emsp;[Run simulation normally](#TMP_60a3)
  
-&emsp;[Step size](#TMP_6c1d)
+&emsp;[Step size](#TMP_19ee)
  
-&emsp;[Profiling simulation](#TMP_61cd)
+&emsp;[Profiling simulation](#TMP_5c44)
  
 <!-- End Toc -->
 
 Run simulation using the Solver Profiler's `solverprofiler.profileModel` function. See the documentation about the function for details.
 
 -  [https://www.mathworks.com/help/simulink/slref/solverprofiler.profilemodel.html](https://www.mathworks.com/help/simulink/slref/solverprofiler.profilemodel.html) 
-<a id="TMP_0d81"></a>
+<a id="TMP_7149"></a>
 
 # Set up
 ```matlab
@@ -26,7 +26,7 @@ model_name = "Reducer_TestModel";
 target_folder = fullfile(currentProject().RootFolder, "Components", "Reducer", "Model-Basic", "SimulationCases");
 data_fullpath = fullfile(target_folder, "profiling_data.mat");
 ```
-<a id="TMP_4885"></a>
+<a id="TMP_60a3"></a>
 
 # Run simulation normally
 ```matlab
@@ -57,10 +57,10 @@ Run simulation normally and plot results.
 
 ```matlab
 simOut = sim(model_name);
-tt = SignalTool1.getTimetableFromLoggedSignal(simOut.logsout);
+tt = SignalTool2.getTimetableFromLoggedSignal(simOut.logsout);
 varnames = string(tt.Properties.VariableNames);
 for idx = 1 : numel(varnames)
-  SignalTool1.TimedDataPlot(TimedData=tt, SignalName=varnames(idx));
+  SignalTool2.TimedDataPlot(TimedData=tt, SignalName=varnames(idx));
 end  % for
 ```
 
@@ -72,37 +72,30 @@ end  % for
 
 <center><img src="media/Reducer_Basic_Profiling_media/figure_4.png" width="702" alt="figure_4.png"></center>
 
-<a id="TMP_6c1d"></a>
+<a id="TMP_19ee"></a>
 
 # Step size
 ```matlab
 fig = figure;
 fig.Position(3:4) = [800, 200];  % width, height
-SignalTool1.DifferencePlot(simOut.tout, NewFigure=false, ParentAxes=axes(fig), ...
+SignalTool2.DifferencePlot(simOut.tout, NewFigure=false, ParentAxes=axes(fig), ...
   Title="Step size", XLabel="Time", XUnitText="s", YUnitText="s")
 ```
 
 <center><img src="media/Reducer_Basic_Profiling_media/figure_5.png" width="803" alt="figure_5.png"></center>
 
 
+```matlabTextOutput
+Error using SignalTool2.DifferencePlot (line 14)
+Invalid argument at position 1. Unable to resolve the name 'SignalTool1.mustBeStrictAscend'.
+```
+
 ```matlab
 step_size_data = diff(simOut.tout);
 disp("Maximum step size: " + max(step_size_data))
-```
-
-```matlabTextOutput
-Maximum step size: 2
-```
-
-```matlab
 fprintf("Minimum step size: %e", min(step_size_data))
 ```
-
-```matlabTextOutput
-Minimum step size: 3.972686e-03
-```
-
-<a id="TMP_61cd"></a>
+<a id="TMP_5c44"></a>
 
 # Profiling simulation
 
@@ -125,9 +118,6 @@ result = solverprofiler.profileModel( ...
   SaveZCSignals = "on" );
 ```
 
-<center><img src="media/Reducer_Basic_Profiling_media/figure_6.png" width="614" alt="figure_6.png"></center>
-
-
 View the high\-level summary of profiling result. See the documentation for details.
 
 -  `tStart` \- Start time in seconds for profiling. Can be different from simulation start time. 
@@ -145,23 +135,6 @@ View the high\-level summary of profiling result. See the documentation for deta
 ```matlab
 disp(result.summary)
 ```
-
-```matlabTextOutput
-             solver: 'auto(daessc)'
-             tStart: 0
-              tStop: 100
-             absTol: 1.0000e-06
-             relTol: 1.0000e-03
-               hMax: 2
-           hAverage: 0.3759
-              steps: 266
-        profileTime: 0.0612
-           zcNumber: 0
-        resetNumber: 1
-     jacobianNumber: 55
-    exceptionNumber: 92
-```
-
 
 Open the Solver Profiler with the saved session data.
 

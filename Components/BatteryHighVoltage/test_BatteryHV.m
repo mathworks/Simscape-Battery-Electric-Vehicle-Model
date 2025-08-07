@@ -13,7 +13,7 @@ classdef test_BatteryHV < matlab.unittest.TestCase
   % Copyright 2025 The MathWorks, Inc.
 
   properties
-    ModelName (1,1) string = "BatteryHV_TestModel"
+    ModelName (1,1) string = "testModel_BatteryHV"
   end  % properties
 
   methods (TestMethodSetup)
@@ -40,7 +40,7 @@ classdef test_BatteryHV < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(~)
-      BatteryHV_TestModelSetup  % !test-target
+      testModelSetup_BatteryHV  % !test-target
     end  % function
 
     function PassingTest_2(testcase)
@@ -55,13 +55,30 @@ classdef test_BatteryHV < matlab.unittest.TestCase
       BatteryHV_main_script  % !test-target
     end  % function
 
+    function test_SubsystemReferenceBlockSettings(testcase)
+      model_name = testcase.ModelName;
+      load_system(model_name)
+
+      % There must be a Subsystem Reference block called "Inputs" in the top layer.
+      block_path = model_name + "/Inputs";
+
+      % open_system(gcb, "force")
+      openFcn_text = string(get_param(block_path, "OpenFcn"));
+      target_text = lineBoundary("start") + "open_system(gcb, ""force"")";
+      verifyTrue(testcase, contains(openFcn_text, target_text));
+
+      % 'opaque-with-ports'
+      actual = string(get_param(block_path, "MaskIconOpaque"));
+      verifyEqual(testcase, actual, "opaque-with-ports")
+    end  % function
+
     %% Up-to-date tests
 
     function html_is_uptodate(testcase)
-      source_fullpath = FileTool1.getFileFullPath("BatteryHV_main_script.m");
-      destination_fullpath = FileTool1.getFileFullPath("BatteryHV_main_script.html");
+      source_fullpath = FileTool2.getFileFullPath("BatteryHV_main_script.m");
+      destination_fullpath = FileTool2.getFileFullPath("BatteryHV_main_script.html");
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % The export command saves the generated file in the current working folder (pwd).
         % When this test runs, pwd is the folder where this test code file exists.
@@ -70,7 +87,7 @@ classdef test_BatteryHV < matlab.unittest.TestCase
         verifyEqual(testcase, actual_path, expected_path)
       end  % if
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
       verifyFalse(testcase, newer)
     end  % function
 
@@ -83,7 +100,7 @@ classdef test_BatteryHV < matlab.unittest.TestCase
 
       % Select Live Scripts.
       % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
-      live_script_file_collection = select(mfile_collection, @(p) FileTool1.isPlainTextLiveScript(p));
+      live_script_file_collection = select(mfile_collection, @(p) FileTool2.isPlainTextLiveScript(p));
 
       [folder_path, base_file_name, ~] = fileparts(live_script_file_collection.paths');
       markdown_files = fullfile(folder_path, "markdown", base_file_name + ".md");
@@ -100,12 +117,12 @@ classdef test_BatteryHV < matlab.unittest.TestCase
 
     function markdowns_are_uptodate(testcase)
       % Make sure that all Live Scripts have been converted to markdown files.
-      n = FileTool1.batchGenerateMarkdowns( ...
+      n = FileTool2.batchGenerateMarkdowns( ...
         LiveScriptFolderNames = pwd, ...
         MarkdownFolderPath = "markdown");
 
       if n > 0
-        n = FileTool1.batchGenerateMarkdowns( ...
+        n = FileTool2.batchGenerateMarkdowns( ...
           LiveScriptFolderNames = pwd, ...
           MarkdownFolderPath = "markdown", DisplayInfo = true);
       end  % if
@@ -118,13 +135,13 @@ classdef test_BatteryHV < matlab.unittest.TestCase
     end  % function
 
     function model_screenshot_is_uptodate(testcase)
-      model_name = "BatteryHV_TestModel";
+      model_name = "testModel_BatteryHV";
       image_filename = "screenshot-" + model_name + ".png";
 
-      source_fullpath = FileTool1.getFileFullPath(model_name + ".mdl");
-      destination_fullpath = FileTool1.getFileFullPath(image_filename);
+      source_fullpath = FileTool2.getFileFullPath(model_name + ".mdl");
+      destination_fullpath = FileTool2.getFileFullPath(image_filename);
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         load_system(model_name)
 
@@ -133,13 +150,13 @@ classdef test_BatteryHV < matlab.unittest.TestCase
         % This also updates the canvas rendering.
         set_param(model_name, SimulationCommand = "update")
 
-        screenshotSimulink( ...
+        ModelTool1.screenshotSimulink( ...
           OutputFileName = image_filename, ...
           SimulinkModelName = model_name, ...
           SaveFolder = pwd );
       end  % if
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function

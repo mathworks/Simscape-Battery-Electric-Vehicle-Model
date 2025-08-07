@@ -86,13 +86,13 @@ classdef testui_SignalDesignApp < matlab.uitest.TestCase
 
     function app_screenshot_is_uptodate(testcase)
 
-      source_fullpath = FileTool1.getFileFullPath("SignalDesignApp.m");
-      destination_fullpath = FileTool1.getFileFullPath("screenshot-SignalDesignApp.png");
+      source_fullpath = FileTool2.getFileFullPath("SignalDesignApp.m");
+      destination_fullpath = FileTool2.getFileFullPath("screenshot-SignalDesignApp.png");
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % Display the time stamps.
-        FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+        FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
 
         testcase.App = SignalDesignApp;
 
@@ -106,7 +106,7 @@ classdef testui_SignalDesignApp < matlab.uitest.TestCase
         testcase.App = 0;
       end  % if
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function

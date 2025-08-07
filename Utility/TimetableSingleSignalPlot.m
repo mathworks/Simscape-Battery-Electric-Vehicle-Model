@@ -25,7 +25,7 @@ arguments (Input)
 
   NameValuePair.LineWidth (1,1) {mustBePositive} = 1.5
 
-  NameValuePair.XLabel (1,1) string = LiteApp6.Utility.i18n("Time")
+  NameValuePair.XLabel (1,1) string = CodeTool1.i18n("Time")
 
   % If timetable's Properties.VariableUnits is not defined, this is used.
   % If timetable's Properties.VariableUnits is defined, this is ignored.
@@ -45,7 +45,7 @@ errorID = "TimetableSingleSignalPlot:";
 
 if isempty(NameValuePair.Timetable)
   id = errorID + "InvalidTimetable";
-  msg = LiteApp6.Utility.i18n("Empty Timetable is not allowed.");
+  msg = CodeTool1.i18n("Empty Timetable is not allowed.");
 
   throw(MException(id, msg))
 
@@ -54,7 +54,7 @@ time_table = NameValuePair.Timetable;
 
 if isempty(NameValuePair.SignalName) || NameValuePair.SignalName==""
   id = errorID + "InvalidSignalName";
-  msg = LiteApp6.Utility.i18n("Empty SignalName is not allowed.");
+  msg = CodeTool1.i18n("Empty SignalName is not allowed.");
 
   throw(MException(id, msg))
 
@@ -118,7 +118,7 @@ errorID = "minimumYRange:";
 
 if isempty(ydata)
   id = errorID + "InvalidYData";
-  msg = LiteApp6.Utility.i18n("Empty ydata is not allowed.");
+  msg = CodeTool1.i18n("Empty ydata is not allowed.");
 
   throw(MException(id, msg))
 

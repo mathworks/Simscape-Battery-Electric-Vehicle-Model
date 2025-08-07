@@ -18,7 +18,7 @@
 %[text] - **Simple system** model simulates voltage, current, and temperature using equation-based model.
 %[text] - **System** model simulates voltage, current, temperature as well as charing dynamics, fading, and aging using equation-based model.
 %[text] - **Table-based system** model simulates the same quantities as System model, but uses table data for terminal voltage and resistance. \
-%[text] Open the [High voltage battery test model](matlab:openFile('BatteryHV_TestModel')).
+%[text] Open the [High voltage battery test model](matlab:openFile('testModel_BatteryHV')).
 %[text] See **README.md** in the **Components \> BatteryHighVoltage** folder for more informaton.
 %[text] 
 %[text] ### Motor Drive Unit

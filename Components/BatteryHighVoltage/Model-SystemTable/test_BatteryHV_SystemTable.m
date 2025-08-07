@@ -59,25 +59,23 @@ classdef test_BatteryHV_SystemTable < matlab.unittest.TestCase
 
     function PassingTest_1(testcase)
       target_name = "BatteryHV_" + testcase.ModelID + "_params";
-      target_fullpath = FileTool1.getFileFullPath(target_name);
+      target_fullpath = FileTool2.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
-    end  % function
-
-    function PassingTest_2(testcase)
-      target_filename = "BatteryHV_setRefsub_" + testcase.ModelID;
-      target_fullpath = FileTool1.getFileFullPath(target_filename);
-      disp("Testing: " + target_fullpath)
-      evalin("base", target_filename)  % !test-target
     end  % function
 
     %% Test
 
     function simulation_ends_quickly(testcase)
-      target_model = "BatteryHV_TestModel";
+      target_model = "testModel_BatteryHV";
       load_system(target_model)
-      setup_command = "BatteryHV_setRefsub_" + testcase.ModelID;
-      evalin("base", setup_command)
+
+      params_script = "BatteryHV_" + testcase.ModelID + "_params";
+      evalin("base", params_script)
+
+      refsub = "BatteryHV_" + testcase.ModelID + "_refsub";
+      set_param(target_model + "/High Voltage Battery", ReferencedSubsystem = refsub);
+
       % Test that default simulation ends reasonably quickly.
       tic
       sim(target_model);

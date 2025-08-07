@@ -20,11 +20,11 @@ f_unit = "N*m";
 interp_method = "Smooth";
 extrap_method = "Nearest";
 
-result = SignalTool1.getXYVectorsFromSignalDesignMatrix(design_matrix);
+result = SignalTool2.getXYVectorsFromSignalDesignMatrix(design_matrix);
 x = result.X';
 f = result.Y';
 
-SignalTool1.LookupTable1DPlot( ...
+SignalTool2.LookupTable1DPlot( ...
   x, f, ...
   XUnitText = x_unit, ...
   YUnitText = f_unit, ...
@@ -39,9 +39,9 @@ SignalTool1.LookupTable1DPlot( ...
 
 
 ```matlab
-x_text = LiteApp6.Utility.stringify(x);
-f_text = LiteApp6.Utility.stringify(f);
-design_matrix_text = LiteApp6.Utility.stringify(design_matrix);
+x_text = CodeTool1.stringify(x);
+f_text = CodeTool1.stringify(f);
+design_matrix_text = CodeTool1.stringify(design_matrix);
 ```
 
 Set up the target PS Lookup Table (1D) block.

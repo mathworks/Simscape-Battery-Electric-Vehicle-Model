@@ -18,35 +18,38 @@ design_matrix = [
   4 5 -50 ;
   6 7 50 ;
   8 10 0 ];
-dx = 0.01;
-x_unit = "s";
-f_unit = "N*m";
-interp_method = "Smooth";
-extrap_method = "Nearest";
 
-result = SignalTool1.getXYVectorsFromSignalDesignMatrix(design_matrix);
+result = SignalTool2.getXYVectorsFromSignalDesignMatrix(design_matrix);
 x = result.X';
 f = result.Y';
 
-SignalTool1.LookupTable1DPlot( ...
+% "Table grid vector" parameter in PS Lookup Table (1D) block.
+x_text = CodeTool1.stringify(x);
+x_unit = "s";
+
+% "Table values" parameter in PS Lookup Table (1D) block.
+f_text = CodeTool1.stringify(f);
+f_unit = "N*m";
+
+interp_method = "Smooth";
+extrap_method = "Nearest";
+
+% Add the design matrix as text to the Description property of the target block.
+design_matrix_text = CodeTool1.stringify(design_matrix);
+
+SignalTool2.LookupTable1DPlot( ...
   x, f, ...
   XUnitText = x_unit, ...
   YUnitText = f_unit, ...
   Interpolation = interp_method, ...
   Extrapolation = extrap_method, ...
-  InterpolationInterval = dx, ...
+  InterpolationInterval = 0.01, ... for visualization. adjust as needed.
   PlotXLowerBound = x(1), ...
   PlotXUpperBound = x(end) );
 ```
 
 <center><img src="media/Reducer_setInput_AxleSide_1_media/figure_0.png" width="562" alt="figure_0.png"></center>
 
-
-```matlab
-x_text = LiteApp6.Utility.stringify(x);
-f_text = LiteApp6.Utility.stringify(f);
-design_matrix_text = LiteApp6.Utility.stringify(design_matrix);
-```
 
 Set up the target PS Lookup Table (1D) block.
 

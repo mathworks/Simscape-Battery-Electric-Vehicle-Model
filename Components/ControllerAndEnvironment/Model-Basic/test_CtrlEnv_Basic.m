@@ -60,7 +60,7 @@ classdef test_CtrlEnv_Basic < matlab.unittest.TestCase
     function PassingTest_1(testcase)
       % Run script, for example, CtrlEnv_Basic_params.
       target_name = "CtrlEnv_" + testcase.ModelID + "_params";
-      target_fullpath = FileTool1.getFileFullPath(target_name);
+      target_fullpath = FileTool2.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function

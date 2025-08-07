@@ -62,7 +62,7 @@ classdef test_MotorDriveUnit_Basic < matlab.unittest.TestCase
     function PassingTest_1(testcase)
       % Run code, for example, MotorDriveUnit_Basic_params.
       target_name = testcase.ComponentID + "_" + testcase.ModelID + "_params";
-      target_fullpath = FileTool1.getFileFullPath(target_name);
+      target_fullpath = FileTool2.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -75,23 +75,55 @@ classdef test_MotorDriveUnit_Basic < matlab.unittest.TestCase
     function PassingTest_3(testcase)
       % Run code, for example, MotorDriveUnit_setRefsub_Basic.
       target_name = testcase.ComponentID + "_setRefsub_" + testcase.ModelID;
-      target_fullpath = FileTool1.getFileFullPath(target_name);
+      target_fullpath = FileTool2.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_4(~)
       target_name = "MotorDriveUnit_BasicModelEfficiencyPlot";
-      target_fullpath = FileTool1.getFileFullPath(target_name);
+      target_fullpath = FileTool2.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_5(~)
       target_name = "MotorDriveUnit_BasicModelEfficiencyDoc";
-      target_fullpath = FileTool1.getFileFullPath(target_name);
+      target_fullpath = FileTool2.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
+    end  % function
+
+    %% Link tests
+
+    function LinkTest_1(testcase)
+      refsub_name = testcase.ComponentID + "_" + testcase.ModelID + "_refsub";
+
+      load_system(refsub_name)
+
+      blocks = string(getfullname(Simulink.findBlocksOfType(refsub_name, "CustomCallbackButton")));
+
+      num_blocks = numel(blocks);
+      for idx = 1 : num_blocks
+        target_block = blocks(idx);
+
+        disp("Found a Custom Callback Button: " + target_block)
+
+        ClickFcn_text = string(get_param(target_block, "ClickFcn"));
+
+        % !test-target: There is only one line in the ClickFcn, just calling the target command.
+        num_lines = height(ClickFcn_text);
+        verifyEqual(testcase, num_lines, 1)
+
+        % !test-target: Check that the ClickFcn text is a file on MATLAB paths.
+        % The ClickFcn text must be something that can run, i.e., a script, a function, a class, or a model.
+        % However, do not evaluate the ClickFcn text here to make it run because
+        % checking that runnables do run should be done separately.
+        target_fullpath = FileTool2.getFileFullPath(ClickFcn_text, ReturnIfNotFound=true);
+        verifyTrue(testcase, isfile(target_fullpath))
+
+      end  % for
+
     end  % function
 
     %% other tests
@@ -125,13 +157,13 @@ classdef test_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
     function plot_image_is_uptodate(testcase)
 
-      source_fullpath = FileTool1.getFileFullPath("MotorDriveUnit_BasicModelEfficiencyPlot.m");
-      destination_fullpath = FileTool1.getFileFullPath("screenshot-MDU-BasicModelEfficiencyPlot.png");
+      source_fullpath = FileTool2.getFileFullPath("MotorDriveUnit_BasicModelEfficiencyPlot.m");
+      destination_fullpath = FileTool2.getFileFullPath("screenshot-MDU-BasicModelEfficiencyPlot.png");
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % Display the time stamps.
-        FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+        FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
 
         fig = figure;
         fig.Position(3) = 400;  % width
@@ -149,7 +181,7 @@ classdef test_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
       end  % if
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function
@@ -163,7 +195,7 @@ classdef test_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
       % Select Live Scripts.
       % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
-      live_script_file_collection = select(mfile_collection, @(p) FileTool1.isPlainTextLiveScript(p));
+      live_script_file_collection = select(mfile_collection, @(p) FileTool2.isPlainTextLiveScript(p));
 
       [folder_path, base_file_name, ~] = fileparts(live_script_file_collection.paths');
       markdown_files = fullfile(folder_path, "markdown", base_file_name + ".md");
@@ -180,12 +212,12 @@ classdef test_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
     function markdowns_are_uptodate(testcase)
       % Make sure that all Live Scripts have been converted to markdown files.
-      n = FileTool1.batchGenerateMarkdowns( ...
+      n = FileTool2.batchGenerateMarkdowns( ...
         LiveScriptFolderNames = pwd, ...
         MarkdownFolderPath = "markdown");
 
       if n > 0
-        n = FileTool1.batchGenerateMarkdowns( ...
+        n = FileTool2.batchGenerateMarkdowns( ...
           LiveScriptFolderNames = pwd, ...
           MarkdownFolderPath = "markdown", DisplayInfo = true);
       end  % if

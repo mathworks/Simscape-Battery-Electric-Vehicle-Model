@@ -11,25 +11,25 @@ design_matrix = [
   6 7 50 ;
   8 10 0 ];
 
-result = SignalTool1.getXYVectorsFromSignalDesignMatrix(design_matrix);
+result = SignalTool2.getXYVectorsFromSignalDesignMatrix(design_matrix);
 x = result.X';
 f = result.Y';
 
 % "Table grid vector" parameter in PS Lookup Table (1D) block.
-x_text = LiteApp6.Utility.stringify(x);
+x_text = CodeTool1.stringify(x);
 x_unit = "s";
 
 % "Table values" parameter in PS Lookup Table (1D) block.
-f_text = LiteApp6.Utility.stringify(f);
+f_text = CodeTool1.stringify(f);
 f_unit = "N*m";
 
 interp_method = "Smooth";
 extrap_method = "Nearest";
 
 % Add the design matrix as text to the Description property of the target block.
-design_matrix_text = LiteApp6.Utility.stringify(design_matrix);
+design_matrix_text = CodeTool1.stringify(design_matrix);
 
-SignalTool1.LookupTable1DPlot( ... %[output:group:2e6b65cc] %[output:2be01063]
+SignalTool2.plotLookupTable1D( ... %[output:group:2e6b65cc] %[output:2be01063]
   x, f, ... %[output:2be01063]
   XUnitText = x_unit, ... %[output:2be01063]
   YUnitText = f_unit, ... %[output:2be01063]

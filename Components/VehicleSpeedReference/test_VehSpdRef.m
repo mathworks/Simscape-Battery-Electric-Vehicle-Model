@@ -33,7 +33,7 @@ classdef test_VehSpdRef < matlab.unittest.TestCase
     % Before a function in this section runs, the TestSetup function
     % defined in the "TestMethodSetup" section runs.
 
-    %% Minimum quality check (MQC)
+    %% Minimum quality check
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(~)

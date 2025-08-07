@@ -78,13 +78,13 @@ classdef testui_MotorDriveUnit_SystemThermalModelEfficiencyApp < matlab.uitest.T
 
     function app_screenshot_is_uptodate(testcase)
 
-      source_fullpath = FileTool1.getFileFullPath("MotorDriveUnit_SystemThermalModelEfficiencyApp.m");
-      destination_fullpath = FileTool1.getFileFullPath("screenshot-MDU-SystemThermalModelEfficiencyApp.png");
+      source_fullpath = FileTool2.getFileFullPath("MotorDriveUnit_SystemThermalModelEfficiencyApp.m");
+      destination_fullpath = FileTool2.getFileFullPath("screenshot-MDU-SystemThermalModelEfficiencyApp.png");
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % Display the time stamps.
-        FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+        FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
 
         testcase.App = MotorDriveUnit_SystemThermalModelEfficiencyApp;
 
@@ -98,7 +98,7 @@ classdef testui_MotorDriveUnit_SystemThermalModelEfficiencyApp < matlab.uitest.T
         testcase.App = 0;
       end  % if
 
-      newer = FileTool1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function

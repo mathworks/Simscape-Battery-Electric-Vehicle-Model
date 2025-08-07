@@ -9,11 +9,11 @@ Reducer_setInput_AxleSide_1 %[output:14b5349c]
 Reducer_setInput_MotorSide_1 %[output:991fa163]
 %[text] 
 simOut = sim(model_name); %[output:2c029d41]
-tt = SignalTool1.getTimetableFromLoggedSignal(simOut.logsout);
+tt = SignalTool2.getTimetableFromLoggedSignal(simOut.logsout);
 %[text] 
 varnames = string(tt.Properties.VariableNames);
 for idx = 1 : numel(varnames) %[output:group:867485fb]
-  SignalTool1.TimedDataPlot(TimedData=tt, SignalName=varnames(idx)); %[output:0a94d0f8] %[output:25548d13] %[output:6f10c1cc]
+  SignalTool2.plotTimedData(TimedData=tt, SignalName=varnames(idx)); %[output:0a94d0f8] %[output:25548d13] %[output:6f10c1cc]
 end  % for %[output:group:867485fb]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 

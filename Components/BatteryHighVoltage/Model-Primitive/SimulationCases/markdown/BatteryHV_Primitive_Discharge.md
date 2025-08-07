@@ -6,50 +6,56 @@
 
 # Discharge
 ```matlab
-mdl = "BatteryHV_TestModel";
-load_system(mdl)
+model_name = "BatteryHV_TestModel";
+load_system(model_name)
 
-% Load model parameters.
-BatteryHV_TestModelSetup
+BatteryHV_Primitive_params
 
-% Select battery model.
-BatteryHV_setRefsub_Primitive
+set_param(model_name + "/High Voltage Battery", ReferencedSubsystem = "BatteryHV_Primitive_refsub");
+
+set_param(model_name + "/Inputs", ReferencedSubsystem = "BatteryHV_Inputs_Charge_refsub");
+```
+
+Test conditions
+
+```matlab
+% Positive value for discharge
+testParam.CRate = 0.1;
+```
+
+Initial conditions
+
+```matlab
+initial.hvBattery_SOC_pct = 70;
+initial.hvBattery_SOC_normalized = initial.hvBattery_SOC_pct / 100;
+
+tmp_batt_charge = HighVoltageBatteryTool1.getAmpereHourRating( ...
+  Capacity = simscape.Value(batteryHV.nominalCapacity_kWh, "kWh"), ...
+  Voltage = simscape.Value(batteryHV.nominalVoltage_V, "V"), ...
+  StateOfCharge = initial.hvBattery_SOC_normalized );
+
+initial.hvBattery_Charge_Ahr = value(tmp_batt_charge, "Ah");
+disp(initial)
 ```
 
 ```matlabTextOutput
-Model: BatteryHV_TestModel
-Setting up referenced subsystem: BatteryHV_Primitive_refsub
+           hvBattery_SOC_pct: 70
+        hvBattery_Charge_Ahr: 123.5294
+    hvBattery_SOC_normalized: 0.7000
 ```
+
+
+Simulation
 
 ```matlab
-% Setup simulation case.
-BatteryHV_setSimCase_Discharge( ...
-  CRate = 0.1, ...  Positive value for discharge
-  StateOfCharge_pct = 50 )
-```
+sim_in = Simulink.SimulationInput(model_name);
+sim_in = setModelParameter(sim_in, StopTime = "3600");
 
-```matlabTextOutput
-Setting up simulation...
-Simulation case: Discharge battery
-Setting simulation stop time to 3600 sec.
-Setting block parameters for input blocks...
-Setting initial conditions...
-initial.hvBattery_SOC_pct = 50
-initial.hvBattery_SOC_normalized = 0.5
-initial.hvBattery_Charge_Ahr = 88.2353
-initial.hvBattery_Temperature_K = 293.15
-initial.ambientTemp_K = 293.15
-```
+sim_out = sim(sim_in);
 
-```matlab
-set_param(mdl, StopTime="3600")
-% Run simulation.
-simOut = sim(mdl);
+logged_signals = extractTimetable(sim_out.logsout);
 
-% Collect logged signals and visualize.
-% The basic version of the battery block does not simulate battery temperature.
-logged_signals = extractTimetable(simOut.logsout);
-BatteryHV_ResultsPlot(Timetable=logged_signals);
+BatteryHV_ResultsPlot(Timetable = logged_signals);
 ```
 
 <center><img src="media/BatteryHV_Primitive_Discharge_media/figure_0.png" width="702" alt="figure_0.png"></center>
