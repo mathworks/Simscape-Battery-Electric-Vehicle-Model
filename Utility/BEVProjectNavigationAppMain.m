@@ -263,11 +263,11 @@ classdef BEVProjectNavigationAppMain < handle
       row = NewRow(layout, column);
       LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_hvbattery_visualization_script = "BatteryHV_SystemTable_ParameterPlot_sample_script";
+      target_hvbattery_visualization_script = "refineOCVData_sample_script";
       check_link(target_hvbattery_visualization_script);
 
       link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "High voltage battery parameter visualization script";
+      link_ui.HyperlinkText = "OCV parameterization sample script";
       link_ui.Tooltip = "Open script: " + target_hvbattery_visualization_script;
       link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_hvbattery_visualization_script);
 
@@ -275,11 +275,11 @@ classdef BEVProjectNavigationAppMain < handle
       row = NewRow(layout, column);
       LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_hvbattery_parameter_build_script = "BatteryHV_SystemTable_DataBuild_sample_script";
+      target_hvbattery_parameter_build_script = "refineTerminalResistanceData_sample_script";
       check_link(target_hvbattery_parameter_build_script);
 
       link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "High voltage battery parameter build script";
+      link_ui.HyperlinkText = "Terminal resistance parameterization sample script";
       link_ui.Tooltip = "Open script: " + target_hvbattery_parameter_build_script;
       link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_hvbattery_parameter_build_script);
 

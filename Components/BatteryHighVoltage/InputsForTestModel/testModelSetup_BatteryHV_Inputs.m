@@ -5,6 +5,9 @@
 % Negative value for charing.
 testParam.CRate = -0.1;
 
+testParam.LoadCurrent = simscape.Value(0, "A");
+
+
 testParam.NominalCapacity = simscape.Value(60, "kWh");
 
 testParam.NominalVoltage = simscape.Value(340, "V");
