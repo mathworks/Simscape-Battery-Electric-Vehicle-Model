@@ -32,7 +32,7 @@ classdef test_BEVController < matlab.unittest.TestCase
   methods (Test)
 
     function PassingTest_1(~)
-      BEVController_TestModelSetup
+      testModelSetup_BEVController
     end
 
     function PassingTest_2(~)

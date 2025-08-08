@@ -28,8 +28,13 @@ end  % if
 
 load_system(ModelName)
 
-% If the system has no mask yet, this fails.
 mask = Simulink.Mask.get(ModelName);
+
+if isempty(mask)
+  Simulink.Mask.create(ModelName);
+  save_system(ModelName)
+  mask = Simulink.Mask.get(ModelName);
+end  % if
 
 icon_code_string = join([
   "pos = get_param(gcb, ""Position"");"
