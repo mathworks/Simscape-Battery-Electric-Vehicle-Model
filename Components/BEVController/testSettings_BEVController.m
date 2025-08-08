@@ -1,4 +1,4 @@
-classdef testSettings_BatteryHV < matlab.unittest.TestCase
+classdef testSettings_BEVController < matlab.unittest.TestCase
   %% Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
@@ -33,7 +33,7 @@ classdef testSettings_BatteryHV < matlab.unittest.TestCase
     % Before each function in this section runs, functions defined in the TestMethodSetup section run.
 
     function Solver(testcase)
-      load_system("testModel_BatteryHV")
+      load_system("testModel_BEVController")
 
       s = string(get_param(gcs, "SolverType"));
       verifyEqual(testcase, s, "Variable-step")
@@ -44,8 +44,8 @@ classdef testSettings_BatteryHV < matlab.unittest.TestCase
 
     function PreLoadParameters(testcase)
       % Check that the model loads parameters in the callback.
-      parameter_filename = "testModelSetup_BatteryHV";  % without ".m"
-      load_system("testModel_BatteryHV")
+      parameter_filename = "testModelSetup_BEVController";  % without ".m"
+      load_system("testModel_BEVController")
       callback_text = string(get_param(gcs, "PreLoadFcn"));
       verifyTrue(testcase, contains(callback_text, lineBoundary("start") + parameter_filename + alphanumericBoundary))
     end  % function
@@ -53,8 +53,8 @@ classdef testSettings_BatteryHV < matlab.unittest.TestCase
     function SubsystemReferenceBlockSettings(testcase)
       % Check the settings of the Subsystem Reference block in the test model.
 
-      model_name = "testModel_BatteryHV";
-      block_path = "testModel_BatteryHV/Inputs";
+      model_name = "testModel_BEVController";
+      block_path = "testModel_BEVController/Inputs";
 
       load_system(model_name)
 

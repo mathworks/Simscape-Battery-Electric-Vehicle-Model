@@ -36,19 +36,12 @@ classdef test_BEVController < matlab.unittest.TestCase
     end
 
     function PassingTest_2(~)
-      BEVController_setRefsub
+      load_system("testModel_BEVController")
     end  % function
 
     function PassingTest_3(~)
-      BEVController_setRefsub_Basic
-    end  % function
-
-    function PassingTest_4(~)
-      load_system("BEVController_TestModel")
-    end  % function
-
-    function PassingTest_5(~)
-      sim("BEVController_TestModel");
+      load_system("testModel_BEVController")
+      sim("testModel_BEVController");
     end  % function
 
   end  % methods

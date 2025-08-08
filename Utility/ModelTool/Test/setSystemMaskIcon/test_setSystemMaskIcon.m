@@ -39,7 +39,7 @@ classdef test_setSystemMaskIcon < matlab.unittest.TestCase
     end  % function
 
     function PassingTest_2(~)
-      setSystemMaskIcon_BEVController_Inputs
+      setSystemMaskIcon_sample_script
     end  % function
 
   end  % methods

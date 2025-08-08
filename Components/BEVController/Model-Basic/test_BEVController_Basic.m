@@ -68,10 +68,15 @@ classdef test_BEVController_Basic < matlab.unittest.TestCase
     %% Test
 
     function simulation_ends_quickly(testcase)
-      target_model = "BEVController_TestModel";
+      target_model = "testModel_BEVController";
       load_system(target_model)
-      setup_command = "BEVController_setRefsub_" + testcase.ModelID;
-      evalin("base", setup_command)
+
+      params_script = "BEVController_" + testcase.ModelID + "_params";
+      evalin("base", params_script)
+
+      refsub = "BEVController_" + testcase.ModelID + "_refsub";
+      set_param(target_model + "/BEV Speed Tracking Controller", ReferencedSubsystem = refsub);
+
       % Test that default simulation ends reasonably quickly.
       tic
       sim(target_model);

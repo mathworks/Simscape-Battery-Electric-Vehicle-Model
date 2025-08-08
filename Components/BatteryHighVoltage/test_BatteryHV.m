@@ -55,23 +55,6 @@ classdef test_BatteryHV < matlab.unittest.TestCase
       BatteryHV_main_script  % !test-target
     end  % function
 
-    function test_SubsystemReferenceBlockSettings(testcase)
-      model_name = testcase.ModelName;
-      load_system(model_name)
-
-      % There must be a Subsystem Reference block called "Inputs" in the top layer.
-      block_path = model_name + "/Inputs";
-
-      % open_system(gcb, "force")
-      openFcn_text = string(get_param(block_path, "OpenFcn"));
-      target_text = lineBoundary("start") + "open_system(gcb, ""force"")";
-      verifyTrue(testcase, contains(openFcn_text, target_text));
-
-      % 'opaque-with-ports'
-      actual = string(get_param(block_path, "MaskIconOpaque"));
-      verifyEqual(testcase, actual, "opaque-with-ports")
-    end  % function
-
     %% Up-to-date tests
 
     function html_is_uptodate(testcase)
