@@ -6,14 +6,14 @@
 
 # Charge
 ```matlab
-model_name = "BatteryHV_TestModel";
+model_name = "HarnessModel_BatteryHV";
 load_system(model_name)
 
 BatteryHV_SystemThermal_params
 
 set_param(model_name + "/High Voltage Battery", ReferencedSubsystem = "BatteryHV_SystemThermal_refsub");
 
-set_param(model_name + "/Inputs", ReferencedSubsystem = "BatteryHV_Inputs_Charge_refsub");
+set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_BatteryHV_Charge_refsub");
 ```
 
 Test conditions
@@ -57,7 +57,7 @@ sim_out = sim(sim_in);
 
 logged_signals = extractTimetable(sim_out.logsout);
 
-BatteryHV_ResultsPlot(Timetable = logged_signals);
+BatteryHV_plotResults(Timetable = logged_signals);
 ```
 
 <center><img src="media/BatteryHV_SystemThermal_Charge_media/figure_0.png" width="702" alt="figure_0.png"></center>

@@ -1,14 +1,14 @@
 %[text] %[text:anchor:T_1FFD3858] # High Voltage Battery - Simulation Case
 %[text] %[text:anchor:H_1B376934] ## Constant inputs
 %[text] Use this to check that simulation runs ok.
-model_name = "testModel_BatteryHV";
+model_name = "HarnessModel_BatteryHV";
 load_system(model_name)
 
 BatteryHV_Primitive_params
 
 set_param(model_name + "/High Voltage Battery", ReferencedSubsystem = "BatteryHV_Primitive_refsub");
 
-set_param(model_name + "/Inputs", ReferencedSubsystem = "BatteryHV_Inputs_Constant_refsub");
+set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_BatteryHV_Constant_refsub");
 %[text] Test conditions
 % Negative value for charge
 testParam.LoadCurrent = simscape.Value(0, "A");
@@ -31,7 +31,7 @@ sim_out = sim(sim_in);
 
 logged_signals = extractTimetable(sim_out.logsout);
 
-BatteryHV_ResultsPlot(Timetable = logged_signals); %[output:576c3f83]
+BatteryHV_plotResults(Timetable = logged_signals); %[output:576c3f83]
 %[text] *Copyright 2020-2025 The Mathworks, Inc.*
 
 %[appendix]{"version":"1.0"}

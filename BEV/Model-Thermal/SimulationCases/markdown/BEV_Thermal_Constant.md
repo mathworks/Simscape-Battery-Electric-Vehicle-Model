@@ -1,9 +1,13 @@
 
 # <span style="color:rgb(213,80,0)">BEV System Model \- Simulation Case</span>
+
+Using constant inputs, make sure the model loads and simulation runs.
+
 ```matlab
-modelName = "BEV_system_model";
-load_system(modelName)
-BEV_setThermal
+model_name = "BEV_system_model";
+load_system(model_name)
+
+BEV_setup_Thermal
 ```
 
 ```matlabTextOutput
@@ -16,22 +20,22 @@ Loading in base workspace: BEVController_Basic_params
 ```
 
 ```matlab
-VehSpdRef_setSimCase_Constant( ...
-  ModelName = modelName, ...
-  TargetSubsystemPath = "/Controller & Environment/Vehicle speed reference")
-```
 
-```matlabTextOutput
-Setting up simulation...
-Simulation case: Constant
-Setting simulation stop time to 1000 sec.
-Selecting simulation case 4.
-```
+sim_in = Simulink.SimulationInput(model_name);
 
-```matlab
-simOut = sim(modelName);
-simData = extractTimetable(simOut.logsout);
-fig = BEV_ResultsCompactPlot(SimData = simData);
+sim_in = setBlockParameter(sim_in, ...
+  model_name + "/Controller and Environment/Vehicle speed reference", ...
+  ReferencedSubsystem = "VehSpdRef_Constant_refsub");
+
+sim_in = setModelParameter(sim_in, StopTime = "100");
+
+applyToModel(sim_in)
+
+sim_out = sim(sim_in);
+
+sim_data = extractTimetable(sim_out.logsout);
+
+fig = BEV_plotResults(TimedData = sim_data, PlotTemperature = false);
 ```
 
 <center><img src="media/BEV_Thermal_Constant_media/figure_0.png" width="702" alt="figure_0.png"></center>

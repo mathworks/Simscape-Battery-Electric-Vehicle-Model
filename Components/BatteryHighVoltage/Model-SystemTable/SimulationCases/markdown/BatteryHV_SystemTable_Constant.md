@@ -9,14 +9,14 @@
 Use this to check that simulation runs ok.
 
 ```matlab
-model_name = "BatteryHV_TestModel";
+model_name = "HarnessModel_BatteryHV";
 load_system(model_name)
 
 BatteryHV_SystemTable_params
 
 set_param(model_name + "/High Voltage Battery", ReferencedSubsystem = "BatteryHV_SystemTable_refsub");
 
-set_param(model_name + "/Inputs", ReferencedSubsystem = "BatteryHV_Inputs_Constant_refsub");
+set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_BatteryHV_Constant_refsub");
 ```
 
 Test conditions
@@ -60,7 +60,7 @@ sim_out = sim(sim_in);
 
 logged_signals = extractTimetable(sim_out.logsout);
 
-BatteryHV_ResultsPlot(Timetable = logged_signals);
+BatteryHV_plotResults(Timetable = logged_signals);
 ```
 
 <center><img src="media/BatteryHV_SystemTable_Constant_media/figure_0.png" width="702" alt="figure_0.png"></center>

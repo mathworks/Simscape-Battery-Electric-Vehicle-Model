@@ -56,7 +56,7 @@ to run simulation focusing on the battery model.
 
 [url-subref]: https://www.mathworks.com/help/simulink/ug/referenced-subsystem-1.html
 
-<img src="screenshot-BatteryHV_TestModel.png"
+<img src="screenshot-HarnessModel_BatteryHV.png"
  width="700" alt="Test Model for High Voltage Battery">
 
 The test model is used in simulation case scripts

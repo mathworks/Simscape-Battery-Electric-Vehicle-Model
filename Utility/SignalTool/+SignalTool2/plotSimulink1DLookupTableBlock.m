@@ -5,13 +5,16 @@ function ReturnFigure = plotSimulink1DLookupTableBlock(BlockPath, NameValuePair)
 arguments (Input)
   BlockPath (1,1) string
   NameValuePair.ParentAxes (1,:) matlab.graphics.axis.Axes
-  NameValuePair.DivsionType {mustBeMember(NameValuePair.DivsionType, ["Divisions", "InterpolationInterval"])} = "Divisions"
+  NameValuePair.DivisionType {mustBeMember(NameValuePair.DivisionType, ["Divisions", "InterpolationInterval"])} = "Divisions"
   NameValuePair.Divisions (1,:) {mustBeInteger, mustBePositive} = 200
   NameValuePair.InterpolationInterval (1,:) {mustBePositive}
+  NameValuePair.Title (1,:) string
+  NameValuePair.PlotXLowerBound (1,1) double
+  NameValuePair.PlotXUpperBound (1,1) double
 end  % arguments
 
 arguments (Output)
-  ReturnFigure matlab.ui.Figure
+  ReturnFigure {mustBeScalarOrEmpty, mustBeA(ReturnFigure, ["matlab.ui.Figure", "matlab.graphics.layout.TiledChartLayout"])}
 end  % arguments
 
 errorID = "plotSimulink1DLookupTableBlock:";
@@ -19,9 +22,7 @@ errorID = "plotSimulink1DLookupTableBlock:";
 model_name = extractBefore(BlockPath, "/");
 load_system(model_name)
 
-block_type = get_param(BlockPath, "BlockType");
-table_dim = get_param(BlockPath, "NumberOfTableDimensions");
-if not(block_type == "Lookup_n-D" && table_dim == "1")
+if not(ModelTool1.isSimulink1DLookupTableBlock(BlockPath))
   id = errorID + "InvalidBlock";
   msg = "Specified block is not 1-D Lookup Table block: " + BlockPath;
 
@@ -41,21 +42,37 @@ else
   ax = axes(figure);
 end  % if
 
-switch NameValuePair.DivsionType
+switch NameValuePair.DivisionType
 case "Divisions"
   dx = (x_data(end) - x_data(1)) / NameValuePair.Divisions;
 case "InterpolationInterval"
   dx = NameValuePair.InterpolationInterval;
 end  % switch
 
-styled_block_path = replace(BlockPath, "/", " / ");
+if isfield(NameValuePair, "Title")
+  title_text = NameValuePair.Title;
+else
+  title_text = replace(BlockPath, "/", " / ");
+end  % if
+
+if isfield(NameValuePair, "PlotXLowerBound")
+  x_plot_lower_bound = NameValuePair.PlotXLowerBound;
+else
+  x_plot_lower_bound = x_data(1);
+end  % if
+
+if isfield(NameValuePair, "PlotXUpperBound")
+  x_plot_upper_bound = NameValuePair.PlotXUpperBound;
+else
+  x_plot_upper_bound = x_data(end);
+end  % if
 
 fig = SignalTool2.plotLookupTable1D(x_data, y_data, ...
-  PlotXLowerBound = x_data(1), PlotXUpperBound = x_data(end), ...
+  PlotXLowerBound = x_plot_lower_bound, PlotXUpperBound = x_plot_upper_bound, ...
   Interpolation = interp_method, Extrapolation = extrap_method, ...
   InterpolationInterval = dx, ...
   ParentAxes = ax, ...
-  Title = styled_block_path);
+  Title = title_text);
 
 if nargout > 0
   ReturnFigure = fig;

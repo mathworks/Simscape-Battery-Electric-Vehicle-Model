@@ -4,7 +4,7 @@
 Run simulation and plot the power loss. See the `Reducer_Basic_LoggingSetup` script for how to set up Simscape selective data logging.
 
 ```matlab
-model_name = "Reducer_TestModel";
+model_name = "HarnessModel_Reducer";
 load_system(model_name);
 set_param(model_name, StopTime="2000");
 evalin("base", "Reducer_Basic_params")
@@ -30,7 +30,7 @@ tt = SignalTool2.getTimetableFromLoggedSignal(simOut.logsout);
 ```matlab
 varnames = string(tt.Properties.VariableNames);
 for idx = 1 : numel(varnames)
-  SignalTool2.TimedDataPlot(TimedData=tt, SignalName=varnames(idx));
+  SignalTool2.plotTimedData(TimedData=tt, SignalName=varnames(idx));
 end  % for
 ```
 

@@ -1,13 +1,13 @@
 %[text] %[text:anchor:T_1FFD3858] # High Voltage Battery - Simulation Case
 %[text] %[text:anchor:H_1B376934] ## Charge
-model_name = "testModel_BatteryHV";
+model_name = "HarnessModel_BatteryHV";
 load_system(model_name)
 
 BatteryHV_BasicThermal_params
 
 set_param(model_name + "/High Voltage Battery", ReferencedSubsystem = "BatteryHV_BasicThermal_refsub");
 
-set_param(model_name + "/Inputs", ReferencedSubsystem = "BatteryHV_Inputs_Charge_refsub");
+set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_BatteryHV_Charge_refsub");
 %[text] Test conditions
 % Negative value for charge
 testParam.CRate = -0.1;
@@ -30,7 +30,7 @@ sim_out = sim(sim_in);
 
 logged_signals = extractTimetable(sim_out.logsout);
 
-BatteryHV_ResultsPlot(Timetable = logged_signals); %[output:8bf9cc53]
+BatteryHV_plotResults(Timetable = logged_signals); %[output:8bf9cc53]
 %[text] *Copyright 2020-2025 The Mathworks, Inc.*
 
 %[appendix]{"version":"1.0"}

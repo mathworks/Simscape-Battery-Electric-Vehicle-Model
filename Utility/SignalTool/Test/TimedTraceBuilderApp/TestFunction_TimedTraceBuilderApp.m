@@ -11,7 +11,7 @@ arguments (Output)
 end  % arguments
 
 if BlockPath == ""
-  block_path = "TestModel_TimedTraceBuilderApp/PS Lookup Table (1D)";
+  block_path = "HarnessModel_TimedTraceBuilderApp/PS Lookup Table (1D)";
 else
   block_path = BlockPath;
 end  % if

@@ -3,7 +3,7 @@
 signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties;
 disp(signal_design_matrix) %[output:5367b9d3]
 %[text] The returned signal design matrix can be passed to the `getXYVectorsFromSignalDesignMatrix` function, which returns X and Y vectors, which can be used for visualization or used as the parameters of a lookup table.
-data_table = SignalTool2.getXYVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 SignalTool2.plotLookupTable1D(data_table.X, data_table.Y) %[output:1f30f50a]
 %%
 %[text] Specify options.
@@ -23,7 +23,7 @@ signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties
   FFinalValue = -3, ... Final data value
   X1FinalFlatLength = 4 );  % Final constant duration
 
-data_table = SignalTool2.getXYVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 SignalTool2.plotLookupTable1D(data_table.X, data_table.Y, ... %[output:group:020a21f4] %[output:96a31b03]
   Interpolation="Smooth", InterpolationInterval=0.1) %[output:group:020a21f4] %[output:96a31b03]
@@ -46,7 +46,7 @@ signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties
   X1FinalFlatLength = 10 );  % Final constant duration
 
 disp(signal_design_matrix) %[output:9b4c2a54]
-data_table = SignalTool2.getXYVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 fig = figure; %[output:5deeda7f]
 fig.Position(3:4) = [900 400];  % width height %[output:5deeda7f]

@@ -76,8 +76,8 @@ This component provides the following four models based on the above formulation
 
 Use the following apps to see the motor efficiency map and how the parameters affect it. The link below works to open the app if you are viewing this document in MATLAB Web Browser or editing in MATLAB Editor.
 
--  [MotorDriveUnitEfficiencyApp\_Basic](matlab:MotorDriveUnitEfficiencyApp_Basic) 
--  [MotorDriveUnitEfficiencyApp\_SystemThermal](matlab:MotorDriveUnitEfficiencyApp_SystemThermal) 
+-  [MotorDriveUnit\_BasicModelEfficiencyApp](matlab:MotorDriveUnit_BasicModelEfficiencyApp) 
+-  [MotorDriveUnit\_SystemThermalModelEfficiencyApp](matlab:MotorDriveUnit_SystemThermalModelEfficiencyApp) 
 <a id="H_92e3"></a>
 
 # Simulation cases

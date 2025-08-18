@@ -1,9 +1,10 @@
 
 # <span style="color:rgb(213,80,0)">BEV System Model \- Simulation Case</span>
 ```matlab
-modelName = "BEV_system_model";
-load_system(modelName)
-BEV_setBasic
+model_name = "BEV_system_model";
+load_system(model_name)
+
+BEV_setup_Basic
 ```
 
 ```matlabTextOutput
@@ -16,22 +17,22 @@ Loading in base workspace: BEVController_Basic_params
 ```
 
 ```matlab
-VehSpdRef_setSimCase_FTP75( ...
-  ModelName = modelName, ...
-  TargetSubsystemPath = "/Controller & Environment/Vehicle speed reference")
-```
 
-```matlabTextOutput
-Setting up simulation...
-Simulation case: FTP-75 using Drive Cycle Source block
-Setting simulation stop time to 2474 sec.
-Selecting simulation case 3.
-```
+sim_in = Simulink.SimulationInput(model_name);
 
-```matlab
-simOut = sim(modelName);
-simData = extractTimetable(simOut.logsout);
-fig = BEV_ResultsCompactPlot(SimData = simData, PlotTemperature = false);
+sim_in = setBlockParameter(sim_in, ...
+  model_name + "/Controller and Environment/Vehicle speed reference", ...
+  ReferencedSubsystem = "VehSpdRef_FTP75_refsub");
+
+sim_in = setModelParameter(sim_in, StopTime = "2474");
+
+applyToModel(sim_in)
+
+sim_out = sim(sim_in);
+
+sim_data = extractTimetable(sim_out.logsout);
+
+BEV_plotResults(TimedData = sim_data, PlotTemperature = false);
 ```
 
 <center><img src="media/BEV_Basic_FTP75_media/figure_0.png" width="702" alt="figure_0.png"></center>

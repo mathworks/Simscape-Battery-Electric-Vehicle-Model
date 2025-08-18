@@ -68,7 +68,7 @@ classdef test_BEVController_Basic < matlab.unittest.TestCase
     %% Test
 
     function simulation_ends_quickly(testcase)
-      target_model = "testModel_BEVController";
+      target_model = "HarnessModel_BEVController";
       load_system(target_model)
 
       params_script = "BEVController_" + testcase.ModelID + "_params";

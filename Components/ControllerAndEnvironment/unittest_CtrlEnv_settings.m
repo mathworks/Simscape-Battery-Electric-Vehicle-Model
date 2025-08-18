@@ -1,0 +1,83 @@
+classdef unittest_CtrlEnv_settings < matlab.unittest.TestCase
+  %% Class-based unit test
+
+  % Author Class-Based Unit Tests in MATLAB
+  % https://www.mathworks.com/help/matlab/matlab_prog/author-class-based-unit-tests-in-matlab.html
+  %
+  % matlab.unittest.TestCase Class
+  % https://www.mathworks.com/help/matlab/ref/matlab.unittest.testcase-class.html
+  %
+  % Test Browser
+  % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
+
+  % Copyright 2025 The MathWorks, Inc.
+
+  methods (TestMethodSetup)
+    % Functions in this section always run before each test defined in the Test section runs.
+
+    function test_method_setup_1(testcase)
+      function closeAll
+        close all
+        bdclose all
+      end  % nested function
+      closeAll
+      % addTeardown adds a function which always runs after each test.
+      % Even if the execution of a test ends with an error, the teardown function runs.
+      addTeardown(testcase, @closeAll)
+    end  % function
+
+  end  % methods
+
+  methods (Test)
+    % Functions in this "Test" section are the tests.
+    % Before each function in this section runs, functions defined in the TestMethodSetup section run.
+
+    function Solver(testcase)
+      load_system("HarnessModel_CtrlEnv")
+
+      s = string(get_param(gcs, "SolverType"));
+      verifyEqual(testcase, s, "Variable-step")
+
+      s = string(get_param(gcs, "SolverName"));
+      verifyEqual(testcase, s, "daessc")
+    end  % function
+
+    function PreLoadParameters(testcase)
+      % Check that the model loads parameters in the callback.
+      parameter_filename = "HarnessSetup_CtrlEnv";  % without ".m"
+      load_system("HarnessModel_CtrlEnv")
+      callback_text = string(get_param(gcs, "PreLoadFcn"));
+      verifyTrue(testcase, contains(callback_text, lineBoundary("start") + parameter_filename + alphanumericBoundary))
+    end  % function
+
+    function SubsystemReferenceBlockSettings(testcase)
+      % Check the settings of the Subsystem Reference block in the harness model.
+
+      model_name = "HarnessModel_CtrlEnv";
+      block_path = "HarnessModel_CtrlEnv/Controller and Environment";
+
+      load_system(model_name)
+
+      % IO port labels must be visible, i.e.,
+      % the Icon Transparency must be "Opaque with Ports". (Default is "Opaque".)
+      actual = string(get_param(block_path, "MaskIconOpaque"));
+      verifyEqual(testcase, actual, "opaque-with-ports")
+    end  % function
+
+    function ForceRemove_LookupUnderMask_Link(testcase)
+      load_system("HarnessModel_CtrlEnv")
+      block_path = "HarnessModel_CtrlEnv/Controller and Environment";
+      % When a referenced system uses variables for block parameters,
+      % the Subsystem Reference block containing the referenced system shows
+      % the "Look under mask" link at the bottom left corner of the block.
+      % Remove the link by setting the following code in the OpenFcn callback.
+      %   open_system(gcb, "force")
+      openFcn_text = string(get_param(block_path, "OpenFcn"));
+      target_text = lineBoundary("start") + "open_system(gcb, ""force"")";
+      verifyTrue(testcase, contains(openFcn_text, target_text));
+    end  % function
+
+
+  end  % methods
+
+end  % classdef

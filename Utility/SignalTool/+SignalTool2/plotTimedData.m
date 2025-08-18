@@ -1,4 +1,4 @@
-function fig = plotTimedData(NameValuePair)
+function ReturnFigure = plotTimedData(NameValuePair)
 %% Plot timetable data.
 
 % Copyright 2021-2025 The MathWorks, Inc.
@@ -22,11 +22,11 @@ arguments (Input)
   NameValuePair.FigureWidth (1,1) {mustBeInteger, mustBePositive} = 700
   NameValuePair.FigureHeight (1,1) {mustBeInteger, mustBePositive} = 300
 
-end
+end  % arguments
 
 arguments (Output)
-  fig matlab.ui.Figure {mustBeScalarOrEmpty}
-end
+  ReturnFigure matlab.ui.Figure {mustBeScalarOrEmpty}
+end  % arguments
 
 errorID = "plotTimedData:";
 
@@ -43,13 +43,13 @@ if nnz(logical_index) == 0
 
   throw(MException(id, msg))
 
-end
+end  % if
 
 if not(isempty(NameValuePair.TimedData.Properties.VariableUnits))
   unit_text = NameValuePair.TimedData.Properties.VariableUnits{logical_index};
 else
   unit_text = "";
-end
+end  % if
 
 if not(isfield(NameValuePair, "ParentAxes"))
   fig = figure;
@@ -58,11 +58,12 @@ if not(isfield(NameValuePair, "ParentAxes"))
   ax = axes(fig);
 else
   ax = NameValuePair.ParentAxes;
-  fig = parent(ax);
-end
+  fig = ax.Parent;
+end  % if
 
 hold(ax, "on")
 grid(ax, "on")
+axis(ax, "padded")
 
 plot(ax, t, y, LineWidth = 2)
 
@@ -72,8 +73,9 @@ plot(ax, t, y, LineWidth = 2)
 % when the signal should be interpreted as not changing.
 % Note that the value 0.02 is assuming that
 % the unit used for the signal is "reasonable".
-setMinimumYRange(ax, y, dy_threshold=0.02)
+SignalTool2.setMinimumYRange(ax, y, dy_threshold=0.02)
 
+xlim(ax, [t(1), t(end)])
 xlabel(ax, "Time")
 
 % Disable tex/latex interpreters so that names like Data_3 or Data_11 are properly printed.
@@ -81,5 +83,9 @@ if unit_text == ""
   title(ax, signal_name, Interpreter="none")
 else
   title(ax, signal_name + " (" + unit_text + ")", Interpreter="none")
-end
-end
+end  % if
+
+if nargout > 0
+  ReturnFigure = fig;
+end  % if
+end  % function

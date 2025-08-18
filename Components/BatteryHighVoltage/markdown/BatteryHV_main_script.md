@@ -16,7 +16,7 @@ This component provides four models of a high voltage battery:
 -  **SystemTable** model ... is built with [Battery (Table\-Based) block](https://www.mathworks.com/help/sps/ref/batterytablebased.html) from Simscape Battery and Simscape Electrical. This model takes tabulated data for open\-circuit voltage and terminal resistance as a function of temperature and SOC. Battery temperature is computed. This model also needs the number of cells and their series\-parallel circuit configuration information. Similar to the SystemThermal model, this model can optionally simulate charging dynamics, fade, and aging. 
 # Simulation cases
 
-To validate the component, a test model is used to run some simulation cases for each model. See scripts in **SimulationCases** folder in each model.
+To validate the component, a harness model is used to run some simulation cases for each model. See scripts in **SimulationCases** folder in each model.
 
 
 *Copyright 2020\-2025 The Mathworks, Inc.*

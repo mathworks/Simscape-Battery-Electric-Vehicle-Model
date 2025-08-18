@@ -2,7 +2,7 @@
 
 This is a vehicle speed reference component for
 BEV system level simulation
-and provides 4 different speed reference patterns by default:
+and provides the following speed reference patterns:
 
 1. Simple drive pattern
 2. High speed driving
@@ -11,13 +11,9 @@ and provides 4 different speed reference patterns by default:
 
 This component is used in the **Controller and Environment** component.
 
-The harness model (`VehSpdRef_harness_model`)
-in the `Harness` folder is used to test that
-all the cases can be loaded and run.
-
-You can use other drive cycles, such as WLTP, provided by Drive Cycle Source block
+You can use other drive cycles, such as WLTP, provided by the Drive Cycle Source block
 if you install the [support package][url-pkg].
 
-_Copyright 2023-2024 The MathWorks, Inc._
+_Copyright 2023-2025 The MathWorks, Inc._
 
 [url-pkg]: https://www.mathworks.com/help/autoblks/ug/install-drive-cycle-data.html

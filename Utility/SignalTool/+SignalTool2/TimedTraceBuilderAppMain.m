@@ -2,6 +2,9 @@ classdef TimedTraceBuilderAppMain < handle
   % This app works with Simscape PS Lookup Table (1D) block to design
   % a signal trace using timed trace properties.
 
+  % !todo: Currently this app is get-only, i.e., the app can get parameters from
+  % the specified block but cannot set parameters to it.
+
   % Copyright 2025 The MathWorks, Inc.
 
   properties (Access=private)
@@ -396,7 +399,7 @@ classdef TimedTraceBuilderAppMain < handle
       App.SelectorUI = LiteApp7.Component.BlockSelectorUI(NewSlot(layout, row));
       App.SelectorUI.MainFigure = App.Window.MainFigure;
       App.SelectorUI.TargetSimscapeBlockNames = "PS Lookup Table (1D)";
-      App.SelectorUI.FindBlockCallback = @SignalTool2.find1DLookupTableBlocks;
+      App.SelectorUI.FindBlockCallback = @ModelTool1.findLookupTable1DBlocks;
       App.SelectorUI.GetParametersFromBlockCallback = @() disp("SelectorUI's GetParametersFromBlockCallback is undefined."); % getParam(App);
       App.SelectorUI.SetParametersToBlockCallback = @() setParam(App);
 
@@ -547,7 +550,7 @@ classdef TimedTraceBuilderAppMain < handle
       % Set plot properties: x lower bound, x upper bound, and interpolation interval
       design_matrix_text = join(App.MatrixTextUI.ValueString, " ");
       design_matrix = evalin("base", design_matrix_text);  % !todo: Avoid evaluation.
-      result = SignalTool2.getXYVectorsFromSignalDesignMatrix(design_matrix);
+      result = SignalTool2.getVectorsFromSignalDesignMatrix(design_matrix);
       x_data = result.X;
       x_min = min(x_data);
       x_max = max(x_data);
@@ -652,7 +655,7 @@ classdef TimedTraceBuilderAppMain < handle
       data_table = get_signal_design_matrix_from_UI_components(App);
 
       t_data = data_table.X;
-      f_data = data_table.Y;
+      f_data = data_table.F;
 
       App.TableGridVectorUI.Value = CodeTool1.stringify(t_data');
 
@@ -740,7 +743,7 @@ classdef TimedTraceBuilderAppMain < handle
         XFinalFlatLength = final_constant_duration, ...
         FFinalValue = final_data_value );
 
-      data_table = SignalTool2.getXYVectorsFromSignalDesignMatrix(signal_design_matrix);
+      data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
     end  % function
 

@@ -13,7 +13,7 @@ signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties
   XFinalFlatLength = 10, ...
   FFinalValue = 0 );
 
-data_table = SignalTool2.getXYVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 fig = figure; %[output:4510eefd]
 fig.Position(3:4) = [900 300];  % width height %[output:4510eefd]

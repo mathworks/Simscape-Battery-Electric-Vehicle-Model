@@ -264,7 +264,7 @@ classdef SignalDesignAppMain < handle
       App.SelectorUI = LiteApp7.Component.BlockSelectorUI(NewSlot(layout, row));
       App.SelectorUI.MainFigure = App.Window.MainFigure;
       App.SelectorUI.TargetSimscapeBlockNames = "PS Lookup Table (1D)";
-      App.SelectorUI.FindBlockCallback = @SignalTool2.find1DLookupTableBlocks;
+      App.SelectorUI.FindBlockCallback = @ModelTool1.findLookupTable1DBlocks;
       App.SelectorUI.GetParametersFromBlockCallback = @() getParam(App);
       App.SelectorUI.SetParametersToBlockCallback = @() setParam(App);
 
@@ -280,10 +280,10 @@ classdef SignalDesignAppMain < handle
       design_matrix_text = join(App.SignalDesignMatrixText, " ");
       design_matrix = evalin("base", design_matrix_text);  % !todo: Avoid evaluation.
 
-      result = SignalTool2.getXYVectorsFromSignalDesignMatrix(design_matrix);
+      result = SignalTool2.getVectorsFromSignalDesignMatrix(design_matrix);
 
       App.TableGridVectorUI.Value = CodeTool1.stringify(result.X');
-      App.TableValuesUI.Value = CodeTool1.stringify(result.Y');
+      App.TableValuesUI.Value = CodeTool1.stringify(result.F');
 
       auto_update_plot(App)
     end  % function
@@ -432,7 +432,7 @@ classdef SignalDesignAppMain < handle
       % Set plot properties: x lower bound, x upper bound, and interpolation interval
       design_matrix_text = join(App.MatrixTextUI.ValueString, " ");
       design_matrix = evalin("base", design_matrix_text);  % !todo: Avoid evaluation.
-      result = SignalTool2.getXYVectorsFromSignalDesignMatrix(design_matrix);
+      result = SignalTool2.getVectorsFromSignalDesignMatrix(design_matrix);
       x_data = result.X;
       x_min = min(x_data);
       x_max = max(x_data);
@@ -554,9 +554,9 @@ classdef SignalDesignAppMain < handle
 
       design_matrix_text = join(App.MatrixTextUI.ValueString, " ");
       design_matrix = evalin("base", design_matrix_text);  % !todo: Avoid evaluation.
-      result = SignalTool2.getXYVectorsFromSignalDesignMatrix(design_matrix);
+      result = SignalTool2.getVectorsFromSignalDesignMatrix(design_matrix);
       x_data = result.X;
-      y_data = result.Y;
+      y_data = result.F;
 
       interp_method = App.InterpUI.Value;
       extrap_method = App.ExtrapUI.Value;

@@ -1,7 +1,7 @@
 # Battery electric vehicle (BEV) system model
 
-This is an abstract BEV system model, designed for vehicle system level analysis
-such as electric efficiency.
+This is an abstract BEV system model, designed to analyze vehicle system level
+information such as electric efficiency.
 The BEV model (`BEV_system_model.mdl`) consists of the following components.
 
 - [Longitudinal vehicle][readme-veh] (`Vehicle1D`)

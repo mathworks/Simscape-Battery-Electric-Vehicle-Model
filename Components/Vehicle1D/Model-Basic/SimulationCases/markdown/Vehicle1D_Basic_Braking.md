@@ -6,28 +6,41 @@
 
 # Braking
 ```matlab
-mdl = "Vehicle1D_TestModel";
-if not(bdIsLoaded(mdl))
-  load_system(mdl)
-end
-Vehicle1D_TestModelSetup
-Vehicle1D_setSimCase_Braking
-```
+model_name = "HarnessModel_Vehicle1D";
+load_system(model_name)
 
-```matlabTextOutput
-Setting up simulation...
-Simulation case: Braking
-Setting simulation stop time to 400 sec.
-Setting block parameters...
-Setting initial conditions...
-initial.loadInertiaSpd_rpm = 0
-initial.vehicle_speed_kph = 0
+Vehicle1D_Basic_params
+
+set_param(model_name + "/Longitudinal Vehicle", ReferencedSubsystem = "Vehicle1D_Basic_refsub");
+
+set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_Vehicle1D_Braking_refsub");
 ```
 
 ```matlab
-simOut = sim(mdl);
-simData = extractTimetable(simOut.logsout);
-Vehicle1D_ResultsPlot( SimData=simData );
+initial.vehicle_speed_kph = 0;
+
+sim_in = Simulink.SimulationInput(model_name);
+sim_in = setModelParameter(sim_in, StopTime = "400");
+
+sim_out = sim(sim_in);
+
+sim_data = extractTimetable(sim_out.logsout);
+
+signal_names = [
+  "Axle torque input"
+  "Brake force"
+  "Road inclination"
+  "Road grade"
+  "G force"
+  "Vehicle speed kph"
+  "Vehicle speed mph"
+  "Axle speed"
+  ];
+
+for idx = 1 : numel(signal_names)
+  fig = SignalTool2.plotTimedData(TimedData = sim_data, SignalName = signal_names(idx));
+  fig.Position(4) = 200;  % height
+end  % for
 ```
 
 <center><img src="media/Vehicle1D_Basic_Braking_media/figure_0.png" width="702" alt="figure_0.png"></center>

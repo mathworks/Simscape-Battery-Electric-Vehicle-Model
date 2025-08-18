@@ -2,7 +2,7 @@
 %[text] This is a model of motor drive unit (MDU), which is a system consisting of an electric motor and a controller. This MDU model is abstract and simulates the high-level behavior of power conversion between electric and mechanical powers by considering power conversion efficiency or losses. This model uses the following blocks. See the respective documentation for more details.
 %[text] - [Motor & Drive block](https://www.mathworks.com/help/sdl/ref/motordrive.html) (Simscape Driveline)
 %[text] - [Motor & Drive (System-Level) block](https://www.mathworks.com/help/sps/ref/motordrivesystemlevel.html) (Simscape Electrical) \
-%[text:tableOfContents]{"heading":"**In this page**"}
+%[text:tableOfContents]{"heading":"In this page"}
 %[text] %[text:anchor:H_9924] ## MDU model
 %[text] The core system equations of the MDU model are generally as follows.
 %[text]{"align":"center"} $J\\;\\frac{d\\omega \\;}{\\textrm{dt}}=\\tau {\\;}\_{\\textrm{rot}} +\\tau\_{\\textrm{cmd}} -k\_f \\;\\omega \\;${"editStyle":"visual"}
@@ -30,8 +30,8 @@
 %[text] - **System with tabulated losses model** (`MotorDriveUnit_refsub_SystemTable`) uses [Motor & Drive (System-Level) block](https://www.mathworks.com/help/sps/ref/motordrivesystemlevel.html) from Simscape Electrical. It takes torque command and computes motor speed which is the same as the other models above, but for power conversion efficiency or losses, this model uses tabulated parameter data as a function of motor speed and torque $P\\left(\\tau\_{\\textrm{rot}} ,\\omega \\;\\right)${"editStyle":"visual"} instead of the single efficiency measurement model. Thermal model is disabled, but you can enable it if you have two data sets of efficiency or losses measured at two different temperatures. \
 %[text] %[text:anchor:H_4e26] ### Motor Efficiency Apps
 %[text] Use the following apps to see the motor efficiency map and how the parameters affect it. The link below works to open the app if you are viewing this document in MATLAB Web Browser or editing in MATLAB Editor.
-%[text] - [MotorDriveUnitEfficiencyApp\_Basic](matlab:MotorDriveUnitEfficiencyApp_Basic)
-%[text] - [MotorDriveUnitEfficiencyApp\_SystemThermal](matlab:MotorDriveUnitEfficiencyApp_SystemThermal) \
+%[text] - [MotorDriveUnit\_BasicModelEfficiencyApp](matlab:MotorDriveUnit_BasicModelEfficiencyApp)
+%[text] - [MotorDriveUnit\_SystemThermalModelEfficiencyApp](matlab:MotorDriveUnit_SystemThermalModelEfficiencyApp) \
 %[text] %[text:anchor:H_92e3] ## Simulation cases
 %[text] To validate the MDU component, a harness model is used to run some simulation cases. Click the links below to see the simulation results. You can also use [Motor Drive Unit app](matlab:MotorDriveUnitApp) to select a model and run a simulation case.
 %[text] %[text:anchor:H_446d] ### Basic model

@@ -1,0 +1,108 @@
+classdef uitest_MotorDriveUnit_BasicModelEfficiencyApp < matlab.uitest.TestCase
+  %% Class-based unit test for app
+
+  % Overview of App Testing Framework
+  % https://www.mathworks.com/help/matlab/matlab_prog/overview-of-app-testing-framework.html
+  %
+  % Table of Verifications, Assertions, and Other Qualifications
+  % https://www.mathworks.com/help/matlab/matlab_prog/types-of-qualifications.html
+
+  % Copyright 2024-2025 The MathWorks, Inc.
+
+  properties
+
+    % Do not specify the class name for a property to hold a handle to an app.
+    % For class-based test apps, the class name is the app name, making
+    % it difficult to use a common teardown if the class name is specified here.
+    App (1,1)
+
+  end  % properties
+
+  methods (TestMethodSetup)
+    % Functions in the TestMethodSetup section always run before
+    % each test defined in the Test section runs.
+
+    function test_method_setup(testcase)
+      %%
+      function closeAll
+        % Delete the app's figure object from memory.
+        if class(testcase.App) ~= "double"
+          if isstruct(testcase.App)
+            % Function-based app
+            if not(isfield(testcase.App, "Window"))
+              % There is no window to close.
+
+              return
+
+            end  % if
+            % App.Window is a struct field which does not trigger destructor.
+            % Delete the figure directly.
+            delete(testcase.App.Window.MainFigure)
+          else
+            % Class-based app
+            % App.Window's destructor deletes the figure.
+            delete(testcase.App.Window)
+          end  % if
+        end  % if
+        close all
+        bdclose all
+      end  % nested function
+
+      % addTeardown adds a function which always runs after each test.
+      % Even if the execution of a test ends with an error, the teardown function runs.
+      addTeardown(testcase, @closeAll)
+
+      % closeAll()
+      close all
+      bdclose all
+
+    end  % function
+
+  end  % methods
+
+  methods (Test)
+    % Functions in the Test section are the tests.
+    % Before a function in this section runs, the functions defined in the TestMethodSetup section run.
+
+    %% Minimum quality check
+    % Check that models, scripts, functions, and classes run right out of the box.
+
+    function PassingTest_1(testcase)
+      verifyWarningFree(testcase, @() target())
+      function target()
+        testcase.App = MotorDriveUnit_BasicModelEfficiencyApp;  % !test-target
+      end  % nested function
+    end  % function
+
+    %% Up-to-date test
+
+    function app_screenshot_is_uptodate(testcase)
+
+      source_fullpath = FileTool2.getFileFullPath("MotorDriveUnit_BasicModelEfficiencyApp.m");
+      destination_fullpath = FileTool2.getFileFullPath("screenshot-MDU-BasicModelEfficiencyApp.png");
+
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      if newer
+        % Display the time stamps.
+        FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+
+        testcase.App = MotorDriveUnit_BasicModelEfficiencyApp;
+
+        % Take screenshot
+        disp("Update screenshot")
+        exportapp(testcase.App.Window.MainFigure, destination_fullpath)
+
+      else
+        % The closeAll function checks class(testcase.App) ~= "double"
+        % when finishing the execution of a test.
+        testcase.App = 0;
+      end  % if
+
+      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      verifyFalse(testcase, newer)
+
+    end  % function
+
+  end  % methods
+
+end  % classdef

@@ -3,14 +3,14 @@
 
 # Simple
 ```matlab
-model_name = "testModel_BEVController";
+model_name = "HarnessModel_BEVController";
 load_system(model_name) 
 
 BEVController_Basic_params
 
 set_param(model_name + "/BEV Speed Tracking Controller", ReferencedSubsystem = "BEVController_Basic_refsub");
 
-set_param(model_name + "/Inputs", ReferencedSubsystem = "BEVController_Inputs_Random_refsub");
+set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_BEVController_Random_refsub");
 ```
 
 ```matlab

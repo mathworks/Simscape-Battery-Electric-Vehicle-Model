@@ -43,7 +43,7 @@ end  % if
 % extrap_method = extractAfter(get_param(BlockPath, "extrap_method"), asManyOfPattern(alphanumericsPattern + "."));
 
 design_matrix = SignalTool2.getSignalDesignMatrixFromBlockDescription(BlockPath);
-result = SignalTool2.getXYVectorsFromSignalDesignMatrix(design_matrix);
+result = SignalTool2.getVectorsFromSignalDesignMatrix(design_matrix);
 derived_xdata = result.X';
 derived_ydata = result.Y';
 

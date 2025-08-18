@@ -2,7 +2,7 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange][url-fx-icon]][url-fx-bev]
 
-Version 3.0
+Version 3.1
 
 [url-fx-bev]: https://www.mathworks.com/matlabcentral/fileexchange/82250
 [url-fx-icon]: https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg
@@ -70,11 +70,66 @@ how the model parameters are affecting the motor efficiency.
  alt="Screenshot of the motor drive unit efficiency app for system thermal model"
  width="700">
 
-Use **Motor Drive Unit App** to select model and run simulation for the Motor Drive Unit.
+Use **Motor Drive Unit Simulation App** to select model and run simulation for
+the Motor Drive Unit.
 
-<img src="Components/MotorDriveUnit/screenshot-MotorDriveUnitApp.png"
+<img src="Components/MotorDriveUnit/screenshot-MotorDriveUnitSimulationApp.png"
  alt="Screenshot of the motor drive unit app"
  width="440">
+
+## What's New in 3.1 (August 2025)
+
+Improved signal design for lookup table blocks
+
+- Smooth signals (a.k.a. Akima spline) and piece-wise linear signals
+  for lookup table blocks are now designed with the Signal Tool,
+  which is stored in the Project root > Utility > SignalTool.
+- The Signal Tool provides MATLAB functions and Apps for designing signal traces.
+  The tool works with Simscape PS Lookup Table (1D) blocks and
+  Simulink 1-D Lookup Table blocks.
+- The Signal Tool has replaced the Signal Designer.
+  The Signal Designer provided Simulink custom block library for designing and using
+  smooth or linear signals.
+  With the Signal Tool, signal design process is isolated from signal usage process.
+  Models containing lookup tables do not depend on the Signal Tool.
+- Timed Trace Builder App is added to the project.
+  The app is a uifigure-based app built with the Signal Tool.
+  The app is used to design timed signal traces with high-level properties.
+  Generated data are used in some lookup tables as simulation inputs.
+  <img src="Utility/SignalTool/screenshot-TimedTraceBuilderApp.png"
+       alt="Screenshot of the Timed Trace Builder App"
+       width="700">
+
+Streamlined model set up
+
+- Selecting a referenced subsystem is done by clicking a button
+  placed right next to the Subsystem Reference block.
+- Custom functions to change a referenced subsystem have been removed.
+- The Inputs blocks in harness models are now Referenced Subsystems.
+  Some smooth signal traces in the Inputs are now designed by the Signal Tool.
+
+Improved isolation of simulation case scripts
+
+- Simulation case scripts directly use the product API as much as possible.
+  The simulation case scripts for the same model do very similar operations
+  that were used to be managed by custom functions to avoid writing similar code
+  in multiple places.
+  However, the use of custom functions was making the comprehension
+  and modifications of the scripts hard.
+  The scripts are now more isolated from each other and easier to figure out
+  how to modify individually.
+
+Improved discoverability and organization of test files
+
+- Test files are stored in the same folder with their targets.
+- Test files are named as `unittest_*`, `uitest_*`, `uptodatetest_*`, or
+  `uiuptodatetest_*` so that the purpose of each test file is clear from its file name.
+- Separating test files by their purpose makes it easy to run related tests only.
+
+Better organization of utility tools
+
+- Utility tools are now organized into separate name spaces based on their functionality.
+  See the folders in the Project root > Utility.
 
 ## Whats' New in 3.0 (July 2025)
 

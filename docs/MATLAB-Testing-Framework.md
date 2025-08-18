@@ -80,6 +80,16 @@ as [CodeIssuesTask][url-codeissuestask].
 [url-analyzer]: https://mathworks.com/help/matlab/ref/codeanalyzer-app.html
 [url-codeissuestask]: https://www.mathworks.com/help/matlab/ref/matlab.buildtool.tasks.codeissuestask-class.html
 
+## Notes about file name and unit test
+
+If the name of a `.m` script file starts or ends with `test` in case-insensitive manner,
+such as `testModel1.m` or `myScript2Test.m`,
+MATLAB including the Build Tool treats it as a unit test file.
+This is part of the [script-based unit test][doc-script-test] feature, and
+such files are automatically run when you run the build tool.
+
+[doc-script-test]: https://www.mathworks.com/help/matlab/matlab_prog/write-script-based-unit-tests.html
+
 ## Automated testing in continuous integration
 
 Test files introduced above can be used locally in your machine

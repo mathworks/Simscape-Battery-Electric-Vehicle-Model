@@ -44,6 +44,7 @@ icon_code_string = join([
   "text(blockWidth*0.5, blockHeight*0.5, ..."
   "  """ + IconText + """, ..."
   "  HorizontalAlignment = 'center');"
+  ""
   "%% Corner decorations for subsystem reference"
   ""
   "% size of corner triangle"

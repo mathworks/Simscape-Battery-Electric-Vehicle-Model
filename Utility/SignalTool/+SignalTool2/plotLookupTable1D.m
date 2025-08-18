@@ -1,9 +1,8 @@
-function returnFigure = plotLookupTable1D(x_data, y_data, NameValuePair)
+function ReturnFigure = plotLookupTable1D(x_data, y_data, NameValuePair)
 % Make a plot of a curve and specified data points.
 %
-% As the function name indicates, the function takes data usually used to specify
-% lookup table data, one for input data points, and the other for output data points.
-% The function builds a curve from the specified data together with interpolation
+% This function takes x data for input data points and y for output data points.
+% The function builds a curve from the specified data points with interpolation
 % interval, which can be optionally specified. Specified data points are also plotted
 % using the scatter plot.
 %
@@ -57,7 +56,7 @@ arguments (Input)
 end  % arguments
 
 arguments (Output)
-  returnFigure matlab.ui.Figure {mustBeScalarOrEmpty}
+  ReturnFigure {mustBeScalarOrEmpty, mustBeA(ReturnFigure, ["matlab.ui.Figure", "matlab.graphics.layout.TiledChartLayout"])}
 end  % arguments
 
 errorID = "plotLookupTable1D:";
@@ -95,7 +94,7 @@ elseif isfield(NameValuePair, "NewFigure")
   end  % if
 end  % if
 if nargout > 0
-  returnFigure = fig;
+  ReturnFigure = fig;
 end  % if
 
 dx = NameValuePair.InterpolationInterval;

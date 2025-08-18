@@ -4,7 +4,7 @@
 This is a programmatic way of buidling a smooth signal trace for the PS Lookup Table (1D) block. For a graphical interface, use the Signal Design App which you can find in Project root > Utility > SignalTool.
 
 ```matlab
-model_name = "Reducer_TestModel";
+model_name = "HarnessModel_Reducer";
 
 % Block path for a PS Lookup Table (1D) block.
 block_path = model_name + "/Input/Axle side input torque";
@@ -19,9 +19,9 @@ design_matrix = [
   6 7 50 ;
   8 10 0 ];
 
-result = SignalTool2.getXYVectorsFromSignalDesignMatrix(design_matrix);
+result = SignalTool2.getVectorsFromSignalDesignMatrix(design_matrix);
 x = result.X';
-f = result.Y';
+f = result.F';
 
 % "Table grid vector" parameter in PS Lookup Table (1D) block.
 x_text = CodeTool1.stringify(x);
@@ -37,7 +37,7 @@ extrap_method = "Nearest";
 % Add the design matrix as text to the Description property of the target block.
 design_matrix_text = CodeTool1.stringify(design_matrix);
 
-SignalTool2.LookupTable1DPlot( ...
+SignalTool2.plotLookupTable1D( ...
   x, f, ...
   XUnitText = x_unit, ...
   YUnitText = f_unit, ...

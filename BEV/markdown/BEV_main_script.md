@@ -36,13 +36,13 @@ You can find more scripts demonstrating other simulation cases in the BEV > Mode
 This section sets up the model and runs simulation. To run this script at once, navigate Toolstrip > Live Editor tab, and click the Run button. You can also run this section only by clicking the Run Section button.
 
 ```matlab
-modelName = "BEV_system_model";
+model_name = "BEV_system_model";
 
-% Load the model file.
-load_system(modelName)
+% Load the model.
+load_system(model_name)
 
-% Set referenced subsystems and load parameters.
-BEV_setBasic
+% Setup the vehicle component models and load the parameters.
+BEV_setup_Basic
 ```
 
 ```matlabTextOutput
@@ -55,21 +55,21 @@ Loading in base workspace: BEVController_Basic_params
 ```
 
 ```matlab
-% Load drive cycle.
-VehSpdRef_setSimCase_SimpleDrivePattern( ...
-  ModelName = modelName, ...
-  TargetSubsystemPath = "/Controller & Environment/Vehicle speed reference" )
+
+% Use the Simulation Input to adjust the simulation settings.
+% https://www.mathworks.com/help/simulink/slref/simulink.simulationinput.html
+sim_in = Simulink.SimulationInput(model_name);
+
+% Select the vehicle speed reference, i.e., drive pattern/cycle.
+sim_in = setBlockParameter(sim_in, ...
+  model_name + "/Controller and Environment/Vehicle speed reference", ...
+  ReferencedSubsystem = "VehSpdRef_Simple_refsub");
+
+% Specify the stop time of simulation corresponding to the drive pattern.
+sim_in = setModelParameter(sim_in, StopTime = "100");
 ```
 
-```matlabTextOutput
-Setting up simulation...
-Simulation case: Simple drive pattern
-Setting simulation stop time to 100 sec.
-Selecting simulation case 1.
-```
-
-
-If you want to change some parameter values, do it here:
+If you want to change some parameter values or simulation settings, do it here:
 
 ```matlab
 % Your code goes here.
@@ -78,9 +78,20 @@ If you want to change some parameter values, do it here:
 Run simulation, collect logged data, and visualize the result.
 
 ```matlab
-simOut = sim(modelName);
-simData = extractTimetable(simOut.logsout);
-fig = BEV_ResultsCompactPlot( SimData=simData, PlotTemperature=false );
+% The applyToModel function updates the model file using the Simulation Input object.
+% It is safe to skip calling the function in this script, but in that case,
+% the changes made in the Simulation Input object are applied only to the model in the memory.
+% For mroe information abuout applyToModel, see the documentation.
+% https://www.mathworks.com/help/simulink/slref/simulink.simulationinput.applytomodel.html
+applyToModel(sim_in)
+
+sim_out = sim(sim_in);
+
+% Extract logged signals at once with extractTimetable.
+sim_data = extractTimetable(sim_out.logsout);
+
+fig = BEV_plotResults(TimedData = sim_data, PlotTemperature = false);
+
 % Save the plot to a PNG file.
 imgFilename = "BEV_SimulationResultPlot.png";
 exportgraphics(fig, fullfile(currentProject().RootFolder, "BEV", "simulation-results", imgFilename))
@@ -95,27 +106,24 @@ exportgraphics(fig, fullfile(currentProject().RootFolder, "BEV", "simulation-res
 Save logged signals to a CSV file for later analysis. CSV text format is used rather than binary format for saving the data. Text format works better when the data size is small and the file is version\-managed with a source control tool such as git.
 
 ```matlab
-% Extract logged signals at once with extractTimetable.
-simData = extractTimetable(simOut.logsout);
-
-% Adjust time format so as not to lose the subsecond information.
-simData.Time.Format = "hh:mm:ss.SSSS";
+% Adjust the time format in the timetable object so as not to lose the subsecond information.
+sim_data.Time.Format = "hh:mm:ss.SSSS";
 
 % Signal names to save in file.
 % These must be specified in the model as signal logging names.
 % For example, in the BEV system model, see the Measurement subsystem.
-dataColumns = [ ...
+data_columns = [ ...
   "HV Battery SOC", "HV Battery Power", "HV Battery Current", ...
   "G-Force", "Vehicle Speed kph" ];
 
 % Select the logged signals to save.
-simData = simData(:, dataColumns);
+sim_data = sim_data(:, data_columns);
 
-% Add unit information to signal names.
-varNames = string(simData.Properties.VariableNames');
-varUnits = string(simData.Properties.VariableUnits');
-varNames2 = varNames + " (" + varUnits + ")";
-disp(varNames2)
+% Add unit information to the signal names.
+var_names = string(sim_data.Properties.VariableNames');
+var_units = string(sim_data.Properties.VariableUnits');
+var_names2 = var_names + " (" + var_units + ")";
+disp(var_names2)
 ```
 
 ```matlabTextOutput
@@ -127,12 +135,12 @@ disp(varNames2)
 ```
 
 ```matlab
-simData.Properties.VariableNames = varNames2;
+sim_data.Properties.VariableNames = var_names2;
 
-% Save data to CSV file.
-simResultFilename  = "BEV_SimulationResult_1.csv";
-simResultFile_FullPath = fullfile(currentProject().RootFolder, "BEV", "simulation-results", simResultFilename);
-writetimetable(simData, simResultFile_FullPath)
+% Save the data to a CSV file.
+sim_result_filename  = "BEV_SimulationResult_1.csv";
+sim_result_filefullpath = fullfile(currentProject().RootFolder, "BEV", "simulation-results", sim_result_filename);
+writetimetable(sim_data, sim_result_filefullpath)
 ```
 
 Open the saved CSV file in text editor and check that the variable names are saved at the first line as expected.
@@ -144,19 +152,19 @@ Open the saved CSV file in text editor and check that the variable names are sav
 This section reads a simulation result CSV file which was saved in the previous section, and do some analysis on the data. This section should work independently without running the previous section as long as the result file exists. At the end of this section, you get the electric efficiency of the vehicle according to the drive cycle for which the data was collected.
 
 ```matlab
-simResultFilename  = "BEV_SimulationResult_1.csv";
-simResultFile_FullPath = fullfile(currentProject().RootFolder, "BEV", "simulation-results", simResultFilename);
+sim_result_filename  = "BEV_SimulationResult_1.csv";
+sim_result_filefullpath = fullfile(currentProject().RootFolder, "BEV", "simulation-results", sim_result_filename);
 
 % Read a CSV file containing simulation result and store it to a timetable.
-data = readtimetable(simResultFile_FullPath, VariableNamingRule="preserve");
+data = readtimetable(sim_result_filefullpath, VariableNamingRule="preserve");
 
 % Adjust time format.
 data.Time.Format = "s";
 
 % Separate variable names and unit strings.
-varNames_with_unit = string(data.Properties.VariableNames');
-varNames = extractBefore(varNames_with_unit, " (");
-disp(varNames)
+var_names_with_unit = string(data.Properties.VariableNames');
+var_names = extractBefore(var_names_with_unit, " (");
+disp(var_names)
 ```
 
 ```matlabTextOutput
@@ -168,8 +176,8 @@ disp(varNames)
 ```
 
 ```matlab
-varUnits = extractBetween(varNames_with_unit, "(", ")");
-disp(varUnits)
+var_units = extractBetween(var_names_with_unit, "(", ")");
+disp(var_units)
 ```
 
 ```matlabTextOutput
@@ -181,8 +189,8 @@ disp(varUnits)
 ```
 
 ```matlab
-data.Properties.VariableNames = varNames;
-data.Properties.VariableUnits = varUnits;
+data.Properties.VariableNames = var_names;
+data.Properties.VariableUnits = var_units;
 ```
 
 Time
@@ -195,34 +203,34 @@ dt = diff(t);
 Travelled Distance
 
 ```matlab
-dataVehSpd = data.("Vehicle Speed kph");
-unitStr = varUnits(varNames == "Vehicle Speed kph");
-vehicleSpeed = simscape.Value(dataVehSpd, unitStr);
-averageSpeed = sum(vehicleSpeed)/numel(vehicleSpeed);
-disp("Average speed: " + value(averageSpeed) + " " + string(unit(averageSpeed)))
+data_VehSpd = data.("Vehicle Speed kph");
+unit_str = var_units(var_names == "Vehicle Speed kph");
+vehicle_speed = simscape.Value(data_VehSpd, unit_str);
+average_speed = sum(vehicle_speed)/numel(vehicle_speed);
+disp("Average speed: " + value(average_speed) + " " + string(unit(average_speed)))
 ```
 
 ```matlabTextOutput
-Average speed: 37.2886 km/hr
+Average speed: 31.914 km/hr
 ```
 
 ```matlab
-maxSpeed = max(vehicleSpeed);
-disp("Maximum speed: " + value(maxSpeed) + " " + string(unit(maxSpeed)))
+max_speed = max(vehicle_speed);
+disp("Maximum speed: " + value(max_speed) + " " + string(unit(max_speed)))
 ```
 
 ```matlabTextOutput
-Maximum speed: 70.0078 km/hr
+Maximum speed: 70.0069 km/hr
 ```
 
 ```matlab
-tmpDistance = sum(vehicleSpeed(2:end).*dt);
-travelledDistance = convert( tmpDistance, "km" );
-disp("Travelled distance: " + value(travelledDistance) + " " + string(unit(travelledDistance)))
+travelled_distance = sum(vehicle_speed(2:end).*dt);
+travelled_distance = convert( travelled_distance, "km" );
+disp("Travelled distance: " + value(travelled_distance) + " " + string(unit(travelled_distance)))
 ```
 
 ```matlabTextOutput
-Travelled distance: 0.96263 km
+Travelled distance: 0.96264 km
 ```
 
 
@@ -234,7 +242,7 @@ disp("Minimun G: " + min(G))
 ```
 
 ```matlabTextOutput
-Minimun G: -0.077098
+Minimun G: -0.077077
 ```
 
 ```matlab
@@ -242,50 +250,50 @@ disp("Maximum G: " + max(G))
 ```
 
 ```matlabTextOutput
-Maximum G: 0.19849
+Maximum G: 0.19673
 ```
 
 
 Battery Power
 
 ```matlab
-dataBattPwr = data.("HV Battery Power");
-unitStr = varUnits(varNames == "HV Battery Power");
-batteryPower = simscape.Value(dataBattPwr, unitStr);  % J/s
-batteryEnergyUsed = sum(batteryPower(2:end).*dt);
-batteryEnergyUsed = convert(batteryEnergyUsed, "kWh");
-disp("Battery energy used: " + value(batteryEnergyUsed) + " " + string(unit(batteryEnergyUsed)))
+data_BattPwr = data.("HV Battery Power");
+unit_str = var_units(var_names == "HV Battery Power");
+battery_power = simscape.Value(data_BattPwr, unit_str);
+battery_energy_used = sum(battery_power(2:end).*dt);
+battery_energy_used = convert(battery_energy_used, "kWh");
+disp("Battery energy used: " + value(battery_energy_used) + " " + string(unit(battery_energy_used)))
 ```
 
 ```matlabTextOutput
-Battery energy used: 0.144 kWh
+Battery energy used: 0.14366 kWh
 ```
 
 ```matlab
-energyEfficiency_kWh_per_100km = 100 * value(batteryEnergyUsed / travelledDistance, "kWh/km");
-disp("Energy efficiency: " + energyEfficiency_kWh_per_100km + " kWh per 100 km")
+energy_efficiency_kWh_per_100km = 100 * value(battery_energy_used / travelled_distance, "kWh/km");
+disp("Energy efficiency: " + energy_efficiency_kWh_per_100km + " kWh per 100 km")
 ```
 
 ```matlabTextOutput
-Energy efficiency: 14.9594 kWh per 100 km
+Energy efficiency: 14.9234 kWh per 100 km
 ```
 
 ```matlab
-energyEfficiency_km_per_kWh = convert(travelledDistance / batteryEnergyUsed, "km/kWh");
-disp("Energy efficiency: " + value(energyEfficiency_km_per_kWh) + " " + string(unit(energyEfficiency_km_per_kWh)))
+energy_efficiency_km_per_kWh = convert(travelled_distance / battery_energy_used, "km/kWh");
+disp("Energy efficiency: " + value(energy_efficiency_km_per_kWh) + " " + string(unit(energy_efficiency_km_per_kWh)))
 ```
 
 ```matlabTextOutput
-Energy efficiency: 6.6847 km/kWh
+Energy efficiency: 6.7009 km/kWh
 ```
 
 ```matlab
-energyEfficiency_mi_per_kWh = convert(travelledDistance / batteryEnergyUsed, "mi/kWh");
-disp("Energy efficiency: " + value(energyEfficiency_mi_per_kWh) + " " + string(unit(energyEfficiency_mi_per_kWh)))
+energy_efficiency_mi_per_kWh = convert(travelled_distance / battery_energy_used, "mi/kWh");
+disp("Energy efficiency: " + value(energy_efficiency_mi_per_kWh) + " " + string(unit(energy_efficiency_mi_per_kWh)))
 ```
 
 ```matlabTextOutput
-Energy efficiency: 4.1537 mi/kWh
+Energy efficiency: 4.1637 mi/kWh
 ```
 
 

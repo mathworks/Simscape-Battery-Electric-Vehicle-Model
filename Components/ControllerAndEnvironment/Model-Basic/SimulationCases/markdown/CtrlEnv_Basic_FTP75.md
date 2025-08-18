@@ -1,28 +1,27 @@
 
 # <span style="color:rgb(213,80,0)">Controller and Environment \- Simulation Case</span>
 ```matlab
-mdl = "CtrlEnv_TestModel";
-load_system(mdl)
-CtrlEnv_TestModelSetup
-CtrlEnv_setSimCase_FTP75
-```
+model_name = "HarnessModel_CtrlEnv";
+load_system(model_name)
 
-```matlabTextOutput
-Setting up simulation...
-Simulation case: FTP-75 using Drive Cycle Source block
-Setting simulation stop time to 2474 sec.
-Selecting simulation case 3.
-```
+HarnessSetup_CtrlEnv
 
-```matlab
-simOut = sim(mdl);
-```
+sim_in = Simulink.SimulationInput(model_name);
 
-```matlab
-simData = extractTimetable(simOut.logsout);
+sim_in = setBlockParameter(sim_in, ...
+  model_name + "/Controller and Environment/Vehicle speed reference", ...
+  ReferencedSubsystem = "VehSpdRef_FTP75_refsub");
 
-% Signal logging names in the Measurement subsystem.
-sigNames = [
+sim_in = setModelParameter(sim_in, StopTime = "2474");
+
+applyToModel(sim_in)
+
+sim_out = sim(sim_in);
+
+sim_data = extractTimetable(sim_out.logsout);
+
+% Specify the signal logging names in the model.
+signal_names = [
   "Motor torque command"
   "Vehicle speed reference kph"
   "Vehicle speed kph"
@@ -30,12 +29,10 @@ sigNames = [
   "Motor speed"
   ];
 
-numSigs = numel(sigNames);
-for i = 1 : numSigs
-  fig = plotSimulationResultSignal( ...
-    SimData = simData, ...
-    SignalName = sigNames(i) );
-  fig.Position(4) = 150;  % height
+for idx = 1 : numel(signal_names)
+  SignalTool2.plotTimedData( TimedData = sim_data, ...
+    SignalName = signal_names(idx), ...
+    FigureHeight = 150 )
 end  % for
 ```
 
@@ -54,5 +51,5 @@ end  % for
 <center><img src="media/CtrlEnv_Basic_FTP75_media/figure_4.png" width="702" alt="figure_4.png"></center>
 
 
-*Copyright 2023 The MathWorks, Inc.*
+*Copyright 2023\-2025 The MathWorks, Inc.*
 

@@ -1,13 +1,13 @@
 %[text] %[text:anchor:T_D48C173C] # High Voltage Battery - Simulation Case
 %[text] %[text:anchor:H_1B376934] ## Random current
-model_name = "testModel_BatteryHV";
+model_name = "HarnessModel_BatteryHV";
 load_system(model_name)
 
 BatteryHV_SystemTable_params
 
 set_param(model_name + "/High Voltage Battery", ReferencedSubsystem = "BatteryHV_SystemTable_refsub");
 
-set_param(model_name + "/Inputs", ReferencedSubsystem = "BatteryHV_Inputs_Random_refsub");
+set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_BatteryHV_Random_refsub");
 %%
 %[text] Test conditions
 signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties(...
@@ -23,10 +23,10 @@ signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties
   XFinalFlatLength = 100, ...
   FFinalValue = 0 );
 
-data_table = SignalTool2.getXYVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 t = data_table.X;
-f = data_table.Y;
+f = data_table.F;
 
 fig = figure; %[output:6906c7dc]
 fig.Position(3:4) = [900 300];  % width height %[output:6906c7dc]
@@ -53,7 +53,7 @@ sim_out = sim(sim_in);
 
 logged_signals = extractTimetable(sim_out.logsout);
 
-BatteryHV_ResultsPlot(Timetable = logged_signals); %[output:7ac525a2]
+BatteryHV_plotResults(Timetable = logged_signals); %[output:7ac525a2]
 %[text] *Copyright 2023-2025 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

@@ -6,55 +6,51 @@
 Check that the model runs out of the box.
 
 ```matlab
-mdl = "MotorDriveUnit_TestModel";
-load_system(mdl)
-MotorDriveUnit_TestModelSetup
+model_name = "HarnessModel_MotorDriveUnit";
+load_system(model_name)
+
+HarnessSetup_MotorDriveUnit
+
+set_param(model_name + "/Motor Drive Unit", ReferencedSubsystem = "MotorDriveUnit_SystemThermal_refsub")
+
+set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_MotorDriveUnit_Constant_refsub")
+
+% Initial conditions
+initial.LoadInertiaSpeed = simscape.Value(0, "rpm");
+initial.motorDriveUnit_RotorSpd_rpm = 0;
+initial.ambientTemp_K = motorDriveUnit.ambientTemp_K;
+
+sim_in = Simulink.SimulationInput(model_name);
+sim_in = setModelParameter(sim_in, StopTime = "400");
 ```
-
-Select model to use.
-
-```matlab
-MotorDriveUnit_setRefsub_SystemThermal
-```
-
-```matlabTextOutput
-Model: MotorDriveUnit_TestModel
-Setting up referenced subsystem: MotorDriveUnit_SystemThermal_refsub
-```
-
-
-Load simulation case.
-
-```matlab
-MotorDriveUnit_setSimCase_Constant
-```
-
-```matlabTextOutput
-Setting up simulation...
-Simulation case: Constant inputs
-Setting simulation stop time to 1000 sec.
-Setting block parameters...
-batteryHV.nominalVoltage_V = 340
-batteryHV.internalResistance_Ohm = 0.01
-Setting initial conditions...
-initial.loadInertiaSpd_rpm = 0
-initial.motorSpd_rpm = 0
-initial.motorDriveUnit_Temperature_K = 293.15
-initial.ambientTemp_K = 293.15
-```
-
 
 Run simulation.
 
 ```matlab
-simOut = sim(mdl);
+sim_out = sim(sim_in);
 ```
 
 Visually inspect the result.
 
 ```matlab
-simData = extractTimetable(simOut.logsout);
-MotorDriveUnit_ResultsPlot(Timetable=simData, PlotHeight=100);
+sim_data = extractTimetable(sim_out.logsout);
+
+% Signal logging names in the model.
+signal_names = [
+  "Motor torque command"
+  "Axle torque input"
+  "Motor power rate"
+  "Motor speed"
+  "Motor temperature"
+  "Battery power"
+  "Battery current"
+  "Battery voltage"
+  ];
+
+for idx = 1 : numel(signal_names)
+  fig = SignalTool2.plotTimedData(TimedData = sim_data, SignalName = signal_names(idx));
+  fig.Position(4) = 100;  % height
+end
 ```
 
 <center><img src="media/MotorDriveUnit_SystemThermal_Constant_media/figure_0.png" width="702" alt="figure_0.png"></center>
@@ -79,12 +75,6 @@ MotorDriveUnit_ResultsPlot(Timetable=simData, PlotHeight=100);
 
 
 <center><img src="media/MotorDriveUnit_SystemThermal_Constant_media/figure_7.png" width="702" alt="figure_7.png"></center>
-
-
-<center><img src="media/MotorDriveUnit_SystemThermal_Constant_media/figure_8.png" width="702" alt="figure_8.png"></center>
-
-
-<center><img src="media/MotorDriveUnit_SystemThermal_Constant_media/figure_9.png" width="702" alt="figure_9.png"></center>
 
 
 *Copyright 2021\-2025 The Mathworks, Inc.*
