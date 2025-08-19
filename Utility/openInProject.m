@@ -31,9 +31,12 @@ else
   current_project_object = currentProject;
   if current_project_object.Name ~= this_project_name
 
-    error(sprintf("This file must first load the project: " + this_project_name + "\n" ...
-           + "But another project is currently open: " + current_project_object.Name + "\n" ...
-           + "To use this file, please close the currenly open project."))
+    id = errorID + "AnotherProjectIsOpen";
+    msg = "This file must first load the project: " + this_project_name + newline ...
+           + "But another project is currently open: " + current_project_object.Name + newline ...
+           + "To use this file, close the currenly open project.";
+
+    throw(MException(id, msg))
 
   end  % if
 end  % if
