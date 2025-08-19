@@ -48,7 +48,7 @@ classdef unittest_BatteryHV < matlab.unittest.TestCase
     end  % function
 
     function PassingTest_4(~)
-      BatteryHV_main_script
+      BatteryHV_Description
     end  % function
 
   end  % methods

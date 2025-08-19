@@ -30,84 +30,6 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
       end  % nested function
     end  % function
 
-    %% Up-to-date tests
-
-    % -------------------------------------------------------------------------
-    % Description
-
-    function project_has_description_html(testcase)
-      % Check that the project has the HTML version of the description page.
-      all_project_files = [currentProject().Files.Path]';
-      logical_index = endsWith(all_project_files, "BEVProject_Description.html");  % !test-target
-      verifyEqual(testcase, nnz(logical_index), 1)
-    end  % function
-
-    function description_html_is_uptodate(testcase)
-      % Make sure the description HTML file is up to date.
-
-      source_fullpath = FileTool2.getFileFullPath("BEVProject_Description.m");
-      destination_fullpath = FileTool2.getFileFullPath("BEVProject_Description.html");
-
-      % This test uses a conditional branch as a special case because it is practical.
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
-      if newer
-        % The export command saves the generated file in the current working folder (pwd).
-        % When this test runs, pwd is the folder where this test code file exists.
-        actual_path = string(export(source_fullpath, Run=true, Format="html", HideCode=true));
-        expected_path = destination_fullpath;
-        verifyEqual(testcase, actual_path, expected_path)
-      end  % if
-
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
-      verifyFalse(testcase, newer)
-    end  % function
-
-    % -------------------------------------------------------------------------
-    % Markdown files
-
-    function markdown_files_exist(testcase)
-      % Check that Markdown files exist for all plain-text Live Script files in pwd.
-      % Markdowns files are assumed to be in the markdown folder in pwd.
-
-      % Use FileCollection to select Live Scripts.
-      mfile_collection = matlab.buildtool.io.FileCollection.fromPaths(fullfile(pwd, "*.m"));
-
-      % Select Live Scripts.
-      % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
-      live_script_file_collection = select(mfile_collection, @(p) FileTool2.isPlainTextLiveScript(p));
-
-      [folder_path, base_file_name, ~] = fileparts(live_script_file_collection.paths');
-      markdown_files = fullfile(folder_path, "markdown", base_file_name + ".md");
-
-      file_exists = isfile(markdown_files);
-
-      actual = nnz(file_exists);
-      expected = numel(live_script_file_collection.paths);
-
-      verifyTrue(testcase, actual > 0)
-      verifyEqual(testcase, actual, expected)
-
-    end  % function
-
-    function markdowns_are_uptodate(testcase)
-      % Make sure that all Live Scripts have been converted to markdown files.
-      n = FileTool2.batchGenerateMarkdowns( ...
-        LiveScriptFolderNames = pwd, ...
-        MarkdownFolderPath = "markdown");
-
-      if n > 0
-        n = FileTool2.batchGenerateMarkdowns( ...
-          LiveScriptFolderNames = pwd, ...
-          MarkdownFolderPath = "markdown", DisplayInfo = true);
-      end  % if
-
-      % Add created files under the markdown folder to the project.
-      addFolderIncludingChildFiles(currentProject, fullfile(pwd, "markdown"));
-
-      verifyEqual(testcase, n, 0)
-
-    end  % function
-
     %% Set up
 
     % -------------------------------------------------------------------------
@@ -221,19 +143,28 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
 
     %% Links
 
-    function ProjectShortcuts(testcase)
+    function project_shortcuts(testcase)
+      % Check that the project shortcuts are linked to existing files.
+
       project_shortcut_files = [currentProject().Shortcuts.File]';
+
       if numel(project_shortcut_files) == 0
 
         return
 
       end  % if
+
       verifyTrue(testcase, all(isfile(project_shortcut_files)))
+
     end  % function
 
-    function PassingTest_hyperlinked_command_1(~)
-      % Make sure there are no broken links.
-      % This test executes all the discovered MATLAB commands.
+    function linked_commands_in_live_script_1(testcase)
+      % Live scripts can have hyperlinks that are MATLAB commands.
+      % An example is "command" in the text "[some text](matlab:command)"
+      % where "some text" is rendered with a hyperlink "command" which
+      % is passed to MATLAB when the link is clicked.
+      %
+      % This test makes sure there are no broken links.
 
       link_table = FileTool2.getLinkedCommandFromPlainTextLiveScript("BEVProject_Description.m");
 
@@ -244,19 +175,50 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
 
       end  % if
 
-      for idx = 1 : height(link_table)
-        matlab_command = link_table.Command(idx);
+      for ii = 1 : height(link_table)
+        matlab_command = link_table.Command(ii);
         disp("Hyperlinked MATLAB command: " + matlab_command)
 
-        % !todo: Check matlab_command and decide what to do, rather than just passing it to eval.
-        %
-        % If matlab_command is like "openFile('Some_TestModel')",
-        % maybe just check that 'Some_TestModel'exists.
-        % If matlab_command is "SomeApp", maybe just check SomeApp.m exists.
-        % These could be fine here because target files must be tested anyway.
-        %
-        % This might open a model, a script, an app, an HTML page, ...
-        eval(matlab_command)
+        if startsWith(matlab_command, "openInProject(")
+          % Assume that the argument to the openInProject is a simple word representing
+          % a MATLAB code file or a Simulink model file.
+          % For example, "hello" in openInFile("hello") should be one of
+          % "hello.m", "hello.mlx", "hello.mdl", or "hello.slx".
+          %
+          % This test checks that the main target file exists.
+          % This test should not actually open it.
+
+          main_target = extractBetween(matlab_command, "("+("'"|""""), ("'"|"""")+")");
+          fullpath = strings(4, 1);
+          fullpath(1) = FileTool2.getFileFullPath(main_target + ".m", ReturnIfNotFound=true);
+          fullpath(2) = FileTool2.getFileFullPath(main_target + ".mlx", ReturnIfNotFound=true);
+          fullpath(3) = FileTool2.getFileFullPath(main_target + ".mdl", ReturnIfNotFound=true);
+          fullpath(4) = FileTool2.getFileFullPath(main_target + ".slx", ReturnIfNotFound=true);
+          logical_index = fullpath ~= "";
+
+          verifyEqual(testcase, nnz(logical_index), 1)
+
+        elseif endsWith(matlab_command, "App")
+          % Assume that the name of an app command always ends with "App".
+          % This test checks that the app file exists.
+          % This test should not actually open the app.
+
+          main_target = matlab_command + ".m";
+          fullpath = FileTool2.getFileFullPath(main_target, ReturnIfNotFound=true);
+
+          verifyTrue(testcase, fullpath ~= "")
+
+        else
+          % If the MATLAB command is something else, evaluate it.
+          % Ideally, the execution of this test should not come into this branch.
+          % This is a passing test.
+          disp("Evaluating: " + matlab_command)
+
+          eval(matlab_command)
+
+          verifyTrue(testcase, true)
+
+        end  % if
 
         % Close what opened to keep memory consumption low.
         % !todo: Find a way to close an app.

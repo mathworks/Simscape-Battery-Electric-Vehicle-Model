@@ -1,4 +1,4 @@
-classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
+classdef unittest_Vehicle1D_settings < matlab.unittest.TestCase
   %% Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
@@ -33,7 +33,7 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
     % Before each function in this section runs, functions defined in the TestMethodSetup section run.
 
     function solver_settings(testcase)
-      load_system("HarnessModel_BatteryHV")
+      load_system("HarnessModel_Vehicle1D")
 
       s = string(get_param(gcs, "SolverType"));
       verifyEqual(testcase, s, "Variable-step")
@@ -44,8 +44,8 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
 
     function preload_parameters(testcase)
       % Check that the model loads parameters in the callback.
-      parameter_filename = "HarnessSetup_BatteryHV";  % without ".m"
-      load_system("HarnessModel_BatteryHV")
+      parameter_filename = "HarnessSetup_Vehicle1D";  % without ".m"
+      load_system("HarnessModel_Vehicle1D")
       callback_text = string(get_param(gcs, "PreLoadFcn"));
       verifyTrue(testcase, contains(callback_text, lineBoundary("start") + parameter_filename + alphanumericBoundary))
     end  % function
@@ -53,8 +53,8 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
     function subsystem_reference_block_settings(testcase)
       % Check the settings of the Subsystem Reference block in the harness model.
 
-      model_name = "HarnessModel_BatteryHV";
-      block_path = "HarnessModel_BatteryHV/Inputs";
+      model_name = "HarnessModel_Vehicle1D";
+      block_path = "HarnessModel_Vehicle1D/Inputs";
 
       load_system(model_name)
 
@@ -80,7 +80,7 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
       %
       % This test makes sure there are no broken links.
 
-      target_fullpath = FileTool2.getFileFullPath("BatteryHV_Description.m");
+      target_fullpath = FileTool2.getFileFullPath("Vehicle1D_Description.m");
 
       link_table = FileTool2.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
 

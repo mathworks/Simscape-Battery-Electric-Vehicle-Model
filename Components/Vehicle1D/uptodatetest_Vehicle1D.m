@@ -1,4 +1,4 @@
-classdef uptodatetest_BatteryHV < matlab.unittest.TestCase
+classdef uptodatetest_Vehicle1D < matlab.unittest.TestCase
   %% Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
@@ -7,10 +7,10 @@ classdef uptodatetest_BatteryHV < matlab.unittest.TestCase
   % matlab.unittest.TestCase Class
   % https://www.mathworks.com/help/matlab/ref/matlab.unittest.testcase-class.html
   %
-  % Test Browser
+  % Test Browser (testBrowser)
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2025 The MathWorks, Inc.
+  % Copyright 2021-2025 The MathWorks, Inc.
 
   methods (TestMethodSetup)
     % Functions in this section always run before each test defined in the Test section runs.
@@ -30,14 +30,18 @@ classdef uptodatetest_BatteryHV < matlab.unittest.TestCase
 
   methods (Test)
     % Functions in this "Test" section are the tests.
-    % Before each function in this section runs, functions defined in the TestMethodSetup section run.
+    % Before a function in this section runs, the TestSetup function
+    % defined in the "TestMethodSetup" section runs.
 
     %% Up-to-date tests
 
-    function html_is_uptodate(testcase)
-      source_fullpath = FileTool2.getFileFullPath("BatteryHV_Description.m");
-      destination_fullpath = FileTool2.getFileFullPath("BatteryHV_Description.html");
+    function description_html_is_uptodate(testcase)
+      % Make sure the description HTML file is up to date.
 
+      source_fullpath = FileTool2.getFileFullPath("Vehicle1D_Description.m");
+      destination_fullpath = FileTool2.getFileFullPath("Vehicle1D_Description.html");
+
+      % This test uses a conditional branch as a special case because it is practical.
       newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % The export command saves the generated file in the current working folder (pwd).
@@ -49,6 +53,7 @@ classdef uptodatetest_BatteryHV < matlab.unittest.TestCase
 
       newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
       verifyFalse(testcase, newer)
+
     end  % function
 
     function markdown_files_exist(testcase)
@@ -91,33 +96,6 @@ classdef uptodatetest_BatteryHV < matlab.unittest.TestCase
       addFolderIncludingChildFiles(currentProject, fullfile(pwd, "markdown"));
 
       verifyEqual(testcase, n, 0)
-
-    end  % function
-
-    function model_screenshot_is_uptodate(testcase)
-      model_name = "HarnessModel_BatteryHV";
-      image_filename = "screenshot-" + model_name + ".png";
-
-      source_fullpath = FileTool2.getFileFullPath(model_name + ".mdl");
-      destination_fullpath = FileTool2.getFileFullPath(image_filename);
-
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
-      if newer
-        load_system(model_name)
-
-        % Update the model before taking screenshot.
-        % This ensures that the model is properly updated without errors and ready to run.
-        % This also updates the canvas rendering.
-        set_param(model_name, SimulationCommand = "update")
-
-        ModelTool1.screenshotSimulink( ...
-          OutputFileName = image_filename, ...
-          SimulinkModelName = model_name, ...
-          SaveFolder = pwd );
-      end  % if
-
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
-      verifyFalse(testcase, newer)
 
     end  % function
 

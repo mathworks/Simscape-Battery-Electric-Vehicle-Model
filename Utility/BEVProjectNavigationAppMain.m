@@ -251,13 +251,13 @@ classdef BEVProjectNavigationAppMain < handle
       row = NewRow(layout, column);
       LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_hvbattery_main_script = "BatteryHV_main_script";
-      check_link(target_hvbattery_main_script);
+      target_hvbattery_description = "BatteryHV_Description";
+      check_link(target_hvbattery_description);
 
       link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "High voltage battery main script";
-      link_ui.Tooltip = "Open script: " + target_hvbattery_main_script;
-      link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_hvbattery_main_script);
+      link_ui.HyperlinkText = "High voltage battery description";
+      link_ui.Tooltip = "Open description: " + target_hvbattery_description;
+      link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_hvbattery_description);
 
       %%
       row = NewRow(layout, column);

@@ -1,4 +1,4 @@
-classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
+classdef unittest_MotorDriveUnit_settings < matlab.unittest.TestCase
   %% Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
@@ -10,7 +10,7 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
   % Test Browser
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2025 The MathWorks, Inc.
+  % Copyright 2021-2025 The MathWorks, Inc.
 
   methods (TestMethodSetup)
     % Functions in this section always run before each test defined in the Test section runs.
@@ -32,44 +32,36 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
     % Functions in this "Test" section are the tests.
     % Before each function in this section runs, functions defined in the TestMethodSetup section run.
 
-    function solver_settings(testcase)
-      load_system("HarnessModel_BatteryHV")
+    %% Link check
 
-      s = string(get_param(gcs, "SolverType"));
-      verifyEqual(testcase, s, "Variable-step")
+    function test_OpenApp_CallbackButton_1(testcase)
+      % This test validates the followings:
+      % - The model has "Open app" button at the top layer.
+      % - The button contains a callback function pointing to the app.
+      %
+      % This test does not launch the app.
+      % Testing the app must be done separately.
 
-      s = string(get_param(gcs, "SolverName"));
-      verifyEqual(testcase, s, "daessc")
-    end  % function
+      app_name = "MotorDriveUnitSimulationApp";
 
-    function preload_parameters(testcase)
-      % Check that the model loads parameters in the callback.
-      parameter_filename = "HarnessSetup_BatteryHV";  % without ".m"
-      load_system("HarnessModel_BatteryHV")
-      callback_text = string(get_param(gcs, "PreLoadFcn"));
-      verifyTrue(testcase, contains(callback_text, lineBoundary("start") + parameter_filename + alphanumericBoundary))
-    end  % function
+      open_system("HarnessModel_MotorDriveUnit")
 
-    function subsystem_reference_block_settings(testcase)
-      % Check the settings of the Subsystem Reference block in the harness model.
+      target_block_path = "HarnessModel_MotorDriveUnit/Open app";
 
-      model_name = "HarnessModel_BatteryHV";
-      block_path = "HarnessModel_BatteryHV/Inputs";
+      block_paths = string(getfullname(Simulink.findBlocksOfType(gcs, "CallbackButton")));
+      logical_index = target_block_path == block_paths;
+      verifyEqual(testcase, nnz(logical_index), 1)
 
-      load_system(model_name)
+      % !todo: Avoid using pause.
+      % For now, pause is necessary for get_param to return the expected value.
+      % Without the pause, get_param returns "" for ClickFcn.
+      pause(3)
+      click_function_string = string(get_param(target_block_path, "ClickFcn"));
+      click_function_string = strtrim(click_function_string);
 
-%{
-      % The OpenFcn callback has to have the following code.
-      %   open_system(gcb, "force")
-      openFcn_text = string(get_param(block_path, "OpenFcn"));
-      target_text = lineBoundary("start") + "open_system(gcb, ""force"")";
-      verifyTrue(testcase, contains(openFcn_text, target_text));
-%}
-
-      % IO port labels must be visible, i.e.,
-      % the Icon Transparency must be "Opaque with Ports". (Default is "Opaque".)
-      actual = string(get_param(block_path, "MaskIconOpaque"));
-      verifyEqual(testcase, actual, "opaque-with-ports")
+      actual = click_function_string;
+      expected = app_name;
+      verifyEqual(testcase, actual, expected)
     end  % function
 
     function linked_commands_in_live_script_1(testcase)
@@ -80,7 +72,7 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
       %
       % This test makes sure there are no broken links.
 
-      target_fullpath = FileTool2.getFileFullPath("BatteryHV_Description.m");
+      target_fullpath = FileTool2.getFileFullPath("MotorDriveUnit_Description.m");
 
       link_table = FileTool2.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
 
