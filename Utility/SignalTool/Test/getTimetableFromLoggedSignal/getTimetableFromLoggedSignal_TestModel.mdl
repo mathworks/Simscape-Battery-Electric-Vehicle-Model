@@ -18,7 +18,6 @@ __MWOPC_PART_BEGIN__ /[Content_Types].xml
   <Override ContentType="application/vnd.mathworks.simulink.configSet+xml" PartName="/simulink/configSet0.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.configSetInfo+xml" PartName="/simulink/configSetInfo.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.mf0+xml" PartName="/simulink/modelDictionary.xml"/>
-  <Override ContentType="application/vnd.mathworks.simulink.pluginParameters+xml" PartName="/simulink/plugins/LogicAnalyzerPlugin.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.ScheduleCore+xml" PartName="/simulink/ScheduleCore.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.ScheduleEditor+xml" PartName="/simulink/ScheduleEditor.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.blockDiagram+xml" PartName="/simulink/windowsInfo.xml"/>
@@ -44,8 +43,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2025-07-22T08:16:34Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-22T15:01:01Z</dcterms:modified>
-  <cp:revision>1.19</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-06T14:39:13Z</dcterms:modified>
+  <cp:revision>1.20</cp:revision>
   <cp:version>R2025a</cp:version>
 </cp:coreProperties>
 
@@ -67,17 +66,16 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2025a Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2943329</version>
+  <version>25.1.0.2973910</version>
   <release>R2025a</release>
-  <description></description>
-  <date>Apr 16 2025</date>
-  <checksum>423651790</checksum>
+  <description>Update 1</description>
+  <date>Jul 03 2025</date>
+  <checksum>1124574855</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-  <Relationship Id="LogicAnalyzerPlugin" Target="plugins/LogicAnalyzerPlugin.xml" Type="http://schemas.mathworks.com/simulinkModel/2014/relationships/pluginParameters"/>
   <Relationship Id="ScheduleCore" Target="ScheduleCore.xml" Type="http://schemas.mathworks.com/simulink/2013/relationships/ScheduleCore"/>
   <Relationship Id="ScheduleEditor" Target="ScheduleEditor.xml" Type="http://schemas.mathworks.com/simulink/2013/relationships/ScheduleEditor"/>
   <Relationship Id="SimscapeInstrumentationVariables_4" Target="bdmxdata/SimscapeInstrumentationVariables_4.mxarray" Type="http://schemas.mathworks.com/simulinkModel/2015/relationships/modelMxArray"/>
@@ -208,7 +206,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.19&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.20&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -1277,12 +1275,6 @@ __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
     <Interface type="Interface" uuid="ed52b5ad-9d3f-467b-8948-d380135ac7ce"/>
   </System>
 </MF0>
-__MWOPC_PART_BEGIN__ /simulink/plugins/LogicAnalyzerPlugin.xml
-<?xml version="1.0" encoding="utf-8"?>
-<LogicAnalyzerPlugin>
-  <P Name="LogicAnalyzerSignalOrdering">deb7220e-2fe6-4b7f-9ae0-dea0513add74,6614f1d7-476d-4b12-82b3-2de8f1829185,5da23366-10e0-428f-80cd-3ba1e3f4d32a,a4f6acf8-9774-460b-9537-8eff41450a67,c90ffd7f-1461-470b-a5b0-3fb2f92e76a4</P>
-</LogicAnalyzerPlugin>
-
 __MWOPC_PART_BEGIN__ /simulink/ScheduleCore.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <sltp_graph version="1.1" packageUris="http://schema.mathworks.com/mf0/sltp_mm/R2025a_202406271200">
@@ -1475,7 +1467,7 @@ Converter</P>
   </Block>
   <Block BlockType="Sum" Name="Minus" SID="10">
     <PortCounts in="2" out="1"/>
-    <P Name="Position">[615, 168, 635, 232]</P>
+    <P Name="Position">[610, 168, 630, 232]</P>
     <P Name="ZOrder">300</P>
     <P Name="ShowName">off</P>
     <P Name="IconShape">rectangular</P>
@@ -1563,7 +1555,7 @@ Converter</P>
     <P Name="Position">[795, 84, 825, 211]</P>
     <P Name="ZOrder">20</P>
     <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true,true],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5],&quot;BarWidth&quot;:[0.9,0.9],&quot;LineColor&quot;:[&quot;auto&quot;,&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1,1],&quot;LineEdgeAlpha&quot;:[1,1],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803]],&quot;ChannelNames&quot;:&quot;&quot;,&quot;DefaultLegendLabel&quot;:[&quot;Output 1&quot;,&quot;Minus&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[1,1],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;&quot;,&quot;&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:1,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Auto&quot;,&quot;ExpandOnly&quot;:true,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:false,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[2,1],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1.0034655051338603e-10,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1.1153564183352668e-11,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:0.9927426162603668,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.11030473514004072,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1.0034655051338603e-10,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1.1153564183352668e-11,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:1}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
-    <P Name="WindowPosition">[-258.000000,-406.000000,513.000000,526.000000,]</P>
+    <P Name="WindowPosition">[1117.000000,726.000000,619.000000,639.000000,]</P>
     <P Name="Visible">on</P>
     <P Name="ScopeFrameLocation">window</P>
     <P Name="WasSavedAsWebScope">on</P>
@@ -1761,7 +1753,7 @@ Configuration</P>
   <Line>
     <P Name="ZOrder">9</P>
     <P Name="Src">10#out:1</P>
-    <P Name="Points">[43, 0; 0, -20]</P>
+    <P Name="Points">[48, 0; 0, -20]</P>
     <P Name="Dst">6#in:2</P>
   </Line>
   <Line>
@@ -1771,8 +1763,9 @@ Configuration</P>
   </Line>
   <Annotation SID="14">
     <P Name="Name">Log signal without name</P>
-    <P Name="Position">[645, 232, 754, 247]</P>
+    <P Name="Position">[640, 232, 749, 247]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="ZOrder">-1</P>
   </Annotation>
   <Annotation SID="13">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1861,8 +1854,8 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="UserData" Class="char"/>
           <P Name="Floating" Class="logical">1</P>
           <P Name="DockPosition" Class="char">Bottom</P>
-          <P Name="Width" Class="int32">934</P>
-          <P Name="Height" Class="int32">246</P>
+          <P Name="Width" Class="int32">426</P>
+          <P Name="Height" Class="int32">320</P>
           <P Name="Minimized" Class="char">Unset</P>
         </Object>
         <Object ObjectID="7">

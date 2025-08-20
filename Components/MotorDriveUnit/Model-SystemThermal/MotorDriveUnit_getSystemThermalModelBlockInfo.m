@@ -20,45 +20,45 @@ arguments (Output)
   info (1,1) struct
 end  % arguments
 
-errorID = "MotorDriveUnit_getBlockInfo_SystemThermal:";
+errorID = "MotorDriveUnit_getSystemThermalModelBlockInfo:";
 
 % ================
 % Block parameters
 
 % Maximum torque
-info.MaxTorque = getSimscapeValueFromBlockParameter(fullpathToBlock, "torque_max");
+info.MaxTorque = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "torque_max");
 
 % Maximum power
-info.MaxPower = getSimscapeValueFromBlockParameter(fullpathToBlock, "power_max");
+info.MaxPower = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "power_max");
 
 % Torque control time constant, Tc
-info.ResponseTime = getSimscapeValueFromBlockParameter(fullpathToBlock, "Tc");
+info.ResponseTime = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "Tc");
 
 % Motor and driver overall efficiency (percent)
-info.EfficiencyPercent = getSimscapeValueFromBlockParameter(fullpathToBlock, "eff");
+info.EfficiencyPercent = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "eff");
 
 % Speed at which efficiency is measured
-info.MeasuredSpeed = getSimscapeValueFromBlockParameter(fullpathToBlock, "w_eff");
+info.MeasuredSpeed = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "w_eff");
 
 % Torque at which efficiency is measured
-info.MeasuredTorque = getSimscapeValueFromBlockParameter(fullpathToBlock, "T_eff");
+info.MeasuredTorque = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "T_eff");
 
 % Iron losses at measurement speed
-info.IronLoss = getSimscapeValueFromBlockParameter(fullpathToBlock, "Piron");
+info.IronLoss = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "Piron");
 
 % Fixed losses independent of torque and speed
-info.FixedLoss = getSimscapeValueFromBlockParameter(fullpathToBlock, "Pbase");
+info.FixedLoss = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "Pbase");
 
 % External supply series resistance is 0 and not used.
 
 % Rotor inertia
-info.RotorInertia = getSimscapeValueFromBlockParameter(fullpathToBlock, "J");
+info.RotorInertia = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "J");
 
 % Rotor damping
-info.RotorDamping = getSimscapeValueFromBlockParameter(fullpathToBlock, "lam");
+info.RotorDamping = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "lam");
 
 % Initial rotor speed
-info.InitialRotorSpeed = getSimscapeValueFromBlockParameter(fullpathToBlock, "speed0");
+info.InitialRotorSpeed = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "speed0");
 
 % Temperature dependence parameters
 %
@@ -73,10 +73,10 @@ info.InitialRotorSpeed = getSimscapeValueFromBlockParameter(fullpathToBlock, "sp
 % https://www.mathworks.com/help/sps/ug/simulating-thermal-effects-in-rotational-and-translational-actuators.html#btczw4r-3
 
 % Thermal mass
-info.ThermalMass = getSimscapeValueFromBlockParameter(fullpathToBlock, "thermal_mass");
+info.ThermalMass = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "thermal_mass");
 
 % Initial temperature
-info.InitialTemperature = getSimscapeValueFromBlockParameter(fullpathToBlock, "initial_temperature");
+info.InitialTemperature = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "initial_temperature");
 
 % ===============
 % Additional data
@@ -92,7 +92,7 @@ mechpow_meas_kW = mechpow_eff / 1000;
 info.MeasuredMechanicalPower = simscape.Value(mechpow_meas_kW, "kW");
 assert( mechpow_meas_kW < maxPower_kW, ...
   errorID + "InvalidPower", ...
-  LiteApp6.Utility.i18n("Power at efficiency measurement speed must be smaller than maximum power."))
+  CodeTool1.i18n("Power at efficiency measurement speed must be smaller than maximum power."))
 
 % Nominal loss (total loss) at efficiency measurement point
 nominal_loss_meas_W = (1/eff_norm - 1) * mechpow_eff;

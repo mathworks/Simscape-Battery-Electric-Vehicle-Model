@@ -44,8 +44,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2023-02-09T11:05:38Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-10T14:24:53Z</dcterms:modified>
-  <cp:revision>6.15</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-14T10:29:36Z</dcterms:modified>
+  <cp:revision>6.16</cp:revision>
   <cp:version>R2025a</cp:version>
 </cp:coreProperties>
 
@@ -67,11 +67,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2025a Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2943329</version>
+  <version>25.1.0.2973910</version>
   <release>R2025a</release>
-  <description></description>
-  <date>Apr 16 2025</date>
-  <checksum>423651790</checksum>
+  <description>Update 1</description>
+  <date>Jul 03 2025</date>
+  <checksum>1124574855</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -111,7 +111,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:6.15&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:6.16&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -1029,11 +1029,12 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[130, 49, 1270, 689]</P>
+  <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">61028</P>
+  <P Name="SIDHighWatermark">61029</P>
   <Block BlockType="Reference" Name="Drive Cycle Source" SID="61027">
     <PortCounts out="1"/>
-    <P Name="Position">[75, -43, 200, 43]</P>
+    <P Name="Position">[-25, -43, 100, 43]</P>
     <P Name="ZOrder">26310</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="AttributesFormatString">%&lt;cycleVar&gt; (%&lt;tfinal&gt;)</P>
@@ -1089,7 +1090,18 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     </InstanceData>
     <PortProperties>
       <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">Reference Speed</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="SignalSpecification" Name="Signal Specification" SID="61029">
+    <P Name="Position">[195, -12, 275, 12]</P>
+    <P Name="ZOrder">26326</P>
+    <P Name="Unit">km/h</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
         <P Name="Name">VehSpdRef</P>
+        <P Name="PropagatedSignals">Reference Speed</P>
       </Port>
     </PortProperties>
   </Block>
@@ -1100,24 +1112,17 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Unit">km/h</P>
   </Block>
   <Line>
-    <P Name="Name">VehSpdRef</P>
     <P Name="ZOrder">388</P>
-    <P Name="Labels">[-1, 0]</P>
     <P Name="Src">61027#out:1</P>
+    <P Name="Dst">61029#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">VehSpdRef</P>
+    <P Name="ZOrder">389</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">61029#out:1</P>
     <P Name="Dst">12#in:1</P>
   </Line>
-  <Annotation SID="61025">
-    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:14px;&quot;&gt;Unit is defined.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[310, -60, 404, -41]</P>
-    <P Name="InternalMargins">[0, 0, 0, 0]</P>
-    <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-1</P>
-    <P Name="MarkupType">markup</P>
-  </Annotation>
   <Annotation SID="13">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -1138,7 +1143,7 @@ p, li { white-space: pre-wrap; }
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Helvetica&apos;; font-size:14px;&quot;&gt;or Vehicle Dynamics Blockset.&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Helvetica&apos;; font-size:14px;&quot;&gt;Drive cycles other than FTP75 are available by support package.&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Helvetica&apos;; font-size:14px;&quot;&gt;(See the &lt;/span&gt;&lt;a href=&quot;https://www.mathworks.com/help/autoblks/ug/install-drive-cycle-data.html&quot;&gt;&lt;span style=&quot; font-family:&apos;Helvetica&apos;; font-size:14px; text-decoration: underline; color:#0000ff;&quot;&gt;documentation&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Helvetica&apos;; font-size:14px;&quot;&gt;.)&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[-141, -150, 303, -84]</P>
+    <P Name="Position">[-241, -150, 203, -84]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="FixedHeight">on</P>
     <P Name="FixedWidth">on</P>
@@ -1146,13 +1151,6 @@ p, li { white-space: pre-wrap; }
     <P Name="ZOrder">-45</P>
     <P Name="MarkupType">markup</P>
   </Annotation>
-  <Connector>
-    <P Name="Annotation">61025</P>
-    <P Name="Target">Block:12</P>
-    <P Name="MarkupType">markup</P>
-    <P Name="StrokeWidth">2</P>
-    <P Name="Color">[0.000000, 0.000000, 0.700000]</P>
-  </Connector>
   <Connector>
     <P Name="Annotation">61028</P>
     <P Name="Target">Block:61027</P>
@@ -1188,8 +1186,8 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="LoadSaveID" Class="char">0</P>
           <P Name="Extents" Class="double">[1652.0, 622.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-412.79557291666663, -219.83333333333334]</P>
-          <P Name="SceneRectInView" Class="double">[-412.79557291666663, -219.83333333333334, 1101.3333333333333, 414.66666666666669]</P>
+          <P Name="Offset" Class="double">[-462.79557291666663, -219.83333333333334]</P>
+          <P Name="SceneRectInView" Class="double">[-462.79557291666663, -219.83333333333334, 1101.3333333333333, 414.66666666666669]</P>
         </Object>
         <Object ObjectID="6">
           <P Name="IsActive" Class="logical">0</P>

@@ -9,52 +9,62 @@
 Use this to check that simulation runs ok.
 
 ```matlab
-mdl = "BatteryHV_TestModel";
-load_system(mdl)
+model_name = "HarnessModel_BatteryHV";
+load_system(model_name)
 
-% Load model parameters.
-BatteryHV_TestModelSetup
+BatteryHV_Basic_params
 
-% Select battery model.
-BatteryHV_setRefsub_Basic
+set_param(model_name + "/High Voltage Battery", ReferencedSubsystem = "BatteryHV_Basic_refsub");
+
+set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_BatteryHV_Constant_refsub");
+```
+
+Test conditions
+
+```matlab
+% Negative value for charge
+testParam.LoadCurrent = simscape.Value(0, "A");
+```
+
+Initial conditions
+
+```matlab
+initial.hvBattery_SOC_pct = 50;
+initial.hvBattery_SOC_normalized = initial.hvBattery_SOC_pct / 100;
+
+tmp_batt_charge = HighVoltageBatteryTool1.getAmpereHourRating( ...
+  Capacity = simscape.Value(batteryHV.nominalCapacity_kWh, "kWh"), ...
+  Voltage = simscape.Value(batteryHV.nominalVoltage_V, "V"), ...
+  StateOfCharge = initial.hvBattery_SOC_normalized );
+
+initial.hvBattery_Charge_Ahr = value(tmp_batt_charge, "Ah");
+disp(initial)
 ```
 
 ```matlabTextOutput
-Model: BatteryHV_TestModel
-Setting up referenced subsystem: BatteryHV_Basic_refsub
+           hvBattery_SOC_pct: 50
+        hvBattery_Charge_Ahr: 88.2353
+     hvBattery_Temperature_K: 293.1500
+               ambientTemp_K: 293.1500
+    hvBattery_SOC_normalized: 0.5000
 ```
+
+
+Simulation
 
 ```matlab
-% Setup simulation case.
-BatteryHV_setSimCase_Constant
-```
+sim_in = Simulink.SimulationInput(model_name);
+sim_in = setModelParameter(sim_in, StopTime = "3600");
 
-```matlabTextOutput
-Setting up simulation...
-Simulation case: Constant inputs
-Setting simulation stop time to 1000 sec.
-Setting block parameters for input blocks...
-Setting initial conditions...
-initial.hvBattery_SOC_pct = 50
-initial.hvBattery_SOC_normalized = 0.5
-initial.hvBattery_Charge_Ahr = 88.2353
-initial.hvBattery_Temperature_K = 293.15
-initial.ambientTemp_K = 293.15
-```
+sim_out = sim(sim_in);
 
-```matlab
-set_param(mdl, StopTime="3600")
-% Run simulation.
-simOut = sim(mdl);
+logged_signals = extractTimetable(sim_out.logsout);
 
-% Collect logged signals and visualize.
-% The basic version of the battery block does not simulate battery temperature.
-logged_signals = extractTimetable(simOut.logsout);
-BatteryHV_ResultsPlot(Timetable=logged_signals);
+BatteryHV_plotResults(Timetable = logged_signals);
 ```
 
 <center><img src="media/BatteryHV_Basic_Constant_media/figure_0.png" width="702" alt="figure_0.png"></center>
 
 
-*Copyright 2020\-2023 The Mathworks, Inc.*
+*Copyright 2020\-2025 The Mathworks, Inc.*
 

@@ -44,8 +44,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2023-02-09T11:05:38Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-10T14:44:23Z</dcterms:modified>
-  <cp:revision>6.12</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-14T10:29:58Z</dcterms:modified>
+  <cp:revision>6.25</cp:revision>
   <cp:version>R2025a</cp:version>
 </cp:coreProperties>
 
@@ -67,11 +67,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2025a Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2943329</version>
+  <version>25.1.0.2973910</version>
   <release>R2025a</release>
-  <description></description>
-  <date>Apr 16 2025</date>
-  <checksum>423651790</checksum>
+  <description>Update 1</description>
+  <date>Jul 03 2025</date>
+  <checksum>1124574855</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -108,10 +108,11 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
   <Subsystem>
     <P Name="ModelUUID">81021486-11cd-4062-bb2f-8ccef393a5d2</P>
     <P Name="LastSavedArchitecture">win64</P>
+    <P Name="HideAutomaticNames">off</P>
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:6.12&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:6.25&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -939,9 +940,9 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
     "GraphicalInterface":{
         "ExternalFileReferences":[
             {
-                "Path":"$bdroot\/Vehicle speed reference\/Ramp",
+                "Path":"$bdroot\/Ramp",
                 "Reference":"simulink\/Sources\/Ramp",
-                "SID":"61029",
+                "SID":"61044",
                 "Type":"LIBRARY_BLOCK"
             }
         ],
@@ -949,8 +950,7 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
         "RootOutports":[
             {
                 "Name":"VehSpdRef",
-                "SignalName":"VehSpdRef",
-                "UnitExpr":"km\/h"
+                "SignalName":"VehSpdRef"
             }
         ],
         "SimulinkSubDomainType":"Simulink",
@@ -983,7 +983,7 @@ blockWidth = pos(3) - pos(1);
 blockHeight = pos(4) - pos(2);
 
 text(blockWidth*0.5, blockHeight*0.82, ...
-  &quot;High speed&quot;, ...
+  &quot;HighSpeed&quot;, ...
   HorizontalAlignment = &apos;center&apos;);
 
 %% Corner decorations for subsystem reference
@@ -1025,32 +1025,28 @@ __MWOPC_PART_BEGIN__ /simulink/stateflow/machine.xml
   </machine>
 </Stateflow>
 
-__MWOPC_PART_BEGIN__ /simulink/systems/_rels/system_root.xml.rels
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-  <Relationship Id="system_61027" Target="system_61027.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
-</Relationships>
-
-__MWOPC_PART_BEGIN__ /simulink/systems/system_61027.xml
+__MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[130, 49, 1270, 689]</P>
-  <Block BlockType="Lookup_n-D" Name="1-D Lookup Table" SID="61028">
-    <PortCounts in="1" out="1"/>
-    <P Name="Position">[225, 78, 290, 142]</P>
-    <P Name="ZOrder">2</P>
+  <P Name="Location">[41, 52, 1181, 692]</P>
+  <P Name="Open">on</P>
+  <P Name="ReportName">simulink-default.rpt</P>
+  <P Name="SIDHighWatermark">61044</P>
+  <Block BlockType="CustomCallbackButton" Name="Plot" SID="61040">
+    <P Name="Position">[135, -90, 245, -55]</P>
+    <P Name="ZOrder">26315</P>
+    <P Name="ForegroundColor">[0.011765, 0.011765, 0.011765]</P>
+    <P Name="BackgroundColor">[0.956863, 0.956863, 0.956863]</P>
+    <P Name="NameLocation">left</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="InputPortMap">u0</P>
-    <P Name="NumberOfTableDimensions">1</P>
-    <P Name="BreakpointsForDimension1">sig.Data.X</P>
-    <P Name="Table">sig.Data.Y</P>
-    <P Name="InternalRulePriority">Speed</P>
-    <P Name="RndMeth">Simplest</P>
+    <P Name="FontSize">12</P>
+    <P Name="Configuration">{&quot;components&quot;:[{&quot;name&quot;:&quot;BackgroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;position&quot;:[0,0,1,1]}},{&quot;name&quot;:&quot;ButtonStateComponent&quot;,&quot;settings&quot;:{&quot;buttonType&quot;:&quot;momentary&quot;,&quot;clickFcn&quot;:&quot;SignalTool2.plotSimulink1DLookupTableBlock(gcs + \&quot;\/Vehicle speed reference\&quot;);&quot;,&quot;onValue&quot;:1,&quot;position&quot;:[0,0,1,1],&quot;pressDelay&quot;:&quot;500&quot;,&quot;pressFcn&quot;:&quot;&quot;,&quot;repeatInterval&quot;:&quot;0&quot;,&quot;states&quot;:[{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Lookup table&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Lookup table&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Lookup table&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Lookup table&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;}]}},{&quot;name&quot;:&quot;ForegroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;isForeground&quot;:1,&quot;position&quot;:[0,0,1,1]}}],&quot;derived&quot;:{&quot;blockParameters&quot;:{&quot;AutoActivate&quot;:true,&quot;ButtonText&quot;:&quot;Lookup table&quot;,&quot;ButtonType&quot;:&quot;Momentary&quot;,&quot;ClickFcn&quot;:&quot;SignalTool2.plotSimulink1DLookupTableBlock(gcs + \&quot;\/Vehicle speed reference\&quot;);&quot;,&quot;OnValue&quot;:1,&quot;PressDelay&quot;:&quot;500&quot;,&quot;PressFcn&quot;:&quot;&quot;,&quot;RepeatInterval&quot;:&quot;0&quot;,&quot;fixedAspectRatio&quot;:&quot;off&quot;}},&quot;settings&quot;:{&quot;BindingType&quot;:&quot;standalone&quot;,&quot;autoActivate&quot;:true,&quot;backgroundColor&quot;:[244,244,244,1],&quot;backgroundOffset&quot;:0.2,&quot;backgroundOpacity&quot;:1,&quot;fixedAspectRatio&quot;:&quot;off&quot;,&quot;foregroundColor&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;migratedFromLegacy&quot;:true,&quot;useBackgroundColor&quot;:true,&quot;variant&quot;:&quot;callback&quot;,&quot;version&quot;:&quot;R2025a&quot;},&quot;type&quot;:&quot;Button&quot;}</P>
+    <P Name="CustomBackgroundColor">{&quot;color&quot;:[0.9568627451,0.9568627451,0.9568627451],&quot;show&quot;:true}</P>
   </Block>
-  <Block BlockType="Reference" Name="Ramp" SID="61029">
+  <Block BlockType="Reference" Name="Ramp" SID="61044">
     <PortCounts out="1"/>
-    <P Name="Position">[125, 95, 155, 125]</P>
-    <P Name="ZOrder">3</P>
+    <P Name="Position">[35, -15, 65, 15]</P>
+    <P Name="ZOrder">26320</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="AttributesFormatString">Slope: %&lt;slope&gt;
 Start time: %&lt;start&gt;
@@ -1072,252 +1068,64 @@ Initial output: %&lt;InitialOutput&gt;
       <P Name="InitialOutput">0</P>
       <P Name="VectorParams1D">on</P>
     </InstanceData>
-    <PortProperties>
-      <Port Type="out" Index="1">
-        <P Name="Name">time</P>
-      </Port>
-    </PortProperties>
   </Block>
-  <Block BlockType="Outport" Name="Out1" SID="61030">
-    <P Name="Position">[360, 103, 390, 117]</P>
-    <P Name="ZOrder">-2</P>
-  </Block>
-  <Line>
-    <P Name="ZOrder">1</P>
-    <P Name="Src">61028#out:1</P>
-    <P Name="Dst">61030#in:1</P>
-  </Line>
-  <Line>
-    <P Name="Name">time</P>
-    <P Name="ZOrder">2</P>
-    <P Name="Labels">[1, 1]</P>
-    <P Name="Src">61029#out:1</P>
-    <P Name="Dst">61028#in:1</P>
-  </Line>
-</System>
-
-__MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
-<?xml version="1.0" encoding="utf-8"?>
-<System>
-  <P Name="Location">[130, 49, 1270, 689]</P>
-  <P Name="Open">on</P>
-  <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">61030</P>
-  <Block BlockType="SubSystem" Name="Vehicle speed reference" SID="61027">
-    <PortCounts out="1"/>
-    <P Name="Position">[100, -14, 175, 14]</P>
-    <P Name="ZOrder">26310</P>
-    <P Name="ContentPreviewEnabled">on</P>
-    <Mask>
-      <Type>Trace Generator</Type>
-      <Display RunInitForIconRedraw="off">disp(&quot;Trace&quot; + newline + &quot;Generator&quot;)
-</Display>
-      <Description>This block generates a smooth signal consisting of flat segments.</Description>
-      <Initialization>
-xydata = SignalDesignUtility.buildXYData( ...
-  RandomSeed = randomSeed, ...
-  XScale = tScale, ...
-  YScale = yScale, ...
-  XInitialFlatLength = tInitialFlatLength, ...
-  YInitialValue = yInitialValue, ...
-  NumTransitions  = numTransitions, ...
-  TransitionRange = transitionRange, ...
-  FlatRange = flatRange, ...
-  YRange = yRange, ...
-  XFinalTransitionLength = tFinalTransitionDuration, ...
-  XFinalFlatLength = tFinalFlatDuration, ...
-  YFinalValue = yFinalValue );
-
-sig = SignalDesigner(&quot;ContinuousMultiStep&quot;);
-sig.XYData = xydata;
-sig.DeltaX = interpolationStepSize;
-
-update(sig)
-</Initialization>
-      <MaskParameter Name="yScale" Type="edit">
-        <Prompt>Data value scaler</Prompt>
-        <Value>1</Value>
-      </MaskParameter>
-      <MaskParameter Name="tScale" Type="edit">
-        <Prompt>Time scaler</Prompt>
-        <Value>1</Value>
-      </MaskParameter>
-      <MaskParameter Name="randomSeed" Type="edit">
-        <Prompt>Random seed</Prompt>
-        <Value>6</Value>
-      </MaskParameter>
-      <MaskParameter Name="interpolationStepSize" Type="edit">
-        <Prompt>Interpolation step [s]</Prompt>
-        <Value>0.5</Value>
-      </MaskParameter>
-      <MaskParameter Name="tInitialFlatLength" Type="edit">
-        <Prompt>Initial constant duration</Prompt>
-        <Value>10</Value>
-      </MaskParameter>
-      <MaskParameter Name="yInitialValue" Type="edit">
-        <Prompt>Initial data value</Prompt>
-        <Value>0</Value>
-      </MaskParameter>
-      <MaskParameter Name="numTransitions" Type="edit">
-        <Prompt>Number of transitions</Prompt>
-        <Value>10</Value>
-      </MaskParameter>
-      <MaskParameter Name="transitionRange" Type="edit">
-        <Prompt>Range of transition duration</Prompt>
-        <Value>[5 10]</Value>
-      </MaskParameter>
-      <MaskParameter Name="flatRange" Type="edit">
-        <Prompt>Range of constant duration</Prompt>
-        <Value>[5 10]</Value>
-      </MaskParameter>
-      <MaskParameter Name="yRange" Type="edit">
-        <Prompt>Range of data value</Prompt>
-        <Value>[60 100]</Value>
-      </MaskParameter>
-      <MaskParameter Name="tFinalTransitionDuration" Type="edit">
-        <Prompt>Final transition duration</Prompt>
-        <Value>15</Value>
-      </MaskParameter>
-      <MaskParameter Name="tFinalFlatDuration" Type="edit">
-        <Prompt>Final constant duration</Prompt>
-        <Value>10</Value>
-      </MaskParameter>
-      <MaskParameter Name="yFinalValue" Type="edit">
-        <Prompt>Final data value</Prompt>
-        <Value>0</Value>
-      </MaskParameter>
-      <DialogControl Type="Group" Name="DescGroupVar">
-        <Prompt>%&lt;MaskType&gt;</Prompt>
-        <DialogControl Type="Text" Name="DescTextVar">
-          <Prompt>%&lt;MaskDescription&gt;</Prompt>
-        </DialogControl>
-      </DialogControl>
-      <DialogControl Type="Group" Name="ParameterGroupVar">
-        <Prompt>Parameters</Prompt>
-        <DialogControl Type="Edit" Name="randomSeed">
-          <Prompt>Random seed</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="Edit" Name="interpolationStepSize">
-          <Prompt>Interpolation step [s]</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="Edit" Name="tInitialFlatLength">
-          <Prompt>Initial constant duration</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="Edit" Name="yInitialValue">
-          <Prompt>Initial data value</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="Edit" Name="numTransitions">
-          <Prompt>Number of transitions</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="Edit" Name="transitionRange">
-          <Prompt>Range of transition duration</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="Edit" Name="flatRange">
-          <Prompt>Range of constant duration</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="Edit" Name="yRange">
-          <Prompt>Range of data value</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="Edit" Name="tFinalTransitionDuration">
-          <Prompt>Final transition duration</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="Edit" Name="tFinalFlatDuration">
-          <Prompt>Final constant duration</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="Edit" Name="yFinalValue">
-          <Prompt>Final data value</Prompt>
-          <ControlOptions PromptLocation="left"/>
-        </DialogControl>
-        <DialogControl Type="CollapsiblePanel" Name="Container3">
-          <Prompt>Advanced</Prompt>
-          <DialogControl Type="Edit" Name="yScale">
-            <Prompt>Data value scaler</Prompt>
-            <ControlOptions PromptLocation="left"/>
-          </DialogControl>
-          <DialogControl Type="Edit" Name="tScale">
-            <Prompt>Time scaler</Prompt>
-            <ControlOptions PromptLocation="left"/>
-          </DialogControl>
-        </DialogControl>
-      </DialogControl>
-      <DialogControl Type="Text" Name="Control3">
-        <Prompt>horizontal spacer 1</Prompt>
-        <ControlOptions Visible="off"/>
-      </DialogControl>
-      <DialogControl Type="Text" Name="Control4">
-        <Prompt>horizontal spacer 2</Prompt>
-        <ControlOptions Visible="off" Row="current"/>
-      </DialogControl>
-      <DialogControl Type="Text" Name="Control5">
-        <Prompt>horizontal spacer 3</Prompt>
-        <ControlOptions Visible="off" Row="current"/>
-      </DialogControl>
-      <DialogControl Type="Button" Name="PlotButton">
-        <Prompt>Plot</Prompt>
-        <Callback>SignalSourceBlockCallback.plotTraceGenerator(gcb);</Callback>
-        <ControlOptions Row="current" HorizontalStretch="off"/>
-      </DialogControl>
-    </Mask>
+  <Block BlockType="SignalSpecification" Name="Signal Specification" SID="61043">
+    <P Name="Position">[310, -12, 390, 12]</P>
+    <P Name="ZOrder">26319</P>
+    <P Name="ShowName">off</P>
+    <P Name="Unit">km/h</P>
     <PortProperties>
       <Port Type="out" Index="1">
         <P Name="Name">VehSpdRef</P>
       </Port>
     </PortProperties>
-    <System Ref="system_61027"/>
+  </Block>
+  <Block BlockType="Lookup_n-D" Name="Vehicle speed reference" SID="61037">
+    <PortCounts in="1" out="1"/>
+    <P Name="Position">[155, -32, 220, 32]</P>
+    <P Name="ZOrder">26313</P>
+    <P Name="HideAutomaticName">off</P>
+    <P Name="InputPortMap">u0</P>
+    <P Name="NumberOfTableDimensions">1</P>
+    <P Name="BreakpointsForDimension1">[0, 5, 10, 20, 24, 28, 38, 42.5, 47, 57, 61.5, 66, 74, 78, 82, 88, 91.5, 95, 100, 103, 106, 113, 118, 123, 130, 133.5, 137, 145, 148, 151, 158, 160.5, 163, 171, 176, 181, 196, 201, 206]</P>
+    <P Name="Table">[0, 0, 0, 65, 65, 65, 73, 73, 73, 62, 62, 62, 69, 69, 69, 76, 76, 76, 96, 96, 96, 74, 74, 74, 100, 100, 100, 61, 61, 61, 74, 74, 74, 75, 75, 75, 0, 0, 0]</P>
+    <P Name="InterpMethod">Akima spline</P>
+    <P Name="InternalRulePriority">Speed</P>
+    <P Name="RndMeth">Simplest</P>
   </Block>
   <Block BlockType="Outport" Name="VehSpdRef" SID="12">
-    <P Name="Position">[335, -7, 365, 7]</P>
+    <P Name="Position">[565, -7, 595, 7]</P>
     <P Name="ZOrder">26224</P>
     <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
-    <P Name="Unit">km/h</P>
   </Block>
   <Line>
+    <P Name="ZOrder">394</P>
+    <P Name="Src">61044#out:1</P>
+    <P Name="Dst">61037#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">395</P>
+    <P Name="Src">61037#out:1</P>
+    <P Name="Dst">61043#in:1</P>
+  </Line>
+  <Line>
     <P Name="Name">VehSpdRef</P>
-    <P Name="ZOrder">388</P>
-    <P Name="Labels">[-1, 0]</P>
-    <P Name="Src">61027#out:1</P>
+    <P Name="ZOrder">396</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">61043#out:1</P>
     <P Name="Dst">12#in:1</P>
   </Line>
-  <Annotation SID="61025">
-    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:14px;&quot;&gt;Unit is defined.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[270, -60, 364, -41]</P>
-    <P Name="InternalMargins">[0, 0, 0, 0]</P>
-    <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-1</P>
-    <P Name="MarkupType">markup</P>
-  </Annotation>
   <Annotation SID="13">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:12px;&quot;&gt;Copyright 2023-2025 The MathWorks, Inc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[129, 75, 356, 91]</P>
+    <P Name="Position">[198, 93, 425, 109]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-7</P>
+    <P Name="ZOrder">-39</P>
   </Annotation>
-  <Connector>
-    <P Name="Annotation">61025</P>
-    <P Name="Target">Block:12</P>
-    <P Name="MarkupType">markup</P>
-    <P Name="StrokeWidth">2</P>
-    <P Name="Color">[0.000000, 0.000000, 0.700000]</P>
-  </Connector>
 </System>
 
 __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
@@ -1326,7 +1134,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
   <Object PropName="BdWindowsInfo" ObjectID="1" ClassName="Simulink.BDWindowsInfo">
     <Object PropName="WindowsInfo" ObjectID="2" ClassName="Simulink.WindowInfo">
       <P Name="IsActive" Class="logical">1</P>
-      <P Name="Location" Class="double">[130.0, 49.0, 1140.0, 640.0]</P>
+      <P Name="Location" Class="double">[41.0, 52.0, 1140.0, 640.0]</P>
       <Object PropName="ModelBrowserInfo" ObjectID="3" ClassName="Simulink.ModelBrowserInfo">
         <P Name="Visible" Class="logical">0</P>
         <P Name="DockPosition" Class="char">Left</P>
@@ -1346,8 +1154,8 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="LoadSaveID" Class="char">0</P>
           <P Name="Extents" Class="double">[1652.0, 622.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-320.81119791666663, -191.83333333333334]</P>
-          <P Name="SceneRectInView" Class="double">[-320.81119791666663, -191.83333333333334, 1101.3333333333333, 414.66666666666669]</P>
+          <P Name="Offset" Class="double">[-239.00651041666663, -197.83333333333334]</P>
+          <P Name="SceneRectInView" Class="double">[-239.00651041666663, -197.83333333333334, 1101.3333333333333, 414.66666666666669]</P>
         </Object>
         <Object ObjectID="6">
           <P Name="IsActive" Class="logical">0</P>
@@ -1401,7 +1209,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">8bc14801-6706-4a24-a221-00273b187e76</P>
     </Object>
-    <P Name="BDUuid" Class="char">3e521ab2-1cef-4a87-b3c4-ab4edf3edb58</P>
+    <P Name="BDUuid" Class="char">a75142ce-ef5d-47a1-9ab0-c516916fa0b3</P>
   </Object>
 </WindowsInfo>
 

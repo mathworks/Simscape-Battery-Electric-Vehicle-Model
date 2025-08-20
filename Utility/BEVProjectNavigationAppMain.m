@@ -11,7 +11,7 @@ classdef BEVProjectNavigationAppMain < handle
   % Copyright 2024-2025 The MathWorks, Inc.
 
   properties
-    Window LiteApp6.LiteAppWindow
+    Window LiteApp7.LiteAppWindow
   end  % properties
 
   properties (Access=private)
@@ -44,7 +44,7 @@ classdef BEVProjectNavigationAppMain < handle
       function check_link(filename)
         % Check that the file exists.
         try
-          LiteApp6.Utility.getFileFullPath(filename);
+          FileTool2.getFileFullPath(filename);
         catch exception
           if not(App.force_start)
             rethrow(exception)
@@ -52,13 +52,13 @@ classdef BEVProjectNavigationAppMain < handle
         end  % try, catch
       end  % nested function
 
-      app_window = LiteApp6.LiteAppWindow(SourceFilename=mfilename);
+      app_window = LiteApp7.LiteAppWindow(SourceFilename=mfilename);
 
       app_window.Name = "BEV Project Navigation App";
       app_window.Width = 580;
       app_window.Height = 680;
 
-      width_unit = LiteApp6.Utility.Constant.Width{"unitwidth"};
+      width_unit = LiteApp7.Constant.Width{"unitwidth"};
       indent = width_unit * 2;
 
       layout = app_window.MainLayout;
@@ -69,17 +69,17 @@ classdef BEVProjectNavigationAppMain < handle
       %% ============================================================================
       row = NewRow(layout, column);
 
-      label_ui = LiteApp6.Component.Label(NewSlot(layout, row));
+      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{Project}";
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
       target_project_description_page = "BEVProject_Description.html";
       check_link(target_project_description_page);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "BEV project description";
       link_ui.Tooltip = "Open page: " + target_project_description_page;
       link_ui.HyperlinkClickedCallback = @() open_target_page(target_project_description_page);
@@ -87,90 +87,90 @@ classdef BEVProjectNavigationAppMain < handle
       %% ============================================================================
       row = NewRow(layout, column);
 
-      label_ui = LiteApp6.Component.Label(NewSlot(layout, row));
+      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{BEV system model}";
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
       target_BEV_system_model = "BEV_system_model";
       check_link(target_BEV_system_model);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "BEV system model";
       link_ui.Tooltip = "Open model: " + target_BEV_system_model;
       link_ui.HyperlinkClickedCallback = @() open_target_model(target_BEV_system_model);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
       target_BEV_main_script = "BEV_main_script";
       check_link(target_BEV_main_script);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "BEV main script";
       link_ui.Tooltip = "Open script: " + target_BEV_main_script;
       link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_BEV_main_script);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_BEV_Case_FTP75_Basic = "BEV_Basic_FTP75";
-      check_link(target_BEV_Case_FTP75_Basic);
+      target_BEV_Case_Basic_FTP75 = "BEV_Basic_FTP75";
+      check_link(target_BEV_Case_Basic_FTP75);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "Simulation case: FTP75";
-      link_ui.Tooltip = "Open script: " + target_BEV_Case_FTP75_Basic;
-      link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_BEV_Case_FTP75_Basic);
+      link_ui.Tooltip = "Open script: " + target_BEV_Case_Basic_FTP75;
+      link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_BEV_Case_Basic_FTP75);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_BEV_Case_SimpleDrivePattern_Basic = "BEV_Basic_SimpleDrivePattern";
-      check_link(target_BEV_Case_SimpleDrivePattern_Basic);
+      target_BEV_Case_Basic_Simple = "BEV_Basic_Simple";
+      check_link(target_BEV_Case_Basic_Simple);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "Simulation case: Simple drive pattern";
-      link_ui.Tooltip = "Open script: " + target_BEV_Case_SimpleDrivePattern_Basic;
-      link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_BEV_Case_SimpleDrivePattern_Basic);
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
+      link_ui.HyperlinkText = "Simulation case: Simple";
+      link_ui.Tooltip = "Open script: " + target_BEV_Case_Basic_Simple;
+      link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_BEV_Case_Basic_Simple);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      label_ui = LiteApp6.Component.Label(NewSlot(layout, row));
+      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
       label_ui.Text = "See BEV / Model-* / SimulationCases for more cases";
 
       %% ============================================================================
       row = NewRow(layout, column);
 
-      label_ui = LiteApp6.Component.Label(NewSlot(layout, row));
+      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{Vehicle1D}";
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
       target_description_page = "Vehicle1D_Description.html";
       check_link(target_description_page);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "Vehicle1D description";
       link_ui.Tooltip = "Open page: " + target_description_page;
       link_ui.HyperlinkClickedCallback = @() open_target_page(target_description_page);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
       target_app = "Vehicle1DPerformanceDesignApp";
       check_link(target_app);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "Vehicle1D performance design app";
       link_ui.Tooltip = "Open app: " + target_app;
       link_ui.HyperlinkClickedCallback = @() open_app(target_app);
@@ -178,53 +178,53 @@ classdef BEVProjectNavigationAppMain < handle
       %% ============================================================================
       row = NewRow(layout, column);
 
-      label_ui = LiteApp6.Component.Label(NewSlot(layout, row));
+      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{Motor drive unit (MDU)}";
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
       target_description_page = "MotorDriveUnit_Description.html";
       check_link(target_description_page);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "MDU description";
       link_ui.Tooltip = "Open page: " + target_description_page;
       link_ui.HyperlinkClickedCallback = @() open_target_page(target_description_page);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_app = "MotorDriveUnitApp";
+      target_app = "MotorDriveUnitSimulationApp";
       check_link(target_app);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "MDU app";
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
+      link_ui.HyperlinkText = "MDU simulation app";
       link_ui.Tooltip = "Open app: " + target_app;
       link_ui.HyperlinkClickedCallback = @() open_app(target_app);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
       target_app = "MotorDriveUnit_BasicModelEfficiencyApp";
       check_link(target_app);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "MDU Efficiency app for Basic model";
       link_ui.Tooltip = "Open app: " + target_app;
       link_ui.HyperlinkClickedCallback = @() open_app(target_app);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_app = "testui_MotorDriveUnit_SystemThermalModelEfficiencyApp";
+      target_app = "MotorDriveUnit_SystemThermalModelEfficiencyApp";
       check_link(target_app);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "MDU Efficiency app for System Thermal model";
       link_ui.Tooltip = "Open app: " + target_app;
       link_ui.HyperlinkClickedCallback = @() open_app(target_app);
@@ -232,80 +232,80 @@ classdef BEVProjectNavigationAppMain < handle
       %% ============================================================================
       row = NewRow(layout, column);
 
-      label_ui = LiteApp6.Component.Label(NewSlot(layout, row));
+      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{High voltage battery}";
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_hvbattery_TestModel = "BatteryHV_TestModel";
+      target_hvbattery_TestModel = "HarnessModel_BatteryHV";
       check_link(target_hvbattery_TestModel);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "High voltage battery test model";
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
+      link_ui.HyperlinkText = "High voltage battery harness model";
       link_ui.Tooltip = "Open model: " + target_hvbattery_TestModel;
       link_ui.HyperlinkClickedCallback = @() open_target_model(target_hvbattery_TestModel);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_hvbattery_main_script = "BatteryHV_main_script";
-      check_link(target_hvbattery_main_script);
+      target_hvbattery_description = "BatteryHV_Description";
+      check_link(target_hvbattery_description);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "High voltage battery main script";
-      link_ui.Tooltip = "Open script: " + target_hvbattery_main_script;
-      link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_hvbattery_main_script);
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
+      link_ui.HyperlinkText = "High voltage battery description";
+      link_ui.Tooltip = "Open description: " + target_hvbattery_description;
+      link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_hvbattery_description);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_hvbattery_visualization_script = "BatteryHV_SystemTable_ParameterPlot_sample_script";
+      target_hvbattery_visualization_script = "refineOCVData_sample_script";
       check_link(target_hvbattery_visualization_script);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "High voltage battery parameter visualization script";
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
+      link_ui.HyperlinkText = "OCV parameterization sample script";
       link_ui.Tooltip = "Open script: " + target_hvbattery_visualization_script;
       link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_hvbattery_visualization_script);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      target_hvbattery_parameter_build_script = "BatteryHV_SystemTable_DataBuild_sample_script";
+      target_hvbattery_parameter_build_script = "refineTerminalResistanceData_sample_script";
       check_link(target_hvbattery_parameter_build_script);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "High voltage battery parameter build script";
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
+      link_ui.HyperlinkText = "Terminal resistance parameterization sample script";
       link_ui.Tooltip = "Open script: " + target_hvbattery_parameter_build_script;
       link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_hvbattery_parameter_build_script);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
       target_BatteryHV_Case_Random = "BatteryHV_Basic_Random";
       check_link(target_BatteryHV_Case_Random);
 
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "Simulation case: Random load current";
       link_ui.Tooltip = "Open script: " + target_BatteryHV_Case_Random;
       link_ui.HyperlinkClickedCallback = @() open_target_script(App, target_BatteryHV_Case_Random);
 
       %%
       row = NewRow(layout, column);
-      LiteApp6.Component.Label(NewSlot(layout, row, Width=indent), Text="");
+      LiteApp7.Component.Label(NewSlot(layout, row, Width=indent), Text="");
 
-      label_ui = LiteApp6.Component.Label(NewSlot(layout, row));
+      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
       label_ui.Text = "See Components / BatteryHighVoltage / Model-* / SimulationCases for more cases";
 
       %% ============================================================================
       row = NewRow(layout, column);
 
-      label_ui = LiteApp6.Component.Label(NewSlot(layout, row));
+      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{Quality tools}";
 
       %% ============================================================================
@@ -317,13 +317,13 @@ classdef BEVProjectNavigationAppMain < handle
       column = NewColumn(layout, area);
 
       row = NewRow(layout, column);
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "Code analyzer";
       link_ui.Tooltip = "Open tool: codeAnalyzer";
       link_ui.HyperlinkClickedCallback = @() codeAnalyzer(currentProject().RootFolder);
 
       row = NewRow(layout, column);
-      doclink_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
+      doclink_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
       doclink_ui.ComponentWidth = "fit";
       doclink_ui.HyperlinkText = "doc";
       doclink_ui.Tooltip = "Open documentation: " + link_ui.HyperlinkText;
@@ -334,13 +334,13 @@ classdef BEVProjectNavigationAppMain < handle
       column = NewColumn(layout, area);
 
       row = NewRow(layout, column);
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "Test browser";
       link_ui.Tooltip = "Open tool: testBrowser";
       link_ui.HyperlinkClickedCallback = @() testBrowser;
 
       row = NewRow(layout, column);
-      doclink_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
+      doclink_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
       doclink_ui.ComponentWidth = "fit";
       doclink_ui.HyperlinkText = "doc";
       doclink_ui.Tooltip = "Open documentation: " + link_ui.HyperlinkText;
@@ -351,13 +351,13 @@ classdef BEVProjectNavigationAppMain < handle
       column = NewColumn(layout, area);
 
       row = NewRow(layout, column);
-      link_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row));
+      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "Test manager";
       link_ui.Tooltip = "Open tool: matlabTestManager (requires MATLAB Test license)";
       link_ui.HyperlinkClickedCallback = @() matlabTestManager;
 
       row = NewRow(layout, column);
-      doclink_ui = LiteApp6.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
+      doclink_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
       doclink_ui.ComponentWidth = "fit";
       doclink_ui.HyperlinkText = "doc";
       doclink_ui.Tooltip = "Open documentation: " + link_ui.HyperlinkText;

@@ -2,7 +2,7 @@
 
 % Copyright 2020-2025 The MathWorks, Inc.
 
-PmsmFemParams
+PmsmFem_params
 
 %% PMSM Controller Subsystem
 

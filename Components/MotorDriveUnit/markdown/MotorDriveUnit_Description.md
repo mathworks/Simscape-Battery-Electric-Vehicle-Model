@@ -66,9 +66,9 @@ Iron loss coefficient $k_{\textrm{iron}}$ depends on the characteristics of moto
 
 This component provides the following four models based on the above formulation. These models are highly abstract and run fast.
 
--  **Basic model** (`MotorDriveUnit_Basic_refsub`) is the simplest model with the fewest parameters among the four models. It uses [Motor & Drive block](https://www.mathworks.com/help/sdl/ref/motordrive.html) from Simscape Driveline. This model takes torque command and computes power conversion between electrical and mechanical powers using the **single efficiency measurement model** to compute copper loss coefficient $k_c$. Irons loss $P_{\textrm{iron}}$ and fixed loss $P_{\textrm{fixed}}$ are not modeled. This model does not simulate temperature dynamics. See a [note](matlab:openFile('MotorDriveUnit_note_Efficiency_Basic')) for more information about efficiency. 
+-  **Basic model** (`MotorDriveUnit_Basic_refsub`) is the simplest model with the fewest parameters among the four models. It uses [Motor & Drive block](https://www.mathworks.com/help/sdl/ref/motordrive.html) from Simscape Driveline. This model takes torque command and computes power conversion between electrical and mechanical powers using the **single efficiency measurement model** to compute copper loss coefficient $k_c$. Irons loss $P_{\textrm{iron}}$ and fixed loss $P_{\textrm{fixed}}$ are not modeled. This model does not simulate temperature dynamics. See a [note](matlab:openInProject('MotorDriveUnit_BasicModelEfficiencyDoc')) for more information about efficiency. 
 -  **Basic thermal model** (`MotorDriveUnit_BasicThermal_refsub`) uses [Motor & Drive block](https://www.mathworks.com/help/sdl/ref/motordrive.html), which is the same block as the above Basic model uses, but with thermal model enabled to simulate motor temperature dynamics. 
--  **System thermal model** (`MotorDriveUnit_refsub_System`) uses [Motor & Drive (System\-Level) block](https://www.mathworks.com/help/sps/ref/motordrivesystemlevel.html) from Simscape Electrical to compute power conversion between electrical and mechanical powers. Thermal model is enabled too. Power conversion model is the same as the one in Basic and Basic thermal models above, i.e., the **single efficiency measurement model**, but irons loss $P_{\textrm{iron}}$ and fixed loss $P_{\textrm{fixed}}$ are also considered in this model. See a [note](matlab:openFile('MotorDriveUnit_note_Efficiency_System')) for more information about efficiency. 
+-  **System thermal model** (`MotorDriveUnit_refsub_System`) uses [Motor & Drive (System\-Level) block](https://www.mathworks.com/help/sps/ref/motordrivesystemlevel.html) from Simscape Electrical to compute power conversion between electrical and mechanical powers. Thermal model is enabled too. Power conversion model is the same as the one in Basic and Basic thermal models above, i.e., the **single efficiency measurement model**, but irons loss $P_{\textrm{iron}}$ and fixed loss $P_{\textrm{fixed}}$ are also considered in this model. See a [note](matlab:openInProject('MotorDriveUnit_SystemThermalModelEfficiencyDoc')) for more information about efficiency. 
 -  **System with tabulated losses model** (`MotorDriveUnit_refsub_SystemTable`) uses [Motor & Drive (System\-Level) block](https://www.mathworks.com/help/sps/ref/motordrivesystemlevel.html) from Simscape Electrical. It takes torque command and computes motor speed which is the same as the other models above, but for power conversion efficiency or losses, this model uses tabulated parameter data as a function of motor speed and torque $P\left(\tau_{\textrm{rot}} ,\omega \;\right)$ instead of the single efficiency measurement model. Thermal model is disabled, but you can enable it if you have two data sets of efficiency or losses measured at two different temperatures. 
 <a id="H_4e26"></a>
 
@@ -76,21 +76,21 @@ This component provides the following four models based on the above formulation
 
 Use the following apps to see the motor efficiency map and how the parameters affect it. The link below works to open the app if you are viewing this document in MATLAB Web Browser or editing in MATLAB Editor.
 
--  [MotorDriveUnitEfficiencyApp\_Basic](matlab:MotorDriveUnitEfficiencyApp_Basic) 
--  [MotorDriveUnitEfficiencyApp\_SystemThermal](matlab:MotorDriveUnitEfficiencyApp_SystemThermal) 
+-  [MotorDriveUnit\_BasicModelEfficiencyApp](matlab:MotorDriveUnit_BasicModelEfficiencyApp) 
+-  [MotorDriveUnit\_SystemThermalModelEfficiencyApp](matlab:MotorDriveUnit_SystemThermalModelEfficiencyApp) 
 <a id="H_92e3"></a>
 
 # Simulation cases
 
-To validate the MDU component, a harness model is used to run some simulation cases. Click the links below to see the simulation results. You can also use [Motor Drive Unit app](matlab:MotorDriveUnitApp) to select a model and run a simulation case.
+To validate the MDU component, a harness model is used to run some simulation cases. Click the links below to see the simulation results. You can also use [Motor Drive Unit Simulation App](matlab:MotorDriveUnitSimulationApp) to select a model and run a simulation case.
 
 <a id="H_446d"></a>
 
 ## Basic model
--  [Drive](matlab:openFileInProject('MotorDriveUnit_Basic_Drive')) ... MDU drives axle by consuming electric power. 
--  [Regenerative braking](matlab:openFileInProject('MotorDriveUnit_Basic_RegenBrake')) ... Axle drives motor, and MDU generates electric power. 
--  [Random](matlab:openFileInProject('MotorDriveUnit_Basic_Random')) .... Input signals for motor torque command and axle load torque are randomly generated. 
--  [Constant](matlab:openFileInProject('MotorDriveUnit_Basic_Constant')) ... All inputs are constant. This is used to check that the harness model runs. 
+-  [Drive](matlab:openInProject('MotorDriveUnit_Basic_Drive')) ... MDU drives axle by consuming electric power. 
+-  [Regenerative braking](matlab:openInProject('MotorDriveUnit_Basic_RegenBrake')) ... Axle drives motor, and MDU generates electric power. 
+-  [Random](matlab:openInProject('MotorDriveUnit_Basic_Random')) .... Input signals for motor torque command and axle load torque are randomly generated. 
+-  [Constant](matlab:openInProject('MotorDriveUnit_Basic_Constant')) ... All inputs are constant. This is used to check that the harness model runs. 
 
 For other MDU models, see MotorDriveUnit > Model\-\* > SimulationCases folders.
 

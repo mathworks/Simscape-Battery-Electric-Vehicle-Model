@@ -4,34 +4,36 @@
 Note that vehicle dynamics and temperature dynamics are isolated from each other in the model, and it is intentional.
 
 ```matlab
-mdl = "CtrlEnv_Vehicle_TestModel";
+mdl = "HarnessModel_CtrlEnv_Vehicle";
 load_system(mdl)
-CtrlEnv_Vehicle_TestModelSetup
 
-CtrlEnv_Vehicle_setSimCase
-```
+HarnessSetup_CtrlEnv_Vehicle
 
-```matlabTextOutput
-Setting up simulation...
-Simulation case: Default
-Setting simulation stop time to 300 sec.
-Setting block parameters...
-Setting initial conditions...
-initial.VehicleSpeed_kph = 0
-initial.VehicleInertiaSpd_rpm = 0
-initial.MotorTemperature_K = 333.15
-initial.MotorAmbientTemperature_K = 293.15
-initial.BatteryTemperature_K = 323.15
-initial.BatteryAmbientTemperature_K = 293.15
-```
+% CtrlEnv_Vehicle_setSimCase
+initial.VehicleSpeed_kph = 0;
 
-```matlab
+TireRollingRadius_m = 0.35;
+GearRatio = 9.1;
 
-simOut = sim(mdl);
-simData = extractTimetable(simOut.logsout);
+initial.VehicleInertiaSpd_rpm = CtrlEnv_Vehicle_getMotorSpeedFromVehicleSpeed( ...
+  VehicleSpeed_kph = initial.VehicleSpeed_kph, ...
+  TireRollingRadius_m = TireRollingRadius_m, ...
+  GearRatio = GearRatio );
 
-CtrlEnv_Vehicle_ResultsPlot( ...
-  SimData = simData, ...
+initial.MotorTemperature_K = 273.15 + 70;
+initial.BatteryTemperature_K = 273.15 + 50;
+
+initial.MotorAmbientTemperature_K = 273.15 + 20;
+initial.BatteryAmbientTemperature_K = initial.MotorAmbientTemperature_K;
+
+sim_in = Simulink.SimulationInput(mdl);
+sim_in = setModelParameter(sim_in, StopTime = "300");
+
+sim_out = sim(sim_in);
+result = extractTimetable(sim_out.logsout);
+
+CtrlEnv_Vehicle_plotSimulationResults( ...
+  SimData = result, ...
   FigureHeight = 200 );
 ```
 
@@ -59,5 +61,5 @@ CtrlEnv_Vehicle_ResultsPlot( ...
 <center><img src="media/CtrlEnv_Vehicle_Simplistic_Case1_media/figure_7.png" width="702" alt="figure_7.png"></center>
 
 
-*Copyright 2023 The MathWorks, Inc.*
+*Copyright 2023\-2025 The MathWorks, Inc.*
 

@@ -6,66 +6,46 @@
 Test that the motor can convert mechanical power to electric power.
 
 ```matlab
-mdl = "MotorDriveUnit_TestModel";
-load_system(mdl)
-MotorDriveUnit_TestModelSetup
+model_name = "HarnessModel_MotorDriveUnit";
+load_system(model_name)
+HarnessSetup_MotorDriveUnit
+
+set_param(model_name + "/Motor Drive Unit", ReferencedSubsystem = "MotorDriveUnit_Basic_refsub")
+
+set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_MotorDriveUnit_Random_refsub")
+
+% Initial conditions
+initial.LoadInertiaSpeed = simscape.Value(0, "rpm");
+initial.motorDriveUnit_RotorSpd_rpm = 0;
+initial.ambientTemp_K = motorDriveUnit.ambientTemp_K;
+
+sim_in = Simulink.SimulationInput(model_name);
+sim_in = setModelParameter(sim_in, StopTime = "400");
 ```
-
-Select model to use.
-
-```matlab
-MotorDriveUnit_setRefsub_Basic
-```
-
-```matlabTextOutput
-Model: MotorDriveUnit_TestModel
-Setting up referenced subsystem: MotorDriveUnit_Basic_refsub
-```
-
-
-Load simulation case.
-
-```matlab
-MotorDriveUnit_setSimCase_RegenBrake
-```
-
-```matlabTextOutput
-Setting up simulation...
-Simulation case: Regenerative braking
-Setting simulation stop time to 400 sec.
-Setting block parameters...
-batteryHV.nominalVoltage_V = 340
-batteryHV.internalResistance_Ohm = 0.01
-Setting initial conditions...
-initial.loadInertiaSpd_rpm = 0
-initial.motorSpd_rpm = 0
-initial.motorDriveUnit_Temperature_K = 293.15
-initial.ambientTemp_K = 293.15
-```
-
 
 Run simulation.
 
 ```matlab
-simOut = sim(mdl);
+sim_out = sim(sim_in);
 ```
 
 Visually inspect the result.
 
 ```matlab
-simData = extractTimetable(simOut.logsout);
-sigNames = [
+sim_data = extractTimetable(sim_out.logsout);
+
+% Signal logging names in the model.
+signal_names = [
   "Motor torque command"
   "Axle torque input"
   "Motor power rate"
   "Motor speed"
   "Battery current"
   ];
-for i = 1 : numel(sigNames)
-  TimetableSingleSignalPlot( ...
-    Timetable = simData, ...
-    SignalName = sigNames(i), ...
-    PlotHeight = 200 );
+
+for idx = 1 : numel(signal_names)
+  fig = SignalTool2.plotTimedData(TimedData = sim_data, SignalName = signal_names(idx));
+  fig.Position(4) = 200;  % height
 end
 ```
 

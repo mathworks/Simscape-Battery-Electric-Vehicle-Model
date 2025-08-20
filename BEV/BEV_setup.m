@@ -1,13 +1,12 @@
-%% Model Parameters for Battery Electric Vehicle System Model
-% This is automatically run in the PostLoadFcn callback of BEV_system_model
-% and sets referenced subsystems.
-% Note that the callback is not PreLoadFcn but PostLoadFcn
-% because the model needs to be loaded before setting referenced subsystems.
+%% Model Parameters for the Battery Electric Vehicle (BEV) system model.
 %
-% Informational messages from disp are turned off to prevent
-% the warnings/diagnostics from appearing when the model is opened.
+% This script defines parameters for the BEV model.
+% Use this script to load default values.
+% Override any of them elsewhere later as needed.
+% 
+% The BEV_system_model automatically runs this script in the PostLoadFcn callback.
 
-% Copyright 2020-2023 The MathWorks, Inc.
+% Copyright 2020-2025 The MathWorks, Inc.
 
 %% Bus definitions
 

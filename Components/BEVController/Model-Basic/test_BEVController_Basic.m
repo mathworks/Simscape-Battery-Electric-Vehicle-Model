@@ -60,7 +60,7 @@ classdef test_BEVController_Basic < matlab.unittest.TestCase
     function PassingTest_1(testcase)
       % Run script, for example, BEVController_Basic_params.
       target_name = "BEVController_" + testcase.ModelID + "_params";
-      target_fullpath = FileTool1.getFileFullPath(target_name);
+      target_fullpath = FileTool2.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -68,10 +68,15 @@ classdef test_BEVController_Basic < matlab.unittest.TestCase
     %% Test
 
     function simulation_ends_quickly(testcase)
-      target_model = "BEVController_TestModel";
+      target_model = "HarnessModel_BEVController";
       load_system(target_model)
-      setup_command = "BEVController_setRefsub_" + testcase.ModelID;
-      evalin("base", setup_command)
+
+      params_script = "BEVController_" + testcase.ModelID + "_params";
+      evalin("base", params_script)
+
+      refsub = "BEVController_" + testcase.ModelID + "_refsub";
+      set_param(target_model + "/BEV Speed Tracking Controller", ReferencedSubsystem = refsub);
+
       % Test that default simulation ends reasonably quickly.
       tic
       sim(target_model);

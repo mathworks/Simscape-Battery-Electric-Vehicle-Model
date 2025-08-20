@@ -11,6 +11,10 @@ product documentation and GitHub.
 openExample('simscapeelectrical/IPMSMFluxFromANSYSMaxwellExample')
 ```
 
+Documentation
+
+- http://mathworks.com/help/sps/ug/import-ipmsm-flux-linkage-data-from-ansys-maxwell.html
+
 ## Import Efficiency Map Data from Motor-CAD
 
 ```matlab
