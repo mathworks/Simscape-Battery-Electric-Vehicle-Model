@@ -1,7 +1,6 @@
 # FYI: Detailed Model Applications
 
 This folder was previously called "Detailed Model Applications".
-The contents of this folder will be eventually retired.
 Better alternatives are available in the following
 product documentation and GitHub.
 

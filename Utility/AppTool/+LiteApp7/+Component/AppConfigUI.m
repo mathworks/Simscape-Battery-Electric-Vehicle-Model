@@ -9,7 +9,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
   % supports Inf, NaN, trailing comma, and comment, in addition to
   % the strict JSON format specification.
   % For more details, see the documentation, especially the ParsingMode option.
-  % https://www.mathworks.com/help/releases/R2024b/matlab/ref/readstruct.html
+  % https://www.mathworks.com/help/matlab/ref/readstruct.html
 
   % Copyright 2025 The MathWorks, Inc.
 

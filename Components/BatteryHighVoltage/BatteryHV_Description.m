@@ -1,4 +1,4 @@
-%[text] %[text:anchor:T_1FFD3858] # High Voltage Battery - Main Script
+%[text] %[text:anchor:T_1FFD3858] # High Voltage Battery component
 %[text] This is a component to simulate the abstract dynamics of a high voltage battery pack.
 %[text] ## Models
 %[text] This component provides four models of a high voltage battery:

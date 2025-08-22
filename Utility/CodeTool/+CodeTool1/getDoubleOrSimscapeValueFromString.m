@@ -54,7 +54,7 @@ if strlength(expression_string) > 10000
 end  % if
 
 % Remove leading and trailing whitespaces
-expression_string = strtrim(expression_string);
+expression_string = strip(expression_string);
 if expression_string == ""
   id = errorID + "InvalidString";
   msg = CodeTool1.i18n("Given string was empty.");

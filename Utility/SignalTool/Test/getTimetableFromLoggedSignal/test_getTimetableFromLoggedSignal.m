@@ -153,7 +153,7 @@ end  % arguments
 dataset = Simulink.SimulationData.Dataset;
 
 signal_1 = Simulink.SimulationData.Signal;
-signal_1.Values = timeseries([1 0 -1]', [0 1 2]', "Name", signal_name);  % rule (1)
+signal_1.Values = timeseries([1 0 -1]', [0 1 2]', "Name", signal_name);  %#ok<check_timeseries> % rule (1)
 signal_1.Values.DataInfo.Units = unit_text;
 
 dataset = addElement(dataset, signal_1, signal_name);  % rule (2)
@@ -173,12 +173,12 @@ end  % arguments
 dataset = Simulink.SimulationData.Dataset;
 
 signal_1 = Simulink.SimulationData.Signal;
-signal_1.Values = timeseries([1 0 -1]', [0 1 2]', "Name", signal_names(1));
+signal_1.Values = timeseries([1 0 -1]', [0 1 2]', "Name", signal_names(1)); %#ok<check_timeseries>
 signal_1.Values.DataInfo.Units = unit_texts(1);
 dataset = addElement(dataset, signal_1, signal_names(1));
 
 signal_2 = Simulink.SimulationData.Signal;
-signal_2.Values = timeseries([5 2 4]', [0 1 2]', "Name", signal_names(2));
+signal_2.Values = timeseries([5 2 4]', [0 1 2]', "Name", signal_names(2)); %#ok<check_timeseries>
 signal_2.Values.DataInfo.Units = unit_texts(2);
 dataset = addElement(dataset, signal_2, signal_names(2));
 
