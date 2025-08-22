@@ -1,24 +1,24 @@
 
-<a id="TMP_98f8"></a>
+<a id="TMP_17b5"></a>
 
 # <span style="color:rgb(213,80,0)">Profiling simulation with Reducer Basic model</span>
 <!-- Begin Toc -->
 
 ## Table of Contents
-&emsp;[Set up](#TMP_8a3c)
+&emsp;[Set up](#TMP_239b)
  
-&emsp;[Run simulation normally](#TMP_51af)
+&emsp;[Run simulation normally](#TMP_9b36)
  
-&emsp;[Step size](#TMP_2d0c)
+&emsp;[Step size](#TMP_0547)
  
-&emsp;[Profiling simulation](#TMP_083d)
+&emsp;[Profiling simulation](#TMP_7a31)
  
 <!-- End Toc -->
 
 Run simulation using the Solver Profiler's `solverprofiler.profileModel` function. See the documentation about the function for details.
 
 -  [https://www.mathworks.com/help/simulink/slref/solverprofiler.profilemodel.html](https://www.mathworks.com/help/simulink/slref/solverprofiler.profilemodel.html) 
-<a id="TMP_8a3c"></a>
+<a id="TMP_239b"></a>
 
 # Set up
 ```matlab
@@ -26,43 +26,43 @@ model_name = "HarnessModel_Reducer";
 target_folder = fullfile(currentProject().RootFolder, "Components", "Reducer", "Model-Basic", "SimulationCases");
 data_fullpath = fullfile(target_folder, "profiling_data.mat");
 ```
-<a id="TMP_51af"></a>
+<a id="TMP_9b36"></a>
 
 # Run simulation normally
 ```matlab
 assert(isfolder(target_folder))
 load_system(model_name);
+
+% Close the Scope window to avoid getting the screenshot.
 close_system(model_name + "/Measurement/Scope")
-set_param(model_name, StopTime="100");
-evalin("base", "Reducer_Basic_params")
+close_system(model_name + "/Measurement/Scope input torques")
+
+Reducer_Basic_params
+
+sim_in = Simulink.SimulationInput(model_name);
+
+sim_in = setBlockParameter(sim_in, model_name + "/Axle inputs", ReferencedSubsystem = "Inputs_Reducer_AxleSide_Flip_refsub");
+sim_in = setBlockParameter(sim_in, model_name + "/Motor inputs", ReferencedSubsystem = "Inputs_Reducer_MotorSide_Flip_refsub");
+
+sim_in = setModelParameter(sim_in, StopTime = "150");
 ```
-
-Input signals. These are used in PS Lookup Table (1D) blocks in the model.
-
-```matlab
-Reducer_setInput_AxleSide_1
-```
-
-<center><img src="media/profileSim_Reducer_Basic_media/figure_0.png" width="562" alt="figure_0.png"></center>
-
-
-```matlab
-Reducer_setInput_MotorSide_1
-```
-
-<center><img src="media/profileSim_Reducer_Basic_media/figure_1.png" width="562" alt="figure_1.png"></center>
-
 
 Run simulation normally and plot results.
 
 ```matlab
-simOut = sim(model_name);
-tt = SignalTool2.getTimetableFromLoggedSignal(simOut.logsout);
+sim_out = sim(sim_in);
+tt = SignalTool2.getTimetableFromLoggedSignal(sim_out.logsout);
 varnames = string(tt.Properties.VariableNames);
 for idx = 1 : numel(varnames)
-  SignalTool2.plotTimedData(TimedData=tt, SignalName=varnames(idx));
+  SignalTool2.plotTimedData(TimedData=tt, SignalName=varnames(idx), FigureHeight=150);
 end  % for
 ```
+
+<center><img src="media/profileSim_Reducer_Basic_media/figure_0.png" width="702" alt="figure_0.png"></center>
+
+
+<center><img src="media/profileSim_Reducer_Basic_media/figure_1.png" width="702" alt="figure_1.png"></center>
+
 
 <center><img src="media/profileSim_Reducer_Basic_media/figure_2.png" width="702" alt="figure_2.png"></center>
 
@@ -72,26 +72,33 @@ end  % for
 
 <center><img src="media/profileSim_Reducer_Basic_media/figure_4.png" width="702" alt="figure_4.png"></center>
 
-<a id="TMP_2d0c"></a>
+
+<center><img src="media/profileSim_Reducer_Basic_media/figure_5.png" width="702" alt="figure_5.png"></center>
+
+
+<center><img src="media/profileSim_Reducer_Basic_media/figure_6.png" width="702" alt="figure_6.png"></center>
+
+<a id="TMP_0547"></a>
 
 # Step size
 ```matlab
 fig = figure;
 fig.Position(3:4) = [800, 200];  % width, height
-SignalTool2.plotDifference(simOut.tout, NewFigure=false, ParentAxes=axes(fig), ...
-  Title="Step size", XLabel="Time", XUnitText="s", YUnitText="s")
+SignalTool2.plotDifference(sim_out.tout, NewFigure=false, ParentAxes=axes(fig), ...
+  YScale = "Log", Title="Step size", YUnitText="s", ...
+  XLabel="Time", XUnitText="s" )
 ```
 
-<center><img src="media/profileSim_Reducer_Basic_media/figure_5.png" width="803" alt="figure_5.png"></center>
+<center><img src="media/profileSim_Reducer_Basic_media/figure_7.png" width="803" alt="figure_7.png"></center>
 
 
 ```matlab
-step_size_data = diff(simOut.tout);
+step_size_data = diff(sim_out.tout);
 disp("Maximum step size: " + max(step_size_data))
 ```
 
 ```matlabTextOutput
-Maximum step size: 2
+Maximum step size: 3
 ```
 
 ```matlab
@@ -99,18 +106,17 @@ fprintf("Minimum step size: %e", min(step_size_data))
 ```
 
 ```matlabTextOutput
-Minimum step size: 3.972686e-03
+Minimum step size: 2.552514e-04
 ```
 
-<a id="TMP_083d"></a>
+<a id="TMP_7a31"></a>
 
 # Profiling simulation
 
 Run profiling simulation using the Solver Profiler.
 
 ```matlab
-open_system(model_name)
-open_system(model_name + "/Measurement/Scope")
+load_system(model_name)
 result = solverprofiler.profileModel( ...
   model_name, ...
   DataFullFile = data_fullpath, ...
@@ -124,9 +130,6 @@ result = solverprofiler.profileModel( ...
   SaveJacobian = "on", ...
   SaveZCSignals = "on" );
 ```
-
-<center><img src="media/profileSim_Reducer_Basic_media/figure_6.png" width="614" alt="figure_6.png"></center>
-
 
 View the high\-level summary of profiling result. See the documentation for details.
 
@@ -153,13 +156,13 @@ disp(result.summary)
              absTol: 1.0000e-06
              relTol: 1.0000e-03
                hMax: 2
-           hAverage: 0.3759
-              steps: 266
-        profileTime: 0.0687
+           hAverage: 0.6173
+              steps: 162
+        profileTime: 0.0877
            zcNumber: 0
         resetNumber: 1
-     jacobianNumber: 55
-    exceptionNumber: 92
+     jacobianNumber: 26
+    exceptionNumber: 62
 ```
 
 

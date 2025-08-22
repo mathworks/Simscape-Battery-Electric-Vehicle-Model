@@ -19,6 +19,7 @@ __MWOPC_PART_BEGIN__ /[Content_Types].xml
   <Override ContentType="application/vnd.mathworks.simulink.configSetInfo+xml" PartName="/simulink/configSetInfo.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.hdlparams+xml" PartName="/simulink/hdlParams.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.mf0+xml" PartName="/simulink/modelDictionary.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.protected.modelMask+xml" PartName="/simulink/modelMask.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.blockDiagram+xml" PartName="/simulink/windowsInfo.xml"/>
 </Types>
 
@@ -29,6 +30,7 @@ __MWOPC_PART_BEGIN__ /_rels/.rels
   <Relationship Id="blockDiagramDefaults" Target="simulink/bddefaults.xml" Type="http://schemas.mathworks.com/simulink/2017/relationships/blockDiagramDefaults"/>
   <Relationship Id="configSetInfo" Target="simulink/configSetInfo.xml" Type="http://schemas.mathworks.com/simulink/2014/relationships/configSetInfo"/>
   <Relationship Id="modelDictionary" Target="simulink/modelDictionary.xml" Type="http://schemas.mathworks.com/simulinkModel/2016/relationships/modelDictionary"/>
+  <Relationship Id="modelMask" Target="simulink/modelMask.xml" Type="http://schemas.mathworks.com/simulink/protected/2015/relationships/modelMask"/>
   <Relationship Id="rId1" Target="metadata/mwcoreProperties.xml" Type="http://schemas.mathworks.com/package/2012/relationships/coreProperties"/>
   <Relationship Id="rId2" Target="metadata/mwcorePropertiesExtension.xml" Type="http://schemas.mathworks.com/package/2014/relationships/corePropertiesExtension"/>
   <Relationship Id="rId3" Target="metadata/mwcorePropertiesReleaseInfo.xml" Type="http://schemas.mathworks.com/package/2019/relationships/corePropertiesReleaseInfo"/>
@@ -42,8 +44,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2023-02-10T16:23:33Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-21T10:53:21Z</dcterms:modified>
-  <cp:revision>6.1</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-22T12:06:45Z</dcterms:modified>
+  <cp:revision>6.2</cp:revision>
   <cp:version>R2025a</cp:version>
 </cp:coreProperties>
 
@@ -65,11 +67,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2025a Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2943329</version>
+  <version>25.1.0.2973910</version>
   <release>R2025a</release>
-  <description></description>
-  <date>Apr 16 2025</date>
-  <checksum>423651790</checksum>
+  <description>Update 1</description>
+  <date>Jul 03 2025</date>
+  <checksum>1124574855</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -867,7 +869,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:6.1&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:6.2&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -2052,6 +2054,44 @@ __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
     <Interface type="Interface" uuid="6cea879a-6371-40dc-adec-e3a1a6343bea"/>
   </System>
 </MF0>
+__MWOPC_PART_BEGIN__ /simulink/modelMask.xml
+<?xml version="1.0" encoding="utf-8"?>
+<Mask>
+  <Type>CtrlEnv_Vehicle_refsub</Type>
+  <Display IconOpaque="opaque-with-ports" RunInitForIconRedraw="off">pos = get_param(gcb, &quot;Position&quot;);
+blockWidth = pos(3) - pos(1);
+blockHeight = pos(4) - pos(2);
+
+text(blockWidth*0.5, blockHeight*0.5, ...
+  &quot;Simplistic&quot;, ...
+  HorizontalAlignment = &apos;center&apos;);
+
+%% Corner decorations for subsystem reference
+
+pos = get_param(gcb, &quot;Position&quot;);
+blockWidth = pos(3) - pos(1);
+blockHeight = pos(4) - pos(2);
+
+% size of corner triangle
+L = 10;
+
+% lower right corner
+plot([blockWidth - L, blockWidth], [0, L])
+
+% top left corner
+plot([0, L], [blockHeight - L, blockHeight])
+</Display>
+  <DialogControl Type="Group" Name="DescGroupVar">
+    <Prompt>%&lt;MaskType&gt;</Prompt>
+    <DialogControl Type="Text" Name="DescTextVar">
+      <Prompt>%&lt;MaskDescription&gt;</Prompt>
+    </DialogControl>
+  </DialogControl>
+  <DialogControl Type="Group" Name="ParameterGroupVar">
+    <Prompt>Parameters</Prompt>
+  </DialogControl>
+</Mask>
+
 __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
@@ -3980,6 +4020,7 @@ Motion Sensor</P>
     <P Name="Name">Copyright 2025 The MathWorks, Inc.</P>
     <P Name="Position">[293, 316, 457, 331]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="ZOrder">-1</P>
   </Annotation>
 </System>
 

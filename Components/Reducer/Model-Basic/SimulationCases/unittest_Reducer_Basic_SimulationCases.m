@@ -77,7 +77,7 @@ classdef unittest_Reducer_Basic_SimulationCases < matlab.unittest.TestCase
 
     function PassingTest_2(testcase)
       % Run script, for example, Reducer_Basic_Constant.
-      target_name = testcase.ComponentID + "_" + testcase.ModelID + "_Case1";
+      target_name = testcase.ComponentID + "_" + testcase.ModelID + "_Flip";
       target_fullpath = FileTool2.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target

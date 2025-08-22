@@ -1,5 +1,6 @@
 function result = getTimetableFromLoggedSignal(logsout)
-%% Get a timetable for logged signals.
+% Get a timetable for logged signals.
+%
 % This function supports both Simscape selective data logging and Simulink signal logging.
 % extractTimetable works with Simulink signal logging only.
 %
@@ -28,20 +29,20 @@ result_signals(1:num_sigs) = struct("Data", timetable.empty);
 
 unit_texts = strings(1, num_sigs);
 
-for idx = 1 : num_sigs
+for ii = 1 : num_sigs
 
   % Applying timeseries2timetable for each signal works for both Simscape and Simulink.
-  result_signals(idx).Data = timeseries2timetable(logsout{idx}.Values);
+  result_signals(ii).Data = timeseries2timetable(logsout{ii}.Values);
 
-  if isempty(result_signals(idx).Data.Properties.VariableUnits)
-    unit_texts(idx) = "";
+  if isempty(result_signals(ii).Data.Properties.VariableUnits)
+    unit_texts(ii) = "";
   else
-    unit_texts(idx) = result_signals(idx).Data.Properties.VariableUnits;
-  end
-end
+    unit_texts(ii) = result_signals(ii).Data.Properties.VariableUnits;
+  end  % if
+end  % for
 
 % synchronize makes sure consistent time points including events.
 result = synchronize(result_signals(:).Data);
 result.Properties.VariableUnits = unit_texts;
 
-end
+end  % function

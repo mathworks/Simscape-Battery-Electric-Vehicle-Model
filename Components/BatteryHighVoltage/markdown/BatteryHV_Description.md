@@ -1,7 +1,7 @@
 
 <a id="T_1FFD3858"></a>
 
-# <span style="color:rgb(213,80,0)">High Voltage Battery \- Main Script</span>
+# <span style="color:rgb(213,80,0)">High Voltage Battery component</span>
 
 This is a component to simulate the abstract dynamics of a high voltage battery pack.
 

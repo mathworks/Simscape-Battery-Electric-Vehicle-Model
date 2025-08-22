@@ -38,6 +38,14 @@ classdef test_BEVProject_Utility < matlab.unittest.TestCase
     end  % function
 
     function PassingTest_2(~)
+      BEVProject_CheckProject
+    end  % function
+
+    function PassingTest_3(~)
+      openInProject
+    end  % function
+
+    function PassingTest_4(~)
       ProjectStats
     end  % function
 

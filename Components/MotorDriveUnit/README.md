@@ -66,11 +66,14 @@ measured at two different temperatures.
 [url-motordrive-driveline]: https://www.mathworks.com/help/sdl/ref/motordrive.html
 [url-motordrive-elec]: https://www.mathworks.com/help/sps/ref/motordrivesystemlevel.html
 
-## Test model
+## Harness model
 
-To run simulation with the above models, use a test model.
+To run simulation with the above models, use the harness model.
 
-- `MotorDriveUnit_TestModel.mdl`
+- `HarnessModel_MotorDriveUnit.mdl`
+
+<img src="screenshot-HarnessModel_MotorDriveUnit.png"
+ width="800"  alt="Screenshot of the harness model for motor drive unit component">
 
 ## Simulation Cases
 

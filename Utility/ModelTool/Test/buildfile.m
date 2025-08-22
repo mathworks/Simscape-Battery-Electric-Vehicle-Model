@@ -1,6 +1,6 @@
 function plan = buildfile
-%% Define tasks for buildtool to check code and run tests
-% In the Editor, use Run Build button to start task.
+% Define tasks for the buildtool to check code and run tests.
+% In the Editor, use the "Run Build" button to start a task.
 
 % Overview of MATLAB Build Tool
 % https://www.mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html

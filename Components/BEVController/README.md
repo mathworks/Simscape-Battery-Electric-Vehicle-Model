@@ -5,7 +5,7 @@ BEV system level simulation.
 It is currently just a simple speed tracking controller.
 More control features will be added in future updates.
 
-The harness model `HarnessModel_BEVController` is used for elementary tests
+The `HarnessModel_BEVController` harness model is used for elementary tests
 just to check that the controller component loads and runs.
 For more tests, the BEV system model is better suited.
 

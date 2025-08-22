@@ -30,7 +30,35 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
       end  % nested function
     end  % function
 
+    %% Project startup
+
+    function project_startup(testcase)
+      % Make sure that the project startup is configured exactly as this test checks.
+
+      files = [currentProject().StartupFiles]';
+
+      % There are 2 files configured for the startup.
+      verifyEqual(testcase, numel(files), 2)
+
+      % These are the two files.
+      verifyEqual(testcase, nnz(endsWith(files, "atProjectStartUp.m")), 1)
+      verifyEqual(testcase, nnz(endsWith(files, "BEVProject_Description.html")), 1)
+    end  % function
+
     %% Set up
+
+    % -------------------------------------------------------------------------
+    % Build Tool set up
+
+    function code_analyzer_setup(testcase)
+      % Check the validity of codeAnalyzerConfiguration.json.
+      % For a MATLAB project, the configuration file must be in the following path.
+      target_fullpath = fullfile(currentProject().RootFolder, "resources", "codeAnalyzerConfiguration.json");
+      verifyTrue(testcase, isfile(target_fullpath))
+      matlab.codeanalysis.refreshConfiguration
+      issues = matlab.codeanalysis.validateConfiguration(target_fullpath);
+      verifyTrue(testcase, isempty(issues))
+    end  % function
 
     % -------------------------------------------------------------------------
     % Build Tool set up
@@ -227,28 +255,42 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
       end  % for
     end  % function
 
+    %% Model release
+
+    function model_saved_release(testcase)
+      % Check that models are saved in the current MATLAB release.
+      N = ModelTool1.saveModels( DryRun=true, Target="Project", DisplayInfo=false );
+      verifyEqual(testcase, N, 0)
+    end  % function
+
     %% Other tests
 
     function no_untitled_files(testcase)
-      file_paths = matlab.buildtool.io.FileCollection.fromPaths(fullfile(pwd, "**/untitled.*")).paths';
+      topfolder = currentProject().RootFolder;
+      file_paths = matlab.buildtool.io.FileCollection.fromPaths(fullfile(topfolder, "**/untitled.*")).paths';
       verifyEqual(testcase, numel(file_paths), 0);
     end  % function
 
     function no_Copy_of_files(testcase)
-      file_paths = matlab.buildtool.io.FileCollection.fromPaths(fullfile(pwd, "**/Copy_of_*")).paths';
+      topfolder = currentProject().RootFolder;
+      file_paths = matlab.buildtool.io.FileCollection.fromPaths(fullfile(topfolder, "**/Copy_of_*")).paths';
       verifyEqual(testcase, numel(file_paths), 0);
     end  % function
 
     function no_MLX_files(testcase)
       % Use plain-text Live Scripts (*.m) rather than binary ones.
-      file_paths = matlab.buildtool.io.FileCollection.fromPaths(fullfile(pwd, "**/*.mlx")).paths';
+      topfolder = currentProject().RootFolder;
+      file_paths = matlab.buildtool.io.FileCollection.fromPaths(fullfile(topfolder, "**/*.mlx")).paths';
       verifyEqual(testcase, numel(file_paths), 0);
     end  % function
 
     function no_SLX_files(testcase)
       % Use plain-text model files (*.mdl) rather than binary ones.
-      file_paths = matlab.buildtool.io.FileCollection.fromPaths(fullfile(pwd, "**/*.slx")).paths';
-      verifyEqual(testcase, numel(file_paths), 0);
+      topfolder = currentProject().RootFolder;
+      file_paths_1 = matlab.buildtool.io.FileCollection.fromPaths(fullfile(topfolder, "BEV", "**/*.slx")).paths';
+      file_paths_2 = matlab.buildtool.io.FileCollection.fromPaths(fullfile(topfolder, "Component", "**/*.slx")).paths';
+      all_file_paths = [file_paths_1; file_paths_2];
+      verifyEqual(testcase, numel(all_file_paths), 0);
     end  % function
 
   end  % methods

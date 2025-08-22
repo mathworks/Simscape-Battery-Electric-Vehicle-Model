@@ -45,24 +45,21 @@ this model can optionally simulate charging dynamics, fade, and aging too.
 
 [url-table-battery-elec]: https://www.mathworks.com/help/sps/ref/batterytablebased.html
 
-## Test Model
+## Harness Model
 
 Battery models are provided as [referenced subsystems][url-subref]
 to componentize the models.
 They are used as a component of Battery Electric Vehicle model
 for vehicle system-level simulation,
-but they can also be used with a component test model (`BatteryHV_ComponentTestModel`)
+but they can also be used with a component test model (`HarnessModel_BatteryHV`)
 to run simulation focusing on the battery model.
+
+The harness model is used in simulation case scripts
+in the `SimulationCases` folder in each model folder.
 
 [url-subref]: https://www.mathworks.com/help/simulink/ug/referenced-subsystem-1.html
 
 <img src="screenshot-HarnessModel_BatteryHV.png"
- width="700" alt="Test Model for High Voltage Battery">
-
-The test model is used in simulation case scripts
-in the `SimulationCases` folder in each model folder.
-
-To change a battery model in the test model,
-run `BatteryHV_setRefsub_*` which loads parameters and sets the referenced subsystem.
+ width="800" alt="Harness model for high voltage battery">
 
 *Copyright 2022-2025 The MathWorks, Inc.*

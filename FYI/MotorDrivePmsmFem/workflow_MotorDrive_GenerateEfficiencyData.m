@@ -79,7 +79,7 @@ out = parsim(in, ShowSimulationManager="on");  % need Parallel Computing Toolbox
 %%
 %[text] ## **Visually Inspect Motor Speed Behavior**
 clear result
-result(1:nS,1:nT) = struct("spd",0, "trq",0, "log",timeseries);
+result(1:nS,1:nT) = struct("spd",0, "trq",0, "log",timeseries); %#ok<check_timeseries>
 for i_spd = 1:nS  % speed
   for i_trq = 1:nT  % torque
     spd = SpeedVec(i_spd);

@@ -1,38 +1,43 @@
 
 # <span style="color:rgb(213,80,0)">Reducer Basic model \- simulation case</span>
-
-Run simulation and plot the power loss. See the `Reducer_Basic_LoggingSetup` script for how to set up Simscape selective data logging.
-
 ```matlab
 model_name = "HarnessModel_Reducer";
 load_system(model_name);
-set_param(model_name, StopTime="2000");
-evalin("base", "Reducer_Basic_params")
 
-Reducer_setInput_AxleSide_Constant
+Reducer_Basic_params
+
+sim_in = Simulink.SimulationInput(model_name);
+
+sim_in = setBlockParameter(sim_in, model_name + "/Axle inputs", ReferencedSubsystem = "Inputs_Reducer_AxleSide_Constant_refsub");
+sim_in = setBlockParameter(sim_in, model_name + "/Motor inputs", ReferencedSubsystem = "Inputs_Reducer_MotorSide_Constant_refsub");
+
+sim_in = setModelParameter(sim_in, StopTime = "2000");
 ```
 
-<center><img src="media/Reducer_Basic_Constant_media/figure_0.png" width="562" alt="figure_0.png"></center>
-
+Run simulaiton.
 
 ```matlab
-Reducer_setInput_MotorSide_Constant
+sim_out = sim(sim_in);
+
+% Signal logging for Simulink blocks is configured in the Measurement subsystem of the harness model.
+% Signal logging for Simscape blocks is configured in the setupLogging_*.m files.
+signals = SignalTool2.getTimetableFromLoggedSignal(sim_out.logsout);
 ```
 
-<center><img src="media/Reducer_Basic_Constant_media/figure_1.png" width="562" alt="figure_1.png"></center>
-
-
-```matlab
-simOut = sim(model_name);
-tt = SignalTool2.getTimetableFromLoggedSignal(simOut.logsout);
-```
+Visually inspect the simulation result.
 
 ```matlab
-varnames = string(tt.Properties.VariableNames);
-for idx = 1 : numel(varnames)
-  SignalTool2.plotTimedData(TimedData=tt, SignalName=varnames(idx));
+varnames = string(signals.Properties.VariableNames);
+for ii = 1 : numel(varnames)
+  SignalTool2.plotTimedData(TimedData=signals, SignalName=varnames(ii), FigureHeight=150);
 end  % for
 ```
+
+<center><img src="media/Reducer_Basic_Constant_media/figure_0.png" width="702" alt="figure_0.png"></center>
+
+
+<center><img src="media/Reducer_Basic_Constant_media/figure_1.png" width="702" alt="figure_1.png"></center>
+
 
 <center><img src="media/Reducer_Basic_Constant_media/figure_2.png" width="702" alt="figure_2.png"></center>
 
@@ -41,6 +46,12 @@ end  % for
 
 
 <center><img src="media/Reducer_Basic_Constant_media/figure_4.png" width="702" alt="figure_4.png"></center>
+
+
+<center><img src="media/Reducer_Basic_Constant_media/figure_5.png" width="702" alt="figure_5.png"></center>
+
+
+<center><img src="media/Reducer_Basic_Constant_media/figure_6.png" width="702" alt="figure_6.png"></center>
 
 
 *Copyright 2025 The MathWorks, Inc.*

@@ -42,8 +42,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2025-08-08T07:20:34Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-08T08:34:05Z</dcterms:modified>
-  <cp:revision>1.9</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-22T11:43:52Z</dcterms:modified>
+  <cp:revision>1.10</cp:revision>
   <cp:version>R2025a</cp:version>
 </cp:coreProperties>
 
@@ -107,7 +107,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.9&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.10&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -1005,6 +1005,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <PortCounts in="1" out="3"/>
     <P Name="Position">[420, -5, 565, 95]</P>
     <P Name="ZOrder">26366</P>
+    <P Name="OpenFcn">open_system(gcb, &quot;force&quot;)
+</P>
     <P Name="ReferencedSubsystem">BEV_MockModel_refsub</P>
     <PortProperties>
       <Port Type="in" Index="1">
@@ -1267,7 +1269,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">d2a15aac-7515-4b5e-ba0c-af4046ef734b</P>
     </Object>
-    <P Name="BDUuid" Class="char">d45fffda-3b96-4ffa-b0c0-1f5c5bcdc464</P>
+    <P Name="BDUuid" Class="char">1886745a-51d7-4151-9efc-e8cd4c3062b9</P>
   </Object>
 </WindowsInfo>
 

@@ -15,10 +15,22 @@ overall vehicle performance.
 <img src="AppFiles-PerformanceDesign/screenshot-Vehicle1D-performance-plot.png"
  width="500" alt="Longitudinal vehicle forces and constant power curves">
 
+## Vehicle1D Performance Design App
+
 Use the Vehicle1D Performance Design App to compute
 the vehicle's longitudinal force and power curves.
 
 <img src="screenshot-Vehicle1DPerformanceDesignApp.png"
  width="800" alt="Screenshot of the Vehicle1D performance design app">
+
+## Harness model
+
+Use the harness model for performing component-level tests.
+
+- `HarnessModel_Reducer.mdl`
+
+<img src="screenshot-HarnessModel_Vehicle1D.png"
+ alt="Harness model for Vehicle1D component"
+ width="800"/>
 
 *Copyright 2022-2025 The MathWorks, Inc.*

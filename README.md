@@ -2,7 +2,7 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange][url-fx-icon]][url-fx-bev]
 
-Version 3.1
+Version 3.2
 
 [url-fx-bev]: https://www.mathworks.com/matlabcentral/fileexchange/82250
 [url-fx-icon]: https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg
@@ -22,15 +22,10 @@ It is suitable as a baseline model for drive cycle simulation
 to estimate vehicle's electrical efficiency and
 other vehicle-level information.
 
-This project also contains the model of a detailed
+Additionally, this project contains the model of a detailed
 permanent magnet synchronous motor (PMSM) and controller.
 It captures the detailed behaviors of the AC motor drive unit
 and can estimate the electrical efficiency at the unit level.
-
-A Live Script demonstrates how to obtain the electrical efficiency
-from the slow but detailed motor drive unit and use the result
-as the block parameter of the simple but fast motor drive block
-in the BEV model.
 
 BEV system model:
 
@@ -76,6 +71,25 @@ the Motor Drive Unit.
 <img src="Components/MotorDriveUnit/screenshot-MotorDriveUnitSimulationApp.png"
  alt="Screenshot of the motor drive unit app"
  width="440">
+
+## What's New in 3.2 (August 2025)
+
+Improved Reducer component resources
+
+- Updated the test inputs for the harness model to use Referenced Subsystems.
+
+Improved testing
+
+- More unit tests and the `buildfile.m` files for the Build Tool are added.
+  In particular, tests for Button blocks' callbacks are added to check
+  that the callbacks work as expected.
+
+Improved code quality
+
+- Custom rules for MATLAB code are added for MATLAB Code Analyzer.
+  The rules are to remind developers to follow best practices and coding standards.
+  See the `codeAnalyzerConfiguration.json` file in the Project root > resources folder.
+  Custom rules are also used by the Editor and by the build tool's CodeIssues task.
 
 ## What's New in 3.1 (August 2025)
 
