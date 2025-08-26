@@ -153,41 +153,13 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
       % One callback can be setting multiple referenced subsystems.
 
       model_name = "HarnessModel_BatteryHV";
+      expected_num_blocks = 3;
 
-      load_system(model_name)
-      block_paths = string(getfullname(Simulink.findBlocksOfType(model_name, "CustomCallbackButton")));
-      num_blocks = numel(block_paths);
-      if num_blocks == 0
-
-        return
-
-      end  % if
-      for ii = 1 : num_blocks
-        target_block_path = block_paths(ii);
-        disp("Checking: " + target_block_path)
-        ClickFcn_text = string(get_param(target_block_path, "ClickFcn"));
-        lines = CodeTool1.cleanupCodeText(ClickFcn_text);
-        if isempty(lines)
-
-          verifyFail(testcase, "Callback must contain code.")
-
-        end  % if
-
-        for jj = 1 : numel(lines)
-          target_line = lines(jj);
-          is_target = startsWith(target_line, "set_param(") & contains(target_line, "ReferencedSubsystem");
-          if not(is_target)
-
-            continue
-
-          end  % if
-          disp(" Command: " + target_line)
-          sp = optionalPattern(whitespacePattern);
-          target_argument = extractBetween(target_line, "ReferencedSubsystem"+sp+"="+sp+"""", """"+sp+")");
-          target_fullpath = string(which(target_argument));  % !test-target
-          verifyTrue(testcase, target_fullpath ~= "")
-        end  % for
-      end  % for
+      result = ModelTool1.checkRefSubInCallbackButton(model_name);
+      logical_index = result.Found;
+      verifyEqual(testcase, nnz(logical_index), expected_num_blocks)
+      target_blocks = result(logical_index, :);
+      verifyTrue(testcase, all(target_blocks.IsRefSub))
     end  % function
 
     %% Live Script's link settings
