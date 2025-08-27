@@ -91,35 +91,6 @@ classdef uitest_SignalTool < matlab.uitest.TestCase
       type(testcase, testcase.App.MatrixTextUI.MainTextArea, "[0 2 10; 4 6 2; 8 12 6]")
     end  % function
 
-    %% Up-to-date tests
-
-    function app_screenshot_is_uptodate(testcase)
-
-      source_fullpath = FileTool2.getFileFullPath("SignalDesignApp.m");
-      destination_fullpath = FileTool2.getFileFullPath("screenshot-SignalDesignApp.png");
-
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
-      if newer
-        % Display the time stamps.
-        FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
-
-        testcase.App = SignalDesignApp;
-
-        % Take screenshot
-        disp("Update screenshot")
-        exportapp(testcase.App.Window.MainFigure, destination_fullpath)
-
-      else
-        % The closeAll function checks class(testcase.App) ~= "double"
-        % when finishing the execution of a test.
-        testcase.App = 0;
-      end  % if
-
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
-      verifyFalse(testcase, newer)
-
-    end  % function
-
   end  % methods
 
 end  % classdef

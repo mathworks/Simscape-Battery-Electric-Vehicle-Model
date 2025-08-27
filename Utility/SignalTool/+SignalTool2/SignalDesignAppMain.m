@@ -44,6 +44,10 @@ classdef SignalDesignAppMain < handle
 
   end  % properties
 
+  properties (Access=private)
+    IsValidMatrix (1,1) logical = true
+  end  % properties
+
   properties (Constant, Access=private)
 
     width_unit = LiteApp7.Constant.Width{"unitwidth"}
@@ -121,10 +125,16 @@ classdef SignalDesignAppMain < handle
       column = NewColumn(layout, area);
 
       % -----------------------------------------------------------------------
+
+      % Use getFileFullPath to check that the file exists.
+      % If it doesn't, an error is issued and the app doesn't start.
+      html_file = "SignalTool_Description.html";
+      FileTool2.getFileFullPath(html_file);
+
       row = NewRow(layout, column);
       link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       link_ui.HyperlinkText = "Description";
-      link_ui.HyperlinkClickedCallback =  @() web("SignalTool_Description.html");
+      link_ui.HyperlinkClickedCallback =  @() web(html_file);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
@@ -273,6 +283,13 @@ classdef SignalDesignAppMain < handle
     function change_design_matrix(App)
       %%
 
+      check_design_matrix(App)
+      if not(App.IsValidMatrix)
+
+        return
+
+      end  % if
+
       % This can contain newlines. Preserve them.
       App.SignalDesignMatrixText = App.MatrixTextUI.ValueString;
 
@@ -286,6 +303,47 @@ classdef SignalDesignAppMain < handle
       App.TableValuesUI.Value = CodeTool1.stringify(result.F');
 
       auto_update_plot(App)
+
+    end  % function
+
+    function check_design_matrix(App)
+      %%
+
+      % Make a single line text to evaluate.
+      design_matrix_text = join(App.MatrixTextUI.ValueString, " ");
+
+      % First check as MATLAB code.
+      try
+        design_matrix = evalin("base", design_matrix_text);  % !todo: Avoid evaluation.
+      catch exception
+        App.IsValidMatrix = false;
+        if App.Window.MainFigure.Visible
+          window_title = "Error";
+          uialert(App.Window.MainFigure, exception.message, window_title)
+        else
+          disp(msg)
+        end  % if
+
+        return
+
+      end  % try, catch
+
+      % Second check as a signal design matrix.
+      result = SignalTool2.checkSignalDesignMatrix(design_matrix);
+      if not(result.IsValid)
+        App.IsValidMatrix = false;
+        if App.Window.MainFigure.Visible
+          window_title = "Error";
+          uialert(App.Window.MainFigure, result.Message, window_title)
+        else
+          disp(msg)
+        end  % if
+
+        return
+
+      end  % if
+
+      App.IsValidMatrix = true;
     end  % function
 
     function getParam(App)

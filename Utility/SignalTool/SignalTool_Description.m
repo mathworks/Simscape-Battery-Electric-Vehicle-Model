@@ -1,5 +1,5 @@
 %[text] # Signal Tool
-%[text:tableOfContents]{"heading":"**Table of Contents**"}
+%[text:tableOfContents]{"heading":"Table of Contents"}
 %%
 %[text] ## Signal design app
 %[text] Use [`SignalDesignApp`](matlab:SignalDesignApp) to define a signal trace and then set up either Simscape [PS Lookup Table (1D)](https://www.mathworks.com/help/releases/R2025a/simscape/ref/pslookuptable1d.html) block or Simulink [1-D Lookup Table](https://www.mathworks.com/help/simulink/slref/1dlookuptable.html) block. To design a signal trace, write a signal design matrix in the app. The app generates block parameteres corresponding to the specified signal design matrix and can send them to a target block. The app also sends the signal design matrix as text to the Description property of the block, which the app can get later.

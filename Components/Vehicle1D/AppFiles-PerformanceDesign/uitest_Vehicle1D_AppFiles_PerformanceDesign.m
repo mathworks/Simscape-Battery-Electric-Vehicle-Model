@@ -105,10 +105,22 @@ classdef uitest_Vehicle1D_AppFiles_PerformanceDesign < matlab.uitest.TestCase
 
     %% UI test
 
-    function uitest_Information(testcase)
+    function uitest_DescriptionHTML(testcase)
+      % Check that the expected description HTML file is linked to the web command in the expected UI component's property.
       testcase.App = Vehicle1DPerformanceDesignAppMain;
-      % A browser window must open.
-      press(testcase, testcase.App.InfoLinkUI.MainHyperlink)
+      target_HTML = "Vehicle1D_Description.html";
+      target_property = "App.InfoLinkUI.HyperlinkClickedCallback";
+
+      metadata = metaclass(testcase.App);
+      app_fullpath = string( which( metadata.Name));
+      code_lines = readlines(app_fullpath);
+      result = CodeTool1.checkWebLocalHTMLInText(code_lines);
+
+      logical_index = result.URL == target_HTML;
+      verifyEqual(testcase, nnz(logical_index), 1)
+
+      logical_index = contains(result.CodeLine, target_property);
+      verifyEqual(testcase, nnz(logical_index), 1)
     end  % function
 
     function uitest_EditField_Mass(testcase)

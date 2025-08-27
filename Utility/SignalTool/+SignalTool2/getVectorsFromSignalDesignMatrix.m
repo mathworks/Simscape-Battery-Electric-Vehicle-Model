@@ -22,16 +22,25 @@ arguments (Output)
   Result (:,4) table
 end  % arguments
 
-error_id = "getVectorsFromDesignMatrix:";
+errorID = "getVectorsFromDesignMatrix:";
 
-num_rows = height(SignalDesignMatrix);
+check_result = SignalTool2.checkSignalDesignMatrix(SignalDesignMatrix);
+if not(check_result.IsValid)
 
+  id = check_result.ErrorID;
+  msg = check_result.Message;
+
+  throw(MException(id, msg))
+
+end  % if
+
+%{
 % Check X data points
 
 x_points = SignalDesignMatrix(:, [1 2]);
 
 assert( issorted(x_points(:,1), "strictascend"), ...
-  error_id + "XStartVectorNotAscending", ...
+  errorID + "XStartVectorNotAscending", ...
   CodeTool1.i18n("X start vector must be strictly asending."))
 
 tmp_vec = x_points(:,2);
@@ -40,7 +49,7 @@ if any(logical_index)
   tmp_vec = tmp_vec(logical_index);
 
   assert( issorted(tmp_vec, "strictascend"), ...
-    error_id + "XEndVectorNotAscending", ...
+    errorID + "XEndVectorNotAscending", ...
     CodeTool1.i18n("X end vector must be strictly asending."))
 
   dx = x_points(:,2) - x_points(:,1);
@@ -51,7 +60,7 @@ if any(logical_index)
   logical_index = find(violating);
 
   assert( isempty(logical_index), ...
-    error_id + "InvalidX", ...
+    errorID + "InvalidX", ...
     CodeTool1.i18n("X start is after X end, which is invalid, at these rows: ") + num2str(logical_index'))
 
 end  % if
@@ -61,14 +70,19 @@ end  % if
 f_points = SignalDesignMatrix(:, 3);
 
 assert( all(not(isnan(f_points))), ...
-  error_id + "invalidF", ...
+  errorID + "invalidF", ...
   CodeTool1.i18n("F data cannot have NaN."))
+%}
 
 % Build data
+x_points = SignalDesignMatrix(:, [1 2]);
+f_points = SignalDesignMatrix(:, 3);
 
 % If transformed_data.Refine(i) is true,
 % apply interpolation to the data between i and i+1.
 transformed_data = struct("X", [], "F",[], "Added",[], "Refine",[]);
+
+num_rows = height(SignalDesignMatrix);
 
 idx = 1;
 for r = 1 : num_rows
@@ -119,7 +133,7 @@ transformed_data(end).Refine = false;
 dx = diff([transformed_data.X]);
 
 assert( all(dx > 0), ...
-  error_id + "XNotAscending", ...
+  errorID + "XNotAscending", ...
   CodeTool1.i18n("X data points are not strictly ascending."))
 
 Result = struct2table(transformed_data);

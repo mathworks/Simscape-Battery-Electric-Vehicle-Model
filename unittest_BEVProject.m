@@ -186,6 +186,39 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
 
     end  % function
 
+    function linked_app_commands_in_live_script_1(testcase)
+      % Check that apps that are hyperlinked in a live script exist.
+      %
+      % This test assumes that the name of app commands always ends with "App".
+      % This test checks that the app file exists.
+      % This test does not open the app.
+
+      % Live scripts can have hyperlinks that are MATLAB commands.
+      % An example is "command" in the text "[some text](matlab:command)"
+      % where "some text" is rendered with a hyperlink "command" which
+      % is passed to MATLAB when the link is clicked.
+      %
+      % This test makes sure there are no broken links.
+
+      link_table = FileTool2.getLinkedCommandFromPlainTextLiveScript("BEVProject_Description.m");
+      if height(link_table) == 0
+        disp("No hyperlinked commands.")
+
+        return
+
+      end  % if
+      for ii = 1 : height(link_table)
+        matlab_command = link_table.Command(ii);
+        if endsWith(matlab_command, "App")
+          disp("Hyperlinked app: " + matlab_command)
+          app_fullpath = string( which(matlab_command));
+
+          verifyTrue(testcase, isfile(app_fullpath))
+
+        end  % if
+      end  % for
+    end  % function
+
     function linked_commands_in_live_script_1(testcase)
       % Live scripts can have hyperlinks that are MATLAB commands.
       % An example is "command" in the text "[some text](matlab:command)"
