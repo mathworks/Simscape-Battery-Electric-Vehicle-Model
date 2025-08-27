@@ -1,4 +1,4 @@
-classdef uitest_SignalTool < matlab.uitest.TestCase
+classdef uitest_TimedTraceBuilderApp < matlab.uitest.TestCase
   %% Class-based unit test for app
 
   % Overview of App Testing Framework
@@ -65,14 +65,35 @@ classdef uitest_SignalTool < matlab.uitest.TestCase
     %% Minimum quality check
     % Check that models, scripts, functions, and classes run right out of the box.
 
-    function PassingTest_1(testcase)
-        % More tests for SignalDesignApp are done in Test > SignalDesignApp folder.
-        testcase.App = SignalDesignApp;
+    function app_launches_without_warnings_1(testcase)
+      % Warnings can be displayed even when the app opens and starts working seemingly normally.
+      % Make surfe there is no warning when opening an app.
+      verifyWarningFree(testcase, @() target())
+      function target()
+        testcase.App = SignalTool2.TimedTraceBuilderAppMain;  % !test-target
+      end  % nested function
     end  % function
 
-    function PassingTest_2(testcase)
-         % More tests for TimedTraceBuilderApp are done in Test > TimedTraceBuilderApp folder.
-       testcase.App = TimedTraceBuilderApp;
+    function app_launches_without_warnings_2(testcase)
+      % Warnings can be displayed even when the app opens and starts working seemingly normally.
+      % Make surfe there is no warning when opening an app.
+      verifyWarningFree(testcase, @() target())
+      function target()
+        testcase.App = TimedTraceBuilderApp;  % !test-target
+      end  % nested function
+    end  % function
+
+    function PassingTest_1(testcase)
+      testcase.App = testapp_SignalDesignApp;
+    end  % function
+
+    %% UI test
+
+    function uitest_1(testcase)
+      testcase.App = TimedTraceBuilderApp;
+      type(testcase, testcase.App.RandomSeedUI.ValueEditFieldUI.MainEditField, "1")
+      type(testcase, testcase.App.RandomSeedUI.ValueEditFieldUI.MainEditField, "22")
+      type(testcase, testcase.App.RandomSeedUI.ValueEditFieldUI.MainEditField, "333")
     end  % function
 
   end  % methods

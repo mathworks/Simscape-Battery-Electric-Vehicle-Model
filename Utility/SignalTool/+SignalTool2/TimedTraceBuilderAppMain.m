@@ -566,7 +566,6 @@ classdef TimedTraceBuilderAppMain < handle
     end  % function
     %}
 
-    %{-
     function setParam(App)
       %%
       % Transfer the settings of x, f(x), interpolation, and extrapolation to the block.
@@ -628,7 +627,6 @@ classdef TimedTraceBuilderAppMain < handle
 
       end  % if Simscape or Simulink
     end  % function
-    %}
 
     function auto_update_plot(App)
       %%

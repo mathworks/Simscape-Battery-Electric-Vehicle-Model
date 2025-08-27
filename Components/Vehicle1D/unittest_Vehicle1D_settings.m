@@ -32,6 +32,28 @@ classdef unittest_Vehicle1D_settings < matlab.unittest.TestCase
     % Functions in this "Test" section are the tests.
     % Before each function in this section runs, functions defined in the TestMethodSetup section run.
 
+    %% Solver settings
+
+    function solver_settings(testcase)
+      load_system("HarnessModel_Vehicle1D")
+
+      s = string(get_param(gcs, "SolverType"));
+      verifyEqual(testcase, s, "Variable-step")
+
+      s = string(get_param(gcs, "SolverName"));
+      verifyEqual(testcase, s, "daessc")
+    end  % function
+
+    %% Parameter settings
+
+    function preload_parameters(testcase)
+      % Check that the model loads parameters in the callback.
+      parameter_filename = "HarnessSetup_Vehicle1D";  % without ".m"
+      load_system("HarnessModel_Vehicle1D")
+      callback_text = string(get_param(gcs, "PreLoadFcn"));
+      verifyTrue(testcase, contains(callback_text, lineBoundary("start") + parameter_filename + alphanumericBoundary))
+    end  % function
+
     %% Subsystem Reference block
 
     function subsystem_reference_block_settings_1(testcase)

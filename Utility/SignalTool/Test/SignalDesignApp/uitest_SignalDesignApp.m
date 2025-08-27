@@ -1,4 +1,4 @@
-classdef uitest_SignalTool < matlab.uitest.TestCase
+classdef uitest_SignalDesignApp < matlab.uitest.TestCase
   %% Class-based unit test for app
 
   % Overview of App Testing Framework
@@ -65,14 +65,35 @@ classdef uitest_SignalTool < matlab.uitest.TestCase
     %% Minimum quality check
     % Check that models, scripts, functions, and classes run right out of the box.
 
-    function PassingTest_1(testcase)
-        % More tests for SignalDesignApp are done in Test > SignalDesignApp folder.
-        testcase.App = SignalDesignApp;
+    function app_launches_without_warnings_1(testcase)
+      % Warnings can be displayed even when the app opens and starts working seemingly normally.
+      % Make surfe there is no warning when opening an app.
+      verifyWarningFree(testcase, @() target())
+      function target()
+        testcase.App = SignalTool2.SignalDesignAppMain;  % !test-target
+      end  % nested function
     end  % function
 
-    function PassingTest_2(testcase)
-         % More tests for TimedTraceBuilderApp are done in Test > TimedTraceBuilderApp folder.
-       testcase.App = TimedTraceBuilderApp;
+    function app_launches_without_warnings_2(testcase)
+      % Warnings can be displayed even when the app opens and starts working seemingly normally.
+      % Make surfe there is no warning when opening an app.
+      verifyWarningFree(testcase, @() target())
+      function target()
+        testcase.App = SignalDesignApp;  % !test-target
+      end  % nested function
+    end  % function
+
+    function PassingTest_1(testcase)
+      testcase.App = testapp_SignalDesignApp;
+    end  % function
+
+    %% UI test
+    %% UI test
+
+    function uitest_1(testcase)
+      testcase.App = SignalDesignApp;
+      % Plot must update when a new value is typed in.
+      type(testcase, testcase.App.MatrixTextUI.MainTextArea, "[0 2 10; 4 6 2; 8 12 6]")
     end  % function
 
   end  % methods

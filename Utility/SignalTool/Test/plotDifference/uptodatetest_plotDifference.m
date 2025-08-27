@@ -34,6 +34,25 @@ classdef uptodatetest_plotDifference < matlab.unittest.TestCase
 
     %% Up-to-date tests
 
+    function markdowns_are_uptodate(testcase)
+      % Make sure that all Live Scripts have been converted to markdown files.
+      n = FileTool2.batchGenerateMarkdowns( ...
+        LiveScriptFolderNames = pwd, ...
+        MarkdownFolderPath = "markdown");
+
+      if n > 0
+        n = FileTool2.batchGenerateMarkdowns( ...
+          LiveScriptFolderNames = pwd, ...
+          MarkdownFolderPath = "markdown", DisplayInfo = true);
+      end  % if
+
+      % Add created files under the markdown folder to the project.
+      addFolderIncludingChildFiles(currentProject, fullfile(pwd, "markdown"));
+
+      verifyEqual(testcase, n, 0)
+
+    end  % function
+
     function markdown_files_exist(testcase)
       % Check that Markdown files exist for all plain-text Live Script files in pwd.
       % Markdowns files are assumed to be in the markdown folder in pwd.
@@ -55,25 +74,6 @@ classdef uptodatetest_plotDifference < matlab.unittest.TestCase
 
       verifyTrue(testcase, actual > 0)
       verifyEqual(testcase, actual, expected)
-
-    end  % function
-
-    function markdowns_are_uptodate(testcase)
-      % Make sure that all Live Scripts have been converted to markdown files.
-      n = FileTool2.batchGenerateMarkdowns( ...
-        LiveScriptFolderNames = pwd, ...
-        MarkdownFolderPath = "markdown");
-
-      if n > 0
-        n = FileTool2.batchGenerateMarkdowns( ...
-          LiveScriptFolderNames = pwd, ...
-          MarkdownFolderPath = "markdown", DisplayInfo = true);
-      end  % if
-
-      % Add created files under the markdown folder to the project.
-      addFolderIncludingChildFiles(currentProject, fullfile(pwd, "markdown"));
-
-      verifyEqual(testcase, n, 0)
 
     end  % function
 
