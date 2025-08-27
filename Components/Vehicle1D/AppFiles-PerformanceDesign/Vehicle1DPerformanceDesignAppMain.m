@@ -466,10 +466,16 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       left_label_width_1 = width_unit*20;
 
       % -----------------------------------------------------------------------
+
+      % Use getFileFullPath to check that the file exists.
+      % If it doesn't, an error is issued and the app doesn't start.
+      html_file = "Vehicle1D_Description.html";
+      FileTool2.getFileFullPath(html_file);
+
       row = NewRow(layout, column);
       App.InfoLinkUI = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
       App.InfoLinkUI.HyperlinkText = "Description";
-      App.InfoLinkUI.HyperlinkClickedCallback = @() web("Vehicle1D_Description.html");
+      App.InfoLinkUI.HyperlinkClickedCallback = @() web(html_file);
       App.InfoLinkUI.ComponentHeight = height_unit;
 
       % -----------------------------------------------------------------------
