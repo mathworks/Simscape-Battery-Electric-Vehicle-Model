@@ -2,7 +2,7 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange][url-fx-icon]][url-fx-bev]
 
-Version 3.2.1
+Version 3.2
 
 [url-fx-bev]: https://www.mathworks.com/matlabcentral/fileexchange/82250
 [url-fx-icon]: https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg
