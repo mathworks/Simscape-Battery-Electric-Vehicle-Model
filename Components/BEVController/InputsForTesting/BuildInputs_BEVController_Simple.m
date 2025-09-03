@@ -1,14 +1,14 @@
 %[text] # Build input signal trace
 %[text] Generate data.
 design_matrix = [0 100 0; 105 200 40; 205 300 60; 305 400 100; 405 500 50; 510 600 0];
-data_table = SignalTool2.getVectorsFromSignalDesignMatrix(design_matrix);
+data_table = SignalTool3.getVectorsFromSignalDesignMatrix(design_matrix);
 
 t = data_table.X;
 f = data_table.Y;
 
 fig = figure; %[output:04d8ef1d]
 fig.Position(3:4) = [900 300];  % width height %[output:04d8ef1d]
-SignalTool2.plotLookupTable1D(t, f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:04d8ef1d]
+SignalTool3.plotLookupTable1D(t, f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:04d8ef1d]
 %%
 %[text] Set the generated data to the target block in the target model.
 model_name = "BEVController_Inputs_Simple_refsub";

@@ -18,7 +18,7 @@ design_matrix = [
   65 70 0
   ];
 
-result = SignalTool2.getVectorsFromSignalDesignMatrix(design_matrix);
+result = SignalTool3.getVectorsFromSignalDesignMatrix(design_matrix);
 x = result.X';
 f = result.F';
 
@@ -36,7 +36,7 @@ extrap_method = "Nearest";
 % Add the design matrix as text to the Description property of the target block.
 design_matrix_text = CodeTool1.stringify(design_matrix);
 
-SignalTool2.plotLookupTable1D( ...
+SignalTool3.plotLookupTable1D( ...
   x, f, ...
   XUnitText = x_unit, ...
   YUnitText = f_unit, ...

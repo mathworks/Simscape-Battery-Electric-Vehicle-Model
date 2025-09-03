@@ -68,7 +68,7 @@ classdef unittest_CtrlEnv_Basic_SimulationCases < matlab.unittest.TestCase
     function PassingTest_1(testcase)
       % Run script, for example, CtrlEnv_Basic_Constant.
       target_name = "CtrlEnv_" + testcase.ModelID + "_Constant";
-      target_fullpath = FileTool2.getFileFullPath(target_name);
+      target_fullpath = FileTool3.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -76,7 +76,7 @@ classdef unittest_CtrlEnv_Basic_SimulationCases < matlab.unittest.TestCase
     function PassingTest_2(testcase)
       % Run script, for example, CtrlEnv_Basic_Constant.
       target_name = "CtrlEnv_" + testcase.ModelID + "_FTP75";
-      target_fullpath = FileTool2.getFileFullPath(target_name);
+      target_fullpath = FileTool3.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -84,7 +84,7 @@ classdef unittest_CtrlEnv_Basic_SimulationCases < matlab.unittest.TestCase
     function PassingTest_3(testcase)
       % Run script, for example, CtrlEnv_Basic_Constant.
       target_name = "CtrlEnv_" + testcase.ModelID + "_Simple";
-      target_fullpath = FileTool2.getFileFullPath(target_name);
+      target_fullpath = FileTool3.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function

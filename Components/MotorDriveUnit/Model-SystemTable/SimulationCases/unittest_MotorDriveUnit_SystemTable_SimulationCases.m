@@ -70,7 +70,7 @@ classdef unittest_MotorDriveUnit_SystemTable_SimulationCases < matlab.unittest.T
     function PassingTest_1(testcase)
       % Run script, for example, MotorDriveUnit_Basic_Constant.
       target_name = testcase.ComponentID + "_" + testcase.ModelID + "_Constant";
-      target_fullpath = FileTool2.getFileFullPath(target_name);
+      target_fullpath = FileTool3.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -78,7 +78,7 @@ classdef unittest_MotorDriveUnit_SystemTable_SimulationCases < matlab.unittest.T
     function PassingTest_2(testcase)
       % Run script, for example, MotorDriveUnit_Basic_Constant.
       target_name = testcase.ComponentID + "_" + testcase.ModelID + "_Drive";
-      target_fullpath = FileTool2.getFileFullPath(target_name);
+      target_fullpath = FileTool3.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -86,7 +86,7 @@ classdef unittest_MotorDriveUnit_SystemTable_SimulationCases < matlab.unittest.T
     function PassingTest_3(testcase)
       % Run script, for example, MotorDriveUnit_Basic_Constant.
       target_name = testcase.ComponentID + "_" + testcase.ModelID + "_Random";
-      target_fullpath = FileTool2.getFileFullPath(target_name);
+      target_fullpath = FileTool3.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -94,7 +94,7 @@ classdef unittest_MotorDriveUnit_SystemTable_SimulationCases < matlab.unittest.T
     function PassingTest_4(testcase)
       % Run script, for example, MotorDriveUnit_Basic_Constant.
       target_name = testcase.ComponentID + "_" + testcase.ModelID + "_RegenBrake";
-      target_fullpath = FileTool2.getFileFullPath(target_name);
+      target_fullpath = FileTool3.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function

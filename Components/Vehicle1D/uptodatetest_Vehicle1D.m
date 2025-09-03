@@ -38,11 +38,11 @@ classdef uptodatetest_Vehicle1D < matlab.unittest.TestCase
     function description_html_is_uptodate(testcase)
       % Make sure the description HTML file is up to date.
 
-      source_fullpath = FileTool2.getFileFullPath("Vehicle1D_Description.m");
-      destination_fullpath = FileTool2.getFileFullPath("Vehicle1D_Description.html");
+      source_fullpath = FileTool3.getFileFullPath("Vehicle1D_Description.m");
+      destination_fullpath = FileTool3.getFileFullPath("Vehicle1D_Description.html");
 
       % This test uses a conditional branch as a special case because it is practical.
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % The export command saves the generated file in the current working folder (pwd).
         % When this test runs, pwd is the folder where this test code file exists.
@@ -51,7 +51,7 @@ classdef uptodatetest_Vehicle1D < matlab.unittest.TestCase
         verifyEqual(testcase, actual_path, expected_path)
       end  % if
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
       verifyFalse(testcase, newer)
 
     end  % function
@@ -65,7 +65,7 @@ classdef uptodatetest_Vehicle1D < matlab.unittest.TestCase
 
       % Select Live Scripts.
       % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
-      live_script_file_collection = select(mfile_collection, @(p) FileTool2.isPlainTextLiveScript(p));
+      live_script_file_collection = select(mfile_collection, @(p) FileTool3.isPlainTextLiveScript(p));
 
       [folder_path, base_file_name, ~] = fileparts(live_script_file_collection.paths');
       markdown_files = fullfile(folder_path, "markdown", base_file_name + ".md");
@@ -82,12 +82,12 @@ classdef uptodatetest_Vehicle1D < matlab.unittest.TestCase
 
     function markdowns_are_uptodate(testcase)
       % Make sure that all Live Scripts have been converted to markdown files.
-      n = FileTool2.batchGenerateMarkdowns( ...
+      n = FileTool3.batchGenerateMarkdowns( ...
         LiveScriptFolderNames = pwd, ...
         MarkdownFolderPath = "markdown");
 
       if n > 0
-        n = FileTool2.batchGenerateMarkdowns( ...
+        n = FileTool3.batchGenerateMarkdowns( ...
           LiveScriptFolderNames = pwd, ...
           MarkdownFolderPath = "markdown", DisplayInfo = true);
       end  % if
@@ -103,10 +103,10 @@ classdef uptodatetest_Vehicle1D < matlab.unittest.TestCase
       model_name = "HarnessModel_Vehicle1D";
       image_filename = "screenshot-" + model_name + ".png";
 
-      source_fullpath = FileTool2.getFileFullPath(model_name + ".mdl");
-      destination_fullpath = FileTool2.getFileFullPath(image_filename);
+      source_fullpath = FileTool3.getFileFullPath(model_name + ".mdl");
+      destination_fullpath = FileTool3.getFileFullPath(image_filename);
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         load_system(model_name)
 
@@ -115,13 +115,13 @@ classdef uptodatetest_Vehicle1D < matlab.unittest.TestCase
         % This also updates the canvas rendering.
         set_param(model_name, SimulationCommand = "update")
 
-        ModelTool1.screenshotSimulink( ...
+        ModelTool2.screenshotSimulink( ...
           OutputFileName = image_filename, ...
           SimulinkModelName = model_name, ...
           SaveFolder = pwd );
       end  % if
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function

@@ -70,7 +70,7 @@ classdef uitest_SignalDesignApp < matlab.uitest.TestCase
       % Make surfe there is no warning when opening an app.
       verifyWarningFree(testcase, @() target())
       function target()
-        testcase.App = SignalTool2.SignalDesignAppMain;  % !test-target
+        testcase.App = SignalTool3.SignalDesignAppMain;  % !test-target
       end  % nested function
     end  % function
 

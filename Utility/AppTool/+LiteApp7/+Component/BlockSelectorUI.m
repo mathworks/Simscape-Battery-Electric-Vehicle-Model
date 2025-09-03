@@ -234,7 +234,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
       else
         % Find Simscape blocks in the selected model.
         try
-          result_table = ModelTool1.findSimscapeBlocks(component.ModelName);
+          result_table = ModelTool2.findSimscapeBlocks(component.ModelName);
         catch exception
           uialert(component.MainFigure, exception.message, CodeTool1.i18n("Error"))
 
@@ -422,19 +422,19 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
       component.ModelFileDropDownUI.Value = component.ModelFileDropDownUI.Items(end);
 
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("ModelFileDropDownUI.Value: " + component.ModelFileDropDownUI.Value)
+        FileTool3.displayTimeAndFileLocation("ModelFileDropDownUI.Value: " + component.ModelFileDropDownUI.Value)
       end  % if
     end  % function
 
     function callback_change_blockpath_dropdown(component)
       %%
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("Start")
+        FileTool3.displayTimeAndFileLocation("Start")
       end  % if
 
       if component.ModelFileDropDownUI.Value == ""
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("Selected empty model file.")
+          FileTool3.displayTimeAndFileLocation("Selected empty model file.")
         end  % if
 
         return
@@ -494,14 +494,14 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
       end  % if
 
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("End")
+        FileTool3.displayTimeAndFileLocation("End")
       end  % if
     end  % function
 
     function callback_hilit(component)
       %%
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("Start")
+        FileTool3.displayTimeAndFileLocation("Start")
       end  % if
 
       if component.ModelFileDropDownUI.Value == ""
@@ -559,7 +559,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
       end  % if
 
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("End")
+        FileTool3.displayTimeAndFileLocation("End")
       end  % if
     end  % function
 
@@ -688,7 +688,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
     function regular_update(component)
       %%
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("regular update")
+        FileTool3.displayTimeAndFileLocation("regular update")
       end  % if
 
       if component.ModelFileDropDownUI.Value ~= ""
@@ -707,7 +707,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
       % Use this function to fix UI settings based on user specified property values,
       % including the deletion of unecessary UI components.
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("first update")
+        FileTool3.displayTimeAndFileLocation("first update")
       end  % if
     end  % function
 

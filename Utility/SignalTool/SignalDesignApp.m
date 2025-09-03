@@ -7,10 +7,10 @@ arguments (Input)
 end  % arguments
 
 arguments (Output)
-  App SignalTool2.SignalDesignAppMain {mustBeScalarOrEmpty}
+  App SignalTool3.SignalDesignAppMain {mustBeScalarOrEmpty}
 end  % arguments
 
-app_main = SignalTool2.SignalDesignAppMain(BlockPath=BlockPath);
+app_main = SignalTool3.SignalDesignAppMain(BlockPath=BlockPath);
 
 app_main.Window.HeaderUI.AppSourceName = mfilename;
 

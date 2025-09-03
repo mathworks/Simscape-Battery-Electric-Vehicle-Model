@@ -1,6 +1,6 @@
 %[text] # getLinkedCommandFromPlainTextLiveScript demo
 fullpath = string( which("testscript_getLinkedCommandFromPlainTextLiveScript"));
-links = FileTool2.getLinkedCommandFromPlainTextLiveScript(fullpath);
+links = FileTool3.getLinkedCommandFromPlainTextLiveScript(fullpath);
 disp(links) %[output:3a8da3e1]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 

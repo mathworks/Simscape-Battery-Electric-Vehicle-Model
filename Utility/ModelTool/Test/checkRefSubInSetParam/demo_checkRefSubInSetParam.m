@@ -1,8 +1,12 @@
 %[text] # checkRefSubInSetParam demo
 %[text] This function is intended to check if `set_param` for a subsystem reference is referring to an existing referenced subsystem file.
 codetext = "set_param(dummy_block_path, ReferencedSubsystem=""dummy_refsub.mdl"")";
-result = ModelTool1.checkRefSubInSetParam(codetext);
+result = ModelTool2.checkRefSubInSetParam(codetext);
 disp(result) %[output:5d212d59]
+%%
+codetext = repmat("This code text has no matching lines.", 3, 1);
+result = ModelTool2.checkRefSubInSetParam(codetext);
+disp(result) %[output:314ea6fd]
 %%
 % Text consisting of multiple code lines.
 codetext = [
@@ -15,7 +19,7 @@ codetext = [
   " set_param(dummy_block_path, ""ReferencedSubsystem"", ""dummy_refsub2.mdl"")"
   "set_param(dummy_block_path, 'ReferencedSubsystem' , 'dummy_refsub3.mdl' )"
   ];
-result = ModelTool1.checkRefSubInSetParam(codetext);
+result = ModelTool2.checkRefSubInSetParam(codetext);
 disp(result) %[output:524e9882]
 %%
 % Single line text containing all code.
@@ -30,7 +34,7 @@ codetext = join([
   "set_param(dummy_block_path, 'ReferencedSubsystem' , 'dummy_refsub3.mdl' )"
   ], newline);
 % Display additional information.
-result = ModelTool1.checkRefSubInSetParam(codetext, DisplayInfo=true); %[output:1b253a90]
+result = ModelTool2.checkRefSubInSetParam(codetext, DisplayInfo=true); %[output:1b253a90]
 disp(result) %[output:9ea161c8]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 
@@ -41,6 +45,9 @@ disp(result) %[output:9ea161c8]
 %---
 %[output:5d212d59]
 %   data: {"dataType":"text","outputData":{"text":"         <strong>FileName<\/strong>         <strong>Found<\/strong>    <strong>IsRefSub<\/strong>\n    <strong>__________________<\/strong>    <strong>_____<\/strong>    <strong>________<\/strong>\n\n    \"dummy_refsub.mdl\"    false     false  \n\n","truncated":false}}
+%---
+%[output:314ea6fd]
+%   data: {"dataType":"text","outputData":{"text":"    <strong>FileName<\/strong>    <strong>Found<\/strong>    <strong>IsRefSub<\/strong>\n    <strong>________<\/strong>    <strong>_____<\/strong>    <strong>________<\/strong>\n\n\n","truncated":false}}
 %---
 %[output:524e9882]
 %   data: {"dataType":"text","outputData":{"text":"                      <strong>FileName<\/strong>                       <strong>Found<\/strong>    <strong>IsRefSub<\/strong>\n    <strong>_____________________________________________<\/strong>    <strong>_____<\/strong>    <strong>________<\/strong>\n\n    \"testmodel_checkRefSubInSetParam.mdl\"            true      false  \n    \"testmodel_checkRefSubInSetParam_refsub1.mdl\"    true      true   \n    \"testmodel_checkRefSubInSetParam_refsub2.mdl\"    true      true   \n    \"dummy_refsub1.mdl\"                              false     false  \n    \"dummy_refsub2.mdl\"                              false     false  \n    \"dummy_refsub3.mdl\"                              false     false  \n\n","truncated":false}}

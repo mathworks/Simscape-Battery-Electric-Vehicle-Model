@@ -44,18 +44,18 @@ classdef unittest_getLinkedCommandFromText < matlab.unittest.TestCase
     function Test_1(testcase)
       verifyError(testcase, @() test_target, "MATLAB:minrhs")
       function test_target
-        FileTool2.getLinkedCommandFromText
+        FileTool3.getLinkedCommandFromText
       end  % nested function
     end  % function
 
     function Test_2(testcase)
-      result = FileTool2.getLinkedCommandFromText("no linked command in the text");
+      result = FileTool3.getLinkedCommandFromText("no linked command in the text");
       verifyTrue(testcase, isempty(result))
     end  % function
 
     function Test_3(testcase)
       target_text = "[Linked text 1](matlab:command1)";
-      result = FileTool2.getLinkedCommandFromText(target_text);
+      result = FileTool3.getLinkedCommandFromText(target_text);
       verifyEqual(testcase, result.Line, 1)
       verifyEqual(testcase, result.Command, "command1")
       verifyEqual(testcase, result.LinkText, "Linked text 1")
@@ -63,7 +63,7 @@ classdef unittest_getLinkedCommandFromText < matlab.unittest.TestCase
 
     function Test_4(testcase)
       target_text = "[Linked text 1](<matlab:command1>)";
-      result = FileTool2.getLinkedCommandFromText(target_text);
+      result = FileTool3.getLinkedCommandFromText(target_text);
       verifyEqual(testcase, result.Line, 1)
       verifyEqual(testcase, result.Command, "command1")
       verifyEqual(testcase, result.LinkText, "Linked text 1")
@@ -71,7 +71,7 @@ classdef unittest_getLinkedCommandFromText < matlab.unittest.TestCase
 
     function Test_5(testcase)
       target_text = "[Linked text 1](matlab:command1(arg1, arg2))";
-      result = FileTool2.getLinkedCommandFromText(target_text);
+      result = FileTool3.getLinkedCommandFromText(target_text);
       verifyEqual(testcase, result.Line, 1)
       verifyEqual(testcase, result.Command, "command1(arg1, arg2)")
       verifyEqual(testcase, result.LinkText, "Linked text 1")
@@ -79,7 +79,7 @@ classdef unittest_getLinkedCommandFromText < matlab.unittest.TestCase
 
     function Test_6(testcase)
       target_text = "[Linked text 1](<matlab:command1(arg1, arg2)>)";
-      result = FileTool2.getLinkedCommandFromText(target_text);
+      result = FileTool3.getLinkedCommandFromText(target_text);
       verifyEqual(testcase, result.Line, 1)
       verifyEqual(testcase, result.Command, "command1(arg1, arg2)")
       verifyEqual(testcase, result.LinkText, "Linked text 1")
@@ -92,7 +92,7 @@ classdef unittest_getLinkedCommandFromText < matlab.unittest.TestCase
         "  [t31](matlab:c31(a1,a2))  [t32](matlab:c32)  [t33](matlab:c33(c1, n1=v1, n2=v2))  "
         ""
         ];
-      result = FileTool2.getLinkedCommandFromText(target_text);
+      result = FileTool3.getLinkedCommandFromText(target_text);
       verifyEqual(testcase, result.Line, [2 2 2 3 3 3]')
       verifyEqual(testcase, result.Command, ["c21" "c22" "c23" "c31(a1,a2)" "c32" "c33(c1, n1=v1, n2=v2)"]')
       verifyEqual(testcase, result.LinkText, ["t21" "t22" "t23" "t31" "t32" "t33"]')
@@ -106,7 +106,7 @@ classdef unittest_getLinkedCommandFromText < matlab.unittest.TestCase
         "  [t31](matlab:c31(a1,a2))  [t32](<matlab:c32>)  [t33](<matlab:c33(c1, n1=v1, n2=v2)>)  "
         ""
         ];
-      result = FileTool2.getLinkedCommandFromText(target_text);
+      result = FileTool3.getLinkedCommandFromText(target_text);
       verifyEqual(testcase, result.Line, [2 2 2 3 3 3]')
       verifyEqual(testcase, result.Command, ["c21" "c22" "c23" "c31(a1,a2)" "c32" "c33(c1, n1=v1, n2=v2)"]')
       verifyEqual(testcase, result.LinkText, ["t21" "t22" "t23" "t31" "t32" "t33"]')

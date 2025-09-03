@@ -10,7 +10,7 @@ mdlfiles = mdlfile_collection.paths';
 [~, basename, extension] = fileparts(mdlfiles);
 disp(basename + extension) %[output:63518aab]
 
-tf = FileTool2.isModelFile(mdlfiles);
+tf = FileTool3.isModelFile(mdlfiles);
 
 assert(all(tf))
 %%
@@ -22,7 +22,7 @@ slxfiles = slxfile_collection.paths';
 [~, basename, extension] = fileparts(slxfiles);
 disp(basename + extension) %[output:409cda8e]
 
-tf = FileTool2.isModelFile(slxfiles);
+tf = FileTool3.isModelFile(slxfiles);
 
 assert(all(tf))
 %%
@@ -33,7 +33,7 @@ otherfiles = otherfile_collection.paths';
 [~, basename, extension] = fileparts(otherfiles);
 disp(basename + extension) %[output:3f5efc99]
 
-tf = FileTool2.isModelFile(otherfiles);
+tf = FileTool3.isModelFile(otherfiles);
 
 assert(not(all(tf)))
 %[text] *Copyright 2025 The MathWorks, Inc.*

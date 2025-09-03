@@ -15,11 +15,11 @@ sim_out = sim(sim_in);
 
 % Signal logging for Simulink blocks is configured in the Measurement subsystem of the harness model.
 % Signal logging for Simscape blocks is configured in the setupLogging_*.m files.
-signals = SignalTool2.getTimetableFromLoggedSignal(sim_out.logsout);
+signals = SignalTool3.getTimetableFromLoggedSignal(sim_out.logsout);
 %[text] Visually inspect the simulation result.
 varnames = string(signals.Properties.VariableNames);
 for ii = 1 : numel(varnames) %[output:group:4a47ba04]
-  SignalTool2.plotTimedData(TimedData=signals, SignalName=varnames(ii), FigureHeight=150); %[output:29195d3c] %[output:78b26ab8] %[output:5f294f22] %[output:3396f8dc] %[output:32d79418] %[output:9c672938] %[output:3a2f6309]
+  SignalTool3.plotTimedData(TimedData=signals, SignalName=varnames(ii), FigureHeight=150); %[output:29195d3c] %[output:78b26ab8] %[output:5f294f22] %[output:3396f8dc] %[output:32d79418] %[output:9c672938] %[output:3a2f6309]
 end  % for %[output:group:4a47ba04]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 

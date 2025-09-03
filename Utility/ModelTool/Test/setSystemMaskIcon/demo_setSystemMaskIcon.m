@@ -6,21 +6,21 @@
 % Start this script cleanly.
 bdclose all
 
-refsub_name = ModelTool1.setSystemMaskIcon;
+refsub_name = ModelTool2.setSystemMaskIcon;
 
 disp("Created: <a href=""matlab:" + refsub_name + """>" + refsub_name + "</a>") %[output:35e9223a]
 %[text] Open the model and see the block icon in the System Mask Editor.
 %%
 %[text] Running this section updates the icon label.
-ModelTool1.setSystemMaskIcon(refsub_name, "New Text")
+ModelTool2.setSystemMaskIcon(refsub_name, "New Text")
 %[text] Open the model and see the updated block icon in the System Mask Editor.
 %%
 %[text] Clean up.
 target_filename = refsub_name + ".mdl";
-target_filefullpath = FileTool2.getFileFullPath(target_filename, ReturnIfNotFound=true);
+target_filefullpath = FileTool3.getFileFullPath(target_filename, ReturnIfNotFound=true);
 if target_filefullpath == ""
   target_filename = refsub_name + ".slx";
-  target_filefullpath = FileTool2.getFileFullPath(target_filename);
+  target_filefullpath = FileTool3.getFileFullPath(target_filename);
 end  % if
 disp("Deleting: " + target_filename) %[output:422926e8]
 delete(target_filefullpath)

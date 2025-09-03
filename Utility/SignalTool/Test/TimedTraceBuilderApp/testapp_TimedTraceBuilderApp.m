@@ -5,12 +5,12 @@ function App = testapp_TimedTraceBuilderApp()
 % Copyright 2025 The MathWorks, Inc.
 
 arguments (Output)
-  App SignalTool2.TimedTraceBuilderAppMain {mustBeScalarOrEmpty}
+  App SignalTool3.TimedTraceBuilderAppMain {mustBeScalarOrEmpty}
 end  % arguments
 
 block_path = "testmodel_TimedTraceBuilderApp/PS Lookup Table (1D)";
 
-app_main = SignalTool2.TimedTraceBuilderAppMain(BlockPath=block_path);
+app_main = SignalTool3.TimedTraceBuilderAppMain(BlockPath=block_path);
 
 app_main.Window.HeaderUI.AppSourceName = mfilename;
 

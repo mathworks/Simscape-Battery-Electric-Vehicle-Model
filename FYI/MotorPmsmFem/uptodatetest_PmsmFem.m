@@ -35,10 +35,10 @@ classdef uptodatetest_PmsmFem < matlab.unittest.TestCase
     %% Up-to-date tests
 
     function html_is_uptodate(testcase)
-      source_fullpath = FileTool2.getFileFullPath("demo_PmsmFem_RunSimulation.m");
-      destination_fullpath = FileTool2.getFileFullPath("demo_PmsmFem_RunSimulation.html");
+      source_fullpath = FileTool3.getFileFullPath("demo_PmsmFem_RunSimulation.m");
+      destination_fullpath = FileTool3.getFileFullPath("demo_PmsmFem_RunSimulation.html");
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % The export command saves the generated file in the current working folder (pwd).
         % When this test runs, pwd is the folder where this test code file exists.
@@ -47,7 +47,7 @@ classdef uptodatetest_PmsmFem < matlab.unittest.TestCase
         verifyEqual(testcase, actual_path, expected_path)
       end  % if
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
       verifyFalse(testcase, newer)
     end  % function
 

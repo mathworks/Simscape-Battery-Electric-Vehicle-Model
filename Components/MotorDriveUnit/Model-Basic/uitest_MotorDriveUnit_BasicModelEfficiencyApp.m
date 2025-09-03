@@ -78,13 +78,13 @@ classdef uitest_MotorDriveUnit_BasicModelEfficiencyApp < matlab.uitest.TestCase
 
     function app_screenshot_is_uptodate(testcase)
 
-      source_fullpath = FileTool2.getFileFullPath("MotorDriveUnit_BasicModelEfficiencyApp.m");
-      destination_fullpath = FileTool2.getFileFullPath("screenshot-MDU-BasicModelEfficiencyApp.png");
+      source_fullpath = FileTool3.getFileFullPath("MotorDriveUnit_BasicModelEfficiencyApp.m");
+      destination_fullpath = FileTool3.getFileFullPath("screenshot-MDU-BasicModelEfficiencyApp.png");
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % Display the time stamps.
-        FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+        FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
 
         testcase.App = MotorDriveUnit_BasicModelEfficiencyApp;
 
@@ -98,7 +98,7 @@ classdef uitest_MotorDriveUnit_BasicModelEfficiencyApp < matlab.uitest.TestCase
         testcase.App = 0;
       end  % if
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function

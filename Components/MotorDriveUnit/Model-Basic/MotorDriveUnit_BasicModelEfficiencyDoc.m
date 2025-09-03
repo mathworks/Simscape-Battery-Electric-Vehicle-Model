@@ -8,7 +8,7 @@ blkpath = mdl + "/Motor & Drive (Driveline)";
 info = MotorDriveUnit_getBasicModelBlockInfo(blkpath);
 disp(info) %[output:3b7866a9]
 %[text] The Basic model has a rotor damper block, whose damping parameter can be passed to the plot function to make a more accurate efficiency plot.
-RotorDamping = ModelTool1.getSimscapeValueFromBlockParameter( mdl+"/Rotor damper", "D" );
+RotorDamping = ModelTool2.getSimscapeValueFromBlockParameter( mdl+"/Rotor damper", "D" );
 disp(RotorDamping) %[output:8927d8e6]
 
 fig = MotorDriveUnit_BasicModelEfficiencyPlot( ... %[output:group:02221553] %[output:0945826d]

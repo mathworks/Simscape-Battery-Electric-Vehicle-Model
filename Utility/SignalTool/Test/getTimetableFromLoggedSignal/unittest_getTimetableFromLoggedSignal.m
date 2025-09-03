@@ -101,7 +101,7 @@ classdef unittest_getTimetableFromLoggedSignal < matlab.unittest.TestCase
       expected_unit_text = "N*m";
       dataset = build_dataset1(expected_signal_name, expected_unit_text);
 
-      signal_timetable = SignalTool2.getTimetableFromLoggedSignal(dataset);  % !test-target
+      signal_timetable = SignalTool3.getTimetableFromLoggedSignal(dataset);  % !test-target
 
       actual_signal_name = string(signal_timetable.Properties.VariableNames);
       actual_unit_texts = string(signal_timetable.Properties.VariableUnits);
@@ -116,7 +116,7 @@ classdef unittest_getTimetableFromLoggedSignal < matlab.unittest.TestCase
       expected_unit_texts = ["N*m", "km/hr"];
       dataset = build_dataset2(expected_signal_names, expected_unit_texts);
 
-      signal_timetable = SignalTool2.getTimetableFromLoggedSignal(dataset);  % !test-target
+      signal_timetable = SignalTool3.getTimetableFromLoggedSignal(dataset);  % !test-target
 
       actual_signal_names = string(signal_timetable.Properties.VariableNames);
       actual_unit_texts = string(signal_timetable.Properties.VariableUnits);

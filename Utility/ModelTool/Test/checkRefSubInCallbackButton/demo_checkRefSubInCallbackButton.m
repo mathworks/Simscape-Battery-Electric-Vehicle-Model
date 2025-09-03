@@ -1,6 +1,6 @@
 %[text] # checkRefSubInCallbackButton demo
 model_name = "testmodel_checkRefSubInCallbackButton";
-result = ModelTool1.checkRefSubInCallbackButton(model_name, DisplayInfo=true); %[output:769dd1df]
+result = ModelTool2.checkRefSubInCallbackButton(model_name, DisplayInfo=true); %[output:769dd1df]
 disp(result) %[output:61a579a5]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 

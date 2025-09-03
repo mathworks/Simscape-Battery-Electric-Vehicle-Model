@@ -64,7 +64,7 @@ classdef LiteAppWindow < handle
 
       AppWindow.Reporting = NameValuePair.Reporting;
       if AppWindow.Reporting
-        FileTool2.displayTimeAndFileLocation("Constructor")
+        FileTool3.displayTimeAndFileLocation("Constructor")
       end  % if
 
       AppWindow.MainFigure = uifigure(Visible = "off");
@@ -76,7 +76,7 @@ classdef LiteAppWindow < handle
       AppWindow.useWindowHeader = NameValuePair.UseWindowHeader;
       if AppWindow.useWindowHeader
         if AppWindow.Reporting
-          FileTool2.displayTimeAndFileLocation("Using window header")
+          FileTool3.displayTimeAndFileLocation("Using window header")
         end  % if
         AppWindow.HeaderUI = LiteApp7.Component.WindowHeader(NewArea(AppWindow.MainLayout));
         AppWindow.HeaderUI.ParentFigure = AppWindow.MainFigure;
@@ -94,7 +94,7 @@ classdef LiteAppWindow < handle
       AppWindow.MainFigure.Position(4) = AppWindow.Height;
 
       if AppWindow.Reporting
-        FileTool2.displayTimeAndFileLocation("Visible has been set to ""on""")
+        FileTool3.displayTimeAndFileLocation("Visible has been set to ""on""")
       end  % if
 
       if AppWindow.Name == ""
@@ -105,13 +105,13 @@ classdef LiteAppWindow < handle
 
       if AppWindow.useWindowHeader
         if AppWindow.Reporting
-          FileTool2.displayTimeAndFileLocation("Updating window header")
+          FileTool3.displayTimeAndFileLocation("Updating window header")
         end  % if
 
         AppWindow.HeaderUI.AppName = AppWindow.MainFigure.Name;
 
         if AppWindow.Reporting
-          FileTool2.displayTimeAndFileLocation("AppWindow.MainFigure.Name: " + AppWindow.MainFigure.Name)
+          FileTool3.displayTimeAndFileLocation("AppWindow.MainFigure.Name: " + AppWindow.MainFigure.Name)
         end  % if
 
         AppWindow.HeaderUI.Show_AlwaysOnTop_CheckBox = AppWindow.Show_AlwaysOnTop_CheckBox;
@@ -174,7 +174,7 @@ classdef LiteAppWindow < handle
 
       if PNGFilename == AppWindow.DefaultIcon
         try
-          liteapp_folder_fullpath = FileTool2.getFolderFullPath("+LiteApp7");
+          liteapp_folder_fullpath = FileTool3.getFolderFullPath("+LiteApp7");
         catch exception
           if AppWindow.MainFigure.Visible
             title_word = CodeTool1.i18n("Error");
@@ -193,7 +193,7 @@ classdef LiteAppWindow < handle
       else
         % Custom icon
         try
-          icon_fullpath = FileTool2.getFileFullPath(PNGFilename);
+          icon_fullpath = FileTool3.getFileFullPath(PNGFilename);
         catch exception
           if AppWindow.MainFigure.Visible
             title_word = CodeTool1.i18n("Error");
@@ -234,12 +234,12 @@ classdef LiteAppWindow < handle
       if AppWindow.Show_AlwaysOnTop_CheckBox
         AppWindow.HeaderUI.AlwaysOnTop = on_or_off;
         if AppWindow.Reporting
-          FileTool2.displayTimeAndFileLocation("AppWindow.HeaderUI.AlwaysOnTop: " + on_or_off)
+          FileTool3.displayTimeAndFileLocation("AppWindow.HeaderUI.AlwaysOnTop: " + on_or_off)
         end  % if
       else
         if AppWindow.Reporting
-          FileTool2.displayTimeAndFileLocation("AppWindow.Show_AlwaysOnTop_CheckBox: " + AppWindow.Show_AlwaysOnTop_CheckBox)
-          FileTool2.displayTimeAndFileLocation("AppWindow.HeaderUI.AlwaysOnTop: " + on_or_off)
+          FileTool3.displayTimeAndFileLocation("AppWindow.Show_AlwaysOnTop_CheckBox: " + AppWindow.Show_AlwaysOnTop_CheckBox)
+          FileTool3.displayTimeAndFileLocation("AppWindow.HeaderUI.AlwaysOnTop: " + on_or_off)
         end  % if
       end  % if
     end  % function

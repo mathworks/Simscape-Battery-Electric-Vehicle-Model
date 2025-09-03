@@ -1,13 +1,13 @@
 %[text] # generateSignalDesignMatrixFromTraceProperties sample script
 %[text] Just run the function without any arguments to see an example return value.
-signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties;
+signal_design_matrix = SignalTool3.generateSignalDesignMatrixFromTraceProperties;
 disp(signal_design_matrix) %[output:5367b9d3]
 %[text] The returned signal design matrix can be passed to the `getXYVectorsFromSignalDesignMatrix` function, which returns X and Y vectors, which can be used for visualization or used as the parameters of a lookup table.
-data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
-SignalTool2.plotLookupTable1D(data_table.X, data_table.F) %[output:3ae2e795]
+data_table = SignalTool3.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+SignalTool3.plotLookupTable1D(data_table.X, data_table.F) %[output:3ae2e795]
 %%
 %[text] Specify options.
-signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = SignalTool3.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 6, ... Random seed
   ...
   FInitialValue = 3, ... Initial data value
@@ -23,13 +23,13 @@ signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties
   FFinalValue = -3, ... Final data value
   XFinalFlatLength = 4 );  % Final constant duration
 
-data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalTool3.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
-SignalTool2.plotLookupTable1D(data_table.X, data_table.F, ... %[output:group:020a21f4] %[output:34d4f613]
+SignalTool3.plotLookupTable1D(data_table.X, data_table.F, ... %[output:group:020a21f4] %[output:34d4f613]
   Interpolation="Smooth", InterpolationInterval=0.1) %[output:group:020a21f4] %[output:34d4f613]
 %%
 %[text] Simulate the "High Speed" drive pattern which is defined in the vehicle speed reference component of the BEV project.
-signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = SignalTool3.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 6, ... Random seed
   ...
   FInitialValue = 0, ... Initial data value
@@ -46,11 +46,11 @@ signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties
   XFinalFlatLength = 10 );  % Final constant duration
 
 disp(signal_design_matrix) %[output:79c56598]
-data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalTool3.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 fig = figure; %[output:3857368f]
 fig.Position(3:4) = [900 400];  % width height %[output:3857368f]
-SignalTool2.plotLookupTable1D(data_table.X, data_table.F, ... %[output:group:3a603f91] %[output:3857368f]
+SignalTool3.plotLookupTable1D(data_table.X, data_table.F, ... %[output:group:3a603f91] %[output:3857368f]
   Interpolation="Smooth", InterpolationInterval=0.1, ... %[output:3857368f]
   ParentAxes=axes(fig)) %[output:group:3a603f91] %[output:3857368f]
 %[text] *Copyright 2025 The MathWorks, Inc.*

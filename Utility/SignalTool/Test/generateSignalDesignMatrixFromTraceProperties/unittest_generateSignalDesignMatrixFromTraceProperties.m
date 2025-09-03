@@ -36,7 +36,7 @@ classdef unittest_generateSignalDesignMatrixFromTraceProperties < matlab.unittes
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(~)
-      SignalTool2.generateSignalDesignMatrixFromTraceProperties;
+      SignalTool3.generateSignalDesignMatrixFromTraceProperties;
     end  % function
 
     function PassingTest_2(~)

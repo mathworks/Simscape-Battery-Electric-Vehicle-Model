@@ -10,11 +10,11 @@ f_unit = "N*m";
 interp_method = "Smooth";
 extrap_method = "Nearest";
 
-result = SignalTool2.getVectorsFromSignalDesignMatrix(design_matrix);
+result = SignalTool3.getVectorsFromSignalDesignMatrix(design_matrix);
 x = result.X';
 f = result.F';
 
-SignalTool2.plotLookupTable1D( ... %[output:group:7460b801] %[output:2be01063]
+SignalTool3.plotLookupTable1D( ... %[output:group:7460b801] %[output:2be01063]
   x, f, ... %[output:2be01063]
   XUnitText = x_unit, ... %[output:2be01063]
   YUnitText = f_unit, ... %[output:2be01063]

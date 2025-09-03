@@ -29,7 +29,7 @@ evalin("base", app_setup.ParameterFile)
 
 % Preload the model to the model drop down for convenience.
 % This is allowed after BlockSelectorUI is fully built.
-app_ui.SelectorUI.ModelFileFullPath = FileTool2.getFileFullPath(model_file);
+app_ui.SelectorUI.ModelFileFullPath = FileTool3.getFileFullPath(model_file);
 
 % Run this callback to update the edit fields with workspace variables.
 app_ui.SelectorUI.GetParametersFromBlockCallback()
@@ -107,7 +107,7 @@ row = NewRow(layout, column);
 
 target_file = CodeTool1.i18n("MotorDriveUnit_Description.html");
 % Check that the file exists. If not, this prevents the app from showing up.
-FileTool2.getFileFullPath(target_file);
+FileTool3.getFileFullPath(target_file);
 
 AppUIStruct.DocLinkUI = LiteApp7.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
 AppUIStruct.DocLinkUI.HyperlinkText = "Description";

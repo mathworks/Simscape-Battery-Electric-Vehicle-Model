@@ -24,16 +24,16 @@ sim_in = setBlockParameter(sim_in, model_name + "/Motor inputs", ReferencedSubsy
 sim_in = setModelParameter(sim_in, StopTime = "150");
 %[text] Run simulation normally and plot results.
 sim_out = sim(sim_in);
-tt = SignalTool2.getTimetableFromLoggedSignal(sim_out.logsout);
+tt = SignalTool3.getTimetableFromLoggedSignal(sim_out.logsout);
 varnames = string(tt.Properties.VariableNames);
 for idx = 1 : numel(varnames) %[output:group:32da1d3c]
-  SignalTool2.plotTimedData(TimedData=tt, SignalName=varnames(idx), FigureHeight=150); %[output:98129c3a] %[output:94afed4e] %[output:8b503ba8] %[output:11edeb7d] %[output:84a46d96] %[output:1c46a115] %[output:580729e9]
+  SignalTool3.plotTimedData(TimedData=tt, SignalName=varnames(idx), FigureHeight=150); %[output:98129c3a] %[output:94afed4e] %[output:8b503ba8] %[output:11edeb7d] %[output:84a46d96] %[output:1c46a115] %[output:580729e9]
 end  % for %[output:group:32da1d3c]
 %%
 %[text] ## Step size
 fig = figure; %[output:071da51e]
 fig.Position(3:4) = [800, 200];  % width, height %[output:071da51e]
-SignalTool2.plotDifference(sim_out.tout, NewFigure=false, ParentAxes=axes(fig), ... %[output:group:476aa48e] %[output:071da51e]
+SignalTool3.plotDifference(sim_out.tout, NewFigure=false, ParentAxes=axes(fig), ... %[output:group:476aa48e] %[output:071da51e]
   YScale = "Log", Title="Step size", YUnitText="s", ... %[output:071da51e]
   XLabel="Time", XUnitText="s" ) %[output:group:476aa48e] %[output:071da51e]
 step_size_data = diff(sim_out.tout);

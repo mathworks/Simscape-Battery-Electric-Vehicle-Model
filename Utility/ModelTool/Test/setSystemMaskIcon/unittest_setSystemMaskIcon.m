@@ -32,9 +32,9 @@ classdef unittest_setSystemMaskIcon < matlab.unittest.TestCase
 
     function PassingTest_1(~)
 
-      created_refsub_name = ModelTool1.setSystemMaskIcon;  % !test-target
+      created_refsub_name = ModelTool2.setSystemMaskIcon;  % !test-target
 
-      delete(FileTool2.getFileFullPath(created_refsub_name));
+      delete(FileTool3.getFileFullPath(created_refsub_name));
       disp("Created and deleted: " + created_refsub_name)
     end  % function
 

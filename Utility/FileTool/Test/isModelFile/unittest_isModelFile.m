@@ -44,7 +44,7 @@ classdef unittest_isModelFile < matlab.unittest.TestCase
     function Test_1(testcase)
       verifyError(testcase, @() test_target, "MATLAB:minrhs")
       function test_target
-        FileTool2.isModelFile()
+        FileTool3.isModelFile()
       end  % nested function
     end  % function
 

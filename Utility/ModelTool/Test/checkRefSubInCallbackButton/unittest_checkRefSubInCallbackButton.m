@@ -34,7 +34,7 @@ classdef unittest_checkRefSubInCallbackButton < matlab.unittest.TestCase
       verifyError(testcase, @test_target, "checkRefSubInCallbackButton:InvalidModelName")
       function test_target()
         % The function requires a model name to be passed.
-        ModelTool1.checkRefSubInCallbackButton  % !test-target
+        ModelTool2.checkRefSubInCallbackButton  % !test-target
       end  % nested function
     end  % function
 
@@ -42,19 +42,24 @@ classdef unittest_checkRefSubInCallbackButton < matlab.unittest.TestCase
       verifyError(testcase, @test_target, "checkRefSubInCallbackButton:InvalidModelName")
       function test_target()
         % The passed argument must not be zero-length text.
-        ModelTool1.checkRefSubInCallbackButton("")  % !test-target
+        ModelTool2.checkRefSubInCallbackButton("")  % !test-target
       end  % nested function
     end  % function
 
     function Test_1(testcase)
-      result = ModelTool1.checkRefSubInCallbackButton("testmodel_checkRefSubInCallbackButton");
+      result = ModelTool2.checkRefSubInCallbackButton("testmodel_checkRefSubInCallbackButton_empty");
+      verifyTrue(testcase, isempty(result))
+    end  % function
+
+    function Test_2(testcase)
+      result = ModelTool2.checkRefSubInCallbackButton("testmodel_checkRefSubInCallbackButton");
       verifyEqual(testcase, result.Found(1), true)
       verifyEqual(testcase, result.Found(2), true)
       verifyEqual(testcase, result.Found(3), false)
     end  % function
 
-    function Test_2(testcase)
-      result = ModelTool1.checkRefSubInCallbackButton("testmodel_checkRefSubInCallbackButton");
+    function Test_3(testcase)
+      result = ModelTool2.checkRefSubInCallbackButton("testmodel_checkRefSubInCallbackButton");
       verifyEqual(testcase, result.IsRefSub(1), true)
       verifyEqual(testcase, result.IsRefSub(2), true)
       verifyEqual(testcase, result.IsRefSub(3), false)

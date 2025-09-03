@@ -109,7 +109,7 @@ row = NewRow(layout, column);
 
 target_file = "MotorDriveUnit_Description.html";
 % Check that the file exists.
-FileTool2.getFileFullPath(target_file);
+FileTool3.getFileFullPath(target_file);
 
 AppUIStruct.DocLinkUI = LiteApp7.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
 AppUIStruct.DocLinkUI.HyperlinkText = "Description";
@@ -299,7 +299,7 @@ AppUIStruct.InputSignalPlotPanel.ComponentHeight = input_plot_panel_height;
     set_param(AppSetup.InputsBlockPath, ReferencedSubsystem = input_refsub_name)
 
     blocks = ["Axle speed switch" "Axle speed" "Axle torque" "Motor torque command" "Motor heat flow command"];
-    ModelTool1.plotLookupTable1DBlocks(AppSetup.InputsBlockPath, ...
+    ModelTool2.plotLookupTable1DBlocks(AppSetup.InputsBlockPath, ...
       Blocks=blocks, ...
       DivisionType = "InterpolationInterval", ...
       InterpolationInterval = 0.1, ...

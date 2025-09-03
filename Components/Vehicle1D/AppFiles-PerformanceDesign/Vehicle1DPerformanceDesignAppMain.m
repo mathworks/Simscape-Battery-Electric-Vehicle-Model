@@ -136,9 +136,9 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
         % Find .mdl or .slx file for the specified model.
         % It is safe to assume that App.ModelName is valid because it was checked earlier.
         try
-          modelfile_fullpath = FileTool2.getFileFullPath(App.ModelName + ".mdl");
+          modelfile_fullpath = FileTool3.getFileFullPath(App.ModelName + ".mdl");
         catch exception
-          modelfile_fullpath = FileTool2.getFileFullPath(App.ModelName + ".slx");
+          modelfile_fullpath = FileTool3.getFileFullPath(App.ModelName + ".slx");
         end  % try, catch
         App.SelectorUI.ModelFileFullPath = modelfile_fullpath;
         % Block path in the drop down uses " / " as the subsystem separator.
@@ -470,7 +470,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       % Use getFileFullPath to check that the file exists.
       % If it doesn't, an error is issued and the app doesn't start.
       html_file = "Vehicle1D_Description.html";
-      FileTool2.getFileFullPath(html_file);
+      FileTool3.getFileFullPath(html_file);
 
       row = NewRow(layout, column);
       App.InfoLinkUI = LiteApp7.Component.Hyperlink(NewSlot(layout, row));

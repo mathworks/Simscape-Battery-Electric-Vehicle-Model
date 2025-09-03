@@ -29,12 +29,12 @@ disp(logging_settings) %[output:86ed2517]
 %[text] Run simulation
 sim_out = sim(model_name);
 % result1 = extractTimetable(sim_out.logsout);
-tt = SignalTool2.getTimetableFromLoggedSignal(sim_out.logsout);
+tt = SignalTool3.getTimetableFromLoggedSignal(sim_out.logsout);
 disp(tt) %[output:563a69d6]
 %[text] 
 varnames = string(tt.Properties.VariableNames);
 for idx = 1 : numel(varnames) %[output:group:6cfb9b36]
-  SignalTool2.plotTimedData(TimedData=tt, SignalName=varnames(idx)); %[output:6793563f] %[output:6af8745f] %[output:94c9de32] %[output:49966195] %[output:360369bd] %[output:5f3a6fdb] %[output:44e0dfd1]
+  SignalTool3.plotTimedData(TimedData=tt, SignalName=varnames(idx)); %[output:6793563f] %[output:6af8745f] %[output:94c9de32] %[output:49966195] %[output:360369bd] %[output:5f3a6fdb] %[output:44e0dfd1]
 end  % for %[output:group:6cfb9b36]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 

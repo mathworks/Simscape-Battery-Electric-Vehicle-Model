@@ -14,8 +14,11 @@ Open the [BEV system model](matlab:openInProject('BEV_system_model')). You can a
 
 Files related to the BEV system model can be found at **BEV** folder.
 
+```matlab
+imshow("screenshot-BEV_system_model.png")
+```
 
-<img src="media/BEVProject_Description_media/image_0.png" width="805" alt="image_0.png">
+<center><img src="media/BEVProject_Description_media/figure_0.png" width="834" alt="figure_0.png"></center>
 
 # Vehicle Components
 ## Longitudinal Vehicle
@@ -28,8 +31,11 @@ Open the [Vehicle 1D harness model](matlab:openInProject('HarnessModel_Vehicle1D
 
 See **README.md** in the **Components > Vehicle1D** folder for more informaton.
 
+```matlab
+imshow("screenshot-Vehicle1D-performance-plot.png")
+```
 
-<img src="media/BEVProject_Description_media/image_1.png" width="482" alt="image_1.png">
+<center><img src="media/BEVProject_Description_media/figure_1.png" width="735" alt="figure_1.png"></center>
 
 ## High Voltage Battery Pack
 

@@ -1,6 +1,6 @@
 %[text] # Timed trace example
 %[text] 
-signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = SignalTool3.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 123, ...
   FInitialValue = 0, ...
   XInitialFlatLength = 5, ...
@@ -13,11 +13,11 @@ signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties
   XFinalFlatLength = 10, ...
   FFinalValue = 0 );
 
-data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalTool3.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 fig = figure; %[output:78845a3b]
 fig.Position(3:4) = [900 300];  % width height %[output:78845a3b]
-SignalTool2.plotLookupTable1D(data_table.X, data_table.F, InterpolationInterval=0.5, ParentAxes=axes(fig)) %[output:78845a3b]
+SignalTool3.plotLookupTable1D(data_table.X, data_table.F, InterpolationInterval=0.5, ParentAxes=axes(fig)) %[output:78845a3b]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

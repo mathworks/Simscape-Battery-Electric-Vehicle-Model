@@ -46,22 +46,22 @@ errorID = "MotorDriveUnit_getBasicModelBlockInfo:";
 % Block parameters
 
 % Maximum torque
-info.MaxTorque = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "torque_max");
+info.MaxTorque = ModelTool2.getSimscapeValueFromBlockParameter(fullpathToBlock, "torque_max");
 
 % Maximum power
-info.MaxPower =ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "power_max");
+info.MaxPower =ModelTool2.getSimscapeValueFromBlockParameter(fullpathToBlock, "power_max");
 
 % Torque control time constant, Tc
-info.ResponseTime = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "Tc");
+info.ResponseTime = ModelTool2.getSimscapeValueFromBlockParameter(fullpathToBlock, "Tc");
 
 % Motor and driver overall efficiency (percent)
-info.EfficiencyPercent = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "eff");
+info.EfficiencyPercent = ModelTool2.getSimscapeValueFromBlockParameter(fullpathToBlock, "eff");
 
 % Speed at which efficiency is measured
-info.MeasuredSpeed = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "w_eff");
+info.MeasuredSpeed = ModelTool2.getSimscapeValueFromBlockParameter(fullpathToBlock, "w_eff");
 
 % Torque at which efficiency is measured
-info.MeasuredTorque = ModelTool1.getSimscapeValueFromBlockParameter(fullpathToBlock, "T_eff");
+info.MeasuredTorque = ModelTool2.getSimscapeValueFromBlockParameter(fullpathToBlock, "T_eff");
 
 % ===============
 % Additional data

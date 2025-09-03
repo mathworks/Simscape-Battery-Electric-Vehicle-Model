@@ -180,9 +180,9 @@ classdef unittest_Vehicle1D_settings < matlab.unittest.TestCase
       % checks that the linked apps exist.
       % This test does not open the app.
 
-      target_fullpath = FileTool2.getFileFullPath("SignalTool_Description.m");
+      target_fullpath = FileTool3.getFileFullPath("SignalTool_Description.m");
 
-      link_table = FileTool2.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
+      link_table = FileTool3.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
       if isempty(link_table)
         disp("No hyperlinked apps were found.")
 

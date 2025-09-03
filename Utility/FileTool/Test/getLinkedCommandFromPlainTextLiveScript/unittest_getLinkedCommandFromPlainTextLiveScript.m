@@ -44,13 +44,13 @@ classdef unittest_getLinkedCommandFromPlainTextLiveScript < matlab.unittest.Test
     function Test_1(testcase)
       verifyError(testcase, @() test_target, "MATLAB:minrhs")
       function test_target
-        FileTool2.getLinkedCommandFromPlainTextLiveScript
+        FileTool3.getLinkedCommandFromPlainTextLiveScript
       end  % nested function
     end  % function
 
     function Test_2(testcase)
       fullpath = string( which("testscript_getLinkedCommandFromPlainTextLiveScript"));
-      result = FileTool2.getLinkedCommandFromPlainTextLiveScript(fullpath);
+      result = FileTool3.getLinkedCommandFromPlainTextLiveScript(fullpath);
       verifyEqual(testcase, result.Line, [2 2 3 3]')
       verifyEqual(testcase, result.LinkText, ["linked text" "another link" "Yet another linked text" "This"]')
       verifyEqual(testcase, result.Command, ["disp(""test 1"")" "disp(""test 2"")" "datetime" "logo"]')

@@ -1,11 +1,11 @@
 %[text] # plotDifference sample script
 %[text] Just run the function without any arguments to see an example plot.
-SignalTool2.plotDifference %[output:3c9cbc1f]
+SignalTool3.plotDifference %[output:3c9cbc1f]
 %[text] Usually, you pass data to the function.
 data = [0, 0.1, 0.2, 0.2222, 0.223, 0.24, 0.3, 0.4, 0.5];
-SignalTool2.plotDifference(data, Title="Title", XLabel="X", XUnitText="x unit", YLabel="Y", YUnitText="y unit") %[output:1314b7b5]
+SignalTool3.plotDifference(data, Title="Title", XLabel="X", XUnitText="x unit", YLabel="Y", YUnitText="y unit") %[output:1314b7b5]
 %[text] Use log scale in Y axis.
-SignalTool2.plotDifference(data, YScale="Log") %[output:7000a77f]
+SignalTool3.plotDifference(data, YScale="Log") %[output:7000a77f]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

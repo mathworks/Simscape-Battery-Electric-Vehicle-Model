@@ -1,13 +1,13 @@
 %[text] # getLinkedCommandFromText demo
 target_text = "Example: [text1](matlab:command1), [text2](matlab:command2(name=value))";
-links = FileTool2.getLinkedCommandFromText(target_text);
+links = FileTool3.getLinkedCommandFromText(target_text);
 disp(links) %[output:2d5cc921]
 %%
 target_text = [
   "Some text, followed by [linked text](matlab:command1), and the line continues."
   "Next line: [Another linked text](matlab:command2(arg))"
   ];
-links = FileTool2.getLinkedCommandFromText(target_text);
+links = FileTool3.getLinkedCommandFromText(target_text);
 disp(links) %[output:2aec3052]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 

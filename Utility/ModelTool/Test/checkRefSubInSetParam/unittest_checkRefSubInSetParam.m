@@ -34,7 +34,7 @@ classdef unittest_checkRefSubInSetParam < matlab.unittest.TestCase
       verifyError(testcase, @test_target, "MATLAB:minrhs")
       function test_target()
         % The function requires an argument to be passed.
-        ModelTool1.checkRefSubInSetParam  % !test-target
+        ModelTool2.checkRefSubInSetParam  % !test-target
       end  % nested function
     end  % function
 
@@ -42,20 +42,30 @@ classdef unittest_checkRefSubInSetParam < matlab.unittest.TestCase
       verifyError(testcase, @test_target, "checkRefSubInSetParam:EmptyCode")
       function test_target()
         % The passed argument must not be zero-length text.
-        ModelTool1.checkRefSubInSetParam("")  % !test-target
+        ModelTool2.checkRefSubInSetParam("")  % !test-target
+      end  % nested function
+    end  % function
+
+    function ErrorTest_3(testcase)
+      verifyError(testcase, @test_target, "checkRefSubInSetParam:TooMany")
+      function test_target()
+        codelines = 5;
+        thresh = 3;  % !test-target: Set this value to be greater than codelines for testing.
+        ModelTool2.checkRefSubInSetParam( ...
+          repmat("set_param(ReferencedSubsystem=""testmodel_checkRefSubInSetParam_refsub1.mdl"")", codelines, 1), ...
+          MaxThreshold = thresh, ...
+          DisplayInfo = true);
       end  % nested function
     end  % function
 
     function Test_1(testcase)
-      result = ModelTool1.checkRefSubInSetParam("set_param(""test_refsub.mdl"")");
-      verifyEqual(testcase, result.FileName, "")
-      verifyEqual(testcase, result.Found, false)
-      verifyEqual(testcase, result.IsRefSub, false)
+      result = ModelTool2.checkRefSubInSetParam(repmat("This code text has no matching lines.", 3, 1));
+      verifyTrue(testcase, isempty(result))
     end  % function
 
     function Test_2(testcase)
       % name-value pair, double quotes
-      result = ModelTool1.checkRefSubInSetParam("set_param(ReferencedSubsystem=""testmodel_checkRefSubInSetParam_refsub1.mdl"")");
+      result = ModelTool2.checkRefSubInSetParam("set_param(ReferencedSubsystem=""testmodel_checkRefSubInSetParam_refsub1.mdl"")");
       verifyEqual(testcase, result.FileName, "testmodel_checkRefSubInSetParam_refsub1.mdl")
       verifyEqual(testcase, result.Found, true)
       verifyEqual(testcase, result.IsRefSub, true)
@@ -63,7 +73,7 @@ classdef unittest_checkRefSubInSetParam < matlab.unittest.TestCase
 
     function Test_3(testcase)
       % name-value pair, single-quotes
-      result = ModelTool1.checkRefSubInSetParam("set_param(ReferencedSubsystem='testmodel_checkRefSubInSetParam.mdl')");
+      result = ModelTool2.checkRefSubInSetParam("set_param(ReferencedSubsystem='testmodel_checkRefSubInSetParam.mdl')");
       verifyEqual(testcase, result.FileName, "testmodel_checkRefSubInSetParam.mdl")
       verifyEqual(testcase, result.Found, true)
       verifyEqual(testcase, result.IsRefSub, false)
@@ -71,7 +81,7 @@ classdef unittest_checkRefSubInSetParam < matlab.unittest.TestCase
 
     function Test_4(testcase)
       % comma separated, double quotes
-      result = ModelTool1.checkRefSubInSetParam("set_param(""ReferencedSubsystem"", ""testmodel_checkRefSubInSetParam_refsub2.mdl"")");
+      result = ModelTool2.checkRefSubInSetParam("set_param(""ReferencedSubsystem"", ""testmodel_checkRefSubInSetParam_refsub2.mdl"")");
       verifyEqual(testcase, result.FileName, "testmodel_checkRefSubInSetParam_refsub2.mdl")
       verifyEqual(testcase, result.Found, true)
       verifyEqual(testcase, result.IsRefSub, true)
@@ -79,7 +89,7 @@ classdef unittest_checkRefSubInSetParam < matlab.unittest.TestCase
 
     function Test_5(testcase)
       % comma separated, single quotes
-      result = ModelTool1.checkRefSubInSetParam("set_param('ReferencedSubsystem', 'testmodel_checkRefSubInSetParam_refsub2.mdl')");
+      result = ModelTool2.checkRefSubInSetParam("set_param('ReferencedSubsystem', 'testmodel_checkRefSubInSetParam_refsub2.mdl')");
       verifyEqual(testcase, result.FileName, "testmodel_checkRefSubInSetParam_refsub2.mdl")
       verifyEqual(testcase, result.Found, true)
       verifyEqual(testcase, result.IsRefSub, true)

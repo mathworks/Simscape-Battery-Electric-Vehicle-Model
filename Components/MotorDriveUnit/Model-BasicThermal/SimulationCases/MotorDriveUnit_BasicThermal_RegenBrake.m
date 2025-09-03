@@ -35,7 +35,7 @@ signal_names = [
   ];
 
 for idx = 1 : numel(signal_names) %[output:group:742a0a32]
-  fig = SignalTool2.plotTimedData(TimedData = sim_data, SignalName = signal_names(idx)); %[output:16cd9044] %[output:08da4ede] %[output:841be8bb] %[output:2df92ec4] %[output:7808ac1e] %[output:3c1c7550] %[output:74e2ffe1] %[output:034e48a7]
+  fig = SignalTool3.plotTimedData(TimedData = sim_data, SignalName = signal_names(idx)); %[output:16cd9044] %[output:08da4ede] %[output:841be8bb] %[output:2df92ec4] %[output:7808ac1e] %[output:3c1c7550] %[output:74e2ffe1] %[output:034e48a7]
   fig.Position(4) = 200;  % height
 end %[output:group:742a0a32]
 %[text] *Copyright 2021-2025 The Mathworks, Inc.*

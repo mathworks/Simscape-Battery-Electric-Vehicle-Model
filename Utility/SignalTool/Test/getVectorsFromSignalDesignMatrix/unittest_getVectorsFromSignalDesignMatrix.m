@@ -36,7 +36,7 @@ classdef unittest_getVectorsFromSignalDesignMatrix < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(~)
-      SignalTool2.getVectorsFromSignalDesignMatrix();
+      SignalTool3.getVectorsFromSignalDesignMatrix();
     end  % function
 
     function PassingTest_2(~)
