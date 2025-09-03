@@ -1,4 +1,4 @@
-classdef test_BEVProject_Utility < matlab.unittest.TestCase
+classdef unittest_BEVProject_Utility < matlab.unittest.TestCase
   %% Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
@@ -42,11 +42,30 @@ classdef test_BEVProject_Utility < matlab.unittest.TestCase
     end  % function
 
     function PassingTest_3(~)
-      openInProject
+      ProjectStats
     end  % function
 
-    function PassingTest_4(~)
-      ProjectStats
+    %% Project's initial Live Script
+
+    function project_initial_live_script_1(testcase)
+      target_file = "BEVProject_Description.m";
+
+      % Make sure that the target file is not open. Close it if it is.
+      docs_in_editor = matlab.desktop.editor.getAll;
+      logical_index = endsWith(string({docs_in_editor.Filename}'), target_file);
+      if nnz(logical_index) == 1
+        close(docs_in_editor(logical_index))
+      end  % if
+      verifyTrue(testcase, nnz(logical_index) == 0)
+
+      % This must open the intended Live Script in the Editor.
+      openInProject
+
+      % Find the target Live Script in the Editor and close it.
+      docs_in_editor = matlab.desktop.editor.getAll;
+      logical_index = endsWith(string({docs_in_editor.Filename}'), target_file);
+      verifyTrue(testcase, nnz(logical_index) == 1)
+      close(docs_in_editor(logical_index))
     end  % function
 
   end  % methods

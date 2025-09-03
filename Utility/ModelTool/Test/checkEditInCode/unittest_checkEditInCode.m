@@ -65,14 +65,14 @@ classdef unittest_checkEditInCode < matlab.unittest.TestCase
     function Test_2(testcase)
       % name-value pair, double quotes
       result = ModelTool2.checkEditInCode("edit(""demo_checkEditInCode"")");
-      verifyEqual(testcase, result.ArgumentToEdit, "demo_checkEditInCode")
+      verifyEqual(testcase, result.ArgumentPassedToEdit, "demo_checkEditInCode")
       verifyEqual(testcase, result.Found, true)
     end  % function
 
     function Test_3(testcase)
       % name-value pair, double quotes
       result = ModelTool2.checkEditInCode("edit(""ModelTool2.checkEditInCode"")");
-      verifyEqual(testcase, result.ArgumentToEdit, "ModelTool2.checkEditInCode")
+      verifyEqual(testcase, result.ArgumentPassedToEdit, "ModelTool2.checkEditInCode")
       verifyEqual(testcase, result.Found, true)
     end  % function
 
