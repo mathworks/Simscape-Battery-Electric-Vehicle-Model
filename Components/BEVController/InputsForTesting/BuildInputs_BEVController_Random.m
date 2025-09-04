@@ -1,6 +1,6 @@
 %[text] # Build input signal trace
 %[text] Generate data.
-signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = SignalTool3.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 25, ...
   FInitialValue = 0, ...
   XInitialFlatLength = 100, ...
@@ -13,14 +13,14 @@ signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties
   XFinalFlatLength = 10, ...
   FFinalValue = 0 );
 
-data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalTool3.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 t = data_table.X;
 f = data_table.Y;
 
 fig = figure; %[output:4510eefd]
 fig.Position(3:4) = [900 300];  % width height %[output:4510eefd]
-SignalTool2.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig)) %[output:4510eefd]
+SignalTool3.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig)) %[output:4510eefd]
 %%
 %[text] Set the generated data to the target block in the target model.
 model_name = "BEVController_Inputs_Random_refsub";

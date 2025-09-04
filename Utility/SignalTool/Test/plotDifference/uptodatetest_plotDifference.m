@@ -34,6 +34,25 @@ classdef uptodatetest_plotDifference < matlab.unittest.TestCase
 
     %% Up-to-date tests
 
+    function markdowns_are_uptodate(testcase)
+      % Make sure that all Live Scripts have been converted to markdown files.
+      n = FileTool3.batchGenerateMarkdowns( ...
+        LiveScriptFolderNames = pwd, ...
+        MarkdownFolderPath = "markdown");
+
+      if n > 0
+        n = FileTool3.batchGenerateMarkdowns( ...
+          LiveScriptFolderNames = pwd, ...
+          MarkdownFolderPath = "markdown", DisplayInfo = true);
+      end  % if
+
+      % Add created files under the markdown folder to the project.
+      addFolderIncludingChildFiles(currentProject, fullfile(pwd, "markdown"));
+
+      verifyEqual(testcase, n, 0)
+
+    end  % function
+
     function markdown_files_exist(testcase)
       % Check that Markdown files exist for all plain-text Live Script files in pwd.
       % Markdowns files are assumed to be in the markdown folder in pwd.
@@ -43,7 +62,7 @@ classdef uptodatetest_plotDifference < matlab.unittest.TestCase
 
       % Select Live Scripts.
       % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
-      live_script_file_collection = select(mfile_collection, @(p) FileTool2.isPlainTextLiveScript(p));
+      live_script_file_collection = select(mfile_collection, @(p) FileTool3.isPlainTextLiveScript(p));
 
       [folder_path, base_file_name, ~] = fileparts(live_script_file_collection.paths');
       markdown_files = fullfile(folder_path, "markdown", base_file_name + ".md");
@@ -55,25 +74,6 @@ classdef uptodatetest_plotDifference < matlab.unittest.TestCase
 
       verifyTrue(testcase, actual > 0)
       verifyEqual(testcase, actual, expected)
-
-    end  % function
-
-    function markdowns_are_uptodate(testcase)
-      % Make sure that all Live Scripts have been converted to markdown files.
-      n = FileTool2.batchGenerateMarkdowns( ...
-        LiveScriptFolderNames = pwd, ...
-        MarkdownFolderPath = "markdown");
-
-      if n > 0
-        n = FileTool2.batchGenerateMarkdowns( ...
-          LiveScriptFolderNames = pwd, ...
-          MarkdownFolderPath = "markdown", DisplayInfo = true);
-      end  % if
-
-      % Add created files under the markdown folder to the project.
-      addFolderIncludingChildFiles(currentProject, fullfile(pwd, "markdown"));
-
-      verifyEqual(testcase, n, 0)
 
     end  % function
 

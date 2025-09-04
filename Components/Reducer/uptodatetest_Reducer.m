@@ -38,10 +38,10 @@ classdef uptodatetest_Reducer < matlab.unittest.TestCase
       model_name = "HarnessModel_Reducer";
       image_filename = "screenshot-" + model_name + ".png";
 
-      source_fullpath = FileTool2.getFileFullPath(model_name + ".mdl");
-      destination_fullpath = FileTool2.getFileFullPath(image_filename);
+      source_fullpath = FileTool3.getFileFullPath(model_name + ".mdl");
+      destination_fullpath = FileTool3.getFileFullPath(image_filename);
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         load_system(model_name)
 
@@ -50,13 +50,13 @@ classdef uptodatetest_Reducer < matlab.unittest.TestCase
         % This also updates the canvas rendering.
         set_param(model_name, SimulationCommand = "update")
 
-        ModelTool1.screenshotSimulink( ...
+        ModelTool2.screenshotSimulink( ...
           OutputFileName = image_filename, ...
           SimulinkModelName = model_name, ...
           SaveFolder = pwd );
       end  % if
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function

@@ -33,14 +33,14 @@ classdef unittest_getSimscapeValueFromBlockParameter < matlab.unittest.TestCase
     function ErrorTest_1(testcase)
       verifyError(testcase, @test_target, "getSimscapeValueFromBlockParameter:EmptyBlockPath")
       function test_target()
-        ModelTool1.getSimscapeValueFromBlockParameter
+        ModelTool2.getSimscapeValueFromBlockParameter
       end  % nested function
     end  % function
 
     function ErrorTest_2(testcase)
       verifyError(testcase, @test_target, "getSimscapeValueFromBlockParameter:EmptyBlockParameterName")
       function test_target()
-        ModelTool1.getSimscapeValueFromBlockParameter("dummy_model_name")
+        ModelTool2.getSimscapeValueFromBlockParameter("dummy_model_name")
       end  % nested function
     end  % function
 

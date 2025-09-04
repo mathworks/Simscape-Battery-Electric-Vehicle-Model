@@ -33,7 +33,7 @@ classdef unittest_findLookupTable1DBlocks < matlab.unittest.TestCase
     function ErrorTest_1(testcase)
       verifyError(testcase, @test_target, "Simulink:Commands:OpenSystemUnknownSystem")
       function test_target()
-        ModelTool1.findLookupTable1DBlocks("dummy_model_name")
+        ModelTool2.findLookupTable1DBlocks("dummy_model_name")
       end  % nested function
     end  % function
 
@@ -41,17 +41,17 @@ classdef unittest_findLookupTable1DBlocks < matlab.unittest.TestCase
 
     function PassingTest_1(~)
       load_system("testmodel_findLookupTable1DBlocks_refsub")
-      ModelTool1.findLookupTable1DBlocks;  % !test-target
+      ModelTool2.findLookupTable1DBlocks;  % !test-target
     end  % function
 
     function PassingTest_2(~)
       load_system("testmodel_findLookupTable1DBlocks_refsub")
-      ModelTool1.findLookupTable1DBlocks(gcs);  % !test-target
+      ModelTool2.findLookupTable1DBlocks(gcs);  % !test-target
     end  % function
 
     function PassingTest_3(~)
       load_system("testmodel_findLookupTable1DBlocks_refsub")
-      ModelTool1.findLookupTable1DBlocks(gcs + "/Subsystem");  % !test-target
+      ModelTool2.findLookupTable1DBlocks(gcs + "/Subsystem");  % !test-target
     end  % function
 
     function PassingTest_4(~)
@@ -62,7 +62,7 @@ classdef unittest_findLookupTable1DBlocks < matlab.unittest.TestCase
 
     function TestDefault(testcase)
       load_system("testmodel_findLookupTable1DBlocks_refsub")
-      blocks = ModelTool1.findLookupTable1DBlocks;  % !test-target
+      blocks = ModelTool2.findLookupTable1DBlocks;  % !test-target
 
       expected = [
         "testmodel_findLookupTable1DBlocks_refsub/PS Lookup Table (1D)"
@@ -83,7 +83,7 @@ classdef unittest_findLookupTable1DBlocks < matlab.unittest.TestCase
 
     function TestSubsystemPath(testcase)
       load_system("testmodel_findLookupTable1DBlocks_refsub")
-      blocks = ModelTool1.findLookupTable1DBlocks(gcs + "/Subsystem");  % !test-target
+      blocks = ModelTool2.findLookupTable1DBlocks(gcs + "/Subsystem");  % !test-target
 
       expected = [
         "testmodel_findLookupTable1DBlocks_refsub/Subsystem/PS Lookup Table (1D)"
@@ -99,7 +99,7 @@ classdef unittest_findLookupTable1DBlocks < matlab.unittest.TestCase
 
     function TestSearchDepth(testcase)
       load_system("testmodel_findLookupTable1DBlocks_refsub")
-      blocks = ModelTool1.findLookupTable1DBlocks(gcs + "/Subsystem", SearchDepth=1);
+      blocks = ModelTool2.findLookupTable1DBlocks(gcs + "/Subsystem", SearchDepth=1);
 
       expected = [
         "testmodel_findLookupTable1DBlocks_refsub/Subsystem/PS Lookup Table (1D)"

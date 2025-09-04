@@ -139,12 +139,12 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
       % This method makes the AppConfigObject property ready for loading in UI components.
       % After this method, AppConfigObject data can be loaded to UI Components.
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("Start")
+        FileTool3.displayTimeAndFileLocation("Start")
       end  % if
 
       selected_configfile_display_path = component.ConfigFileDropDownUI.Value;
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("Selected: [" + selected_configfile_display_path + "]")
+        FileTool3.displayTimeAndFileLocation("Selected: [" + selected_configfile_display_path + "]")
       end  % if
       if selected_configfile_display_path == ""
         resetDropDown(component)
@@ -160,7 +160,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
         new_app_config_struct = readstruct(component.current_configfile_fullpath);
       catch exception
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("caught exception")
+          FileTool3.displayTimeAndFileLocation("caught exception")
         end  % if
         resetDropDown(component)
 
@@ -181,7 +181,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
 
       if isempty(component.AppConfigObject)
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("AppConfigObject is empty.")
+          FileTool3.displayTimeAndFileLocation("AppConfigObject is empty.")
         end  % if
 
         return
@@ -209,7 +209,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
 
       if not(isempty(component.LoadAppConfigToUIComponentsCallback))
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("calling LoadAppConfigToUIComponentsCallback")
+          FileTool3.displayTimeAndFileLocation("calling LoadAppConfigToUIComponentsCallback")
         end  % if
 
         component.LoadAppConfigToUIComponentsCallback()
@@ -218,7 +218,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
       end  % if
 
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("End")
+        FileTool3.displayTimeAndFileLocation("End")
       end  % if
     end  % function
 
@@ -299,7 +299,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
     function callback_save_app_config_file(component)
       %%
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("Save")
+        FileTool3.displayTimeAndFileLocation("Save")
       end  % if
 
       % Save button is enabled only when the app config drop down has a valid item,
@@ -323,12 +323,12 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
     function callback_save_app_config_file_as(component)
       %%
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("Start")
+        FileTool3.displayTimeAndFileLocation("Start")
       end  % if
 
-      filename = FileTool2.getUnusedFilename(component.defaultConfigFilename);
+      filename = FileTool3.getUnusedFilename(component.defaultConfigFilename);
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("Unused file name: " + filename)
+        FileTool3.displayTimeAndFileLocation("Unused file name: " + filename)
       end  % if
 
       [file, location] = uiputfile(filename);
@@ -346,7 +346,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
       addConfigFile(component, selectedfile_fullpath)
 
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("End")
+        FileTool3.displayTimeAndFileLocation("End")
       end  % if
     end  % function
 
@@ -358,12 +358,12 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
       end  % arguments
 
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("Start")
+        FileTool3.displayTimeAndFileLocation("Start")
       end  % if
 
       if isempty(component.AppConfigObject)
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("AppConfigObject is empty. Not saving.")
+          FileTool3.displayTimeAndFileLocation("AppConfigObject is empty. Not saving.")
         end  % if
 
         return
@@ -373,7 +373,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
       % Update AppConfigObject using the current UI component values before generating JSON text.
       if not(isempty(component.UpdateAppConfigFromUIComponentsCallback))
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("calling UpdateAppConfigFromUIComponentsCallback")
+          FileTool3.displayTimeAndFileLocation("calling UpdateAppConfigFromUIComponentsCallback")
         end  % if
 
         component.UpdateAppConfigFromUIComponentsCallback()
@@ -384,7 +384,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
 
       try
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("Writing to file.")
+          FileTool3.displayTimeAndFileLocation("Writing to file.")
         end  % if
 
         writelines(json_text, filenameFullpath)
@@ -398,7 +398,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
       end  % try, catch
 
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("End")
+        FileTool3.displayTimeAndFileLocation("End")
       end  % if
     end  % function
 
@@ -414,7 +414,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
         % This if-branch runs only when the default value of Reporting is "on".
         % Changing the value of Reporting via constructor name-value pair argument
         % or individual assignment takes effect after the setup method ends.
-        FileTool2.displayTimeAndFileLocation("Setup")
+        FileTool3.displayTimeAndFileLocation("Setup")
       end  % if
 
       label_width = component.unit_ui_width * 9;
@@ -497,7 +497,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
     function regular_update(component)
       %%
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("regular update")
+        FileTool3.displayTimeAndFileLocation("regular update")
       end  % if
 
       if component.ConfigFileDropDownUI.Value ~= ""
@@ -512,7 +512,7 @@ classdef AppConfigUI < LiteApp7.Component.LiteAppComponentBase
       % Use this function to fix UI settings based on user specified property values,
       % including the deletion of unecessary UI components.
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("first update")
+        FileTool3.displayTimeAndFileLocation("first update")
       end  % if
     end  % function
 

@@ -6,10 +6,10 @@ function mustBeAppConfig(x)
 
 class_name_string = string(class(x));
 if not(endsWith(class_name_string, "AppConfig"))
-  error_id = "mustBeAppConfig:validationFailed";
+  errorID = "mustBeAppConfig:validationFailed";
   error_text = "Specified object is of type " + class_name_string + ", but it must be an object of AppConfig class.";
 
-  throw(MException(error_id, error_text))
+  throw(MException(errorID, error_text))
 
 end  % if
 end  % function

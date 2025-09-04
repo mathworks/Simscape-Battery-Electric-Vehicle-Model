@@ -44,7 +44,7 @@ classdef BEVProjectNavigationAppMain < handle
       function check_link(filename)
         % Check that the file exists.
         try
-          FileTool2.getFileFullPath(filename);
+          FileTool3.getFileFullPath(filename);
         catch exception
           if not(App.force_start)
             rethrow(exception)

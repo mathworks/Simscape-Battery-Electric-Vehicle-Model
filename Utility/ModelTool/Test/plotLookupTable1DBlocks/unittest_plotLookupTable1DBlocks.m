@@ -33,7 +33,7 @@ classdef unittest_plotLookupTable1DBlocks < matlab.unittest.TestCase
     function ErrorTest_1(testcase)
       verifyError(testcase, @test_target, "plotLookupTable1DBlocks:ModelIsNotSpecified")
       function test_target()
-        ModelTool1.plotLookupTable1DBlocks
+        ModelTool2.plotLookupTable1DBlocks
       end  % nested function
     end  % function
 

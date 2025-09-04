@@ -44,7 +44,7 @@ signal_names = [
   ];
 
 for idx = 1 : numel(signal_names)
-  fig = SignalTool2.plotTimedData(TimedData = sim_data, SignalName = signal_names(idx));
+  fig = SignalTool3.plotTimedData(TimedData = sim_data, SignalName = signal_names(idx));
   fig.Position(4) = 200;  % height
 end
 ```

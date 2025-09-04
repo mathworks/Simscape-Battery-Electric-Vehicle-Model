@@ -36,18 +36,18 @@ classdef unittest_plotDifference < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(~)
-      SignalTool2.plotDifference
+      SignalTool3.plotDifference
     end  % function
 
     function PassingTest_2(~)
       data = [0, 0.1, 0.2, 0.2222, 0.223, 0.24, 0.3, 0.4, 0.5];
-      SignalTool2.plotDifference(data, Title="Title", XLabel="X", XUnitText="x unit", YLabel="Y", YUnitText="y unit")
+      SignalTool3.plotDifference(data, Title="Title", XLabel="X", XUnitText="x unit", YLabel="Y", YUnitText="y unit")
     end  % function
 
     function PassingTest_3(~)
       data = [0, 0.1, 0.2, 0.2222, 0.223, 0.24, 0.3, 0.4, 0.5];
       ax = axes(figure);
-      SignalTool2.plotDifference(data, ParentAxes=ax)
+      SignalTool3.plotDifference(data, ParentAxes=ax)
     end  % function
 
     function PassingTest_4(~)
@@ -58,7 +58,7 @@ classdef unittest_plotDifference < matlab.unittest.TestCase
       ax = axes(p);
       % If NewFigure=true is passed, ParentAxes option should be ignored.
       % The uifigure window must have an empty axes while the plot must be rendered in the Figures window.
-      SignalTool2.plotDifference(data, ParentAxes=ax, NewFigure=true)
+      SignalTool3.plotDifference(data, ParentAxes=ax, NewFigure=true)
       delete(uifig)
     end  % function
 
@@ -69,7 +69,7 @@ classdef unittest_plotDifference < matlab.unittest.TestCase
       p = uipanel(g);
       ax = axes(p);
       % If NewFigure=false is passed, ParentAxes should be used.
-      SignalTool2.plotDifference(data, ParentAxes=ax, NewFigure=false)
+      SignalTool3.plotDifference(data, ParentAxes=ax, NewFigure=false)
       delete(uifig)
     end  % function
 

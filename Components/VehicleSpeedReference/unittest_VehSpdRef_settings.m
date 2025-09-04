@@ -143,6 +143,7 @@ classdef unittest_VehSpdRef_settings < matlab.unittest.TestCase
       end  % for
     end  % function
 %}
+
     function Button_callback_set_referenced_subsystems_1(testcase)
       % A callback in a Button block sets referenced subsystems.
       %
@@ -153,41 +154,13 @@ classdef unittest_VehSpdRef_settings < matlab.unittest.TestCase
       % One callback can be setting multiple referenced subsystems.
 
       model_name = "HarnessModel_VehSpdRef";
+      expected_num_blocks = 4;
 
-      load_system(model_name)
-      block_paths = string(getfullname(Simulink.findBlocksOfType(model_name, "CustomCallbackButton")));
-      num_blocks = numel(block_paths);
-      if num_blocks == 0
-
-        return
-
-      end  % if
-      for ii = 1 : num_blocks
-        target_block_path = block_paths(ii);
-        disp("Checking: " + target_block_path)
-        ClickFcn_text = string(get_param(target_block_path, "ClickFcn"));
-        lines = CodeTool1.cleanupCodeText(ClickFcn_text);
-        if isempty(lines)
-
-          verifyFail(testcase, "Callback must contain code.")
-
-        end  % if
-
-        for jj = 1 : numel(lines)
-          target_line = lines(jj);
-          is_target = startsWith(target_line, "set_param(") & contains(target_line, "ReferencedSubsystem");
-          if not(is_target)
-
-            continue
-
-          end  % if
-          disp(" Command: " + target_line)
-          sp = optionalPattern(whitespacePattern);
-          target_argument = extractBetween(target_line, "ReferencedSubsystem"+sp+"="+sp+"""", """"+sp+")");
-          target_fullpath = string(which(target_argument));  % !test-target
-          verifyTrue(testcase, target_fullpath ~= "")
-        end  % for
-      end  % for
+      result = ModelTool2.checkRefSubInCallbackButton(model_name);
+      logical_index = result.Found;
+      verifyEqual(testcase, nnz(logical_index), expected_num_blocks)
+      target_blocks = result(logical_index, :);
+      verifyTrue(testcase, all(target_blocks.IsRefSub))
     end  % function
 
     %% Live Script's link settings
@@ -200,9 +173,9 @@ classdef unittest_VehSpdRef_settings < matlab.unittest.TestCase
       %
       % This test makes sure there are no broken MATLAB links.
 
-      target_fullpath = FileTool2.getFileFullPath("VehSpdRef_Description.m");
+      target_fullpath = FileTool3.getFileFullPath("VehSpdRef_Description.m");
 
-      link_table = FileTool2.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
+      link_table = FileTool3.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
 
       if height(link_table) == 0
         disp("No hyperlinked MATLAB commands were found.")
@@ -226,10 +199,10 @@ classdef unittest_VehSpdRef_settings < matlab.unittest.TestCase
 
           main_target = extractBetween(matlab_command, "("+("'"|""""), ("'"|"""")+")");
           fullpath = strings(4, 1);
-          fullpath(1) = FileTool2.getFileFullPath(main_target + ".m", ReturnIfNotFound=true);
-          fullpath(2) = FileTool2.getFileFullPath(main_target + ".mlx", ReturnIfNotFound=true);
-          fullpath(3) = FileTool2.getFileFullPath(main_target + ".mdl", ReturnIfNotFound=true);
-          fullpath(4) = FileTool2.getFileFullPath(main_target + ".slx", ReturnIfNotFound=true);
+          fullpath(1) = FileTool3.getFileFullPath(main_target + ".m", ReturnIfNotFound=true);
+          fullpath(2) = FileTool3.getFileFullPath(main_target + ".mlx", ReturnIfNotFound=true);
+          fullpath(3) = FileTool3.getFileFullPath(main_target + ".mdl", ReturnIfNotFound=true);
+          fullpath(4) = FileTool3.getFileFullPath(main_target + ".slx", ReturnIfNotFound=true);
           logical_index = fullpath ~= "";
 
           verifyEqual(testcase, nnz(logical_index), 1)
@@ -240,7 +213,7 @@ classdef unittest_VehSpdRef_settings < matlab.unittest.TestCase
           % This test should not actually open the app.
 
           main_target = matlab_command + ".m";
-          fullpath = FileTool2.getFileFullPath(main_target, ReturnIfNotFound=true);
+          fullpath = FileTool3.getFileFullPath(main_target, ReturnIfNotFound=true);
 
           verifyTrue(testcase, fullpath ~= "")
 

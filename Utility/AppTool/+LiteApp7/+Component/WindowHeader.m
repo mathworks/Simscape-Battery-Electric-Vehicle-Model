@@ -52,7 +52,7 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
         % This if-branch runs only when the default value of Reporting is "on".
         % Changing the value of Reporting via constructor name-value pair argument
         % or individual assignment takes effect after the setup method ends.
-        FileTool2.displayTimeAndFileLocation("Within setup")
+        FileTool3.displayTimeAndFileLocation("Within setup")
       end  % if
 
       % Create two rows.
@@ -125,8 +125,8 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
     function regular_update(component)
       %%
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("regular update")
-        FileTool2.displayTimeAndFileLocation("component.AppName: " + component.AppName)
+        FileTool3.displayTimeAndFileLocation("regular update")
+        FileTool3.displayTimeAndFileLocation("component.AppName: " + component.AppName)
       end  % if
 
       % AppName can be defined by the user, first as the Name property of LiteApp7.LiteAppWindow.
@@ -156,8 +156,8 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
       % which takes place after the setup method and property assignments finished.
 
       if component.Reporting
-        FileTool2.displayTimeAndFileLocation("first update")
-        FileTool2.displayTimeAndFileLocation("component.AppName: " + component.AppName)
+        FileTool3.displayTimeAndFileLocation("first update")
+        FileTool3.displayTimeAndFileLocation("component.AppName: " + component.AppName)
       end  % if
 
       % ------------------------------------------------------------------------
@@ -165,7 +165,7 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
 
       if not(component.Show_AlwaysOnTop_CheckBox)
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("not creating always-on-top check box")
+          FileTool3.displayTimeAndFileLocation("not creating always-on-top check box")
         end  % if
         checkbox_ui_width = 0;
         delete(component.AlwaysOnTopUI)
@@ -201,7 +201,7 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
       if not(isvalid(component.AlwaysOnTopUI))
         % ignore
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("invalid because always-on-top check box was not created")
+          FileTool3.displayTimeAndFileLocation("invalid because always-on-top check box was not created")
         end  % if
 
         valid = false;
@@ -212,7 +212,7 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
 
       if isempty(component.ParentFigure)
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("invalid because ParentFigure is empty")
+          FileTool3.displayTimeAndFileLocation("invalid because ParentFigure is empty")
         end  % if
 
         valid = false;
@@ -256,12 +256,12 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
       if on_flag
         component.ParentFigure.WindowStyle = "alwaysontop";
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("ParentFigure.WindowStyle: alwaysontop")
+          FileTool3.displayTimeAndFileLocation("ParentFigure.WindowStyle: alwaysontop")
         end  % if
       else
         component.ParentFigure.WindowStyle = "normal";
         if component.Reporting
-          FileTool2.displayTimeAndFileLocation("ParentFigure.WindowStyle: normal")
+          FileTool3.displayTimeAndFileLocation("ParentFigure.WindowStyle: normal")
         end  % if
       end  % if
     end  % function

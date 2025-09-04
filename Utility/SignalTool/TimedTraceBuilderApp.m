@@ -7,10 +7,10 @@ arguments (Input)
 end  % arguments
 
 arguments (Output)
-  App SignalTool2.TimedTraceBuilderAppMain {mustBeScalarOrEmpty}
+  App SignalTool3.TimedTraceBuilderAppMain {mustBeScalarOrEmpty}
 end  % arguments
 
-app_main = SignalTool2.TimedTraceBuilderAppMain(BlockPath=BlockPath);
+app_main = SignalTool3.TimedTraceBuilderAppMain(BlockPath=BlockPath);
 
 app_main.Window.HeaderUI.AppSourceName = mfilename;
 

@@ -67,13 +67,13 @@ classdef uiuptodatetest_SignalTool < matlab.uitest.TestCase
     function app_screenshot_is_uptodate_1(testcase)
 
       target_app = @SignalDesignApp;
-      source_fullpath = FileTool2.getFileFullPath("SignalDesignApp.m");
-      destination_fullpath = FileTool2.getFileFullPath("screenshot-SignalDesignApp.png");
+      source_fullpath = FileTool3.getFileFullPath("SignalDesignApp.m");
+      destination_fullpath = FileTool3.getFileFullPath("screenshot-SignalDesignApp.png");
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % Display the time stamps.
-        FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+        FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
 
         testcase.App = target_app();
 
@@ -87,7 +87,7 @@ classdef uiuptodatetest_SignalTool < matlab.uitest.TestCase
         testcase.App = 0;
       end  % if
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function
@@ -95,13 +95,13 @@ classdef uiuptodatetest_SignalTool < matlab.uitest.TestCase
     function app_screenshot_is_uptodate_2(testcase)
 
       target_app = @TimedTraceBuilderApp;
-      source_fullpath = FileTool2.getFileFullPath("TimedTraceBuilderApp.m");
-      destination_fullpath = FileTool2.getFileFullPath("screenshot-TimedTraceBuilderApp.png");
+      source_fullpath = FileTool3.getFileFullPath("TimedTraceBuilderApp.m");
+      destination_fullpath = FileTool3.getFileFullPath("screenshot-TimedTraceBuilderApp.png");
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % Display the time stamps.
-        FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+        FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
 
         testcase.App = target_app();
 
@@ -115,7 +115,7 @@ classdef uiuptodatetest_SignalTool < matlab.uitest.TestCase
         testcase.App = 0;
       end  % if
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function

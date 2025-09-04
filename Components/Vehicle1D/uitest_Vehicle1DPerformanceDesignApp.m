@@ -102,14 +102,14 @@ classdef uitest_Vehicle1DPerformanceDesignApp < matlab.uitest.TestCase
 
       % This test class is for App.m, not for AppMain.m, but in this particular test function,
       % use AppMain.m instead of App.m as the source for comparison.
-      source_fullpath = FileTool2.getFileFullPath("Vehicle1DPerformanceDesignAppMain.m");
+      source_fullpath = FileTool3.getFileFullPath("Vehicle1DPerformanceDesignAppMain.m");
 
-      destination_fullpath = FileTool2.getFileFullPath("screenshot-Vehicle1DPerformanceDesignApp.png");
+      destination_fullpath = FileTool3.getFileFullPath("screenshot-Vehicle1DPerformanceDesignApp.png");
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % Display the time stamps.
-        FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+        FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
 
         testcase.App = target_app();
 
@@ -123,7 +123,7 @@ classdef uitest_Vehicle1DPerformanceDesignApp < matlab.uitest.TestCase
         testcase.App = 0;
       end  % if
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function

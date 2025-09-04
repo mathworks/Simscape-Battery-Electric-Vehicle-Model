@@ -1,15 +1,15 @@
 %[text] # getVectorsFromSignalDesignMatrix demo
-tt = SignalTool2.getVectorsFromSignalDesignMatrix();
+tt = SignalTool3.getVectorsFromSignalDesignMatrix();
 disp(tt.X') %[output:870cae66]
 disp(tt.F') %[output:0563993f]
-SignalTool2.plotLookupTable1D(tt.X, tt.F) %[output:219991dd]
+SignalTool3.plotLookupTable1D(tt.X, tt.F) %[output:219991dd]
 %%
 design_matrix = [0 100 0; 105 200 40; 205 300 60; 305 400 80; 405 500 100; 510 600 50; 610 700 0];
-tt = SignalTool2.getVectorsFromSignalDesignMatrix(design_matrix);
+tt = SignalTool3.getVectorsFromSignalDesignMatrix(design_matrix);
 
 fig = figure; %[output:967247d7]
 fig.Position(3:4) = [900 300];  % width height %[output:967247d7]
-SignalTool2.plotLookupTable1D(tt.X, tt.F, ParentAxes=axes(fig), InterpolationInterval=0.1) %[output:967247d7]
+SignalTool3.plotLookupTable1D(tt.X, tt.F, ParentAxes=axes(fig), InterpolationInterval=0.1) %[output:967247d7]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

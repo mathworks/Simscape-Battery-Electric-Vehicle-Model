@@ -62,7 +62,7 @@ classdef unittest_MotorDriveUnit_BasicThermal < matlab.unittest.TestCase
     function PassingTest_1(testcase)
       % Run code, for example, MotorDriveUnit_Basic_params.
       target_name = testcase.ComponentID + "_" + testcase.ModelID + "_params";
-      target_fullpath = FileTool2.getFileFullPath(target_name);
+      target_fullpath = FileTool3.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function

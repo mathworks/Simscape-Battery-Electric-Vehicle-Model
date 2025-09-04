@@ -58,13 +58,13 @@ classdef uptodatetest_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
     function plot_image_is_uptodate(testcase)
 
-      source_fullpath = FileTool2.getFileFullPath("MotorDriveUnit_BasicModelEfficiencyPlot.m");
-      destination_fullpath = FileTool2.getFileFullPath("screenshot-MDU-BasicModelEfficiencyPlot.png");
+      source_fullpath = FileTool3.getFileFullPath("MotorDriveUnit_BasicModelEfficiencyPlot.m");
+      destination_fullpath = FileTool3.getFileFullPath("screenshot-MDU-BasicModelEfficiencyPlot.png");
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % Display the time stamps.
-        FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+        FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
 
         fig = figure;
         fig.Position(3) = 400;  % width
@@ -82,7 +82,7 @@ classdef uptodatetest_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
       end  % if
 
-      newer = FileTool2.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function
@@ -96,7 +96,7 @@ classdef uptodatetest_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
       % Select Live Scripts.
       % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
-      live_script_file_collection = select(mfile_collection, @(p) FileTool2.isPlainTextLiveScript(p));
+      live_script_file_collection = select(mfile_collection, @(p) FileTool3.isPlainTextLiveScript(p));
 
       [folder_path, base_file_name, ~] = fileparts(live_script_file_collection.paths');
       markdown_files = fullfile(folder_path, "markdown", base_file_name + ".md");
@@ -113,12 +113,12 @@ classdef uptodatetest_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
     function markdowns_are_uptodate(testcase)
       % Make sure that all Live Scripts have been converted to markdown files.
-      n = FileTool2.batchGenerateMarkdowns( ...
+      n = FileTool3.batchGenerateMarkdowns( ...
         LiveScriptFolderNames = pwd, ...
         MarkdownFolderPath = "markdown");
 
       if n > 0
-        n = FileTool2.batchGenerateMarkdowns( ...
+        n = FileTool3.batchGenerateMarkdowns( ...
           LiveScriptFolderNames = pwd, ...
           MarkdownFolderPath = "markdown", DisplayInfo = true);
       end  % if

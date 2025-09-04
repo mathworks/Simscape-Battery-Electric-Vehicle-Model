@@ -3,7 +3,7 @@
 % The block is 1D Lookup Table block, which is a Simulink block.
 block_path = "VehSpdRef_HighSpeed_refsub/Vehicle speed reference";
 
-signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = SignalTool3.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 6, ... Random seed
   ...
   FInitialValue = 0, ... Initial data value
@@ -19,11 +19,11 @@ signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties
   FFinalValue = 0, ... Final data value
   XFinalFlatLength = 10 );  % Final constant duration
 
-data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalTool3.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 fig = figure; %[output:283ceb90]
 fig.Position(3:4) = [900 400];  % width height %[output:283ceb90]
-SignalTool2.plotLookupTable1D(data_table.X, data_table.F, ... %[output:group:730650e0] %[output:283ceb90]
+SignalTool3.plotLookupTable1D(data_table.X, data_table.F, ... %[output:group:730650e0] %[output:283ceb90]
   Interpolation="Smooth", InterpolationInterval=0.1, ... %[output:283ceb90]
   ParentAxes=axes(fig)) %[output:group:730650e0] %[output:283ceb90]
 model_name = extractBefore(block_path, "/");

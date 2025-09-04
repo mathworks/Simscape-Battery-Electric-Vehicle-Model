@@ -2,13 +2,13 @@
 model_name = "testmodel_plotLookupTable1DBlocks_refsub";
 load_system(model_name)
 %[text] By default, all lookup table 1D blocks in the specified subsystem path are visualized.
-ModelTool1.plotLookupTable1DBlocks(model_name) %[output:866e6382]
+ModelTool2.plotLookupTable1DBlocks(model_name) %[output:866e6382]
 %[text] Use the `Blocks` option to specify the blocks for visualization.
 fig = figure; %[output:87f25f63]
 fig.Position(3:4) = [600 300];  % width height %[output:87f25f63]
-ModelTool1.plotLookupTable1DBlocks(model_name+"/Subsystem", Blocks=["PS smooth1" "SL smooth1"], ParentAxes=axes(fig)) %[output:87f25f63]
+ModelTool2.plotLookupTable1DBlocks(model_name+"/Subsystem", Blocks=["PS smooth1" "SL smooth1"], ParentAxes=axes(fig)) %[output:87f25f63]
 %[text] Use the `SearchDepth` option to specify how many layers to search lookup table 1D blocks.
-ModelTool1.plotLookupTable1DBlocks(model_name+"/Subsystem/Subsystem A", SearchDepth=2) %[output:84c5122d]
+ModelTool2.plotLookupTable1DBlocks(model_name+"/Subsystem/Subsystem A", SearchDepth=2) %[output:84c5122d]
 %[text] *Copyright 2025 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

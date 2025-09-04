@@ -1,13 +1,13 @@
 %[text] # findLookupTable1DBlocks sample script
 model_name = "testmodel_findLookupTable1DBlocks_refsub";
 load_system(model_name)
-blocks = ModelTool1.findLookupTable1DBlocks(model_name);
+blocks = ModelTool2.findLookupTable1DBlocks(model_name);
 disp(blocks) %[output:90318ad7]
 %[text] 
-blocks = ModelTool1.findLookupTable1DBlocks(model_name, SearchDepth=1);
+blocks = ModelTool2.findLookupTable1DBlocks(model_name, SearchDepth=1);
 disp(blocks) %[output:0326a7ad]
 %[text] 
-blocks = ModelTool1.findLookupTable1DBlocks(model_name+"/Subsystem", SearchDepth=1);
+blocks = ModelTool2.findLookupTable1DBlocks(model_name+"/Subsystem", SearchDepth=1);
 disp(blocks) %[output:95156dd3]
 %[text] *Copyright 2025 The MathWortks, Inc.*
 

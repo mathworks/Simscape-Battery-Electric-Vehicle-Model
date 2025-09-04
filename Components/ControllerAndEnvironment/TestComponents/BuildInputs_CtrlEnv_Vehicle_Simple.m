@@ -1,33 +1,33 @@
 %[text] # Build inputs
 %[text] Generate data.
 BrakeForce.DesignMatrix = [0 200 0; 230 280 1000];
-BrakeForce.DataTable = SignalTool2.getVectorsFromSignalDesignMatrix(BrakeForce.DesignMatrix);
+BrakeForce.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(BrakeForce.DesignMatrix);
 BrakeForce.t = BrakeForce.DataTable.X;
 BrakeForce.f = BrakeForce.DataTable.F;
 fig = figure; %[output:04d8ef1d]
 fig.Position(3:4) = [900 200];  % width height %[output:04d8ef1d]
-SignalTool2.plotLookupTable1D(BrakeForce.t, BrakeForce.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:04d8ef1d]
+SignalTool3.plotLookupTable1D(BrakeForce.t, BrakeForce.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:04d8ef1d]
 MotorTorqueCommand.DesignMatrix = [0 100 100; 110 200 0];
-MotorTorqueCommand.DataTable = SignalTool2.getVectorsFromSignalDesignMatrix(MotorTorqueCommand.DesignMatrix);
+MotorTorqueCommand.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(MotorTorqueCommand.DesignMatrix);
 MotorTorqueCommand.t = MotorTorqueCommand.DataTable.X;
 MotorTorqueCommand.f = MotorTorqueCommand.DataTable.F;
 fig = figure; %[output:5ee61939]
 fig.Position(3:4) = [900 200];  % width height %[output:5ee61939]
-SignalTool2.plotLookupTable1D(MotorTorqueCommand.t, MotorTorqueCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:5ee61939]
+SignalTool3.plotLookupTable1D(MotorTorqueCommand.t, MotorTorqueCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:5ee61939]
 MotorHeatFlowCommand.DesignMatrix = [0 90 0; 110 190 -1000; 210 300 1000];
-MotorHeatFlowCommand.DataTable = SignalTool2.getVectorsFromSignalDesignMatrix(MotorHeatFlowCommand.DesignMatrix);
+MotorHeatFlowCommand.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(MotorHeatFlowCommand.DesignMatrix);
 MotorHeatFlowCommand.t = MotorHeatFlowCommand.DataTable.X;
 MotorHeatFlowCommand.f = MotorHeatFlowCommand.DataTable.F;
 fig = figure; %[output:2c1ec856]
 fig.Position(3:4) = [900 200];  % width height %[output:2c1ec856]
-SignalTool2.plotLookupTable1D(MotorHeatFlowCommand.t, MotorHeatFlowCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:2c1ec856]
+SignalTool3.plotLookupTable1D(MotorHeatFlowCommand.t, MotorHeatFlowCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:2c1ec856]
 BatteryHeatFlowCommand.DesignMatrix = [0 90 0; 110 190 -1000; 210 300 1000];
-BatteryHeatFlowCommand.DataTable = SignalTool2.getVectorsFromSignalDesignMatrix(BatteryHeatFlowCommand.DesignMatrix);
+BatteryHeatFlowCommand.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(BatteryHeatFlowCommand.DesignMatrix);
 BatteryHeatFlowCommand.t = BatteryHeatFlowCommand.DataTable.X;
 BatteryHeatFlowCommand.f = BatteryHeatFlowCommand.DataTable.F;
 fig = figure; %[output:40a5a0d0]
 fig.Position(3:4) = [900 200];  % width height %[output:40a5a0d0]
-SignalTool2.plotLookupTable1D(BatteryHeatFlowCommand.t, BatteryHeatFlowCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:40a5a0d0]
+SignalTool3.plotLookupTable1D(BatteryHeatFlowCommand.t, BatteryHeatFlowCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:40a5a0d0]
 %%
 %[text] Set the generated data to the target block in the target model.
 model_name = "HarnessModel_CtrlEnv_Vehicle";

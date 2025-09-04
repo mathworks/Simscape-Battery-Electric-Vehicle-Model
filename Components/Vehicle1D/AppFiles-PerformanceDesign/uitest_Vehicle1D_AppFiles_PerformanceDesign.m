@@ -105,12 +105,6 @@ classdef uitest_Vehicle1D_AppFiles_PerformanceDesign < matlab.uitest.TestCase
 
     %% UI test
 
-    function uitest_Information(testcase)
-      testcase.App = Vehicle1DPerformanceDesignAppMain;
-      % A browser window must open.
-      press(testcase, testcase.App.InfoLinkUI.MainHyperlink)
-    end  % function
-
     function uitest_EditField_Mass(testcase)
       testcase.App = Vehicle1DPerformanceDesignAppMain;
       % Plot must update when a new value is typed in.

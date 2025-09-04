@@ -11,7 +11,7 @@ arguments (Output)
   result (:,1) string
 end  % arguments
 
-lines = strip(splitlines(codetext));
+lines = strip( splitlines(codetext));
 
 % Remove comment lines and empty lines.
 logical_index = startsWith(lines, optionalPattern(whitespacePattern)+"%") | (lines == "");

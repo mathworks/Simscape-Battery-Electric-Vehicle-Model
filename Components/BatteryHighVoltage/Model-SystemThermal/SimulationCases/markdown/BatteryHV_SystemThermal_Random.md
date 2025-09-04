@@ -19,7 +19,7 @@ set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_BatteryHV_Random
 Test conditions
 
 ```matlab
-signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = SignalTool3.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 12, ...
   FInitialValue = 0, ...
   XInitialFlatLength = 5, ...
@@ -32,14 +32,14 @@ signal_design_matrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties
   XFinalFlatLength = 100, ...
   FFinalValue = 0 );
 
-data_table = SignalTool2.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalTool3.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 t = data_table.X;
 f = data_table.F;
 
 fig = figure;
 fig.Position(3:4) = [900 300];  % width height
-SignalTool2.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig))
+SignalTool3.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig))
 ```
 
 <center><img src="media/BatteryHV_SystemThermal_Random_media/figure_0.png" width="903" alt="figure_0.png"></center>
@@ -67,10 +67,10 @@ disp(initial)
 
 ```matlabTextOutput
            hvBattery_SOC_pct: 50
+    hvBattery_SOC_normalized: 0.5000
         hvBattery_Charge_Ahr: 88.2353
      hvBattery_Temperature_K: 293.1500
                ambientTemp_K: 293.1500
-    hvBattery_SOC_normalized: 0.5000
 ```
 
 

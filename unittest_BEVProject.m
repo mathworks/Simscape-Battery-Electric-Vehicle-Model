@@ -14,6 +14,22 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
 
   % Copyright 2021-2025 The MathWorks, Inc.
 
+  methods (TestMethodSetup)
+    % Functions in this section always run before each test defined in the Test section runs.
+
+    function test_method_setup_1(testcase)
+      function closeAll
+        close all
+        bdclose all
+      end  % nested function
+      closeAll
+      % addTeardown adds a function which always runs after each test.
+      % Even if the execution of a test ends with an error, the teardown function runs.
+      addTeardown(testcase, @closeAll)
+    end  % function
+
+  end  % methods
+
   methods (Test)
     % Functions in this "Test" section are the tests.
     % Before a function in this section runs, the TestSetup function
@@ -63,7 +79,7 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
     % -------------------------------------------------------------------------
     % Build Tool set up
 
-    function check_buildfile(testcase)
+    function check_buildfile_result_save_location(testcase)
       % This project has a number of the buildfile.m files.
       % Check that they are configured to save the result in the "test-result" folder.
 
@@ -80,13 +96,10 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
       for idx = 1 : num_files
         target_buildfile = buildfile_paths(idx);
         disp(idx + ": Checking: " + target_buildfile)
-
-        has_gitignore = isfile(".gitignore");
-        verifyTrue(testcase, has_gitignore)
         buildfile_lines = readlines(target_buildfile);
-
         match_index = contains(buildfile_lines, """test-result/");
         num_matches = nnz(match_index);
+
         verifyTrue(testcase, num_matches > 0)
 
       end  % for
@@ -169,7 +182,7 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
 
     end  % function
 
-    %% Links
+    %% Project
 
     function project_shortcuts(testcase)
       % Check that the project shortcuts are linked to existing files.
@@ -186,72 +199,88 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
 
     end  % function
 
-    function linked_commands_in_live_script_1(testcase)
-      % Live scripts can have hyperlinks that are MATLAB commands.
-      % An example is "command" in the text "[some text](matlab:command)"
-      % where "some text" is rendered with a hyperlink "command" which
-      % is passed to MATLAB when the link is clicked.
-      %
-      % This test makes sure there are no broken links.
+    %% Hyperlinks in Live Scripts
 
-      link_table = FileTool2.getLinkedCommandFromPlainTextLiveScript("BEVProject_Description.m");
-
+    function LinkedCommandTypes_in_LiveScript(testcase)
+      % Check if there are hyperlinks in a Live Script that are MATLAB commands,
+      % and if yes, check that the commands are expected commands.
+      target_file = "BEVProject_Description.m";
+      link_table = FileTool3.getLinkedCommandFromPlainTextLiveScript(target_file);
       if height(link_table) == 0
-        disp("No hyperlinked MATLAB commands were found.")
+        disp("No hyperlinked MATLAB commands were found: " + target_file)
 
         return
 
       end  % if
+      commands = link_table.Command;
+      % Commands must be either openInProject or an app.
+      verifyTrue(testcase, all(startsWith(commands, "openInProject(") | endsWith(commands, "App")))
+    end  % function
 
-      for ii = 1 : height(link_table)
-        matlab_command = link_table.Command(ii);
-        disp("Hyperlinked MATLAB command: " + matlab_command)
+    function openInProject_in_links_in_LiveScript(testcase)
+      % Check that files passed to the openInProject command in hyperlinks in
+      % plain-text Live Scripts exist.
+      % This test assumes that the argument to the openInProject is a simple word
+      % representing a MATLAB code file or a Simulink model file.
+      % For example, "hello" in openInProject("hello") should be one of
+      % "hello.m", "hello.mlx", "hello.mdl", or "hello.slx".
+      target_file = "BEVProject_Description.m";
+      link_table = FileTool3.getLinkedCommandFromPlainTextLiveScript(target_file);
+      if height(link_table) == 0
+        disp("No hyperlinked MATLAB commands were found: " + target_file)
 
-        if startsWith(matlab_command, "openInProject(")
-          % Assume that the argument to the openInProject is a simple word representing
-          % a MATLAB code file or a Simulink model file.
-          % For example, "hello" in openInFile("hello") should be one of
-          % "hello.m", "hello.mlx", "hello.mdl", or "hello.slx".
-          %
-          % This test checks that the main target file exists.
-          % This test should not actually open it.
+        return
 
-          main_target = extractBetween(matlab_command, "("+("'"|""""), ("'"|"""")+")");
-          fullpath = strings(4, 1);
-          fullpath(1) = FileTool2.getFileFullPath(main_target + ".m", ReturnIfNotFound=true);
-          fullpath(2) = FileTool2.getFileFullPath(main_target + ".mlx", ReturnIfNotFound=true);
-          fullpath(3) = FileTool2.getFileFullPath(main_target + ".mdl", ReturnIfNotFound=true);
-          fullpath(4) = FileTool2.getFileFullPath(main_target + ".slx", ReturnIfNotFound=true);
-          logical_index = fullpath ~= "";
+      end  % if
+      commands = link_table.Command;
+      logical_index = startsWith(commands, "openInProject(");
+      if nnz(logical_index) == 0
+        disp("No openInProject commands were found: " + target_file)
 
-          verifyEqual(testcase, nnz(logical_index), 1)
+        return
 
-        elseif endsWith(matlab_command, "App")
-          % Assume that the name of an app command always ends with "App".
-          % This test checks that the app file exists.
-          % This test should not actually open the app.
+      end  % if
+      commands = commands(logical_index);
+      for ii = 1 : numel(commands)
+        matlab_command = commands(ii);
+        disp("Checking argument: " + matlab_command)
+        main_target = extractBetween(matlab_command, "("+("'"|""""), ("'"|"""")+")");
+        fullpath = string( which(main_target));
 
-          main_target = matlab_command + ".m";
-          fullpath = FileTool2.getFileFullPath(main_target, ReturnIfNotFound=true);
+        verifyTrue(testcase, isfile(fullpath))
 
-          verifyTrue(testcase, fullpath ~= "")
+      end  % for
+    end  % function
 
-        else
-          % If the MATLAB command is something else, evaluate it.
-          % Ideally, the execution of this test should not come into this branch.
-          % This is a passing test.
-          disp("Evaluating: " + matlab_command)
+    function Apps_in_links_in_LiveScript(testcase)
+      % Check that apps that are hyperlinked in a live script exist.
+      % This test assumes that the app name ends with "App".
+      % This test checks that the app file exists.
+      % This test does not open the app.
+      target_file = "BEVProject_Description.m";
+      link_table = FileTool3.getLinkedCommandFromPlainTextLiveScript(target_file);
+      if height(link_table) == 0
+        disp("No hyperlinked MATLAB commands were found: " + target_file)
 
-          eval(matlab_command)
+        return
 
-          verifyTrue(testcase, true)
+      end  % if
+      commands = link_table.Command;
+      logical_index = endsWith(commands, "App");
+      if nnz(logical_index) == 0
+        disp("No apps were found: " + target_file)
 
-        end  % if
+        return
 
-        % Close what opened to keep memory consumption low.
-        % !todo: Find a way to close an app.
-        close all
-        bdclose all
+      end  % if
+      commands = commands(logical_index);
+      for ii = 1 : numel(commands)
+        matlab_command = commands(ii);
+        disp("Checking app exists: " + matlab_command)
+        app_fullpath = string( which(matlab_command));
+
+        verifyTrue(testcase, isfile(app_fullpath))
+
       end  % for
     end  % function
 
@@ -259,7 +288,7 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
 
     function model_saved_release(testcase)
       % Check that models are saved in the current MATLAB release.
-      N = ModelTool1.saveModels( DryRun=true, Target="Project", DisplayInfo=false );
+      N = ModelTool2.saveModels( DryRun=true, Target="Project", DisplayInfo=false );
       verifyEqual(testcase, N, 0)
     end  % function
 

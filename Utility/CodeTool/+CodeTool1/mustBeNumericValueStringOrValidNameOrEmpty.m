@@ -31,10 +31,10 @@ value_function_pattern = "value(" + (variable_name_pattern|struct_field_pattern)
 not_value_function_pattern = isstring(x) && not(matches(x, value_function_pattern));
 
 if not_numeric && not_var && not_struct_field && not_value_function_pattern
-  error_id = "mustBeNumericValueStringOrValidName:validationFailed";
+  errorID = "mustBeNumericValueStringOrValidName:validationFailed";
   error_text = CodeTool1.i18n("Data string must be convertible to either a numeric value, a variable, or a struct field.");
 
-  throw(MException(error_id, error_text))
+  throw(MException(errorID, error_text))
 
 end  % if
 end  % function

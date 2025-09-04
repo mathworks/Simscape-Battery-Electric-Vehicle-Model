@@ -14,12 +14,12 @@ arguments (Input)
   ConfigStruct (1,1) struct
 end
 
-error_id = "setupAppConfigFromConfigStruct:failed";
+errorID = "setupAppConfigFromConfigStruct:failed";
 
 struct_field_strings = string(fieldnames(ConfigStruct));
 
 num_fields = numel(struct_field_strings);
-assert(num_fields > 0, error_id, CodeTool1.i18n("Struct without field is not accepted."))
+assert(num_fields > 0, errorID, CodeTool1.i18n("Struct without field is not accepted."))
 
 num_props = numel(properties(AppConfigObj));
 
@@ -40,7 +40,7 @@ if any(not_found)
   missing_props = property_strings(not_found);
   error_text = CodeTool1.i18n("Required properties were not found: " + join(missing_props, ", "));
 
-  throw(MException(error_id, error_text))
+  throw(MException(errorID, error_text))
 
 end  % if
 

@@ -3,48 +3,48 @@ model_name = "testmodel_getSimscapeValueFromBlockParameter";
 %[text] ## Inertia block
 block_path = model_name + "/Inertia";
 
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "inertia");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "inertia");
 disp(param) %[output:7a9d5796]
 %[text] ## Inertia block with a variable in the base workspace
 block_path = model_name + "/Inertia1";
 
 evalin("base", "Inertia1_inertia = 12;")
 
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "inertia");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "inertia");
 disp(param) %[output:7b7ebd1b]
 %[text] ## Inertia block with a struct in the base workspace
 block_path = model_name + "/Inertia2";
 
 evalin("base", "Inertia2.Inertia = 12;")
 
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "inertia");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "inertia");
 disp(param) %[output:029435b5]
 %[text] ## PS Lookup Table (1D) block
 block_path = model_name + "/PS Lookup Table (1D)";
 
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "x");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "x");
 disp(param) %[output:66d0145a]
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "f");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "f");
 disp(param) %[output:464b337e]
 %[text] PS Lookup Table (2D) block
 block_path = model_name + "/PS Lookup Table (2D)";
 
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "x1");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "x1");
 disp(param) %[output:54604951]
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "x2");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "x2");
 disp(param) %[output:992e6f39]
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "f");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "f");
 disp(param) %[output:02212529]
 %[text] ## PS Lookup Table (3D) block
 block_path = model_name + "/PS Lookup Table (3D)";
 
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "x1");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "x1");
 disp(param) %[output:89fc2c62]
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "x2");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "x2");
 disp(param) %[output:0ed9cfd6]
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "x3");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "x3");
 disp(param) %[output:985ddee8]
-param = ModelTool1.getSimscapeValueFromBlockParameter(block_path, "f");
+param = ModelTool2.getSimscapeValueFromBlockParameter(block_path, "f");
 disp(param) %[output:65b4d885]
 %[text] *Copyright 2025 The* *`MathWorks, Inc.`*
 

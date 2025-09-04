@@ -5,14 +5,14 @@ AxleSpeedSwitch.t = [0 1];
 AxleSpeedSwitch.f = [0 0];
 %[text] 
 AxleSpeed.DesignMatrix = [0 100 0];
-AxleSpeed.DataTable = SignalTool2.getVectorsFromSignalDesignMatrix(AxleSpeed.DesignMatrix);
+AxleSpeed.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(AxleSpeed.DesignMatrix);
 AxleSpeed.t = AxleSpeed.DataTable.X;
 AxleSpeed.f = AxleSpeed.DataTable.Y;
 fig = figure; %[output:4510eefd]
 fig.Position(3:4) = [900 200];  % width height %[output:4510eefd]
-SignalTool2.plotLookupTable1D(AxleSpeed.t, AxleSpeed.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:4510eefd]
+SignalTool3.plotLookupTable1D(AxleSpeed.t, AxleSpeed.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:4510eefd]
 %[text] 
-AxleTorque.DesignMatrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties(...
+AxleTorque.DesignMatrix = SignalTool3.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 543, ...
   FInitialValue = 0, ...
   XInitialFlatLength = 5, ...
@@ -24,14 +24,14 @@ AxleTorque.DesignMatrix = SignalTool2.generateSignalDesignMatrixFromTracePropert
   XFinalTransitionLength = 2, ...
   XFinalFlatLength = 10, ...
   FFinalValue = 0 );
-AxleTorque.DataTable = SignalTool2.getVectorsFromSignalDesignMatrix(AxleTorque.DesignMatrix);
+AxleTorque.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(AxleTorque.DesignMatrix);
 AxleTorque.t = AxleTorque.DataTable.X;
 AxleTorque.f = AxleTorque.DataTable.Y;
 fig = figure; %[output:434b0e57]
 fig.Position(3:4) = [900 200];  % width height %[output:434b0e57]
-SignalTool2.plotLookupTable1D(AxleTorque.t, AxleTorque.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:434b0e57]
+SignalTool3.plotLookupTable1D(AxleTorque.t, AxleTorque.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:434b0e57]
 %[text] 
-MotorTorqueCommand.DesignMatrix = SignalTool2.generateSignalDesignMatrixFromTraceProperties(...
+MotorTorqueCommand.DesignMatrix = SignalTool3.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 543, ...
   FInitialValue = 0, ...
   XInitialFlatLength = 5, ...
@@ -43,20 +43,20 @@ MotorTorqueCommand.DesignMatrix = SignalTool2.generateSignalDesignMatrixFromTrac
   XFinalTransitionLength = 2, ...
   XFinalFlatLength = 10, ...
   FFinalValue = 0 );
-MotorTorqueCommand.DataTable = SignalTool2.getVectorsFromSignalDesignMatrix(MotorTorqueCommand.DesignMatrix);
+MotorTorqueCommand.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(MotorTorqueCommand.DesignMatrix);
 MotorTorqueCommand.t = MotorTorqueCommand.DataTable.X;
 MotorTorqueCommand.f = MotorTorqueCommand.DataTable.Y;
 fig = figure; %[output:05cf681d]
 fig.Position(3:4) = [900 200];  % width height %[output:05cf681d]
-SignalTool2.plotLookupTable1D(MotorTorqueCommand.t, MotorTorqueCommand.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:05cf681d]
+SignalTool3.plotLookupTable1D(MotorTorqueCommand.t, MotorTorqueCommand.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:05cf681d]
 %[text] 
 HeatFlowCommand.DesignMatrix = [0 100 0];
-HeatFlowCommand.DataTable = SignalTool2.getVectorsFromSignalDesignMatrix(HeatFlowCommand.DesignMatrix);
+HeatFlowCommand.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(HeatFlowCommand.DesignMatrix);
 HeatFlowCommand.t = HeatFlowCommand.DataTable.X;
 HeatFlowCommand.f = HeatFlowCommand.DataTable.Y;
 fig = figure; %[output:9dd48f4a]
 fig.Position(3:4) = [900 200];  % width height %[output:9dd48f4a]
-SignalTool2.plotLookupTable1D(HeatFlowCommand.t, HeatFlowCommand.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:9dd48f4a]
+SignalTool3.plotLookupTable1D(HeatFlowCommand.t, HeatFlowCommand.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:9dd48f4a]
 %%
 %[text] Set the generated data to the target block in the target model.
 model_name = "Inputs_MotorDriveUnit_Random_refsub";

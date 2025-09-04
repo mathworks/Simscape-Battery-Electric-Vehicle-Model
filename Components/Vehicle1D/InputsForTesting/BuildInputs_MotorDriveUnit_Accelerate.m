@@ -1,28 +1,28 @@
 %[text] # Build inputs
 %[text] Build vectors for $&dollar&;t&dollar&;${"altText":"t"} and $f\\left(t\\right)${"editStyle":"visual"} that are later sent to lookup table blocks in a model.
 BrakeForce.DesignMatrix = [0 1 0];
-BrakeForce.DataTable = SignalTool2.getVectorsFromSignalDesignMatrix(BrakeForce.DesignMatrix);
+BrakeForce.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(BrakeForce.DesignMatrix);
 BrakeForce.t = BrakeForce.DataTable.X;
 BrakeForce.f = BrakeForce.DataTable.F;
 fig = figure; %[output:871c2170]
 fig.Position(3:4) = [900 200];  % width height %[output:871c2170]
-SignalTool2.plotLookupTable1D(BrakeForce.t, BrakeForce.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:871c2170]
+SignalTool3.plotLookupTable1D(BrakeForce.t, BrakeForce.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:871c2170]
 %[text] 
 RoadGrade.DesignMatrix = [0 1 0];
-RoadGrade.DataTable = SignalTool2.getVectorsFromSignalDesignMatrix(RoadGrade.DesignMatrix);
+RoadGrade.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(RoadGrade.DesignMatrix);
 RoadGrade.t = RoadGrade.DataTable.X;
 RoadGrade.f = RoadGrade.DataTable.F;
 fig = figure; %[output:471a2c5d]
 fig.Position(3:4) = [900 200];  % width height %[output:471a2c5d]
-SignalTool2.plotLookupTable1D(RoadGrade.t, RoadGrade.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:471a2c5d]
+SignalTool3.plotLookupTable1D(RoadGrade.t, RoadGrade.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:471a2c5d]
 %[text] 
 AxleTorque.DesignMatrix = [0 10 0; 30 100 400; 140 200 900];
-AxleTorque.DataTable = SignalTool2.getVectorsFromSignalDesignMatrix(AxleTorque.DesignMatrix);
+AxleTorque.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(AxleTorque.DesignMatrix);
 AxleTorque.t = AxleTorque.DataTable.X;
 AxleTorque.f = AxleTorque.DataTable.F;
 fig = figure; %[output:52d507e2]
 fig.Position(3:4) = [900 200];  % width height %[output:52d507e2]
-SignalTool2.plotLookupTable1D(AxleTorque.t, AxleTorque.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:52d507e2]
+SignalTool3.plotLookupTable1D(AxleTorque.t, AxleTorque.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:52d507e2]
 %%
 %[text] Set the generated data to the target block in the target model.
 model_name = "Inputs_Vehicle1D_Accelerate_refsub";

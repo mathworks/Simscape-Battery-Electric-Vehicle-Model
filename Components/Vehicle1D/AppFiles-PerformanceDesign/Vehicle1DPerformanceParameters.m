@@ -334,7 +334,7 @@ classdef Vehicle1DPerformanceParameters
       end  % if
 
       try
-        block_properties = ModelTool1.buildPropertyDictionaryFromBlock(BlockPath);
+        block_properties = ModelTool2.buildPropertyDictionaryFromBlock(BlockPath);
       catch exception
 
         rethrow(exception)
