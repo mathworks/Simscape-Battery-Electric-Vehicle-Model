@@ -32,8 +32,7 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
 
   methods (Test)
     % Functions in this "Test" section are the tests.
-    % Before a function in this section runs, the TestSetup function
-    % defined in the "TestMethodSetup" section runs.
+    % Before each function in this section runs, functions defined in the TestMethodSetup section run.
 
     %% Minimum quality check
     % Check that models, scripts, functions, and classes run right out of the box.
@@ -44,6 +43,88 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
       function test_target()
         BEVProject_Description  % !test-target
       end  % nested function
+    end  % function
+
+    %% Tools
+
+    function tools_1(testcase)
+      top_folder = fullfile(currentProject().RootFolder);
+      result = FileTool3.findTextAndReplace( ...
+        DryRun = true, ...
+        TopFolders = [
+          fullfile(top_folder, "BEV")
+          fullfile(top_folder, "Components")
+          fullfile(top_folder, "FYI")
+          fullfile(top_folder, "Interface")
+        ], ...
+        SearchSubfolders = true, ...
+        FileType = ["*.m", "*.md", "*.mdl"], ...
+        TextPattern = "LiteApp");  % !test-target
+      verifyTrue(testcase, all(contains(result.LineText, "LiteApp7")))  % !test-target
+    end  % function
+
+    function tools_2(testcase)
+      top_folder = fullfile(currentProject().RootFolder);
+      result = FileTool3.findTextAndReplace( ...
+        DryRun = true, ...
+        TopFolders = [
+          fullfile(top_folder, "BEV")
+          fullfile(top_folder, "Components")
+          fullfile(top_folder, "FYI")
+          fullfile(top_folder, "Interface")
+        ], ...
+        SearchSubfolders = true, ...
+        FileType = ["*.m", "*.md", "*.mdl"], ...
+        TextPattern = "CodeTool");  % !test-target
+      verifyTrue(testcase, all(contains(result.LineText, "CodeTool1")))  % !test-target
+    end  % function
+
+    function tools_3(testcase)
+      top_folder = fullfile(currentProject().RootFolder);
+      result = FileTool3.findTextAndReplace( ...
+        DryRun = true, ...
+        TopFolders = [
+          fullfile(top_folder, "BEV")
+          fullfile(top_folder, "Components")
+          fullfile(top_folder, "FYI")
+          fullfile(top_folder, "Interface")
+        ], ...
+        SearchSubfolders = true, ...
+        FileType = ["*.m", "*.md", "*.mdl"], ...
+        TextPattern = "FileTool");  % !test-target
+      verifyTrue(testcase, all(contains(result.LineText, "FileTool3")))  % !test-target
+    end  % function
+
+    function tools_4(testcase)
+      top_folder = fullfile(currentProject().RootFolder);
+      result = FileTool3.findTextAndReplace( ...
+        DryRun = true, ...
+        TopFolders = [
+          fullfile(top_folder, "BEV")
+          fullfile(top_folder, "Components")
+          fullfile(top_folder, "FYI")
+          fullfile(top_folder, "Interface")
+        ], ...
+        SearchSubfolders = true, ...
+        FileType = ["*.m", "*.md", "*.mdl"], ...
+        TextPattern = "ModelTool");  % !test-target
+      verifyTrue(testcase, all(contains(result.LineText, "ModelTool2")))  % !test-target
+    end  % function
+
+    function tools_5(testcase)
+      top_folder = fullfile(currentProject().RootFolder);
+      result = FileTool3.findTextAndReplace( ...
+        DryRun = true, ...
+        TopFolders = [
+          fullfile(top_folder, "BEV")
+          fullfile(top_folder, "Components")
+          fullfile(top_folder, "FYI")
+          fullfile(top_folder, "Interface")
+        ], ...
+        SearchSubfolders = true, ...
+        FileType = ["*.m", "*.md", "*.mdl"], ...
+        TextPattern = "SignalTool2");  % !test-target: SignalTool is v3.
+      verifyTrue(testcase, isempty(result))  % !test-target
     end  % function
 
     %% Project startup
@@ -320,6 +401,12 @@ classdef unittest_BEVProject < matlab.unittest.TestCase
       file_paths_2 = matlab.buildtool.io.FileCollection.fromPaths(fullfile(topfolder, "Component", "**/*.slx")).paths';
       all_file_paths = [file_paths_1; file_paths_2];
       verifyEqual(testcase, numel(all_file_paths), 0);
+    end  % function
+
+    function no_asv_files(testcase)
+      topfolder = currentProject().RootFolder;
+      file_paths = matlab.buildtool.io.FileCollection.fromPaths(fullfile(topfolder, "**", "*.asv")).paths';
+      verifyEqual(testcase, numel(file_paths), 0);
     end  % function
 
   end  % methods
