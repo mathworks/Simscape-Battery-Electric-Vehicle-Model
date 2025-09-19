@@ -27,7 +27,7 @@ classdef Table < LiteApp7.Component.LiteAppComponentBase
 
       component.baseGridObject.RowHeight = {'fit'};
       component.baseGridObject.ColumnWidth = {'1x'};
-      component.baseGridObject.Padding = [1 0 1 0];
+      component.baseGridObject.Padding = [1 0 1 0];  % left bottom right top
       component.baseGridObject.ColumnSpacing = 1;
       component.baseGridObject.RowSpacing = 1;
       component.baseGridObject.Scrollable = "on";

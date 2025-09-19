@@ -8,7 +8,7 @@ classdef SignalDesignAppMain < handle
 
   % Copyright 2025 The MathWorks, Inc.
 
-  properties (Access=private)
+  properties (Access=private, Constant)
     errorID (1,1) string = "SignalDesignAppMain:"
   end  % properties
 

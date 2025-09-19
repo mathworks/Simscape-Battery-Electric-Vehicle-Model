@@ -1,49 +1,40 @@
-function openInProject(target_name, NameValuePair)
+function openInProject(TargetName)
 % Open a file, an app, or a Simulink model in a MATLAB project.
+%
+% Before opening the specified target, this function checks that a MATLAB project is open.
+% If it is not, this function issues an error and does not open the specified target.
+% Use this function to make sure that project paths are loaded for the target to work.
+% This function does not check what specific project is open.
 %
 % This is a wrapper function for the open command to open a MATLAB code file,
 % an app, or a Simulink model file.
-% Before opening the file, this script opens the MATLAB Project if it is not open.
-% If another project is open, this function issues an error and does not open
-% the specified file.
+%
+% This function provides visual feedback with a hyperlink to the target on
+% the Command Window.
 %
 % To open an HTML document, use the web function instead of this function because
-% web uses MATLAB Web Browser which supports the "matlab:" directive in hyperlinks.
+% the web command uses the MATLAB Web Browser which supports the "matlab:" directive
+% in hyperlinks. The open command opens an HTML file in the system browser which
+% does not support the "matlab:" directive.
 
 % Copyright 2021-2025 The MathWorks, inc.
 
 arguments (Input)
-  target_name (1,1) string = "BEVProject_Description.m"
-  NameValuePair.ProjectFile (1,1) string = "BatteryElectricVehicle.prj"
-  NameValuePair.ProjectName (1,1) string = "Simscape Battery Electric Vehicle Model"
+  TargetName (1,1) string {mustBeNonzeroLengthText}
 end  % arguments
 
-errorID = "openInProject";
-
-this_project_file = NameValuePair.ProjectFile;
-this_project_name = NameValuePair.ProjectName;
+errorID = "openInProject:";
 
 if isempty(matlab.project.rootProject)
-  disp("Opening project before opening target. Project: " + this_project_file)
-  openProject(this_project_file);
+  id = errorID + "NoProjectIsOpen";
+  msg = CodeTool1.i18n("A MATLAB project must be open.");
 
-else
-  current_project_object = currentProject;
-  if current_project_object.Name ~= this_project_name
+  throw(MException(id, msg))
 
-    id = errorID + "AnotherProjectIsOpen";
-    msg = "This file must first load the project: " + this_project_name + newline ...
-           + "But another project is currently open: " + current_project_object.Name + newline ...
-           + "To use this file, close the currenly open project.";
-
-    throw(MException(id, msg))
-
-  end  % if
 end  % if
 
-% Provide visual feedback.
-disp("Opening: <a href=""matlab:open('" + target_name + "')"">" + target_name + "</a>")
+disp("Opening: <a href=""matlab:open('" + TargetName + "')"">" + TargetName + "</a>")
 
-open(target_name)
+open(TargetName)
 
 end  % function

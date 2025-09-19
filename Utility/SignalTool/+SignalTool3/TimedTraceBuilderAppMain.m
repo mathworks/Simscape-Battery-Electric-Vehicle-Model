@@ -7,7 +7,7 @@ classdef TimedTraceBuilderAppMain < handle
 
   % Copyright 2025 The MathWorks, Inc.
 
-  properties (Access=private)
+  properties (Access=private, Constant)
     errorID (1,1) string = "TimedTraceBuilderAppMain:"
   end  % properties
 

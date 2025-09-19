@@ -114,4 +114,15 @@ For more information, see the documentation linked below.
 [url-gh-actions]: https://docs.github.com/en/actions
 [url-ml-actions]: https://github.com/matlab-actions/overview
 
+To learn more about Continuous Integration with MATLAB,
+see the following resources:
+
+- [Continuous Integration (CI) configuration examples for MATLAB][url-ci-examples]
+  (github.com)
+- [Advanced Continuous Integration (CI) configuration examples for MATLAB][url-ci-advanced]
+  (github.com)
+
+[url-ci-examples]: https://github.com/mathworks/ci-configuration-examples
+[url-ci-advanced]: https://github.com/mathworks/advanced-ci-configuration-examples
+
 _Copyright 2023-2025 The MathWorks, Inc._

@@ -1,4 +1,4 @@
-function Result = findTextAndReplace(NameValuePair)
+function ResultTable = findTextAndReplace(NameValuePair)
 % Find text from text files, and optionally replace with new text.
 %
 % This function returns a table containing FilePath, LineNumber, and LineText.
@@ -15,28 +15,32 @@ function Result = findTextAndReplace(NameValuePair)
 %
 % To view information from within this function, set the DisplayInfo option to true.
 %
-% - TopFolders = a folder, or folder arrays, e.g., pwd, or ["folder1", "folder2"]
+% - TargetFolder = a folder to do text search, e.g., pwd, or "folder1".
 %
-% Specify the top folders to search files. Current folder is used by default.
+% Specify the target folder to search files. Current folder is used by default.
+% The specified TargetFolder is stored in the returning table as a custom property.
+% Access it as follows.
+%   result = findTextAndReplace(...)
+%   result.Properties.CustomProperties.TargetFolder
 %
-% - SearchSubfolders = true | false (default)
+% - IncludeSubfolders = true | false (default)
 %
-% By default, file search is performed in the specified folders only.
+% By default, file search is performed in the specified folder only.
 % Set this option to true to search subfolders too.
 %
-% - FileType = string scalar or string array, e.g., ".m" or ["*.m", "*.mdl"]
+% - FileTypes = string scalar or string array, e.g., ".m" or ["*.m", "*.mdl"]
 %
-% Use the FileType option to specify the patterns of file names to search.
+% Use the FileTypes option to specify the patterns of file names to search.
 % Files must be plain text format. For example, use
-%   FileType = "*.m"
+%   FileTypes = "*.m"
 % to find text files ending with ".m" extension.
-% FileType can take multiple patterns. For example, use
-%   FileType = ["*_refsub.mdl", "testmodel_*.mdl"]
+% FileTypes can take multiple patterns. For example, use
+%   FileTypes = ["*_refsub.mdl", "testmodel_*.mdl"]
 % to find text files matching these patterns.
 %
 % - Filter = @(x) filter_function(x)
 %
-% The FileType option works on the patterns of file names to build the list of target files.
+% The FileTypes option works on the patterns of file names to build the list of target files.
 % To further reduce the target files based on the contents of the files, use the Filter option.
 % The Filter option takes a function handle. When this function calls the filter function,
 % it receives a file name, and it must return true or false.
@@ -73,10 +77,10 @@ arguments (Input)
 
   NameValuePair.DisplayInfo (1,1) logical = false
 
-  NameValuePair.TopFolders (:,1) string {mustBeFolder} = pwd
-  NameValuePair.SearchSubfolders (1,1) logical = false
+  NameValuePair.TargetFolder (:,1) string {mustBeFolder} = pwd
+  NameValuePair.IncludeSubfolders (1,1) logical = false
 
-  NameValuePair.FileType (1,:) string = ["*.m", "*.mdl"]
+  NameValuePair.FileTypes (1,:) string = ["*.m", "*.mdl"]
   NameValuePair.Filter (1,:) {CodeTool1.mustBeFunctionHandleOrEmpty}
 
   NameValuePair.TextPattern (1,1) pattern = "Copyright"
@@ -88,61 +92,55 @@ arguments (Input)
 end  % arguments
 
 arguments (Output)
-  Result table
+  ResultTable (:,3) table
 end  % arguments
 
 errorID = "findTextAndReplace:";
 
-if NameValuePair.FileType == ""
+ResultTable = table([], [], [], VariableNames=["FilePath", "LineNumber", "LineText"]);
+
+if NameValuePair.FileTypes == ""
   id = errorID + "InvalidFileType";
-  msg = CodeTool1.i18n("FileType must not be """".");
+  msg = CodeTool1.i18n("FileTypes must not be """".");
 
   throw(MException(id, msg))
 
 end  % if
 
-num_topfolders = numel(NameValuePair.TopFolders);
-tmp_found_files = cell(num_topfolders, 1);
-for ii = 1 : num_topfolders
-  target_topfolder = NameValuePair.TopFolders(ii);
+% Make sure file_types is a column vector (or a scalar).
+file_types = NameValuePair.FileTypes(:);
+if NameValuePair.IncludeSubfolders
+  collection = matlab.buildtool.io.FileCollection.fromPaths(fullfile(NameValuePair.TargetFolder, "**", file_types));
+else
+  collection = matlab.buildtool.io.FileCollection.fromPaths(fullfile(NameValuePair.TargetFolder, file_types));
+end  % if
 
-  if NameValuePair.SearchSubfolders
-    collection = matlab.buildtool.io.FileCollection.fromPaths(fullfile(target_topfolder, "**", NameValuePair.FileType));
-  else
-    collection = matlab.buildtool.io.FileCollection.fromPaths(fullfile(target_topfolder, NameValuePair.FileType));
-  end  % if
+if NameValuePair.DisplayInfo
+  disp("Search files:")
+  disp(collection')
+end  % if
 
-  if NameValuePair.DisplayInfo
-    disp("Search files:")
-    disp(collection')
-  end  % if
+if isfield(NameValuePair, "Filter")
+  % Use the select to filter the collection. See the documentation for details.
+  % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
+  collection = select(collection, @(x) NameValuePair.Filter(x));
+end  % if
 
-  if isfield(NameValuePair, "Filter")
-    % Use the select to filter the collection. See the documentation for details.
-    % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
-    collection = select(collection, @(x) NameValuePair.Filter(x));
-  end  % if
-
-  tmp_found_files{ii} = paths(collection)';
-
-end  % for
-
-found_files = vertcat(tmp_found_files{:});
+found_files = paths(collection)';
 
 num_files = numel(found_files);
 
 if num_files == 0
   if NameValuePair.DisplayInfo
-    disp("No files matched the search rule.")
+    disp("No files matched File Types and Filter.")
   end  % if
-  Result = table.empty;
 
   return
 
 end  % if
 
 % -----------------------------------------------------------------------------
-% First pass: Determine the number of rows for a table.
+% First pass: Determine the number of rows necessary for a table.
 
 if NameValuePair.MatchWholeWord
   search_text = textBoundary + NameValuePair.TextPattern + textBoundary;
@@ -151,8 +149,8 @@ else
 end  % if
 
 file_path = strings(num_files, 1);
-num_containing_lines = zeros(num_files, 1);
 
+num_rows = 0;
 for ii = 1 : num_files
   target_file = found_files(ii);
   lines = readlines(target_file);
@@ -164,18 +162,22 @@ for ii = 1 : num_files
 
   end  % if
   file_path(ii) = target_file;
-  num_containing_lines(ii) = num_lines;
+  num_rows = num_rows + num_lines;
 end  % for
 
-logical_index = num_containing_lines == 0;
-file_path(logical_index) = [];
-num_containing_lines(logical_index) = [];
+if num_rows == 0
+  if NameValuePair.DisplayInfo
+    disp("Specified search text was not found.")
+  end  % if
 
-num_rows = sum(num_containing_lines);
+  return
+
+end  % if
 
 % -----------------------------------------------------------------------------
-% Second pass: Build a table containing information about the search.
+% Second pass: Build a table containing matched lines.
 
+% Columns of the result table.
 FilePath = strings(num_rows, 1);
 LineNumber = nan(num_rows, 1);
 LineText = strings(num_rows, 1);
@@ -190,13 +192,16 @@ for ii = 1 : num_files
   line_text = lines(logical_index);
   for jj = 1 : numel(line_text)
     cnt = cnt + 1;
-    FilePath(cnt) = target_file;
+    FilePath(cnt) = extractAfter(target_file, NameValuePair.TargetFolder + ("/"|"\"));
     LineNumber(cnt) = line_number(jj);
     LineText(cnt) = line_text(jj);
   end  % for
 end  % for
 
-Result = table(FilePath, LineNumber, LineText);
+ResultTable = table(FilePath, LineNumber, LineText);
+
+ResultTable = addprop(ResultTable, "TargetFolder", "table");
+ResultTable.Properties.CustomProperties.TargetFolder = NameValuePair.TargetFolder;
 
 if NameValuePair.DryRun
 

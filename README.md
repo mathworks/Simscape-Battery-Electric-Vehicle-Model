@@ -1,8 +1,11 @@
 # Battery Electric Vehicle Model in Simscape&trade;
 
-[![View Battery Electric Vehicle Model in Simscape on File Exchange][url-fx-icon]][url-fx-bev]
+Version 3.3.0
 
-Version 3.2.1
+[![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml)
+[![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml)
+
+[![View Battery Electric Vehicle Model in Simscape on File Exchange][url-fx-icon]][url-fx-bev]
 
 [url-fx-bev]: https://www.mathworks.com/matlabcentral/fileexchange/82250
 [url-fx-icon]: https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg
@@ -21,11 +24,6 @@ and it can run faster than real-time.
 It is suitable as a baseline model for drive cycle simulation
 to estimate vehicle's electrical efficiency and
 other vehicle-level information.
-
-Additionally, this project contains the model of a detailed
-permanent magnet synchronous motor (PMSM) and controller.
-It captures the detailed behaviors of the AC motor drive unit
-and can estimate the electrical efficiency at the unit level.
 
 BEV system model:
 
@@ -71,6 +69,12 @@ the Motor Drive Unit.
 <img src="Components/MotorDriveUnit/screenshot-MotorDriveUnitSimulationApp.png"
  alt="Screenshot of the motor drive unit app"
  width="440">
+
+## What's New in 3.3 (September 2025)
+
+(wip)
+
+- The project is upgraded to R2025b.
 
 ## What's New in 3.2 (August 2025)
 

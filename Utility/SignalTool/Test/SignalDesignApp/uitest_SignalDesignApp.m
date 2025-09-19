@@ -88,7 +88,6 @@ classdef uitest_SignalDesignApp < matlab.uitest.TestCase
     end  % function
 
     %% UI test
-    %% UI test
 
     function uitest_1(testcase)
       testcase.App = SignalDesignApp;
