@@ -1,4 +1,4 @@
-function tstable = newTextSearchTable(FilePath, LineNumber, LineText)
+function tstable = newTextSearchTable(FilePath, LineNumber, LineText, NameValuePair)
 % Create a new table for searching text in files.
 %
 % This function creates a table which is customized for storing the result
@@ -21,10 +21,11 @@ arguments (Input)
   FilePath (:,1) string = ""
   LineNumber (:,1) {mustBeInteger, mustBePositive} = 1
   LineText (:,1) string = ""
+  NameValuePair.IncludeStyledFilePath (1,1) logical = false
 end
 
 arguments (Output)
-  tstable (:,3) table
+  tstable table
 end  % arguments
 
 errorID = "newTextSearchTable:";
@@ -32,7 +33,12 @@ errorID = "newTextSearchTable:";
 if (isscalar(FilePath) && FilePath=="") && ...
     (isscalar(LineNumber) && LineNumber==1) && ...
     (isscalar(LineText) && LineText=="")
-  tstable = table([], [], [], VariableNames=["FilePath", "LineNumber", "LineText"]);
+  if NameValuePair.IncludeStyledFilePath
+    tstable = table([], [], [], [], VariableNames=["StyledFilePath", "FilePath", "LineNumber", "LineText"]);
+  else
+    tstable = table([], [], [], VariableNames=["FilePath", "LineNumber", "LineText"]);
+  end  % if
+
 else
   same_numel = numel(FilePath) == numel(LineNumber) && numel(LineNumber) == numel(LineText);
   if not(same_numel)
@@ -42,7 +48,12 @@ else
     throw(MException(id, msg))
 
   else
-    tstable = table(FilePath, LineNumber, LineText);
+    if NameValuePair.IncludeStyledFilePath
+      StyledFilePath = replace(FilePath, ("/"|"\"), " > ");
+      tstable = table(StyledFilePath, FilePath, LineNumber, LineText);
+    else
+      tstable = table(FilePath, LineNumber, LineText);
+    end  % if
   end  % if
 end  % if
 
@@ -65,9 +76,14 @@ custom_properties = [
   "TargetFolder"
   "IncludeSubfolders"
   "FileTypesString"
+  "FileTypes"
+  "ExcludeLiveScript"
+  "ExcludeMATLABCodeFile"
   "TextPatternString"
+  "TextPattern"
   "IgnoreCase"
   "MatchWholeWord"
+  "IncludeStyledFilePath"
   ]';
 
 tstable = addprop(tstable, custom_properties, repmat("table", 1, numel(custom_properties)));
@@ -75,8 +91,13 @@ tstable = addprop(tstable, custom_properties, repmat("table", 1, numel(custom_pr
 tstable.Properties.CustomProperties.TargetFolder = "";
 tstable.Properties.CustomProperties.IncludeSubfolders = false;
 tstable.Properties.CustomProperties.FileTypesString = "*.m, *.mdl";
+tstable.Properties.CustomProperties.FileTypes = ["*.m", "*.mdl"];
+tstable.Properties.CustomProperties.ExcludeLiveScript = false;
+tstable.Properties.CustomProperties.ExcludeMATLABCodeFile = false;
 tstable.Properties.CustomProperties.TextPatternString = "Copyright";
+tstable.Properties.CustomProperties.TextPattern = alphanumericBoundary + "Copyright" + alphanumericBoundary;
 tstable.Properties.CustomProperties.IgnoreCase = true;
 tstable.Properties.CustomProperties.MatchWholeWord = false;
+tstable.Properties.CustomProperties.IncludeStyledFilePath = NameValuePair.IncludeStyledFilePath;
 
 end  % function

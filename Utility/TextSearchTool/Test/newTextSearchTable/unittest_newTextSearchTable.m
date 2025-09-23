@@ -42,7 +42,7 @@ classdef unittest_newTextSearchTable < matlab.unittest.TestCase
     %% Tests
 
     function Test_1(testcase)
-      tst = FileTool3.newTextSearchTable;
+      tst = TextSearchTool1.newTextSearchTable;
       verifyTrue(testcase, isempty(tst))
     end  % function
 
@@ -51,7 +51,7 @@ classdef unittest_newTextSearchTable < matlab.unittest.TestCase
       file_paths = ["path1"; "path2"];
       line_num = [2; 4];
       line_text = ["text1"; "text2"];
-      tst = FileTool3.newTextSearchTable(file_paths, line_num, line_text);
+      tst = TextSearchTool1.newTextSearchTable(file_paths, line_num, line_text);
       verifyEqual(testcase, height(tst), 2)
       verifyEqual(testcase, width(tst), 3)
       verifyEqual(testcase, tst.FilePath, file_paths)
@@ -64,7 +64,7 @@ classdef unittest_newTextSearchTable < matlab.unittest.TestCase
       file_paths = ["path1", "path2"];
       line_num = [2, 4];
       line_text = ["text1", "text2"];
-      tst = FileTool3.newTextSearchTable(file_paths, line_num, line_text);
+      tst = TextSearchTool1.newTextSearchTable(file_paths, line_num, line_text);
       verifyEqual(testcase, height(tst), 2)
       verifyEqual(testcase, width(tst), 3)
       % Notice the transpose operators.

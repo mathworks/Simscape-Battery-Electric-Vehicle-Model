@@ -230,7 +230,7 @@ in the Reducer component, Signal Tool is used.
 ## Tool Requirements
 
 Supported MATLAB Version:
-R2025a or newer releases
+R2025b or newer releases
 
 Required:
 [MATLAB](https://www.mathworks.com/products/matlab.html),
