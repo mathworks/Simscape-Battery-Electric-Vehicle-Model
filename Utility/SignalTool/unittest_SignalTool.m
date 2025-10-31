@@ -33,7 +33,7 @@ classdef unittest_SignalTool < matlab.unittest.TestCase
     % Before each function in this section runs, functions defined in the TestMethodSetup section run.
 
     function PassingTest_1(~)
-      TimedTrace_example
+      demo_TimedTrace
     end  % function
 
   end  % methods

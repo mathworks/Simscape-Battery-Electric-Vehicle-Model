@@ -1,9 +1,9 @@
 # MathWorks OPC Text Package
 Model {
-  Version  25.1
-  Description "Simulink model saved in R2025a"
+  Version  25.2
+  Description "Simulink model saved in R2025b"
 }
-__MWOPC_PACKAGE_BEGIN__ R2025a
+__MWOPC_PACKAGE_BEGIN__ R2025b
 __MWOPC_PART_BEGIN__ /[Content_Types].xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
@@ -44,9 +44,9 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2020-08-04T16:40:34Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-05T07:52:12Z</dcterms:modified>
-  <cp:revision>11.1</cp:revision>
-  <cp:version>R2025a</cp:version>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-10-31T08:53:36Z</dcterms:modified>
+  <cp:revision>12.0</cp:revision>
+  <cp:version>R2025b</cp:version>
 </cp:coreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
@@ -54,7 +54,7 @@ __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
 <mwcoreProperties xmlns="http://schemas.mathworks.com/package/2012/coreProperties">
   <contentType>application/vnd.mathworks.simulink.model</contentType>
   <contentTypeFriendlyName>Simulink Model</contentTypeFriendlyName>
-  <matlabRelease>R2025a</matlabRelease>
+  <matlabRelease>R2025b</matlabRelease>
 </mwcoreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
@@ -65,13 +65,13 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Version information for MathWorks R2025a Release -->
+<!-- Version information for MathWorks R2025b Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2973910</version>
-  <release>R2025a</release>
+  <version>25.2.0.3042426</version>
+  <release>R2025b</release>
   <description>Update 1</description>
-  <date>Jul 03 2025</date>
-  <checksum>1124574855</checksum>
+  <date>Oct 03 2025</date>
+  <checksum>3600278938</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -583,7 +583,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.1&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:12.0&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="MultithreadedSim">on</P>
@@ -2102,7 +2102,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42911.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42913"/>
       <P Name="SourceFile">foundation.electrical.elements.reference</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;V&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Right&quot;:[],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2111,6 +2110,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42911.xml
       <P Name="ComponentVariantNames">[&quot;reference&quot;]</P>
       <P Name="ClassName">reference</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42913"/>
     </InstanceData>
   </Block>
   <Block BlockType="SubSystem" Name="Electrical measurement" SID="42914">
@@ -2175,7 +2175,6 @@ Rotational Reference</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42931"/>
       <P Name="SourceFile">foundation.mechanical.rotational.reference</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;W&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2184,6 +2183,7 @@ Rotational Reference</P>
       <P Name="ComponentVariantNames">[&quot;reference&quot;]</P>
       <P Name="ClassName">reference</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42931"/>
     </InstanceData>
   </Block>
   <Block BlockType="SubSystem" Name="Mechanical measurement" SID="42933">
@@ -2215,7 +2215,6 @@ Rotational Reference</P>
     <InstanceData>
       <P Name="LogSimulationData">on</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42956"/>
       <P Name="SourceFile">ee.electromech.motor_and_drive_thermal</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;Vp&quot;,&quot;label&quot;:&quot;+&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;},{&quot;id&quot;:&quot;Tr&quot;,&quot;label&quot;:&quot;Tr&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;R&quot;,&quot;label&quot;:&quot;R&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;Vm&quot;,&quot;label&quot;:&quot;-&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;},{&quot;id&quot;:&quot;Omega&quot;,&quot;label&quot;:&quot;w&quot;,&quot;type&quot;:&quot;output&quot;},{&quot;id&quot;:&quot;H&quot;,&quot;label&quot;:&quot;H&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;},{&quot;id&quot;:&quot;C&quot;,&quot;label&quot;:&quot;C&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2371,6 +2370,7 @@ Rotational Reference</P>
       <P Name="initial_temperature">initial.motorDriveUnit_Temperature_K</P>
       <P Name="initial_temperature_unit">degC</P>
       <P Name="initial_temperature_conf">compiletime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42956"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Torsional Spring-Damper" SID="42948">
@@ -2387,7 +2387,6 @@ Spring-Damper</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42948"/>
       <P Name="SourceFile">sdl.couplings.torsional_damper</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;R&quot;,&quot;label&quot;:&quot;R&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;C&quot;,&quot;label&quot;:&quot;C&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2444,6 +2443,7 @@ Spring-Damper</P>
       <P Name="x0">0</P>
       <P Name="x0_unit">deg</P>
       <P Name="x0_conf">compiletime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42948"/>
     </InstanceData>
   </Block>
   <Block BlockType="PMIOPort" Name="TrqCmd" SID="42949">
@@ -2631,7 +2631,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42914.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42915"/>
       <P Name="SourceFile">foundation.electrical.sensors.current</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;p&quot;,&quot;label&quot;:&quot;+&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;I&quot;,&quot;label&quot;:&quot;I&quot;,&quot;type&quot;:&quot;output&quot;},{&quot;id&quot;:&quot;n&quot;,&quot;label&quot;:&quot;-&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2640,6 +2639,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42914.xml
       <P Name="ComponentVariantNames">[&quot;current&quot;]</P>
       <P Name="ClassName">current</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42915"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS Product" SID="42916">
@@ -2653,7 +2653,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42914.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42916"/>
       <P Name="SourceFile">foundation.signal.functions.product</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I1&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;I2&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2662,6 +2661,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42914.xml
       <P Name="ComponentVariantNames">[&quot;product&quot;]</P>
       <P Name="ClassName">product</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42916"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter1" SID="42917">
@@ -2767,7 +2767,6 @@ Converter</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42920"/>
       <P Name="SourceFile">foundation.electrical.sensors.voltage</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;p&quot;,&quot;label&quot;:&quot;+&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;V&quot;,&quot;label&quot;:&quot;V&quot;,&quot;type&quot;:&quot;output&quot;},{&quot;id&quot;:&quot;n&quot;,&quot;label&quot;:&quot;-&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2776,6 +2775,7 @@ Converter</P>
       <P Name="ComponentVariantNames">[&quot;voltage&quot;]</P>
       <P Name="ClassName">voltage</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42920"/>
     </InstanceData>
   </Block>
   <Block BlockType="PMIOPort" Name="Plus1" SID="42921">
@@ -2931,7 +2931,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42933.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42934"/>
       <P Name="SourceFile">foundation.signal.functions.product</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I1&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;I2&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2940,6 +2939,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42933.xml
       <P Name="ComponentVariantNames">[&quot;product&quot;]</P>
       <P Name="ClassName">product</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42934"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter1" SID="42935">
@@ -3047,7 +3047,6 @@ Motion Sensor</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42938"/>
       <P Name="SourceFile">foundation.mechanical.sensors.angular_velocity</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;R&quot;,&quot;label&quot;:&quot;R&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;W&quot;,&quot;label&quot;:&quot;W&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3074,6 +3073,7 @@ Motion Sensor</P>
       <P Name="offset">0</P>
       <P Name="offset_unit">rad</P>
       <P Name="offset_conf">compiletime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42938"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Torque Sensor" SID="42939">
@@ -3088,7 +3088,6 @@ Motion Sensor</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42939"/>
       <P Name="SourceFile">foundation.mechanical.sensors.torque</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;R&quot;,&quot;label&quot;:&quot;R&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;C&quot;,&quot;label&quot;:&quot;C&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;},{&quot;id&quot;:&quot;T&quot;,&quot;label&quot;:&quot;T&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3097,6 +3096,7 @@ Motion Sensor</P>
       <P Name="ComponentVariantNames">[&quot;torque&quot;]</P>
       <P Name="ClassName">torque</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42939"/>
     </InstanceData>
   </Block>
   <Block BlockType="PMIOPort" Name="C" SID="42940">
@@ -3242,7 +3242,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42961.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42962"/>
       <P Name="SourceFile">foundation.thermal.sensors.temperature</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;A&quot;,&quot;label&quot;:&quot;A&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;B&quot;,&quot;label&quot;:&quot;B&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;},{&quot;id&quot;:&quot;T&quot;,&quot;label&quot;:&quot;T&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3254,6 +3253,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42961.xml
       <P Name="temperature_measure">foundation.enum.MeasurementReference.difference</P>
       <P Name="temperature_measure_unit">1</P>
       <P Name="temperature_measure_conf">compiletime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42962"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Ambient Thermal Mass" SID="42963">
@@ -3270,7 +3270,6 @@ Priority: %&lt;T_priority&gt;</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42963"/>
       <P Name="SourceFile">foundation.thermal.elements.mass</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;M&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;}],&quot;Right&quot;:[],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3315,6 +3314,7 @@ Priority: %&lt;T_priority&gt;</P>
       <P Name="Q_nominal_specify">off</P>
       <P Name="Q_nominal_value">1</P>
       <P Name="Q_nominal_unit">W</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42963"/>
     </InstanceData>
   </Block>
   <Block BlockType="BusCreator" Name="Bus&#xA;Creator" SID="42964">
@@ -3340,7 +3340,6 @@ Rate Source</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42965"/>
       <P Name="SourceFile">foundation.thermal.sources.controlled_heat_flow</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;B&quot;,&quot;label&quot;:&quot;B&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;S&quot;,&quot;label&quot;:&quot;S&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;A&quot;,&quot;label&quot;:&quot;A&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3349,6 +3348,7 @@ Rate Source</P>
       <P Name="ComponentVariantNames">[&quot;controlled_heat_flow&quot;]</P>
       <P Name="ClassName">controlled_heat_flow</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42965"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Motor Temperature Sensor" SID="42966">
@@ -3365,7 +3365,6 @@ Rate Source</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42966"/>
       <P Name="SourceFile">foundation.thermal.sensors.temperature</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;A&quot;,&quot;label&quot;:&quot;A&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;B&quot;,&quot;label&quot;:&quot;B&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;},{&quot;id&quot;:&quot;T&quot;,&quot;label&quot;:&quot;T&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3377,6 +3376,7 @@ Rate Source</P>
       <P Name="temperature_measure">foundation.enum.MeasurementReference.difference</P>
       <P Name="temperature_measure_unit">1</P>
       <P Name="temperature_measure_conf">compiletime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42966"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter" SID="42967">
@@ -3462,7 +3462,6 @@ Transfer</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42969"/>
       <P Name="SourceFile">foundation.thermal.elements.radiation</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;A&quot;,&quot;label&quot;:&quot;A&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;B&quot;,&quot;label&quot;:&quot;B&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3491,6 +3490,7 @@ Transfer</P>
       <P Name="Q_nominal_specify">off</P>
       <P Name="Q_nominal_value">1</P>
       <P Name="Q_nominal_unit">W</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42969"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Thermal Reference" SID="42970">
@@ -3505,7 +3505,6 @@ Transfer</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42970"/>
       <P Name="SourceFile">foundation.thermal.elements.reference</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;H&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;}],&quot;Right&quot;:[],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3514,6 +3513,7 @@ Transfer</P>
       <P Name="ComponentVariantNames">[&quot;reference&quot;]</P>
       <P Name="ClassName">reference</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42970"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Thermal Reference1" SID="42971">
@@ -3529,7 +3529,6 @@ Transfer</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42971"/>
       <P Name="SourceFile">foundation.thermal.elements.reference</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;H&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;}],&quot;Right&quot;:[],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3538,6 +3537,7 @@ Transfer</P>
       <P Name="ComponentVariantNames">[&quot;reference&quot;]</P>
       <P Name="ClassName">reference</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42971"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Thermal Reference2" SID="42972">
@@ -3553,7 +3553,6 @@ Transfer</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42972"/>
       <P Name="SourceFile">foundation.thermal.elements.reference</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;H&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.thermal.thermal&quot;}],&quot;Right&quot;:[],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3562,6 +3561,7 @@ Transfer</P>
       <P Name="ComponentVariantNames">[&quot;reference&quot;]</P>
       <P Name="ClassName">reference</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42972"/>
     </InstanceData>
   </Block>
   <Block BlockType="PMIOPort" Name="Motor" SID="42973">
@@ -4708,11 +4708,10 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[37, 33, 1177, 673]</P>
-  <P Name="Open">on</P>
   <List ListType="InterfaceData">
     <P Name="Version">0</P>
-    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;fd2a7c5c-21dd-47aa-a5d1-c9af7737b702&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;9be32b02-9add-4eee-a4ba-f294d4ce311c&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6723234b-485c-45fc-bd69-987a5efcc9ec&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;TrqCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;fd2a7c5c-21dd-47aa-a5d1-c9af7737b702&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N*m&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;e096698b-5cd4-4faf-8eba-c227e9fef611&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;ebad81df-213f-4966-89a4-5e0f90ca2581&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6723234b-485c-45fc-bd69-987a5efcc9ec&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;HeatCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;9be32b02-9add-4eee-a4ba-f294d4ce311c&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;W&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;f6f2b95b-83d5-484e-9cd4-10634eed9673&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;1558cf0f-24f5-4b6b-8c5c-73800da4d88e&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6723234b-485c-45fc-bd69-987a5efcc9ec&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;86a9a289-013a-437a-81e5-8a27cb397007&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
-    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;86a9a289-013a-437a-81e5-8a27cb397007&quot;}}}</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;68d2dc5a-31a8-471f-8b3a-c7a6aa398cf1&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;46b17da8-4f0f-4567-8b01-5644108b51bc&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;7e14fc04-641d-4167-8ecd-1d818a9f2996&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;TrqCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;68d2dc5a-31a8-471f-8b3a-c7a6aa398cf1&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N*m&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;acdf445c-a643-4547-9ff2-ae7ec203339f&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;de957580-de80-4ce7-90fa-583c1d142308&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;7e14fc04-641d-4167-8ecd-1d818a9f2996&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;HeatCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;46b17da8-4f0f-4567-8b01-5644108b51bc&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;W&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;20c47b9d-af5a-49e2-a0fc-667a87a940aa&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;b8303325-f1e8-4e79-9c1f-acb704f6a3f8&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;7e14fc04-641d-4167-8ecd-1d818a9f2996&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;32219e9d-1a17-4ea0-b3b9-6344a206816a&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;32219e9d-1a17-4ea0-b3b9-6344a206816a&quot;}}}</P>
   </List>
   <P Name="ReportName">simulink-default.rpt</P>
   <P Name="SIDHighWatermark">43046</P>
@@ -5236,7 +5235,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">3c062bd7-51a1-4e99-ba3e-7d230cab410b</P>
     </Object>
-    <P Name="BDUuid" Class="char">498e9066-aba4-4592-b01d-efd657aab4d4</P>
+    <P Name="BDUuid" Class="char">f0044877-7966-4d71-ba8f-d63fa12ccfdc</P>
   </Object>
 </WindowsInfo>
 

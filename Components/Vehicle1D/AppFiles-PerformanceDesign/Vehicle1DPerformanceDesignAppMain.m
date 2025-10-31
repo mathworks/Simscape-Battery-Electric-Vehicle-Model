@@ -19,49 +19,49 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
     % -------------------------------------------------------------------------
     % GUI parts
 
-    Window LiteApp7.LiteAppWindow
+    Window LiteApp8.LiteAppWindow
 
-    InfoLinkUI LiteApp7.Component.Hyperlink
+    InfoLinkUI LiteApp8.Component.Hyperlink
 
     % Vehicle
-    VehicleMassUI LiteApp7.Component.PhysicalValueUI
-    TireRollingCoefficientUI LiteApp7.Component.PhysicalValueUI
-    AirDragCoefficientUI LiteApp7.Component.PhysicalValueUI
-    FrontalAreaUI LiteApp7.Component.PhysicalValueUI
+    VehicleMassUI LiteApp8.Component.PhysicalValueUI
+    TireRollingCoefficientUI LiteApp8.Component.PhysicalValueUI
+    AirDragCoefficientUI LiteApp8.Component.PhysicalValueUI
+    FrontalAreaUI LiteApp8.Component.PhysicalValueUI
 
     % Environment
-    GravitationalAccelerationUI LiteApp7.Component.PhysicalValueUI
-    AirDensityUI LiteApp7.Component.PhysicalValueUI
+    GravitationalAccelerationUI LiteApp8.Component.PhysicalValueUI
+    AirDensityUI LiteApp8.Component.PhysicalValueUI
 
     % Road-load
-    RoadLoadAUI LiteApp7.Component.PhysicalValueUI
-    RoadLoadBUI LiteApp7.Component.PhysicalValueUI
-    RoadLoadCUI LiteApp7.Component.PhysicalValueUI
+    RoadLoadAUI LiteApp8.Component.PhysicalValueUI
+    RoadLoadBUI LiteApp8.Component.PhysicalValueUI
+    RoadLoadCUI LiteApp8.Component.PhysicalValueUI
 
     % Performance
-    TopSpeedUI LiteApp7.Component.PhysicalValueUI
-    MaximumAccelerationUI LiteApp7.Component.PhysicalValueUI
-    MaximumForceUI LiteApp7.Component.PhysicalValueUI
-    MaximumClimbGradeUI LiteApp7.Component.PhysicalValueUI
-    MaximumClimbPowerUI LiteApp7.Component.PhysicalValueUI
+    TopSpeedUI LiteApp8.Component.PhysicalValueUI
+    MaximumAccelerationUI LiteApp8.Component.PhysicalValueUI
+    MaximumForceUI LiteApp8.Component.PhysicalValueUI
+    MaximumClimbGradeUI LiteApp8.Component.PhysicalValueUI
+    MaximumClimbPowerUI LiteApp8.Component.PhysicalValueUI
 
     % Preset
-    PresetUI LiteApp7.Component.ListBox
+    PresetUI LiteApp8.Component.ListBox
 
     % Plot
-    UpdateButtonUI LiteApp7.Component.Button
-    AutoUpdateUI LiteApp7.Component.CheckBox
-    OpenFigureWindowUI LiteApp7.Component.Hyperlink
+    UpdateButtonUI LiteApp8.Component.Button
+    AutoUpdateUI LiteApp8.Component.CheckBox
+    OpenFigureWindowUI LiteApp8.Component.Hyperlink
     ParentAxes matlab.graphics.axis.Axes {mustBeScalarOrEmpty}
 
     % Plot customization
-    PlotGradesUI LiteApp7.Component.PhysicalValueUI
-    PlotAnglesUI LiteApp7.Component.PhysicalValueUI
-    PlotPowersUI LiteApp7.Component.PhysicalValueUI
-    PlotForceUpperBoundUI LiteApp7.Component.PhysicalValueUI
-    PlotSpeedUpperBoundUI LiteApp7.Component.PhysicalValueUI
+    PlotGradesUI LiteApp8.Component.PhysicalValueUI
+    PlotAnglesUI LiteApp8.Component.PhysicalValueUI
+    PlotPowersUI LiteApp8.Component.PhysicalValueUI
+    PlotForceUpperBoundUI LiteApp8.Component.PhysicalValueUI
+    PlotSpeedUpperBoundUI LiteApp8.Component.PhysicalValueUI
 
-    SelectorUI LiteApp7.Component.BlockSelectorUI
+    SelectorUI LiteApp8.Component.BlockSelectorUI
 
   end  % properties
 
@@ -87,8 +87,8 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
     % The text of this string must be a member of the Preset property of the Vehicle1DPerformanceParameters class.
     default_preset (1,1) string = "Medium car"
 
-    button_ui_component_width = LiteApp7.Constant.Width{"unitwidth"} * 10
-    button_ui_button_width = LiteApp7.Constant.Width{"unitwidth"} * 9
+    button_ui_component_width = LiteApp8.Constant.Width{"unitwidth"} * 10
+    button_ui_button_width = LiteApp8.Constant.Width{"unitwidth"} * 9
 
   end  % properties
 
@@ -444,7 +444,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
 
     function build_app(App)
       %%
-      win = LiteApp7.LiteAppWindow;
+      win = LiteApp8.LiteAppWindow;
       App.Window = win;
 
       win.Name = "Vehicle1D Performance Design App";
@@ -453,8 +453,8 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
 
       %% Start building an app
 
-      width_unit = LiteApp7.Constant.Width{"unitwidth"};
-      height_unit = LiteApp7.Constant.Height{"oneline+"};
+      width_unit = LiteApp8.Constant.Width{"unitwidth"};
+      height_unit = LiteApp8.Constant.Height{"oneline+"};
 
       layout = win.MainLayout;
 
@@ -473,18 +473,18 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       FileTool3.getFileFullPath(html_file);
 
       row = NewRow(layout, column);
-      App.InfoLinkUI = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
-      App.InfoLinkUI.HyperlinkText = "Description";
+      App.InfoLinkUI = LiteApp8.Component.Hyperlink(NewSlot(layout, row));
+      App.InfoLinkUI.Text = "Description";
       App.InfoLinkUI.HyperlinkClickedCallback = @() web(html_file);
       App.InfoLinkUI.ComponentHeight = height_unit;
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      label_1 = LiteApp7.Component.Label(NewSlot(layout, row));
+      label_1 = LiteApp8.Component.Label(NewSlot(layout, row));
       label_1.Text = "\textbf{Vehicle}";
 
       row = NewRow(layout, column);
-      App.VehicleMassUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.VehicleMassUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.VehicleMassUI.NameUIWidth = left_label_width_1;
       % App.VehicleMassUI.UnitUIWidth = unit_ui_width_1;
       App.VehicleMassUI.NameInInfo = "Vehicle mass";
@@ -494,7 +494,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.VehicleMassUI.UnitChangedCallback = @() callback_physical_value(App, Name="VehicleMass", UnitUIType="dropdown", Condition="positive");
 
       row = NewRow(layout, column);
-      App.TireRollingCoefficientUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.TireRollingCoefficientUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.TireRollingCoefficientUI.NameUIWidth = left_label_width_1;
       % App.TireRollingCoefficientUI.UnitUIWidth = unit_ui_width_1;
       App.TireRollingCoefficientUI.NameInInfo = "Tire rolling coefficient";
@@ -503,7 +503,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.TireRollingCoefficientUI.ValueChangedCallback = @() callback_physical_value(App, Name="TireRollingCoefficient", UnitUIType="1", Condition="positive");
 
       row = NewRow(layout, column);
-      App.AirDragCoefficientUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.AirDragCoefficientUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.AirDragCoefficientUI.NameUIWidth = left_label_width_1;
       % App.AirDragCoefficientUI.UnitUIWidth = unit_ui_width_1;
       App.AirDragCoefficientUI.NameInInfo = "Air drag coefficient";
@@ -512,7 +512,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.AirDragCoefficientUI.ValueChangedCallback = @() callback_physical_value(App, Name="AirDragCoefficient", UnitUIType="1", Condition="positive");
 
       row = NewRow(layout, column);
-      App.FrontalAreaUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.FrontalAreaUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.FrontalAreaUI.NameUIWidth = left_label_width_1;
       % App.FrontalAreaUI.UnitUIWidth = unit_ui_width_1;
       App.FrontalAreaUI.NameInInfo = "Frontal area";
@@ -522,11 +522,11 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
 
       % -----------------------------------------------------------------------------
       row = NewRow(layout, column);
-      label_1 = LiteApp7.Component.Label(NewSlot(layout, row));
+      label_1 = LiteApp8.Component.Label(NewSlot(layout, row));
       label_1.Text = "\textbf{Environment}";
 
       row = NewRow(layout, column);
-      App.GravitationalAccelerationUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.GravitationalAccelerationUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.GravitationalAccelerationUI.NameUIWidth = left_label_width_1;
       % App.GravitationalAccelerationUI.UnitUIWidth = unit_ui_width_1;
       App.GravitationalAccelerationUI.NameInInfo = "Gravitational acceleration";
@@ -535,7 +535,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.GravitationalAccelerationUI.ValueChangedCallback = @() callback_physical_value(App, Name="GravitationalAcceleration", UnitUIType="label", Condition="positive");
 
       row = NewRow(layout, column);
-      App.AirDensityUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.AirDensityUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.AirDensityUI.NameUIWidth = left_label_width_1;
       % App.AirDensityUI.UnitUIWidth = unit_ui_width_1;
       App.AirDensityUI.NameInInfo = "Air density";
@@ -545,11 +545,11 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
 
       % -----------------------------------------------------------------------------
       row = NewRow(layout, column);
-      label_1 = LiteApp7.Component.Label(NewSlot(layout, row));
+      label_1 = LiteApp8.Component.Label(NewSlot(layout, row));
       label_1.Text = "\textbf{Road-load}";
 
       row = NewRow(layout, column);
-      App.RoadLoadAUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.RoadLoadAUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.RoadLoadAUI.NameUIWidth = left_label_width_1;
       % App.RoadLoadAUI.UnitUIWidth = unit_ui_width_1;
       App.RoadLoadAUI.NameInInfo = "Road-load coefficient A";
@@ -558,7 +558,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.RoadLoadAUI.ValueReadOnly = true;
 
       row = NewRow(layout, column);
-      App.RoadLoadBUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.RoadLoadBUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.RoadLoadBUI.NameUIWidth = left_label_width_1;
       % App.RoadLoadBUI.UnitUIWidth = unit_ui_width_1;
       App.RoadLoadBUI.NameInInfo = "Road-load coefficient B";
@@ -567,7 +567,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.RoadLoadBUI.ValueChangedCallback = @() callback_physical_value(App, Name="RoadLoadB", UnitUIType="label", Condition="non-negative");
 
       row = NewRow(layout, column);
-      App.RoadLoadCUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.RoadLoadCUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.RoadLoadCUI.NameUIWidth = left_label_width_1;
       % App.RoadLoadCUI.UnitUIWidth = unit_ui_width_1;
       App.RoadLoadCUI.NameInInfo = "Road-load coefficient C";
@@ -577,11 +577,11 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
 
       % -----------------------------------------------------------------------------
       row = NewRow(layout, column);
-      label_1 = LiteApp7.Component.Label(NewSlot(layout, row));
+      label_1 = LiteApp8.Component.Label(NewSlot(layout, row));
       label_1.Text = "\textbf{Performance}";
 
       row = NewRow(layout, column);
-      App.TopSpeedUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.TopSpeedUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.TopSpeedUI.NameUIWidth = left_label_width_1;
       % App.TopSpeedUI.UnitUIWidth = unit_ui_width_1;
       App.TopSpeedUI.NameInInfo = "Top speed";
@@ -591,7 +591,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.TopSpeedUI.UnitChangedCallback = @() callback_physical_value(App, Name="TopSpeed", UnitUIType="dropdown", Condition="positive");
 
       row = NewRow(layout, column);
-      App.MaximumAccelerationUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.MaximumAccelerationUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.MaximumAccelerationUI.NameUIWidth = left_label_width_1;
       % App.MaximumAccelerationUI.UnitUIWidth = unit_ui_width_1;
       App.MaximumAccelerationUI.NameInInfo = "Max acceleration";
@@ -600,7 +600,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.MaximumAccelerationUI.ValueChangedCallback = @() callback_physical_value(App, Name="MaximumAcceleration", UnitUIType="1", Condition="positive");
 
       row = NewRow(layout, column);
-      App.MaximumForceUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.MaximumForceUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.MaximumForceUI.NameUIWidth = left_label_width_1;
       % App.MaximumForceUI.UnitUIWidth = unit_ui_width_1;
       App.MaximumForceUI.NameInInfo = "Max force";
@@ -609,7 +609,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.MaximumForceUI.ValueReadOnly = true;
 
       row = NewRow(layout, column);
-      App.MaximumClimbGradeUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.MaximumClimbGradeUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.MaximumClimbGradeUI.NameUIWidth = left_label_width_1;
       % App.MaximumClimbGradeUI.UnitUIWidth = unit_ui_width_1;
       App.MaximumClimbGradeUI.NameInInfo = "Max climb grade";
@@ -618,7 +618,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.MaximumClimbGradeUI.ValueChangedCallback = @() callback_physical_value(App, Name="MaximumClimbGrade", UnitUIType="1", Condition="positive");
 
       row = NewRow(layout, column);
-      App.MaximumClimbPowerUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.MaximumClimbPowerUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.MaximumClimbPowerUI.NameUIWidth = left_label_width_1;
       % App.MaximumClimbPowerUI.UnitUIWidth = unit_ui_width_1;
       App.MaximumClimbPowerUI.NameInInfo = "Max climb power";
@@ -627,14 +627,14 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.MaximumClimbPowerUI.ValueReadOnly = true;
 
       % -----------------------------------------------------------------------
-      LiteApp7.Component.HorizontalLine(NewRow(layout, column));
+      LiteApp8.Component.HorizontalLine(NewRow(layout, column));
 
       row = NewRow(layout, column);
-      label_1 = LiteApp7.Component.Label(NewSlot(layout, row));
+      label_1 = LiteApp8.Component.Label(NewSlot(layout, row));
       label_1.Text = "\textbf{Preset}";
 
       row = NewRow(layout, column);
-      App.PresetUI = LiteApp7.Component.ListBox(NewSlot(layout, row));
+      App.PresetUI = LiteApp8.Component.ListBox(NewSlot(layout, row));
       App.PresetUI.ComponentHeight = height_unit * 4;
       App.PresetUI.MainListBox.Multiselect = "off";
       App.PresetUI.ValueChangedCallback = @() callback_Preset(App);
@@ -645,7 +645,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
 
-      App.UpdateButtonUI = LiteApp7.Component.Button(NewSlot(layout, row, Width="fit"));
+      App.UpdateButtonUI = LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
       App.UpdateButtonUI.ComponentWidth = App.button_ui_component_width;
       App.UpdateButtonUI.ButtonWidth = App.button_ui_button_width;
       App.UpdateButtonUI.Text = "Update";
@@ -654,21 +654,21 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       % Disable update button at first.
       App.UpdateButtonUI.MainButton.Enable = "off";
 
-      App.AutoUpdateUI = LiteApp7.Component.CheckBox(NewSlot(layout, row));
+      App.AutoUpdateUI = LiteApp8.Component.CheckBox(NewSlot(layout, row));
       App.AutoUpdateUI.Text = "Auto-update";
       App.AutoUpdateUI.ValueChangedCallback = @() callback_AutoUpdate(App);
       % Deselect Auto-update check box to avoid calling plot update during startup.
       % Select the check box after the app has been made visible.
       App.AutoUpdateUI.Value = false;
 
-      App.OpenFigureWindowUI = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
-      App.OpenFigureWindowUI.HyperlinkText = "Open in figure window";
+      App.OpenFigureWindowUI = LiteApp8.Component.Hyperlink(NewSlot(layout, row));
+      App.OpenFigureWindowUI.Text = "Open in figure window";
       App.OpenFigureWindowUI.HorizontalAlignment = "right";
       App.OpenFigureWindowUI.HyperlinkClickedCallback = @() performancePlot(App);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      panel_ui = LiteApp7.Graphics.Panel(NewSlot(layout, row));
+      panel_ui = LiteApp8.Graphics.Panel(NewSlot(layout, row));
       panel_ui.ComponentHeight = 400;
       panel_ui.BorderType = "none";
 
@@ -681,12 +681,12 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       unit_ui_width_2 = width_unit*10;
 
       row = NewRow(layout, column);
-      label_1 = LiteApp7.Component.Label(NewSlot(layout, row));
+      label_1 = LiteApp8.Component.Label(NewSlot(layout, row));
       label_1.Text = "\textbf{Plot customization}";
       label_1.ComponentWidth = left_label_width_2;
 
       row = NewRow(layout, column);
-      App.PlotGradesUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.PlotGradesUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.PlotGradesUI.NameUIWidth = left_label_width_2;
       App.PlotGradesUI.UnitUIWidth = unit_ui_width_2;
       App.PlotGradesUI.Name = "Road grade";
@@ -694,7 +694,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.PlotGradesUI.ValueChangedCallback = @() callback_physical_value(App, Name="PlotGrades", UnitUIType="1", Condition="non-negative");
 
       row = NewRow(layout, column);
-      App.PlotAnglesUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.PlotAnglesUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.PlotAnglesUI.NameUIWidth = left_label_width_2;
       App.PlotAnglesUI.UnitUIWidth = unit_ui_width_2;
       App.PlotAnglesUI.Name = "Road angle";
@@ -702,7 +702,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.PlotAnglesUI.ValueReadOnly = true;
 
       row = NewRow(layout, column);
-      App.PlotPowersUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.PlotPowersUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.PlotPowersUI.NameUIWidth = left_label_width_2;
       App.PlotPowersUI.UnitUIWidth = unit_ui_width_2;
       App.PlotPowersUI.Name = "Power";
@@ -710,7 +710,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.PlotPowersUI.ValueChangedCallback = @() callback_physical_value(App, Name="PlotPowers", UnitUIType="label", Condition="non-negative");
 
       row = NewRow(layout, column);
-      App.PlotForceUpperBoundUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.PlotForceUpperBoundUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.PlotForceUpperBoundUI.NameUIWidth = left_label_width_2;
       App.PlotForceUpperBoundUI.UnitUIWidth = unit_ui_width_2;
       App.PlotForceUpperBoundUI.Name = "Force upper bound";
@@ -719,7 +719,7 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       App.PlotForceUpperBoundUI.UnitChangedCallback = @() callback_physical_value(App, Name="PlotForceUpperBound", UnitUIType="dropdown", Condition="positive");
 
       row = NewRow(layout, column);
-      App.PlotSpeedUpperBoundUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.PlotSpeedUpperBoundUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.PlotSpeedUpperBoundUI.NameUIWidth = left_label_width_2;
       App.PlotSpeedUpperBoundUI.UnitUIWidth = unit_ui_width_2;
       App.PlotSpeedUpperBoundUI.Name = "Speed upper bound";
@@ -734,13 +734,13 @@ classdef Vehicle1DPerformanceDesignAppMain < handle
       NewRow(layout, column, Height=4);  % vertical small gap
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      LiteApp7.Component.HorizontalLine(NewSlot(layout, row));
+      LiteApp8.Component.HorizontalLine(NewSlot(layout, row));
       % -----------------------------------------------------------------------
       NewRow(layout, column, Height=4);  % vertical small gap
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.SelectorUI = LiteApp7.Component.BlockSelectorUI(NewSlot(layout, row));
+      App.SelectorUI = LiteApp8.Component.BlockSelectorUI(NewSlot(layout, row));
       App.SelectorUI.MainFigure = App.Window.MainFigure;
       App.SelectorUI.TargetSimscapeBlockNames = "Longitudinal Vehicle";
       App.SelectorUI.GetParametersFromBlockCallback = @() getParametersFromVehicleBlock(App);

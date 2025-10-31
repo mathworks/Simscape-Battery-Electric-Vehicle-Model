@@ -1,9 +1,9 @@
 # MathWorks OPC Text Package
 Model {
-  Version  25.1
-  Description "Simulink model saved in R2025a"
+  Version  25.2
+  Description "Simulink model saved in R2025b"
 }
-__MWOPC_PACKAGE_BEGIN__ R2025a
+__MWOPC_PACKAGE_BEGIN__ R2025b
 __MWOPC_PART_BEGIN__ /[Content_Types].xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
@@ -44,9 +44,9 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2020-08-04T16:40:34Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-07-15T15:09:58Z</dcterms:modified>
-  <cp:revision>11.0</cp:revision>
-  <cp:version>R2025a</cp:version>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-10-31T08:53:35Z</dcterms:modified>
+  <cp:revision>12.0</cp:revision>
+  <cp:version>R2025b</cp:version>
 </cp:coreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
@@ -54,7 +54,7 @@ __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
 <mwcoreProperties xmlns="http://schemas.mathworks.com/package/2012/coreProperties">
   <contentType>application/vnd.mathworks.simulink.model</contentType>
   <contentTypeFriendlyName>Simulink Model</contentTypeFriendlyName>
-  <matlabRelease>R2025a</matlabRelease>
+  <matlabRelease>R2025b</matlabRelease>
 </mwcoreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
@@ -65,13 +65,13 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Version information for MathWorks R2025a Release -->
+<!-- Version information for MathWorks R2025b Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2943329</version>
-  <release>R2025a</release>
-  <description></description>
-  <date>Apr 16 2025</date>
-  <checksum>423651790</checksum>
+  <version>25.2.0.3042426</version>
+  <release>R2025b</release>
+  <description>Update 1</description>
+  <date>Oct 03 2025</date>
+  <checksum>3600278938</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -375,7 +375,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.0&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:12.0&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="MultithreadedSim">on</P>
@@ -2246,8 +2246,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42813.xml
   <P Name="Location">[60, 60, 1200, 700]</P>
   <List ListType="InterfaceData">
     <P Name="Version">0</P>
-    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;55f09b46-51d5-4ceb-94ae-b5e17749dd62&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3266f520-eba5-4053-a5ec-44919d8a09dc&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;8ee35db6-e1af-4a21-ad4c-c8389a9772fd&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;5e9baa2c-b5ec-4d0f-8af6-4e38876aa5ec&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;210f3d61-d590-41e2-b8a1-c4c53c47ebd5&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;49d9309b-effa-4396-8c46-1e156cdc492b&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;34c8cd4e-40db-461d-9d0f-a1f97f01cda4&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;181205b4-c6af-4a18-aaa8-86fd7c52519c&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;728bf166-424b-4cc7-9fa3-b2a7f1231053&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;9c1d1ecd-bb18-4ea5-be64-4f58808da2ad&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0bae0326-5e22-4858-bad1-64a57b2e9135&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;4d70d0d2-b4f6-4508-8a75-22f68e3d854a&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;MotorTrq&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;55f09b46-51d5-4ceb-94ae-b5e17749dd62&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;d62439a1-0839-4438-8948-158c7fcfb838&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;MotorMechPwr&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3266f520-eba5-4053-a5ec-44919d8a09dc&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;c5e2de28-4a23-449b-b43b-2057e8051f20&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:3,&quot;name&quot;:&quot;MotorSpd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;8ee35db6-e1af-4a21-ad4c-c8389a9772fd&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;e2d1e6f1-dcb0-4667-b6ad-3d243dee9851&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:4,&quot;name&quot;:&quot;MotorCurrent&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;5e9baa2c-b5ec-4d0f-8af6-4e38876aa5ec&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;a947fb20-ecd0-4b76-b6fe-f1f0460fdc06&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:5,&quot;name&quot;:&quot;MotorElecPwr&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;210f3d61-d590-41e2-b8a1-c4c53c47ebd5&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;b01b437e-b898-4f7e-a371-860ee78644ce&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:6,&quot;name&quot;:&quot;MotorVoltage&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;49d9309b-effa-4396-8c46-1e156cdc492b&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;b37af5d4-a89f-4ae3-8eca-fd8eb6cffa6a&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:7,&quot;name&quot;:&quot;MotorElecLoss&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;34c8cd4e-40db-461d-9d0f-a1f97f01cda4&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;b7238c9b-b64a-431b-bc56-098a65a94683&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:8,&quot;name&quot;:&quot;MotorTemp&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;181205b4-c6af-4a18-aaa8-86fd7c52519c&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;K&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;61d4f9d5-eb7e-46e3-9793-778e04cd9cfe&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;e32d07cf-a12a-4649-ac3f-c0b80c6e700d&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:9,&quot;name&quot;:&quot;TrqCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;728bf166-424b-4cc7-9fa3-b2a7f1231053&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;492ac085-ac5c-41e7-97da-1edfdf705af6&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:10,&quot;name&quot;:&quot;MotorPwrRate&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;9c1d1ecd-bb18-4ea5-be64-4f58808da2ad&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;ccedab13-109d-4fb0-84a3-759b82f4e5f0&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:11,&quot;name&quot;:&quot;HeatCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0bae0326-5e22-4858-bad1-64a57b2e9135&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;ca464c0f-a839-4d02-a74e-eb9dc6b6a355&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;indexOne&quot;:12,&quot;name&quot;:&quot;AmbTemp&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;4d70d0d2-b4f6-4508-8a75-22f68e3d854a&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;K&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;ef8276c6-8998-4add-a855-d7bf1566ab84&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;cefcd961-c1c7-4b2f-863b-f98f08c9268c&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;52b091a7-7e21-4824-b38c-2e8d8be6c77e&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;542c0e25-69b1-4622-b1ef-cce94b0ca496&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
-    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;542c0e25-69b1-4622-b1ef-cce94b0ca496&quot;}}}</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;9a73637a-a7b6-48d0-8d71-717a626e604f&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;56522f2a-c328-4288-ad74-071c48035a1a&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;545853ac-b67a-4529-ad0f-af89c2145d10&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;481a67ca-c634-403d-813e-d8b7255e1ba8&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;b83718c5-6e61-439f-898a-d663c47a747e&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;aa6a2480-8c44-44e9-9737-3f4509935a55&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;39178a04-2c7c-4c89-8285-2cea207dda4a&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;175262ff-a4c1-4e79-a2c3-f95303c5e6f0&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3fdcdba9-075d-4162-a388-e1db1fe9601b&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;2cbe587b-4746-404d-887a-06bc0997d4d0&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;7dc2b0a5-49eb-42d4-bbf0-b84f408b76e0&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;5fb39ba5-555d-4f61-ab94-ad35c5b5529d&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;MotorTrq&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;9a73637a-a7b6-48d0-8d71-717a626e604f&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;93b2e70a-4c20-4282-94a0-719837d09048&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;MotorMechPwr&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;56522f2a-c328-4288-ad74-071c48035a1a&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;e587e08e-669a-496e-823a-05820571568c&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:3,&quot;name&quot;:&quot;MotorSpd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;545853ac-b67a-4529-ad0f-af89c2145d10&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;a3d93785-5140-4ef9-8e08-e62e04168b04&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:4,&quot;name&quot;:&quot;MotorCurrent&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;481a67ca-c634-403d-813e-d8b7255e1ba8&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;15c8163e-6116-4dc3-9d82-424d55a1aeb9&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:5,&quot;name&quot;:&quot;MotorElecPwr&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;b83718c5-6e61-439f-898a-d663c47a747e&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;259a15bf-f5c5-49d5-b5c2-b1bdab5f4ce2&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:6,&quot;name&quot;:&quot;MotorVoltage&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;aa6a2480-8c44-44e9-9737-3f4509935a55&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;79c3a530-0426-4c06-971b-45eb6c392a3b&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:7,&quot;name&quot;:&quot;MotorElecLoss&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;39178a04-2c7c-4c89-8285-2cea207dda4a&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;a158e458-578b-489d-8fd3-3088d47b7879&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:8,&quot;name&quot;:&quot;MotorTemp&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;175262ff-a4c1-4e79-a2c3-f95303c5e6f0&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;K&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;26d31b18-9540-4720-844d-5b092b755919&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;daa44ab3-d316-4c26-8548-05151218a9fd&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:9,&quot;name&quot;:&quot;TrqCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3fdcdba9-075d-4162-a388-e1db1fe9601b&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;353439b2-401c-4f34-a79c-439a371f2cd1&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:10,&quot;name&quot;:&quot;MotorPwrRate&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;2cbe587b-4746-404d-887a-06bc0997d4d0&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;5daa391e-dd1c-4b84-b33c-fe7424a0b822&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:11,&quot;name&quot;:&quot;HeatCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;7dc2b0a5-49eb-42d4-bbf0-b84f408b76e0&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;b1f126ce-ac15-4962-9af1-b3cf761e1ffa&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;indexOne&quot;:12,&quot;name&quot;:&quot;AmbTemp&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;5fb39ba5-555d-4f61-ab94-ad35c5b5529d&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;K&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;4362ba00-3180-4131-8dea-9f8f6e865549&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;d83389ba-baa2-4b95-b146-05c828752784&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;49fc65a9-04b6-4b20-9937-7119f3bd253c&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;600716d8-6db5-4d0a-8046-90192924f409&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;600716d8-6db5-4d0a-8046-90192924f409&quot;}}}</P>
   </List>
   <Block BlockType="Inport" Name="TrqCmd" SID="42814">
     <P Name="Position">[-340, 58, -310, 72]</P>
@@ -2848,7 +2848,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42875.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42876"/>
       <P Name="SourceFile">foundation.electrical.sensors.current</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;p&quot;,&quot;label&quot;:&quot;+&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;I&quot;,&quot;label&quot;:&quot;I&quot;,&quot;type&quot;:&quot;output&quot;},{&quot;id&quot;:&quot;n&quot;,&quot;label&quot;:&quot;-&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2857,6 +2856,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42875.xml
       <P Name="ComponentVariantNames">[&quot;current&quot;]</P>
       <P Name="ClassName">current</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42876"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS Product" SID="42877">
@@ -2870,7 +2870,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42875.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42877"/>
       <P Name="SourceFile">foundation.signal.functions.product</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I1&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;I2&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2879,6 +2878,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42875.xml
       <P Name="ComponentVariantNames">[&quot;product&quot;]</P>
       <P Name="ClassName">product</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42877"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter1" SID="42878">
@@ -2984,7 +2984,6 @@ Converter</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42881"/>
       <P Name="SourceFile">foundation.electrical.sensors.voltage</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;p&quot;,&quot;label&quot;:&quot;+&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;V&quot;,&quot;label&quot;:&quot;V&quot;,&quot;type&quot;:&quot;output&quot;},{&quot;id&quot;:&quot;n&quot;,&quot;label&quot;:&quot;-&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2993,6 +2992,7 @@ Converter</P>
       <P Name="ComponentVariantNames">[&quot;voltage&quot;]</P>
       <P Name="ClassName">voltage</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42881"/>
     </InstanceData>
   </Block>
   <Block BlockType="PMIOPort" Name="Plus1" SID="42882">
@@ -3148,7 +3148,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42893.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42894"/>
       <P Name="SourceFile">foundation.signal.functions.product</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I1&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;I2&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3157,6 +3156,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_42893.xml
       <P Name="ComponentVariantNames">[&quot;product&quot;]</P>
       <P Name="ClassName">product</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42894"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter1" SID="42895">
@@ -3264,7 +3264,6 @@ Motion Sensor</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42898"/>
       <P Name="SourceFile">foundation.mechanical.sensors.angular_velocity</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;R&quot;,&quot;label&quot;:&quot;R&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;W&quot;,&quot;label&quot;:&quot;W&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3291,6 +3290,7 @@ Motion Sensor</P>
       <P Name="offset">0</P>
       <P Name="offset_unit">rad</P>
       <P Name="offset_conf">compiletime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42898"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Torque Sensor" SID="42899">
@@ -3305,7 +3305,6 @@ Motion Sensor</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42899"/>
       <P Name="SourceFile">foundation.mechanical.sensors.torque</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;R&quot;,&quot;label&quot;:&quot;R&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;C&quot;,&quot;label&quot;:&quot;C&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;},{&quot;id&quot;:&quot;T&quot;,&quot;label&quot;:&quot;T&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3314,6 +3313,7 @@ Motion Sensor</P>
       <P Name="ComponentVariantNames">[&quot;torque&quot;]</P>
       <P Name="ClassName">torque</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42899"/>
     </InstanceData>
   </Block>
   <Block BlockType="PMIOPort" Name="C" SID="42900">
@@ -3445,11 +3445,10 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[45, 82, 1185, 722]</P>
-  <P Name="Open">on</P>
   <List ListType="InterfaceData">
     <P Name="Version">0</P>
-    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;296e716e-dc1e-4d7d-be94-b8ab960f37bb&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;e50705ae-570d-4491-a20d-cdaa54f58ca7&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;d2b643ea-6ab4-4969-9fa3-2015c311637e&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;TrqCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;296e716e-dc1e-4d7d-be94-b8ab960f37bb&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N*m&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;c83d75d8-4547-4746-82a4-a92853522aad&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;79de4c7f-1c0f-4b42-a5cb-587a4359ef5d&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;d2b643ea-6ab4-4969-9fa3-2015c311637e&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;HeatCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;e50705ae-570d-4491-a20d-cdaa54f58ca7&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;W&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;09f94890-7ad5-4390-9fde-a21521e696ce&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;cf93835f-1afb-45b5-8853-8e6aae4f3b1a&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;d2b643ea-6ab4-4969-9fa3-2015c311637e&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;62267c64-5812-4c7d-a0fb-8e8e4fb5ad2a&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
-    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;62267c64-5812-4c7d-a0fb-8e8e4fb5ad2a&quot;}}}</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;338b9b9a-2224-4239-b587-a748bdf8c4f2&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;736fb8d5-ecd8-45c1-9ec5-383b1cbf2861&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6578bf9b-2a99-401c-a8d1-0fa809dd9bae&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;TrqCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;338b9b9a-2224-4239-b587-a748bdf8c4f2&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N*m&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;d124e094-a024-4cc0-8751-7f75a69b3236&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;7c87a230-0290-4c24-85a8-2faa545e1c46&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6578bf9b-2a99-401c-a8d1-0fa809dd9bae&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;HeatCmd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;736fb8d5-ecd8-45c1-9ec5-383b1cbf2861&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;W&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;d4a2e34f-73f7-4b66-83c8-7360013462da&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;be9f6971-dee0-42e3-a842-f8ee201dc0d7&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6578bf9b-2a99-401c-a8d1-0fa809dd9bae&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;57d228a2-b0aa-44a9-b537-90763a8f3e69&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;57d228a2-b0aa-44a9-b537-90763a8f3e69&quot;}}}</P>
   </List>
   <P Name="ReportName">simulink-default.rpt</P>
   <P Name="SIDHighWatermark">42910</P>
@@ -3508,7 +3507,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42874"/>
       <P Name="SourceFile">foundation.electrical.elements.reference</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;V&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Right&quot;:[],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3517,6 +3515,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
       <P Name="ComponentVariantNames">[&quot;reference&quot;]</P>
       <P Name="ClassName">reference</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42874"/>
     </InstanceData>
   </Block>
   <Block BlockType="SubSystem" Name="Electrical measurement" SID="42875">
@@ -3589,7 +3588,6 @@ Rotational Reference</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42892"/>
       <P Name="SourceFile">foundation.mechanical.rotational.reference</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;W&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3598,6 +3596,7 @@ Rotational Reference</P>
       <P Name="ComponentVariantNames">[&quot;reference&quot;]</P>
       <P Name="ClassName">reference</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42892"/>
     </InstanceData>
   </Block>
   <Block BlockType="SubSystem" Name="Mechanical measurement" SID="42893">
@@ -3628,7 +3627,6 @@ Rotational Reference</P>
     <InstanceData>
       <P Name="LogSimulationData">on</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42905"/>
       <P Name="SourceFile">ee.electromech.motor_and_drive</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;Vp&quot;,&quot;label&quot;:&quot;+&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;},{&quot;id&quot;:&quot;Tr&quot;,&quot;label&quot;:&quot;Tr&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;R&quot;,&quot;label&quot;:&quot;R&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;Vm&quot;,&quot;label&quot;:&quot;-&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;},{&quot;id&quot;:&quot;Omega&quot;,&quot;label&quot;:&quot;w&quot;,&quot;type&quot;:&quot;output&quot;},{&quot;id&quot;:&quot;C&quot;,&quot;label&quot;:&quot;C&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3784,6 +3782,7 @@ Rotational Reference</P>
       <P Name="initial_temperature">25</P>
       <P Name="initial_temperature_unit">degC</P>
       <P Name="initial_temperature_conf">compiletime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42905"/>
     </InstanceData>
   </Block>
   <Block BlockType="SimscapeBus" Name="Simscape Bus" SID="42810">
@@ -3855,7 +3854,6 @@ Spring-Damper</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42906"/>
       <P Name="SourceFile">sdl.couplings.torsional_damper</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;R&quot;,&quot;label&quot;:&quot;R&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;C&quot;,&quot;label&quot;:&quot;C&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3912,6 +3910,7 @@ Spring-Damper</P>
       <P Name="x0">0</P>
       <P Name="x0_unit">deg</P>
       <P Name="x0_conf">compiletime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_42906"/>
     </InstanceData>
   </Block>
   <Block BlockType="PMIOPort" Name="HighV" SID="42864">
@@ -4221,7 +4220,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">3c062bd7-51a1-4e99-ba3e-7d230cab410b</P>
     </Object>
-    <P Name="BDUuid" Class="char">a53ba1a3-e5b0-4f24-964d-58dd637147b0</P>
+    <P Name="BDUuid" Class="char">2658f683-1378-4ac9-b0b8-aace422af497</P>
   </Object>
 </WindowsInfo>
 

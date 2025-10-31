@@ -1,9 +1,9 @@
 # MathWorks OPC Text Package
 Model {
-  Version  25.1
-  Description "Simulink model saved in R2025a"
+  Version  25.2
+  Description "Simulink model saved in R2025b"
 }
-__MWOPC_PACKAGE_BEGIN__ R2025a
+__MWOPC_PACKAGE_BEGIN__ R2025b
 __MWOPC_PART_BEGIN__ /[Content_Types].xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
@@ -19,7 +19,6 @@ __MWOPC_PART_BEGIN__ /[Content_Types].xml
   <Override ContentType="application/vnd.mathworks.simulink.configSetInfo+xml" PartName="/simulink/configSetInfo.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.hdlparams+xml" PartName="/simulink/hdlParams.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.mf0+xml" PartName="/simulink/modelDictionary.xml"/>
-  <Override ContentType="application/vnd.mathworks.simulink.pluginParameters+xml" PartName="/simulink/plugins/LogicAnalyzerPlugin.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.pluginParameters+xml" PartName="/simulink/plugins/NotesPlugin.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.ScheduleCore+xml" PartName="/simulink/ScheduleCore.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.ScheduleEditor+xml" PartName="/simulink/ScheduleEditor.xml"/>
@@ -46,9 +45,9 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2020-07-03T11:51:10Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-27T11:10:03Z</dcterms:modified>
-  <cp:revision>11.18</cp:revision>
-  <cp:version>R2025a</cp:version>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-10-31T08:53:38Z</dcterms:modified>
+  <cp:revision>12.0</cp:revision>
+  <cp:version>R2025b</cp:version>
 </cp:coreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
@@ -56,7 +55,7 @@ __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
 <mwcoreProperties xmlns="http://schemas.mathworks.com/package/2012/coreProperties">
   <contentType>application/vnd.mathworks.simulink.model</contentType>
   <contentTypeFriendlyName>Simulink Model</contentTypeFriendlyName>
-  <matlabRelease>R2025a</matlabRelease>
+  <matlabRelease>R2025b</matlabRelease>
 </mwcoreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
@@ -67,19 +66,18 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Version information for MathWorks R2025a Release -->
+<!-- Version information for MathWorks R2025b Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2973910</version>
-  <release>R2025a</release>
+  <version>25.2.0.3042426</version>
+  <release>R2025b</release>
   <description>Update 1</description>
-  <date>Jul 03 2025</date>
-  <checksum>1124574855</checksum>
+  <date>Oct 03 2025</date>
+  <checksum>3600278938</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-  <Relationship Id="LogicAnalyzerPlugin" Target="plugins/LogicAnalyzerPlugin.xml" Type="http://schemas.mathworks.com/simulinkModel/2014/relationships/pluginParameters"/>
   <Relationship Id="NotesPlugin" Target="plugins/NotesPlugin.xml" Type="http://schemas.mathworks.com/simulinkModel/2014/relationships/pluginParameters"/>
   <Relationship Id="ScheduleCore" Target="ScheduleCore.xml" Type="http://schemas.mathworks.com/simulink/2013/relationships/ScheduleCore"/>
   <Relationship Id="ScheduleEditor" Target="ScheduleEditor.xml" Type="http://schemas.mathworks.com/simulink/2013/relationships/ScheduleEditor"/>
@@ -253,7 +251,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.18&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:12.0&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="ShowPortUnits">on</P>
@@ -1404,55 +1402,6 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
         "TestPointedSignals":[
             {
                 "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Vehicle G force"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From1",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Vehicle speed mph"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From19",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Vehicle speed kph"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From20",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Road Grade"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From21",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Brake force"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From27",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Axle speed"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From34",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Incline"
-            },
-            {
-                "Decimation":2,
                 "FullBlockPath":"$bdroot\/Measurement\/From",
                 "LogSignal":true,
                 "MaxPoints":5000,
@@ -1535,12 +1484,6 @@ __MWOPC_PART_BEGIN__ /simulink/modelDictionary.xml
     <Interface type="Interface" uuid="fe83bc59-d2f5-42c6-b031-91f3b73fdfdc"/>
   </System>
 </MF0>
-__MWOPC_PART_BEGIN__ /simulink/plugins/LogicAnalyzerPlugin.xml
-<?xml version="1.0" encoding="utf-8"?>
-<LogicAnalyzerPlugin>
-  <P Name="LogicAnalyzerSignalOrdering">21757ff4-2291-4334-9c60-70d7ec1f609d,15be0b54-9c1d-4694-816d-d412df870a5e,170af2be-b24d-402b-9456-139aca7be19b,49f86501-0eb6-4d3e-a96c-ed06b7153405,c6f0ab80-833f-4b9e-8b50-533680bf0ff2,9cec3763-4856-4a30-a363-d1ce7fffb1ff,3994912d-5f48-49b2-b714-a3116d906bb9,2e03c151-361b-4af7-97a6-c7bd0a20a8e4,55a545b2-a977-4070-b6cd-8b240194d6a0,4c287d45-3a85-4570-bdec-f2db7fda7975,ba3be045-b955-49c0-b1fd-875a78f349da,89e5a26c-45ff-4d7b-a53a-02f15bea8306,99eb5bba-0d9d-4c95-a9f0-53004e761b78,d3dc0bba-10f9-4404-bc49-1e6351738aba,a2cba5c3-cfc7-49eb-a2e1-0b023ae5c63f,edae90d0-010e-4432-ba63-8088a2972145</P>
-</LogicAnalyzerPlugin>
-
 __MWOPC_PART_BEGIN__ /simulink/plugins/NotesPlugin.xml
 <?xml version="1.0" encoding="utf-8"?>
 <NotesPlugin>
@@ -1689,7 +1632,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_347.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_459"/>
       <P Name="SourceFile">foundation.mechanical.rotational.damper</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;R&quot;,&quot;label&quot;:&quot;R&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;C&quot;,&quot;label&quot;:&quot;C&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -1715,6 +1657,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_347.xml
       <P Name="t_nominal_specify">off</P>
       <P Name="t_nominal_value">1</P>
       <P Name="t_nominal_unit">N*m</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_459"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Geartrain Inertia" SID="14">
@@ -1732,7 +1675,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_347.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_14"/>
       <P Name="SourceFile">foundation.mechanical.rotational.inertia</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;J&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -1761,6 +1703,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_347.xml
       <P Name="t_nominal_specify">off</P>
       <P Name="t_nominal_value">1</P>
       <P Name="t_nominal_unit">N*m</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_14"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Mechanical&#xA;Rotational Reference" SID="460">
@@ -1777,7 +1720,6 @@ Rotational Reference</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_460"/>
       <P Name="SourceFile">foundation.mechanical.rotational.reference</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;W&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -1786,6 +1728,7 @@ Rotational Reference</P>
       <P Name="ComponentVariantNames">[&quot;reference&quot;]</P>
       <P Name="ClassName">reference</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_460"/>
     </InstanceData>
   </Block>
   <Block BlockType="SimscapeBus" Name="Simscape Bus" SID="407">
@@ -1844,7 +1787,6 @@ Converter</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_17"/>
       <P Name="SourceFile">foundation.mechanical.sources.torque</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;R&quot;,&quot;label&quot;:&quot;R&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;S&quot;,&quot;label&quot;:&quot;S&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;C&quot;,&quot;label&quot;:&quot;C&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -1853,6 +1795,7 @@ Converter</P>
       <P Name="ComponentVariantNames">[&quot;torque&quot;]</P>
       <P Name="ClassName">torque</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_17"/>
     </InstanceData>
   </Block>
   <Block BlockType="PMIOPort" Name="C" SID="350">
@@ -2334,7 +2277,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[61, 41, 1201, 681]</P>
-  <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
   <P Name="SIDHighWatermark">862</P>
   <Block BlockType="SubSystem" Name="Axle torque input" SID="347">
@@ -2447,7 +2389,6 @@ Rotational Reference</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_16"/>
       <P Name="SourceFile">foundation.mechanical.rotational.reference</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;W&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.mechanical.rotational.rotational&quot;}],&quot;Right&quot;:[],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2456,6 +2397,7 @@ Rotational Reference</P>
       <P Name="ComponentVariantNames">[&quot;reference&quot;]</P>
       <P Name="ClassName">reference</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_16"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter" SID="475">
@@ -2924,7 +2866,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">0b82776b-3568-4091-8b56-551a033ff4d9</P>
     </Object>
-    <P Name="BDUuid" Class="char">39ff37fb-96c8-40ab-b5ce-88b73b4e42e9</P>
+    <P Name="BDUuid" Class="char">d977e7a5-77e0-45c4-885f-c0b89839497d</P>
   </Object>
 </WindowsInfo>
 

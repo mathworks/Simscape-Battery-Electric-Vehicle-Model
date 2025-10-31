@@ -37,7 +37,6 @@ classdef uptodatetest_BEVProject < matlab.unittest.TestCase
       source_fullpath = FileTool3.getFileFullPath("BEVProject_Description.m");
       destination_fullpath = FileTool3.getFileFullPath("BEVProject_Description.html");
 
-      % This test uses a conditional branch as a special case because it is practical.
       newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % The export command saves the generated file in the current working folder (pwd).

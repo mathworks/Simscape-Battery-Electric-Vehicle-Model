@@ -1,9 +1,9 @@
 # MathWorks OPC Text Package
 Model {
-  Version  25.1
-  Description "Simulink model saved in R2025a"
+  Version  25.2
+  Description "Simulink model saved in R2025b"
 }
-__MWOPC_PACKAGE_BEGIN__ R2025a
+__MWOPC_PACKAGE_BEGIN__ R2025b
 __MWOPC_PART_BEGIN__ /[Content_Types].xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
@@ -44,9 +44,9 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2020-07-02T16:14:37Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-06-27T14:00:34Z</dcterms:modified>
-  <cp:revision>11.7</cp:revision>
-  <cp:version>R2025a</cp:version>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-10-31T08:53:27Z</dcterms:modified>
+  <cp:revision>12.0</cp:revision>
+  <cp:version>R2025b</cp:version>
 </cp:coreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
@@ -54,7 +54,7 @@ __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
 <mwcoreProperties xmlns="http://schemas.mathworks.com/package/2012/coreProperties">
   <contentType>application/vnd.mathworks.simulink.model</contentType>
   <contentTypeFriendlyName>Simulink Model</contentTypeFriendlyName>
-  <matlabRelease>R2025a</matlabRelease>
+  <matlabRelease>R2025b</matlabRelease>
 </mwcoreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
@@ -65,13 +65,13 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Version information for MathWorks R2025a Release -->
+<!-- Version information for MathWorks R2025b Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2943329</version>
-  <release>R2025a</release>
-  <description></description>
-  <date>Apr 16 2025</date>
-  <checksum>423651790</checksum>
+  <version>25.2.0.3042426</version>
+  <release>R2025b</release>
+  <description>Update 1</description>
+  <date>Oct 03 2025</date>
+  <checksum>3600278938</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -453,7 +453,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.7&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:12.0&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="ScheduleConnectors">off</P>
@@ -2142,7 +2142,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_2"/>
       <P Name="SourceFile">foundation.signal.linear.integrator</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2172,6 +2171,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
       <P Name="xl">-inf</P>
       <P Name="xl_unit">s</P>
       <P Name="xl_conf">compiletime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_2"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Gain" SID="3">
@@ -2189,7 +2189,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3"/>
       <P Name="SourceFile">foundation.signal.functions.gain</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2201,6 +2200,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
       <P Name="gain">-1</P>
       <P Name="gain_unit">1</P>
       <P Name="gain_conf">runtime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="I^2" SID="48650">
@@ -2216,7 +2216,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_48650"/>
       <P Name="SourceFile">foundation.signal.functions.product</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I1&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;I2&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2225,6 +2224,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
       <P Name="ComponentVariantNames">product</P>
       <P Name="ClassName">ps_product</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_48650"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS Add" SID="3785">
@@ -2238,7 +2238,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3785"/>
       <P Name="SourceFile">foundation.signal.functions.add</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I1&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;I2&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2247,6 +2246,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
       <P Name="ComponentVariantNames">[&quot;add&quot;]</P>
       <P Name="ClassName">add</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3785"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS Constant" SID="3749">
@@ -2262,7 +2262,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3749"/>
       <P Name="SourceFile">foundation.signal.sources.constant</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2274,6 +2273,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
       <P Name="constant">batteryHV.nominalCharge_Ahr</P>
       <P Name="constant_unit">A*hr</P>
       <P Name="constant_conf">compiletime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3749"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS Divide" SID="3750">
@@ -2287,7 +2287,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3750"/>
       <P Name="SourceFile">foundation.signal.functions.divide</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I1&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;I2&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2296,6 +2295,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_48640.xml
       <P Name="ComponentVariantNames">[&quot;divide&quot;]</P>
       <P Name="ClassName">divide</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3750"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS Saturation" SID="3789">
@@ -2313,7 +2313,6 @@ Lower: %&lt;lower_limit&gt;</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3789"/>
       <P Name="SourceFile">foundation.signal.nonlinear.saturation</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2331,6 +2330,7 @@ Lower: %&lt;lower_limit&gt;</P>
       <P Name="ZeroCross">true</P>
       <P Name="ZeroCross_unit">1</P>
       <P Name="ZeroCross_conf">compiletime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3789"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter" SID="5">
@@ -2555,7 +2555,6 @@ Converter</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_9"/>
       <P Name="SourceFile">foundation.signal.functions.product</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I1&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;},{&quot;id&quot;:&quot;I2&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2564,6 +2563,7 @@ Converter</P>
       <P Name="ComponentVariantNames">product</P>
       <P Name="ClassName">ps_product</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_9"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="R" SID="48651">
@@ -2578,7 +2578,6 @@ Converter</P>
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_48651"/>
       <P Name="SourceFile">foundation.signal.functions.gain</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;I&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;input&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;O&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;output&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -2590,6 +2589,7 @@ Converter</P>
       <P Name="gain">batteryHV.internalResistance_Ohm</P>
       <P Name="gain_unit">Ohm</P>
       <P Name="gain_conf">runtime</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_48651"/>
     </InstanceData>
   </Block>
   <Block BlockType="SubSystem" Name="To Percent" SID="3752">
@@ -3111,7 +3111,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[48, 45, 1188, 685]</P>
-  <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
   <P Name="SIDHighWatermark">52078</P>
   <Block BlockType="Inport" Name="Inputs" SID="3451">
@@ -3133,7 +3132,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3746"/>
       <P Name="SourceFile">sdl.sources.battery</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;p&quot;,&quot;label&quot;:&quot;+&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;n&quot;,&quot;label&quot;:&quot;-&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3200,6 +3198,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
       <P Name="temperature_nominal_specify">off</P>
       <P Name="temperature_nominal_value">1</P>
       <P Name="temperature_nominal_unit">K</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_3746"/>
     </InstanceData>
   </Block>
   <Block BlockType="SubSystem" Name="Battery Status" SID="1">
@@ -3235,7 +3234,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_18"/>
       <P Name="SourceFile">foundation.electrical.sensors.current</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;p&quot;,&quot;label&quot;:&quot;+&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;I&quot;,&quot;label&quot;:&quot;I&quot;,&quot;type&quot;:&quot;output&quot;},{&quot;id&quot;:&quot;n&quot;,&quot;label&quot;:&quot;-&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3244,6 +3242,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
       <P Name="ComponentVariantNames">current</P>
       <P Name="ClassName">sensor_current</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_18"/>
     </InstanceData>
   </Block>
   <Block BlockType="Reference" Name="Ground" SID="52072">
@@ -3260,7 +3259,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_52072"/>
       <P Name="SourceFile">foundation.electrical.elements.reference</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;V&quot;,&quot;label&quot;:&quot;&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Right&quot;:[],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3269,6 +3267,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
       <P Name="ComponentVariantNames">reference</P>
       <P Name="ClassName">reference_electrical</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_52072"/>
     </InstanceData>
   </Block>
   <Block BlockType="SubSystem" Name="Measurement" SID="48655">
@@ -3303,7 +3302,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <InstanceData>
       <P Name="LogSimulationData">off</P>
       <P Name="SimscapeInstrumentationLogging">off</P>
-      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_21"/>
       <P Name="SourceFile">foundation.electrical.sensors.voltage</P>
       <P Name="InternalSimscapePortConfiguration">{&quot;Bottom&quot;:[],&quot;Left&quot;:[{&quot;id&quot;:&quot;p&quot;,&quot;label&quot;:&quot;+&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Right&quot;:[{&quot;id&quot;:&quot;V&quot;,&quot;label&quot;:&quot;V&quot;,&quot;type&quot;:&quot;output&quot;},{&quot;id&quot;:&quot;n&quot;,&quot;label&quot;:&quot;-&quot;,&quot;type&quot;:&quot;foundation.electrical.electrical&quot;}],&quot;Top&quot;:[]}</P>
       <P Name="SscBlockScalableBuild">off</P>
@@ -3312,6 +3310,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
       <P Name="ComponentVariantNames">voltage</P>
       <P Name="ClassName">sensor_voltage</P>
       <P Name="SchemaVersion">1</P>
+      <P Name="SimscapeInstrumentationVariables" Ref="bdmxdata:SimscapeInstrumentationVariables_21"/>
     </InstanceData>
   </Block>
   <Block BlockType="PMIOPort" Name="HighV" SID="23">
@@ -3584,7 +3583,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">e8fed8f7-915b-4aa7-9579-9e45ef2a5d12</P>
     </Object>
-    <P Name="BDUuid" Class="char">d93b3131-ca80-473d-8b41-b4ad2af0cb48</P>
+    <P Name="BDUuid" Class="char">9a4cd2da-6538-4358-8e32-b51e387d6084</P>
   </Object>
 </WindowsInfo>
 

@@ -1,9 +1,9 @@
 # MathWorks OPC Text Package
 Model {
-  Version  25.1
-  Description "Simulink model saved in R2025a"
+  Version  25.2
+  Description "Simulink model saved in R2025b"
 }
-__MWOPC_PACKAGE_BEGIN__ R2025a
+__MWOPC_PACKAGE_BEGIN__ R2025b
 __MWOPC_PART_BEGIN__ /[Content_Types].xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
@@ -48,9 +48,9 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dc:creator>The MathWorks, Inc.</dc:creator>
   <dc:description>Three-Phase PMSM Drive</dc:description>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-08-18T10:59:55Z</dcterms:modified>
-  <cp:revision>11.3</cp:revision>
-  <cp:version>R2025a</cp:version>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-10-31T08:53:46Z</dcterms:modified>
+  <cp:revision>12.0</cp:revision>
+  <cp:version>R2025b</cp:version>
 </cp:coreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
@@ -58,7 +58,7 @@ __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
 <mwcoreProperties xmlns="http://schemas.mathworks.com/package/2012/coreProperties">
   <contentType>application/vnd.mathworks.simulink.model</contentType>
   <contentTypeFriendlyName>Simulink Model</contentTypeFriendlyName>
-  <matlabRelease>R2025a</matlabRelease>
+  <matlabRelease>R2025b</matlabRelease>
 </mwcoreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
@@ -69,13 +69,13 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Version information for MathWorks R2025a Release -->
+<!-- Version information for MathWorks R2025b Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2973910</version>
-  <release>R2025a</release>
+  <version>25.2.0.3042426</version>
+  <release>R2025b</release>
   <description>Update 1</description>
-  <date>Jul 03 2025</date>
-  <checksum>1124574855</checksum>
+  <date>Oct 03 2025</date>
+  <checksum>3600278938</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -712,7 +712,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.3&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:12.0&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="ShowLineDimensions">on</P>
@@ -2294,7 +2294,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_1138.xml
     <P Name="BlockMirror">on</P>
     <P Name="NameLocation">left</P>
     <P Name="AttributesFormatString">%&lt;dc_voltage&gt; (%&lt;dc_voltage_unit&gt;)</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Sources/Voltage Source</P>
     <P Name="SourceType">Voltage Source</P>
     <InstanceData>
@@ -2406,8 +2406,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_1147.xml
   <P Name="Location">[11, 13, 1346, 710]</P>
   <List ListType="InterfaceData">
     <P Name="Version">0</P>
-    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0159f6bd-cab9-4495-ba75-b4b9d8edaf01&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0658ee46-14a6-4e62-b9f2-f992bfed3b43&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;2f2e5353-82f8-45cb-aaed-2ed166e7acf6&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;motorSpd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0159f6bd-cab9-4495-ba75-b4b9d8edaf01&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rpm&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;cdadd580-e539-42a0-874b-fefc87ef96f2&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;0f89a06c-0ae8-4b05-b379-7b6912f98fd0&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;2f2e5353-82f8-45cb-aaed-2ed166e7acf6&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;motorTrq&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0658ee46-14a6-4e62-b9f2-f992bfed3b43&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N*m&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;0dd67b72-c618-4e02-99d9-89142c34964f&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;45ca23d8-f7e0-463d-8bca-83cbad1978f9&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;2f2e5353-82f8-45cb-aaed-2ed166e7acf6&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;5276bfda-52bb-4fcc-a60b-8f1a82f663fb&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
-    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;5276bfda-52bb-4fcc-a60b-8f1a82f663fb&quot;}}}</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;a029ed92-a958-4a38-b090-a1394f31b2d8&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3fb0c2a1-8ae4-457c-b111-bed63a684e17&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;8f91ddd3-34b6-4ce9-a929-fc2501d45f84&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;motorSpd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;a029ed92-a958-4a38-b090-a1394f31b2d8&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rpm&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;6c6de972-643d-466b-b196-82b65dcc0c08&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;00b7e9bc-34d6-4b90-92da-99ad0cdd411e&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;8f91ddd3-34b6-4ce9-a929-fc2501d45f84&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;motorTrq&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3fb0c2a1-8ae4-457c-b111-bed63a684e17&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N*m&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;8b1f34c6-7a86-443d-a0df-4dded4dd631f&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;6359a1af-8434-4385-8daf-0129b6095fb6&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;8f91ddd3-34b6-4ce9-a929-fc2501d45f84&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;4f3ebcd0-d2e4-4a38-9a82-417d85d9a405&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;4f3ebcd0-d2e4-4a38-9a82-417d85d9a405&quot;}}}</P>
   </List>
   <Block BlockType="Inport" Name="SpdRef" SID="1150">
     <P Name="Position">[85, 73, 115, 87]</P>
@@ -2435,7 +2435,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_1147.xml
     <P Name="Position">[450, 215, 530, 295]</P>
     <P Name="ZOrder">4442</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Sensors &amp;
 Transducers/Current Sensor
 (Three-Phase)</P>
@@ -2494,7 +2494,7 @@ Transducers/Current Sensor
     <P Name="Position">[685, 228, 790, 322]</P>
     <P Name="ZOrder">7186</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Electromechanical/Permanent Magnet/FEM-Parameterized
 PMSM</P>
     <P Name="SourceType">FEM-Parameterized
@@ -2838,7 +2838,7 @@ PMSM</P>
     <P Name="BlockMirror">on</P>
     <P Name="NameLocation">right</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Sensors &amp;
 Transducers/Line Voltage Sensor
 (Three-Phase)</P>
@@ -2998,7 +2998,7 @@ Converter</P>
     <P Name="Position">[590, 231, 625, 319]</P>
     <P Name="ZOrder">4437</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Connectors &amp;
 References/Phase Splitter</P>
     <P Name="SourceType">Phase Splitter</P>
@@ -3282,8 +3282,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_1154.xml
   <P Name="Location">[11, 13, 1346, 710]</P>
   <List ListType="InterfaceData">
     <P Name="Version">0</P>
-    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1d09cbe4-a4c5-44cd-91b8-1ef811cb8b6c&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;82d99e2e-9e73-4ebf-a3b4-024f5a6b6381&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;eacda666-9609-4ca4-a28f-ac893ec00a54&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;w&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1d09cbe4-a4c5-44cd-91b8-1ef811cb8b6c&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rad/s&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;14682a2a-6dbc-4d54-bb32-28e6dfd9785e&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;c5c03a40-caee-447f-88cf-f6b7ca73e0a8&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;eacda666-9609-4ca4-a28f-ac893ec00a54&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;a&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;82d99e2e-9e73-4ebf-a3b4-024f5a6b6381&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rad&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;68e52dfc-fe83-4fc5-a066-b6c09df85455&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;a62a80e2-773f-4473-a5a7-9f21d6d933c4&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;eacda666-9609-4ca4-a28f-ac893ec00a54&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;37ce3dec-a949-4ebc-92d4-11e158c39ddf&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
-    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;37ce3dec-a949-4ebc-92d4-11e158c39ddf&quot;}}}</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;436b81b7-5d0f-4b79-bba4-857c097b1c54&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;e3623120-4d28-49ba-8276-4db7eb0d3ff1&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;5437d99b-0162-4ba8-85c7-60d0c38c7c82&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;w&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;436b81b7-5d0f-4b79-bba4-857c097b1c54&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rad/s&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;782c4422-1465-4aa1-a65c-e6438ba5db2b&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;6baface3-668d-46ee-83f4-869151d4c750&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;5437d99b-0162-4ba8-85c7-60d0c38c7c82&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;a&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;e3623120-4d28-49ba-8276-4db7eb0d3ff1&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rad&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;ab7101f6-aabb-4bcf-8a7e-10bdda814793&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;951b3fb3-8c4c-4f4f-a28d-6f52a80a8a52&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;5437d99b-0162-4ba8-85c7-60d0c38c7c82&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;5717b3fd-9d8e-42f7-9579-750121e87a51&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;5717b3fd-9d8e-42f7-9579-750121e87a51&quot;}}}</P>
   </List>
   <Block BlockType="Reference" Name="Mechanical&#xA;Rotational Reference3" SID="1155">
     <PortCounts lconn="1"/>
@@ -3608,7 +3608,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_1166.xml
     <PortCounts in="1" out="1"/>
     <P Name="Position">[300, 17, 350, 53]</P>
     <P Name="ZOrder">4416</P>
-    <P Name="LibraryVersion">9.0</P>
+    <P Name="LibraryVersion">10.0</P>
     <P Name="SourceBlock">spsFirstOrderFilterLib/First-Order
 Filter</P>
     <P Name="SourceType">First-Order Filter</P>
@@ -3633,7 +3633,7 @@ Filter</P>
     <PortCounts in="1" out="1"/>
     <P Name="Position">[150, 17, 200, 53]</P>
     <P Name="ZOrder">4415</P>
-    <P Name="LibraryVersion">9.0</P>
+    <P Name="LibraryVersion">10.0</P>
     <P Name="SourceBlock">spsFirstOrderFilterLib/First-Order
 Filter</P>
     <P Name="SourceType">First-Order Filter</P>
@@ -3658,7 +3658,7 @@ Filter</P>
     <PortCounts in="1" out="1"/>
     <P Name="Position">[75, 17, 125, 53]</P>
     <P Name="ZOrder">4413</P>
-    <P Name="LibraryVersion">9.0</P>
+    <P Name="LibraryVersion">10.0</P>
     <P Name="SourceBlock">spsFirstOrderFilterLib/First-Order
 Filter</P>
     <P Name="SourceType">First-Order Filter</P>
@@ -3683,7 +3683,7 @@ Filter</P>
     <PortCounts in="1" out="1"/>
     <P Name="Position">[225, 17, 275, 53]</P>
     <P Name="ZOrder">4414</P>
-    <P Name="LibraryVersion">9.0</P>
+    <P Name="LibraryVersion">10.0</P>
     <P Name="SourceBlock">spsFirstOrderFilterLib/First-Order
 Filter</P>
     <P Name="SourceType">First-Order Filter</P>
@@ -3742,8 +3742,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_1182.xml
   <P Name="Location">[11, 13, 1346, 710]</P>
   <List ListType="InterfaceData">
     <P Name="Version">0</P>
-    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0f118757-45e4-4c3d-876b-26fe1d162c79&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;264cfa08-8b4d-4c2e-b59b-d1cf25cada2e&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;7ddb0f80-76f9-4a7d-854c-4e87cab60eb8&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;w&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0f118757-45e4-4c3d-876b-26fe1d162c79&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rad/s&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;4c5cbd2f-d65b-482f-9b3b-a194b661308e&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;4e1306ad-7bc3-497e-8ec0-f1efe5eebda3&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;7ddb0f80-76f9-4a7d-854c-4e87cab60eb8&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;a&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;264cfa08-8b4d-4c2e-b59b-d1cf25cada2e&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rad&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;baf93878-abd1-46e8-af15-c02eeb27dc0b&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;6345dea6-a88e-4a71-9549-e75b0c612138&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;7ddb0f80-76f9-4a7d-854c-4e87cab60eb8&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;03395897-138f-4296-9ec0-b06aa16a2578&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
-    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;03395897-138f-4296-9ec0-b06aa16a2578&quot;}}}</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0bad917c-aa05-402c-a750-21b219bf738e&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;f5464fac-da58-4e3b-8470-ac4f4a6004b7&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;83695ba2-f877-424c-a2a1-0c35cdd3be73&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;w&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0bad917c-aa05-402c-a750-21b219bf738e&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rad/s&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;02eeebbc-e05f-4802-9d45-4b8c5f3de3fd&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;bfc249d8-b627-4d5c-a494-07aa4e3b624f&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;83695ba2-f877-424c-a2a1-0c35cdd3be73&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;a&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;f5464fac-da58-4e3b-8470-ac4f4a6004b7&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rad&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;5f7e3e10-e77d-4d04-8726-ea39f07b4ffe&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;0e97a8f3-2a04-49a2-9372-449df6788972&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;83695ba2-f877-424c-a2a1-0c35cdd3be73&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;5cbcbf24-ec68-4f43-a2f1-4db688b66af8&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;5cbcbf24-ec68-4f43-a2f1-4db688b66af8&quot;}}}</P>
   </List>
   <Block BlockType="Inport" Name="Bus Element In" SID="1183">
     <P Name="Position">[-140, 65, -130, 75]</P>
@@ -3836,7 +3836,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_1182.xml
     <P Name="Position">[280, -133, 385, 273]</P>
     <P Name="ZOrder">4573</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="LibraryVersion">10.0</P>
+    <P Name="LibraryVersion">11.0</P>
     <P Name="SourceBlock">eePmsmFieldOrientedControl/PMSM Field-Oriented
 Control</P>
     <P Name="SourceType">PMSM Field-Oriented Control</P>
@@ -4151,7 +4151,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_1212.xml
     <PortCounts lconn="1" rconn="2"/>
     <P Name="Position">[50, -45, 80, 15]</P>
     <P Name="ZOrder">36</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Semiconductors &amp;
 Converters/IGBT
 (Ideal,
@@ -4490,7 +4490,7 @@ Switching)</P>
     <PortCounts lconn="1" rconn="2"/>
     <P Name="Position">[50, 80, 80, 140]</P>
     <P Name="ZOrder">37</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Semiconductors &amp;
 Converters/IGBT
 (Ideal,
@@ -4829,7 +4829,7 @@ Switching)</P>
     <PortCounts lconn="1" rconn="2"/>
     <P Name="Position">[215, -50, 245, 10]</P>
     <P Name="ZOrder">38</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Semiconductors &amp;
 Converters/IGBT
 (Ideal,
@@ -5168,7 +5168,7 @@ Switching)</P>
     <PortCounts lconn="1" rconn="2"/>
     <P Name="Position">[215, 80, 245, 140]</P>
     <P Name="ZOrder">39</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Semiconductors &amp;
 Converters/IGBT
 (Ideal,
@@ -5507,7 +5507,7 @@ Switching)</P>
     <PortCounts lconn="1" rconn="2"/>
     <P Name="Position">[380, -50, 410, 10]</P>
     <P Name="ZOrder">40</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Semiconductors &amp;
 Converters/IGBT
 (Ideal,
@@ -5846,7 +5846,7 @@ Switching)</P>
     <PortCounts lconn="1" rconn="2"/>
     <P Name="Position">[380, 80, 410, 140]</P>
     <P Name="ZOrder">41</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Semiconductors &amp;
 Converters/IGBT
 (Ideal,
@@ -6187,7 +6187,7 @@ Switching)</P>
     <P Name="ZOrder">42</P>
     <P Name="BlockMirror">on</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="LibraryVersion">25001000.2</P>
+    <P Name="LibraryVersion">25002000.2</P>
     <P Name="SourceBlock">ee_lib/Connectors &amp;
 References/Phase Splitter</P>
     <P Name="SourceType">Phase Splitter</P>
@@ -7941,7 +7941,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">a69b867f-36ae-4c1b-a699-d31d4fd73954</P>
     </Object>
-    <P Name="BDUuid" Class="char">2d3f4114-02c2-49f9-99d8-8ea6ee605702</P>
+    <P Name="BDUuid" Class="char">7b41b63c-cf26-4214-9179-e8ddb6253f8a</P>
   </Object>
 </WindowsInfo>
 

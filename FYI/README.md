@@ -7,7 +7,7 @@ product documentation and GitHub.
 ## Import IPMSM Flux Linkage Data from ANSYS Maxwell
 
 ```matlab
-openExample('simscapeelectrical/IPMSMFluxFromANSYSMaxwellExample')
+openExample("simscapeelectrical/IPMSMFluxFromANSYSMaxwellExample", workDir=pwd)
 ```
 
 Documentation
@@ -17,7 +17,7 @@ Documentation
 ## Import Efficiency Map Data from Motor-CAD
 
 ```matlab
-openExample('simscapeelectrical/EfficiencyMapFromMotorCADExample')
+openExample("simscapeelectrical/EfficiencyMapFromMotorCADExample", workDir=pwd)
 ```
 
 Documentation

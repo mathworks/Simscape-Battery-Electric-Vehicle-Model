@@ -4,7 +4,7 @@ Version 7 for MATLAB R2025a or newer
 
 August 2025
 
-![LiteApp Logo](+LiteApp7/LiteApp-icon-150x150.png)
+![LiteApp Logo](+LiteApp8/LiteApp-icon-150x150.png)
 
 This is **LiteApp API**, MATLAB application programming interface (API)
 to build apps programatically using [`uifigure`][url-uifig] and
@@ -16,7 +16,7 @@ error handling, and the spacing and alignment of UI components,
 are handled by the API.
 
 To use LiteApp API, your MATLAB paths must include a folder
-which contains the `+LiteApp7` folder.
+which contains the `+LiteApp8` folder.
 
 The main window in LiteApp is `uifigure`.
 Components in LiteApp are placed in `uigridlayout` using

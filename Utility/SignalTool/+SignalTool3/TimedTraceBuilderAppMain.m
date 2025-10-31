@@ -7,7 +7,7 @@ classdef TimedTraceBuilderAppMain < handle
 
   % Copyright 2025 The MathWorks, Inc.
 
-  properties (Access=private)
+  properties (Access=private, Constant)
     errorID (1,1) string = "TimedTraceBuilderAppMain:"
   end  % properties
 
@@ -23,36 +23,36 @@ classdef TimedTraceBuilderAppMain < handle
     % -------------------------------------------------------------------------
     % GUI parts
 
-    Window LiteApp7.LiteAppWindow
+    Window LiteApp8.LiteAppWindow
 
-    RandomSeedUI LiteApp7.Component.PhysicalValueUI
+    RandomSeedUI LiteApp8.Component.PhysicalValueUI
 
-    DataUnitUI LiteApp7.Component.DropDown
+    DataUnitUI LiteApp8.Component.DropDown
 
-    InitialDataValueUI LiteApp7.Component.PhysicalValueUI
-    InitialConstantDurationUI LiteApp7.Component.PhysicalValueUI
+    InitialDataValueUI LiteApp8.Component.PhysicalValueUI
+    InitialConstantDurationUI LiteApp8.Component.PhysicalValueUI
 
-    InitialTransitionDurationUI LiteApp7.Component.PhysicalValueUI
+    InitialTransitionDurationUI LiteApp8.Component.PhysicalValueUI
 
-    NumberOfTransitionsUI LiteApp7.Component.PhysicalValueUI
-    RangeOfTransitionDurationUI LiteApp7.Component.PhysicalValueUI
-    RangeOfConstantDurationUI LiteApp7.Component.PhysicalValueUI
-    RangeOfDataValueUI LiteApp7.Component.PhysicalValueUI
+    NumberOfTransitionsUI LiteApp8.Component.PhysicalValueUI
+    RangeOfTransitionDurationUI LiteApp8.Component.PhysicalValueUI
+    RangeOfConstantDurationUI LiteApp8.Component.PhysicalValueUI
+    RangeOfDataValueUI LiteApp8.Component.PhysicalValueUI
 
-    FinalTransitionDurationUI LiteApp7.Component.PhysicalValueUI
+    FinalTransitionDurationUI LiteApp8.Component.PhysicalValueUI
 
-    FinalDataValueUI LiteApp7.Component.PhysicalValueUI
-    FinalConstantDurationUI LiteApp7.Component.PhysicalValueUI
+    FinalDataValueUI LiteApp8.Component.PhysicalValueUI
+    FinalConstantDurationUI LiteApp8.Component.PhysicalValueUI
 
-    TableGridVectorUI LiteApp7.Component.PhysicalValueUI
-    TableValuesUI LiteApp7.Component.PhysicalValueUI
+    TableGridVectorUI LiteApp8.Component.PhysicalValueUI
+    TableValuesUI LiteApp8.Component.PhysicalValueUI
 
-    PlotButtonUI LiteApp7.Component.EnabledButton
-    OpenInFigureWindowUI LiteApp7.Component.Hyperlink
-    AxesUI LiteApp7.Graphics.Axes
-    IntervalUI LiteApp7.Component.PhysicalValueUI
+    PlotButtonUI LiteApp8.Component.EnabledButton
+    OpenInFigureWindowUI LiteApp8.Component.Hyperlink
+    AxesUI LiteApp8.Graphics.Axes
+    IntervalUI LiteApp8.Component.PhysicalValueUI
 
-    SelectorUI LiteApp7.Component.BlockSelectorUI
+    SelectorUI LiteApp8.Component.BlockSelectorUI
 
   end  % properties
 
@@ -60,12 +60,12 @@ classdef TimedTraceBuilderAppMain < handle
 
     data_value_units = ["m/s", "km/hr", "mph"]
 
-    width_unit = LiteApp7.Constant.Width{"unitwidth"}
-    name_ui_width = LiteApp7.Constant.Width{"unitwidth"} * 22
-    unit_ui_width = LiteApp7.Constant.Width{"unitwidth"} * 8
-    button_width = LiteApp7.Constant.Width{"unitwidth"} * 12
+    width_unit = LiteApp8.Constant.Width{"unitwidth"}
+    name_ui_width = LiteApp8.Constant.Width{"unitwidth"} * 22
+    unit_ui_width = LiteApp8.Constant.Width{"unitwidth"} * 8
+    button_width = LiteApp8.Constant.Width{"unitwidth"} * 12
 
-    oneline_height = LiteApp7.Constant.Height{"oneline"}
+    oneline_height = LiteApp8.Constant.Height{"oneline"}
 
   end  % properties
 
@@ -92,7 +92,7 @@ classdef TimedTraceBuilderAppMain < handle
         App.BlockPath = NameValuePair.BlockPath;
       end  % if
 
-      App.Window = LiteApp7.LiteAppWindow;
+      App.Window = LiteApp8.LiteAppWindow;
       App.Window.Name = "Timed Trace Builder App";
       App.Window.Height = 520;
       App.Window.Width = 1000;
@@ -187,20 +187,20 @@ classdef TimedTraceBuilderAppMain < handle
       FileTool3.getFileFullPath(html_file);
 
       row = NewRow(layout, column);
-      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "Description";
+      link_ui = LiteApp8.Component.Hyperlink(NewSlot(layout, row));
+      link_ui.Text = "Description";
       link_ui.HyperlinkClickedCallback =  @() web(html_file);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      % label_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
-      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
+      % label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{Parameters}";
       % label_ui.ComponentWidth = App.width_unit * 15;
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.RandomSeedUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.RandomSeedUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.RandomSeedUI.Name = "Random seed";
       App.RandomSeedUI.UnitAlias = "";
       App.RandomSeedUI.NameUIWidth = App.name_ui_width;
@@ -210,21 +210,21 @@ classdef TimedTraceBuilderAppMain < handle
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
 
-      label_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
       label_ui.Text = "Unit of data value";
       label_ui.ComponentWidth = App.name_ui_width;
 
-      App.DataUnitUI = LiteApp7.Component.DropDown(NewSlot(layout, row));
+      App.DataUnitUI = LiteApp8.Component.DropDown(NewSlot(layout, row));
       App.DataUnitUI.Items = App.data_value_units;
       App.DataUnitUI.ValueChangedCallback = @() auto_update_plot(App);
 
-      space_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
+      space_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
       space_ui.Text = "";
       space_ui.ComponentWidth = App.unit_ui_width;
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.InitialDataValueUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.InitialDataValueUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.InitialDataValueUI.Name = "Initial data value, $f_1$";
       App.InitialDataValueUI.Unit = "m/s";
       App.InitialDataValueUI.NameUIWidth = App.name_ui_width;
@@ -233,7 +233,7 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.InitialConstantDurationUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.InitialConstantDurationUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.InitialConstantDurationUI.Name = "Initial constant duration, $\Delta t_{ic}$";
       App.InitialConstantDurationUI.Unit = "s";
       App.InitialConstantDurationUI.NameUIWidth = App.name_ui_width;
@@ -242,7 +242,7 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.InitialTransitionDurationUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.InitialTransitionDurationUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.InitialTransitionDurationUI.Name = "Initial transition duration, $\Delta t_{it}$";
       App.InitialTransitionDurationUI.Unit = "s";
       App.InitialTransitionDurationUI.NameUIWidth = App.name_ui_width;
@@ -251,7 +251,7 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.NumberOfTransitionsUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.NumberOfTransitionsUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.NumberOfTransitionsUI.Name = "Number of transitions, $N_T$";
       App.NumberOfTransitionsUI.UnitAlias = "";
       App.NumberOfTransitionsUI.NameUIWidth = App.name_ui_width;
@@ -260,7 +260,7 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.RangeOfTransitionDurationUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.RangeOfTransitionDurationUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.RangeOfTransitionDurationUI.Name = "Range of transition duration, $R_T$";
       App.RangeOfTransitionDurationUI.Unit = "s";
       App.RangeOfTransitionDurationUI.NameUIWidth = App.name_ui_width;
@@ -269,7 +269,7 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.RangeOfConstantDurationUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.RangeOfConstantDurationUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.RangeOfConstantDurationUI.Name = "Range of constant duration, $R_C$";
       App.RangeOfConstantDurationUI.Unit = "s";
       App.RangeOfConstantDurationUI.NameUIWidth = App.name_ui_width;
@@ -278,7 +278,7 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.RangeOfDataValueUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.RangeOfDataValueUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.RangeOfDataValueUI.Name = "Range of data value, $R_f$";
       App.RangeOfDataValueUI.Unit = "m/s";
       App.RangeOfDataValueUI.NameUIWidth = App.name_ui_width;
@@ -287,7 +287,7 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.FinalTransitionDurationUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.FinalTransitionDurationUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.FinalTransitionDurationUI.Name = "Final transition duration, $\Delta t_{ft}$";
       App.FinalTransitionDurationUI.Unit = "s";
       App.FinalTransitionDurationUI.NameUIWidth = App.name_ui_width;
@@ -296,7 +296,7 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.FinalDataValueUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.FinalDataValueUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.FinalDataValueUI.Name = "Final data value, $f_{f}$";
       App.FinalDataValueUI.Unit = "m/s";
       App.FinalDataValueUI.NameUIWidth = App.name_ui_width;
@@ -305,7 +305,7 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.FinalConstantDurationUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.FinalConstantDurationUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.FinalConstantDurationUI.Name = "Final constant duration, $\Delta t_{fc}$";
       App.FinalConstantDurationUI.Unit = "s";
       App.FinalConstantDurationUI.NameUIWidth = App.name_ui_width;
@@ -314,12 +314,12 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{Derived parameters}";
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.TableGridVectorUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.TableGridVectorUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.TableGridVectorUI.Name = "Table grid vector, $t$";
       App.TableGridVectorUI.Unit = "s";
       App.TableGridVectorUI.NameUIWidth = App.name_ui_width;
@@ -328,7 +328,7 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.TableValuesUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.TableValuesUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.TableValuesUI.Name = "Table values, $f(t)$";
       App.TableValuesUI.Unit = "km/hr";
       App.TableValuesUI.NameUIWidth = App.name_ui_width;
@@ -343,7 +343,7 @@ classdef TimedTraceBuilderAppMain < handle
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
 
-      App.PlotButtonUI = LiteApp7.Component.EnabledButton(NewSlot(layout, row, Width="fit"));
+      App.PlotButtonUI = LiteApp8.Component.EnabledButton(NewSlot(layout, row, Width="fit"));
       App.PlotButtonUI.HorizontalAlignment = "left";
       App.PlotButtonUI.ButtonUIWidth = App.button_width + App.width_unit;
       App.PlotButtonUI.ButtonWidth = App.button_width;
@@ -356,25 +356,25 @@ classdef TimedTraceBuilderAppMain < handle
       % Set false to auto-update and keep it until the entire app is ready.
       App.PlotButtonUI.ButtonEnable = "on";
 
-      App.OpenInFigureWindowUI = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
-      App.OpenInFigureWindowUI.HyperlinkText = "Open in figure window";
+      App.OpenInFigureWindowUI = LiteApp8.Component.Hyperlink(NewSlot(layout, row));
+      App.OpenInFigureWindowUI.Text = "Open in figure window";
       App.OpenInFigureWindowUI.HorizontalAlignment = "right";
       App.OpenInFigureWindowUI.HyperlinkClickedCallback = @() update_plot(App, StandAloneFigure=true);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
 
-      App.AxesUI = LiteApp7.Graphics.Axes(NewSlot(layout, row));
+      App.AxesUI = LiteApp8.Graphics.Axes(NewSlot(layout, row));
       App.AxesUI.ComponentHeight = 300;
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{Visualization parameter}";
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.IntervalUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.IntervalUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.IntervalUI.Name = "Interpolation interval, $dt$";
       App.IntervalUI.Unit = "s";
       App.IntervalUI.NameUIWidth = App.name_ui_width;
@@ -390,13 +390,13 @@ classdef TimedTraceBuilderAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      LiteApp7.Component.HorizontalLine(NewSlot(layout, row));
+      LiteApp8.Component.HorizontalLine(NewSlot(layout, row));
 
       % -----------------------------------------------------------------------
       % Configure the block selector UI to find Simscape PS Lookup Table (1D) block and
       % Simulink 1-D Lookup Table block.
       row = NewRow(layout, column);
-      App.SelectorUI = LiteApp7.Component.BlockSelectorUI(NewSlot(layout, row));
+      App.SelectorUI = LiteApp8.Component.BlockSelectorUI(NewSlot(layout, row));
       App.SelectorUI.MainFigure = App.Window.MainFigure;
       App.SelectorUI.TargetSimscapeBlockNames = "PS Lookup Table (1D)";
       App.SelectorUI.FindBlockCallback = @ModelTool2.findLookupTable1DBlocks;
