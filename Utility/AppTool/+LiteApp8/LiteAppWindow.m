@@ -4,20 +4,17 @@ classdef LiteAppWindow < handle
   % Copyright 2023-2025 The MathWorks, Inc.
 
   properties
-
-    MainFigure matlab.ui.Figure {mustBeScalarOrEmpty}
-
     Name (1,1) string
 
-    MainLayout LiteApp7.LiteAppLayout
+    MainFigure matlab.ui.Figure {mustBeScalarOrEmpty}
+    MainLayout LiteApp8.LiteAppLayout
 
-    HeaderUI LiteApp7.Component.WindowHeader
+    HeaderUI LiteApp8.Component.WindowHeader
     Show_AlwaysOnTop_CheckBox matlab.lang.OnOffSwitchState = "on"
 
     % To see outputs from class constructors, you must set Reporting to "on" here.
     % Setting Reporting to "on" in other ways do not enable reporting from constructors.
     Reporting (1,1) matlab.lang.OnOffSwitchState = "off"
-
   end  % properties
 
   properties (Dependent)
@@ -35,7 +32,7 @@ classdef LiteAppWindow < handle
   end  % properties
 
   properties (Access=private)
-    % The default icon file must exist in the "+LiteApp7" namespace folder.
+    % The default icon file must exist in the "+LiteApp8" namespace folder.
     DefaultIcon (1,1) string = "LiteApp-icon-150x150.png"
   end  % properties
 
@@ -69,7 +66,7 @@ classdef LiteAppWindow < handle
 
       AppWindow.MainFigure = uifigure(Visible = "off");
 
-      AppWindow.MainLayout = LiteApp7.LiteAppLayout(AppWindow.MainFigure);
+      AppWindow.MainLayout = LiteApp8.LiteAppLayout(AppWindow.MainFigure);
 
       AppWindow.Icon = "LiteApp-icon-150x150.png";
 
@@ -78,7 +75,7 @@ classdef LiteAppWindow < handle
         if AppWindow.Reporting
           FileTool3.displayTimeAndFileLocation("Using window header")
         end  % if
-        AppWindow.HeaderUI = LiteApp7.Component.WindowHeader(NewArea(AppWindow.MainLayout));
+        AppWindow.HeaderUI = LiteApp8.Component.WindowHeader(NewArea(AppWindow.MainLayout));
         AppWindow.HeaderUI.ParentFigure = AppWindow.MainFigure;
         AppWindow.HeaderUI.AppSourceName = NameValuePair.SourceFilename;
         AppWindow.HeaderUI.Show_AlwaysOnTop_CheckBox = "on";
@@ -140,7 +137,7 @@ classdef LiteAppWindow < handle
       arguments (Input)
         AppWindow
         width_pixel (1,1) {mustBeInteger, mustBePositive}
-      end
+      end  % arguments
       AppWindow.MainFigure.Position(3) = width_pixel;
     end  % function
 
@@ -155,7 +152,7 @@ classdef LiteAppWindow < handle
       arguments (Input)
         AppWindow
         height_pixel (1,1) {mustBeInteger, mustBePositive}
-      end
+      end  % arguments
       AppWindow.MainFigure.Position(4) = height_pixel;
     end  % function
 
@@ -170,11 +167,11 @@ classdef LiteAppWindow < handle
       arguments (Input)
         AppWindow
         PNGFilename (1,1) string
-      end
+      end  % arguments
 
       if PNGFilename == AppWindow.DefaultIcon
         try
-          liteapp_folder_fullpath = FileTool3.getFolderFullPath("+LiteApp7");
+          liteapp_folder_fullpath = FileTool3.getFolderFullPath("+LiteApp8");
         catch exception
           if AppWindow.MainFigure.Visible
             title_word = CodeTool1.i18n("Error");
@@ -187,7 +184,7 @@ classdef LiteAppWindow < handle
 
           end  % if
         end  % try, catch
-        % The default icon file must exist in the "+LiteApp7" namespace folder.
+        % The default icon file must exist in the "+LiteApp8" namespace folder.
         icon_fullpath = fullfile(liteapp_folder_fullpath, PNGFilename);
 
       else
@@ -245,5 +242,4 @@ classdef LiteAppWindow < handle
     end  % function
 
   end  % methods
-
 end  % classdef

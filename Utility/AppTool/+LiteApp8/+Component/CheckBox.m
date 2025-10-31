@@ -1,10 +1,17 @@
-classdef CheckBox < LiteApp7.Component.LiteAppComponentBase
-  %% Check box component
+classdef CheckBox < LiteApp8.Component.ComponentBase
+  % Check box component
+  %
+  % This component wraps uicheckbox.
+  %
+  % Use ComponentWidth and ComponentHeight to specify the size of this component.
+  % Use CheckBoxWidth to specify the width of the button within this component.
+  % ComponentHeight is the height of the check box.
+  %
+  % Use HorizontalAlignment and VerticalAlignment to position the check box within the component.
 
-  % Copyright 2023-2024 The MathWorks, Inc.
+  % Copyright 2023-2025 The MathWorks, Inc.
 
   properties
-
     MainCheckBox matlab.ui.control.CheckBox
 
     ValueChangedCallback {CodeTool1.mustBeFunctionHandleOrEmpty} = []
@@ -13,80 +20,82 @@ classdef CheckBox < LiteApp7.Component.LiteAppComponentBase
     CheckBoxWidth (1,:) {CodeTool1.mustBeTextOrPositiveInteger} = "fit"
     HorizontalAlignment (1,1) {mustBeMember( HorizontalAlignment, ["left", "center", "right"])} = "left"
 
-    ComponentHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp7.Constant.Height{"oneline++"}
+    ComponentHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp8.Constant.Height{"oneline++"}
     % Check box height is not configurable, i.e., it is constant.
     VerticalAlignment (1,1) {mustBeMember( VerticalAlignment, ["top", "center", "bottom"])} = "center"
 
+    % The main grid is used to configure the width of the main component
+    % while the base grid is used to configure the width of the whole component.
+    main_grid (1,1) matlab.ui.container.GridLayout
   end  % properties
 
   properties (Dependent)
-
     % True for checked. False for unchecked.
     Value (1,1) logical
 
     Text (1,1) string
-
   end  % properties
 
   methods (Access=protected)
 
     function setup(component)
       %%
-      setup@LiteApp7.Component.LiteAppComponentBase(component)
+      setup@LiteApp8.Component.ComponentBase(component)
 
-      component.gridObj = uigridlayout(component.baseGridObject);
-      component.gridObj.Layout.Row = 1;
-      component.gridObj.Layout.Column = 1;
-      component.gridObj.RowHeight = {'1x', 'fit', '1x'};
-      component.gridObj.ColumnWidth = {0, 'fit', '1x'};
-      component.gridObj.Padding = component.CommonPadding;
-      component.gridObj.ColumnSpacing = component.CommonColumnSpacing;
-      component.gridObj.RowSpacing = component.CommonRowSpacing;
+      component.main_grid = uigridlayout(component.base_grid);
+      component.main_grid.Layout.Row = 1;
+      component.main_grid.Layout.Column = 1;
+      component.main_grid.RowHeight = {'1x', 'fit', '1x'};
+      component.main_grid.ColumnWidth = {0, 'fit', '1x'};
+      component.main_grid.Padding = component.CommonPadding;
+      component.main_grid.ColumnSpacing = component.CommonColumnSpacing;
+      component.main_grid.RowSpacing = component.CommonRowSpacing;
 
       % The main element of this component.
-      component.MainCheckBox = uicheckbox(component.gridObj);
+      component.MainCheckBox = uicheckbox(component.main_grid);
       component.MainCheckBox.Layout.Row = 2;
       component.MainCheckBox.Layout.Column = 2;
+      component.MainCheckBox.ValueChangedFcn = @(sourceObject, eventData) react_CheckboxValueChanged(component);
       component.MainCheckBox.FontSize = component.CommonFontSize;
-      component.MainCheckBox.ValueChangedFcn = ...
-        @(sourceObject, eventData) checkboxValueChanged(component);
       component.MainCheckBox.WordWrap = "off";
 
-      % -----------------------------------------------------------------------
-      % Default settings
-
+      % Default settings.
       component.Value = false;
       component.Text = "Check box";
-
     end  % function
 
     function update(component)
       %%
-      update@LiteApp7.Component.LiteAppComponentBase(component)
+      update@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight{1} = component.ComponentHeight;
-      component.baseGridObject.ColumnWidth{1} = component.ComponentWidth;
+      component.base_grid.RowHeight{1} = component.ComponentHeight;
+      component.base_grid.ColumnWidth{1} = component.ComponentWidth;
 
       switch component.VerticalAlignment
         case "top"
-          component.gridObj.RowHeight = {0, 'fit', '1x'};
+          component.main_grid.RowHeight = {0, 'fit', '1x'};
         case "center"
-          component.gridObj.RowHeight = {'1x', 'fit', '1x'};
+          component.main_grid.RowHeight = {'1x', 'fit', '1x'};
         case "bottom"
-          component.gridObj.RowHeight = {'1x', 'fit', 0};
+          component.main_grid.RowHeight = {'1x', 'fit', 0};
       end  % switch
 
       switch component.HorizontalAlignment
         case "left"
-          component.gridObj.ColumnWidth = {0, component.CheckBoxWidth, '1x'};
+          component.main_grid.ColumnWidth = {0, component.CheckBoxWidth, '1x'};
         case "center"
-          component.gridObj.ColumnWidth = {'1x', component.CheckBoxWidth, '1x'};
+          component.main_grid.ColumnWidth = {'1x', component.CheckBoxWidth, '1x'};
         case "right"
-          component.gridObj.ColumnWidth = {'1x', component.CheckBoxWidth, 0};
+          component.main_grid.ColumnWidth = {'1x', component.CheckBoxWidth, 0};
       end  % switch
 
       if component.HighlightBackground
-        component.gridObj.BackgroundColor = component.HighlightBackgroundColor;
+        switch component.ThemeNameForBackGroundHighlight
+          case "light"
+            component.main_grid.BackgroundColor = component.LightThemeBackGroundColor;
+          case "dark"
+            component.main_grid.BackgroundColor = component.DarkThemeBackGroundColor;
+        end  % switch
       end  % if
     end  % function
 
@@ -94,12 +103,10 @@ classdef CheckBox < LiteApp7.Component.LiteAppComponentBase
 
   methods
 
-    % -------------------------------------------------------------------------
-
     function on_off = get.Value(component)
       arguments (Output)
         on_off (1,1) matlab.lang.OnOffSwitchState
-      end
+      end  % arguments
       on_off = component.MainCheckBox.Value;
     end  % function
 
@@ -107,16 +114,14 @@ classdef CheckBox < LiteApp7.Component.LiteAppComponentBase
       arguments (Input)
         component
         on_off (1,1) matlab.lang.OnOffSwitchState
-      end
+      end  % arguments
       component.MainCheckBox.Value = on_off;
     end  % function
-
-    % -------------------------------------------------------------------------
 
     function txt = get.Text(component)
       arguments (Output)
         txt (1,1) string
-      end
+      end  % arguments
       txt = component.MainCheckBox.Text;
     end  % function
 
@@ -124,38 +129,20 @@ classdef CheckBox < LiteApp7.Component.LiteAppComponentBase
       arguments (Input)
         component
         txt (1,1) string
-      end
+      end  % arguments
       component.MainCheckBox.Text = txt;
     end  % function
 
   end  % methods
 
-  properties (Access=private, Transient, NonCopyable)
-    gridObj matlab.ui.container.GridLayout
-  end  % properties
-
   methods (Access=private)
 
-    function checkboxValueChanged(component)
-
-      if not(isempty(component.ValueChangedCallback)) ...
-          && isa(component.ValueChangedCallback, 'function_handle')
+    function react_CheckboxValueChanged(component)
+      if not(isempty(component.ValueChangedCallback))
+        % If not empty, the property validation guarantees it is a function handle.
         component.ValueChangedCallback()
-      end
-
-      notify(component, "CheckBoxValueChanged")
-      % Make sure to define CheckBoxValueChanged event.
-
+      end  % if
     end  % function
 
   end  % methods
-
-  events (HasCallbackProperty, NotifyAccess=protected)
-
-    % CheckBoxValueChanged event adds CheckBoxValueChangedFcn property to this class.
-    % This event is created when check box is either checked or unchecked.
-    CheckBoxValueChanged
-
-  end  % events
-
 end  % classdef

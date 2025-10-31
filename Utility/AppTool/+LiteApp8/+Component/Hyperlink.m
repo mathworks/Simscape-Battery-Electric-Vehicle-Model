@@ -96,7 +96,7 @@ classdef Hyperlink < LiteApp8.Component.ComponentBase
       end  % switch
 
       if component.HighlightBackground
-        switch component.Theme
+        switch component.ThemeNameForBackGroundHighlight
         case "light"
           component.main_grid.BackgroundColor = component.LightThemeBackGroundColor;
         case "dark"

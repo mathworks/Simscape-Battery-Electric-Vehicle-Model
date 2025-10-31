@@ -11,7 +11,6 @@ classdef Label < LiteApp8.Component.ComponentBase
   % Copyright 2023-2025 The MathWorks, Inc.
 
   properties
-
     MainLabel (1,1) matlab.ui.control.Label
 
     ComponentWidth (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = "1x"
@@ -21,15 +20,9 @@ classdef Label < LiteApp8.Component.ComponentBase
     ComponentHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp8.Constant.Height{"oneline++"}
     LabelHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = "fit"
     VerticalAlignment (1,1) {mustBeMember( VerticalAlignment, ["top", "center", "bottom"])} = "center"
-
-    % The main grid is used to configure the width of the main component
-    % while the base grid is used to configure the width of the whole component.
-    main_grid (1,1) matlab.ui.container.GridLayout
-
   end  % properties
 
   properties (Dependent)
-
     Text (1,1) string
 
     FontSize (1,1) {mustBeInteger, mustBePositive}
@@ -39,7 +32,12 @@ classdef Label < LiteApp8.Component.ComponentBase
     Interpreter (1,1) {mustBeMember(Interpreter, ["latex", "none"])}
 
     WordWrap (1,1) matlab.lang.OnOffSwitchState
+  end  % properties
 
+  properties (Access=public)
+    % The main grid is used to configure the width of the main component
+    % while the base grid is used to configure the width of the whole component.
+    main_grid (1,1) matlab.ui.container.GridLayout
   end  % properties
 
   methods (Access=protected)
@@ -95,7 +93,7 @@ classdef Label < LiteApp8.Component.ComponentBase
       end  % switch
 
       if component.HighlightBackground
-        switch component.Theme
+        switch component.ThemeNameForBackGroundHighlight
         case "light"
           component.main_grid.BackgroundColor = component.LightThemeBackGroundColor;
         case "dark"

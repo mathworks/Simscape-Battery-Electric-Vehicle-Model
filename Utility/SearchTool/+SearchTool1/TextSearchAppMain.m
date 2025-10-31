@@ -1,5 +1,7 @@
 classdef TextSearchAppMain < handle
-  % Search text in files.
+  % App to search text in files.
+  %
+  % This is the main implementation of the app.
 
   % Copyright 2025 The MathWorks, Inc.
 
@@ -9,71 +11,52 @@ classdef TextSearchAppMain < handle
 
   properties
 
-    SearchReady (1,1) logical = false
-
-    TargetFolder (1,1) string
-    IncludeSubfolders (1,1) logical
-
-    SelectAll (1,1) logical
-    SelectMATLAB (1,1) logical
-    ExcludeLiveScript (1,1) logical
-    ExcludeMATLABCodeFile (1,1) logical
-    SelectMarkdown (1,1) logical
-    SelectSimulink (1,1) logical
-    SelectSimscape (1,1) logical
-    SelectSVG (1,1) logical
-    CustomFileTypes (1,:) string
-
-    IgnoreCase (1,1) logical
-    MatchWholeWord (1,1) logical
-    SearchText (1,1) string
-
-    CommandText (1,1) string
-
+    TextSearcher (1,1) SearchTool1.TextSearcher = SearchTool1.TextSearcher
     SearchResult table
+    CommandText (1,1) string
 
     % -------------------------------------------------------------------------
     % GUI parts
 
     GUIReady (1,1) logical = false
 
-    Window LiteApp7.LiteAppWindow
+    Window LiteApp8.LiteAppWindow
 
-    TargetFolderUI LiteApp7.Component.DropDown
-    IncludeSubfoldersUI LiteApp7.Component.CheckBox
-    SelectFolderUI LiteApp7.Component.Button
+    TargetFolderUI LiteApp8.Component.DropDown
+    IncludeSubfoldersUI LiteApp8.Component.CheckBox
+    SelectFolderUI LiteApp8.Component.Button
 
-    SelectAllUI LiteApp7.Component.CheckBox
-    FileType_m_UI LiteApp7.Component.CheckBox
-    ExcludeLiveScriptUI LiteApp7.Component.CheckBox
-    ExcludeMATLABCodeFileUI LiteApp7.Component.CheckBox
-    FileType_md_UI LiteApp7.Component.CheckBox
-    FileType_mdl_UI LiteApp7.Component.CheckBox
-    FileType_ssc_UI LiteApp7.Component.CheckBox
-    FileType_svg_UI LiteApp7.Component.CheckBox
-    CustomFileTypesUI LiteApp7.Component.EditField
+    SelectAllUI LiteApp8.Component.CheckBox
+    Search_m_UI LiteApp8.Component.CheckBox
+    Search_md_UI LiteApp8.Component.CheckBox
+    Search_mdl_UI LiteApp8.Component.CheckBox
+    Search_ssc_UI LiteApp8.Component.CheckBox
+    Search_svg_UI LiteApp8.Component.CheckBox
+    CustomFileTypesUI LiteApp8.Component.EditField
 
-    % FileTypesUI is a read-only edit field UI.
-    % This is used to maintain the specified file types in the app.
-    FileTypesUI LiteApp7.Component.EditField
+    % SpecifiedFileTypesUI is read-only.
+    SpecifiedFileTypesUI LiteApp8.Component.EditField
 
-    IgnoreCaseUI LiteApp7.Component.CheckBox
-    MatchWholeWordUI LiteApp7.Component.CheckBox
+    ExcludeLiveScriptUI LiteApp8.Component.CheckBox
+    ExcludeMATLABCodeFileUI LiteApp8.Component.CheckBox
+
+    IgnoreCaseUI LiteApp8.Component.CheckBox
+    MatchWholeWordUI LiteApp8.Component.CheckBox
     SearchTextUI LiteApp8.Component.EditableDropDown
 
-    CopyCommandButtonUI LiteApp7.Component.Button
-    SearchButtonUI LiteApp7.Component.Button
+    CopyCommandButtonUI LiteApp8.Component.Button
+    SearchButtonUI LiteApp8.Component.Button
 
   end  % properties
 
   properties (Constant, Access=private)
 
-    width_unit = LiteApp7.Constant.Width{"unitwidth"}
-    width_name_ui = LiteApp7.Constant.Width{"unitwidth"} * 18
-    width_unit_ui = LiteApp7.Constant.Width{"unitwidth"} * 8
-    width_button = LiteApp7.Constant.Width{"unitwidth"} * 12
+    width_unit = LiteApp8.Constant.Width{"unitwidth"}
+    width_name_ui = LiteApp8.Constant.Width{"unitwidth"} * 18
+    width_unit_ui = LiteApp8.Constant.Width{"unitwidth"} * 8
+    width_button = LiteApp8.Constant.Width{"unitwidth"} * 12
 
-    height_oneline = LiteApp7.Constant.Height{"oneline"}
+    height_oneline = LiteApp8.Constant.Height{"oneline"}
 
   end  % properties
 
@@ -86,28 +69,33 @@ classdef TextSearchAppMain < handle
     function App = TextSearchAppMain(NameValuePair)
       %%
       arguments (Input)
+        NameValuePair.StatesSource (1,1) string {mustBeMember(NameValuePair.StatesSource, ["options", "external"])} = "options"
+
+        % ---------------------------------------------------------------------
+        % StatesSource="options"
 
         NameValuePair.TargetFolder (1,1) string {mustBeFolder} = pwd
         NameValuePair.IncludeSubfolders (1,1) logical = false
 
-        NameValuePair.SelectAll (1,1) logical = true
-        NameValuePair.SelectMATLAB (1,1) logical = true
+        NameValuePair.SearchAll (1,1) logical = true
+        NameValuePair.SearchMATLAB (1,1) logical = true
+        NameValuePair.SearchMarkdown (1,1) logical = true
+        NameValuePair.SearchSimulink (1,1) logical = true
+        NameValuePair.SearchSimscape (1,1) logical = true
+        NameValuePair.SearchSVG (1,1) logical = true
+        NameValuePair.CustomFileTypes (1,:) string = ""
+
         NameValuePair.ExcludeLiveScript (1,1) logical = false
         NameValuePair.ExcludeMATLABCodeFile (1,1) logical = false
-        NameValuePair.SelectMarkdown (1,1) logical = true
-        NameValuePair.SelectSimulink (1,1) logical = true
-        NameValuePair.SelectSimscape (1,1) logical = true
-        NameValuePair.SelectSVG (1,1) logical = true
-        NameValuePair.CustomFileTypes (1,:) string = ""
 
         NameValuePair.IgnoreCase (1,1) logical = true
         NameValuePair.MatchWholeWord (1,1) logical = false
         NameValuePair.SearchText (1,1) string = "Copyright"
 
-      end  % arguments
+        % ---------------------------------------------------------------------
+        % StatesSource="external"
+        NameValuePair.SearchStates (1,:) SearchTool1.TextSearchStates
 
-      arguments (Output)
-        App TextSearchTool1.TextSearchAppMain
       end  % arguments
 
       % -----------------------------------------------------------------------
@@ -116,9 +104,9 @@ classdef TextSearchAppMain < handle
       % -----------------------------------------------------------------------
       % Build app GUI
 
-      App.Window = LiteApp7.LiteAppWindow;
+      App.Window = LiteApp8.LiteAppWindow;
       App.Window.Name = CodeTool1.i18n("Text search");
-      App.Window.Height = 360;
+      App.Window.Height = 340;
       App.Window.Width = 600;
 
       meta_data = metaclass(App);
@@ -129,30 +117,74 @@ classdef TextSearchAppMain < handle
       % -----------------------------------------------------------------------
       % After buidling app GUI
 
-      App.IncludeSubfoldersUI.Value = NameValuePair.IncludeSubfolders;
+      switch NameValuePair.StatesSource
 
-      target_folder = replace(NameValuePair.TargetFolder, ("/"|"\"), " > ");
-      App.TargetFolderUI.Items = target_folder;
-      App.TargetFolderUI.Value = target_folder;
+        case "options"
 
-      App.FileType_m_UI.Value = NameValuePair.SelectMATLAB;
-      App.ExcludeLiveScriptUI.Value = NameValuePair.ExcludeLiveScript;
-      App.ExcludeMATLABCodeFileUI.Value = NameValuePair.ExcludeMATLABCodeFile;
+          App.IncludeSubfoldersUI.Value = NameValuePair.IncludeSubfolders;
 
-      App.FileType_md_UI.Value = NameValuePair.SelectMarkdown;
-      App.FileType_mdl_UI.Value = NameValuePair.SelectSimulink;
-      App.FileType_ssc_UI.Value = NameValuePair.SelectSimscape;
-      App.FileType_svg_UI.Value = NameValuePair.SelectSVG;
-      App.CustomFileTypesUI.Value = NameValuePair.CustomFileTypes;
-      update_file_types(App)
+          target_folder = replace(NameValuePair.TargetFolder, ("/"|"\"), " > ");
+          App.TargetFolderUI.Items = target_folder;
+          App.TargetFolderUI.Value = target_folder;
 
-      App.IgnoreCaseUI.Value = NameValuePair.IgnoreCase;
-      App.MatchWholeWordUI.Value = NameValuePair.MatchWholeWord;
-      App.SearchTextUI.Value = NameValuePair.SearchText;
+          App.SelectAllUI.Value = NameValuePair.SearchAll;
+
+          App.Search_m_UI.Value = NameValuePair.SearchMATLAB;
+
+          App.Search_md_UI.Value = NameValuePair.SearchMarkdown;
+          App.Search_mdl_UI.Value = NameValuePair.SearchSimulink;
+          App.Search_ssc_UI.Value = NameValuePair.SearchSimscape;
+          App.Search_svg_UI.Value = NameValuePair.SearchSVG;
+          App.CustomFileTypesUI.Value = NameValuePair.CustomFileTypes;
+          update_FileTypes(App)
+
+          App.ExcludeLiveScriptUI.Value = NameValuePair.ExcludeLiveScript;
+          App.ExcludeMATLABCodeFileUI.Value = NameValuePair.ExcludeMATLABCodeFile;
+
+          App.IgnoreCaseUI.Value = NameValuePair.IgnoreCase;
+          App.MatchWholeWordUI.Value = NameValuePair.MatchWholeWord;
+          App.SearchTextUI.Value = NameValuePair.SearchText;
+
+        case "external"
+          if not(isfield(NameValuePair, "SearchStates"))
+            id = App.errorID + "InvalidSearchStates";
+            msg = CodeTool1.i18n("For external initial states, SearchStates must be specified.");
+
+            throw(MException(id, msg))
+
+          end  % if
+
+          states = NameValuePair.SearchStates;
+
+          App.IncludeSubfoldersUI.Value = states.IncludeSubfolders;
+
+          target_folder = replace(states.TargetFolder, ("/"|"\"), " > ");
+          App.TargetFolderUI.Items = target_folder;
+          App.TargetFolderUI.Value = target_folder;
+
+          App.Search_m_UI.Value = states.SearchMATLAB;
+
+          App.Search_md_UI.Value = states.SearchMarkdown;
+          App.Search_mdl_UI.Value = states.SearchSimulink;
+          App.Search_ssc_UI.Value = states.SearchSimscape;
+          App.Search_svg_UI.Value = states.SearchSVG;
+          App.CustomFileTypesUI.Value = states.CustomFileTypes;
+          update_FileTypes(App)
+
+          App.ExcludeLiveScriptUI.Value = states.ExcludeLiveScript;
+          App.ExcludeMATLABCodeFileUI.Value = states.ExcludeMATLABCodeFile;
+
+          App.IgnoreCaseUI.Value = states.IgnoreCase;
+          App.MatchWholeWordUI.Value = states.MatchWholeWord;
+          x = char(string(states.SearchTextPattern));
+          x = x(2:end-1);  % Remove double quotes...
+          App.SearchTextUI.Value = x;
+
+      end  % switch
 
       App.GUIReady = true;
 
-      update_state_from_ui_components(App)
+      update_SearcherStatesFromUIComponents(App)
 
       % -----------------------------------------------------------------------
       Show(App.Window)
@@ -170,144 +202,143 @@ classdef TextSearchAppMain < handle
       % =======================================================================
       % Target folder
       row = NewRow(layout, column);
-      label_ui = LiteApp8.Component.Label2(NewSlot(layout, row));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{" + CodeTool1.i18n("Target folder") + "}";
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.IncludeSubfoldersUI = LiteApp7.Component.CheckBox(NewSlot(layout, row));
+      App.IncludeSubfoldersUI = LiteApp8.Component.CheckBox(NewSlot(layout, row));
       App.IncludeSubfoldersUI.Text = CodeTool1.i18n("Include subfolders");
-      App.IncludeSubfoldersUI.ValueChangedCallback = @() update_state_from_ui_components(App);
+      App.IncludeSubfoldersUI.ValueChangedCallback = @() update_SearcherStatesFromUIComponents(App);
 
-      App.SelectFolderUI = LiteApp7.Component.Button(NewSlot(layout, row, Width="fit"));
+      App.SelectFolderUI = LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
       App.SelectFolderUI.ButtonWidth = App.width_button;
       App.SelectFolderUI.Text = CodeTool1.i18n("Select...");
       App.SelectFolderUI.MainButton.Tooltip = CodeTool1.i18n("Select a target folder and add to the drop down.");
-      App.SelectFolderUI.ButtonPushedCallback = @() react_SelectFolderButton(App);
+      App.SelectFolderUI.ButtonPushedCallback = @() react_SelectFolderButtonPushed(App);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.TargetFolderUI = LiteApp7.Component.DropDown(NewSlot(layout, row));
+      App.TargetFolderUI = LiteApp8.Component.DropDown(NewSlot(layout, row));
       App.TargetFolderUI.MainDropDown.Items = "";
-      App.TargetFolderUI.ValueChangedCallback = @() update_state_from_ui_components(App);
+      App.TargetFolderUI.ValueChangedCallback = @() update_SearcherStatesFromUIComponents(App);
 
       % =======================================================================
       % File type
       row = NewRow(layout, column);
-      label_ui = LiteApp8.Component.Label2(NewSlot(layout, row));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{" + CodeTool1.i18n("File types") + "}";
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
 
-      App.SelectAllUI = LiteApp7.Component.CheckBox(NewSlot(layout, row));
+      App.SelectAllUI = LiteApp8.Component.CheckBox(NewSlot(layout, row));
       App.SelectAllUI.Text = CodeTool1.i18n("Select all");
-      App.SelectAllUI.ValueChangedCallback = @() react_SelectAllFileTypes(App);
+      App.SelectAllUI.ValueChangedCallback = @() react_SearchAllFileTypesCheckBox(App);
+
+      App.Search_m_UI = LiteApp8.Component.CheckBox(NewSlot(layout, row));
+      App.Search_m_UI.Text = CodeTool1.i18n("*.m");
+      App.Search_m_UI.MainCheckBox.Tooltip = CodeTool1.i18n("MATLAB files");
+      App.Search_m_UI.ValueChangedCallback = @() update_FileTypes(App);
+
+      App.Search_md_UI = LiteApp8.Component.CheckBox(NewSlot(layout, row));
+      App.Search_md_UI.Text = CodeTool1.i18n("*.md");
+      App.Search_md_UI.MainCheckBox.Tooltip = CodeTool1.i18n("Markdown files");
+      App.Search_md_UI.ValueChangedCallback = @() update_FileTypes(App);
+
+      App.Search_mdl_UI = LiteApp8.Component.CheckBox(NewSlot(layout, row));
+      App.Search_mdl_UI.Text = CodeTool1.i18n("*.mdl");
+      App.Search_mdl_UI.MainCheckBox.Tooltip = CodeTool1.i18n("Simulink model files");
+      App.Search_mdl_UI.ValueChangedCallback = @() update_FileTypes(App);
+
+      App.Search_ssc_UI = LiteApp8.Component.CheckBox(NewSlot(layout, row));
+      App.Search_ssc_UI.Text = CodeTool1.i18n("*.ssc");
+      App.Search_ssc_UI.MainCheckBox.Tooltip = CodeTool1.i18n("Simscape source files");
+      App.Search_ssc_UI.ValueChangedCallback = @() update_FileTypes(App);
+
+      App.Search_svg_UI = LiteApp8.Component.CheckBox(NewSlot(layout, row));
+      App.Search_svg_UI.Text = CodeTool1.i18n("*.svg");
+      App.Search_svg_UI.MainCheckBox.Tooltip = CodeTool1.i18n("Scalable vector graphics files");
+      App.Search_svg_UI.ValueChangedCallback = @() update_FileTypes(App);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
 
-      App.FileType_m_UI = LiteApp7.Component.CheckBox(NewSlot(layout, row));
-      App.FileType_m_UI.Text = CodeTool1.i18n("MATLAB (*.m)");
-      App.FileType_m_UI.ValueChangedCallback = @() update_file_types(App);
-
-      App.ExcludeLiveScriptUI = LiteApp7.Component.CheckBox(NewSlot(layout, row));
-      App.ExcludeLiveScriptUI.Text = CodeTool1.i18n("Exclude Live Script");
-      App.ExcludeLiveScriptUI.MainCheckBox.Enable = "off";
-      App.ExcludeLiveScriptUI.ValueChangedCallback = @() update_file_types(App);
-
-      App.ExcludeMATLABCodeFileUI = LiteApp7.Component.CheckBox(NewSlot(layout, row));
-      App.ExcludeMATLABCodeFileUI.Text = CodeTool1.i18n("Exclude MATLAB code");
-      App.ExcludeMATLABCodeFileUI.MainCheckBox.Enable = "off";
-      App.ExcludeMATLABCodeFileUI.ValueChangedCallback = @() update_file_types(App);
-
-      % -----------------------------------------------------------------------
-      row = NewRow(layout, column);
-
-      App.FileType_md_UI = LiteApp7.Component.CheckBox(NewSlot(layout, row));
-      App.FileType_md_UI.Text = CodeTool1.i18n("Markdown (*.md)");
-      App.FileType_md_UI.ValueChangedCallback = @() update_file_types(App);
-
-      App.FileType_mdl_UI = LiteApp7.Component.CheckBox(NewSlot(layout, row));
-      App.FileType_mdl_UI.Text = CodeTool1.i18n("Simulink (*.mdl)");
-      App.FileType_mdl_UI.ValueChangedCallback = @() update_file_types(App);
-
-      App.FileType_ssc_UI = LiteApp7.Component.CheckBox(NewSlot(layout, row));
-      App.FileType_ssc_UI.Text = CodeTool1.i18n("Simscape (*.ssc)");
-      App.FileType_ssc_UI.ValueChangedCallback = @() update_file_types(App);
-
-      App.FileType_svg_UI = LiteApp7.Component.CheckBox(NewSlot(layout, row));
-      App.FileType_svg_UI.Text = CodeTool1.i18n("SVG (*.svg)");
-      App.FileType_svg_UI.ValueChangedCallback = @() update_file_types(App);
-
-      % -----------------------------------------------------------------------
-      row = NewRow(layout, column);
-
-      label_ui = LiteApp8.Component.Label2(NewSlot(layout, row, Width="fit"));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
       label_ui.Text = CodeTool1.i18n("Custom file types");
       label_ui.ComponentWidth = App.width_name_ui;
 
-      App.CustomFileTypesUI = LiteApp7.Component.EditField(NewSlot(layout, row));
+      App.CustomFileTypesUI = LiteApp8.Component.EditField(NewSlot(layout, row));
       App.CustomFileTypesUI.MainEditField.Tooltip = CodeTool1.i18n("Specify a comma-separated list of file types. Example: demo*.m, *.txt");
-      App.CustomFileTypesUI.ValueChangedCallback = @() update_file_types(App);
+      App.CustomFileTypesUI.ValueChangedCallback = @() update_FileTypes(App);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
 
-      label_ui = LiteApp8.Component.Label2(NewSlot(layout, row, Width="fit"));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
       label_ui.Text = CodeTool1.i18n("Specified file types");
       label_ui.ComponentWidth = App.width_name_ui;
 
-      App.FileTypesUI = LiteApp7.Component.EditField(NewSlot(layout, row));
-      App.FileTypesUI.ReadOnly = "on";
-      App.FileTypesUI.ValueChangedCallback = @() update_state_from_ui_components(App);
+      App.SpecifiedFileTypesUI = LiteApp8.Component.EditField(NewSlot(layout, row));
+      App.SpecifiedFileTypesUI.ReadOnly = "on";
+      App.SpecifiedFileTypesUI.ValueChangedCallback = @() update_SearcherStatesFromUIComponents(App);
+
+      % -----------------------------------------------------------------------
+      row = NewRow(layout, column);
+
+      App.ExcludeLiveScriptUI = LiteApp8.Component.CheckBox(NewSlot(layout, row));
+      App.ExcludeLiveScriptUI.Text = CodeTool1.i18n("Exclude Live Script");
+      App.ExcludeLiveScriptUI.ValueChangedCallback = @() update_FileTypes(App);
+
+      App.ExcludeMATLABCodeFileUI = LiteApp8.Component.CheckBox(NewSlot(layout, row));
+      App.ExcludeMATLABCodeFileUI.Text = CodeTool1.i18n("Exclude MATLAB code");
+      App.ExcludeMATLABCodeFileUI.ValueChangedCallback = @() update_FileTypes(App);
 
       % =======================================================================
       % Text to search
       row = NewRow(layout, column);
-      label_ui = LiteApp8.Component.Label2(NewSlot(layout, row, Width="fit"));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
       label_ui.Text = "\textbf{" + CodeTool1.i18n("Text to search") + "}";
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
 
-      App.IgnoreCaseUI = LiteApp7.Component.CheckBox(NewSlot(layout, row, Width="fit"));
+      App.IgnoreCaseUI = LiteApp8.Component.CheckBox(NewSlot(layout, row, Width="fit"));
       App.IgnoreCaseUI.Text = CodeTool1.i18n("Ignore case");
-      App.IgnoreCaseUI.ValueChangedCallback = @() update_state_from_ui_components(App);
+      App.IgnoreCaseUI.ValueChangedCallback = @() update_SearcherStatesFromUIComponents(App);
 
-      App.MatchWholeWordUI = LiteApp7.Component.CheckBox(NewSlot(layout, row, Width="fit"));
+      App.MatchWholeWordUI = LiteApp8.Component.CheckBox(NewSlot(layout, row, Width="fit"));
       App.MatchWholeWordUI.Text = CodeTool1.i18n("Match whole word");
-      App.MatchWholeWordUI.ValueChangedCallback = @() update_state_from_ui_components(App);
+      App.MatchWholeWordUI.ValueChangedCallback = @() update_SearcherStatesFromUIComponents(App);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
       App.SearchTextUI = LiteApp8.Component.EditableDropDown(NewSlot(layout, row));
       App.SearchTextUI.Items = [];
-      App.SearchTextUI.ValueChangedCallback = @() update_text_to_search(App);
+      App.SearchTextUI.ValueChangedCallback = @() react_SearchTextChanged(App);
 
       % =======================================================================
       row = NewRow(layout, column);
-      LiteApp7.Component.HorizontalLine(row);
+      LiteApp8.Component.HorizontalLine(row);
 
       % =======================================================================
       row = NewRow(layout, column);
 
-      App.CopyCommandButtonUI = LiteApp7.Component.Button(NewSlot(layout, row));
+      App.CopyCommandButtonUI = LiteApp8.Component.Button(NewSlot(layout, row));
       App.CopyCommandButtonUI.Text = CodeTool1.i18n("Copy command");
       App.CopyCommandButtonUI.MainButton.Tooltip = CodeTool1.i18n("Copy the search command to clipboard.");
       App.CopyCommandButtonUI.ButtonWidth = App.width_button;
       App.CopyCommandButtonUI.HorizontalAlignment = "center";
-      App.CopyCommandButtonUI.ButtonPushedCallback = @() clipboard("copy", App.CommandText);
+      App.CopyCommandButtonUI.ButtonPushedCallback = @() react_CopyCommandButtonPushed(App);
 
-      App.SearchButtonUI = LiteApp7.Component.Button(NewSlot(layout, row));
+      App.SearchButtonUI = LiteApp8.Component.Button(NewSlot(layout, row));
       App.SearchButtonUI.Text = CodeTool1.i18n("Search");
       App.SearchButtonUI.ButtonWidth = App.width_button;
       App.SearchButtonUI.HorizontalAlignment = "center";
-      App.SearchButtonUI.ButtonPushedCallback = @() run_search(App);
-
+      App.SearchButtonUI.ButtonPushedCallback = @() react_SearchButtonPushed(App);
     end  % function
 
-    function react_SelectFolderButton(App)
+    function react_SelectFolderButtonPushed(App)
       %%
       selected_folder = uigetdir(pwd);
       if selected_folder == 0
@@ -316,110 +347,89 @@ classdef TextSearchAppMain < handle
         return
 
       end  % if
-
       if not(ismember(selected_folder, App.TargetFolderUI.Items))
         selected_folder = replace(selected_folder, ("/"|"\"), " > ");
         App.TargetFolderUI.Items = [App.TargetFolderUI.Items; selected_folder];
       end  % if
-
       App.TargetFolderUI.Value = selected_folder;
     end  % function
 
-    function react_SelectAllFileTypes(App)
+    function react_SearchAllFileTypesCheckBox(App)
       %%
       if App.SelectAllUI.Value
-        App.FileType_m_UI.Value = true;
-        App.ExcludeLiveScriptUI.Value = false;
-        App.ExcludeMATLABCodeFileUI.Value = false;
-        App.FileType_md_UI.Value = true;
-        App.FileType_mdl_UI.Value = true;
-        App.FileType_ssc_UI.Value = true;
-        App.FileType_svg_UI.Value = true;
-
+        App.Search_m_UI.Value = true;
+        App.Search_md_UI.Value = true;
+        App.Search_mdl_UI.Value = true;
+        App.Search_ssc_UI.Value = true;
+        App.Search_svg_UI.Value = true;
       else
-        App.FileType_m_UI.Value = false;
-        App.ExcludeLiveScriptUI.Value = false;
-        App.ExcludeMATLABCodeFileUI.Value = false;
-        App.FileType_md_UI.Value = false;
-        App.FileType_mdl_UI.Value = false;
-        App.FileType_ssc_UI.Value = false;
-        App.FileType_svg_UI.Value = false;
-
+        App.Search_m_UI.Value = false;
+        App.Search_md_UI.Value = false;
+        App.Search_mdl_UI.Value = false;
+        App.Search_ssc_UI.Value = false;
+        App.Search_svg_UI.Value = false;
       end  % if
-
-      update_file_types(App)
-
+      update_FileTypes(App)
     end  % function
 
-    function update_file_types(App)
+    function update_FileTypes(App)
       %%
       % Use main components' Value (e.g., SelectAllUI.MainCheckBox.Value) to modify the value.
       % Modifying the containing components's Value (e.g., SelectAllUI.Value) triggers
-      % events which can cause recursive calls.
+      % broader events which can cause recursive calls.
 
-      if App.FileType_m_UI.Value
-        filetypes = "*.m";
-        App.ExcludeLiveScriptUI.MainCheckBox.Enable = "on";
-        App.ExcludeMATLABCodeFileUI.MainCheckBox.Enable = "on";
-      else
-        filetypes = [];
-        App.SelectAllUI.MainCheckBox.Value = false;
-        App.ExcludeLiveScriptUI.MainCheckBox.Value = false;
-        App.ExcludeLiveScriptUI.MainCheckBox.Enable = "off";
-        App.ExcludeMATLABCodeFileUI.MainCheckBox.Value = false;
-        App.ExcludeMATLABCodeFileUI.MainCheckBox.Enable = "off";
+      file_types = [];
+
+      if App.Search_m_UI.Value
+        file_types = [file_types, "*.m"];
       end  % if
 
-      if App.FileType_md_UI.Value
-        filetypes = [filetypes, "*.md"];
-      else
-        App.SelectAllUI.MainCheckBox.Value = false;
+      if App.Search_md_UI.Value
+        file_types = [file_types, "*.md"];
       end  % if
 
-      if App.FileType_mdl_UI.Value
-        filetypes = [filetypes, "*.mdl"];
-      else
-        App.SelectAllUI.MainCheckBox.Value = false;
+      if App.Search_mdl_UI.Value
+        file_types = [file_types, "*.mdl"];
       end  % if
 
-      if App.FileType_ssc_UI.Value
-        filetypes = [filetypes, "*.ssc"];
-      else
-        App.SelectAllUI.MainCheckBox.Value = false;
+      if App.Search_ssc_UI.Value
+        file_types = [file_types, "*.ssc"];
       end  % if
 
-      if App.FileType_svg_UI.Value
-        filetypes = [filetypes, "*.svg"];
-      else
+      if App.Search_svg_UI.Value
+        file_types = [file_types, "*.svg"];
+      end  % if
+
+      if numel(file_types) ~= 5
         App.SelectAllUI.MainCheckBox.Value = false;
       end  % if
 
       if App.CustomFileTypesUI.Value ~= ""
         filetypes_custom = split(strip(App.CustomFileTypesUI.Value), "," + optionalPattern(whitespacePattern));
-        filetypes = [filetypes, filetypes_custom];
+        file_types = [file_types, filetypes_custom];
       end  % if
 
-      if isempty(filetypes) || (isscalar(filetypes) && filetypes == "")
-        App.FileTypesUI.MainEditField.Value = "";
+      if isempty(file_types) || (isscalar(file_types) && file_types == "")
+        App.SpecifiedFileTypesUI.MainEditField.Value = "";
       else
-        filetypes = unique(filetypes);
-        App.FileTypesUI.MainEditField.Value = join(filetypes, ", ");
+        file_types = unique(file_types);
+        App.SpecifiedFileTypesUI.MainEditField.Value = join(file_types, ", ");
       end  % if
 
-      update_state_from_ui_components(App)
+      update_SearcherStatesFromUIComponents(App)
 
     end  % function
 
-    function update_text_to_search(App)
+    function react_SearchTextChanged(App)
       %%
       st = App.SearchTextUI.Value;
       if st ~= "" && not(ismember(st, App.SearchTextUI.Items))
         App.SearchTextUI.Items = [App.SearchTextUI.Items; st];
       end  % if
-      update_state_from_ui_components(App)
+      update_SearcherStatesFromUIComponents(App)
     end  % function
 
-    function update_state_from_ui_components(App)
+    function update_SearcherStatesFromUIComponents(App)
       %%
       if not(App.GUIReady)
 
@@ -427,70 +437,48 @@ classdef TextSearchAppMain < handle
 
       end  % if
 
-      App.SearchReady = true;
+      App.TextSearcher.States.SearchTextPattern = App.SearchTextUI.Value;
 
-      App.IncludeSubfolders = logical(App.IncludeSubfoldersUI.Value);
-      App.TargetFolder = replace(App.TargetFolderUI.Value, " > ", filesep);
+      App.TextSearcher.States.TargetFolder = replace(App.TargetFolderUI.Value, " > ", filesep);
+      App.TextSearcher.States.IncludeSubfolders = logical(App.IncludeSubfoldersUI.Value);
 
-      if App.FileTypesUI.Value == ""
-        App.SearchReady = false;
-      end  % if
+      App.TextSearcher.States.FileTypes = split(App.SpecifiedFileTypesUI.Value, "," + optionalPattern(whitespacePattern));
 
-      App.IgnoreCase = logical(App.IgnoreCaseUI.Value);
-      App.MatchWholeWord = logical(App.MatchWholeWordUI.Value);
+      App.TextSearcher.States.SearchAll = logical(App.SelectAllUI.Value);
+      App.TextSearcher.States.SearchMATLAB = logical(App.Search_m_UI.Value);
+      App.TextSearcher.States.SearchMarkdown = logical(App.Search_md_UI.Value);
+      App.TextSearcher.States.SearchSimulink = logical(App.Search_mdl_UI.Value);
+      App.TextSearcher.States.SearchSimscape = logical(App.Search_ssc_UI.Value);
+      App.TextSearcher.States.SearchSVG = logical(App.Search_svg_UI.Value);
 
-      if App.SearchTextUI.Value == ""
-        App.SearchReady = false;
-        App.SearchText = "";
-      else
-        App.SearchText = App.SearchTextUI.Value;
-      end  % if
+      App.TextSearcher.States.CustomFileTypes = App.CustomFileTypesUI.Value;
 
-      if not(App.SearchReady)
+      App.TextSearcher.States.ExcludeLiveScript = logical(App.ExcludeLiveScriptUI.Value);
+      App.TextSearcher.States.ExcludeMATLABCodeFile = logical(App.ExcludeMATLABCodeFileUI.Value);
+
+      App.TextSearcher.States.IgnoreCase = logical(App.IgnoreCaseUI.Value);
+      App.TextSearcher.States.MatchWholeWord = logical(App.MatchWholeWordUI.Value);
+
+      if not(ready(App.TextSearcher))
         App.CopyCommandButtonUI.MainButton.Enable = "off";
         App.SearchButtonUI.MainButton.Enable = "off";
         App.CommandText = "";
-
-        return
-
       else
         % Text search is ready.
         App.CopyCommandButtonUI.MainButton.Enable = "on";
         App.SearchButtonUI.MainButton.Enable = "on";
-        App.CommandText = TextSearchTool1.buildSearchCommandText( ...
-          BuildFrom = "SearchOptions", ...
-          TargetFolder = App.TargetFolder, ...
-          IncludeSubfolders = App.IncludeSubfolders, ...
-          FileTypes = "", ...
-          ExcludeLiveScript = App.ExcludeLiveScript, ...
-          ExcludeMATLABCodeFile = App.ExcludeMATLABCodeFile, ...
-          TextPattern = App.SearchText, ...
-          IgnoreCase = App.IgnoreCase, ...
-          MatchWholeWord = App.MatchWholeWord, ...
-          IncludeStyledFilePath = true);
+        App.CommandText = "SearchTool1.searchText(" + getCommandArgumentText(App.TextSearcher) + ")";
       end  % if
     end  % function
 
-    function run_search(App)
+    function react_CopyCommandButtonPushed(App)
       %%
+      clipboard("copy", App.CommandText)
+    end  % function
 
-      App.SearchResult = TextSearchTool1.searchText( ...
-        TargetFolder = App.TargetFolder, ...
-        IncludeSubfolders = App.IncludeSubfolders, ...
-        FileTypes = "", ...
-        SelectAll = App.SelectAll, ...
-        SelectMATLAB = App.SelectMATLAB, ...
-        ExcludeLiveScript = App.ExcludeLiveScript, ...
-        ExcludeMATLABCodeFile = App.ExcludeMATLABCodeFile, ...
-        SelectMarkdown = App.SelectMarkdown, ...
-        SelectSimulink = App.SelectSimulink, ...
-        SelectSimscape = App.SelectSimscape, ...
-        SelectSVG = App.SelectSVG, ...
-        CustomFileTypes = App.CustomFileTypes, ...
-        IgnoreCase = App.IgnoreCase, ...
-        MatchWholeWord = App.MatchWholeWord, ...
-        SearchText = App.SearchText, ...
-        IncludeStyledFilePath = true );
+    function react_SearchButtonPushed(App)
+      %%
+      App.SearchResult = runSearch(App.TextSearcher);
 
       if isempty(App.SearchResult)
         uialert(App.Window.MainFigure, CodeTool1.i18n("Nothing matched."), CodeTool1.i18n("No match"))
@@ -499,7 +487,7 @@ classdef TextSearchAppMain < handle
 
       end  % if
 
-      TextSearchTool1.TextSearchResultAppMain(SearchResult=App.SearchResult);
+      SearchTool1.TextSearchResultViewerAppMain(App.TextSearcher, SearchResult=App.SearchResult)
 
     end  % function
 

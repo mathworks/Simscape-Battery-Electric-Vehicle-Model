@@ -2,7 +2,7 @@ classdef HorizontalLine < matlab.ui.componentcontainer.ComponentContainer
   % Horizontal line, implemented using uipanel.
 
   % Unlike other components, this component directly inherits from
-  % the component container because it makes this code much simpler.
+  % the component container to keep the implementation simple.
 
   % Copyright 2023-2025 The MathWorks, Inc.
 
@@ -25,8 +25,8 @@ classdef HorizontalLine < matlab.ui.componentcontainer.ComponentContainer
       panel_ui.Title= "";
       panel_ui.BorderType = "none";
 
-      % !todo: Support the dark/light themes.
-      panel_ui.BackgroundColor = "#aaaaaa";  % Assuming light theme.
+      % Use the same color for the dark and light themes.
+      panel_ui.BackgroundColor = "#aaaaaa";
 
     end  % function
 

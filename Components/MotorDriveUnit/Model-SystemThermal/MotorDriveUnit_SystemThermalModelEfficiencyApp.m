@@ -58,16 +58,16 @@ friction_units = ["N*m/(rad/s)" "N*m*s/rad" "N*m/(rev/s)" "N*m/rpm" "lbf*in/(rad
 
 % -----------------------------------------------------------------------------
 
-width_unit = LiteApp7.Constant.Width{"unitwidth"};
+width_unit = LiteApp8.Constant.Width{"unitwidth"};
 name_ui_width = width_unit * 28;
 button_width = width_unit * 12;
 physical_unit_ui_width = width_unit * 12;
 
-oneline_height = LiteApp7.Constant.Height{"oneline"};
+oneline_height = LiteApp8.Constant.Height{"oneline"};
 
 % =============================================================================
 
-AppUIStruct.Window = LiteApp7.LiteAppWindow;
+AppUIStruct.Window = LiteApp8.LiteAppWindow;
 
 AppUIStruct.Window.HeaderUI.AppSourceName = mfilename;
 
@@ -91,7 +91,7 @@ column = NewColumn(layout, area);
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
+label_ui = LiteApp8.Component.Label(NewSlot(layout, row));
 label_ui.ComponentHeight = oneline_height * 4;
 label_ui.Text = CodeTool1.i18n( ...
 join([
@@ -109,27 +109,27 @@ target_file = CodeTool1.i18n("MotorDriveUnit_Description.html");
 % Check that the file exists. If not, this prevents the app from showing up.
 FileTool3.getFileFullPath(target_file);
 
-AppUIStruct.DocLinkUI = LiteApp7.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
-AppUIStruct.DocLinkUI.HyperlinkText = "Description";
+AppUIStruct.DocLinkUI = LiteApp8.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
+AppUIStruct.DocLinkUI.Text = "Description";
 AppUIStruct.DocLinkUI.HyperlinkClickedCallback = @() web(target_file);
 AppUIStruct.DocLinkUI.MainHyperlink.Tooltip = CodeTool1.i18n("Open the component description page.");
 % Adjust the height and vertical alignment of the hyperlink component:
 AppUIStruct.DocLinkUI.ComponentHeight = oneline_height + 4;
 AppUIStruct.DocLinkUI.VerticalAlignment = "bottom";
 
-AppUIStruct.OpenModelButtonUI = LiteApp7.Component.Button(NewSlot(layout, row, Width="fit"));
+AppUIStruct.OpenModelButtonUI = LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
 AppUIStruct.OpenModelButtonUI.ComponentWidth = button_width;
 AppUIStruct.OpenModelButtonUI.Text = CodeTool1.i18n("Open model");
 AppUIStruct.OpenModelButtonUI.MainButton.Tooltip = CodeTool1.i18n("Open the loaded model.");
 AppUIStruct.OpenModelButtonUI.ButtonPushedCallback = @() callbackOpenSystem(AppSetup.ModelName);
 
-AppUIStruct.OpenSetupButtonUI= LiteApp7.Component.Button(NewSlot(layout, row, Width="fit"));
+AppUIStruct.OpenSetupButtonUI= LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
 AppUIStruct.OpenSetupButtonUI.ComponentWidth = button_width;
 AppUIStruct.OpenSetupButtonUI.Text = CodeTool1.i18n("Open setup");
 AppUIStruct.OpenSetupButtonUI.MainButton.Tooltip = CodeTool1.i18n("Open the loaded parameter setup script.");
 AppUIStruct.OpenSetupButtonUI.ButtonPushedCallback = @() edit(AppSetup.ParameterFile);
 
-AppUIStruct.RefreshButtonUI = LiteApp7.Component.Button(NewSlot(layout, row));
+AppUIStruct.RefreshButtonUI = LiteApp8.Component.Button(NewSlot(layout, row));
 AppUIStruct.RefreshButtonUI.ComponentWidth = button_width;
 AppUIStruct.RefreshButtonUI.HorizontalAlignment = "left";
 AppUIStruct.RefreshButtonUI.Text = CodeTool1.i18n("Refresh");
@@ -142,14 +142,14 @@ NewRow(layout, column, Height=8);  % vertical small gap
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-label_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
+label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
 label_ui.Text = "\textbf{" + CodeTool1.i18n("Parameters") + "}";
 label_ui.ComponentWidth = name_ui_width;
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.MaxSpeedUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.MaxSpeedUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.MaxSpeedUI.Name = CodeTool1.i18n("Continuous operation max speed");
 AppUIStruct.MaxSpeedUI.NameUIWidth = name_ui_width;
 AppUIStruct.MaxSpeedUI.UnitUIWidth = physical_unit_ui_width;
@@ -161,7 +161,7 @@ AppUIStruct.MaxSpeedUI.ValueChangedCallback = @() auto_update();
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.MaxTorqueUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.MaxTorqueUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.MaxTorqueUI.Name = CodeTool1.i18n("Continuous operation max torque");
 AppUIStruct.MaxTorqueUI.NameUIWidth = name_ui_width;
 AppUIStruct.MaxTorqueUI.UnitUIWidth = physical_unit_ui_width;
@@ -173,7 +173,7 @@ AppUIStruct.MaxTorqueUI.ValueChangedCallback = @() auto_update();
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.MaxPowerUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.MaxPowerUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.MaxPowerUI.Name = CodeTool1.i18n("Continuous operation max power");
 AppUIStruct.MaxPowerUI.NameUIWidth = name_ui_width;
 AppUIStruct.MaxPowerUI.UnitUIWidth = physical_unit_ui_width;
@@ -185,7 +185,7 @@ AppUIStruct.MaxPowerUI.ValueChangedCallback = @() auto_update();
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.EfficiencyUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.EfficiencyUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.EfficiencyUI.Name = CodeTool1.i18n("Overall efficiency, $\eta_{meas}(\omega_{meas}, \tau_{meas})$");
 AppUIStruct.EfficiencyUI.UnitUIWidth = physical_unit_ui_width;
 AppUIStruct.EfficiencyUI.NameUIWidth = name_ui_width;
@@ -196,7 +196,7 @@ AppUIStruct.EfficiencyUI.ValueChangedCallback = @() auto_update();
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.MeasuredSpeedUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.MeasuredSpeedUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.MeasuredSpeedUI.Name = CodeTool1.i18n("Speed at which $\eta_{meas}$ is measured, $\omega_{meas}$");
 AppUIStruct.MeasuredSpeedUI.NameUIWidth = name_ui_width;
 AppUIStruct.MeasuredSpeedUI.UnitUIWidth = physical_unit_ui_width;
@@ -208,7 +208,7 @@ AppUIStruct.MeasuredSpeedUI.ValueChangedCallback = @() auto_update();
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.MeasuredTorqueUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.MeasuredTorqueUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.MeasuredTorqueUI.Name = CodeTool1.i18n("Torque at which $\eta_{meas}$ is measured, $\tau_{meas}$");
 AppUIStruct.MeasuredTorqueUI.NameUIWidth = name_ui_width;
 AppUIStruct.MeasuredTorqueUI.UnitUIWidth = physical_unit_ui_width;
@@ -220,7 +220,7 @@ AppUIStruct.MeasuredTorqueUI.ValueChangedCallback = @() auto_update();
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.IronLossUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.IronLossUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.IronLossUI.Name = CodeTool1.i18n("Iron loss, $P_{iron}$, at $\eta_{meas}$ point");
 AppUIStruct.IronLossUI.NameUIWidth = name_ui_width;
 AppUIStruct.IronLossUI.UnitUIWidth = physical_unit_ui_width;
@@ -232,7 +232,7 @@ AppUIStruct.IronLossUI.ValueChangedCallback = @() auto_update();
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.FixedLossUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.FixedLossUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.FixedLossUI.Name = CodeTool1.i18n("Fixed loss, $P_{fixed}$, at $\eta_{meas}$ point");
 AppUIStruct.FixedLossUI.NameUIWidth = name_ui_width;
 AppUIStruct.FixedLossUI.UnitUIWidth = physical_unit_ui_width;
@@ -244,7 +244,7 @@ AppUIStruct.FixedLossUI.ValueChangedCallback = @() auto_update();
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.RotorDampingUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.RotorDampingUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.RotorDampingUI.Name = CodeTool1.i18n("Rotor damping, $k_f$");
 AppUIStruct.RotorDampingUI.NameUIWidth = name_ui_width;
 AppUIStruct.RotorDampingUI.UnitUIWidth = physical_unit_ui_width;
@@ -256,7 +256,7 @@ AppUIStruct.RotorDampingUI.ValueChangedCallback = @() auto_update();
 % =============================================================================
 row = NewRow(layout, column);
 
-label_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
+label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
 label_ui.ComponentWidth = name_ui_width;
 label_ui.Text = "\textbf{" + CodeTool1.i18n("Derived parameters") + "}";
 
@@ -266,7 +266,7 @@ row = NewRow(layout, column);
 % Nominal loss (total loss) at efficiency measurement point
 % nominal_loss_eff = (1/eff_norm - 1) * mechpow_eff;
 
-AppUIStruct.NominalLossUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.NominalLossUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.NominalLossUI.Name = CodeTool1.i18n("Nominal loss, $P_{nom}$, at $\eta_{meas}$ point");
 AppUIStruct.NominalLossUI.NameUIWidth = name_ui_width;
 AppUIStruct.NominalLossUI.UnitUIWidth = physical_unit_ui_width;
@@ -287,7 +287,7 @@ nominal_loss = AppUIStruct.NominalLossUI.SimscapeValue;
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.LossRatioUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.LossRatioUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.LossRatioUI.Name = CodeTool1.i18n("Iron to nominal loss ratio, $P_{iron}/P_{nom}$");
 AppUIStruct.LossRatioUI.NameUIWidth = name_ui_width;
 AppUIStruct.LossRatioUI.UnitUIWidth = physical_unit_ui_width;
@@ -298,7 +298,7 @@ AppUIStruct.LossRatioUI.ValueReadOnly = true;
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.CopperLossUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.CopperLossUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.CopperLossUI.Name = CodeTool1.i18n("Copper loss, $P_{copper}$, at $\eta_{meas}$ point");
 AppUIStruct.CopperLossUI.NameUIWidth = name_ui_width;
 AppUIStruct.CopperLossUI.UnitUIWidth = physical_unit_ui_width;
@@ -324,7 +324,7 @@ column = NewColumn(layout, area, Width=right_pane_width);
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.PlotButtonUI = LiteApp7.Component.EnabledButton(NewSlot(layout, row, Width="fit"));
+AppUIStruct.PlotButtonUI = LiteApp8.Component.EnabledButton(NewSlot(layout, row, Width="fit"));
 AppUIStruct.PlotButtonUI.HorizontalAlignment = "left";
 AppUIStruct.PlotButtonUI.ButtonUIWidth = button_width + width_unit;
 AppUIStruct.PlotButtonUI.ButtonWidth = button_width;
@@ -337,15 +337,15 @@ AppUIStruct.PlotButtonUI.ButtonPushedCallback = @() update_plot(AppUIStruct.Axes
 % Set false to auto-update and keep it until the entire app is ready.
 AppUIStruct.PlotButtonUI.ButtonDisable = "on";
 
-AppUIStruct.OpenInFigureWindowUI = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
-AppUIStruct.OpenInFigureWindowUI.HyperlinkText = CodeTool1.i18n("Open in figure window");
+AppUIStruct.OpenInFigureWindowUI = LiteApp8.Component.Hyperlink(NewSlot(layout, row));
+AppUIStruct.OpenInFigureWindowUI.Text = CodeTool1.i18n("Open in figure window");
 AppUIStruct.OpenInFigureWindowUI.HorizontalAlignment = "right";
 AppUIStruct.OpenInFigureWindowUI.HyperlinkClickedCallback = @() create_plot_window();
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.AxesUI = LiteApp7.Graphics.Axes(NewSlot(layout, row));
+AppUIStruct.AxesUI = LiteApp8.Graphics.Axes(NewSlot(layout, row));
 AppUIStruct.AxesUI.ComponentHeight = plot_panel_height;
 
 % -----------------------------------------------------------------------------
@@ -354,7 +354,7 @@ NewRow(layout, column, Height=4);  % small vertical gap
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.ContoursUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.ContoursUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.ContoursUI.Name = CodeTool1.i18n("Contour levels");
 AppUIStruct.ContoursUI.NameUIWidth = width_unit * 12;
 AppUIStruct.ContoursUI.UnitUIWidth = width_unit * 5;
@@ -370,14 +370,14 @@ column = NewColumn(layout, area);
 NewRow(layout, column, Height=4);  % vertical small gap
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
-LiteApp7.Component.HorizontalLine(NewSlot(layout, row));
+LiteApp8.Component.HorizontalLine(NewSlot(layout, row));
 % -----------------------------------------------------------------------------
 NewRow(layout, column, Height=4);  % vertical small gap
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.SelectorUI = LiteApp7.Component.BlockSelectorUI(NewSlot(layout, row));
+AppUIStruct.SelectorUI = LiteApp8.Component.BlockSelectorUI(NewSlot(layout, row));
 AppUIStruct.SelectorUI.MainFigure = AppUIStruct.Window.MainFigure;
 AppUIStruct.SelectorUI.TargetSimscapeBlockNames = "Motor & Drive" + newline + "(System Level)";
 AppUIStruct.SelectorUI.GetParametersFromBlockCallback = @() getParametersFromBlock();

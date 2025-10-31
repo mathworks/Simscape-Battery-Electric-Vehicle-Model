@@ -24,24 +24,24 @@ classdef SignalDesignAppMain < handle
     % -------------------------------------------------------------------------
     % GUI parts
 
-    Window LiteApp7.LiteAppWindow
+    Window LiteApp8.LiteAppWindow
 
-    MatrixTextUI LiteApp7.Component.TextArea
-    InterpUI LiteApp7.Component.DropDown
-    ExtrapUI LiteApp7.Component.DropDown
+    MatrixTextUI LiteApp8.Component.TextArea
+    InterpUI LiteApp8.Component.DropDown
+    ExtrapUI LiteApp8.Component.DropDown
 
-    TableGridVectorUI LiteApp7.Component.PhysicalValueUI
-    TableValuesUI LiteApp7.Component.PhysicalValueUI
+    TableGridVectorUI LiteApp8.Component.PhysicalValueUI
+    TableValuesUI LiteApp8.Component.PhysicalValueUI
 
-    PlotButtonUI LiteApp7.Component.EnabledButton
-    OpenInFigureWindowUI LiteApp7.Component.Hyperlink
-    AxesUI LiteApp7.Graphics.Axes
-    IntervalUI LiteApp7.Component.PhysicalValueUI
-    AutoRangeUI LiteApp7.Component.CheckBox
-    LowerUI LiteApp7.Component.PhysicalValueUI
-    UpperUI LiteApp7.Component.PhysicalValueUI
+    PlotButtonUI LiteApp8.Component.EnabledButton
+    OpenInFigureWindowUI LiteApp8.Component.Hyperlink
+    AxesUI LiteApp8.Graphics.Axes
+    IntervalUI LiteApp8.Component.PhysicalValueUI
+    AutoRangeUI LiteApp8.Component.CheckBox
+    LowerUI LiteApp8.Component.PhysicalValueUI
+    UpperUI LiteApp8.Component.PhysicalValueUI
 
-    SelectorUI LiteApp7.Component.BlockSelectorUI
+    SelectorUI LiteApp8.Component.BlockSelectorUI
 
   end  % properties
 
@@ -51,12 +51,12 @@ classdef SignalDesignAppMain < handle
 
   properties (Constant, Access=private)
 
-    width_unit = LiteApp7.Constant.Width{"unitwidth"}
-    name_ui_width = LiteApp7.Constant.Width{"unitwidth"} * 18
-    unit_ui_width = LiteApp7.Constant.Width{"unitwidth"} * 8
-    button_width = LiteApp7.Constant.Width{"unitwidth"} * 12
+    width_unit = LiteApp8.Constant.Width{"unitwidth"}
+    name_ui_width = LiteApp8.Constant.Width{"unitwidth"} * 18
+    unit_ui_width = LiteApp8.Constant.Width{"unitwidth"} * 8
+    button_width = LiteApp8.Constant.Width{"unitwidth"} * 12
 
-    oneline_height = LiteApp7.Constant.Height{"oneline"}
+    oneline_height = LiteApp8.Constant.Height{"oneline"}
 
   end  % properties
 
@@ -85,7 +85,7 @@ classdef SignalDesignAppMain < handle
         App.BlockPath = NameValuePair.BlockPath;
       end  % if
 
-      App.Window = LiteApp7.LiteAppWindow;
+      App.Window = LiteApp8.LiteAppWindow;
       App.Window.Name = "Signal Design App";
       App.Window.Height = 520;
       App.Window.Width = 860;
@@ -133,53 +133,53 @@ classdef SignalDesignAppMain < handle
       FileTool3.getFileFullPath(html_file);
 
       row = NewRow(layout, column);
-      link_ui = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
-      link_ui.HyperlinkText = "Description";
+      link_ui = LiteApp8.Component.Hyperlink(NewSlot(layout, row));
+      link_ui.Text = "Description";
       link_ui.HyperlinkClickedCallback =  @() web(html_file);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      label_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
       label_ui.Text = "Signal design matrix";
       label_ui.ComponentWidth = App.width_unit * 15;
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.MatrixTextUI = LiteApp7.Component.TextArea(NewSlot(layout, row));
+      App.MatrixTextUI = LiteApp8.Component.TextArea(NewSlot(layout, row));
       App.MatrixTextUI.UseMonospacedFont = "on";
       App.MatrixTextUI.ComponentHeight = App.oneline_height * 10;
       App.MatrixTextUI.ValueChangedCallback = @() change_design_matrix(App);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      label_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
       label_ui.Text = "Interpolation method";
       label_ui.ComponentWidth = App.name_ui_width;
 
-      App.InterpUI= LiteApp7.Component.DropDown(NewSlot(layout, row));
+      App.InterpUI= LiteApp8.Component.DropDown(NewSlot(layout, row));
       App.InterpUI.Items = ["Smooth", "Linear"];
       App.InterpUI.Value = "Smooth";
       App.InterpUI.ValueChangedCallback = @() auto_update_plot(App);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      label_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
       label_ui.Text = "Extrapolation method";
       label_ui.ComponentWidth = App.name_ui_width;
 
-      App.ExtrapUI= LiteApp7.Component.DropDown(NewSlot(layout, row));
+      App.ExtrapUI= LiteApp8.Component.DropDown(NewSlot(layout, row));
       App.ExtrapUI.Items = ["Nearest", "Linear"];
       App.ExtrapUI.Value = "Nearest";
       App.ExtrapUI.ValueChangedCallback = @() auto_update_plot(App);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
+      label_ui = LiteApp8.Component.Label(NewSlot(layout, row));
       label_ui.Text = "\textbf{Derived parameters}";
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.TableGridVectorUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.TableGridVectorUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.TableGridVectorUI.Name = "Table grid vector, $x$";
       App.TableGridVectorUI.UnitItems = "1";
       App.TableGridVectorUI.NameUIWidth = App.name_ui_width;
@@ -188,7 +188,7 @@ classdef SignalDesignAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.TableValuesUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.TableValuesUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.TableValuesUI.Name = "Table values, $f(x)$";
       App.TableValuesUI.UnitItems = "1";
       App.TableValuesUI.NameUIWidth = App.name_ui_width;
@@ -203,7 +203,7 @@ classdef SignalDesignAppMain < handle
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
 
-      App.PlotButtonUI = LiteApp7.Component.EnabledButton(NewSlot(layout, row, Width="fit"));
+      App.PlotButtonUI = LiteApp8.Component.EnabledButton(NewSlot(layout, row, Width="fit"));
       App.PlotButtonUI.HorizontalAlignment = "left";
       App.PlotButtonUI.ButtonUIWidth = App.button_width + App.width_unit;
       App.PlotButtonUI.ButtonWidth = App.button_width;
@@ -216,20 +216,20 @@ classdef SignalDesignAppMain < handle
       % Set false to auto-update and keep it until the entire app is ready.
       App.PlotButtonUI.ButtonEnable = "on";
 
-      App.OpenInFigureWindowUI = LiteApp7.Component.Hyperlink(NewSlot(layout, row));
-      App.OpenInFigureWindowUI.HyperlinkText = "Open in figure window";
+      App.OpenInFigureWindowUI = LiteApp8.Component.Hyperlink(NewSlot(layout, row));
+      App.OpenInFigureWindowUI.Text = "Open in figure window";
       App.OpenInFigureWindowUI.HorizontalAlignment = "right";
       App.OpenInFigureWindowUI.HyperlinkClickedCallback = @() update_plot(App, StandAloneFigure=true);
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
 
-      App.AxesUI = LiteApp7.Graphics.Axes(NewSlot(layout, row));
+      App.AxesUI = LiteApp8.Graphics.Axes(NewSlot(layout, row));
       App.AxesUI.ComponentHeight = 300;
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.IntervalUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.IntervalUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.IntervalUI.Name = "Interpolation interval, $dx$";
       App.IntervalUI.UnitItems = "1";
       App.IntervalUI.NameUIWidth = App.name_ui_width;
@@ -239,7 +239,7 @@ classdef SignalDesignAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.AutoRangeUI = LiteApp7.Component.CheckBox(NewSlot(layout, row));
+      App.AutoRangeUI = LiteApp8.Component.CheckBox(NewSlot(layout, row));
       App.AutoRangeUI.Text = "x auto range";
       App.AutoRangeUI.Value = true;
       App.AutoRangeUI.HorizontalAlignment = "left";
@@ -247,7 +247,7 @@ classdef SignalDesignAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.LowerUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.LowerUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.LowerUI.Name = "Plot x lower bound";
       App.LowerUI.UnitItems = "1";
       App.LowerUI.NameUIWidth = App.name_ui_width;
@@ -257,7 +257,7 @@ classdef SignalDesignAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      App.UpperUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+      App.UpperUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
       App.UpperUI.Name = "Plot x upper bound";
       App.UpperUI.UnitItems = "1";
       App.UpperUI.NameUIWidth = App.name_ui_width;
@@ -273,13 +273,13 @@ classdef SignalDesignAppMain < handle
 
       % -----------------------------------------------------------------------
       row = NewRow(layout, column);
-      LiteApp7.Component.HorizontalLine(NewSlot(layout, row));
+      LiteApp8.Component.HorizontalLine(NewSlot(layout, row));
 
       % -----------------------------------------------------------------------
       % Configure the block selector UI to find Simscape PS Lookup Table (1D) block and
       % Simulink 1-D Lookup Table block.
       row = NewRow(layout, column);
-      App.SelectorUI = LiteApp7.Component.BlockSelectorUI(NewSlot(layout, row));
+      App.SelectorUI = LiteApp8.Component.BlockSelectorUI(NewSlot(layout, row));
       App.SelectorUI.MainFigure = App.Window.MainFigure;
       App.SelectorUI.TargetSimscapeBlockNames = "PS Lookup Table (1D)";
       App.SelectorUI.FindBlockCallback = @ModelTool2.findLookupTable1DBlocks;

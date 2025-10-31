@@ -34,7 +34,7 @@ classdef unittest_Utility < matlab.unittest.TestCase
     % Make sure that scripts, functions, classes, and models run right out of the box.
 
     function Error_1(testcase)
-      verifyError(testcase, @test_target, "openInProject:")
+      verifyError(testcase, @test_target, "MATLAB:minrhs")
       function test_target()
         openInProject  % !test_target
       end  % nested function
@@ -55,7 +55,7 @@ classdef unittest_Utility < matlab.unittest.TestCase
       verifyTrue(testcase, nnz(logical_index) == 0)
 
       % This must open the intended Live Script in the Editor.
-      openInProject
+      openInProject(target_file)
 
       % Find the target Live Script in the Editor and close it.
       docs_in_editor = matlab.desktop.editor.getAll;

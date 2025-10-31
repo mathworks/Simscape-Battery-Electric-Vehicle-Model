@@ -4,16 +4,17 @@ classdef ComponentBase < matlab.ui.componentcontainer.ComponentContainer
   % This class implements common code used by most LiteApp components.
   % Inherit this component to implement a LiteApp component.
   %
-  % Documentation
-  %
-  % - matlab.ui.componentcontainer.ComponentContainer
-  %   https://www.mathworks.com/help/matlab/ref/matlab.ui.componentcontainer.componentcontainer-class.html
+  % Documentation about matlab.ui.componentcontainer.ComponentContainer
+  % https://www.mathworks.com/help/matlab/ref/matlab.ui.componentcontainer.componentcontainer-class.html
 
   % Copyright 2023-2025 The MathWorks, Inc.
 
   properties
+    % MainFigure property is used to react to the change in the primary uifigure's property.
+    % If the component does not have to react, leave this property undefined.
+    MainFigure (:,1) matlab.ui.Figure
 
-    CommonFontSize (1,1) {mustBeInteger, mustBePositive} = LiteApp7.Constant.FontSize{"medium"}
+    CommonFontSize (1,1) {mustBeInteger, mustBePositive} = LiteApp8.Constant.FontSize{"medium"}
 
     CommonPaddingTop = 2;
     CommonPaddingBottom = 2;
@@ -27,15 +28,19 @@ classdef ComponentBase < matlab.ui.componentcontainer.ComponentContainer
 
     CommonCharacterLimits = [0 1000]
 
-    % The Theme property of this component is used to control the highlight background color only.
-    % If the app does not use the background highlighting, it is safe to ignore this property.
-    Theme (1,1) string {mustBeMember(Theme, ["dark" "light"])} = "dark"
-    LightThemeBackGroundColor (1,1) string = "cyan"
-    DarkThemeBackGroundColor (1,1) string = "#000099"
+    % The ThemeNameForBackGroundHighlight property is used to control the highlight background color only.
+    % If the app does not use the background highlighting, it is safe to ignore.
+    ThemeNameForBackGroundHighlight (1,1) string {mustBeMember(ThemeNameForBackGroundHighlight, ["dark" "light"])} = "light"
+    LightThemeBackGroundColor (1,1) string = "#2DBEEF"
+    DarkThemeBackGroundColor (1,1) string = "#309866" % #309866 = [0.1882 0.5941 0.4] ... summer 49
+    CompositeGridColor (1,1) string = "#444444"
     HighlightBackground (1,1) matlab.lang.OnOffSwitchState = "off"
 
     base_grid (1,1) matlab.ui.container.GridLayout
+  end  % properties
 
+  properties (Access=private)
+    ThemeResponderDefined (1,1) logical = false
   end  % properties
 
   methods (Access=protected)
@@ -59,9 +64,28 @@ classdef ComponentBase < matlab.ui.componentcontainer.ComponentContainer
 
     end  % function
 
-    function update(~)
+    function update(component)
+      if not(component.ThemeResponderDefined) && not(isempty(component.MainFigure))
+        component.ThemeResponderDefined = true;
+        % React when the component.MainFigure.Theme is changed.
+        % eventData.AffectedObject is component.MainFigure, which is a matlab.ui.Figure object.
+        addlistener(component.MainFigure, "Theme", "PostSet", @(~, eventData) ...
+          respondToThemeChange(component, eventData.AffectedObject));
+      end  % if
     end  % function
 
   end  % methods
 
+  methods
+
+    function respondToThemeChange(component, figureObject)
+      arguments (Input)
+        component
+        figureObject matlab.ui.Figure
+      end  % arguments
+      theme_name = figureObject.Theme.BaseColorStyle;
+      component.ThemeNameForBackGroundHighlight = theme_name;
+    end  % function
+
+  end  % methods
 end  % classdef

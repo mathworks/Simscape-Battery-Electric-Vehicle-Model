@@ -1,4 +1,4 @@
-classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
+classdef BlockSelectorUI < LiteApp8.Component.ComponentBase
   %% UI component for opening model and selecting block
 
   % Copyright 2025 The MathWorks, Inc.
@@ -13,7 +13,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
     % Essential properties
     % To use this component, these properties must be specified.
 
-    MainFigure (:,1) matlab.ui.Figure
+    % MainFigure of type matlab.ui.Figure must be defined. (declared in the base class.)
 
     % Use TargetSimscapeBlockNames to specify target Simscape blocks to add
     % to the block path drop down list.
@@ -39,7 +39,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
     % FindBlockCallback function takes a model name, find intended block paths in the model,
     % and return the block paths as string in a column vector.
     %
-    % LiteApp7.Utility.find1DLookupTableBlocks function can be used for FindBlockCallback.
+    % LiteApp8.Utility.find1DLookupTableBlocks function can be used for FindBlockCallback.
     % It adds Simulink 1-D Lookup Table blocks in the Block Path drop down.
     FindBlockCallback {CodeTool1.mustBeFunctionHandleOrEmpty}
 
@@ -67,16 +67,16 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
     % GUI parts
 
     % For the "Model file"
-    ModelFileTextUI LiteApp7.Component.Label
-    ModelFileDropDownUI LiteApp7.Component.DropDown
-    OpenModelUI LiteApp7.Component.Button
+    ModelFileTextUI LiteApp8.Component.Label
+    ModelFileDropDownUI LiteApp8.Component.DropDown
+    OpenModelUI LiteApp8.Component.Button
 
     % For the "Block path"
-    BlockPathTextUI LiteApp7.Component.Label
-    BlockPathDropDownUI LiteApp7.Component.DropDown
-    HilitBlockUI LiteApp7.Component.StateButton
-    GetParametersFromBlockUI LiteApp7.Component.Button
-    SetParametersToBlockUI LiteApp7.Component.Button
+    BlockPathTextUI LiteApp8.Component.Label
+    BlockPathDropDownUI LiteApp8.Component.DropDown
+    HilitBlockUI LiteApp8.Component.StateButton
+    GetParametersFromBlockUI LiteApp8.Component.Button
+    SetParametersToBlockUI LiteApp8.Component.Button
 
   end  % properties
 
@@ -98,10 +98,10 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
   end  % properties
 
   properties (Constant, Access=private)
-    common_ui_height = LiteApp7.Constant.Height{"oneline++"}
+    common_ui_height = LiteApp8.Constant.Height{"oneline++"}
 
-    unit_ui_width = LiteApp7.Constant.Width{"unitwidth"}
-    button_width = LiteApp7.Constant.Width{"unitwidth"} * 12
+    unit_ui_width = LiteApp8.Constant.Width{"unitwidth"}
+    button_width = LiteApp8.Constant.Width{"unitwidth"} * 12
   end  % properties
 
   properties (Access=private)
@@ -569,7 +569,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
 
     function setup(component)
       %%
-      setup@LiteApp7.Component.LiteAppComponentBase(component)
+      setup@LiteApp8.Component.ComponentBase(component)
 
       % The setup method runs with default property values.
       % Name-value pair arguments that were passed to the constructor-like call are
@@ -580,22 +580,22 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
 
       % Create three rows.
       % The first and third rows contain UI components while the second row is a spacer.
-      component.baseGridObject.RowHeight = {component.common_ui_height, 4, component.common_ui_height};
+      component.base_grid.RowHeight = {component.common_ui_height, 4, component.common_ui_height};
 
       % Create five columns.
       % The setting of each element is overridden in the update method.
-      component.baseGridObject.ColumnWidth = {'fit', '1x', 'fit', 'fit', 'fit'};
+      component.base_grid.ColumnWidth = {'fit', '1x', 'fit', 'fit', 'fit'};
 
       % -----------------------------------------------------------------------
       % First row
  
-      component.ModelFileTextUI = LiteApp7.Component.Label(component.baseGridObject);
+      component.ModelFileTextUI = LiteApp8.Component.Label(component.base_grid);
       component.ModelFileTextUI.Layout.Row = 1;
       component.ModelFileTextUI.Layout.Column = 1;
       component.ModelFileTextUI.Text = CodeTool1.i18n("Model file");
       component.ModelFileTextUI.ComponentWidth = label_width;
 
-      component.ModelFileDropDownUI = LiteApp7.Component.DropDown(component.baseGridObject);
+      component.ModelFileDropDownUI = LiteApp8.Component.DropDown(component.base_grid);
       component.ModelFileDropDownUI.Layout.Row = 1;
       component.ModelFileDropDownUI.Layout.Column = [2, 4];
       component.ModelFileDropDownUI.Items = "";
@@ -603,7 +603,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
       component.ModelFileDropDownUI.ValueChangedCallback = @() callback_change_modelfile_dropdown(component);
       component.ModelFileDropDownUI.MainDropDown.Enable = "off";
 
-      component.OpenModelUI = LiteApp7.Component.Button(component.baseGridObject);
+      component.OpenModelUI = LiteApp8.Component.Button(component.base_grid);
       component.OpenModelUI.Layout.Row = 1;
       component.OpenModelUI.Layout.Column = 5;
       component.OpenModelUI.ComponentWidth = component.button_width;
@@ -619,14 +619,14 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
       % -----------------------------------------------------------------------
       % Third row
 
-      component.BlockPathTextUI = LiteApp7.Component.Label(component.baseGridObject);
+      component.BlockPathTextUI = LiteApp8.Component.Label(component.base_grid);
       component.BlockPathTextUI.Layout.Row = 3;
       component.BlockPathTextUI.Layout.Column = 1;
       component.BlockPathTextUI.ComponentWidth = label_width;
       component.BlockPathTextUI.ComponentHeight = component.common_ui_height;
       component.BlockPathTextUI.Text = CodeTool1.i18n("Block path");
 
-      component.BlockPathDropDownUI = LiteApp7.Component.DropDown(component.baseGridObject);
+      component.BlockPathDropDownUI = LiteApp8.Component.DropDown(component.base_grid);
       component.BlockPathDropDownUI.Layout.Row = 3;
       component.BlockPathDropDownUI.Layout.Column = 2;
       component.BlockPathDropDownUI.ComponentHeight = component.common_ui_height;
@@ -635,7 +635,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
       component.BlockPathDropDownUI.ValueChangedCallback = @() callback_change_blockpath_dropdown(component);
       component.BlockPathDropDownUI.MainDropDown.Enable = "off";
 
-      component.HilitBlockUI = LiteApp7.Component.StateButton(component.baseGridObject);
+      component.HilitBlockUI = LiteApp8.Component.StateButton(component.base_grid);
       component.HilitBlockUI.Layout.Row = 3;
       component.HilitBlockUI.Layout.Column = 3;
       component.HilitBlockUI.ComponentWidth = component.button_width;
@@ -646,7 +646,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
       component.HilitBlockUI.MainButton.Enable = "off";
       component.HilitBlockUI.ValueChangedCallback = @() callback_hilit(component);
 
-      component.GetParametersFromBlockUI = LiteApp7.Component.Button(component.baseGridObject);
+      component.GetParametersFromBlockUI = LiteApp8.Component.Button(component.base_grid);
       component.GetParametersFromBlockUI.Layout.Row = 3;
       component.GetParametersFromBlockUI.Layout.Column = 4;
       component.GetParametersFromBlockUI.ComponentWidth = component.button_width;
@@ -657,7 +657,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
       component.GetParametersFromBlockUI.MainButton.Enable = "off";
       component.GetParametersFromBlockUI.ButtonPushedCallback = @() callback_get_parameters(component);
 
-      component.SetParametersToBlockUI = LiteApp7.Component.Button(component.baseGridObject);
+      component.SetParametersToBlockUI = LiteApp8.Component.Button(component.base_grid);
       component.SetParametersToBlockUI.Layout.Row = 3;
       component.SetParametersToBlockUI.Layout.Column = 5;
       component.SetParametersToBlockUI.ComponentWidth = component.button_width;
@@ -672,7 +672,7 @@ classdef BlockSelectorUI < LiteApp7.Component.LiteAppComponentBase
 
     function update(component)
       %%
-      update@LiteApp7.Component.LiteAppComponentBase(component)
+      update@LiteApp8.Component.ComponentBase(component)
 
       if component.initialized
         regular_update(component)

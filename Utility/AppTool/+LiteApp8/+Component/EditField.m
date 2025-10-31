@@ -1,4 +1,4 @@
-classdef EditField < LiteApp7.Component.LiteAppComponentBase
+classdef EditField < LiteApp8.Component.ComponentBase
   %% Edit field component
 
   % Copyright 2023-2024 The MathWorks, Inc.
@@ -13,8 +13,8 @@ classdef EditField < LiteApp7.Component.LiteAppComponentBase
 
     ComponentWidth (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = "1x"
 
-    ComponentHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp7.Constant.Height{"oneline++"}
-    EditFieldHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp7.Constant.Height{"oneline+"}
+    ComponentHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp8.Constant.Height{"oneline++"}
+    EditFieldHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp8.Constant.Height{"oneline+"}
     VerticalAlignment (1,1) {mustBeMember( VerticalAlignment, ["top", "center", "bottom"])} = "center"
 
   end  % properties
@@ -25,23 +25,27 @@ classdef EditField < LiteApp7.Component.LiteAppComponentBase
 
   end  % properties
 
+  properties (Access=private, Transient, NonCopyable)
+    main_grid matlab.ui.container.GridLayout
+  end  % properties
+
   methods (Access=protected)
 
     function setup(component)
       %%
-      setup@LiteApp7.Component.LiteAppComponentBase(component)
+      setup@LiteApp8.Component.ComponentBase(component)
 
-      component.gridObj = uigridlayout(component.baseGridObject, [1 1]);
-      component.gridObj.Layout.Row = 1;
-      component.gridObj.Layout.Column = 1;
-      component.gridObj.RowHeight = {'1x', 'fit', '1x'};
-      component.gridObj.ColumnWidth = {'1x'};
-      component.gridObj.Padding = [1 0 1 0];  % left bottom right top
-      component.gridObj.ColumnSpacing = 1;
-      component.gridObj.RowSpacing = 0;
+      component.main_grid = uigridlayout(component.base_grid, [1 1]);
+      component.main_grid.Layout.Row = 1;
+      component.main_grid.Layout.Column = 1;
+      component.main_grid.RowHeight = {'1x', 'fit', '1x'};
+      component.main_grid.ColumnWidth = {'1x'};
+      component.main_grid.Padding = [1 0 1 0];  % left bottom right top
+      component.main_grid.ColumnSpacing = 1;
+      component.main_grid.RowSpacing = 0;
 
       % The main element of this component.
-      component.MainEditField = uieditfield(component.gridObj);
+      component.MainEditField = uieditfield(component.main_grid);
       component.MainEditField.Layout.Row = 2;
       component.MainEditField.Layout.Column = 1;
       component.MainEditField.FontSize = component.CommonFontSize;
@@ -58,24 +62,24 @@ classdef EditField < LiteApp7.Component.LiteAppComponentBase
 
     function update(component)
       %%
-      update@LiteApp7.Component.LiteAppComponentBase(component)
+      update@LiteApp8.Component.ComponentBase(component)
 
       component.MainEditField.Editable = not(component.ReadOnly);
 
-      component.baseGridObject.RowHeight{1} = component.ComponentHeight;
-      component.baseGridObject.ColumnWidth{1} = component.ComponentWidth;
+      component.base_grid.RowHeight{1} = component.ComponentHeight;
+      component.base_grid.ColumnWidth{1} = component.ComponentWidth;
 
       switch component.VerticalAlignment
         case "top"
-          component.gridObj.RowHeight = {   0, component.EditFieldHeight, '1x'};
+          component.main_grid.RowHeight = {   0, component.EditFieldHeight, '1x'};
         case "center"
-          component.gridObj.RowHeight = {'1x', component.EditFieldHeight, '1x'};
+          component.main_grid.RowHeight = {'1x', component.EditFieldHeight, '1x'};
         case "bottom"
-          component.gridObj.RowHeight = {'1x', component.EditFieldHeight,   0 };
+          component.main_grid.RowHeight = {'1x', component.EditFieldHeight,   0 };
       end  % switch
 
       if component.HighlightBackground
-        component.gridObj.BackgroundColor = component.HighlightBackgroundColor;
+        component.main_grid.BackgroundColor = component.HighlightBackgroundColor;
       end  % if
     end  % function
 
@@ -103,10 +107,6 @@ classdef EditField < LiteApp7.Component.LiteAppComponentBase
     % -------------------------------------------------------------------------
 
   end  % methods
-
-  properties (Access=private, Transient, NonCopyable)
-    gridObj matlab.ui.container.GridLayout
-  end  % properties
 
   methods (Access=private)
 

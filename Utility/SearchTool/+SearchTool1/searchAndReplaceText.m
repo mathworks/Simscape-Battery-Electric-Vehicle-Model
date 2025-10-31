@@ -1,8 +1,7 @@
-function ReplaceResultTable = searchAndReplaceText(NameValuePair)
-% Replace text in the specified search result table.
+function ResultTable = searchAndReplaceText(SearchTextPattern, NameValuePair)
+% Find and replace text from text files.
 %
-% The returned table has two columns, "FilePath", and "NumReplacedLines".
-% It also has the "TargetFolder" custom property.
+% This function works with text files only.
 
 % NewText
 %
@@ -13,78 +12,106 @@ function ReplaceResultTable = searchAndReplaceText(NameValuePair)
 
 arguments (Input)
 
-  NameValuePair.DryRun (1,1) logical = true
-
-  NameValuePair.DisplayInfo (1,1) logical = false
-
-  NameValuePair.TargetFolder (:,1) string = pwd
-  NameValuePair.IncludeSubfolders (1,1) logical = false
-
-  NameValuePair.FileTypes (1,:) string = ["*.m", "*.mdl"]
-  NameValuePair.Filter (1,:) {CodeTool1.mustBeFunctionHandleOrEmpty} = []
-
-  NameValuePair.TextPattern (1,1) pattern = "Copyright"
-  NameValuePair.IgnoreCase (1,1) logical = false
+  SearchTextPattern (1,:) pattern
+  NameValuePair.IgnoreCase (1,1) logical = true
   NameValuePair.MatchWholeWord (1,1) logical = false
 
   NameValuePair.NewText (1,1) string = ""
 
+  NameValuePair.DryRun (1,1) logical = true
+
+  NameValuePair.TargetFolder (:,1) string = pwd
+  NameValuePair.IncludeSubfolders (1,1) logical = false
+
+  % FileTypes overrides the Select*, Exclude*, and CustomFileTypes options.
+  % Leave FileTypes "" to use the other selectors.
+  % FileTypes is an array of string, e.g., ["*.m", "*.mdl"]
+  NameValuePair.FileTypes (1,:) string {mustBeVector} = ""
+
+  % If SelectAll=true, all other Select* options are ignored (and treated as true.)
+  NameValuePair.SelectAll = false;
+  NameValuePair.SelectMATLAB = false;
+  NameValuePair.SelectMarkdown = false;
+  NameValuePair.SelectSimulink = false;
+  NameValuePair.SelectSimscape = false;
+  NameValuePair.SelectSVG = false;
+
+  % If FileTypes is specified, CustomFileTypes is ignored.
+  % CustomFileTypes is an array of string, e.g., ["*.m", "*.mdl"]
+  NameValuePair.CustomFileTypes (1,:) string {mustBeVector} = "";
+
+  NameValuePair.ExcludeLiveScript (1,1) logical = false
+  NameValuePair.ExcludeMATLABCodeFile (1,1) logical = false
+
+  NameValuePair.Filter (1,:) {CodeTool1.mustBeFunctionHandleOrEmpty} = []
+
+  NameValuePair.DisplayInfo (1,1) logical = false
+
 end  % arguments
 
 arguments (Output)
-  ReplaceResultTable (:,2) table
+  ResultTable (:,2) table
 end  % arguments
 
-target_folder = NameValuePair.TargetFolder;
-
-  function result_table = newReplaceResultTable(FilePath, NumReplacedLines)
-    result_table = table(FilePath, NumReplacedLines);
-    result_table = addprop(result_table, "TargetFolder", "table");
-    result_table.Properties.CustomProperties.TargetFolder = target_folder;
-  end  % nested function
-
-search_result = TextSearchTool1.searchText( ...
-  DisplayInfo = NameValuePair.DisplayInfo, ...
-  TargetFolder = target_folder, ...
+search = SearchTool1.searchText( ...
+  SearchTextPattern, ...
+  ...
+  TargetFolder = NameValuePair.TargetFolder, ...
   IncludeSubfolders = NameValuePair.IncludeSubfolders, ...
+  ...
   FileTypes = NameValuePair.FileTypes, ...
-  Filter = NameValuePair.Filter, ...
-  TextPattern = NameValuePair.TextPattern, ...
+  ...
+  SelectAll = NameValuePair.SelectAll, ...
+  SelectMATLAB = NameValuePair.SelectMATLAB, ...
+  SelectMarkdown = NameValuePair.SelectMarkdown, ...
+  SelectSimulink = NameValuePair.SelectSimulink, ...
+  SelectSimscape = NameValuePair.SelectSimscape, ...
+  SelectSVG = NameValuePair.SelectSVG, ...
+  CustomFileTypes = NameValuePair.CustomFileTypes, ...
+  ...
+  ExcludeLiveScript = NameValuePair.ExcludeLiveScript, ...
+  ExcludeMATLABCodeFile = NameValuePair.ExcludeMATLABCodeFile, ...
+  ...
   IgnoreCase = NameValuePair.IgnoreCase, ...
-  MatchWholeWord = NameValuePair.MatchWholeWord );
+  MatchWholeWord = NameValuePair.MatchWholeWord, ...
+  ...
+  Filter = NameValuePair.Filter, ...
+  ...
+  DisplayInfo = NameValuePair.DisplayInfo );
 
-if isempty(search_result)
-  ReplaceResultTable = newReplaceResultTable([], []);
+if isempty(search.Result)
 
   return
 
 end  % if
 
-unique_files = unique(search_result.FilePath);
+unique_files = unique(search.Result.FilePath);
 NumReplacedLines = nan(numel(unique_files), 1);
 FilePath = strings(numel(unique_files), 1);
 
 cnt = 0;
-for ii = 1 : numel(search_result.FilePath)
-  if (ii > 1) && (search_result.FilePath(ii) == search_result.FilePath(ii-1))
+for ii = 1 : numel(search.Result.FilePath)
+  if (ii > 1) && (search.Result.FilePath(ii) == search.Result.FilePath(ii-1))
 
     continue
 
   end  % if
   cnt = cnt + 1;
 
-  FilePath(cnt) = search_result.FilePath(ii);
+  FilePath(cnt) = search.Result.FilePath(ii);
+  targetfile_fullpath = fullfile(NameValuePair.TargetFolder, FilePath(cnt));
 
-  NumReplacedLines(cnt) = TextSearchTool1.replaceText( ...
+  NumReplacedLines(cnt) = SearchTool1.replaceText( ...
+    targetfile_fullpath, ...
+    ...
     DryRun = NameValuePair.DryRun, ...
-    FilePath = fullfile(target_folder, FilePath(cnt)), ...
-    TextPattern = NameValuePair.TextPattern, ...
+    ...
+    TextPattern = SearchTextPattern, ...
     IgnoreCase = NameValuePair.IgnoreCase, ...
     MatchWholeWord = NameValuePair.MatchWholeWord, ...
+    ...
     NewText = NameValuePair.NewText );
 
 end  % for
-
-ReplaceResultTable = newReplaceResultTable(FilePath, NumReplacedLines);
-
+ResultTable = table(FilePath, NumReplacedLines);
 end  % function

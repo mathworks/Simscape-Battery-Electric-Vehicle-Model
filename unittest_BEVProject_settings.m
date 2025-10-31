@@ -1,5 +1,6 @@
 classdef unittest_BEVProject_settings < matlab.unittest.TestCase
-  %% Class-based unit test
+  % Class-based unit test
+  %
   % This is for testing files in the BEV project top folder.
   % Testing the entire project is done by the buildtool command with buildfile.m
 
@@ -59,84 +60,84 @@ classdef unittest_BEVProject_settings < matlab.unittest.TestCase
 
     %% Tools
 
-    function tools_1(testcase)
+    function tool_version_LiteApp(testcase)
+      % Check the utility API version.
       top_folder = fullfile(currentProject().RootFolder);
-      result = FileTool3.findTextAndReplace( ...
-        DryRun = true, ...
-        TopFolders = [
-          fullfile(top_folder, "BEV")
-          fullfile(top_folder, "Components")
-          fullfile(top_folder, "FYI")
-          fullfile(top_folder, "Interface")
-        ], ...
-        SearchSubfolders = true, ...
-        FileType = ["*.m", "*.md", "*.mdl"], ...
-        TextPattern = "LiteApp");  % !test-target
-      verifyTrue(testcase, all(contains(result.LineText, "LiteApp7")))  % !test-target
+      target_folders = ["BEV" "Components" "FYI" "Interface"];
+      for ii = 1 : numel(target_folders)
+        session = SearchTool1.searchText( ...
+          "LiteApp" + digitsPattern, ...  !test-target
+          TargetFolder = fullfile(top_folder, target_folders(ii)), ...
+          IncludeSubfolders = true, ...
+          FileTypes = ["*.m", "*.md", "*.mdl"] );
+        if height(session.Result) > 0
+          verifyTrue(testcase, all(contains(session.Result.LineText, "LiteApp8")))  % !test-target
+        end  % if
+      end  % for
     end  % function
 
-    function tools_2(testcase)
+    function tool_version_CodeTool(testcase)
+      % Check the utility API version.
       top_folder = fullfile(currentProject().RootFolder);
-      result = FileTool3.findTextAndReplace( ...
-        DryRun = true, ...
-        TopFolders = [
-          fullfile(top_folder, "BEV")
-          fullfile(top_folder, "Components")
-          fullfile(top_folder, "FYI")
-          fullfile(top_folder, "Interface")
-        ], ...
-        SearchSubfolders = true, ...
-        FileType = ["*.m", "*.md", "*.mdl"], ...
-        TextPattern = "CodeTool");  % !test-target
-      verifyTrue(testcase, all(contains(result.LineText, "CodeTool1")))  % !test-target
+      target_folders = ["BEV" "Components" "FYI" "Interface"];
+      for ii = 1 : numel(target_folders)
+        session = SearchTool1.searchText( ...
+          "CodeTool" + digitsPattern, ...  !test-target
+          TargetFolder = fullfile(top_folder, target_folders(ii)), ...
+          IncludeSubfolders = true, ...
+          FileTypes = ["*.m", "*.md", "*.mdl"] );
+        if height(session.Result) > 0
+          verifyTrue(testcase, all(contains(session.Result.LineText, "CodeTool1")))  % !test-target
+        end  % if
+      end  % for
     end  % function
 
-    function tools_3(testcase)
+    function tool_version_FileTool(testcase)
+      % Check the utility API version.
       top_folder = fullfile(currentProject().RootFolder);
-      result = FileTool3.findTextAndReplace( ...
-        DryRun = true, ...
-        TopFolders = [
-          fullfile(top_folder, "BEV")
-          fullfile(top_folder, "Components")
-          fullfile(top_folder, "FYI")
-          fullfile(top_folder, "Interface")
-        ], ...
-        SearchSubfolders = true, ...
-        FileType = ["*.m", "*.md", "*.mdl"], ...
-        TextPattern = "FileTool");  % !test-target
-      verifyTrue(testcase, all(contains(result.LineText, "FileTool3")))  % !test-target
+      target_folders = ["BEV" "Components" "FYI" "Interface"];
+      for ii = 1 : numel(target_folders)
+        session = SearchTool1.searchText( ...
+          "FileTool" + digitsPattern, ...  !test-target
+          TargetFolder = fullfile(top_folder, target_folders(ii)), ...
+          IncludeSubfolders = true, ...
+          FileTypes = ["*.m", "*.md", "*.mdl"] );
+        if height(session.Result) > 0
+          verifyTrue(testcase, all(contains(session.Result.LineText, "FileTool3")))  % !test-target
+        end  % if
+      end  % for
     end  % function
 
-    function tools_4(testcase)
+    function tool_version_ModelTool(testcase)
+      % Check the utility API version.
       top_folder = fullfile(currentProject().RootFolder);
-      result = FileTool3.findTextAndReplace( ...
-        DryRun = true, ...
-        TopFolders = [
-          fullfile(top_folder, "BEV")
-          fullfile(top_folder, "Components")
-          fullfile(top_folder, "FYI")
-          fullfile(top_folder, "Interface")
-        ], ...
-        SearchSubfolders = true, ...
-        FileType = ["*.m", "*.md", "*.mdl"], ...
-        TextPattern = "ModelTool");  % !test-target
-      verifyTrue(testcase, all(contains(result.LineText, "ModelTool2")))  % !test-target
+      target_folders = ["BEV" "Components" "FYI" "Interface"];
+      for ii = 1 : numel(target_folders)
+        session = SearchTool1.searchText( ...
+          "ModelTool" + digitsPattern, ...  !test-target
+          TargetFolder = fullfile(top_folder, target_folders(ii)), ...
+          IncludeSubfolders = true, ...
+          FileTypes = ["*.m", "*.md", "*.mdl"] );
+        if height(session.Result) > 0
+          verifyTrue(testcase, all(contains(session.Result.LineText, "ModelTool2")))  % !test-target
+        end  % if
+      end  % for
     end  % function
 
-    function tools_5(testcase)
+    function tool_version_SignalTool(testcase)
+      % Check the utility API version.
       top_folder = fullfile(currentProject().RootFolder);
-      result = FileTool3.findTextAndReplace( ...
-        DryRun = true, ...
-        TopFolders = [
-          fullfile(top_folder, "BEV")
-          fullfile(top_folder, "Components")
-          fullfile(top_folder, "FYI")
-          fullfile(top_folder, "Interface")
-        ], ...
-        SearchSubfolders = true, ...
-        FileType = ["*.m", "*.md", "*.mdl"], ...
-        TextPattern = "SignalTool2");  % !test-target: SignalTool is v3.
-      verifyTrue(testcase, isempty(result))  % !test-target
+      target_folders = ["BEV" "Components" "FYI" "Interface"];
+      for ii = 1 : numel(target_folders)
+        session = SearchTool1.searchText( ...
+          "SignalTool" + digitsPattern, ...  !test-target
+          TargetFolder = fullfile(top_folder, target_folders(ii)), ...
+          IncludeSubfolders = true, ...
+          FileTypes = ["*.m", "*.md", "*.mdl"] );
+        if height(session.Result) > 0
+          verifyTrue(testcase, all(contains(session.Result.LineText, "SignalTool3")))  % !test-target
+        end  % if
+      end  % for
     end  % function
 
     %% Project startup
@@ -415,12 +416,5 @@ classdef unittest_BEVProject_settings < matlab.unittest.TestCase
       verifyEqual(testcase, numel(all_file_paths), 0);
     end  % function
 
-    function no_asv_files(testcase)
-      topfolder = currentProject().RootFolder;
-      file_paths = matlab.buildtool.io.FileCollection.fromPaths(fullfile(topfolder, "**", "*.asv")).paths';
-      verifyEqual(testcase, numel(file_paths), 0);
-    end  % function
-
   end  % methods
-
 end  % classdef

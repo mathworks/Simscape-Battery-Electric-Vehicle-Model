@@ -1,9 +1,20 @@
-classdef TextSearch < handle
+classdef TextSearcher < handle
+  % Search text from files.
+  %
+  % This class is designed to be used by tools such as
+  % the SearchTool1.searchText command or the TextSearchApp.
+  %
+  % By default, search states in this class are created but not initialized for use.
+  % To create an object of this class which is ready for use right away,
+  % use the Initialization option with "default" or "states".
+  %
+  % If you specify Initialization="states", you must also specify the States option.
+  % The States option is ignored if the Initialization is not "states".
 
   % Copyright 2025 The MathWorks, Inc.
 
   properties (Access=private, Constant)
-    errorID (1,1) string = "TextSearch:"
+    errorID (1,1) string = "TextSearcher:"
   end  % properties
 
   properties
@@ -13,48 +24,104 @@ classdef TextSearch < handle
 
   methods
 
-    function App = TextSearch()
+    function App = TextSearcher(NameValuePair)
+      %%
+      arguments (Input)
+        NameValuePair.Initialization (1,1) string {mustBeMember(NameValuePair.Initialization, ["none", "default", "states"])} = "none"
+        NameValuePair.States (1,:) SearchTool1.TextSearchStates
+      end  % arguments
+
+      switch NameValuePair.Initialization
+        case "none"
+          % Do nothing.
+
+        case "default"
+          setDefaults(App)
+
+        case "states"
+          setStates(App, NameValuePair.States)
+      end  % if
     end  % function
 
-    function setDefaults(searchObject)
-      %%
-      searchObject.States.SearchTextPattern = "Copyright";
-      searchObject.States.IgnoreCase = true;
-      searchObject.States.MatchWholeWord = false;
+    function setDefaults(searcher)
+      %% Initialize states with simple values.
+      searcher.States.SearchTextPattern = "Copyright";
+      searcher.States.IgnoreCase = true;
+      searcher.States.MatchWholeWord = false;
 
-      searchObject.States.TargetFolder = pwd;
-      searchObject.States.IncludeSubfolders = false;
+      searcher.States.TargetFolder = pwd;
+      searcher.States.IncludeSubfolders = false;
 
-      searchObject.States.FileTypes = "*.m";
+      searcher.States.FileTypes = "*.m";
 
-      searchObject.States.SearchAll = false;
-      searchObject.States.SearchMATLAB = true;
-      searchObject.States.SearchMarkdown = false;
-      searchObject.States.SearchSimulink = false;
-      searchObject.States.SearchSimscape = false;
-      searchObject.States.SearchSVG = false;
+      searcher.States.SearchAll = false;
+      searcher.States.SearchMATLAB = true;
+      searcher.States.SearchMarkdown = false;
+      searcher.States.SearchSimulink = false;
+      searcher.States.SearchSimscape = false;
+      searcher.States.SearchSVG = false;
 
-      searchObject.States.CustomFileTypes = "";
+      searcher.States.CustomFileTypes = "";
 
-      searchObject.States.ExcludeLiveScript = false;
-      searchObject.States.ExcludeMATLABCodeFile = false;
+      searcher.States.ExcludeLiveScript = false;
+      searcher.States.ExcludeMATLABCodeFile = false;
     end  % function
 
-    function true_or_false = ready(searchObject)
-      %%
+    function setStates(searcher, states)
+      %% Set up states using the specified data.
+      arguments (Input)
+        searcher
+        states (1,1) SearchTool1.TextSearchStates
+      end  % arguments
+
+      searcher.States.SearchTextPattern = states.SearchTextPattern;
+      searcher.States.IgnoreCase = states.IgnoreCase;
+      searcher.States.MatchWholeWord = states.MatchWholeWord;
+
+      searcher.States.TargetFolder = states.TargetFolder;
+      searcher.States.IncludeSubfolders = states.IncludeSubfolders;
+
+      searcher.States.FileTypes = states.FileTypes;
+
+      searcher.States.SearchAll = states.SearchAll;
+      searcher.States.SearchMATLAB = states.SearchMATLAB;
+      searcher.States.SearchMarkdown = states.SearchMarkdown;
+      searcher.States.SearchSimulink = states.SearchSimulink;
+      searcher.States.SearchSimscape = states.SearchSimscape;
+      searcher.States.SearchSVG = states.SearchSVG;
+
+      searcher.States.CustomFileTypes = states.CustomFileTypes;
+
+      searcher.States.ExcludeLiveScript = states.ExcludeLiveScript;
+      searcher.States.ExcludeMATLABCodeFile = states.ExcludeMATLABCodeFile;
+    end  % function
+
+    function [true_or_false, reason] = ready(searcher)
+      %% Check that states are ready for running search.
+      % Check is made only for essential states: SearchTextPattern, TargetFolder, and FileTypes.
+      % If not ready, the name of the state which is not ready for search is returned as the reason.
+      arguments (Output)
+        true_or_false (1,1) logical
+        reason (1,1) string
+      end  % arguments
+
       true_or_false = false;
-      if isempty(searchObject.States.SearchTextPattern) || (string(searchObject.States.SearchTextPattern) == "")
+      reason = "";
+
+      if isempty(searcher.States.SearchTextPattern) || (string(searcher.States.SearchTextPattern) == "")
+        reason = "SearchTextPattern";
 
         return
 
       end  % if
-      if searchObject.States.TargetFolder == ""
+      if searcher.States.TargetFolder == ""
+        reason = "TargetFolder";
 
         return
 
       end  % if
-      if isscalar(searchObject.States.FileTypes) && searchObject.States.FileTypes == "" ...
-          && isscalar(searchObject.States.CustomFileTypes) && searchObject.States.CustomFileTypes == ""
+      if isscalar(searcher.States.FileTypes) && searcher.States.FileTypes == ""
+        reason = "FileTypes";
 
         return
 
@@ -62,52 +129,45 @@ classdef TextSearch < handle
       true_or_false = true;
     end  % if
 
-    function buildFileTypes(searchObject)
-      %%
+    function buildFileTypes(searcher)
+      %% Build the FileTypes state from other states.
+      % FileTypes is a string scalar, e.g, "*.m", or a string arrary, e.g., ["*.m", "demo*.mdl"].
 
-      if any(searchObject.States.FileTypes == "")
-        id = searchObject.errorID + "InvalidFileTypes";
-        msg = CodeTool1.i18n("Empty file type is not allowed.");
-
-        throw(MException(id, msg))
-
-      end  % if
-
-      if not(isempty(searchObject.States.FileTypes)) && all(searchObject.States.FileTypes ~= "")
-        file_types = searchObject.States.FileTypes;
+      if not(isempty(searcher.States.FileTypes)) && all(searcher.States.FileTypes ~= "")
+        file_types = searcher.States.FileTypes;
 
       else
-        if searchObject.States.SearchAll
-          searchObject.States.SearchMATLAB = true;
-          searchObject.States.SearchMarkdown = true;
-          searchObject.States.SearchSimulink = true;
-          searchObject.States.SearchSimscape = true;
-          searchObject.States.SearchSVG = true;
+        if searcher.States.SearchAll
+          searcher.States.SearchMATLAB = true;
+          searcher.States.SearchMarkdown = true;
+          searcher.States.SearchSimulink = true;
+          searcher.States.SearchSimscape = true;
+          searcher.States.SearchSVG = true;
         end  % if
 
         file_types = [];
-        if searchObject.States.SearchMATLAB
+        if searcher.States.SearchMATLAB
           file_types = [file_types, "*.m"];
         end  % if
-        if searchObject.States.SearchMarkdown
+        if searcher.States.SearchMarkdown
           file_types = [file_types, "*.md"];
         end  % if
-        if searchObject.States.SearchSimulink
+        if searcher.States.SearchSimulink
           file_types = [file_types, "*.mdl"];
         end  % if
-        if searchObject.States.SearchSimscape
+        if searcher.States.SearchSimscape
           file_types = [file_types, "*.ssc"];
         end  % if
-        if searchObject.States.SearchSVG
+        if searcher.States.SearchSVG
           file_types = [file_types, "*.svg"];
         end  % if
-        if searchObject.States.CustomFileTypes ~= ""
-          file_types = [file_types, searchObject.States.CustomFileTypes];
+        if searcher.States.CustomFileTypes ~= ""
+          file_types = [file_types, searcher.States.CustomFileTypes];
         end  % if
       end  % if
 
       if isempty(file_types) || (isscalar(file_types) && file_types == "")
-        id = searchObject.errorID + "InvalidFileTypes";
+        id = searcher.errorID + "InvalidFileTypes";
         msg = CodeTool1.i18n("File types must be specified.");
 
         throw(MException(id, msg))
@@ -115,16 +175,16 @@ classdef TextSearch < handle
       end  % if
 
       % Make file_types a column vector by applying (:).
-      searchObject.States.FileTypes = file_types(:);
+      searcher.States.FileTypes = file_types(:);
     end  % if
 
-    function argumentText = getCommandArgumentText(searchObject)
+    function argumentText = getCommandArgumentText(searcher)
       %%
 
-      % The Filter option is not suported.
+      % The Filter option is not supported.
 
-      if not(ready(searchObject))
-        id = searchObject.errorID + "SearchIsNotReady";
+      if not(ready(searcher))
+        id = searcher.errorID + "SearchIsNotReady";
         msg = CodeTool1.i18n("Search is not ready. Specify all required options.");
 
         throw(MException(id, msg))
@@ -136,84 +196,84 @@ classdef TextSearch < handle
       opts = strings(upper_bound, 1);
 
       k = k+1;
-      opts(k) = searchObject.States.SearchTextPattern;
+      opts(k) = searcher.States.SearchTextPattern;
 
       k = k+1;
-      opts(k) = sprintf("TargetFolder = ""%s""", searchObject.States.TargetFolder);
+      opts(k) = sprintf("IgnoreCase = %s", string(searcher.States.IgnoreCase));
       k = k+1;
-      opts(k) = sprintf("IncludeSubfolders = %s", string(searchObject.States.IncludeSubfolders));
+      opts(k) = sprintf("MatchWholeWord = %s", string(searcher.States.MatchWholeWord));
 
-      if searchObject.States.FileTypes ~= ""
-        file_types = "[""" + join(searchObject.States.FileTypes, """, """) + """]";
+      k = k+1;
+      opts(k) = sprintf("TargetFolder = ""%s""", searcher.States.TargetFolder);
+      k = k+1;
+      opts(k) = sprintf("IncludeSubfolders = %s", string(searcher.States.IncludeSubfolders));
+
+      if searcher.States.FileTypes ~= ""
+        file_types = "[""" + join(searcher.States.FileTypes, """, """) + """]";
+        k = k+1;
+        opts(k) = sprintf("FileTypes = %s", file_types);
+
       else
-        file_types = '""';
+        k = k+1;
+        opts(k) = sprintf("SearchAll = %s", string(searcher.States.SearchAll));
+        k = k+1;
+        opts(k) = sprintf("SearchMATLAB = %s", string(searcher.States.SearchMATLAB));
+        k = k+1;
+        opts(k) = sprintf("SearchMarkdown = %s", string(searcher.States.SearchMarkdown));
+        k = k+1;
+        opts(k) = sprintf("SearchSimulink = %s", string(searcher.States.SearchSimulink));
+        k = k+1;
+        opts(k) = sprintf("SearchSimscape = %s", string(searcher.States.SearchSimscape));
+        k = k+1;
+        opts(k) = sprintf("SearchSVG = %s", string(searcher.States.SearchSVG));
+
+        if searcher.States.CustomFileTypes ~= ""
+          custom_file_types = "[""" + join(searcher.States.CustomFileTypes, """, """) + """]";
+        else
+          custom_file_types = '""';
+        end  % if
+        k = k+1;
+        opts(k) = sprintf("CustomFileTypes = %s", custom_file_types);
+
       end  % if
-      k = k+1;
-      opts(k) = sprintf("FileTypes = %s", file_types);
 
       k = k+1;
-      opts(k) = sprintf("SearchAll = %s", string(searchObject.States.SearchAll));
+      opts(k) = sprintf("ExcludeLiveScript = %s", string(searcher.States.ExcludeLiveScript));
       k = k+1;
-      opts(k) = sprintf("SearchMATLAB = %s", string(searchObject.States.SearchMATLAB));
-      k = k+1;
-      opts(k) = sprintf("SearchMarkdown = %s", string(searchObject.States.SearchMarkdown));
-      k = k+1;
-      opts(k) = sprintf("SearchSimulink = %s", string(searchObject.States.SearchSimulink));
-      k = k+1;
-      opts(k) = sprintf("SearchSimscape = %s", string(searchObject.States.SearchSimscape));
-      k = k+1;
-      opts(k) = sprintf("SearchSVG = %s", string(searchObject.States.SearchSVG));
+      opts(k) = sprintf("ExcludeMATLABCodeFile = %s", string(searcher.States.ExcludeMATLABCodeFile));
 
-      if searchObject.States.CustomFileTypes ~= ""
-        custom_file_types = "[""" + join(searchObject.States.CustomFileTypes, """, """) + """]";
-      else
-        custom_file_types = '""';
-      end  % if
-      k = k+1;
-      opts(k) = sprintf("CustomFileTypes = %s", custom_file_types);
-
-      k = k+1;
-      opts(k) = sprintf("ExcludeLiveScript = %s", string(searchObject.States.ExcludeLiveScript));
-      k = k+1;
-      opts(k) = sprintf("ExcludeMATLABCodeFile = %s", string(searchObject.States.ExcludeMATLABCodeFile));
-
-      k = k+1;
-      opts(k) = sprintf("IgnoreCase = %s", string(searchObject.States.IgnoreCase));
-      k = k+1;
-      opts(k) = sprintf("MatchWholeWord = %s", string(searchObject.States.MatchWholeWord));
-
-      assert(k < upper_bound, searchObject.errorID+"FatalError", CodeTool1.i18n("Fatal error"))
+      assert(k < upper_bound, searcher.errorID+"FatalError", CodeTool1.i18n("Fatal error"))
 
       opts(k+1 : end) = [];
       argumentText = join(opts, ", ");
     end  % function
 
-    function result = runSearch(searchObject)
+    function result = runSearch(searcher)
       %%
       arguments (Output)
         result (:,3) table
       end  % arguments
 
-      if not(ready(searchObject))
-        id = searchObject.errorID + "NotReady";
-        msg = CodeTool1.i18n("Search is nto ready. Specify all required options.");
+      if not(ready(searcher))
+        id = searcher.errorID + "NotReady";
+        msg = CodeTool1.i18n("Search is not ready. Specify all required options.");
 
         throw(MException(id, msg))
 
       end  % if
 
-      buildFileTypes(searchObject);
+      buildFileTypes(searcher);
 
       % -----------------------------------------------------------------------
       % First pass: Find files as matlab.buildtool.io.FileCollection
 
-      if searchObject.States.IncludeSubfolders
-        collection = matlab.buildtool.io.FileCollection.fromPaths(fullfile(searchObject.States.TargetFolder, "**", searchObject.States.FileTypes));
+      if searcher.States.IncludeSubfolders
+        collection = matlab.buildtool.io.FileCollection.fromPaths(fullfile(searcher.States.TargetFolder, "**", searcher.States.FileTypes));
       else
-        collection = matlab.buildtool.io.FileCollection.fromPaths(fullfile(searchObject.States.TargetFolder, searchObject.States.FileTypes));
+        collection = matlab.buildtool.io.FileCollection.fromPaths(fullfile(searcher.States.TargetFolder, searcher.States.FileTypes));
       end  % if
 
-      if searchObject.DisplayInfo
+      if searcher.DisplayInfo
         disp("File collection:")
         disp(collection)
       end  % if
@@ -222,16 +282,16 @@ classdef TextSearch < handle
       % Use the select function to apply filters to the collection. See the documentation for details.
       % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
 
-      if searchObject.States.ExcludeLiveScript
+      if searcher.States.ExcludeLiveScript
         collection = select(collection, @(x) not(FileTool3.isPlainTextLiveScript(x)));
       end  %if
 
-      if searchObject.States.ExcludeMATLABCodeFile
+      if searcher.States.ExcludeMATLABCodeFile
         collection = select(collection, @(x) endsWith(x, ".m") & FileTool3.isPlainTextLiveScript(x));
       end  %if
 
-      if not(isempty(searchObject.States.Filter))
-        collection = select(collection, @(x) searchObject.States.Filter(x));
+      if not(isempty(searcher.States.Filter))
+        collection = select(collection, @(x) searcher.States.Filter(x));
       end  % if
 
       % -----------------------------------------------------------------------
@@ -239,7 +299,7 @@ classdef TextSearch < handle
       found_files = paths(collection)';
       num_files = numel(found_files);
       if num_files == 0
-        if searchObject.DisplayInfo
+        if searcher.DisplayInfo
           disp("No files matched with specified file types.")
         end  % if
         result = table([], [], [], 'VariableNames', ["FilePath", "LineNumber", "LineText"]);
@@ -251,11 +311,11 @@ classdef TextSearch < handle
       % -----------------------------------------------------------------------
       % Second pass: Determine the number of rows necessary for a table.
 
-      if searchObject.States.MatchWholeWord
+      if searcher.States.MatchWholeWord
         b = (lineBoundary|textBoundary|whitespaceBoundary|alphanumericBoundary);
-        search_text = b + searchObject.States.SearchTextPattern + b;
+        search_text = b + searcher.States.SearchTextPattern + b;
       else
-        search_text = searchObject.States.SearchTextPattern;
+        search_text = searcher.States.SearchTextPattern;
       end  % if
 
       file_path = strings(num_files, 1);
@@ -263,7 +323,7 @@ classdef TextSearch < handle
       for ii = 1 : num_files
         target_file = found_files(ii);
         lines = readlines(target_file);
-        logical_index = contains(lines, search_text, IgnoreCase = searchObject.States.IgnoreCase);
+        logical_index = contains(lines, search_text, IgnoreCase = searcher.States.IgnoreCase);
         num_lines = nnz(logical_index);
         if num_lines == 0
 
@@ -275,7 +335,7 @@ classdef TextSearch < handle
       end  % for
 
       if num_rows == 0
-        if searchObject.DisplayInfo
+        if searcher.DisplayInfo
           disp("Specified search text was not found.")
         end  % if
         result = table([], [], [], 'VariableNames', ["FilePath", "LineNumber", "LineText"]);
@@ -295,22 +355,22 @@ classdef TextSearch < handle
       LineText = strings(num_rows, 1);
 
       num_files = numel(file_path);
-      cnt = 0;
+      item_count = 0;
       for ii = 1 : num_files
         target_file = file_path(ii);
         lines = readlines(target_file);
-        logical_index = contains(lines, search_text, IgnoreCase = searchObject.States.IgnoreCase);
+        logical_index = contains(lines, search_text, IgnoreCase = searcher.States.IgnoreCase);
         line_number = find(logical_index);
         line_text = lines(logical_index);
         for jj = 1 : numel(line_text)
-          cnt = cnt + 1;
-          if searchObject.States.TargetFolder == ""
-            FilePath(cnt) = target_file;
+          item_count = item_count + 1;
+          if searcher.States.TargetFolder == ""
+            FilePath(item_count) = target_file;
           else
-            FilePath(cnt) = extractAfter(target_file, searchObject.States.TargetFolder + ("/"|"\"));
+            FilePath(item_count) = extractAfter(target_file, searcher.States.TargetFolder + ("/"|"\"));
           end  % if
-          LineNumber(cnt) = line_number(jj);
-          LineText(cnt) = line_text(jj);
+          LineNumber(item_count) = line_number(jj);
+          LineText(item_count) = line_text(jj);
         end  % for
       end  % for
       result = table(FilePath, LineNumber, LineText);

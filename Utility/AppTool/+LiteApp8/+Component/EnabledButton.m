@@ -4,18 +4,15 @@ classdef EnabledButton < LiteApp8.Component.ComponentBase
   % Copyright 2024-2025 The MathWorks, Inc.
 
   properties (Dependent)
-
     ButtonText (1,1) string
     ButtonEnable (1,1) matlab.lang.OnOffSwitchState
     ButtonDisable (1,1) matlab.lang.OnOffSwitchState
 
     CheckBoxText (1,1) string
     CheckBoxTooltip (1,1) string
-
   end  % properties
 
   properties
-
     ButtonPushedCallback {CodeTool1.mustBeFunctionHandleOrEmpty} = []
 
     CheckBoxValueChangedCallback {CodeTool1.mustBeFunctionHandleOrEmpty} = []
@@ -39,20 +36,7 @@ classdef EnabledButton < LiteApp8.Component.ComponentBase
     CheckBoxUI LiteApp8.Component.CheckBox {mustBeScalarOrEmpty}
 
     composite_grid matlab.ui.container.GridLayout
-
   end  % properties
-
-  events (HasCallbackProperty, NotifyAccess=protected)
-
-    % ButtonPushed event adds ButtonPushedFcn property to this class.
-    % This event is created when the button is pushed.
-    ButtonPushed
-
-    % CheckBoxValueChanged event adds CheckBoxValueChangedFcn property to this class.
-    % This event is created when the check box is either selected or unselected.
-    CheckBoxValueChanged
-
-  end  % events
 
   methods (Access=protected)
 
@@ -141,16 +125,15 @@ classdef EnabledButton < LiteApp8.Component.ComponentBase
           component.composite_grid.ColumnWidth = {'1x', 'fit', 'fit', 0};
       end  % switch
 
+      component.ButtonUI.ThemeNameForBackGroundHighlight = component.ThemeNameForBackGroundHighlight;
+      component.CheckBoxUI.ThemeNameForBackGroundHighlight = component.ThemeNameForBackGroundHighlight;
+      component.ButtonUI.HighlightBackground = component.HighlightBackground;
+      component.CheckBoxUI.HighlightBackground = component.HighlightBackground;
       if component.HighlightBackground
-        component.ButtonUI.HighlightBackground = "on";
-        component.CheckBoxUI.HighlightBackground = "on";
         % Use gray for the highlighted background of composite grid regardless of
         % the dark/light theme.
         % !todo: Ideally, color should not be hardcoded.
-        component.composite_grid.BackgroundColor = "#777777";
-      else
-        component.ButtonUI.HighlightBackground = "off";
-        component.CheckBoxUI.HighlightBackground = "off";
+        component.composite_grid.BackgroundColor = component.CompositeGridColor;
       end  % if
     end  % function
 
@@ -263,37 +246,20 @@ classdef EnabledButton < LiteApp8.Component.ComponentBase
   end  % methods
 
   methods (Access=private)
-    %% Reactions
 
     function react_ButtonPushed(component)
-      %%
       if not(isempty(component.ButtonPushedCallback))
         % If not empty, the property validation guarantees it is a function handle.
         component.ButtonPushedCallback()
       end  %if
-
-      notify(component, "ButtonPushed")
-      % Make sure to define ButtonPushed event.
-
     end  % function
 
     function react_CheckboxValueChanged(component)
-      %%
       component.ButtonUI.MainButton.Enable = not(component.CheckBoxUI.Value);
-      % if component.CheckBoxUI.Value
-      %   component.ButtonUI.MainButton.Enable = "off";
-      % else
-      %   component.ButtonUI.MainButton.Enable = "on";
-      % end  % if
-
       if not(isempty(component.CheckBoxValueChangedCallback))
         % If not empty, the property validation guarantees it is a function handle.
         component.CheckBoxValueChangedCallback()
       end  % if
-
-      notify(component, "CheckBoxValueChanged")
-      % Make sure to define CheckBoxValueChanged event.
-
     end  % function
 
   end  % methods

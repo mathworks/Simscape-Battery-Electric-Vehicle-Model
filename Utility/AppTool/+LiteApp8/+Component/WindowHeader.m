@@ -1,4 +1,4 @@
-classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
+classdef WindowHeader < LiteApp8.Component.ComponentBase
   %% LiteApp Window Header component
 
   % Copyright 2024-2025 The MathWorks, Inc.
@@ -21,9 +21,9 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
     % This turns on at the end of the first_setup method.
     Ready (1,1) logical = false
 
-    AppNameUI LiteApp7.Component.Label
-    SourceLinkUI LiteApp7.Component.Hyperlink
-    AlwaysOnTopUI LiteApp7.Component.CheckBox
+    AppNameUI LiteApp8.Component.Label
+    SourceLinkUI LiteApp8.Component.Hyperlink
+    AlwaysOnTopUI LiteApp8.Component.CheckBox
 
     % To see outputs from the setup method, you must set Reporting to "on" here.
     Reporting (1,1) matlab.lang.OnOffSwitchState = "off"
@@ -35,7 +35,7 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
   end  % properties
 
   properties (Constant)
-    common_height = LiteApp7.Constant.Height{"oneline++"}
+    common_height = LiteApp8.Constant.Height{"oneline++"}
   end  % properties
 
   properties (Access=private)
@@ -46,7 +46,7 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
 
     function setup(component)
       %%
-      setup@LiteApp7.Component.LiteAppComponentBase(component)
+      setup@LiteApp8.Component.ComponentBase(component)
 
       if component.Reporting
         % This if-branch runs only when the default value of Reporting is "on".
@@ -56,16 +56,16 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
       end  % if
 
       % Create two rows.
-      component.baseGridObject.RowHeight = {component.common_height, 'fit'};
+      component.base_grid.RowHeight = {component.common_height, 'fit'};
 
       % Create three columns.
       % The setting of each element is overridden in the update method.
-      component.baseGridObject.ColumnWidth = {'1x', 'fit', 'fit'};
+      component.base_grid.ColumnWidth = {'1x', 'fit', 'fit'};
 
       % -----------------------------------------------------------------------
       % App name
 
-      component.AppNameUI = LiteApp7.Component.Label(component.baseGridObject);
+      component.AppNameUI = LiteApp8.Component.Label(component.base_grid);
       component.AppNameUI.Layout.Row = 1;
       component.AppNameUI.Layout.Column = 1;
       component.AppNameUI.WordWrap = "off";
@@ -73,20 +73,20 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
       % -----------------------------------------------------------------------
       % Hyperlink to app source code
 
-      component.SourceLinkUI = LiteApp7.Component.Hyperlink(component.baseGridObject);
+      component.SourceLinkUI = LiteApp8.Component.Hyperlink(component.base_grid);
       component.SourceLinkUI.Layout.Row = 1;
       component.SourceLinkUI.Layout.Column = 2;
       component.SourceLinkUI.ComponentHeight = component.common_height;
       component.SourceLinkUI.VerticalAlignment = "center";
 
-      component.SourceLinkUI.HyperlinkText = "Source";
+      component.SourceLinkUI.Text = "Source";
       % component.SourceLinkUI.Tooltip = "Open app source code: " + component.AppSourceName;
       component.SourceLinkUI.HyperlinkClickedCallback = @() edit(component.AppSourceName);
 
       % -----------------------------------------------------------------------
       % Always-on-top check box
 
-      component.AlwaysOnTopUI = LiteApp7.Component.CheckBox(component.baseGridObject);
+      component.AlwaysOnTopUI = LiteApp8.Component.CheckBox(component.base_grid);
       component.AlwaysOnTopUI.Layout.Row = 1;
       component.AlwaysOnTopUI.Layout.Column = 3;
       component.AlwaysOnTopUI.ComponentHeight = component.common_height;
@@ -96,8 +96,8 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
       % -----------------------------------------------------------------------
       % Horizontal line
 
-      component.baseGridObject.RowHeight{2} = 1;  % thicknesss of the line
-      hline = uipanel(component.baseGridObject);
+      component.base_grid.RowHeight{2} = 1;  % thicknesss of the line
+      hline = uipanel(component.base_grid);
       hline.Layout.Row = 2;  % second row
       hline.Layout.Column = [1 3];
       hline.BorderType = "none";
@@ -108,7 +108,7 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
 
     function update(component)
       %%
-      update@LiteApp7.Component.LiteAppComponentBase(component)
+      update@LiteApp8.Component.ComponentBase(component)
 
       if component.initialized
         regular_update(component)
@@ -129,9 +129,9 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
         FileTool3.displayTimeAndFileLocation("component.AppName: " + component.AppName)
       end  % if
 
-      % AppName can be defined by the user, first as the Name property of LiteApp7.LiteAppWindow.
+      % AppName can be defined by the user, first as the Name property of LiteApp8.LiteAppWindow.
       % Then it is passed to the AppName property of this class.
-      % Because LiteApp7.LiteAppWindow class is a regular MATLAB class, not a child class of
+      % Because LiteApp8.LiteAppWindow class is a regular MATLAB class, not a child class of
       % the component container, the assigned value is available
       % only in the regular update cycle.
       component.AppNameUI.Text = "\textbf{" + component.AppName + "}";
@@ -146,7 +146,7 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
         link_ui_width = 'fit';
         component.SourceLinkUI.Tooltip = "Open app source code: " + component.AppSourceName;
       end  % if
-      component.baseGridObject.ColumnWidth{2} = link_ui_width;
+      component.base_grid.ColumnWidth{2} = link_ui_width;
 
     end  % function
 
@@ -181,10 +181,10 @@ classdef WindowHeader < LiteApp7.Component.LiteAppComponentBase
         end  % if
       end  % if
 
-      % The 2nd column of baseGridObject is used for a hyperlink to app source file.
+      % The 2nd column of base_grid is used for a hyperlink to app source file.
       % The 'fit' setting below is temporary. It is updated in the regular_update method.
       % This is to allow an app wrapper function to set a link to its own file.
-      component.baseGridObject.ColumnWidth = {'1x', 'fit', checkbox_ui_width};
+      component.base_grid.ColumnWidth = {'1x', 'fit', checkbox_ui_width};
 
     end  % function
 

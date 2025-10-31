@@ -8,7 +8,6 @@ classdef EditableDropDown < LiteApp8.Component.ComponentBase
   % Copyright 2025 The MathWorks, Inc.
 
   properties
-
     MainDropDown matlab.ui.control.DropDown
 
     ValueChangedCallback {CodeTool1.mustBeFunctionHandleOrEmpty} = []
@@ -17,27 +16,29 @@ classdef EditableDropDown < LiteApp8.Component.ComponentBase
     DropDownWidth (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = "1x"
     HorizontalAlignment (1,1) {mustBeMember( HorizontalAlignment, ["left", "center", "right"])} = "center"
 
-    ComponentHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp7.Constant.Height{"oneline++"}
-    DropDownHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp7.Constant.Height{"oneline+"}
+    ComponentHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp8.Constant.Height{"oneline++"}
+    DropDownHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp8.Constant.Height{"oneline+"}
     % uidropdown has VerticalAlignment property, but it is for the alignment of icon and text within a drop down button.
     % The VerticalAlignment property of this class is for the alignment of the main element within its parent component.
     VerticalAlignment (1,1) {mustBeMember( VerticalAlignment, ["top", "center", "bottom"])} = "center"
-
   end  % properties
 
   properties (Dependent)
-
     % Items and Value of this class are aliases of uidropdown's Items and Value.
     % Difference is that they are a string array and a string respectively in this class
     % while they are a cell array of char array and a char array in uidropdown, respectively.
     Items (1,:) string
     Value (1,1) string
-
   end  % properties
 
-  properties (Access=private, Transient, NonCopyable)
+  properties (Access=private)
     main_grid matlab.ui.container.GridLayout
   end  % properties
+
+  events (HasCallbackProperty, NotifyAccess=protected)
+    % ValueChanged event adds ValueChangedFcn property to this class.
+    ValueChanged
+  end  % events
 
   methods (Access=protected)
 
@@ -50,9 +51,9 @@ classdef EditableDropDown < LiteApp8.Component.ComponentBase
       component.main_grid.Layout.Column = 1;
       component.main_grid.RowHeight = {'1x', 'fit', '1x'};
       component.main_grid.ColumnWidth = {'1x', 'fit', '1x'};
-      component.main_grid.Padding = component.CommonPadding;
-      component.main_grid.ColumnSpacing = component.CommonColumnSpacing;
-      component.main_grid.RowSpacing = component.CommonRowSpacing;
+      component.main_grid.Padding = [1 2 4 2];  % left bottom right top
+      component.main_grid.ColumnSpacing = 1;
+      component.main_grid.RowSpacing = 0;
 
       % The main element of this component.
       component.MainDropDown = uidropdown(component.main_grid);
@@ -62,12 +63,9 @@ classdef EditableDropDown < LiteApp8.Component.ComponentBase
       component.MainDropDown.ValueChangedFcn = @(sourceObject, eventData) dropdownValueChanged(component);
       component.MainDropDown.Editable = "on";
 
-      % -----------------------------------------------------------------------
       % Default settings
-
       component.Items = ["Item 1" "Item 2"];
       component.Value = "Item 1";
-
     end  % function
 
     function update(component)
@@ -102,11 +100,11 @@ classdef EditableDropDown < LiteApp8.Component.ComponentBase
       end  % if
 
       if component.HighlightBackground
-        switch component.Theme
-        case "light"
-          component.main_grid.BackgroundColor = component.LightThemeBackGroundColor;
-        case "dark"
-          component.main_grid.BackgroundColor = component.DarkThemeBackGroundColor;
+        switch component.ThemeNameForBackGroundHighlight
+          case "light"
+            component.main_grid.BackgroundColor = component.LightThemeBackGroundColor;
+          case "dark"
+            component.main_grid.BackgroundColor = component.DarkThemeBackGroundColor;
         end  % switch
       end  % if
     end  % function
@@ -114,8 +112,6 @@ classdef EditableDropDown < LiteApp8.Component.ComponentBase
   end  % methods
 
   methods
-
-    % -------------------------------------------------------------------------
 
     function x = get.Items(component)
       arguments (Output)
@@ -131,8 +127,6 @@ classdef EditableDropDown < LiteApp8.Component.ComponentBase
       end
       component.MainDropDown.Items = cellstr(x);
     end  % function
-
-    % -------------------------------------------------------------------------
 
     function x = get.Value(component)
       arguments (Output)
@@ -153,21 +147,15 @@ classdef EditableDropDown < LiteApp8.Component.ComponentBase
       dropdownValueChanged(component)
     end  % function
 
-    % -------------------------------------------------------------------------
-
   end  % methods
 
   methods (Access=private)
 
     function dropdownValueChanged(component)
-      % dispInfo(component)
-
       selected_value = strip(string(component.MainDropDown.Value));
-
       if not(ismember(selected_value, component.MainDropDown.Items))
         component.MainDropDown.Items = [component.MainDropDown.Items(:); selected_value];
       end  % if
-
       if not(isempty(component.ValueChangedCallback)) && isa(component.ValueChangedCallback, 'function_handle')
         component.ValueChangedCallback()
       end  % if
@@ -178,12 +166,4 @@ classdef EditableDropDown < LiteApp8.Component.ComponentBase
     end  % function
 
   end  % methods
-
-  events (HasCallbackProperty, NotifyAccess=protected)
-
-    % ValueChanged event adds ValueChangedFcn property to this class.
-    ValueChanged
-
-  end  % events
-
 end  % classdef

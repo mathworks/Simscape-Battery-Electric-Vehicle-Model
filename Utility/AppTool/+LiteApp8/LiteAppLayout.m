@@ -7,29 +7,29 @@ classdef LiteAppLayout < handle
   % Area is the top level element of LiteAppLayout.
   % When you create a LiteAppLayout object, a new Area is created.
   % Areas are added from top to bottom in a window as you call NewArea method.
-  % An Area can contain Columns or LiteApp7.Component.
+  % An Area can contain Columns or LiteApp8.Component.
   %
   % Column is the second level element of LiteAppLayout.
   % You can create a Column with NewColumn method.
   % Columns are added from left to right within an Area as you call NewColumn method.
-  % A Column can contain Rows or LiteApp7.Component.
+  % A Column can contain Rows or LiteApp8.Component.
   %
   % Row is the third level element of LiteAppLayout.
   % You can create a Row with NewRow method.
   % Rows are added from top to bottom within a Column as you call NewRow method.
-  % A Row can contain Slots or LiteApp7.Component.
+  % A Row can contain Slots or LiteApp8.Component.
   %
   % Slot is the fourth level element of LiteAppLayout.
   % You can create a Slot with NewSlot method.
   % Slots are added from left to right within a Row as you call NewSlot method.
-  % A Slot can contain LiteApp7.Component.
+  % A Slot can contain LiteApp8.Component.
   %
   % NewColumn and NewSlot can take the Width option.
   % The Width option is passed to uigridlayout as its ColumnWidth property.
   % You can use values that are supported by ColumnWidth,
   % such as "1x", "2x", "fit", 100, 200 etc.
   %
-  % LiteAppLayout is one of LiteApp7.Component.
+  % LiteAppLayout is one of LiteApp8.Component.
   % Any of Area, Column, Row, and Slot can take a LiteAppLayout object.
   % This lets you create a LiteAppLayout within a LiteAppLayout.
   %

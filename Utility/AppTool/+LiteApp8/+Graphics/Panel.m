@@ -1,7 +1,7 @@
-classdef Panel < LiteApp7.Component.LiteAppComponentBase
+classdef Panel < LiteApp8.Component.ComponentBase
   %% Panel component for graphics
   % Use this as a container of graphics UI components.
-  % For non-graphics components, use LiteApp7.Component.Panel.
+  % For non-graphics components, use LiteApp8.Component.Panel.
   %
   % This is a large component.
   % - Both width and height must be adjustable.
@@ -26,17 +26,17 @@ classdef Panel < LiteApp7.Component.LiteAppComponentBase
 
     function setup(component)
       %%
-      setup@LiteApp7.Component.LiteAppComponentBase(component)
+      setup@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight = {'fit'};
-      component.baseGridObject.ColumnWidth = {'1x'};
-      component.baseGridObject.Padding = [0 0 0 0];  % left bottom right top
-      component.baseGridObject.ColumnSpacing = 0;
-      component.baseGridObject.RowSpacing = 0;
-      component.baseGridObject.Scrollable = "on";
+      component.base_grid.RowHeight = {'fit'};
+      component.base_grid.ColumnWidth = {'1x'};
+      component.base_grid.Padding = [0 0 0 0];  % left bottom right top
+      component.base_grid.ColumnSpacing = 0;
+      component.base_grid.RowSpacing = 0;
+      component.base_grid.Scrollable = "on";
 
       % The main element of this component.
-      component.MainPanel = uipanel(component.baseGridObject);
+      component.MainPanel = uipanel(component.base_grid);
       component.MainPanel.Layout.Row = 1;
       component.MainPanel.Layout.Column = 1;
       component.MainPanel.Title= "";
@@ -49,10 +49,10 @@ classdef Panel < LiteApp7.Component.LiteAppComponentBase
 
     function update(component)
       %%
-      update@LiteApp7.Component.LiteAppComponentBase(component)
+      update@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight{1} = component.ComponentHeight;
-      component.baseGridObject.ColumnWidth{1} = component.ComponentWidth;
+      component.base_grid.RowHeight{1} = component.ComponentHeight;
+      component.base_grid.ColumnWidth{1} = component.ComponentWidth;
 
       component.MainPanel.BorderType = component.BorderType;
 

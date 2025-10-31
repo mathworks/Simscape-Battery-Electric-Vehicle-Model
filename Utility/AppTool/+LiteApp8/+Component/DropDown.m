@@ -1,5 +1,6 @@
-classdef DropDown < LiteApp7.Component.LiteAppComponentBase
-  %% Drop down component
+classdef DropDown < LiteApp8.Component.ComponentBase
+  % Drop down component
+  %
   % Drop down items must be programatically defined for this class.
   % The uidropdown supports editable list which users can interactively edit
   % while the app is running, but this class does not support it.
@@ -7,7 +8,6 @@ classdef DropDown < LiteApp7.Component.LiteAppComponentBase
   % Copyright 2023-2025 The MathWorks, Inc.
 
   properties
-
     MainDropDown matlab.ui.control.DropDown
 
     ValueChangedCallback {CodeTool1.mustBeFunctionHandleOrEmpty} = []
@@ -16,101 +16,102 @@ classdef DropDown < LiteApp7.Component.LiteAppComponentBase
     DropDownWidth (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = "1x"
     HorizontalAlignment (1,1) {mustBeMember( HorizontalAlignment, ["left", "center", "right"])} = "center"
 
-    ComponentHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp7.Constant.Height{"oneline++"}
-    DropDownHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp7.Constant.Height{"oneline+"}
+    ComponentHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp8.Constant.Height{"oneline++"}
+    DropDownHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp8.Constant.Height{"oneline+"}
     % uidropdown has VerticalAlignment property, but it is for the alignment of icon and text within a drop down button.
     % The VerticalAlignment property of this class is for the alignment of the main element within its parent component.
     VerticalAlignment (1,1) {mustBeMember( VerticalAlignment, ["top", "center", "bottom"])} = "center"
-
   end  % properties
 
   properties (Dependent)
-
     % Items and Value of this class are aliases of uidropdown's Items and Value.
     % Difference is that they are a string array and a string respectively in this class
     % while they are a cell array of char array and a char array in uidropdown, respectively.
     Items (1,:) string
     Value (1,1) string
-
   end  % properties
 
-  properties (Access=private, Transient, NonCopyable)
-    gridObj matlab.ui.container.GridLayout
+  properties (Access=private)
+    main_grid matlab.ui.container.GridLayout
   end  % properties
+
+  events (HasCallbackProperty, NotifyAccess=protected)
+    % ValueChanged event adds ValueChangedFcn property to this class.
+    ValueChanged
+  end  % events
 
   methods (Access=protected)
 
     function setup(component)
       %%
-      setup@LiteApp7.Component.LiteAppComponentBase(component)
+      setup@LiteApp8.Component.ComponentBase(component)
 
-      component.gridObj = uigridlayout(component.baseGridObject);
-      component.gridObj.Layout.Row = 1;
-      component.gridObj.Layout.Column = 1;
-      component.gridObj.RowHeight = {'1x', 'fit', '1x'};
-      component.gridObj.ColumnWidth = {'1x', 'fit', '1x'};
-      component.gridObj.Padding = component.CommonPadding;
-      component.gridObj.ColumnSpacing = component.CommonColumnSpacing;
-      component.gridObj.RowSpacing = component.CommonRowSpacing;
+      component.main_grid = uigridlayout(component.base_grid);
+      component.main_grid.Layout.Row = 1;
+      component.main_grid.Layout.Column = 1;
+      component.main_grid.RowHeight = {'1x', 'fit', '1x'};
+      component.main_grid.ColumnWidth = {'1x', 'fit', '1x'};
+      component.main_grid.Padding = [1 2 4 2];  % left bottom right top
+      component.main_grid.ColumnSpacing = 1;
+      component.main_grid.RowSpacing = 0;
 
-      % The main element of this component.
-      component.MainDropDown = uidropdown(component.gridObj);
+      % The main element of this component
+      component.MainDropDown = uidropdown(component.main_grid);
       component.MainDropDown.Layout.Row = 2;
       component.MainDropDown.Layout.Column = 2;
       component.MainDropDown.FontSize = component.CommonFontSize;
-      component.MainDropDown.ValueChangedFcn = ...
-        @(sourceObject, eventData) dropdownValueChanged(component);
+      component.MainDropDown.ValueChangedFcn = @(sourceObject, eventData) dropdownValueChanged(component);
       component.MainDropDown.Editable = "off";
 
-      % -----------------------------------------------------------------------
       % Default settings
-
       component.Items = ["Item 1" "Item 2"];
       component.Value = "Item 1";
-
     end  % function
 
     function update(component)
       %%
-      update@LiteApp7.Component.LiteAppComponentBase(component)
+      update@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight{1} = component.ComponentHeight;
-      component.baseGridObject.ColumnWidth{1} = component.ComponentWidth;
+      component.base_grid.RowHeight{1} = component.ComponentHeight;
+      component.base_grid.ColumnWidth{1} = component.ComponentWidth;
 
       switch component.VerticalAlignment
         case "top"
-          component.gridObj.RowHeight = {   0, component.DropDownHeight, '1x'};
+          component.main_grid.RowHeight = {   0, component.DropDownHeight, '1x'};
         case "center"
-          component.gridObj.RowHeight = {'1x', component.DropDownHeight, '1x'};
+          component.main_grid.RowHeight = {'1x', component.DropDownHeight, '1x'};
         case "bottom"
-          component.gridObj.RowHeight = {'1x', component.DropDownHeight,   0 };
+          component.main_grid.RowHeight = {'1x', component.DropDownHeight,   0 };
       end  % switch
 
       if strcmp(component.DropDownWidth, '1x')
-        component.gridObj.ColumnWidth = {'1x'};
+        component.main_grid.ColumnWidth = {'1x'};
         component.MainDropDown.Layout.Column = 1;
       else
         component.MainDropDown.Layout.Column = 2;
         switch component.HorizontalAlignment
           case "left"
-            component.gridObj.ColumnWidth = {  0,  component.DropDownWidth, '1x'};
+            component.main_grid.ColumnWidth = {  0,  component.DropDownWidth, '1x'};
           case "center"
-            component.gridObj.ColumnWidth = {'1x', component.DropDownWidth, '1x'};
+            component.main_grid.ColumnWidth = {'1x', component.DropDownWidth, '1x'};
           case "right"
-            component.gridObj.ColumnWidth = {'1x', component.DropDownWidth,   0 };
+            component.main_grid.ColumnWidth = {'1x', component.DropDownWidth,   0 };
         end  % switch
       end  % if
 
       if component.HighlightBackground
-        component.gridObj.BackgroundColor = component.HighlightBackgroundColor;
+        switch component.ThemeNameForBackGroundHighlight
+          case "light"
+            component.main_grid.BackgroundColor = component.LightThemeBackGroundColor;
+          case "dark"
+            component.main_grid.BackgroundColor = component.DarkThemeBackGroundColor;
+        end  % switch
       end  % if
     end  % function
 
   end  % methods
 
   methods
-
-    % -------------------------------------------------------------------------
 
     function x = get.Items(component)
       arguments (Output)
@@ -126,8 +127,6 @@ classdef DropDown < LiteApp7.Component.LiteAppComponentBase
       end
       component.MainDropDown.Items = cellstr(x);
     end  % function
-
-    % -------------------------------------------------------------------------
 
     function x = get.Value(component)
       arguments (Output)
@@ -148,15 +147,11 @@ classdef DropDown < LiteApp7.Component.LiteAppComponentBase
       dropdownValueChanged(component)
     end  % function
 
-    % -------------------------------------------------------------------------
-
   end  % methods
 
   methods (Access=private)
 
     function dropdownValueChanged(component)
-      % dispInfo(component)
-
       if not(isempty(component.ValueChangedCallback)) ...
           && isa(component.ValueChangedCallback, 'function_handle')
         component.ValueChangedCallback()
@@ -168,12 +163,4 @@ classdef DropDown < LiteApp7.Component.LiteAppComponentBase
     end  % function
 
   end  % methods
-
-  events (HasCallbackProperty, NotifyAccess=protected)
-
-    % ValueChanged event adds ValueChangedFcn property to this class.
-    ValueChanged
-
-  end  % events
-
 end  % classdef

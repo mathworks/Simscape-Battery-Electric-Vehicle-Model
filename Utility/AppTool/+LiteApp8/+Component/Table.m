@@ -1,8 +1,5 @@
-classdef Table < LiteApp7.Component.LiteAppComponentBase
-  %% Table component
-  % This is a large component.
-  % - Both width and height must be adjustable.
-  % - Scrollbars must appear as needed.
+classdef Table < LiteApp8.Component.ComponentBase
+  % Table component
   %
   % Table Properties
   % https://www.mathworks.com/help/matlab/ref/matlab.ui.control.table-properties.html
@@ -10,30 +7,27 @@ classdef Table < LiteApp7.Component.LiteAppComponentBase
   % Copyright 2024-2025 The MathWorks, Inc.
 
   properties
-
     MainTable matlab.ui.control.Table
 
     ComponentWidth (1,1) {CodeTool1.mustBeStringOrPositiveInteger} = "1x"
-
     ComponentHeight (1,1) {CodeTool1.mustBeStringOrPositiveInteger} = "fit"
-
   end  % properties
 
   methods (Access=protected)
 
     function setup(component)
       %%
-      setup@LiteApp7.Component.LiteAppComponentBase(component)
+      setup@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight = {'fit'};
-      component.baseGridObject.ColumnWidth = {'1x'};
-      component.baseGridObject.Padding = [1 0 1 0];  % left bottom right top
-      component.baseGridObject.ColumnSpacing = 1;
-      component.baseGridObject.RowSpacing = 1;
-      component.baseGridObject.Scrollable = "on";
+      component.base_grid.RowHeight = {'fit'};
+      component.base_grid.ColumnWidth = {'1x'};
+      component.base_grid.Padding = [1 0 1 0];  % left bottom right top
+      component.base_grid.ColumnSpacing = 1;
+      component.base_grid.RowSpacing = 1;
+      component.base_grid.Scrollable = "on";
 
       % The main element of this component.
-      component.MainTable = uitable(component.baseGridObject);
+      component.MainTable = uitable(component.base_grid);
       component.MainTable.Layout.Row = 1;
       component.MainTable.Layout.Column = 1;
       component.MainTable.FontSize = component.CommonFontSize;
@@ -47,16 +41,20 @@ classdef Table < LiteApp7.Component.LiteAppComponentBase
 
     function update(component)
       %%
-      update@LiteApp7.Component.LiteAppComponentBase(component)
+      update@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight{1} = component.ComponentHeight;
-      component.baseGridObject.ColumnWidth{1} = component.ComponentWidth;
+      component.base_grid.RowHeight{1} = component.ComponentHeight;
+      component.base_grid.ColumnWidth{1} = component.ComponentWidth;
 
       if component.HighlightBackground
-        component.baseGridObject.BackgroundColor = component.HighlightBackgroundColor;
+        switch component.ThemeNameForBackGroundHighlight
+          case "light"
+            component.MainTable.BackgroundColor = component.LightThemeBackGroundColor;
+          case "dark"
+            component.MainTable.BackgroundColor = component.DarkThemeBackGroundColor;
+        end  % switch
       end  % if
     end  % function
 
   end  % methods
-
 end  % classdef

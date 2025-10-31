@@ -1,4 +1,4 @@
-classdef TextArea < LiteApp7.Component.LiteAppComponentBase
+classdef TextArea < LiteApp8.Component.ComponentBase
   %% Text area component
   % This is a large component.
   % - Both width and height must be adjustable.
@@ -47,17 +47,17 @@ classdef TextArea < LiteApp7.Component.LiteAppComponentBase
 
     function setup(component)
       %%
-      setup@LiteApp7.Component.LiteAppComponentBase(component)
+      setup@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight = {'fit'};
-      component.baseGridObject.ColumnWidth = {'1x'};
-      component.baseGridObject.Padding = [1 0 1 0];
-      component.baseGridObject.ColumnSpacing = 1;
-      component.baseGridObject.RowSpacing = 1;
-      component.baseGridObject.Scrollable = "on";
+      component.base_grid.RowHeight = {'fit'};
+      component.base_grid.ColumnWidth = {'1x'};
+      component.base_grid.Padding = [1 0 1 0];
+      component.base_grid.ColumnSpacing = 1;
+      component.base_grid.RowSpacing = 1;
+      component.base_grid.Scrollable = "on";
 
       % The main element of this component.
-      component.MainTextArea = uitextarea(component.baseGridObject);
+      component.MainTextArea = uitextarea(component.base_grid);
       component.MainTextArea.Layout.Row = 1;
       component.MainTextArea.Layout.Column = 1;
       component.MainTextArea.FontSize = component.CommonFontSize;
@@ -76,10 +76,10 @@ classdef TextArea < LiteApp7.Component.LiteAppComponentBase
 
     function update(component)
       %%
-      update@LiteApp7.Component.LiteAppComponentBase(component)
+      update@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight{1} = component.ComponentHeight;
-      component.baseGridObject.ColumnWidth{1} = component.ComponentWidth;
+      component.base_grid.RowHeight{1} = component.ComponentHeight;
+      component.base_grid.ColumnWidth{1} = component.ComponentWidth;
 
       if component.UseMonospacedFont
         component.MainTextArea.FontName = "Monospaced";
@@ -88,7 +88,7 @@ classdef TextArea < LiteApp7.Component.LiteAppComponentBase
       end  % if
 
       if component.HighlightBackground
-        component.baseGridObject.BackgroundColor = component.HighlightBackgroundColor;
+        component.base_grid.BackgroundColor = component.HighlightBackgroundColor;
       end  % if
     end  % function
 

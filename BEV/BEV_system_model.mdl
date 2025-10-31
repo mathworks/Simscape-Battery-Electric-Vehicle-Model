@@ -1,9 +1,9 @@
 # MathWorks OPC Text Package
 Model {
-  Version  25.1
-  Description "Simulink model saved in R2025a"
+  Version  25.2
+  Description "Simulink model saved in R2025b"
 }
-__MWOPC_PACKAGE_BEGIN__ R2025a
+__MWOPC_PACKAGE_BEGIN__ R2025b
 __MWOPC_PART_BEGIN__ /[Content_Types].xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
@@ -50,9 +50,9 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dc:description>Battery Electric Vehicle drive cycle simulation
 </dc:description>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-09-02T07:35:54Z</dcterms:modified>
-  <cp:revision>11.34</cp:revision>
-  <cp:version>R2025a</cp:version>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2025-10-31T08:53:22Z</dcterms:modified>
+  <cp:revision>12.0</cp:revision>
+  <cp:version>R2025b</cp:version>
 </cp:coreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
@@ -60,7 +60,7 @@ __MWOPC_PART_BEGIN__ /metadata/mwcoreProperties.xml
 <mwcoreProperties xmlns="http://schemas.mathworks.com/package/2012/coreProperties">
   <contentType>application/vnd.mathworks.simulink.model</contentType>
   <contentTypeFriendlyName>Simulink Model</contentTypeFriendlyName>
-  <matlabRelease>R2025a</matlabRelease>
+  <matlabRelease>R2025b</matlabRelease>
 </mwcoreProperties>
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
@@ -71,13 +71,13 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesExtension.xml
 
 __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Version information for MathWorks R2025a Release -->
+<!-- Version information for MathWorks R2025b Release -->
 <MathWorks_version_info>
-  <version>25.1.0.2973910</version>
-  <release>R2025a</release>
+  <version>25.2.0.3042426</version>
+  <release>R2025b</release>
   <description>Update 1</description>
-  <date>Jul 03 2025</date>
-  <checksum>1124574855</checksum>
+  <date>Oct 03 2025</date>
+  <checksum>3600278938</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -148,7 +148,7 @@ defineBus_Rotational
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:11.34&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:12.0&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="ShowEditTimeWarnings">off</P>
@@ -2236,111 +2236,6 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
         "TestPointedSignals":[
             {
                 "Decimation":2,
-                "FullBlockPath":"$bdroot\/High Voltage Battery\/Measurement\/From",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"HV Battery Power Loss"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/High Voltage Battery\/Measurement\/From1",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"HV Battery Temperature"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/High Voltage Battery\/Measurement\/From2",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"HV Battery SOC"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/High Voltage Battery\/Measurement\/From29",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"HV Battery Charge"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/High Voltage Battery\/Measurement\/From3",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"HV Battery Ambient Temperature"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/High Voltage Battery\/Measurement\/From7",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"HV Battery Power"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/High Voltage Battery\/Measurement\/From8",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"HV Battery Current"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/High Voltage Battery\/Measurement\/From9",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"HV Battery Voltage"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Vehicle G force"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From1",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Vehicle speed mph"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From19",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Vehicle speed kph"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From20",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Road Grade"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From21",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Brake force"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From27",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Axle speed"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Longitudinal Vehicle\/Measurement\/From34",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Incline"
-            },
-            {
-                "Decimation":2,
                 "FullBlockPath":"$bdroot\/Measurement\/In Bus Element3",
                 "LogSignal":true,
                 "MaxPoints":5000,
@@ -2436,90 +2331,6 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
                 "LogSignal":true,
                 "MaxPoints":5000,
                 "SignalName":"Electrical Efficiency"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor torque"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From1",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor mechanical power"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From10",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor heat flow command"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From11",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor ambient temperature"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From2",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor speed"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From3",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor current"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From4",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor electrical power"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From5",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor voltage"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From6",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor electrical loss"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From7",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor temperature"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From8",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor torque command"
-            },
-            {
-                "Decimation":2,
-                "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From9",
-                "LogSignal":true,
-                "MaxPoints":5000,
-                "SignalName":"Motor power rate"
             }
         ]
     }
@@ -2750,8 +2561,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_1829.xml
   <P Name="Location">[117, 98, 1257, 738]</P>
   <List ListType="InterfaceData">
     <P Name="Version">0</P>
-    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;b245e215-580f-498c-8424-4fc6e1b1f7db&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;7f3cb0fe-6e06-4968-9b0b-6dfbfc46c07e&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3cdea22b-1fdd-488d-ab9a-91a1bbfca4d6&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;a0bcb600-f1fb-4282-a6bd-65d8c22ed7b5&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0814835e-6b3e-4455-b4e9-40108dd10007&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;2b8ab535-2643-4d4b-8663-de5b21a53bb4&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;Current&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;b245e215-580f-498c-8424-4fc6e1b1f7db&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;a8e04cdf-e039-4f3e-a741-08f21461c0f2&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;2b8ab535-2643-4d4b-8663-de5b21a53bb4&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;Charge&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;7f3cb0fe-6e06-4968-9b0b-6dfbfc46c07e&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;087321ca-b35a-4821-83bb-c002b4ec3838&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;2b8ab535-2643-4d4b-8663-de5b21a53bb4&quot;},&quot;indexOne&quot;:3,&quot;name&quot;:&quot;Power&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3cdea22b-1fdd-488d-ab9a-91a1bbfca4d6&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;kW&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;620078e1-50cc-4fb2-88f9-3138289dbb1f&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;1960e62b-917f-44b9-b4df-209144d20e75&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;2b8ab535-2643-4d4b-8663-de5b21a53bb4&quot;},&quot;indexOne&quot;:4,&quot;name&quot;:&quot;Temp&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;a0bcb600-f1fb-4282-a6bd-65d8c22ed7b5&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;7f2f619e-b66c-44b9-be01-bbeccda62b1a&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;2b8ab535-2643-4d4b-8663-de5b21a53bb4&quot;},&quot;indexOne&quot;:5,&quot;name&quot;:&quot;Voltage&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0814835e-6b3e-4455-b4e9-40108dd10007&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;36b9706e-1dd7-44b2-816b-4fdbbc0d5523&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;2b8ab535-2643-4d4b-8663-de5b21a53bb4&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;b021dc7b-0da6-4678-936a-0e8069750c8a&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
-    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;b021dc7b-0da6-4678-936a-0e8069750c8a&quot;}}}</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;cc625566-ccee-44b3-8a08-a485cc8fb810&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1e82d340-b246-4118-9102-66c490afce16&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0ef9aa99-aeb2-443f-94d8-50850f363113&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;773ae31a-663f-4c68-bc44-be4a364bf1fc&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0051b143-a582-4aaa-b397-7b5c4d8b26e2&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6583ff98-204d-47a2-87a1-a3669e791776&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;Current&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;cc625566-ccee-44b3-8a08-a485cc8fb810&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;8b7f7f5c-b716-4127-b6dd-2f61d8c10f54&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6583ff98-204d-47a2-87a1-a3669e791776&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;Charge&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1e82d340-b246-4118-9102-66c490afce16&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;fb5acbb9-f1c9-45e3-804c-24da84d537b7&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6583ff98-204d-47a2-87a1-a3669e791776&quot;},&quot;indexOne&quot;:3,&quot;name&quot;:&quot;Power&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0ef9aa99-aeb2-443f-94d8-50850f363113&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;kW&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;4ae527f9-1846-4d35-8447-367709a86962&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;9b7db7f0-e8f1-4d03-94c4-9eecd57e28a9&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6583ff98-204d-47a2-87a1-a3669e791776&quot;},&quot;indexOne&quot;:4,&quot;name&quot;:&quot;Temp&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;773ae31a-663f-4c68-bc44-be4a364bf1fc&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;2b285c5d-621e-489c-bca2-9bf73840d6fb&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6583ff98-204d-47a2-87a1-a3669e791776&quot;},&quot;indexOne&quot;:5,&quot;name&quot;:&quot;Voltage&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;0051b143-a582-4aaa-b397-7b5c4d8b26e2&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;d0616912-6b4d-46d3-b6d2-9a519d8088f7&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;6583ff98-204d-47a2-87a1-a3669e791776&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;63590166-a0a4-4fc9-ab6a-5815fe765d66&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;63590166-a0a4-4fc9-ab6a-5815fe765d66&quot;}}}</P>
   </List>
   <Block BlockType="Inport" Name="In Bus Element3" SID="1833">
     <P Name="Position">[1015, -50, 1025, -40]</P>
@@ -3582,7 +3393,7 @@ open_system(gcb, &quot;force&quot;)
     <P Name="GotoTag">Veh</P>
   </Block>
   <Block BlockType="SubSystem" Name="High Voltage Battery" SID="2177">
-    <PortCounts in="1" out="1" rconn="2"/>
+    <PortCounts in="1" out="1" lconn="1" rconn="2"/>
     <P Name="Position">[-40, 105, 115, 177]</P>
     <P Name="ZOrder">26243</P>
     <P Name="OpenFcn">% Look under mask:
@@ -3590,7 +3401,7 @@ open_system(gcb, &quot;force&quot;)
 </P>
     <P Name="ContentPreviewEnabled">on</P>
     <P Name="ReferencedSubsystem">BatteryHV_Basic_refsub</P>
-    <P Name="PortSchema">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;sides&quot;:[{&quot;content&quot;:{&quot;connectorIds&quot;:[&quot;In1&quot;]},&quot;type&quot;:&quot;ConnectorPlacement.EquallySpacedRectSide&quot;,&quot;uuid&quot;:&quot;5db791d4-e733-413a-9b9b-d79e76ac9bb0&quot;},{&quot;content&quot;:{&quot;connectorIds&quot;:[&quot;RConn1&quot;,&quot;RConn2&quot;,&quot;Out1&quot;],&quot;side&quot;:&quot;RIGHT&quot;},&quot;type&quot;:&quot;ConnectorPlacement.EquallySpacedRectSide&quot;,&quot;uuid&quot;:&quot;0c12beb5-1dc0-4de1-849a-92aaa1061486&quot;},{&quot;content&quot;:{&quot;side&quot;:&quot;TOP&quot;},&quot;type&quot;:&quot;ConnectorPlacement.EquallySpacedRectSide&quot;,&quot;uuid&quot;:&quot;758dbf8c-c8ee-4b73-af05-227531b6198b&quot;},{&quot;content&quot;:{&quot;side&quot;:&quot;HIDDEN&quot;},&quot;type&quot;:&quot;ConnectorPlacement.EquallySpacedRectSide&quot;,&quot;uuid&quot;:&quot;fa4920b8-ec2a-4218-a476-41d1e0d36381&quot;}]},&quot;type&quot;:&quot;ConnectorPlacement.EquallySpacedConnector&quot;,&quot;uuid&quot;:&quot;d828a3e3-8826-44df-b770-75b0ad7bf91b&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/Connector/R2020b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="PortSchema">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;sides&quot;:[{&quot;content&quot;:{&quot;connectorIds&quot;:[&quot;In1&quot;,&quot;LConn1&quot;]},&quot;type&quot;:&quot;ConnectorPlacement.EquallySpacedRectSide&quot;,&quot;uuid&quot;:&quot;5db791d4-e733-413a-9b9b-d79e76ac9bb0&quot;},{&quot;content&quot;:{&quot;connectorIds&quot;:[&quot;RConn1&quot;,&quot;RConn2&quot;,&quot;Out1&quot;],&quot;side&quot;:&quot;RIGHT&quot;},&quot;type&quot;:&quot;ConnectorPlacement.EquallySpacedRectSide&quot;,&quot;uuid&quot;:&quot;0c12beb5-1dc0-4de1-849a-92aaa1061486&quot;},{&quot;content&quot;:{&quot;side&quot;:&quot;TOP&quot;},&quot;type&quot;:&quot;ConnectorPlacement.EquallySpacedRectSide&quot;,&quot;uuid&quot;:&quot;758dbf8c-c8ee-4b73-af05-227531b6198b&quot;},{&quot;content&quot;:{&quot;side&quot;:&quot;HIDDEN&quot;},&quot;type&quot;:&quot;ConnectorPlacement.EquallySpacedRectSide&quot;,&quot;uuid&quot;:&quot;fa4920b8-ec2a-4218-a476-41d1e0d36381&quot;}]},&quot;type&quot;:&quot;ConnectorPlacement.EquallySpacedConnector&quot;,&quot;uuid&quot;:&quot;d828a3e3-8826-44df-b770-75b0ad7bf91b&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/Connector/R2020b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
     <PortProperties>
       <Port Type="in" Index="1">
         <P Name="BlockName">Inputs</P>
@@ -3598,6 +3409,9 @@ open_system(gcb, &quot;force&quot;)
       <Port Type="out" Index="1">
         <P Name="BlockName">Info</P>
         <P Name="Name">Battery</P>
+      </Port>
+      <Port Type="lconn" Index="1">
+        <P Name="BlockName">PMC_Port2</P>
       </Port>
       <Port Type="rconn" Index="1">
         <P Name="BlockName">HighV</P>

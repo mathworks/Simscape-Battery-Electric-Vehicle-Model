@@ -1,4 +1,4 @@
-classdef PolarAxes < LiteApp7.Component.LiteAppComponentBase
+classdef PolarAxes < LiteApp8.Component.ComponentBase
   %% Axes component
   % Use this component to show a ploarplot.
   % The height of this component is fixed.
@@ -26,16 +26,16 @@ classdef PolarAxes < LiteApp7.Component.LiteAppComponentBase
 
     function setup(component)
       %%
-      setup@LiteApp7.Component.LiteAppComponentBase(component)
+      setup@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight = {'fit'};
-      component.baseGridObject.ColumnWidth = {'1x'};
-      component.baseGridObject.Padding = [0 0 0 0];  % left bottom right top
-      component.baseGridObject.ColumnSpacing = 0;
-      component.baseGridObject.RowSpacing = 0;
-      component.baseGridObject.Scrollable = "on";
+      component.base_grid.RowHeight = {'fit'};
+      component.base_grid.ColumnWidth = {'1x'};
+      component.base_grid.Padding = [0 0 0 0];  % left bottom right top
+      component.base_grid.ColumnSpacing = 0;
+      component.base_grid.RowSpacing = 0;
+      component.base_grid.Scrollable = "on";
 
-      component.panelUI = uipanel(component.baseGridObject);
+      component.panelUI = uipanel(component.base_grid);
       component.panelUI.Layout.Row = 1;
       component.panelUI.Layout.Column = 1;
       component.panelUI.BorderType = "none";
@@ -51,10 +51,10 @@ classdef PolarAxes < LiteApp7.Component.LiteAppComponentBase
 
     function update(component)
       %%
-      update@LiteApp7.Component.LiteAppComponentBase(component)
+      update@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight{1} = component.ComponentHeight;
-      component.baseGridObject.ColumnWidth{1} = component.ComponentWidth;
+      component.base_grid.RowHeight{1} = component.ComponentHeight;
+      component.base_grid.ColumnWidth{1} = component.ComponentWidth;
 
       if component.HighlightBackground
         component.panelUI.BackgroundColor = component.HighlightBackgroundColor;

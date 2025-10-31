@@ -1,4 +1,4 @@
-classdef PhysicalValueUI < LiteApp7.Component.LiteAppComponentBase
+classdef PhysicalValueUI < LiteApp8.Component.ComponentBase
   %% Composite UI component for simscape.Value with name, value, info, and unit UIs
   % This component supports using variables in the base workspace.
   %
@@ -73,11 +73,11 @@ classdef PhysicalValueUI < LiteApp7.Component.LiteAppComponentBase
     % If NameInInfo is "", Name is used in the info text string.
     NameInInfo (1,1) string = ""
 
-    NameUIWidth (1,1) double {mustBePositive} = LiteApp7.Constant.Width{"unitwidth"} * 14
-    InfoUIWidth (1,1) double {mustBePositive} = LiteApp7.Constant.Width{"unitwidth"} * 10
-    UnitUIWidth (1,1) double {mustBePositive} = LiteApp7.Constant.Width{"unitwidth"} * 10
+    NameUIWidth (1,1) double {mustBePositive} = LiteApp8.Constant.Width{"unitwidth"} * 14
+    InfoUIWidth (1,1) double {mustBePositive} = LiteApp8.Constant.Width{"unitwidth"} * 10
+    UnitUIWidth (1,1) double {mustBePositive} = LiteApp8.Constant.Width{"unitwidth"} * 10
 
-    ComponentHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp7.Constant.Height{"oneline++"}
+    ComponentHeight (1,:) {CodeTool1.mustBeTextOrPositiveNumber} = LiteApp8.Constant.Height{"oneline++"}
 
   end  % properties
 
@@ -85,26 +85,26 @@ classdef PhysicalValueUI < LiteApp7.Component.LiteAppComponentBase
   % Do not access these properties for other purposes.
   properties
     % Parameter name.
-    NameUI LiteApp7.Component.Label
+    NameUI LiteApp8.Component.Label
 
     % Parameter value which users can edit.
     % This contains an expression which can be a number, a variable,
     % a struct field, a function call, or an arithmetic formula using them.
-    ValueEditFieldUI LiteApp7.Component.EditField
+    ValueEditFieldUI LiteApp8.Component.EditField
 
     % Information to show as needed.
     % This is either the number representation of the parameter, or an error message.
     % This can show the result of evaluating the value in the ValueEditFieldUI component.
     % It can be a scalar, a vector, or a matrix.
-    InfoUI LiteApp7.Component.EditField
+    InfoUI LiteApp8.Component.EditField
 
     % Physical unit of the parameter.
     % Drop down is visible if the value UI is not simscape.Value.
     % Label is visible if the value UI is simscape.Value.
     % Their visibilities are mutually exclusive, i.e.,
     % they cannot be made visible at the same time.
-    UnitDropDownUI LiteApp7.Component.DropDown
-    UnitLabelUI LiteApp7.Component.Label
+    UnitDropDownUI LiteApp8.Component.DropDown
+    UnitLabelUI LiteApp8.Component.Label
 
     RowContainer matlab.ui.container.GridLayout
 
@@ -154,13 +154,13 @@ classdef PhysicalValueUI < LiteApp7.Component.LiteAppComponentBase
 
     function setup(component)
       %%
-      setup@LiteApp7.Component.LiteAppComponentBase(component)
+      setup@LiteApp8.Component.ComponentBase(component)
 
       % Visibilities of UI subcomponents are controlled by RowContainer's ColumnWidth.
       % Each subcomponent's ComponentWidth does not affect the visibility.
       % ValueUI's ComponentWidth must be always '1x'.
 
-      component.RowContainer = uigridlayout(component.baseGridObject, [1 1]);
+      component.RowContainer = uigridlayout(component.base_grid, [1 1]);
       component.RowContainer.Layout.Row = 1;
       component.RowContainer.Layout.Column = 1;
       component.RowContainer.Padding = [0 0 0 0];  % left bottom right top
@@ -185,7 +185,7 @@ classdef PhysicalValueUI < LiteApp7.Component.LiteAppComponentBase
       component.NameColumnContainer.ColumnWidth = {'fit'};
       component.NameColumnContainer.ColumnSpacing = 0;
 
-      component.NameUI = LiteApp7.Component.Label(component.NameColumnContainer);
+      component.NameUI = LiteApp8.Component.Label(component.NameColumnContainer);
       component.NameUI.Layout.Row = 2;  % middle cell
       component.NameUI.Layout.Column = 1;
       component.NameUI.ComponentHeight = component.ComponentHeight;
@@ -204,7 +204,7 @@ classdef PhysicalValueUI < LiteApp7.Component.LiteAppComponentBase
       component.ValueColumnContainer.ColumnWidth = {'1x'};  % Expand the Value UI horizontally
       component.ValueColumnContainer.ColumnSpacing = 0;
 
-      component.ValueEditFieldUI = LiteApp7.Component.EditField(component.ValueColumnContainer);
+      component.ValueEditFieldUI = LiteApp8.Component.EditField(component.ValueColumnContainer);
       component.ValueEditFieldUI.Layout.Row = 2;
       component.ValueEditFieldUI.Layout.Column = 1;
       % To avoid triggering callback, set initial value before setting callback
@@ -223,7 +223,7 @@ classdef PhysicalValueUI < LiteApp7.Component.LiteAppComponentBase
       component.InfoColumnContainer.ColumnWidth = {'fit'};
       component.InfoColumnContainer.ColumnSpacing = 0;
 
-      component.InfoUI = LiteApp7.Component.EditField(component.InfoColumnContainer);
+      component.InfoUI = LiteApp8.Component.EditField(component.InfoColumnContainer);
       component.InfoUI.Layout.Row = 2;
       component.InfoUI.Layout.Column = 1;
       component.InfoUI.ComponentWidth = component.InfoUIWidth;
@@ -243,13 +243,13 @@ classdef PhysicalValueUI < LiteApp7.Component.LiteAppComponentBase
       component.UnitColumnContainer.ColumnWidth = {'fit'};
       component.UnitColumnContainer.ColumnSpacing = 0;
 
-      component.UnitLabelUI = LiteApp7.Component.Label(component.UnitColumnContainer);
+      component.UnitLabelUI = LiteApp8.Component.Label(component.UnitColumnContainer);
       component.UnitLabelUI.Layout.Row = 2;  % 2nd row
       component.UnitLabelUI.Layout.Column = 1;
       component.UnitLabelUI.ComponentWidth = component.UnitUIWidth;
       component.UnitLabelUI.Text = "1";
 
-      component.UnitDropDownUI = LiteApp7.Component.DropDown(component.UnitColumnContainer);
+      component.UnitDropDownUI = LiteApp8.Component.DropDown(component.UnitColumnContainer);
       component.UnitDropDownUI.Layout.Row = 3;  % 3rd row
       component.UnitDropDownUI.Layout.Column = 1;
       component.UnitDropDownUI.ComponentWidth = component.UnitUIWidth;
@@ -262,7 +262,7 @@ classdef PhysicalValueUI < LiteApp7.Component.LiteAppComponentBase
 
     function update(component)
       %%
-      update@LiteApp7.Component.LiteAppComponentBase(component)
+      update@LiteApp8.Component.ComponentBase(component)
 
       if component.initialized
         regular_update(component)
@@ -308,7 +308,7 @@ classdef PhysicalValueUI < LiteApp7.Component.LiteAppComponentBase
       end  % if
 
       if component.HighlightBackground
-        component.baseGridObject.BackgroundColor = component.HighlightBackgroundColor;
+        component.base_grid.BackgroundColor = component.HighlightBackgroundColor;
         component.RowContainer.BackgroundColor = component.HighlightBackgroundColor;
         component.NameColumnContainer.BackgroundColor = component.HighlightBackgroundColor;
         component.NameUI.MainLabel.BackgroundColor = component.HighlightBackgroundColor;

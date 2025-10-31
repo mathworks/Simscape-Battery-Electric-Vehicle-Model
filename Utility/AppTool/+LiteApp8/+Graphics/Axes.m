@@ -1,5 +1,6 @@
-classdef Axes < LiteApp7.Component.LiteAppComponentBase
-  %% Axes component
+classdef Axes < LiteApp8.Component.ComponentBase
+  % Axes component
+  %
   % Use this component to show a plot.
   % The height of this component is fixed.
   % You can specify the height with ComponentHeight property.
@@ -11,56 +12,52 @@ classdef Axes < LiteApp7.Component.LiteAppComponentBase
   % Copyright 2025 The MathWorks, Inc.
 
   properties
-
     MainAxes (1,1) matlab.graphics.axis.Axes
 
     ComponentWidth (1,1) {CodeTool1.mustBeStringOrPositiveInteger} = "1x"
-
     ComponentHeight (1,1) {CodeTool1.mustBeStringOrPositiveInteger} = 200
+  end  % properties
 
-    panelUI (1,1) matlab.ui.container.Panel
-
+  properties (Access=private)
+    % The panel is used as a container of a graphics component.
+    panel_ui (1,1) matlab.ui.container.Panel
   end  % properties
 
   methods (Access=protected)
 
     function setup(component)
       %%
-      setup@LiteApp7.Component.LiteAppComponentBase(component)
+      setup@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight = {'fit'};
-      component.baseGridObject.ColumnWidth = {'1x'};
-      component.baseGridObject.Padding = [0 0 0 0];  % left bottom right top
-      component.baseGridObject.ColumnSpacing = 0;
-      component.baseGridObject.RowSpacing = 0;
-      component.baseGridObject.Scrollable = "on";
+      component.panel_ui = uipanel(component.base_grid);
+      component.panel_ui.Layout.Row = 1;
+      component.panel_ui.Layout.Column = 1;
+      component.panel_ui.BorderType = "none";
+      component.panel_ui.Title= "";
 
-      component.panelUI = uipanel(component.baseGridObject);
-      component.panelUI.Layout.Row = 1;
-      component.panelUI.Layout.Column = 1;
-      component.panelUI.BorderType = "none";
-      component.panelUI.Title= "";
-
-      % Panle's AutoResizeChildren must be off when the panel contains axes.
-      component.panelUI.AutoResizeChildren = "off";
+      % Panel's AutoResizeChildren must be off when the panel contains axes.
+      component.panel_ui.AutoResizeChildren = "off";
 
       % The main element of this component.
-      component.MainAxes = axes(component.panelUI);
-
+      component.MainAxes = axes(component.panel_ui);
     end  % function
 
     function update(component)
       %%
-      update@LiteApp7.Component.LiteAppComponentBase(component)
+      update@LiteApp8.Component.ComponentBase(component)
 
-      component.baseGridObject.RowHeight{1} = component.ComponentHeight;
-      component.baseGridObject.ColumnWidth{1} = component.ComponentWidth;
+      component.base_grid.RowHeight{1} = component.ComponentHeight;
+      component.base_grid.ColumnWidth{1} = component.ComponentWidth;
 
       if component.HighlightBackground
-        component.panelUI.BackgroundColor = component.HighlightBackgroundColor;
+        switch component.ThemeNameForBackGroundHighlight
+        case "light"
+          component.panel_ui.BackgroundColor = component.LightThemeBackGroundColor;
+        case "dark"
+          component.panel_ui.BackgroundColor = component.DarkThemeBackGroundColor;
+        end  % switch
       end  % if
     end  % function
 
   end  % methods
-
 end  % classdef

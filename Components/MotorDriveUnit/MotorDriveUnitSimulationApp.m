@@ -78,15 +78,15 @@ input_case_items = ["Constant" "Drive" "RegenBrake", "Random"];
 
 % -----------------------------------------------------------------------------
 
-width_unit = LiteApp7.Constant.Width{"unitwidth"};
+width_unit = LiteApp8.Constant.Width{"unitwidth"};
 name_ui_width = width_unit * 17;
 button_width = width_unit * 12;
 
-oneline_height = LiteApp7.Constant.Height{"oneline"};
+oneline_height = LiteApp8.Constant.Height{"oneline"};
 
 % =============================================================================
 
-AppUIStruct.Window = LiteApp7.LiteAppWindow;
+AppUIStruct.Window = LiteApp8.LiteAppWindow;
 
 AppUIStruct.Window.HeaderUI.AppSourceName = mfilename;
 
@@ -111,15 +111,15 @@ target_file = "MotorDriveUnit_Description.html";
 % Check that the file exists.
 FileTool3.getFileFullPath(target_file);
 
-AppUIStruct.DocLinkUI = LiteApp7.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
-AppUIStruct.DocLinkUI.HyperlinkText = "Description";
+AppUIStruct.DocLinkUI = LiteApp8.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
+AppUIStruct.DocLinkUI.Text = "Description";
 AppUIStruct.DocLinkUI.HyperlinkClickedCallback = @() web(target_file);
 AppUIStruct.DocLinkUI.MainHyperlink.Tooltip = CodeTool1.i18n("Open the component description page.");
 % Adjust the height and vertical alignment of the hyperlink component:
 AppUIStruct.DocLinkUI.ComponentHeight = oneline_height + 4;
 AppUIStruct.DocLinkUI.VerticalAlignment = "bottom";
 
-AppUIStruct.OpenModelButtonUI = LiteApp7.Component.Button(NewSlot(layout, row, Width="fit"));
+AppUIStruct.OpenModelButtonUI = LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
 AppUIStruct.OpenModelButtonUI.ComponentWidth = button_width;
 AppUIStruct.OpenModelButtonUI.Text = CodeTool1.i18n("Open model");
 AppUIStruct.OpenModelButtonUI.MainButton.Tooltip = CodeTool1.i18n("Open the harness model.");
@@ -130,13 +130,13 @@ AppUIStruct.OpenModelButtonUI.ButtonPushedCallback = @() dispAndOpenSystem(AppSe
     open_system(modelName)
   end  % nested function
 
-AppUIStruct.OpenSetupButtonUI= LiteApp7.Component.Button(NewSlot(layout, row, Width="fit"));
+AppUIStruct.OpenSetupButtonUI= LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
 AppUIStruct.OpenSetupButtonUI.ComponentWidth = button_width;
 AppUIStruct.OpenSetupButtonUI.Text = CodeTool1.i18n("Open setup");
 AppUIStruct.OpenSetupButtonUI.MainButton.Tooltip = CodeTool1.i18n("Open the main setup script.");
 AppUIStruct.OpenSetupButtonUI.ButtonPushedCallback = @() edit(AppSetup.ModelSetupScript);
 
-AppUIStruct.OpenScopeButtonUI= LiteApp7.Component.Button(NewSlot(layout, row, Width="fit"));
+AppUIStruct.OpenScopeButtonUI= LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
 AppUIStruct.OpenScopeButtonUI.ComponentWidth = button_width;
 AppUIStruct.OpenScopeButtonUI.Text = CodeTool1.i18n("Open scope");
 AppUIStruct.OpenScopeButtonUI.MainButton.Tooltip = CodeTool1.i18n("Open the main scope.");
@@ -148,17 +148,17 @@ NewRow(layout, column, Height=4);  % vertical small gap
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-label_ui = LiteApp7.Component.Label(NewSlot(layout, row));
+label_ui = LiteApp8.Component.Label(NewSlot(layout, row));
 label_ui.Text = "\textbf{" + CodeTool1.i18n("Configuration") + "}";
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-label_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
+label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
 label_ui.ComponentWidth = name_ui_width;
 label_ui.Text = CodeTool1.i18n("MDU block");
 
-AppUIStruct.TargetBlockDropDownUI = LiteApp7.Component.DropDown(NewSlot(layout, row));
+AppUIStruct.TargetBlockDropDownUI = LiteApp8.Component.DropDown(NewSlot(layout, row));
 AppUIStruct.TargetBlockDropDownUI.Items = mdu_display_items;
 AppUIStruct.TargetBlockDropDownUI.HorizontalAlignment = "left";
 AppUIStruct.TargetBlockDropDownUI.ValueChangedCallback = @() update_referenced_subsystem(AppUIStruct.TargetBlockDropDownUI.Value);
@@ -166,11 +166,11 @@ AppUIStruct.TargetBlockDropDownUI.ValueChangedCallback = @() update_referenced_s
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-label_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
+label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
 label_ui.ComponentWidth = name_ui_width;
 label_ui.Text = CodeTool1.i18n("Inputs pattern");
 
-AppUIStruct.InputsDropDownUI = LiteApp7.Component.DropDown(NewSlot(layout, row));
+AppUIStruct.InputsDropDownUI = LiteApp8.Component.DropDown(NewSlot(layout, row));
 AppUIStruct.InputsDropDownUI.Items = simulation_case_display_items;
 AppUIStruct.InputsDropDownUI.HorizontalAlignment = "left";
 AppUIStruct.InputsDropDownUI.ValueChangedCallback = @() update_inputs(AppUIStruct.InputsDropDownUI.Value);
@@ -181,11 +181,11 @@ NewRow(layout, column, Height=4);  % vertical small gap
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-label_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
+label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
 label_ui.Text = "\textbf{" + CodeTool1.i18n("Initial conditions") + "}";
 label_ui.ComponentWidth = name_ui_width;
 
-button_ui = LiteApp7.Component.Button(NewSlot(layout, row));
+button_ui = LiteApp8.Component.Button(NewSlot(layout, row));
 button_ui.ComponentWidth = button_width;
 button_ui.HorizontalAlignment = "left";
 button_ui.Text = CodeTool1.i18n("Refresh");
@@ -195,7 +195,7 @@ button_ui.ButtonPushedCallback = @() refreshInitialConditions(AppUIStruct);
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.LoadSpeedUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.LoadSpeedUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.LoadSpeedUI.Name = CodeTool1.i18n("Load speed");
 AppUIStruct.LoadSpeedUI.NameUIWidth = name_ui_width;
 AppUIStruct.LoadSpeedUI.Value = "initial.LoadInertiaSpeed";
@@ -210,7 +210,7 @@ AppUIStruct.LoadSpeedUI.ValueEditFieldUI.MainEditField.Tooltip = buildTooltipTex
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.MotorSpeedUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.MotorSpeedUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.MotorSpeedUI.Name = CodeTool1.i18n("Motor speed");
 AppUIStruct.MotorSpeedUI.NameUIWidth = name_ui_width;
 AppUIStruct.MotorSpeedUI.Value = "initial.motorDriveUnit_RotorSpd_rpm";
@@ -221,7 +221,7 @@ AppUIStruct.MotorSpeedUI.ValueEditFieldUI.MainEditField.Tooltip = buildTooltipTe
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.MotorTemperatureUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.MotorTemperatureUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.MotorTemperatureUI.Name = CodeTool1.i18n("Motor temperature");
 AppUIStruct.MotorTemperatureUI.NameUIWidth = name_ui_width;
 AppUIStruct.MotorTemperatureUI.Value = "initial.motorDriveUnit_Temperature_K";
@@ -237,7 +237,7 @@ row_number_MotorTempUI = layout.R;
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.AmbientTemperatureUI = LiteApp7.Component.PhysicalValueUI(NewSlot(layout, row));
+AppUIStruct.AmbientTemperatureUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
 AppUIStruct.AmbientTemperatureUI.Name = CodeTool1.i18n("Ambient temperature");
 AppUIStruct.AmbientTemperatureUI.NameUIWidth = name_ui_width;
 AppUIStruct.AmbientTemperatureUI.Value = "initial.ambientTemp_K";
@@ -250,14 +250,14 @@ row_number_AmbTempUI = layout.R;
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-label_ui = LiteApp7.Component.Label(NewSlot(layout, row, Width="fit"));
+label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
 label_ui.ComponentWidth = name_ui_width;
 label_ui.Text = "\textbf{" + CodeTool1.i18n("Input signals") + "}";
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-AppUIStruct.InputSignalPlotPanel = LiteApp7.Graphics.Panel(NewSlot(layout, row));
+AppUIStruct.InputSignalPlotPanel = LiteApp8.Graphics.Panel(NewSlot(layout, row));
 AppUIStruct.InputSignalPlotPanel.ComponentHeight = input_plot_panel_height;
 
 % ---------------------------------------------------------------------------
