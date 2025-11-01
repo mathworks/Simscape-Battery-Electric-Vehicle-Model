@@ -70,9 +70,7 @@ the Motor Drive Unit.
  alt="Screenshot of the motor drive unit app"
  width="440">
 
-## What's New in 3.3 (September 2025)
-
-(wip)
+## What's New in 3.3 (November 2025)
 
 - The project is upgraded to R2025b.
 
