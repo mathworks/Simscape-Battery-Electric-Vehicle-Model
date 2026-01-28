@@ -13,9 +13,6 @@
 
 name: Test using MATLAB R2025b on Linux
 
-env:
-  matlabRelease: "R2025b"
-
 on:
   push:
     branches: [ R2024b, R2024b-devel ]
@@ -45,17 +42,23 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    name: Test R2024b branch using MATLAB ${{ env.matlabRelease }} on Linux
+    strategy:
+      matrix:
+        config:
+          - name: R2025b
+            file: buildfile_24b.m
+
+    name: Test R2024b branch using MATLAB ${{ matrix.config.name }} on Linux
 
     steps:
 
       - name: Check out repository
         uses: actions/checkout@v6
 
-      - name: Setup MATLAB ${{ env.matlabRelease }}
+      - name: Setup MATLAB ${{ matrix.config.name }}
         uses: matlab-actions/setup-matlab@v2
         with:
-          release: ${{ env.matlabRelease }}
+          release: ${{ matrix.config.name }}
           cache: true
           products: |
             Simulink
@@ -75,4 +78,4 @@ jobs:
         with:
           command: |
             openProject(pwd);
-            buildtool -buildFile buildfile_24b.m -verbosity Verbose CodeIssues CheckProject Test
+            buildtool -buildFile ${{ matrix.config.file }} -verbosity Verbose CodeIssues CheckProject Test
