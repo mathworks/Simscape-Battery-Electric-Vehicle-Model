@@ -12,9 +12,9 @@
 # Copyright 2021-2026 The MathWorks, Inc.
 
 env:
-  matlabRelease: R2025b
+  matlabRelease: "R2025b"
 
-name: Test R2024b branch using MATLAB ${{ env.matlabRelease }} on Linux
+name: Test in ${{ env.matlabRelease }} on Linux
 
 on:
   push:
