@@ -5,7 +5,11 @@
 
 [![View Battery Electric Vehicle Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/82250-battery-electric-vehicle-model-in-simscape)
 
-Version 2.6
+Version 4.0
+
+- Version 4 works with R2024b or newer MATLAB releases.
+  Version 4.0.0 is identical to version 2.5.1.
+- Version 3 works with R2025b or newer MATLAB releases.
 
 ## Introduction
 
@@ -64,11 +68,12 @@ Motor Drive Unit App
  alt="Screenshot of the motor drive unit app"
  width="440">
 
-## What's New in 2.6 (January, 2026)
+## What's New in 4.0 (January, 2026)
 
-This is an update for R2024b or newer MATLAB releases.
-For more recent development updates, visit
-the [github repository](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model).
+> ⚠️ This is an update for R2024b or newer MATLAB releases.
+> Version 4.0.0 is identical to version 2.5.1.
+> For more recent development updates, visit
+> the [github repository](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model).
 
 BEV Controller
 
