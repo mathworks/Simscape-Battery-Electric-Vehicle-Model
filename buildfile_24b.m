@@ -1,5 +1,6 @@
 function plan = buildfile_24b
 %% Define and run tasks.
+% buildtool -buildFile buildfile_24b.m -verbosity Verbose CodeIssues CheckProject Test
 
 % Copyright 2023-2026 The MathWorks, Inc.
 
@@ -85,7 +86,7 @@ plan.DefaultTasks = [
 
 % Add a task to identify code issues.
 plan("CodeIssues") = matlab.buildtool.tasks.CodeIssuesTask( ...
-  Results = "test-result/code-issues.sarif");
+  Results = "test-result-24b/code-issues.sarif");
 
 plan("CheckProject").Dependencies = "CodeIssues";
 
@@ -93,15 +94,16 @@ plan("CheckProject").Dependencies = "CodeIssues";
 plan("Test") = matlab.buildtool.tasks.TestTask( ...
   Dependencies = "CodeIssues", ...
   SourceFiles = pwd, ...
-  Tests = test_definitions, ...
   TestResults = [
-  "test-result/test-result.xml"
-  "test-result/test-result.pdf"
+  "test-result-24b/test-result.xml"
+  "test-result-24b/test-result.pdf"
   ], ...
   CodeCoverageResults = [
-  "test-result/code-coverage.html"
-  "test-result/code-coverage.xml"
+  "test-result-24b/code-coverage.html"
+  "test-result-24b/code-coverage.xml"
   ] );
+
+plan("Test").Tests = test_definitions;
 
 plan("Clean") = matlab.buildtool.tasks.CleanTask;
 
