@@ -1,8 +1,11 @@
 # Battery Electric Vehicle Model in Simscape&trade;
 
+[![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml)
+[![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml)
+
 [![View Battery Electric Vehicle Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/82250-battery-electric-vehicle-model-in-simscape)
 
-Version 2.5
+Version 2.6
 
 ## Introduction
 
@@ -62,6 +65,10 @@ Motor Drive Unit App
  width="440">
 
 ## What's New in 2.6 (January, 2026)
+
+This is an update for R2024b or newer MATLAB releases.
+For more recent development updates, visit
+the [github repository](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model).
 
 BEV Controller
 

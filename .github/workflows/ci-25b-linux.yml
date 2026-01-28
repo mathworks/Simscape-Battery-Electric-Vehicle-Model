@@ -1,0 +1,78 @@
+# GitHub Actions Workflow with MATLAB Actions
+#
+# For a general overview of GitHub Actions, see
+# https://docs.github.com/en/actions
+#
+# For using MathWorks products in GitHub Actions, see
+# https://github.com/matlab-actions/overview
+#
+# For details about the syntax of this file, see
+# https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions
+
+# Copyright 2021-2026 The MathWorks, Inc.
+
+env:
+  matlab_release: R2025b
+
+name: Test R2024b branch using MATLAB ${{ env.matlab_release }} on Linux
+
+on:
+  push:
+    branches: [ R2024b, R2024b-devel ]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '**.png'
+      - '**.svg'
+      - '**.txt'
+      - '**.xml'
+
+  pull_request:
+    branches: [ R2024b, R2024b-devel ]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '**.png'
+      - '**.svg'
+      - '**.txt'
+      - '**.xml'
+
+  workflow_dispatch:
+
+jobs:
+
+  job-buildtool:
+
+    runs-on: ubuntu-latest
+
+    name: Test R2024b branch using MATLAB ${{ env.matlab_release }} on Linux
+
+    steps:
+
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Setup MATLAB ${{ env.matlab_release }}
+        uses: matlab-actions/setup-matlab@v2
+        with:
+          release: ${{ env.matlab_release }}
+          cache: true
+          products: |
+            Simulink
+            Simscape
+            Simscape_Electrical
+            Simscape_Driveline
+            Powertrain_Blockset
+
+      - name: Start display server for running headless Linux with graphics
+        run: |
+          sudo apt-get install xvfb
+          Xvfb :99 &
+          echo "DISPLAY=:99" >> $GITHUB_ENV
+
+      - name: Run tests via buildtool using buildfile.m
+        uses: matlab-actions/run-command@v2
+        with:
+          command: |
+            openProject(pwd);
+            buildtool -buildFile buildfile_24b.m -verbosity Verbose CodeIssues CheckProject Test
