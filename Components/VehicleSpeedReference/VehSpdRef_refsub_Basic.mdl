@@ -44,8 +44,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2023-02-09T11:05:38Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2024-11-20T07:58:36Z</dcterms:modified>
-  <cp:revision>5.4</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-01-28T09:56:36Z</dcterms:modified>
+  <cp:revision>5.5</cp:revision>
   <cp:version>R2024b</cp:version>
 </cp:coreProperties>
 
@@ -67,11 +67,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2024b Release -->
 <MathWorks_version_info>
-  <version>24.2.0.2773142</version>
+  <version>24.2.0.3070828</version>
   <release>R2024b</release>
-  <description>Update 2</description>
-  <date>Oct 22 2024</date>
-  <checksum>227631694</checksum>
+  <description>Update 7</description>
+  <date>Oct 30 2025</date>
+  <checksum>2188856867</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -111,7 +111,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:5.4&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:5.5&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -1653,6 +1653,7 @@ update(sig)
   <Block BlockType="Constant" Name="Simulation Case" SID="1">
     <P Name="Position">[360, -80, 390, -50]</P>
     <P Name="ZOrder">26296</P>
+    <P Name="Value">2</P>
   </Block>
   <Block BlockType="Outport" Name="VehSpdRef" SID="12">
     <P Name="Position">[545, 28, 575, 42]</P>
@@ -1785,7 +1786,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">8bc14801-6706-4a24-a221-00273b187e76</P>
     </Object>
-    <P Name="BDUuid" Class="char">582c9b72-465c-4d01-a600-5f416f14b729</P>
+    <P Name="BDUuid" Class="char">0f0f9d0d-be58-4a59-aa88-dedc0ca55597</P>
   </Object>
 </WindowsInfo>
 

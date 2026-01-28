@@ -61,6 +61,16 @@ Motor Drive Unit App
  alt="Screenshot of the motor drive unit app"
  width="440">
 
+## What's New in 2.6 (January, 2026)
+
+BEV Controller
+
+- The BEV Controller has improved its numerical robustness for some scenarios.
+  The zero-crossing detection is disabled for the integrator block for the I term
+  of the PI speed controller.
+  There were cases where simulation stalled due to the combination of zero-crossing
+  and the saturation of the integrator output.
+
 ## What's New in 2.5 (June, 2025)
 
 BEV Project
