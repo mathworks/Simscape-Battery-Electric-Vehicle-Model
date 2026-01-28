@@ -12,9 +12,9 @@
 # Copyright 2021-2026 The MathWorks, Inc.
 
 env:
-  matlab_release: R2025b
+  matlabRelease: R2025b
 
-name: Test R2024b branch using MATLAB ${{ env.matlab_release }} on Linux
+name: Test R2024b branch using MATLAB ${{ env.matlabRelease }} on Linux
 
 on:
   push:
@@ -45,17 +45,17 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    name: Test R2024b branch using MATLAB ${{ env.matlab_release }} on Linux
+    name: Test R2024b branch using MATLAB ${{ env.matlabRelease }} on Linux
 
     steps:
 
       - name: Check out repository
         uses: actions/checkout@v6
 
-      - name: Setup MATLAB ${{ env.matlab_release }}
+      - name: Setup MATLAB ${{ env.matlabRelease }}
         uses: matlab-actions/setup-matlab@v2
         with:
-          release: ${{ env.matlab_release }}
+          release: ${{ env.matlabRelease }}
           cache: true
           products: |
             Simulink
