@@ -1,8 +1,15 @@
 # Battery Electric Vehicle Model in Simscape&trade;
 
+[![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml)
+[![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml)
+
 [![View Battery Electric Vehicle Model in Simscape on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/82250-battery-electric-vehicle-model-in-simscape)
 
-Version 2.5
+Version 4.0
+
+- Version 4 works with R2024b or newer MATLAB releases.
+  Version 4.0.0 is identical to version 2.5.1.
+- Version 3 works with R2025b or newer MATLAB releases.
 
 ## Introduction
 
@@ -60,6 +67,21 @@ Motor Drive Unit App
 <img src="Components/MotorDriveUnit/Utility-MDU/screenshot-MotorDriveUnitApp.png"
  alt="Screenshot of the motor drive unit app"
  width="440">
+
+## What's New in 4.0 (January, 2026)
+
+> ⚠️ This is an update for R2024b or newer MATLAB releases.
+> Version 4.0.0 is identical to version 2.5.1.
+> For more recent development updates, visit
+> the [github repository](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model).
+
+BEV Controller
+
+- The BEV Controller has improved its numerical robustness for some scenarios.
+  The zero-crossing detection is disabled for the integrator block for the I term
+  of the PI speed controller.
+  There were cases where simulation stalled due to the combination of zero-crossing
+  and the saturation of the integrator output.
 
 ## What's New in 2.5 (June, 2025)
 
