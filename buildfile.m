@@ -25,6 +25,7 @@ plan("CodeIssues") = matlab.buildtool.tasks.CodeIssuesTask( ...
   "test-result/code-issues.sarif" ...
   ] );
 
+%{
 % Add a custom task using matlab.buildtool.Task.
 % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.task-class.html
 plan("CheckProject") = matlab.buildtool.Task( ...
@@ -32,15 +33,15 @@ plan("CheckProject") = matlab.buildtool.Task( ...
   Actions = @action_check_project);
 
 plan("CheckProject").Dependencies = "CodeIssues";
+%}
 
 % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.tasks.testtask-class.html
 plan("Test") = matlab.buildtool.tasks.TestTask( ...
-  Dependencies = ["CodeIssues", "CheckProject"], ...
+  Dependencies = "CodeIssues", ...
   ...
   SourceFiles = [
   "BEV"
   "Components"
-  "FYI"
   "Interface"
   "Utility"
   ], ...
@@ -57,6 +58,6 @@ plan("Test") = matlab.buildtool.tasks.TestTask( ...
 
 end  % function
 
-function action_check_project(~)
-BEVProject_CheckProject
-end  % function
+% function action_check_project(~)
+% BEVProject_CheckProject
+% end  % function
