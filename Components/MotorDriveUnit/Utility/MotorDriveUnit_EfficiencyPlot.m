@@ -35,25 +35,25 @@ arguments (Input)
   % In road vehicle applications,
   % maximum motor speed is determined by vehicle top speed,
   % tire rolling radius, and reduction gear ratio. 
-  NameValuePair.MaxSpeed (1,1) simscape.Value {CodeTool1.mustBeSimscapeValuePositive} = simscape.Value(17000, "rpm")
+  NameValuePair.MaxSpeed (1,1) simscape.Value {CodeUtil1.mustBeSimscapeValuePositiveOrNan} = simscape.Value(17000, "rpm")
 
-  NameValuePair.MaxTorque (1,1) simscape.Value {CodeTool1.mustBeSimscapeValuePositive} = simscape.Value(163, "N*m")
-  NameValuePair.MaxPower (1,1) simscape.Value {CodeTool1.mustBeSimscapeValuePositive} = simscape.Value(53, "kW")
+  NameValuePair.MaxTorque (1,1) simscape.Value {CodeUtil1.mustBeSimscapeValuePositiveOrNan} = simscape.Value(163, "N*m")
+  NameValuePair.MaxPower (1,1) simscape.Value {CodeUtil1.mustBeSimscapeValuePositiveOrNan} = simscape.Value(53, "kW")
 
-  NameValuePair.EfficiencyPercent (1,1) simscape.Value {CodeTool1.mustBeSimscapeValuePositive} = simscape.Value(95, "1")
-  NameValuePair.MeasuredSpeed (1,1) simscape.Value {CodeTool1.mustBeSimscapeValueNonnegative} = simscape.Value(2000, "rpm")
-  NameValuePair.MeasuredTorque (1,1) simscape.Value {CodeTool1.mustBeSimscapeValueNonnegative} = simscape.Value(50, "N*m")
+  NameValuePair.EfficiencyPercent (1,1) simscape.Value {CodeUtil1.mustBeSimscapeValuePositiveOrNan} = simscape.Value(95, "1")
+  NameValuePair.MeasuredSpeed (1,1) simscape.Value {CodeUtil1.mustBeSimscapeValueNonnegative} = simscape.Value(2000, "rpm")
+  NameValuePair.MeasuredTorque (1,1) simscape.Value {CodeUtil1.mustBeSimscapeValueNonnegative} = simscape.Value(50, "N*m")
 
   % In Motor & Drive block from Simscape Driveline,
   % iron loss, constant electrical loss, and rotor friction are not modelled,
   % i.e., they are 0. 
-  NameValuePair.IronToNominalLossRatioPercent (1,1) simscape.Value {CodeTool1.mustBeSimscapeValueNonnegative} = simscape.Value(0.1, "1")
-  NameValuePair.FixedLoss (1,1) simscape.Value {CodeTool1.mustBeSimscapeValueNonnegative} = simscape.Value(40, "W")
-  NameValuePair.RotorDamping (1,1) simscape.Value {CodeTool1.mustBeSimscapeValueNonnegative} = simscape.Value(0.05, "N*m/(rad/s)")
+  NameValuePair.IronToNominalLossRatioPercent (1,1) simscape.Value {CodeUtil1.mustBeSimscapeValueNonnegative} = simscape.Value(0.1, "1")
+  NameValuePair.FixedLoss (1,1) simscape.Value {CodeUtil1.mustBeSimscapeValueNonnegative} = simscape.Value(40, "W")
+  NameValuePair.RotorDamping (1,1) simscape.Value {CodeUtil1.mustBeSimscapeValueNonnegative} = simscape.Value(0.05, "N*m/(rad/s)")
 
   % Contour levels need 3 or more points for lower bound, upper bound,
   % and one or more points in between.
-  NameValuePair.ContourLevelsPercent (1,:) simscape.Value {CodeTool1.mustBeSimscapeValueNonnegative} = simscape.Value([1 60 80 90 92 94 96 97 98 99], "1")
+  NameValuePair.ContourLevelsPercent (1,:) simscape.Value {CodeUtil1.mustBeSimscapeValueNonnegative} = simscape.Value([1 60 80 90 92 94 96 97 98 99], "1")
 
   NameValuePair.PlotResolution (1,1) {mustBeInteger, mustBePositive} = 500
 
@@ -171,9 +171,9 @@ sct.SizeData = 100;
 sct.MarkerEdgeColor = "black";
 xlim(ax, [0 spd_max_rpm])
 ylim(ax, [0 trq_max_Nm])
-xlabel(ax, CodeTool1.i18n("Speed, $\omega$ (rpm)"), Interpreter="latex")
-ylabel(ax, CodeTool1.i18n("Torque, $\tau$ (Nm)"), Interpreter="latex")
-title(ax, CodeTool1.i18n("Overall Efficiency of Motor Drive Unit (%)"))
+xlabel(ax, CodeUtil1.i18n("Speed, $\omega$ (rpm)"), Interpreter="latex")
+ylabel(ax, CodeUtil1.i18n("Torque, $\tau$ (Nm)"), Interpreter="latex")
+title(ax, CodeUtil1.i18n("Overall Efficiency of Motor Drive Unit (%)"))
 
 if nargout > 0
   fig = tmp_fig;

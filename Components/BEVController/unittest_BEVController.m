@@ -1,5 +1,5 @@
 classdef unittest_BEVController < matlab.unittest.TestCase
-  %% Class-based unit test
+  % Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
   % https://www.mathworks.com/help/matlab/matlab_prog/author-class-based-unit-tests-in-matlab.html
@@ -10,7 +10,7 @@ classdef unittest_BEVController < matlab.unittest.TestCase
   % Test Browser
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2023-2025 The MathWorks, Inc.
+  % Copyright 2023-2026 The MathWorks, Inc.
 
   methods(TestMethodSetup)
     % Functions in this "TestMethodSetup" section always run before
@@ -40,10 +40,8 @@ classdef unittest_BEVController < matlab.unittest.TestCase
     end  % function
 
     function PassingTest_3(~)
-      load_system("HarnessModel_BEVController")
       sim("HarnessModel_BEVController");
     end  % function
 
   end  % methods
-
 end  % classdef

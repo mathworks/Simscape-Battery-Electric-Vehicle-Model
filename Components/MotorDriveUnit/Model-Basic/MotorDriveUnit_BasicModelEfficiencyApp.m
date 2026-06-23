@@ -15,9 +15,9 @@ model_file = app_setup.ModelName + ".mdl";
 % -----------------------------------------------------------------------------
 % Build app
 
-disp(CodeTool1.i18n("Opening app"))
-disp(CodeTool1.i18n("Loading parameters: ") + app_setup.ParameterFile)
-disp(CodeTool1.i18n("Loading model: ") + app_setup.ModelName)
+disp(CodeUtil1.i18n("Opening app"))
+disp(CodeUtil1.i18n("Loading parameters: ") + app_setup.ParameterFile)
+disp(CodeUtil1.i18n("Loading model: ") + app_setup.ModelName)
 
 app_ui = build_app_ui(app_setup);
 
@@ -29,7 +29,7 @@ evalin("base", app_setup.ParameterFile)
 
 % Preload the model to the model drop down for convenience.
 % This is allowed after BlockSelectorUI is fully built.
-app_ui.SelectorUI.ModelFileFullPath = FileTool3.getFileFullPath(model_file);
+app_ui.SelectorUI.ModelFileFullPath = FileUtil1.getFileFullPath(model_file);
 
 % Run this callback to update the edit fields with workspace variables.
 app_ui.SelectorUI.GetParametersFromBlockCallback()
@@ -71,7 +71,7 @@ AppUIStruct.Window = LiteApp8.LiteAppWindow;
 
 AppUIStruct.Window.HeaderUI.AppSourceName = mfilename;
 
-AppUIStruct.Window.Name = CodeTool1.i18n("Motor Efficiency App for Basic MDU Model");
+AppUIStruct.Window.Name = CodeUtil1.i18n("Motor Efficiency App for Basic MDU Model");
 
 AppUIStruct.Window.Width = 1200;
 right_pane_width = 500;
@@ -93,7 +93,7 @@ row = NewRow(layout, column);
 
 label_ui = LiteApp8.Component.Label(NewSlot(layout, row));
 label_ui.ComponentHeight = oneline_height * 2;
-label_ui.Text = CodeTool1.i18n( ...
+label_ui.Text = CodeUtil1.i18n( ...
 join([
   "This app works with Motor & Drive block from Simscape Driveline and"
   "Rotational Damper block from Simscape."
@@ -103,35 +103,35 @@ join([
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
-target_file = CodeTool1.i18n("MotorDriveUnit_Description.html");
+target_file = CodeUtil1.i18n("MotorDriveUnit_Description.html");
 % Check that the file exists. If not, this prevents the app from showing up.
-FileTool3.getFileFullPath(target_file);
+FileUtil1.getFileFullPath(target_file);
 
 AppUIStruct.DocLinkUI = LiteApp8.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
 AppUIStruct.DocLinkUI.Text = "Description";
 AppUIStruct.DocLinkUI.HyperlinkClickedCallback = @() web(target_file);
-AppUIStruct.DocLinkUI.MainHyperlink.Tooltip = CodeTool1.i18n("Open the component description page.");
+AppUIStruct.DocLinkUI.MainHyperlink.Tooltip = CodeUtil1.i18n("Open the component description page.");
 % Adjust the height and vertical alignment of the hyperlink component:
 AppUIStruct.DocLinkUI.ComponentHeight = oneline_height + 4;
 AppUIStruct.DocLinkUI.VerticalAlignment = "bottom";
 
 AppUIStruct.OpenModelButtonUI = LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
 AppUIStruct.OpenModelButtonUI.ComponentWidth = button_width;
-AppUIStruct.OpenModelButtonUI.Text = CodeTool1.i18n("Open model");
-AppUIStruct.OpenModelButtonUI.MainButton.Tooltip = CodeTool1.i18n("Open the loaded model.");
+AppUIStruct.OpenModelButtonUI.Text = CodeUtil1.i18n("Open model");
+AppUIStruct.OpenModelButtonUI.MainButton.Tooltip = CodeUtil1.i18n("Open the loaded model.");
 AppUIStruct.OpenModelButtonUI.ButtonPushedCallback = @() callbackOpenSystem(AppSetup.ModelName);
 
 AppUIStruct.OpenSetupButtonUI= LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
 AppUIStruct.OpenSetupButtonUI.ComponentWidth = button_width;
-AppUIStruct.OpenSetupButtonUI.Text = CodeTool1.i18n("Open setup");
-AppUIStruct.OpenSetupButtonUI.MainButton.Tooltip = CodeTool1.i18n("Open the loaded parameter setup script.");
+AppUIStruct.OpenSetupButtonUI.Text = CodeUtil1.i18n("Open setup");
+AppUIStruct.OpenSetupButtonUI.MainButton.Tooltip = CodeUtil1.i18n("Open the loaded parameter setup script.");
 AppUIStruct.OpenSetupButtonUI.ButtonPushedCallback = @() edit(AppSetup.ParameterFile);
 
 AppUIStruct.RefreshButtonUI = LiteApp8.Component.Button(NewSlot(layout, row));
 AppUIStruct.RefreshButtonUI.ComponentWidth = button_width;
 AppUIStruct.RefreshButtonUI.HorizontalAlignment = "left";
-AppUIStruct.RefreshButtonUI.Text = CodeTool1.i18n("Refresh");
-AppUIStruct.RefreshButtonUI.MainButton.Tooltip = CodeTool1.i18n("Refresh the values. Use this button if edit fields are using workspace variables.");
+AppUIStruct.RefreshButtonUI.Text = CodeUtil1.i18n("Refresh");
+AppUIStruct.RefreshButtonUI.MainButton.Tooltip = CodeUtil1.i18n("Refresh the values. Use this button if edit fields are using workspace variables.");
 AppUIStruct.RefreshButtonUI.ButtonPushedCallback = @() callbackReloadValues();
 
 % -----------------------------------------------------------------------------
@@ -141,14 +141,14 @@ NewRow(layout, column, Height=8);  % vertical small gap
 row = NewRow(layout, column);
 
 label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
-label_ui.Text = "\textbf{" + CodeTool1.i18n("Parameters") + "}";
+label_ui.Text = "\textbf{" + CodeUtil1.i18n("Parameters") + "}";
 label_ui.ComponentWidth = name_ui_width;
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
 AppUIStruct.MaxSpeedUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.MaxSpeedUI.Name = CodeTool1.i18n("Maximum speed");
+AppUIStruct.MaxSpeedUI.Name = CodeUtil1.i18n("Maximum speed");
 AppUIStruct.MaxSpeedUI.NameUIWidth = name_ui_width;
 AppUIStruct.MaxSpeedUI.UnitUIWidth = physical_unit_ui_width;
 AppUIStruct.MaxSpeedUI.UnitItems = speed_units;
@@ -160,7 +160,7 @@ AppUIStruct.MaxSpeedUI.ValueChangedCallback = @() auto_update();
 row = NewRow(layout, column);
 
 AppUIStruct.MaxTorqueUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.MaxTorqueUI.Name = CodeTool1.i18n("Maximum torque");
+AppUIStruct.MaxTorqueUI.Name = CodeUtil1.i18n("Maximum torque");
 AppUIStruct.MaxTorqueUI.NameUIWidth = name_ui_width;
 AppUIStruct.MaxTorqueUI.UnitUIWidth = physical_unit_ui_width;
 AppUIStruct.MaxTorqueUI.UnitItems = torque_units;
@@ -172,7 +172,7 @@ AppUIStruct.MaxTorqueUI.ValueChangedCallback = @() auto_update();
 row = NewRow(layout, column);
 
 AppUIStruct.MaxPowerUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.MaxPowerUI.Name = CodeTool1.i18n("Maximum power");
+AppUIStruct.MaxPowerUI.Name = CodeUtil1.i18n("Maximum power");
 AppUIStruct.MaxPowerUI.NameUIWidth = name_ui_width;
 AppUIStruct.MaxPowerUI.UnitUIWidth = physical_unit_ui_width;
 AppUIStruct.MaxPowerUI.UnitItems = power_units;
@@ -184,7 +184,7 @@ AppUIStruct.MaxPowerUI.ValueChangedCallback = @() auto_update();
 row = NewRow(layout, column);
 
 AppUIStruct.EfficiencyUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.EfficiencyUI.Name = CodeTool1.i18n("Overall efficiency, $\eta_{meas}(\omega_{meas}, \tau_{meas})$");
+AppUIStruct.EfficiencyUI.Name = CodeUtil1.i18n("Overall efficiency, $\eta_{meas}(\omega_{meas}, \tau_{meas})$");
 AppUIStruct.EfficiencyUI.UnitUIWidth = physical_unit_ui_width;
 AppUIStruct.EfficiencyUI.NameUIWidth = name_ui_width;
 AppUIStruct.EfficiencyUI.UnitAlias = "\%";
@@ -195,7 +195,7 @@ AppUIStruct.EfficiencyUI.ValueChangedCallback = @() auto_update();
 row = NewRow(layout, column);
 
 AppUIStruct.MeasuredSpeedUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.MeasuredSpeedUI.Name = CodeTool1.i18n("Speed at which $\eta_{meas}$ is measured, $\omega_{meas}$");
+AppUIStruct.MeasuredSpeedUI.Name = CodeUtil1.i18n("Speed at which $\eta_{meas}$ is measured, $\omega_{meas}$");
 AppUIStruct.MeasuredSpeedUI.NameUIWidth = name_ui_width;
 AppUIStruct.MeasuredSpeedUI.UnitUIWidth = physical_unit_ui_width;
 AppUIStruct.MeasuredSpeedUI.UnitItems = speed_units;
@@ -207,7 +207,7 @@ AppUIStruct.MeasuredSpeedUI.ValueChangedCallback = @() auto_update();
 row = NewRow(layout, column);
 
 AppUIStruct.MeasuredTorqueUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.MeasuredTorqueUI.Name = CodeTool1.i18n("Torque at which $\eta_{meas}$ is measured, $\tau_{meas}$");
+AppUIStruct.MeasuredTorqueUI.Name = CodeUtil1.i18n("Torque at which $\eta_{meas}$ is measured, $\tau_{meas}$");
 AppUIStruct.MeasuredTorqueUI.NameUIWidth = name_ui_width;
 AppUIStruct.MeasuredTorqueUI.UnitUIWidth = physical_unit_ui_width;
 AppUIStruct.MeasuredTorqueUI.UnitItems = torque_units;
@@ -219,7 +219,7 @@ AppUIStruct.MeasuredTorqueUI.ValueChangedCallback = @() auto_update();
 row = NewRow(layout, column);
 
 AppUIStruct.RotorDampingUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.RotorDampingUI.Name = CodeTool1.i18n("Rotor damping, $k_f$, in Rotational Damper");
+AppUIStruct.RotorDampingUI.Name = CodeUtil1.i18n("Rotor damping, $k_f$, in Rotational Damper");
 AppUIStruct.RotorDampingUI.NameUIWidth = name_ui_width;
 AppUIStruct.RotorDampingUI.UnitUIWidth = physical_unit_ui_width;
 AppUIStruct.RotorDampingUI.UnitItems = friction_units;
@@ -241,15 +241,15 @@ AppUIStruct.PlotButtonUI.ButtonUIWidth = button_width + width_unit;
 AppUIStruct.PlotButtonUI.ButtonWidth = button_width;
 AppUIStruct.PlotButtonUI.CheckBoxUIWidth = "fit";
 AppUIStruct.PlotButtonUI.CheckBoxWidth = "fit";
-AppUIStruct.PlotButtonUI.ButtonText = CodeTool1.i18n("Update");
+AppUIStruct.PlotButtonUI.ButtonText = CodeUtil1.i18n("Update");
 AppUIStruct.PlotButtonUI.ButtonUI.MainButton.Icon = fullfile(matlabroot, "toolbox", "matlab", "icons", "tool_rotate_3d.png");
-AppUIStruct.PlotButtonUI.CheckBoxText = CodeTool1.i18n("Auto-update");
+AppUIStruct.PlotButtonUI.CheckBoxText = CodeUtil1.i18n("Auto-update");
 AppUIStruct.PlotButtonUI.ButtonPushedCallback = @() update_plot(AppUIStruct.AxesUI.MainAxes);
 % Set false to auto-update and keep it until the entire app is ready.
 AppUIStruct.PlotButtonUI.ButtonDisable = "on";
 
 AppUIStruct.OpenInFigureWindowUI = LiteApp8.Component.Hyperlink(NewSlot(layout, row));
-AppUIStruct.OpenInFigureWindowUI.Text = CodeTool1.i18n("Open in figure window");
+AppUIStruct.OpenInFigureWindowUI.Text = CodeUtil1.i18n("Open in figure window");
 AppUIStruct.OpenInFigureWindowUI.HorizontalAlignment = "right";
 AppUIStruct.OpenInFigureWindowUI.HyperlinkClickedCallback = @() create_plot_window();
 
@@ -266,12 +266,12 @@ NewRow(layout, column, Height=4);  % small vertical gap
 row = NewRow(layout, column);
 
 AppUIStruct.ContoursUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.ContoursUI.Name = CodeTool1.i18n("Contour levels");
+AppUIStruct.ContoursUI.Name = CodeUtil1.i18n("Contour levels");
 AppUIStruct.ContoursUI.NameUIWidth = width_unit * 12;
 AppUIStruct.ContoursUI.UnitUIWidth = width_unit * 5;
 AppUIStruct.ContoursUI.UnitAlias = "\%";
 AppUIStruct.ContoursUI.Value = "[1 60 80 90 92 94 96 97 98 99]";
-AppUIStruct.ContoursUI.ValueEditFieldUI.MainEditField.Tooltip = CodeTool1.i18n("Only a plain number array such as [1, 80, 90, 99] is allowed.");
+AppUIStruct.ContoursUI.ValueEditFieldUI.MainEditField.Tooltip = CodeUtil1.i18n("Only a plain number array such as [1, 80, 90, 99] is allowed.");
 AppUIStruct.ContoursUI.ValueChangedCallback = @() auto_update();
 
 % =============================================================================
@@ -293,7 +293,7 @@ AppUIStruct.SelectorUI.MainFigure = AppUIStruct.Window.MainFigure;
 AppUIStruct.SelectorUI.TargetSimscapeBlockNames = "Motor & Drive";
 AppUIStruct.SelectorUI.GetParametersFromBlockCallback = @() getParametersFromBlock();
 AppUIStruct.SelectorUI.SetParametersToBlockCallback = @() setParametersToBlock();
-AppUIStruct.SelectorUI.SetParametersToBlockUI.MainButton.Tooltip = CodeTool1.i18n("Set button does nothing in this app.");
+AppUIStruct.SelectorUI.SetParametersToBlockUI.MainButton.Tooltip = CodeUtil1.i18n("Set button does nothing in this app.");
 
 % ---------------------------------------------------------------------------
 % callbacks
@@ -309,7 +309,7 @@ AppUIStruct.SelectorUI.SetParametersToBlockUI.MainButton.Tooltip = CodeTool1.i18
     measured_torque = AppUIStruct.MeasuredTorqueUI.SimscapeValue;
     rotor_damping = AppUIStruct.RotorDampingUI.SimscapeValue;
 
-    contour_levels = simscape.Value(transpose(CodeTool1.getNumberArrayFromString(AppUIStruct.ContoursUI.Value)), "1");
+    contour_levels = simscape.Value(transpose(CodeUtil1.getNumberArrayFromString(AppUIStruct.ContoursUI.Value)), "1");
 
     MotorDriveUnit_EfficiencyPlot( ParentAxes=parent, ...
       MaxSpeed = max_speed, ...
@@ -411,7 +411,7 @@ AppUIStruct.SelectorUI.SetParametersToBlockUI.MainButton.Tooltip = CodeTool1.i18
 
   function setParametersToBlock()
     %%
-    msg = CodeTool1.i18n("In this app, the Set button does not set parameters to the block.");
+    msg = CodeUtil1.i18n("In this app, the Set button does not set parameters to the block.");
     disp(msg)
   end  % nested function
 
@@ -423,6 +423,6 @@ end  % function
 
 function callbackOpenSystem(modelName)
 %%
-disp(CodeTool1.i18n("Opening the model: ") + modelName)
+disp(CodeUtil1.i18n("Opening the model: ") + modelName)
 open_system(modelName)
 end  % function

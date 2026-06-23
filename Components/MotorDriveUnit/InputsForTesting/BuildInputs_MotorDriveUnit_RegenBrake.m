@@ -5,56 +5,56 @@ AxleSpeedSwitch.t = [0 1];
 AxleSpeedSwitch.f = [0 0];
 %[text] 
 AxleSpeed.DesignMatrix = [0 1 0];
-AxleSpeed.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(AxleSpeed.DesignMatrix);
+AxleSpeed.DataTable = SignalUtil1.getVectorsFromSignalDesignMatrix(AxleSpeed.DesignMatrix);
 AxleSpeed.t = AxleSpeed.DataTable.X;
 AxleSpeed.f = AxleSpeed.DataTable.Y;
 fig = figure; %[output:4510eefd]
 fig.Position(3:4) = [900 200];  % width height %[output:4510eefd]
-SignalTool3.plotLookupTable1D(AxleSpeed.t, AxleSpeed.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:4510eefd]
+SignalUtil1.plotLookupTable1D(AxleSpeed.t, AxleSpeed.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:4510eefd]
 %[text] 
 AxleTorque.DesignMatrix = [0 100 100; 150 200 400];
-AxleTorque.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(AxleTorque.DesignMatrix);
+AxleTorque.DataTable = SignalUtil1.getVectorsFromSignalDesignMatrix(AxleTorque.DesignMatrix);
 AxleTorque.t = AxleTorque.DataTable.X;
 AxleTorque.f = AxleTorque.DataTable.Y;
 fig = figure; %[output:2c954dcf]
 fig.Position(3:4) = [900 200];  % width height %[output:2c954dcf]
-SignalTool3.plotLookupTable1D(AxleTorque.t, AxleTorque.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:2c954dcf]
+SignalUtil1.plotLookupTable1D(AxleTorque.t, AxleTorque.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:2c954dcf]
 %[text] 
 MotorTorqueCommand.DesignMatrix = [0 40 0; 50 170 -20; 180 200 -50];
-MotorTorqueCommand.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(MotorTorqueCommand.DesignMatrix);
+MotorTorqueCommand.DataTable = SignalUtil1.getVectorsFromSignalDesignMatrix(MotorTorqueCommand.DesignMatrix);
 MotorTorqueCommand.t = MotorTorqueCommand.DataTable.X;
 MotorTorqueCommand.f = MotorTorqueCommand.DataTable.Y;
 fig = figure; %[output:503c9516]
 fig.Position(3:4) = [900 200];  % width height %[output:503c9516]
-SignalTool3.plotLookupTable1D(MotorTorqueCommand.t, MotorTorqueCommand.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:503c9516]
+SignalUtil1.plotLookupTable1D(MotorTorqueCommand.t, MotorTorqueCommand.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:503c9516]
 %[text] 
 HeatFlowCommand.DesignMatrix = [0 50 0; 60 200 -100; 210 300 -400];
-HeatFlowCommand.DataTable = SignalTool3.getVectorsFromSignalDesignMatrix(HeatFlowCommand.DesignMatrix);
+HeatFlowCommand.DataTable = SignalUtil1.getVectorsFromSignalDesignMatrix(HeatFlowCommand.DesignMatrix);
 HeatFlowCommand.t = HeatFlowCommand.DataTable.X;
 HeatFlowCommand.f = HeatFlowCommand.DataTable.Y;
 fig = figure; %[output:27208644]
 fig.Position(3:4) = [900 200];  % width height %[output:27208644]
-SignalTool3.plotLookupTable1D(HeatFlowCommand.t, HeatFlowCommand.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:27208644]
+SignalUtil1.plotLookupTable1D(HeatFlowCommand.t, HeatFlowCommand.f, InterpolationInterval=0.01, ParentAxes=axes(fig)) %[output:27208644]
 %%
 %[text] Set the generated data to the target block in the target model.
 model_name = "Inputs_MotorDriveUnit_RegenBrake_refsub";
 load_system(model_name)
 
 % Target block is Simulink 1D Lookup Table.
-set_param(model_name + "/Axle speed switch", "Table", CodeTool1.stringify(AxleSpeedSwitch.f))
-set_param(model_name + "/Axle speed switch", "BreakpointsForDimension1", CodeTool1.stringify(AxleSpeedSwitch.t))
+set_param(model_name + "/Axle speed switch", "Table", CodeUtil1.stringify(AxleSpeedSwitch.f))
+set_param(model_name + "/Axle speed switch", "BreakpointsForDimension1", CodeUtil1.stringify(AxleSpeedSwitch.t))
 
-set_param(model_name + "/Axle speed", "Table", CodeTool1.stringify(AxleSpeed.f))
-set_param(model_name + "/Axle speed", "BreakpointsForDimension1", CodeTool1.stringify(AxleSpeed.t))
+set_param(model_name + "/Axle speed", "Table", CodeUtil1.stringify(AxleSpeed.f))
+set_param(model_name + "/Axle speed", "BreakpointsForDimension1", CodeUtil1.stringify(AxleSpeed.t))
 
-set_param(model_name + "/Axle torque", "Table", CodeTool1.stringify(AxleTorque.f))
-set_param(model_name + "/Axle torque", "BreakpointsForDimension1", CodeTool1.stringify(AxleTorque.t))
+set_param(model_name + "/Axle torque", "Table", CodeUtil1.stringify(AxleTorque.f))
+set_param(model_name + "/Axle torque", "BreakpointsForDimension1", CodeUtil1.stringify(AxleTorque.t))
 
-set_param(model_name + "/Motor torque command", "Table", CodeTool1.stringify(MotorTorqueCommand.f))
-set_param(model_name + "/Motor torque command", "BreakpointsForDimension1", CodeTool1.stringify(MotorTorqueCommand.t))
+set_param(model_name + "/Motor torque command", "Table", CodeUtil1.stringify(MotorTorqueCommand.f))
+set_param(model_name + "/Motor torque command", "BreakpointsForDimension1", CodeUtil1.stringify(MotorTorqueCommand.t))
 
-set_param(model_name + "/Motor heat flow command", "Table", CodeTool1.stringify(HeatFlowCommand.f))
-set_param(model_name + "/Motor heat flow command", "BreakpointsForDimension1", CodeTool1.stringify(HeatFlowCommand.t))
+set_param(model_name + "/Motor heat flow command", "Table", CodeUtil1.stringify(HeatFlowCommand.f))
+set_param(model_name + "/Motor heat flow command", "BreakpointsForDimension1", CodeUtil1.stringify(HeatFlowCommand.t))
 %[text] *Copyright 2025 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

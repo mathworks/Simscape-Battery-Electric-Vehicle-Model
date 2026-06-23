@@ -18,25 +18,25 @@ design_matrix = [
   65 70 0
   ];
 
-result = SignalTool3.getVectorsFromSignalDesignMatrix(design_matrix);
+result = SignalUtil1.getVectorsFromSignalDesignMatrix(design_matrix);
 x = result.X';
 f = result.F';
 
 % "Table grid vector" parameter in PS Lookup Table (1D) block.
-x_text = CodeTool1.stringify(x);
+x_text = CodeUtil1.stringify(x);
 x_unit = "s";
 
 % "Table values" parameter in PS Lookup Table (1D) block.
-f_text = CodeTool1.stringify(f);
+f_text = CodeUtil1.stringify(f);
 f_unit = "N*m";
 
 interp_method = "Smooth";
 extrap_method = "Nearest";
 
 % Add the design matrix as text to the Description property of the target block.
-design_matrix_text = CodeTool1.stringify(design_matrix);
+design_matrix_text = CodeUtil1.stringify(design_matrix);
 
-SignalTool3.plotLookupTable1D( ...
+SignalUtil1.plotLookupTable1D( ...
   x, f, ...
   XUnitText = x_unit, ...
   YUnitText = f_unit, ...
@@ -87,5 +87,5 @@ set_param(block_path, "Description", description_text)
 %}
 ```
 
-*Copyright 2025 The MathWorks, Inc.*
+*Copyright 2025\-2026 The MathWorks, Inc.*
 

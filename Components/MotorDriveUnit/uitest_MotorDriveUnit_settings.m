@@ -78,7 +78,7 @@ classdef uitest_MotorDriveUnit_settings < matlab.uitest.TestCase
         target_block_path = block_paths(ii);
         disp("Checking: " + target_block_path)
         ClickFcn_text = string(get_param(target_block_path, "ClickFcn"));
-        lines = CodeTool1.cleanupCodeText(ClickFcn_text);
+        lines = CodeUtil1.cleanupCodeText(ClickFcn_text);
         if isempty(lines)
 
           verifyFail(testcase, "Callback must contain code.")

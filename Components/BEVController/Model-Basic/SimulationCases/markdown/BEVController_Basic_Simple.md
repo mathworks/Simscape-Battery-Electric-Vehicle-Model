@@ -1,7 +1,5 @@
 
 # <span style="color:rgb(213,80,0)">BEV Controller \- Simulation Case</span>
-
-# Simple
 ```matlab
 model_name = "HarnessModel_BEVController";
 load_system(model_name) 
@@ -52,5 +50,5 @@ ylabel("N*m")
 <center><img src="media/BEVController_Basic_Simple_media/figure_1.png" width="702" alt="figure_1.png"></center>
 
 
-*Copyright 2023\-2025 The MathWorks, Inc.*
+*Copyright 2023\-2026 The MathWorks, Inc.*
 

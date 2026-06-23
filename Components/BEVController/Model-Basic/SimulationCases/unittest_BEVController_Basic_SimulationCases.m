@@ -10,7 +10,7 @@ classdef unittest_BEVController_Basic_SimulationCases < matlab.unittest.TestCase
   % Test Browser
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2024-2025 The MathWorks, Inc.
+  % Copyright 2024-2026 The MathWorks, Inc.
 
   properties
 
@@ -68,7 +68,7 @@ classdef unittest_BEVController_Basic_SimulationCases < matlab.unittest.TestCase
     function PassingTest_1(testcase)
       % Run script, for example, BEVController_Basic_Simple.
       target_name = "BEVController_" + testcase.ModelID + "_Simple";
-      target_fullpath = FileTool3.getFileFullPath(target_name);
+      target_fullpath = FileUtil1.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -76,7 +76,7 @@ classdef unittest_BEVController_Basic_SimulationCases < matlab.unittest.TestCase
     function PassingTest_2(testcase)
       % Run script, for example, BEVController_Basic_Simple.
       target_name = "BEVController_" + testcase.ModelID + "_Random";
-      target_fullpath = FileTool3.getFileFullPath(target_name);
+      target_fullpath = FileUtil1.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function

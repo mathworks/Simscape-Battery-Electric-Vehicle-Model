@@ -62,7 +62,7 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
     function PassingTest_1(testcase)
       % Run code, for example, MotorDriveUnit_Basic_params.
       target_name = testcase.ComponentID + "_" + testcase.ModelID + "_params";
-      target_fullpath = FileTool3.getFileFullPath(target_name);
+      target_fullpath = FileUtil1.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -74,14 +74,14 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
     function PassingTest_3(~)
       target_name = "MotorDriveUnit_BasicModelEfficiencyPlot";
-      target_fullpath = FileTool3.getFileFullPath(target_name);
+      target_fullpath = FileUtil1.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_4(~)
       target_name = "MotorDriveUnit_BasicModelEfficiencyDoc";
-      target_fullpath = FileTool3.getFileFullPath(target_name);
+      target_fullpath = FileUtil1.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -111,7 +111,7 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
         % The ClickFcn text must be something that can run, i.e., a script, a function, a class, or a model.
         % However, do not evaluate the ClickFcn text here to make it run because
         % checking that runnables do run should be done separately.
-        target_fullpath = FileTool3.getFileFullPath(ClickFcn_text, ReturnIfNotFound=true);
+        target_fullpath = FileUtil1.getFileFullPath(ClickFcn_text, ReturnIfNotFound=true);
         verifyTrue(testcase, isfile(target_fullpath))
 
       end  % for

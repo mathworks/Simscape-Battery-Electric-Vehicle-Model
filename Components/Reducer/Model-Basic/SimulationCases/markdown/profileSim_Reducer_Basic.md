@@ -1,24 +1,24 @@
 
-<a id="TMP_6f37"></a>
+<a id="TMP_1814"></a>
 
 # <span style="color:rgb(213,80,0)">Profiling simulation with Reducer Basic model</span>
 <!-- Begin Toc -->
 
 ## Table of Contents
-&emsp;[Set up](#TMP_4b36)
+&emsp;[Set up](#TMP_96fe)
  
-&emsp;[Run simulation normally](#TMP_8c58)
+&emsp;[Run simulation normally](#TMP_8c80)
  
-&emsp;[Step size](#TMP_7ecf)
+&emsp;[Step size](#TMP_7dc5)
  
-&emsp;[Profiling simulation](#TMP_540f)
+&emsp;[Profiling simulation](#TMP_6ea0)
  
 <!-- End Toc -->
 
 Run simulation using the Solver Profiler's `solverprofiler.profileModel` function. See the documentation about the function for details.
 
 -  [https://www.mathworks.com/help/simulink/slref/solverprofiler.profilemodel.html](https://www.mathworks.com/help/simulink/slref/solverprofiler.profilemodel.html) 
-<a id="TMP_4b36"></a>
+<a id="TMP_96fe"></a>
 
 # Set up
 ```matlab
@@ -26,7 +26,7 @@ model_name = "HarnessModel_Reducer";
 target_folder = fullfile(currentProject().RootFolder, "Components", "Reducer", "Model-Basic", "SimulationCases");
 data_fullpath = fullfile(target_folder, "profiling_data.mat");
 ```
-<a id="TMP_8c58"></a>
+<a id="TMP_8c80"></a>
 
 # Run simulation normally
 ```matlab
@@ -51,10 +51,10 @@ Run simulation normally and plot results.
 
 ```matlab
 sim_out = sim(sim_in);
-tt = SignalTool3.getTimetableFromLoggedSignal(sim_out.logsout);
+tt = SignalUtil1.getTimetableFromLoggedSignal(sim_out.logsout);
 varnames = string(tt.Properties.VariableNames);
 for idx = 1 : numel(varnames)
-  SignalTool3.plotTimedData(TimedData=tt, SignalName=varnames(idx), FigureHeight=150);
+  SignalUtil1.plotTimedData(TimedData=tt, SignalName=varnames(idx), FigureHeight=150);
 end  % for
 ```
 
@@ -78,13 +78,13 @@ end  % for
 
 <center><img src="media/profileSim_Reducer_Basic_media/figure_6.png" width="702" alt="figure_6.png"></center>
 
-<a id="TMP_7ecf"></a>
+<a id="TMP_7dc5"></a>
 
 # Step size
 ```matlab
 fig = figure;
 fig.Position(3:4) = [800, 200];  % width, height
-SignalTool3.plotDifference(sim_out.tout, NewFigure=false, ParentAxes=axes(fig), ...
+SignalUtil1.plotDifference(sim_out.tout, NewFigure=false, ParentAxes=axes(fig), ...
   YScale = "Log", Title="Step size", YUnitText="s", ...
   XLabel="Time", XUnitText="s" )
 ```
@@ -109,7 +109,7 @@ fprintf("Minimum step size: %e", min(step_size_data))
 Minimum step size: 2.552514e-04
 ```
 
-<a id="TMP_540f"></a>
+<a id="TMP_6ea0"></a>
 
 # Profiling simulation
 
@@ -158,7 +158,7 @@ disp(result.summary)
                hMax: 2
            hAverage: 0.6173
               steps: 162
-        profileTime: 0.0853
+        profileTime: 0.7517
            zcNumber: 0
         resetNumber: 1
      jacobianNumber: 26
@@ -172,5 +172,5 @@ Open the Solver Profiler with the saved session data.
 %solverprofiler.exploreResult(char(data_fullpath))
 ```
 
-*Copyright 2025 The MathWorks, Inc.*
+*Copyright 2025\-2026 The MathWorks, Inc.*
 

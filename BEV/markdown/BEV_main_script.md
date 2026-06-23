@@ -1,17 +1,16 @@
-
 <a id="T_0F8BC05C"></a>
 
 # <span style="color:rgb(213,80,0)">Battery Electric Vehicle (BEV) System Level Model</span>
 <!-- Begin Toc -->
 
 ## Table of Contents
-&emsp;[Introduction](#H_A0C28D4F)
+&#8195;[Introduction](#H_A0C28D4F)
  
-&emsp;[Run Simulation](#H_EC484CEF)
+&#8195;[Run Simulation](#H_EC484CEF)
  
-&emsp;[Save Result](#H_EF7BCF44)
+&#8195;[Save Result](#H_EF7BCF44)
  
-&emsp;[Analyse Result](#H_81E3C32A)
+&#8195;[Analyze Result](#H_81E3C32A)
  
 <!-- End Toc -->
 <a id="H_A0C28D4F"></a>
@@ -20,12 +19,9 @@
 
 This is a simple, fast running BEV model which can estimate the electrical efficiency of the vehicle. It is also suitable for further customizations for more focused analysis of individual components at vehicle system level.
 
-
 To open the model, navigate Toolstrip > Project Shortcut tab, and click the "**BEV model**" button.
 
-
 This script shows an example workflow to programmatically open model, run simulation, collect simulation data, visualize result, save data to text\-format file, read saved data file, and analyze. Feel free to modify this script (probably saving as another file first) and experiment to get new results.
-
 
 You can find more scripts demonstrating other simulation cases in the BEV > Model\-\* > SimulationCases folders.
 
@@ -38,8 +34,10 @@ This section sets up the model and runs simulation. To run this script at once, 
 ```matlab
 model_name = "BEV_system_model";
 
+
 % Load the model.
 load_system(model_name)
+
 
 % Setup the vehicle component models and load the parameters.
 BEV_setup_Basic
@@ -56,14 +54,17 @@ Loading in base workspace: BEVController_Basic_params
 
 ```matlab
 
+
 % Use the Simulation Input to adjust the simulation settings.
 % https://www.mathworks.com/help/simulink/slref/simulink.simulationinput.html
 sim_in = Simulink.SimulationInput(model_name);
+
 
 % Select the vehicle speed reference, i.e., drive pattern/cycle.
 sim_in = setBlockParameter(sim_in, ...
   model_name + "/Controller and Environment/Vehicle speed reference", ...
   ReferencedSubsystem = "VehSpdRef_Simple_refsub");
+
 
 % Specify the stop time of simulation corresponding to the drive pattern.
 sim_in = setModelParameter(sim_in, StopTime = "100");
@@ -81,16 +82,20 @@ Run simulation, collect logged data, and visualize the result.
 % The applyToModel function updates the model file using the Simulation Input object.
 % It is safe to skip calling the function in this script, but in that case,
 % the changes made in the Simulation Input object are applied only to the model in the memory.
-% For mroe information abuout applyToModel, see the documentation.
+% For more information about applyToModel, see the documentation.
 % https://www.mathworks.com/help/simulink/slref/simulink.simulationinput.applytomodel.html
 applyToModel(sim_in)
 
+
 sim_out = sim(sim_in);
+
 
 % Extract logged signals at once with extractTimetable.
 sim_data = extractTimetable(sim_out.logsout);
 
+
 fig = BEV_plotResults(TimedData = sim_data, PlotTemperature = false);
+
 
 % Save the plot to a PNG file.
 imgFilename = "BEV_SimulationResultPlot.png";
@@ -109,6 +114,7 @@ Save logged signals to a CSV file for later analysis. CSV text format is used ra
 % Adjust the time format in the timetable object so as not to lose the subsecond information.
 sim_data.Time.Format = "hh:mm:ss.SSSS";
 
+
 % Signal names to save in file.
 % These must be specified in the model as signal logging names.
 % For example, in the BEV system model, see the Measurement subsystem.
@@ -116,8 +122,10 @@ data_columns = [ ...
   "HV Battery SOC", "HV Battery Power", "HV Battery Current", ...
   "G-Force", "Vehicle Speed kph" ];
 
+
 % Select the logged signals to save.
 sim_data = sim_data(:, data_columns);
+
 
 % Add unit information to the signal names.
 var_names = string(sim_data.Properties.VariableNames');
@@ -137,6 +145,7 @@ disp(var_names2)
 ```matlab
 sim_data.Properties.VariableNames = var_names2;
 
+
 % Save the data to a CSV file.
 sim_result_filename  = "BEV_SimulationResult_1.csv";
 sim_result_filefullpath = fullfile(currentProject().RootFolder, "BEV", "simulation-results", sim_result_filename);
@@ -147,7 +156,7 @@ Open the saved CSV file in text editor and check that the variable names are sav
 
 <a id="H_81E3C32A"></a>
 
-# Analyse Result
+# Analyze Result
 
 This section reads a simulation result CSV file which was saved in the previous section, and do some analysis on the data. This section should work independently without running the previous section as long as the result file exists. At the end of this section, you get the electric efficiency of the vehicle according to the drive cycle for which the data was collected.
 
@@ -155,11 +164,14 @@ This section reads a simulation result CSV file which was saved in the previous 
 sim_result_filename  = "BEV_SimulationResult_1.csv";
 sim_result_filefullpath = fullfile(currentProject().RootFolder, "BEV", "simulation-results", sim_result_filename);
 
+
 % Read a CSV file containing simulation result and store it to a timetable.
 data = readtimetable(sim_result_filefullpath, VariableNamingRule="preserve");
 
+
 % Adjust time format.
 data.Time.Format = "s";
+
 
 % Separate variable names and unit strings.
 var_names_with_unit = string(data.Properties.VariableNames');
@@ -200,7 +212,7 @@ t = simscape.Value( seconds(data.Time), 's' );
 dt = diff(t);
 ```
 
-Travelled Distance
+Traveled Distance
 
 ```matlab
 data_VehSpd = data.("Vehicle Speed kph");
@@ -211,7 +223,7 @@ disp("Average speed: " + value(average_speed) + " " + string(unit(average_speed)
 ```
 
 ```matlabTextOutput
-Average speed: 31.914 km/hr
+Average speed: 31.75 km/hr
 ```
 
 ```matlab
@@ -226,23 +238,22 @@ Maximum speed: 70.0069 km/hr
 ```matlab
 travelled_distance = sum(vehicle_speed(2:end).*dt);
 travelled_distance = convert( travelled_distance, "km" );
-disp("Travelled distance: " + value(travelled_distance) + " " + string(unit(travelled_distance)))
+disp("Traveled distance: " + value(travelled_distance) + " " + string(unit(travelled_distance)))
 ```
 
 ```matlabTextOutput
-Travelled distance: 0.96264 km
+Traveled distance: 0.96263 km
 ```
-
 
 G Force
 
 ```matlab
 G = data.("G-Force");
-disp("Minimun G: " + min(G))
+disp("Minimum G: " + min(G))
 ```
 
 ```matlabTextOutput
-Minimun G: -0.077077
+Minimum G: -0.077078
 ```
 
 ```matlab
@@ -250,9 +261,8 @@ disp("Maximum G: " + max(G))
 ```
 
 ```matlabTextOutput
-Maximum G: 0.19673
+Maximum G: 0.19671
 ```
-
 
 Battery Power
 
@@ -266,7 +276,7 @@ disp("Battery energy used: " + value(battery_energy_used) + " " + string(unit(ba
 ```
 
 ```matlabTextOutput
-Battery energy used: 0.14366 kWh
+Battery energy used: 0.14363 kWh
 ```
 
 ```matlab
@@ -275,7 +285,7 @@ disp("Energy efficiency: " + energy_efficiency_kWh_per_100km + " kWh per 100 km"
 ```
 
 ```matlabTextOutput
-Energy efficiency: 14.9234 kWh per 100 km
+Energy efficiency: 14.9205 kWh per 100 km
 ```
 
 ```matlab
@@ -284,7 +294,7 @@ disp("Energy efficiency: " + value(energy_efficiency_km_per_kWh) + " " + string(
 ```
 
 ```matlabTextOutput
-Energy efficiency: 6.7009 km/kWh
+Energy efficiency: 6.7022 km/kWh
 ```
 
 ```matlab
@@ -293,9 +303,7 @@ disp("Energy efficiency: " + value(energy_efficiency_mi_per_kWh) + " " + string(
 ```
 
 ```matlabTextOutput
-Energy efficiency: 4.1637 mi/kWh
+Energy efficiency: 4.1645 mi/kWh
 ```
 
-
-*Copyright 2022\-2025 The MathWorks, Inc.*
-
+*Copyright 2022\-2026 The MathWorks, Inc.*

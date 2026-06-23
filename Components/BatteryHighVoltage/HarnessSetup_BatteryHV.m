@@ -1,7 +1,7 @@
 %% Model parameters for high voltage battery harness model
 % This script is run automatically when harness model opens.
 %
-% This scriprt loads variables in the base workspace for the following battery models. 
+% This script loads variables in the base workspace for the following battery models. 
 % - Basic battery model
 % - System-level battery model, simple
 % - System-level battery model
@@ -10,7 +10,7 @@
 % If you edit this file, make sure to run this to update variables
 % in the base workspace before running simulation.
 
-% Copyright 2022-2023 The MathWorks, Inc.
+% Copyright 2022-2026 The MathWorks, Inc.
 
 %% Bus definitions
 
@@ -18,7 +18,7 @@ defineBus_HighVoltage
 
 %% Parameters for testing
 
-% Negative value for charing.
+% Negative value for charging.
 testParam.CRate = -0.1;
 
 testParam.LoadCurrent = simscape.Value(0, "A");

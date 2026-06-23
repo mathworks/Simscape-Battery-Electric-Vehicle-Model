@@ -67,13 +67,13 @@ classdef uiuptodatetest_MotorDriveUnit < matlab.uitest.TestCase
     function app_screenshot_is_uptodate(testcase)
 
       target_app = @MotorDriveUnitSimulationApp;
-      source_fullpath = FileTool3.getFileFullPath("MotorDriveUnitSimulationApp.m");
-      destination_fullpath = FileTool3.getFileFullPath("screenshot-MotorDriveUnitSimulationApp.png");
+      source_fullpath = FileUtil1.getFileFullPath("MotorDriveUnitSimulationApp.m");
+      destination_fullpath = FileUtil1.getFileFullPath("screenshot-MotorDriveUnitSimulationApp.png");
 
-      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileUtil1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % Display the time stamps.
-        FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+        FileUtil1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
 
         testcase.App = target_app();
 
@@ -87,7 +87,7 @@ classdef uiuptodatetest_MotorDriveUnit < matlab.uitest.TestCase
         testcase.App = 0;
       end  % if
 
-      newer = FileTool3.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = FileUtil1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function

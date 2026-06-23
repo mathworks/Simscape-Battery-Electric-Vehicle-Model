@@ -14,15 +14,15 @@ app_setup.ScopePath = "HarnessModel_MotorDriveUnit/Measurement/Scope MDU Harness
 
 app_setup.MDUItems = ["Basic", "BasicThermal", "SystemThermal", "SystemTable"];
 app_setup.MDUDisplayItems = [
-  CodeTool1.i18n("Basic model")
-  CodeTool1.i18n("Basic thermal model")
-  CodeTool1.i18n("System-level thermal model")
-  CodeTool1.i18n("System-level model with tabulated losses")];
+  CodeUtil1.i18n("Basic model")
+  CodeUtil1.i18n("Basic thermal model")
+  CodeUtil1.i18n("System-level thermal model")
+  CodeUtil1.i18n("System-level model with tabulated losses")];
 
 % -----------------------------------------------------------------------------
 % Setup before buidling app
 
-disp(CodeTool1.i18n("Loading model: ") + app_setup.ModelName)
+disp(CodeUtil1.i18n("Loading model: ") + app_setup.ModelName)
 load_system(app_setup.ModelName)
 
 % Get the currently selected refsub's name.
@@ -42,7 +42,7 @@ app_ui = build_app_ui(app_setup);
 % Do this after the app is built.
 
 app_ui.TargetBlockDropDownUI.Value = mdu_display_value;
-app_ui.InputsDropDownUI.Value = CodeTool1.i18n("Drive");
+app_ui.InputsDropDownUI.Value = CodeUtil1.i18n("Drive");
 
 refreshInitialConditions(app_ui)
 
@@ -70,9 +70,9 @@ mdu_display_items = AppSetup.MDUDisplayItems;
 mdu_items = AppSetup.MDUItems;
 
 simulation_case_display_items = [
-  CodeTool1.i18n("Constant inputs")
-  CodeTool1.i18n("Drive")
-  CodeTool1.i18n("Regenerative braking")];
+  CodeUtil1.i18n("Constant inputs")
+  CodeUtil1.i18n("Drive")
+  CodeUtil1.i18n("Regenerative braking")];
 
 input_case_items = ["Constant" "Drive" "RegenBrake", "Random"];
 
@@ -90,7 +90,7 @@ AppUIStruct.Window = LiteApp8.LiteAppWindow;
 
 AppUIStruct.Window.HeaderUI.AppSourceName = mfilename;
 
-AppUIStruct.Window.Name = CodeTool1.i18n("Motor Drive Unit App");
+AppUIStruct.Window.Name = CodeUtil1.i18n("Motor Drive Unit App");
 
 AppUIStruct.Window.Width = 550;
 
@@ -109,37 +109,37 @@ row = NewRow(layout, column);
 
 target_file = "MotorDriveUnit_Description.html";
 % Check that the file exists.
-FileTool3.getFileFullPath(target_file);
+FileUtil1.getFileFullPath(target_file);
 
 AppUIStruct.DocLinkUI = LiteApp8.Component.Hyperlink(NewSlot(layout, row, Width="fit"));
 AppUIStruct.DocLinkUI.Text = "Description";
 AppUIStruct.DocLinkUI.HyperlinkClickedCallback = @() web(target_file);
-AppUIStruct.DocLinkUI.MainHyperlink.Tooltip = CodeTool1.i18n("Open the component description page.");
+AppUIStruct.DocLinkUI.MainHyperlink.Tooltip = CodeUtil1.i18n("Open the component description page.");
 % Adjust the height and vertical alignment of the hyperlink component:
 AppUIStruct.DocLinkUI.ComponentHeight = oneline_height + 4;
 AppUIStruct.DocLinkUI.VerticalAlignment = "bottom";
 
 AppUIStruct.OpenModelButtonUI = LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
 AppUIStruct.OpenModelButtonUI.ComponentWidth = button_width;
-AppUIStruct.OpenModelButtonUI.Text = CodeTool1.i18n("Open model");
-AppUIStruct.OpenModelButtonUI.MainButton.Tooltip = CodeTool1.i18n("Open the harness model.");
+AppUIStruct.OpenModelButtonUI.Text = CodeUtil1.i18n("Open model");
+AppUIStruct.OpenModelButtonUI.MainButton.Tooltip = CodeUtil1.i18n("Open the harness model.");
 AppUIStruct.OpenModelButtonUI.ButtonPushedCallback = @() dispAndOpenSystem(AppSetup.ModelName);
 
   function dispAndOpenSystem(modelName)
-    disp(CodeTool1.i18n("Opening model: ") + modelName)
+    disp(CodeUtil1.i18n("Opening model: ") + modelName)
     open_system(modelName)
   end  % nested function
 
 AppUIStruct.OpenSetupButtonUI= LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
 AppUIStruct.OpenSetupButtonUI.ComponentWidth = button_width;
-AppUIStruct.OpenSetupButtonUI.Text = CodeTool1.i18n("Open setup");
-AppUIStruct.OpenSetupButtonUI.MainButton.Tooltip = CodeTool1.i18n("Open the main setup script.");
+AppUIStruct.OpenSetupButtonUI.Text = CodeUtil1.i18n("Open setup");
+AppUIStruct.OpenSetupButtonUI.MainButton.Tooltip = CodeUtil1.i18n("Open the main setup script.");
 AppUIStruct.OpenSetupButtonUI.ButtonPushedCallback = @() edit(AppSetup.ModelSetupScript);
 
 AppUIStruct.OpenScopeButtonUI= LiteApp8.Component.Button(NewSlot(layout, row, Width="fit"));
 AppUIStruct.OpenScopeButtonUI.ComponentWidth = button_width;
-AppUIStruct.OpenScopeButtonUI.Text = CodeTool1.i18n("Open scope");
-AppUIStruct.OpenScopeButtonUI.MainButton.Tooltip = CodeTool1.i18n("Open the main scope.");
+AppUIStruct.OpenScopeButtonUI.Text = CodeUtil1.i18n("Open scope");
+AppUIStruct.OpenScopeButtonUI.MainButton.Tooltip = CodeUtil1.i18n("Open the main scope.");
 AppUIStruct.OpenScopeButtonUI.ButtonPushedCallback = @() open_system(AppSetup.ScopePath);
 
 % -----------------------------------------------------------------------------
@@ -149,14 +149,14 @@ NewRow(layout, column, Height=4);  % vertical small gap
 row = NewRow(layout, column);
 
 label_ui = LiteApp8.Component.Label(NewSlot(layout, row));
-label_ui.Text = "\textbf{" + CodeTool1.i18n("Configuration") + "}";
+label_ui.Text = "\textbf{" + CodeUtil1.i18n("Configuration") + "}";
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
 label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
 label_ui.ComponentWidth = name_ui_width;
-label_ui.Text = CodeTool1.i18n("MDU block");
+label_ui.Text = CodeUtil1.i18n("MDU block");
 
 AppUIStruct.TargetBlockDropDownUI = LiteApp8.Component.DropDown(NewSlot(layout, row));
 AppUIStruct.TargetBlockDropDownUI.Items = mdu_display_items;
@@ -168,7 +168,7 @@ row = NewRow(layout, column);
 
 label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
 label_ui.ComponentWidth = name_ui_width;
-label_ui.Text = CodeTool1.i18n("Inputs pattern");
+label_ui.Text = CodeUtil1.i18n("Inputs pattern");
 
 AppUIStruct.InputsDropDownUI = LiteApp8.Component.DropDown(NewSlot(layout, row));
 AppUIStruct.InputsDropDownUI.Items = simulation_case_display_items;
@@ -182,21 +182,21 @@ NewRow(layout, column, Height=4);  % vertical small gap
 row = NewRow(layout, column);
 
 label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
-label_ui.Text = "\textbf{" + CodeTool1.i18n("Initial conditions") + "}";
+label_ui.Text = "\textbf{" + CodeUtil1.i18n("Initial conditions") + "}";
 label_ui.ComponentWidth = name_ui_width;
 
 button_ui = LiteApp8.Component.Button(NewSlot(layout, row));
 button_ui.ComponentWidth = button_width;
 button_ui.HorizontalAlignment = "left";
-button_ui.Text = CodeTool1.i18n("Refresh");
-button_ui.MainButton.Tooltip = CodeTool1.i18n("Load workspace variables.");
+button_ui.Text = CodeUtil1.i18n("Refresh");
+button_ui.MainButton.Tooltip = CodeUtil1.i18n("Load workspace variables.");
 button_ui.ButtonPushedCallback = @() refreshInitialConditions(AppUIStruct);
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
 AppUIStruct.LoadSpeedUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.LoadSpeedUI.Name = CodeTool1.i18n("Load speed");
+AppUIStruct.LoadSpeedUI.Name = CodeUtil1.i18n("Load speed");
 AppUIStruct.LoadSpeedUI.NameUIWidth = name_ui_width;
 AppUIStruct.LoadSpeedUI.Value = "initial.LoadInertiaSpeed";
 AppUIStruct.LoadSpeedUI.Unit = "rpm";
@@ -204,14 +204,14 @@ AppUIStruct.LoadSpeedUI.ValueReadOnly = true;
 AppUIStruct.LoadSpeedUI.ValueEditFieldUI.MainEditField.Tooltip = buildTooltipText(AppUIStruct.LoadSpeedUI.Value);
 
   function str = buildTooltipText(value_text)
-    str = value_text + newline + CodeTool1.i18n("(To modify, edit the setup script.)");
+    str = value_text + newline + CodeUtil1.i18n("(To modify, edit the setup script.)");
   end  % nested function
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
 
 AppUIStruct.MotorSpeedUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.MotorSpeedUI.Name = CodeTool1.i18n("Motor speed");
+AppUIStruct.MotorSpeedUI.Name = CodeUtil1.i18n("Motor speed");
 AppUIStruct.MotorSpeedUI.NameUIWidth = name_ui_width;
 AppUIStruct.MotorSpeedUI.Value = "initial.motorDriveUnit_RotorSpd_rpm";
 AppUIStruct.MotorSpeedUI.Unit = "rpm";
@@ -222,7 +222,7 @@ AppUIStruct.MotorSpeedUI.ValueEditFieldUI.MainEditField.Tooltip = buildTooltipTe
 row = NewRow(layout, column);
 
 AppUIStruct.MotorTemperatureUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.MotorTemperatureUI.Name = CodeTool1.i18n("Motor temperature");
+AppUIStruct.MotorTemperatureUI.Name = CodeUtil1.i18n("Motor temperature");
 AppUIStruct.MotorTemperatureUI.NameUIWidth = name_ui_width;
 AppUIStruct.MotorTemperatureUI.Value = "initial.motorDriveUnit_Temperature_K";
 AppUIStruct.MotorTemperatureUI.Unit = "K";
@@ -238,7 +238,7 @@ row_number_MotorTempUI = layout.R;
 row = NewRow(layout, column);
 
 AppUIStruct.AmbientTemperatureUI = LiteApp8.Component.PhysicalValueUI(NewSlot(layout, row));
-AppUIStruct.AmbientTemperatureUI.Name = CodeTool1.i18n("Ambient temperature");
+AppUIStruct.AmbientTemperatureUI.Name = CodeUtil1.i18n("Ambient temperature");
 AppUIStruct.AmbientTemperatureUI.NameUIWidth = name_ui_width;
 AppUIStruct.AmbientTemperatureUI.Value = "initial.ambientTemp_K";
 AppUIStruct.AmbientTemperatureUI.Unit = "K";
@@ -252,7 +252,7 @@ row = NewRow(layout, column);
 
 label_ui = LiteApp8.Component.Label(NewSlot(layout, row, Width="fit"));
 label_ui.ComponentWidth = name_ui_width;
-label_ui.Text = "\textbf{" + CodeTool1.i18n("Input signals") + "}";
+label_ui.Text = "\textbf{" + CodeUtil1.i18n("Input signals") + "}";
 
 % -----------------------------------------------------------------------------
 row = NewRow(layout, column);
@@ -299,7 +299,7 @@ AppUIStruct.InputSignalPlotPanel.ComponentHeight = input_plot_panel_height;
     set_param(AppSetup.InputsBlockPath, ReferencedSubsystem = input_refsub_name)
 
     blocks = ["Axle speed switch" "Axle speed" "Axle torque" "Motor torque command" "Motor heat flow command"];
-    ModelTool2.plotLookupTable1DBlocks(AppSetup.InputsBlockPath, ...
+    ModelUtil1.plotLookupTable1DBlocks(AppSetup.InputsBlockPath, ...
       Blocks=blocks, ...
       DivisionType = "InterpolationInterval", ...
       InterpolationInterval = 0.1, ...

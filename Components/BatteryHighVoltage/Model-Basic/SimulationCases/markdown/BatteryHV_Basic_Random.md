@@ -19,7 +19,7 @@ set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_BatteryHV_Random
 Test conditions
 
 ```matlab
-signal_design_matrix = SignalTool3.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = SignalUtil1.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 12, ...
   FInitialValue = 0, ...
   XInitialFlatLength = 5, ...
@@ -32,22 +32,22 @@ signal_design_matrix = SignalTool3.generateSignalDesignMatrixFromTraceProperties
   XFinalFlatLength = 100, ...
   FFinalValue = 0 );
 
-data_table = SignalTool3.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = SignalUtil1.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 t = data_table.X;
 f = data_table.F;
 
 fig = figure;
 fig.Position(3:4) = [900 300];  % width height
-SignalTool3.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig))
+SignalUtil1.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig))
 ```
 
 <center><img src="media/BatteryHV_Basic_Random_media/figure_0.png" width="903" alt="figure_0.png"></center>
 
 
 ```matlab
-set_param(model_name + "/Inputs/Load current", "Table", CodeTool1.stringify(f))
-set_param(model_name + "/Inputs/Load current", "BreakpointsForDimension1", CodeTool1.stringify(t))
+set_param(model_name + "/Inputs/Load current", "Table", CodeUtil1.stringify(f))
+set_param(model_name + "/Inputs/Load current", "BreakpointsForDimension1", CodeUtil1.stringify(t))
 ```
 
 Initial conditions

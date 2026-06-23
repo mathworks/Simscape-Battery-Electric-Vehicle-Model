@@ -5,13 +5,13 @@ function atProjectStartUp
 % and select Settings.
 % In the Project Settings window, find "Task Automation" > "Startup files".
 
-% Copyright 2020-2025 The MathWorks, Inc.
+% Copyright 2020-2026 The MathWorks, Inc.
 
-% Backporting the project to an older MATLAB release can be hard.
-% Remind the user that MATLAB they are using to open this project is newer than
-% MATLAB which was used to develop this project.
-if not(contains(matlabRelease().Release, "R2025b"))
-  disp("This project was developed in R2025b.")
+% Back-porting a project to an older MATLAB release can be hard.
+% Remind the user that MATLAB they are currently using is newer than
+% MATLAB used to develop this project.
+if not(contains(matlabRelease().Release, "R2026a"))
+  disp("This project was developed in R2026a.")
   relstr = matlabRelease().Release;
   disp("This MATLAB Release is " + relstr + ".")
 end  % if

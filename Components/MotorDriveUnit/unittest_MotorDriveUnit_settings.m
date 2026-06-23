@@ -102,7 +102,7 @@ classdef unittest_MotorDriveUnit_settings < matlab.unittest.TestCase
       model_name = "HarnessModel_MotorDriveUnit";
       expected_num_blocks = 4;
 
-      result = ModelTool2.checkRefSubInCallbackButton(model_name);
+      result = ModelUtil1.checkRefSubInCallbackButton(model_name);
       logical_index = result.Found;
       verifyEqual(testcase, nnz(logical_index), expected_num_blocks)
       target_blocks = result(logical_index, :);
@@ -119,9 +119,9 @@ classdef unittest_MotorDriveUnit_settings < matlab.unittest.TestCase
       %
       % This test makes sure there are no broken links.
 
-      target_fullpath = FileTool3.getFileFullPath("MotorDriveUnit_Description.m");
+      target_fullpath = FileUtil1.getFileFullPath("MotorDriveUnit_Description.m");
 
-      link_table = FileTool3.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
+      link_table = FileUtil1.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
 
       if height(link_table) == 0
         disp("No hyperlinked MATLAB commands were found.")
@@ -145,10 +145,10 @@ classdef unittest_MotorDriveUnit_settings < matlab.unittest.TestCase
 
           main_target = extractBetween(matlab_command, "("+("'"|""""), ("'"|"""")+")");
           fullpath = strings(4, 1);
-          fullpath(1) = FileTool3.getFileFullPath(main_target + ".m", ReturnIfNotFound=true);
-          fullpath(2) = FileTool3.getFileFullPath(main_target + ".mlx", ReturnIfNotFound=true);
-          fullpath(3) = FileTool3.getFileFullPath(main_target + ".mdl", ReturnIfNotFound=true);
-          fullpath(4) = FileTool3.getFileFullPath(main_target + ".slx", ReturnIfNotFound=true);
+          fullpath(1) = FileUtil1.getFileFullPath(main_target + ".m", ReturnIfNotFound=true);
+          fullpath(2) = FileUtil1.getFileFullPath(main_target + ".mlx", ReturnIfNotFound=true);
+          fullpath(3) = FileUtil1.getFileFullPath(main_target + ".mdl", ReturnIfNotFound=true);
+          fullpath(4) = FileUtil1.getFileFullPath(main_target + ".slx", ReturnIfNotFound=true);
           logical_index = fullpath ~= "";
 
           verifyEqual(testcase, nnz(logical_index), 1)
@@ -159,7 +159,7 @@ classdef unittest_MotorDriveUnit_settings < matlab.unittest.TestCase
           % This test should not actually open the app.
 
           main_target = matlab_command + ".m";
-          fullpath = FileTool3.getFileFullPath(main_target, ReturnIfNotFound=true);
+          fullpath = FileUtil1.getFileFullPath(main_target, ReturnIfNotFound=true);
 
           verifyTrue(testcase, fullpath ~= "")
 

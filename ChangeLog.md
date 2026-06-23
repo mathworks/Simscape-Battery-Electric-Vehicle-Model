@@ -1,5 +1,151 @@
 # Change Log and What's New
 
+## What's New in 3.3 (November 2025)
+
+- The project is upgraded to R2025b.
+
+## What's New in 3.2 (August 2025)
+
+Improved Reducer component resources
+
+- Updated the test inputs for the harness model to use Referenced Subsystems.
+
+Improved testing
+
+- More unit tests and the `buildfile.m` files for the Build Tool are added.
+  In particular, tests for Button blocks' callbacks are added to check
+  that the callbacks work as expected.
+
+Improved code quality
+
+- Custom rules for MATLAB code are added for MATLAB Code Analyzer.
+  The rules are to remind developers to follow best practices and coding standards.
+  See the `codeAnalyzerConfiguration.json` file in the Project root > resources folder.
+  Custom rules are also used by the Editor and by the build tool's CodeIssues task.
+
+## What's New in 3.1 (August 2025)
+
+Improved signal design for lookup table blocks
+
+- Smooth signals (a.k.a. Akima spline) and piece-wise linear signals
+  for lookup table blocks are now designed with the Signal Tool,
+  which is stored in the Project root > Utility > SignalTool.
+- The Signal Tool provides MATLAB functions and Apps for designing signal traces.
+  The tool works with Simscape PS Lookup Table (1D) blocks and
+  Simulink 1-D Lookup Table blocks.
+- The Signal Tool has replaced the Signal Designer.
+  The Signal Designer provided Simulink custom block library for designing and using
+  smooth or linear signals.
+  With the Signal Tool, signal design process is isolated from signal usage process.
+  Models containing lookup tables do not depend on the Signal Tool.
+- Timed Trace Builder App is added to the project.
+  The app is a uifigure-based app built with the Signal Tool.
+  The app is used to design timed signal traces with high-level properties.
+  Generated data are used in some lookup tables as simulation inputs.
+
+Streamlined model set up
+
+- Selecting a referenced subsystem is done by clicking a button
+  placed right next to the Subsystem Reference block.
+- Custom functions to change a referenced subsystem have been removed.
+- The Inputs blocks in harness models are now Referenced Subsystems.
+  Some smooth signal traces in the Inputs are now designed by the Signal Tool.
+
+Improved isolation of simulation case scripts
+
+- Simulation case scripts directly use the product API as much as possible.
+  The simulation case scripts for the same model do very similar operations
+  that were used to be managed by custom functions to avoid writing similar code
+  in multiple places.
+  However, the use of custom functions was making the comprehension
+  and modifications of the scripts hard.
+  The scripts are now more isolated from each other and easier to figure out
+  how to modify individually.
+
+Improved discoverability and organization of test files
+
+- Test files are stored in the same folder with their targets.
+- Test files are named as `unittest_*`, `uitest_*`, `uptodatetest_*`, or
+  `uiuptodatetest_*` so that the purpose of each test file is clear from its file name.
+- Separating test files by their purpose makes it easy to run related tests only.
+
+Better organization of utility tools
+
+- Utility tools are now organized into separate name spaces based on their functionality.
+  See the folders in the Project root > Utility.
+
+## Whats' New in 3.0 (July 2025)
+
+### Plain-text Live Scripts
+
+From R2025a, you can save Live Scripts as plain-text files.
+
+- MATLAB: [Live Code File Format (.m)][doc-m-live-script]
+
+All Live Scripts in the project are now plain-text with `.m` extensions.
+The use of plain-text files improves the compatibility with source control systems.
+Text-based search and replace work with not only conventional MATLAB code files but
+also all Live Script files in the project.
+
+[doc-m-live-script]: https://www.mathworks.com/help/matlab/matlab_prog/plain-text-file-format-for-live-scripts.html
+
+### Revamped Component Folders
+
+A model for testing a component is now placed in the component top folder.
+This improves the discoverability of models for component testing.
+
+Component models that are built as Referenced Subsystems such as Basic model or System model
+are stored in separate subfolders, such as Model-Basic or Model-System, respectively.
+Related resources for a referenced subsystem including simulation case scripts and
+test code files are saved in the same folder, improving the isolation of each component model.
+
+### Unit testing with Build Tool and `buildfile.m`
+
+For running unit tests,
+the project now uses the Build Tool with `buildfile.m`.
+
+- MATLAB: [Overview of MATLAB Build Tool][doc-buildtool]
+
+From R2025a, you can run Build Tool tasks using the Run Build button in the Toolstrips
+in addition to using the `buildtool` command on the Command Window.
+
+- MATLAB: [Run Build from Toolstrip][doc-buildtool-toolstrip]
+
+This project has several `buildfile.m` files.
+The Editor recognizes the `buildfile.m` file as a Build Tool file
+and shows the Run Build button in the Editor Toolstrip.
+The project finds the `buildfile.m` file in the project root folder
+and shows the Run Build button in the Project Toolstrip.
+
+[doc-buildtool]: https://www.mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html
+[doc-buildtool-toolstrip]: https://www.mathworks.com/help/matlab/matlab_prog/run-build-from-toolstrip.html
+
+### Updated Reducer Component
+
+Reducer component now has a test model and supporting files.
+
+Also, the Reducer component uses Simscape selective data logging, which
+simplifies the way data in Simscape blocks is logged during simulation.
+Other components will use the same approach in the future.
+
+- Simscape: [Log Selected Block Variables][doc-simscape-logging-graphical]
+- Simscape: [Log Selected Variables Programmatically][doc-simscape-logging-programmatic]
+
+[doc-simscape-logging-graphical]: https://www.mathworks.com/help/simscape/ug/log-individual-block-variables.html
+[doc-simscape-logging-programmatic]: https://www.mathworks.com/help/simscape/ug/manage-selective-logging-instrumentation-programmatically.html
+
+#### Signal Design App
+
+To edit physical input signals using PS Lookup Table (1D) blocks
+in the Reducer component, Signal Tool is used.
+
+- For graphically editing signals, you can use `SignalDesignApp`
+  which is included in the project and you can find in Project root > Utility > SignalTool folder.
+
+- For programmatically editing signals, you can use functions in the `SignalTool1` name space.
+  See the Live Scripts in Project root > Components > Reducer > Model-Basic > SimulationCases
+  folder for example usages.
+
 ## What's New in 2.6 (June, 2025)
 
 - The project has been updated to MATLAB R2025a with some clean ups.
@@ -159,8 +305,6 @@ GitHub Actions
 - A shortcut button to open **MATLAB Test Manager**
   is added in the Project Shortcuts tab of the toolstrip.
   MATLAB Test Manager requires the **MATLAB Test** license.
-
-See [Change Log](ChangeLog.md) for more details.
 
 ## Version 2.0.1 (March, 2023)
 
@@ -332,4 +476,4 @@ Initial release
 
 Go to [README](../README.md) at the project top folder.
 
-_Copyright 2021-2023 The MathWorks, Inc._
+_Copyright 2021-2026 The MathWorks, Inc._

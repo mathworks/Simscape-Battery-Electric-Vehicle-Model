@@ -1,5 +1,5 @@
 function plan = buildfile
-%% Check code, check project, and run tests
+% Check code, check project, and run tests.
 % This function is used by MATLAB Build Tool to automate tasks such as
 % checking code, checking project, or running tests.
 %
@@ -9,9 +9,8 @@ function plan = buildfile
 % Run Build from Toolstrip
 % https://www.mathworks.com/help/matlab/matlab_prog/run-build-from-toolstrip.html
 
-% Copyright 2023-2025 The MathWorks, Inc.
+% Copyright 2023-2026 The MathWorks, Inc.
 
-% Create a build plan from local functions.
 plan = buildplan();
 
 % The CodeIssues task finishes quickly. Use it as the default task.
@@ -48,8 +47,8 @@ plan("Test") = matlab.buildtool.tasks.TestTask( ...
   IncludeSubfolders = true, ...
   ...
   TestResults = [
-  "test-result/test-results.xml"
-  "test-result/test-results.pdf"
+  "test-result/test-result.xml"
+  "test-result/test-result.pdf"
   ], ...
   CodeCoverageResults = [
   "test-result/code-coverage.html"

@@ -30,7 +30,7 @@ disp(info)
 The Basic model has a rotor damper block, whose damping parameter can be passed to the plot function to make a more accurate efficiency plot.
 
 ```matlab
-RotorDamping = ModelTool2.getSimscapeValueFromBlockParameter( mdl+"/Rotor damper", "D" );
+RotorDamping = ModelUtil1.getSimscapeValueFromBlockParameter( mdl+"/Rotor damper", "D" );
 disp(RotorDamping)
 ```
 

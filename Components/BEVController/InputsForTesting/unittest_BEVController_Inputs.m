@@ -1,5 +1,5 @@
 classdef unittest_BEVController_Inputs < matlab.unittest.TestCase
-  %% Class-based unit test
+  % Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
   % https://www.mathworks.com/help/matlab/matlab_prog/author-class-based-unit-tests-in-matlab.html
@@ -10,7 +10,7 @@ classdef unittest_BEVController_Inputs < matlab.unittest.TestCase
   % Test Browser
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2025 The MathWorks, Inc.
+  % Copyright 2025-2026 The MathWorks, Inc.
 
   methods (TestMethodSetup)
     % Functions in this section always run before each test defined in the Test section runs.
@@ -48,6 +48,13 @@ classdef unittest_BEVController_Inputs < matlab.unittest.TestCase
       sim(model_name);  % !test-target
     end  % function
 
-  end  % methods
+    function PassingTest_3(~)
+      BuildInputs_BEVController_Random
+    end  % function
 
+    function PassingTest_4(~)
+      BuildInputs_BEVController_Simple
+    end  % function
+
+  end  % methods
 end  % classdef
