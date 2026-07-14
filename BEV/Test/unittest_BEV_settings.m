@@ -53,7 +53,7 @@ classdef unittest_BEV_settings < matlab.unittest.TestCase
       for ii = 1 : num_blocks
         target_block_path = block_paths(ii);
         ClickFcn_text = string( get_param(target_block_path, "ClickFcn"));
-        lines = CodeUtil1.cleanupCodeText(ClickFcn_text);  % !test-target
+        lines = bev1mus.CodeUtil.cleanupCodeText(ClickFcn_text);  % !test-target
 
         verifyTrue(testcase, all(lines ~= ""))
 
@@ -76,7 +76,7 @@ classdef unittest_BEV_settings < matlab.unittest.TestCase
 
       end  % if
 
-      result = ModelUtil1.checkRefSubInCallbackButton(target_model, Callback="ClickFcn");
+      result = bev1mus.ModelUtil.checkRefSubInCallbackButton(target_model, Callback="ClickFcn");
       if isempty(result)
         disp("No referenced subsystems were found in Callback Button blocks.")
 
@@ -102,7 +102,7 @@ classdef unittest_BEV_settings < matlab.unittest.TestCase
 
       end  % if
 
-      result = ModelUtil1.checkEditInCallbackButton(target_model);
+      result = bev1mus.ModelUtil.checkEditInCallbackButton(target_model);
       if isempty(result)
         disp("No edit commands were found in Callback Button blocks.")
 
@@ -116,7 +116,7 @@ classdef unittest_BEV_settings < matlab.unittest.TestCase
       % Check if there are plot* commands in Callback Button blocks in a model.
       % If yes, check that the plot* commands exist.
       % Example code to check:
-      %   SignalUtil1.plotSimulink1DLookupTableBlock(gcs + "/Vehicle speed reference")
+      %   bev1mus.SignalUtil.plotSimulink1DLookupTableBlock(gcs + "/Vehicle speed reference")
 
       target_model = "BEV_system_model";
 
@@ -134,7 +134,7 @@ classdef unittest_BEV_settings < matlab.unittest.TestCase
       for ii = 1 : num_blocks
         target_block_path = block_paths(ii);
         ClickFcn_text = string( get_param(target_block_path, "ClickFcn"));
-        lines = CodeUtil1.cleanupCodeText(ClickFcn_text);
+        lines = bev1mus.CodeUtil.cleanupCodeText(ClickFcn_text);
         logical_index = startsWith(lines, lineBoundary("start") + ospace + optionalPattern(namepattern + ".") + "plot" + namepattern + "(");
         target_lines = lines(logical_index);
         if all(target_lines == "")
@@ -180,7 +180,7 @@ classdef unittest_BEV_settings < matlab.unittest.TestCase
       for ii = 1 : num_blocks
         target_block_path = block_paths(ii);
         ClickFcn_text = string( get_param(target_block_path, "ClickFcn"));
-        lines = CodeUtil1.cleanupCodeText(ClickFcn_text);
+        lines = bev1mus.CodeUtil.cleanupCodeText(ClickFcn_text);
         logical_index = startsWith(lines, lineBoundary("start") + ospace + optionalPattern(namepattern + ".") + namepattern + "App" + (textBoundary("end")|"("));
         target_lines = lines(logical_index);
         if all(target_lines == "")

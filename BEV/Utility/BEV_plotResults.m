@@ -62,7 +62,7 @@ plot(ax, simData, "Time", "Vehicle Speed kph", LineWidth=2)
 hold(ax, "on")
 grid(ax, "on")
 plot(ax, simData, "Time", "Reference Vehicle Speed kph", LineWidth=2)
-SignalUtil1.setMinimumYRange(ax, simData.("Reference Vehicle Speed kph"), dy_threshold=2);
+bev1mus.SignalUtil.setMinimumYRange(ax, simData.("Reference Vehicle Speed kph"), dy_threshold=2);
 ylabel(ax, "")  % Hide variable name defined in the timetable.
 xlim(ax, "tight")
 xlabel(ax, "")
@@ -75,7 +75,7 @@ ax = nexttile(tl);
 plot(ax, simData, "Time", "G-Force", LineWidth=2)
 hold(ax, "on")
 grid(ax, "on")
-SignalUtil1.setMinimumYRange(ax, simData.("G-Force"), dy_threshold=0.02);
+bev1mus.SignalUtil.setMinimumYRange(ax, simData.("G-Force"), dy_threshold=0.02);
 ylabel(ax, "")  % Hide variable name defined in the timetable.
 xlim(ax, "tight")
 xlabel(ax, "")
@@ -87,7 +87,7 @@ ax = nexttile(tl);
 plot(ax, simData, "Time", "Motor Torque Command", LineWidth=2)
 hold(ax, "on")
 grid(ax, "on")
-SignalUtil1.setMinimumYRange(ax, simData.("Motor Torque Command"), dy_threshold=2);
+bev1mus.SignalUtil.setMinimumYRange(ax, simData.("Motor Torque Command"), dy_threshold=2);
 ylabel(ax, "")  % Hide variable name defined in the timetable.
 xlim(ax, "tight")
 xlabel(ax, "")
@@ -100,7 +100,7 @@ if plotTemp
   plot(ax, simData, "Time", "Motor Temperature", LineWidth=2)
   hold(ax, "on")
   grid(ax, "on")
-  SignalUtil1.setMinimumYRange(ax, simData.("Motor Temperature"), dy_threshold=2);
+  bev1mus.SignalUtil.setMinimumYRange(ax, simData.("Motor Temperature"), dy_threshold=2);
   ylabel(ax, "")  % Hide variable name defined in the timetable.
   xlim(ax, "tight")
   xlabel(ax, "")
@@ -115,7 +115,7 @@ ax = nexttile(tl);
 plot(ax, simData, "Time", "HV Battery SOC", LineWidth=2)
 hold(ax, "on")
 grid(ax, "on")
-SignalUtil1.setMinimumYRange(ax, simData.("HV Battery SOC"), dy_threshold=0.2);
+bev1mus.SignalUtil.setMinimumYRange(ax, simData.("HV Battery SOC"), dy_threshold=0.2);
 ylabel(ax, "")  % Hide variable name defined in the timetable.
 xlim(ax, "tight")
 xlabel(ax, "")
@@ -127,7 +127,7 @@ ax = nexttile(tl);
 plot(ax, simData, "Time", "HV Battery Current", LineWidth=2)
 hold(ax, "on")
 grid(ax, "on")
-SignalUtil1.setMinimumYRange(ax, simData.("HV Battery Current"), dy_threshold=2);
+bev1mus.SignalUtil.setMinimumYRange(ax, simData.("HV Battery Current"), dy_threshold=2);
 ylabel(ax, "")  % Hide variable name defined in the timetable.
 xlim(ax, "tight")
 xlabel(ax, "")
@@ -139,7 +139,7 @@ ax = nexttile(tl);
 plot(ax, simData, "Time", "HV Battery Power", LineWidth=2)
 hold(ax, "on")
 grid(ax, "on")
-SignalUtil1.setMinimumYRange(ax, simData.("HV Battery Power"), dy_threshold=2);
+bev1mus.SignalUtil.setMinimumYRange(ax, simData.("HV Battery Power"), dy_threshold=2);
 ylabel(ax, "")  % Hide variable name defined in the timetable.
 xlim(ax, "tight")
 xlabel(ax, "")
@@ -152,7 +152,7 @@ if plotTemp
   plot(ax, simData, "Time", "HV Battery Temperature", LineWidth=2)
   hold(ax, "on")
   grid(ax, "on")
-  SignalUtil1.setMinimumYRange(ax, simData.("HV Battery Temperature"), dy_threshold=2);
+  bev1mus.SignalUtil.setMinimumYRange(ax, simData.("HV Battery Temperature"), dy_threshold=2);
   ylabel(ax, "")  % Hide variable name defined in the timetable.
   xlim(ax, "tight")
   xlabel(ax, "")

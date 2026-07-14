@@ -34,7 +34,7 @@ plot(ax, t, vals, LineWidth=2)
 hold on;  grid on
 vals = logsout.("HV Battery Ambient Temperature");
 plot(ax, t, vals, LineWidth=2, LineStyle="--")
-SignalUtil1.setMinimumYRange(ax, vals, dy_threshold=0.2);
+bev1mus.SignalUtil.setMinimumYRange(ax, vals, dy_threshold=0.2);
 xlim([t(1) t(end)])
 xlabel(ax, "Time (s)")
 title(ax, "Temperatures (degC)")
@@ -45,7 +45,7 @@ ax = nexttile(tl);
 vals = logsout.("HV Battery Charge");
 plot(ax, t, vals, LineWidth=2)
 hold on;  grid on
-SignalUtil1.setMinimumYRange(ax, vals, dy_threshold=2);
+bev1mus.SignalUtil.setMinimumYRange(ax, vals, dy_threshold=2);
 xlim([t(1) t(end)])
 xlabel(ax, "Time (s)")
 title(ax, "Battery Charge (A*hr)")
@@ -55,7 +55,7 @@ ax = nexttile(tl);
 vals = logsout.("HV Battery SOC");
 plot(ax, t, vals, LineWidth=2)
 hold on;  grid on
-SignalUtil1.setMinimumYRange(ax, vals, dy_threshold=2);
+bev1mus.SignalUtil.setMinimumYRange(ax, vals, dy_threshold=2);
 xlim([t(1) t(end)])
 xlabel(ax, "Time (s)")
 title(ax, "Battery SOC (%)")
@@ -69,7 +69,7 @@ plot(ax, t, vals, LineWidth=2)
 hold on;  grid on
 vals = logsout.("Load Current");
 plot(ax, t, vals, LineWidth=2, LineStyle="--")
-SignalUtil1.setMinimumYRange(ax, vals, dy_threshold=2);
+bev1mus.SignalUtil.setMinimumYRange(ax, vals, dy_threshold=2);
 xlim([t(1) t(end)])
 xlabel(ax, "Time (s)")
 title(ax, "Currents (A)")
@@ -81,7 +81,7 @@ vals = logsout.("HV Battery Voltage");
 plot(ax, t, vals, LineWidth=2)
 plot(ax, t, vals, LineWidth=2)
 hold on;  grid on
-SignalUtil1.setMinimumYRange(ax, vals, dy_threshold=2);
+bev1mus.SignalUtil.setMinimumYRange(ax, vals, dy_threshold=2);
 xlim([t(1) t(end)])
 xlabel(ax, "Time (s)")
 title(ax, "Battery Voltage (V)")
@@ -91,7 +91,7 @@ ax = nexttile(tl);
 vals = logsout.("HV Battery Power");
 plot(ax, t, vals, LineWidth=2)
 hold on;  grid on
-SignalUtil1.setMinimumYRange(ax, vals, dy_threshold=2);
+bev1mus.SignalUtil.setMinimumYRange(ax, vals, dy_threshold=2);
 xlim([t(1) t(end)])
 xlabel(ax, "Time (s)")
 title(ax, "Battery Power (kW)")
@@ -103,7 +103,7 @@ ax = nexttile(tl);
 vals = logsout.("Input Heat Flow");
 plot(ax, t, vals, LineWidth=2)
 hold on;  grid on
-SignalUtil1.setMinimumYRange(ax, vals, dy_threshold=2);
+bev1mus.SignalUtil.setMinimumYRange(ax, vals, dy_threshold=2);
 xlim([t(1) t(end)])
 xlabel(ax, "Time (s)")
 title(ax, "Input Heat Flow (kW)")
@@ -113,7 +113,7 @@ ax = nexttile(tl);
 vals = logsout.("Load Voltage");
 plot(ax, t, vals, LineWidth=2)
 hold on;  grid on
-SignalUtil1.setMinimumYRange(ax, vals, dy_threshold=2);
+bev1mus.SignalUtil.setMinimumYRange(ax, vals, dy_threshold=2);
 xlim([t(1) t(end)])
 xlabel(ax, "Time (s)")
 title(ax, "Load Voltage (V)")
@@ -123,7 +123,7 @@ ax = nexttile(tl);
 vals = logsout.("Load Power");
 plot(ax, t, vals, LineWidth=2)
 hold on;  grid on
-SignalUtil1.setMinimumYRange(ax, vals, dy_threshold=0.02);
+bev1mus.SignalUtil.setMinimumYRange(ax, vals, dy_threshold=0.02);
 xlim([t(1) t(end)])
 xlabel(ax, "Time (s)")
 title(ax, "Load Power (kW)")

@@ -10,36 +10,72 @@ classdef unittest_Vehicle1D < matlab.unittest.TestCase
   % Test Browser (testBrowser)
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2021-2025 The MathWorks, Inc.
+  % Copyright 2021-2026 The MathWorks, Inc.
 
   methods (TestMethodSetup)
-    % Functions in this section always run before each test defined in the Test section runs.
+    % Functions in this "TestMethodSetup" section always run before
+    % each test defined in the "Test" section runs.
 
     function test_method_setup_1(testcase)
-      function closeAll
-        close all
-        bdclose all
-      end  % nested function
-      closeAll
+      %%
+      % Close all before test
+      close all
+      bdclose all
+      evalin("base", "clearvars")
+
       % addTeardown adds a function which always runs after each test.
       % Even if the execution of a test ends with an error, the teardown function runs.
-      addTeardown(testcase, @closeAll)
+      addTeardown(testcase, @closeAllAfterTest)
+      function closeAllAfterTest
+        % Close/delete all figure windows. This closes/deletes not only the test targets but also
+        % all the other figure windows too to provide clean state for the next test.
+        figs = findall(0, Type="Figure");
+        if not(any(isempty(figs)))
+          disp("Deleting figures (" + numel(figs) + ")")
+          delete(figs)
+        end  % if
+
+        bdclose all
+
+        % Do not clear variables in the base workspace at the end of a test
+        % to make it easy to debug after test if necessary.
+
+      end  % nested function
     end  % function
 
   end  % methods
 
   methods (Test)
     % Functions in this "Test" section are the tests.
-    % Before a function in this section runs, the TestSetup function
-    % defined in the "TestMethodSetup" section runs.
+    % Before each function in this section runs, functions defined in the TestMethodSetup section run.
 
-    %% Minimum Quality Check (MQC)
-    % Check that scripts, functions, classes, and models run right out of the box.
+    %% Minimum quality check
+    % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(~)
-      HarnessSetup_Vehicle1D
+      Vehicle1D_Description  % !test-target
+    end  % function
+
+    function PassingTest_2(~)
+      HarnessSetup_Vehicle1D  % !test-target
+    end  % function
+
+    function PassingTest_3(~)
+      load_system("HarnessModel_Vehicle1D")  % !test-target
+    end  % function
+
+    function PassingTest_4(~)
+      sim("HarnessModel_Vehicle1D");  % !test-target
+    end  % function
+
+    function sim_with_custom_1(~)
+      model_name = "HarnessModel_Vehicle1D";
+      load_system(model_name)
+      block_path = model_name + "/Longitudinal Vehicle";
+      set_param(block_path, ReferencedSubsystem="Vehicle1D_Custom_refsub")
+      evalin("base", "Vehicle1D_Custom_params")
+      sim(model_name);
     end  % function
 
   end  % methods
-
 end  % classdef

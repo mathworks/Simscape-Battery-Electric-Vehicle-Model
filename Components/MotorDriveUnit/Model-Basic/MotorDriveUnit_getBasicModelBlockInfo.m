@@ -46,22 +46,22 @@ errorID = "MotorDriveUnit_getBasicModelBlockInfo:";
 % Block parameters
 
 % Maximum torque
-info.MaxTorque = ModelUtil1.getSimscapeValueFromBlockParameter(fullpathToBlock, "torque_max");
+info.MaxTorque = bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "torque_max");
 
 % Maximum power
-info.MaxPower =ModelUtil1.getSimscapeValueFromBlockParameter(fullpathToBlock, "power_max");
+info.MaxPower =bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "power_max");
 
 % Torque control time constant, Tc
-info.ResponseTime = ModelUtil1.getSimscapeValueFromBlockParameter(fullpathToBlock, "Tc");
+info.ResponseTime = bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "Tc");
 
 % Motor and driver overall efficiency (percent)
-info.EfficiencyPercent = ModelUtil1.getSimscapeValueFromBlockParameter(fullpathToBlock, "eff");
+info.EfficiencyPercent = bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "eff");
 
 % Speed at which efficiency is measured
-info.MeasuredSpeed = ModelUtil1.getSimscapeValueFromBlockParameter(fullpathToBlock, "w_eff");
+info.MeasuredSpeed = bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "w_eff");
 
 % Torque at which efficiency is measured
-info.MeasuredTorque = ModelUtil1.getSimscapeValueFromBlockParameter(fullpathToBlock, "T_eff");
+info.MeasuredTorque = bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "T_eff");
 
 % ===============
 % Additional data
@@ -76,7 +76,7 @@ mechpow_meas_kW = mechpow_eff / 1000;
 info.MechanicalPower_measurement_kW = mechpow_meas_kW;
 assert( mechpow_meas_kW < maxPower_kW, ...
   errorID + "InvalidPower", ...
-  CodeUtil1.i18n("Power at efficiency measurement speed must be smaller than maximum power."))
+  bev1mus.CodeUtil.i18n("Power at efficiency measurement speed must be smaller than maximum power."))
 
 % Nominal loss (total loss) at efficiency measurement point
 nominal_loss_meas_W = (1/eff_norm - 1) * mechpow_eff;

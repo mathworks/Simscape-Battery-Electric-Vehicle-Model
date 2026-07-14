@@ -21,8 +21,10 @@ __MWOPC_PART_BEGIN__ /[Content_Types].xml
   <Override ContentType="application/vnd.mathworks.simulink.mf0+xml" PartName="/simulink/modelDictionary.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.pluginParameters+xml" PartName="/simulink/plugins/SimscapeModelParametersPlugin.xml"/>
   <Override ContentType="application/vnd.mathworks.stateflow.machine+xml" PartName="/simulink/stateflow/machine.xml"/>
-  <Override ContentType="application/vnd.mathworks.simulink.mdl+xml" PartName="/simulink/systems/system_3231.xml"/>
-  <Override ContentType="application/vnd.mathworks.simulink.mdl+xml" PartName="/simulink/systems/system_3421.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.mdl+xml" PartName="/simulink/systems/system_48266.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.mdl+xml" PartName="/simulink/systems/system_48284.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.mdl+xml" PartName="/simulink/systems/system_48290.xml"/>
+  <Override ContentType="application/vnd.mathworks.simulink.mdl+xml" PartName="/simulink/systems/system_48296.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.mdl+xml" PartName="/simulink/systems/system_root.xml"/>
   <Override ContentType="application/vnd.mathworks.simulink.blockDiagram+xml" PartName="/simulink/windowsInfo.xml"/>
 </Types>
@@ -47,8 +49,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2020-07-02T15:36:37Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-05-15T13:34:55Z</dcterms:modified>
-  <cp:revision>13.5</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-07-10T14:24:11Z</dcterms:modified>
+  <cp:revision>13.7</cp:revision>
   <cp:version>R2026a</cp:version>
 </cp:coreProperties>
 
@@ -70,11 +72,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2026a Release -->
 <MathWorks_version_info>
-  <version>26.1.0.3251617</version>
+  <version>26.1.0.3276743</version>
   <release>R2026a</release>
-  <description>Update 2</description>
-  <date>May 05 2026</date>
-  <checksum>329961307</checksum>
+  <description>Update 3</description>
+  <date>May 27 2026</date>
+  <checksum>23673432</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -165,14 +167,14 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <P Name="PreLoadFcn">defineBus_Rotational</P>
     <P Name="LastSavedArchitecture">win64</P>
     <UserParameters>
-      <P Name="PhysicalModelingChecksum">722513934</P>
+      <P Name="PhysicalModelingChecksum">3058196306</P>
       <P Name="PhysicalModelingParameterChecksum">171634925</P>
       <P Name="PhysicalModelingProducts">Simscape</P>
     </UserParameters>
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:13.5&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:13.7&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="ScheduleConnectors">off</P>
@@ -191,7 +193,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
         </Array>
       </Object>
       <Object PropName="InstrumentedSignals" ObjectID="2" ClassName="Simulink.HMI.InstrumentedSignals">
-        <Array PropName="Persistence" Type="Struct" Dimension="6*1">
+        <Array PropName="Persistence" Type="Struct" Dimension="7*1">
           <MATStruct>
             <Field Name="UUID" Class="char">3d8e2a11-d4bb-46a7-a3dc-2662dc7de272</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From</Field>
@@ -296,6 +298,26 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             <Field Name="UUID" Class="char">7ae95745-41a6-4cbd-bae2-2d853d0aaac7</Field>
             <Field Name="BlockPath_" Class="char">Measurement/From34</Field>
             <Field Name="SID_" Class="char">3432</Field>
+            <Field Name="SubPath_" Class="char"/>
+            <Field Name="OutputPortIndex_" Class="double">1.0</Field>
+            <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
+            <Field Name="SignalName_" Class="char"/>
+            <Field Name="SubSysPath_" Class="char"/>
+            <Field Name="Decimation_" Class="double">1.0</Field>
+            <Field Name="MaxPoints_" Class="double">0.0</Field>
+            <Field Name="TargetBufferedStreaming_" Class="double">0.0</Field>
+            <Field Name="IsFrameBased_" Class="double">0.0</Field>
+            <Field Name="HideInSDI_" Class="double">0.0</Field>
+            <Field Name="DomainType_" Class="char"/>
+            <Array PropName="DomainParams_" Type="Struct" Dimension="1*1">
+              <MATStruct/>
+            </Array>
+            <Field Name="VisualType_" Class="char"/>
+          </MATStruct>
+          <MATStruct>
+            <Field Name="UUID" Class="char">9fadf5fe-e3f0-48ed-9a82-aadd49e470e4</Field>
+            <Field Name="BlockPath_" Class="char">Measurement/From1</Field>
+            <Field Name="SID_" Class="char">48270</Field>
             <Field Name="SubPath_" Class="char"/>
             <Field Name="OutputPortIndex_" Class="double">1.0</Field>
             <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
@@ -580,12 +602,6 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
                 "Type":"LIBRARY_BLOCK"
             },
             {
-                "Path":"$bdroot\/PS-Simulink Converter1",
-                "Reference":"nesl_utility\/PS-Simulink\nConverter",
-                "SID":"3209",
-                "Type":"LIBRARY_BLOCK"
-            },
-            {
                 "Path":"$bdroot\/PS-Simulink Converter2",
                 "Reference":"nesl_utility\/PS-Simulink\nConverter",
                 "SID":"2",
@@ -644,19 +660,7 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
         ],
         "RootOutports":[
             {
-                "BusData":{
-                    "_mw_element_type":"Opaque",
-                    "busObjects":null,
-                    "leafNodes":[
-                        "G",
-                        "VehSpdKph",
-                        "VehSpdMph",
-                        "Incline",
-                        "AxleSpd"
-                    ],
-                    "version":"0"
-                },
-                "Name":"Info"
+                "Name":"Info1"
             }
         ],
         "SimulinkSubDomainType":"Simulink",
@@ -667,14 +671,21 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
                 "FullBlockPath":"$bdroot\/Measurement\/From",
                 "LogSignal":true,
                 "MaxPoints":5000,
-                "SignalName":"Vehicle G Force"
+                "SignalName":"Vehicle G force"
+            },
+            {
+                "Decimation":2,
+                "FullBlockPath":"$bdroot\/Measurement\/From1",
+                "LogSignal":true,
+                "MaxPoints":5000,
+                "SignalName":"Vehicle speed mph"
             },
             {
                 "Decimation":2,
                 "FullBlockPath":"$bdroot\/Measurement\/From19",
                 "LogSignal":true,
                 "MaxPoints":5000,
-                "SignalName":"Vehicle Speed"
+                "SignalName":"Vehicle speed kph"
             },
             {
                 "Decimation":2,
@@ -688,21 +699,21 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
                 "FullBlockPath":"$bdroot\/Measurement\/From21",
                 "LogSignal":true,
                 "MaxPoints":5000,
-                "SignalName":"Brake Force"
+                "SignalName":"Brake force"
             },
             {
                 "Decimation":2,
                 "FullBlockPath":"$bdroot\/Measurement\/From27",
                 "LogSignal":true,
                 "MaxPoints":5000,
-                "SignalName":"Axle Speed"
+                "SignalName":"Axle speed"
             },
             {
                 "Decimation":2,
                 "FullBlockPath":"$bdroot\/Measurement\/From34",
                 "LogSignal":true,
                 "MaxPoints":5000,
-                "SignalName":"Vehicle Incline"
+                "SignalName":"Incline"
             }
         ]
     }
@@ -733,41 +744,572 @@ __MWOPC_PART_BEGIN__ /simulink/stateflow/machine.xml
   </machine>
 </Stateflow>
 
+__MWOPC_PART_BEGIN__ /simulink/systems/_rels/system_48284.xml.rels
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="system_48290" Target="system_48290.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
+  <Relationship Id="system_48296" Target="system_48296.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
+</Relationships>
+
 __MWOPC_PART_BEGIN__ /simulink/systems/_rels/system_root.xml.rels
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-  <Relationship Id="system_3231" Target="system_3231.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
-  <Relationship Id="system_3421" Target="system_3421.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
+  <Relationship Id="system_48266" Target="system_48266.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
+  <Relationship Id="system_48284" Target="system_48284.xml" Type="http://schemas.mathworks.com/simulink/2010/relationships/system"/>
 </Relationships>
 
-__MWOPC_PART_BEGIN__ /simulink/systems/system_3231.xml
+__MWOPC_PART_BEGIN__ /simulink/systems/system_48266.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[69, 13, 1082, 810]</P>
-  <Block BlockType="Inport" Name="Grade" SID="3232">
+  <P Name="Location">[1177, 94, 2317, 805]</P>
+  <Block BlockType="Inport" Name="Info" SID="48267">
+    <P Name="Position">[-355, -137, -325, -123]</P>
+    <P Name="ZOrder">26239</P>
+  </Block>
+  <Block BlockType="BusSelector" Name="Bus&#xA;Selector" SID="48268">
+    <PortCounts in="1" out="7"/>
+    <P Name="Position">[-280, -225, -275, -35]</P>
+    <P Name="ZOrder">26240</P>
+    <P Name="OutputSignals">VehSpdKph,VehSpdMph,G,AxleSpd,BrkF,Incline,Grade</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">&lt;VehSpdKph&gt;</P>
+      </Port>
+      <Port Type="out" Index="2">
+        <P Name="Name">&lt;VehSpdMph&gt;</P>
+      </Port>
+      <Port Type="out" Index="3">
+        <P Name="Name">&lt;G&gt;</P>
+      </Port>
+      <Port Type="out" Index="4">
+        <P Name="Name">&lt;AxleSpd&gt;</P>
+      </Port>
+      <Port Type="out" Index="5">
+        <P Name="Name">&lt;BrkF&gt;</P>
+      </Port>
+      <Port Type="out" Index="6">
+        <P Name="Name">&lt;Incline&gt;</P>
+      </Port>
+      <Port Type="out" Index="7">
+        <P Name="Name">&lt;Grade&gt;</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From" SID="48269">
+    <P Name="Position">[105, -165, 235, -145]</P>
+    <P Name="ZOrder">427</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">veh_G</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Vehicle G force</P>
+        <P Name="PropagatedSignals">G</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From1" SID="48270">
+    <P Name="Position">[105, -190, 235, -170]</P>
+    <P Name="ZOrder">26236</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">VehSpdMph</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Vehicle speed mph</P>
+        <P Name="PropagatedSignals">VehSpdMph</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From19" SID="48271">
+    <P Name="Position">[105, -215, 235, -195]</P>
+    <P Name="ZOrder">430</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">VehSpdKph</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Vehicle speed kph</P>
+        <P Name="PropagatedSignals">VehSpdKph</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From20" SID="48272">
+    <P Name="Position">[105, -65, 235, -45]</P>
+    <P Name="ZOrder">431</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">RoadGrade</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Road Grade</P>
+        <P Name="PropagatedSignals">Grade</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From21" SID="48273">
+    <P Name="Position">[105, -115, 235, -95]</P>
+    <P Name="ZOrder">432</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">BrakeForce</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Brake force</P>
+        <P Name="PropagatedSignals">BrkF</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From27" SID="48274">
+    <P Name="Position">[105, -140, 235, -120]</P>
+    <P Name="ZOrder">434</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">AxleSpd</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Axle speed</P>
+        <P Name="PropagatedSignals">AxleSpd</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="From" Name="From34" SID="48275">
+    <P Name="Position">[105, -90, 235, -70]</P>
+    <P Name="ZOrder">438</P>
+    <P Name="NameLocation">left</P>
+    <P Name="GotoTag">Incline</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Incline</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Goto" Name="Goto1" SID="48276">
+    <P Name="Position">[-145, -165, -15, -145]</P>
+    <P Name="ZOrder">441</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">veh_G</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto16" SID="48277">
+    <P Name="Position">[-145, -140, -15, -120]</P>
+    <P Name="ZOrder">440</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">AxleSpd</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto2" SID="48278">
+    <P Name="Position">[-145, -90, -15, -70]</P>
+    <P Name="ZOrder">449</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">Incline</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto3" SID="48279">
+    <P Name="Position">[-145, -115, -15, -95]</P>
+    <P Name="ZOrder">450</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">BrakeForce</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto33" SID="48280">
+    <P Name="Position">[-145, -215, -15, -195]</P>
+    <P Name="ZOrder">444</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">VehSpdKph</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto4" SID="48281">
+    <P Name="Position">[-145, -65, -15, -45]</P>
+    <P Name="ZOrder">452</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">RoadGrade</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto5" SID="48282">
+    <P Name="Position">[-145, -190, -15, -170]</P>
+    <P Name="ZOrder">26235</P>
+    <P Name="NameLocation">right</P>
+    <P Name="GotoTag">VehSpdMph</P>
+  </Block>
+  <Block BlockType="Scope" Name="Scope Vehicle" SID="48283">
+    <PortCounts in="7"/>
+    <P Name="Position">[390, -222, 455, -38]</P>
+    <P Name="ZOrder">437</P>
+    <P Name="GraphicalSettings">{&quot;GraphicalSettings&quot;:{&quot;LegacySettings&quot;:true,&quot;Style&quot;:{&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Auto&quot;,&quot;ShrinkYLimits&quot;:false},&quot;Style&quot;:{&quot;AxesColor&quot;:&quot;[0 0 0]&quot;,&quot;ChannelNames&quot;:[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;],&quot;ColorOrder&quot;:&quot;[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863]&quot;,&quot;CurrentConfiguration&quot;:&quot;extmgr.ConfigurationSet&quot;,&quot;DefaultLegendLabel&quot;:[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;],&quot;LabelsColor&quot;:&quot;[0.686274509803922 0.686274509803922 0.686274509803922]&quot;,&quot;LineColor&quot;:[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5,1.5,1.5,1.5,1.5],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;MinimizeControls&quot;:&quot;false&quot;,&quot;NumLines&quot;:[0,0,0,0,0,0],&quot;Placement&quot;:&quot;6&quot;,&quot;PlotType&quot;:&quot;Auto&quot;,&quot;Position&quot;:&quot;[92.3333333333333 921.666666666667 560 420]&quot;,&quot;ShowContent&quot;:&quot;true&quot;,&quot;Version&quot;:&quot;2021a&quot;,&quot;Visible&quot;:[true,true,true,true,true,true],&quot;YGrid&quot;:&quot;true&quot;}}}}</P>
+    <P Name="WasSavedAsWebScope">on</P>
+    <P Name="Floating">off</P>
+    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:102.7511,&quot;MaxYLimReal&quot;:102.7511,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-12.00926,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:0.27692,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.23457,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:908.5192,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-106.18518,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1.125,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.125,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:9000,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1000,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
+    <P Name="NumInputPorts">7</P>
+    <P Name="LayoutDimensionsString">[3 2]</P>
+    <P Name="ActiveDisplayYMinimum">-12.00926</P>
+    <P Name="ActiveDisplayYMaximum">102.7511</P>
+    <P Name="DataLoggingVariableName">ScopeData1</P>
+  </Block>
+  <Line>
+    <P Name="Name">&lt;Incline&gt;</P>
+    <P Name="ZOrder">1</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48268#out:6</P>
+    <P Name="Dst">48278#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;Grade&gt;</P>
+    <P Name="ZOrder">2</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48268#out:7</P>
+    <P Name="Dst">48281#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;BrkF&gt;</P>
+    <P Name="ZOrder">3</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48268#out:5</P>
+    <P Name="Dst">48279#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;AxleSpd&gt;</P>
+    <P Name="ZOrder">4</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48268#out:4</P>
+    <P Name="Dst">48277#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;G&gt;</P>
+    <P Name="ZOrder">5</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48268#out:3</P>
+    <P Name="Dst">48276#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;VehSpdMph&gt;</P>
+    <P Name="ZOrder">6</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48268#out:2</P>
+    <P Name="Dst">48282#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">&lt;VehSpdKph&gt;</P>
+    <P Name="ZOrder">7</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48268#out:1</P>
+    <P Name="Dst">48280#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">8</P>
+    <P Name="Src">48267#out:1</P>
+    <P Name="Dst">48268#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">Vehicle speed mph</P>
+    <P Name="ZOrder">9</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48270#out:1</P>
+    <P Name="Dst">48283#in:2</P>
+  </Line>
+  <Line>
+    <P Name="Name">Road Grade</P>
+    <P Name="ZOrder">10</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48272#out:1</P>
+    <P Name="Dst">48283#in:7</P>
+  </Line>
+  <Line>
+    <P Name="Name">Incline</P>
+    <P Name="ZOrder">11</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48275#out:1</P>
+    <P Name="Dst">48283#in:6</P>
+  </Line>
+  <Line>
+    <P Name="Name">Brake force</P>
+    <P Name="ZOrder">12</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48273#out:1</P>
+    <P Name="Dst">48283#in:5</P>
+  </Line>
+  <Line>
+    <P Name="Name">Axle speed</P>
+    <P Name="ZOrder">13</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48274#out:1</P>
+    <P Name="Dst">48283#in:4</P>
+  </Line>
+  <Line>
+    <P Name="Name">Vehicle G force</P>
+    <P Name="ZOrder">14</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48269#out:1</P>
+    <P Name="Dst">48283#in:3</P>
+  </Line>
+  <Line>
+    <P Name="Name">Vehicle speed kph</P>
+    <P Name="ZOrder">15</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">48271#out:1</P>
+    <P Name="Dst">48283#in:1</P>
+  </Line>
+</System>
+
+__MWOPC_PART_BEGIN__ /simulink/systems/system_48284.xml
+<?xml version="1.0" encoding="utf-8"?>
+<System>
+  <P Name="Location">[1177, 94, 2317, 805]</P>
+  <List ListType="InterfaceData">
+    <P Name="Version">0</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;e9d38fbd-3fe5-40d6-b633-65261f6a0cc0&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;ceac9373-52ba-4e42-8146-c4f45072f488&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;82c96b30-a16d-4762-bdf2-edcb3f1a0519&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1d14f2cd-4a53-4fab-9eb8-b7c06e99acd8&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;4926f5ec-a6c7-47eb-a034-01ea70840e74&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;94b44cfd-d459-4004-872c-21d80c5f966b&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;a8a1b26a-ddac-4648-a549-b14b336914ae&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;671c54dd-1cb6-4e13-9245-da785ec5fa9a&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;G&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;e9d38fbd-3fe5-40d6-b633-65261f6a0cc0&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;1&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;c4790b56-458b-44f3-86a3-942ac108739b&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;478a67ad-a22c-4f81-851b-c269c0283e50&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;671c54dd-1cb6-4e13-9245-da785ec5fa9a&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;VehSpdKph&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;ceac9373-52ba-4e42-8146-c4f45072f488&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;km/hr&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;37c68cf9-f3a5-4b80-8fb1-bf52f691e24d&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;8ea60258-d024-40bc-aabf-ddf5ba3b541a&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;671c54dd-1cb6-4e13-9245-da785ec5fa9a&quot;},&quot;indexOne&quot;:3,&quot;name&quot;:&quot;VehSpdMph&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;82c96b30-a16d-4762-bdf2-edcb3f1a0519&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;mph&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;6eb188d3-a8b2-4a07-92ed-d5e84b766565&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;bf989d79-da4a-42e7-8898-67c796d6c182&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;671c54dd-1cb6-4e13-9245-da785ec5fa9a&quot;},&quot;indexOne&quot;:4,&quot;name&quot;:&quot;Incline&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1d14f2cd-4a53-4fab-9eb8-b7c06e99acd8&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;deg&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;1db6f685-d369-44bb-a24a-cd09e6b2f2e5&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;0c3aabff-ad71-4149-a478-6b2c91128df4&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;671c54dd-1cb6-4e13-9245-da785ec5fa9a&quot;},&quot;indexOne&quot;:5,&quot;name&quot;:&quot;AxleSpd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;4926f5ec-a6c7-47eb-a034-01ea70840e74&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rpm&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;2b29ca4a-d817-4afe-a460-e16cf30f582c&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;31981b81-2741-4bbb-a963-a4ca23d00f8f&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;671c54dd-1cb6-4e13-9245-da785ec5fa9a&quot;},&quot;indexOne&quot;:6,&quot;name&quot;:&quot;Grade&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;94b44cfd-d459-4004-872c-21d80c5f966b&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;%&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;76be6c4f-ed3d-4bd2-9b8f-d0edfdbafb1c&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;1ec8b649-7fc0-4fe8-accd-6bdb225cc00c&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;671c54dd-1cb6-4e13-9245-da785ec5fa9a&quot;},&quot;indexOne&quot;:7,&quot;name&quot;:&quot;BrkF&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;a8a1b26a-ddac-4648-a549-b14b336914ae&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;2322fee8-21ed-4318-9acf-89a8e4f2a182&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;61628d03-4a1d-444e-93bd-9bdb6f16bc0a&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;671c54dd-1cb6-4e13-9245-da785ec5fa9a&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;ca40d85d-a37b-442c-8a7f-44ef2a9cd800&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-out&quot;:{&quot;1&quot;:&quot;ca40d85d-a37b-442c-8a7f-44ef2a9cd800&quot;}}}</P>
+  </List>
+  <Block BlockType="Inport" Name="Grade" SID="48285">
+    <P Name="Position">[-225, -252, -195, -238]</P>
+    <P Name="ZOrder">451</P>
+    <P Name="NameLocation">left</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Unit">%</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">Road Grade (%)</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Inport" Name="BrkF" SID="48286">
+    <P Name="Position">[-225, -147, -195, -133]</P>
+    <P Name="ZOrder">445</P>
+    <P Name="NameLocation">left</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Port">2</P>
+    <P Name="Unit">N</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">Brake Force (N)</P>
+      </Port>
+    </PortProperties>
+  </Block>
+  <Block BlockType="Inport" Name="AxleSpd" SID="48287">
+    <P Name="Position">[-225, -107, -195, -93]</P>
+    <P Name="ZOrder">446</P>
+    <P Name="NameLocation">left</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Port">3</P>
+    <P Name="Unit">rpm</P>
+  </Block>
+  <Block BlockType="Inport" Name="VehKph" SID="48288">
+    <P Name="Position">[-225, -62, -195, -48]</P>
+    <P Name="ZOrder">447</P>
+    <P Name="NameLocation">left</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Port">4</P>
+    <P Name="Unit">km/hr</P>
+  </Block>
+  <Block BlockType="Inport" Name="G" SID="48289">
+    <P Name="Position">[-225, 38, -195, 52]</P>
+    <P Name="ZOrder">448</P>
+    <P Name="NameLocation">left</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="Port">5</P>
+    <P Name="Unit">1</P>
+  </Block>
+  <Block BlockType="SubSystem" Name="Road Grade to Angle" SID="48290">
+    <PortCounts in="1" out="1"/>
+    <P Name="Position">[-50, -221, 50, -179]</P>
+    <P Name="ZOrder">26239</P>
+    <System Ref="system_48290"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="kph to mph" SID="48296">
+    <PortCounts in="1" out="1"/>
+    <P Name="Position">[-35, -38, 35, 8]</P>
+    <P Name="ZOrder">26240</P>
+    <System Ref="system_48296"/>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out" SID="48300">
+    <P Name="Position">[-90, 40, -80, 50]</P>
+    <P Name="ZOrder">26229</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">G</P>
+      <P Name="PortBlockIndex">1</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out1" SID="48301">
+    <P Name="Position">[150, -60, 160, -50]</P>
+    <P Name="ZOrder">26230</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">VehSpdKph</P>
+      <P Name="PortBlockIndex">2</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out2" SID="48302">
+    <P Name="Position">[150, -20, 160, -10]</P>
+    <P Name="ZOrder">26231</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">VehSpdMph</P>
+      <P Name="PortBlockIndex">3</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out3" SID="48303">
+    <P Name="Position">[150, -205, 160, -195]</P>
+    <P Name="ZOrder">26232</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">Incline</P>
+      <P Name="PortBlockIndex">4</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out4" SID="48304">
+    <P Name="Position">[-90, -105, -80, -95]</P>
+    <P Name="ZOrder">26233</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">AxleSpd</P>
+      <P Name="PortBlockIndex">5</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out5" SID="48305">
+    <P Name="Position">[150, -250, 160, -240]</P>
+    <P Name="ZOrder">26237</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">Grade</P>
+      <P Name="PortBlockIndex">6</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Block BlockType="Outport" Name="Bus Element Out6" SID="48306">
+    <P Name="Position">[-90, -145, -80, -135]</P>
+    <P Name="ZOrder">26238</P>
+    <P Name="BackgroundColor">black</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <List ListType="InterfaceData">
+      <P Name="Version">0</P>
+      <P Name="PortNumber">1</P>
+      <P Name="PortName">Info</P>
+      <P Name="Element">BrkF</P>
+      <P Name="PortBlockIndex">7</P>
+      <P Name="IsComposite">1</P>
+      <P Name="IsClientServer">0</P>
+    </List>
+  </Block>
+  <Line>
+    <P Name="ZOrder">1</P>
+    <P Name="Src">48296#out:1</P>
+    <P Name="Dst">48302#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">2</P>
+    <P Name="Src">48290#out:1</P>
+    <P Name="Dst">48303#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">3</P>
+    <P Name="Src">48285#out:1</P>
+    <P Name="Points">[65, 0]</P>
+    <Branch>
+      <P Name="ZOrder">4</P>
+      <P Name="Dst">48305#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">5</P>
+      <P Name="Points">[0, 45]</P>
+      <P Name="Dst">48290#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="ZOrder">6</P>
+    <P Name="Src">48286#out:1</P>
+    <P Name="Dst">48306#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">7</P>
+    <P Name="Src">48289#out:1</P>
+    <P Name="Dst">48300#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">8</P>
+    <P Name="Src">48288#out:1</P>
+    <P Name="Points">[43, 0]</P>
+    <Branch>
+      <P Name="ZOrder">9</P>
+      <P Name="Points">[297, 0]</P>
+      <P Name="Dst">48301#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">10</P>
+      <P Name="Points">[0, 40]</P>
+      <P Name="Dst">48296#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="ZOrder">11</P>
+    <P Name="Src">48287#out:1</P>
+    <P Name="Dst">48304#in:1</P>
+  </Line>
+</System>
+
+__MWOPC_PART_BEGIN__ /simulink/systems/system_48290.xml
+<?xml version="1.0" encoding="utf-8"?>
+<System>
+  <P Name="Location">[1321, 133, 2334, 930]</P>
+  <Block BlockType="Inport" Name="Grade" SID="48291">
     <P Name="Position">[20, 103, 50, 117]</P>
     <P Name="ZOrder">-1</P>
     <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
     <P Name="Unit">%</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="PropagatedSignals">RoadGrade</P>
+      </Port>
+    </PortProperties>
   </Block>
-  <Block BlockType="Gain" Name="Gain" SID="3236">
+  <Block BlockType="Gain" Name="Gain" SID="48292">
     <P Name="Position">[110, 95, 155, 125]</P>
     <P Name="ZOrder">3</P>
     <P Name="Gain">0.01</P>
   </Block>
-  <Block BlockType="Gain" Name="Gain1" SID="3259">
+  <Block BlockType="Gain" Name="Gain1" SID="48293">
     <P Name="Position">[305, 95, 350, 125]</P>
     <P Name="ZOrder">5</P>
     <P Name="Gain">180/pi</P>
   </Block>
-  <Block BlockType="Trigonometry" Name="Trigonometric&#xA;Function" SID="3237">
+  <Block BlockType="Trigonometry" Name="Trigonometric&#xA;Function" SID="48294">
     <PortCounts in="1" out="1"/>
     <P Name="Position">[215, 95, 245, 125]</P>
     <P Name="ZOrder">4</P>
     <P Name="ShowName">off</P>
     <P Name="Operator">atan</P>
   </Block>
-  <Block BlockType="Outport" Name="Incline" SID="3233">
+  <Block BlockType="Outport" Name="Incline" SID="48295">
     <P Name="Position">[400, 103, 430, 117]</P>
     <P Name="ZOrder">-2</P>
     <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
@@ -775,263 +1317,68 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_3231.xml
   </Block>
   <Line>
     <P Name="ZOrder">1</P>
-    <P Name="Src">3259#out:1</P>
-    <P Name="Dst">3233#in:1</P>
+    <P Name="Src">48292#out:1</P>
+    <P Name="Dst">48294#in:1</P>
   </Line>
   <Line>
     <P Name="ZOrder">2</P>
-    <P Name="Src">3237#out:1</P>
-    <P Name="Dst">3259#in:1</P>
+    <P Name="Src">48291#out:1</P>
+    <P Name="Dst">48292#in:1</P>
   </Line>
   <Line>
     <P Name="ZOrder">3</P>
-    <P Name="Src">3232#out:1</P>
-    <P Name="Dst">3236#in:1</P>
+    <P Name="Src">48294#out:1</P>
+    <P Name="Dst">48293#in:1</P>
   </Line>
   <Line>
     <P Name="ZOrder">4</P>
-    <P Name="Src">3236#out:1</P>
-    <P Name="Dst">3237#in:1</P>
+    <P Name="Src">48293#out:1</P>
+    <P Name="Dst">48295#in:1</P>
   </Line>
 </System>
 
-__MWOPC_PART_BEGIN__ /simulink/systems/system_3421.xml
+__MWOPC_PART_BEGIN__ /simulink/systems/system_48296.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[32, 25, 1128, 719]</P>
-  <Block BlockType="Inport" Name="Grade" SID="3466">
-    <P Name="Position">[-145, -172, -115, -158]</P>
-    <P Name="ZOrder">451</P>
-    <P Name="NameLocation">left</P>
-  </Block>
-  <Block BlockType="Inport" Name="Incline" SID="3422">
-    <P Name="Position">[-145, -127, -115, -113]</P>
+  <P Name="Location">[128, 50, 1240, 740]</P>
+  <Block BlockType="Inport" Name="kph" SID="48297">
+    <P Name="Position">[110, 103, 140, 117]</P>
     <P Name="ZOrder">-1</P>
-    <P Name="NameLocation">left</P>
-    <P Name="Port">2</P>
+    <P Name="Unit">km/h</P>
   </Block>
-  <Block BlockType="Inport" Name="BrkF" SID="3458">
-    <P Name="Position">[-145, -82, -115, -68]</P>
-    <P Name="ZOrder">445</P>
-    <P Name="NameLocation">left</P>
-    <P Name="Port">3</P>
-  </Block>
-  <Block BlockType="Inport" Name="AxleSpd" SID="3459">
-    <P Name="Position">[-145, -37, -115, -23]</P>
-    <P Name="ZOrder">446</P>
-    <P Name="NameLocation">left</P>
-    <P Name="Port">4</P>
-  </Block>
-  <Block BlockType="Inport" Name="VehSpd" SID="3460">
-    <P Name="Position">[-145, 8, -115, 22]</P>
-    <P Name="ZOrder">447</P>
-    <P Name="NameLocation">left</P>
-    <P Name="Port">5</P>
-  </Block>
-  <Block BlockType="Inport" Name="G" SID="3461">
-    <P Name="Position">[-145, 53, -115, 67]</P>
-    <P Name="ZOrder">448</P>
-    <P Name="NameLocation">left</P>
-    <P Name="Port">6</P>
-  </Block>
-  <Block BlockType="From" Name="From" SID="3424">
-    <P Name="Position">[210, -145, 340, -125]</P>
-    <P Name="ZOrder">427</P>
-    <P Name="NameLocation">left</P>
-    <P Name="GotoTag">veh_G</P>
-    <PortProperties>
-      <Port Type="out" Index="1">
-        <P Name="Name">Vehicle G Force</P>
-      </Port>
-    </PortProperties>
-  </Block>
-  <Block BlockType="From" Name="From19" SID="3427">
-    <P Name="Position">[210, -170, 340, -150]</P>
-    <P Name="ZOrder">430</P>
-    <P Name="NameLocation">left</P>
-    <P Name="GotoTag">VehSpdKph</P>
-    <PortProperties>
-      <Port Type="out" Index="1">
-        <P Name="Name">Vehicle Speed</P>
-      </Port>
-    </PortProperties>
-  </Block>
-  <Block BlockType="From" Name="From20" SID="3428">
-    <P Name="Position">[210, -45, 340, -25]</P>
-    <P Name="ZOrder">431</P>
-    <P Name="NameLocation">left</P>
-    <P Name="GotoTag">RoadGrade</P>
-    <PortProperties>
-      <Port Type="out" Index="1">
-        <P Name="Name">Road Grade</P>
-        <P Name="PropagatedSignals">Road Grade (%)</P>
-      </Port>
-    </PortProperties>
-  </Block>
-  <Block BlockType="From" Name="From21" SID="3429">
-    <P Name="Position">[210, -95, 340, -75]</P>
-    <P Name="ZOrder">432</P>
-    <P Name="NameLocation">left</P>
-    <P Name="GotoTag">BrakeForce</P>
-    <PortProperties>
-      <Port Type="out" Index="1">
-        <P Name="Name">Brake Force</P>
-        <P Name="PropagatedSignals">Brake Force (N)</P>
-      </Port>
-    </PortProperties>
-  </Block>
-  <Block BlockType="From" Name="From27" SID="3430">
-    <P Name="Position">[210, -120, 340, -100]</P>
-    <P Name="ZOrder">434</P>
-    <P Name="NameLocation">left</P>
-    <P Name="GotoTag">AxleSpd</P>
-    <PortProperties>
-      <Port Type="out" Index="1">
-        <P Name="Name">Axle Speed</P>
-      </Port>
-    </PortProperties>
-  </Block>
-  <Block BlockType="From" Name="From34" SID="3432">
-    <P Name="Position">[210, -70, 340, -50]</P>
-    <P Name="ZOrder">438</P>
-    <P Name="NameLocation">left</P>
-    <P Name="GotoTag">Incline</P>
-    <PortProperties>
-      <Port Type="out" Index="1">
-        <P Name="Name">Vehicle Incline</P>
-      </Port>
-    </PortProperties>
-  </Block>
-  <Block BlockType="Goto" Name="Goto1" SID="3439">
-    <P Name="Position">[-50, 50, 80, 70]</P>
-    <P Name="ZOrder">441</P>
-    <P Name="GotoTag">veh_G</P>
-  </Block>
-  <Block BlockType="Goto" Name="Goto16" SID="3440">
-    <P Name="Position">[-50, -40, 80, -20]</P>
-    <P Name="ZOrder">440</P>
-    <P Name="GotoTag">AxleSpd</P>
-  </Block>
-  <Block BlockType="Goto" Name="Goto2" SID="3462">
-    <P Name="Position">[-50, -130, 80, -110]</P>
-    <P Name="ZOrder">449</P>
-    <P Name="GotoTag">Incline</P>
-  </Block>
-  <Block BlockType="Goto" Name="Goto3" SID="3463">
-    <P Name="Position">[-50, -85, 80, -65]</P>
-    <P Name="ZOrder">450</P>
-    <P Name="GotoTag">BrakeForce</P>
-  </Block>
-  <Block BlockType="Goto" Name="Goto33" SID="3441">
-    <P Name="Position">[-50, 5, 80, 25]</P>
-    <P Name="ZOrder">444</P>
-    <P Name="GotoTag">VehSpdKph</P>
-  </Block>
-  <Block BlockType="Goto" Name="Goto4" SID="3467">
-    <P Name="Position">[-50, -175, 80, -155]</P>
-    <P Name="ZOrder">452</P>
-    <P Name="GotoTag">RoadGrade</P>
-  </Block>
-  <Block BlockType="Scope" Name="Scope Vehicle" SID="3436">
-    <PortCounts in="6"/>
-    <P Name="Position">[495, -181, 555, -14]</P>
-    <P Name="ZOrder">437</P>
-    <P Name="GraphicalSettings">{&quot;GraphicalSettings&quot;:{&quot;LegacySettings&quot;:true,&quot;Style&quot;:{&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Auto&quot;,&quot;ShrinkYLimits&quot;:false},&quot;Style&quot;:{&quot;AxesColor&quot;:&quot;[0 0 0]&quot;,&quot;ChannelNames&quot;:[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;],&quot;ColorOrder&quot;:&quot;[1 1 0.0666666666666667;0.0745098039215686 0.623529411764706 1;1 0.411764705882353 0.16078431372549;0.392156862745098 0.831372549019608 0.0745098039215686;0.717647058823529 0.274509803921569 1;0.0588235294117647 1 1;1 0.0745098039215686 0.650980392156863]&quot;,&quot;CurrentConfiguration&quot;:&quot;extmgr.ConfigurationSet&quot;,&quot;DefaultLegendLabel&quot;:[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;],&quot;LabelsColor&quot;:&quot;[0.686274509803922 0.686274509803922 0.686274509803922]&quot;,&quot;LineColor&quot;:[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5,1.5,1.5,1.5,1.5],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;MinimizeControls&quot;:&quot;false&quot;,&quot;NumLines&quot;:[0,0,0,0,0,0],&quot;Placement&quot;:&quot;6&quot;,&quot;PlotType&quot;:&quot;Auto&quot;,&quot;Position&quot;:&quot;[92.3333333333333 921.666666666667 560 420]&quot;,&quot;ShowContent&quot;:&quot;true&quot;,&quot;Version&quot;:&quot;2021a&quot;,&quot;Visible&quot;:[true,true,true,true,true,true],&quot;YGrid&quot;:&quot;true&quot;}}}}</P>
-    <P Name="WasSavedAsWebScope">on</P>
-    <P Name="Floating">off</P>
-    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:102.7511,&quot;MaxYLimReal&quot;:102.7511,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-12.00926,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:0.27692,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.23457,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:908.5192,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-106.18518,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1.125,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-0.125,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:9000,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1000,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
-    <P Name="NumInputPorts">6</P>
-    <P Name="LayoutDimensionsString">[3 2]</P>
-    <P Name="ActiveDisplayYMinimum">-12.00926</P>
-    <P Name="ActiveDisplayYMaximum">102.7511</P>
-    <P Name="DataLoggingVariableName">ScopeData1</P>
-  </Block>
-  <Line>
-    <P Name="Name">Vehicle Speed</P>
-    <P Name="ZOrder">1</P>
-    <P Name="Labels">[-1, 0]</P>
-    <P Name="Src">3427#out:1</P>
-    <P Name="Dst">3436#in:1</P>
-  </Line>
-  <Line>
-    <P Name="Name">Vehicle G Force</P>
+  <Block BlockType="UnitConversion" Name="Unit Conversion" SID="48298">
+    <P Name="Position">[215, 89, 285, 131]</P>
     <P Name="ZOrder">2</P>
-    <P Name="Labels">[-1, 0]</P>
-    <P Name="Src">3424#out:1</P>
-    <P Name="Dst">3436#in:2</P>
+  </Block>
+  <Block BlockType="Outport" Name="mph" SID="48299">
+    <P Name="Position">[360, 103, 390, 117]</P>
+    <P Name="ZOrder">-2</P>
+    <P Name="Unit">mph</P>
+  </Block>
+  <Line>
+    <P Name="ZOrder">1</P>
+    <P Name="Src">48298#out:1</P>
+    <P Name="Dst">48299#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">3</P>
-    <P Name="Src">3459#out:1</P>
-    <P Name="Dst">3440#in:1</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">4</P>
-    <P Name="Src">3460#out:1</P>
-    <P Name="Dst">3441#in:1</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">5</P>
-    <P Name="Src">3461#out:1</P>
-    <P Name="Dst">3439#in:1</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">6</P>
-    <P Name="Src">3422#out:1</P>
-    <P Name="Dst">3462#in:1</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">7</P>
-    <P Name="Src">3458#out:1</P>
-    <P Name="Dst">3463#in:1</P>
-  </Line>
-  <Line>
-    <P Name="Name">Axle Speed</P>
-    <P Name="ZOrder">8</P>
-    <P Name="Labels">[-1, 0]</P>
-    <P Name="Src">3430#out:1</P>
-    <P Name="Dst">3436#in:3</P>
-  </Line>
-  <Line>
-    <P Name="Name">Brake Force</P>
-    <P Name="ZOrder">9</P>
-    <P Name="Labels">[-1, 0]</P>
-    <P Name="Src">3429#out:1</P>
-    <P Name="Dst">3436#in:4</P>
-  </Line>
-  <Line>
-    <P Name="Name">Vehicle Incline</P>
-    <P Name="ZOrder">10</P>
-    <P Name="Labels">[-1, 0]</P>
-    <P Name="Src">3432#out:1</P>
-    <P Name="Dst">3436#in:5</P>
-  </Line>
-  <Line>
-    <P Name="Name">Road Grade</P>
-    <P Name="ZOrder">11</P>
-    <P Name="Labels">[-1, 0]</P>
-    <P Name="Src">3428#out:1</P>
-    <P Name="Dst">3436#in:6</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">12</P>
-    <P Name="Src">3466#out:1</P>
-    <P Name="Dst">3467#in:1</P>
+    <P Name="ZOrder">2</P>
+    <P Name="Src">48297#out:1</P>
+    <P Name="Dst">48298#in:1</P>
   </Line>
 </System>
 
 __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[32, 25, 1128, 719]</P>
+  <P Name="Location">[75, 97, 1171, 791]</P>
   <P Name="Open">on</P>
   <List ListType="InterfaceData">
     <P Name="Version">0</P>
-    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;8474698f-a518-49f3-824a-07585cfa81bc&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;5b0daf3f-3dee-45b0-8ce1-809767575901&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;de8dbd68-8687-437f-a9be-4430832a2462&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;RoadGrade&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;8474698f-a518-49f3-824a-07585cfa81bc&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;%&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;e806fe8a-46a0-4579-9e3b-75de463029f9&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;d2b61b93-3ef1-4aff-a334-a88ad567d82f&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;de8dbd68-8687-437f-a9be-4430832a2462&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;BrakeForce&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;5b0daf3f-3dee-45b0-8ce1-809767575901&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;4c98de5e-f451-4465-8ba7-e1f697215859&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;96626713-e667-4833-84e2-f318de53ed30&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;de8dbd68-8687-437f-a9be-4430832a2462&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;49caf7fb-d03f-4b52-aa38-15269b6d028b&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;c6e2a27a-e684-46f8-8f33-d10f78f0383a&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;e20e96d4-3018-4538-8bbf-ac1ce84fb1b4&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3ea9a68a-aa17-40be-90e0-833443967a94&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;db983253-2b67-48f1-9c76-2ca1c9e90547&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1541fb6a-8372-4687-bcc9-d326aef70249&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;8d38a2ae-dabc-41fb-99ac-29d8a59bd152&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;G&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;c6e2a27a-e684-46f8-8f33-d10f78f0383a&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;1&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;95f0a8de-69ec-4d97-93e3-01c0c9df1e11&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;fef457ed-b531-4b03-aba6-69edeca22883&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;8d38a2ae-dabc-41fb-99ac-29d8a59bd152&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;VehSpdKph&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;e20e96d4-3018-4538-8bbf-ac1ce84fb1b4&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;km/hr&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;5a7a527a-7c2c-4b3c-adc2-805a66cbf105&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;ede1e188-e3b3-4e42-9895-9f0db04bd654&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;8d38a2ae-dabc-41fb-99ac-29d8a59bd152&quot;},&quot;indexOne&quot;:3,&quot;name&quot;:&quot;VehSpdMph&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;3ea9a68a-aa17-40be-90e0-833443967a94&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;mph&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;8e8d4272-3d7d-43e8-a764-db6fbf04a0d2&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;f3119705-7aae-4c8e-993f-cde2d33b22b1&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;8d38a2ae-dabc-41fb-99ac-29d8a59bd152&quot;},&quot;indexOne&quot;:4,&quot;name&quot;:&quot;Incline&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;db983253-2b67-48f1-9c76-2ca1c9e90547&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;deg&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;c4159dbf-526e-49aa-b87d-0f1f60235ff5&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;dacc46ea-3468-4773-9b35-ffd52ac423a1&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;8d38a2ae-dabc-41fb-99ac-29d8a59bd152&quot;},&quot;indexOne&quot;:5,&quot;name&quot;:&quot;AxleSpd&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;1541fb6a-8372-4687-bcc9-d326aef70249&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;rpm&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;3cc4745b-761d-4877-9795-b4ac948005a0&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;88966fa8-ec26-4fad-9df5-8fc1fd8e9a59&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;8d38a2ae-dabc-41fb-99ac-29d8a59bd152&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;9d8a3ff6-b355-460b-97d4-6ae14542b4ce&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
-    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;49caf7fb-d03f-4b52-aa38-15269b6d028b&quot;},&quot;bep-out&quot;:{&quot;1&quot;:&quot;9d8a3ff6-b355-460b-97d4-6ae14542b4ce&quot;}}}</P>
+    <P Name="ModelData">{&quot;entries&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:null,&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfChildren&quot;:[{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;2c166c25-fab1-490c-a601-173568805200&quot;},{&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;832cb14a-1003-45c3-ac05-be4b87d0c925&quot;}],&quot;children&quot;:[{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;622ee024-ae86-452c-a136-e60d7cf0e97f&quot;},&quot;indexOne&quot;:1,&quot;name&quot;:&quot;RoadGrade&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;2c166c25-fab1-490c-a601-173568805200&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;%&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;a3fe74fd-7dfd-4079-a540-b895dc1125e3&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;c597a13c-2389-4f44-944f-d0bd23de1dbe&quot;},{&quot;content&quot;:{&quot;blockAttrs&quot;:null,&quot;busTypeElementAttrs&quot;:null,&quot;busTypeRootAttrs&quot;:null,&quot;childAttrs&quot;:{&quot;content&quot;:{&quot;attrsOfParent&quot;:{&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;622ee024-ae86-452c-a136-e60d7cf0e97f&quot;},&quot;indexOne&quot;:2,&quot;name&quot;:&quot;BrakeForce&quot;},&quot;type&quot;:&quot;treeNode.ChildAttributes&quot;,&quot;uuid&quot;:&quot;832cb14a-1003-45c3-ac05-be4b87d0c925&quot;},&quot;functionElementAttrs&quot;:null,&quot;inheritedParentAttrs&quot;:null,&quot;msgQueueAttrs&quot;:null,&quot;parentAttrs&quot;:null,&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:{&quot;content&quot;:{&quot;unit&quot;:&quot;N&quot;},&quot;type&quot;:&quot;treeNode.SignalAttributes&quot;,&quot;uuid&quot;:&quot;36685991-b203-4e44-b973-e9280045345a&quot;}},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;f4acc9bc-2741-4c4f-abe7-9e19d3b5dd83&quot;}]},&quot;type&quot;:&quot;treeNode.ParentAttributes&quot;,&quot;uuid&quot;:&quot;622ee024-ae86-452c-a136-e60d7cf0e97f&quot;},&quot;platformAttrs&quot;:null,&quot;propAttrs&quot;:null,&quot;signalAttrs&quot;:null},&quot;type&quot;:&quot;treeNode.TreeNode&quot;,&quot;uuid&quot;:&quot;7761397e-624f-48cb-a3cb-9d952f374a96&quot;}],&quot;packageUris&quot;:[&quot;http://schema.mathworks.com/mf0/mm_tree_node_datamodel/R2018b&quot;],&quot;version&quot;:&quot;1.0&quot;}</P>
+    <P Name="Mappings">{&quot;port-tree&quot;:{&quot;bep-in&quot;:{&quot;1&quot;:&quot;7761397e-624f-48cb-a3cb-9d952f374a96&quot;}}}</P>
   </List>
   <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">48265</P>
+  <P Name="SIDHighWatermark">48307</P>
   <Block BlockType="Inport" Name="In Bus Element" SID="2141">
     <P Name="Position">[-75, -50, -65, -40]</P>
     <P Name="ZOrder">26203</P>
@@ -1075,43 +1422,32 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     </PortProperties>
   </Block>
   <Block BlockType="From" Name="From" SID="3449">
-    <P Name="Position">[585, -5, 640, 15]</P>
+    <P Name="Position">[355, -55, 410, -35]</P>
     <P Name="ZOrder">26217</P>
     <P Name="GotoTag">axle</P>
   </Block>
-  <Block BlockType="From" Name="From1" SID="3451">
-    <P Name="Position">[585, -65, 640, -45]</P>
-    <P Name="ZOrder">26219</P>
-    <P Name="GotoTag">incline</P>
-  </Block>
   <Block BlockType="From" Name="From2" SID="3453">
-    <P Name="Position">[585, -35, 640, -15]</P>
+    <P Name="Position">[355, -85, 410, -65]</P>
     <P Name="ZOrder">26221</P>
     <P Name="GotoTag">brake</P>
   </Block>
   <Block BlockType="From" Name="From3" SID="3456">
-    <P Name="Position">[585, 25, 640, 45]</P>
+    <P Name="Position">[355, -25, 410, -5]</P>
     <P Name="ZOrder">26224</P>
     <P Name="GotoTag">VehSpd</P>
   </Block>
   <Block BlockType="From" Name="From4" SID="3457">
-    <P Name="Position">[585, 55, 640, 75]</P>
+    <P Name="Position">[355, 5, 410, 25]</P>
     <P Name="ZOrder">26225</P>
     <P Name="GotoTag">G</P>
   </Block>
   <Block BlockType="From" Name="From5" SID="3465">
-    <P Name="Position">[585, -95, 640, -75]</P>
+    <P Name="Position">[355, -115, 410, -95]</P>
     <P Name="ZOrder">26227</P>
     <P Name="GotoTag">grade</P>
   </Block>
-  <Block BlockType="Goto" Name="Goto1" SID="3450">
-    <P Name="Position">[470, -53, 535, -37]</P>
-    <P Name="ZOrder">26218</P>
-    <P Name="NameLocation">top</P>
-    <P Name="GotoTag">incline</P>
-  </Block>
   <Block BlockType="Goto" Name="Goto2" SID="3448">
-    <P Name="Position">[95, 239, 145, 261]</P>
+    <P Name="Position">[75, 239, 125, 261]</P>
     <P Name="ZOrder">26216</P>
     <P Name="GotoTag">axle</P>
   </Block>
@@ -1122,19 +1458,19 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="GotoTag">brake</P>
   </Block>
   <Block BlockType="Goto" Name="Goto4" SID="3454">
-    <P Name="Position">[450, 40, 510, 60]</P>
+    <P Name="Position">[405, 70, 465, 90]</P>
     <P Name="ZOrder">26222</P>
     <P Name="NameLocation">top</P>
     <P Name="GotoTag">VehSpd</P>
   </Block>
   <Block BlockType="Goto" Name="Goto5" SID="3455">
-    <P Name="Position">[450, 221, 510, 239]</P>
+    <P Name="Position">[380, 176, 440, 194]</P>
     <P Name="ZOrder">26223</P>
     <P Name="NameLocation">top</P>
     <P Name="GotoTag">G</P>
   </Block>
   <Block BlockType="Goto" Name="Goto6" SID="3464">
-    <P Name="Position">[5, -126, 60, -104]</P>
+    <P Name="Position">[5, -101, 60, -79]</P>
     <P Name="ZOrder">26226</P>
     <P Name="NameLocation">top</P>
     <P Name="GotoTag">grade</P>
@@ -1171,7 +1507,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="A_rl">vehicle.roadLoadA_N</P>
     <P Name="A_rl_unit">N</P>
     <P Name="A_rl_conf">compiletime</P>
-    <P Name="B_rl">0</P>
+    <P Name="B_rl">vehicle.roadLoadB_N_per_kph</P>
     <P Name="B_rl_unit">N*hr/km</P>
     <P Name="B_rl_conf">compiletime</P>
     <P Name="C_rl">vehicle.roadLoadC_N_per_kph2</P>
@@ -1223,11 +1559,17 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
       </Port>
     </PortProperties>
   </Block>
-  <Block BlockType="SubSystem" Name="Measurement" SID="3421">
-    <PortCounts in="6"/>
-    <P Name="Position">[690, -108, 775, 88]</P>
-    <P Name="ZOrder">26214</P>
-    <System Ref="system_3421"/>
+  <Block BlockType="SubSystem" Name="Measurement" SID="48266">
+    <PortCounts in="1"/>
+    <P Name="Position">[590, -15, 645, 25]</P>
+    <P Name="ZOrder">49124</P>
+    <System Ref="system_48266"/>
+  </Block>
+  <Block BlockType="SubSystem" Name="Outputs" SID="48284">
+    <PortCounts in="5" out="1"/>
+    <P Name="Position">[450, -115, 520, 25]</P>
+    <P Name="ZOrder">49125</P>
+    <System Ref="system_48284"/>
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter" SID="1">
     <PortCounts out="1" lconn="1"/>
@@ -1258,38 +1600,9 @@ Converter</P>
       <P Name="AffineConversion">off</P>
     </InstanceData>
   </Block>
-  <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter1" SID="3209">
-    <PortCounts out="1" lconn="1"/>
-    <P Name="Position">[355, -8, 370, 8]</P>
-    <P Name="ZOrder">26210</P>
-    <P Name="BackgroundColor">automatic</P>
-    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
-    <P Name="LibraryVersion">11.0</P>
-    <P Name="SourceBlock">nesl_utility/PS-Simulink
-Converter</P>
-    <P Name="SourceType">PS-Simulink
-Converter</P>
-    <InstanceData>
-      <P Name="RTWMemSecFuncInitTerm">Inherit from model</P>
-      <P Name="RTWMemSecFuncExecute">Inherit from model</P>
-      <P Name="RTWMemSecDataConstants">Inherit from model</P>
-      <P Name="RTWMemSecDataInternal">Inherit from model</P>
-      <P Name="RTWMemSecDataParameters">Inherit from model</P>
-      <P Name="ContentPreviewEnabled">on</P>
-      <P Name="PhysicalDomain">network_engine_domain</P>
-      <P Name="SubClassName">ps_output</P>
-      <P Name="LeftPortType">input</P>
-      <P Name="RightPortType">output</P>
-      <P Name="PseudoPeriodic">off</P>
-      <P Name="Frequencies">[]</P>
-      <P Name="VectorFormat">1-D array</P>
-      <P Name="Unit">mph</P>
-      <P Name="AffineConversion">off</P>
-    </InstanceData>
-  </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter2" SID="2">
     <PortCounts out="1" lconn="1"/>
-    <P Name="Position">[355, 177, 370, 193]</P>
+    <P Name="Position">[330, 177, 345, 193]</P>
     <P Name="ZOrder">26179</P>
     <P Name="BackgroundColor">automatic</P>
     <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
@@ -1344,12 +1657,6 @@ Converter</P>
       <P Name="Unit">rpm</P>
       <P Name="AffineConversion">off</P>
     </InstanceData>
-  </Block>
-  <Block BlockType="SubSystem" Name="Road Grade to Angle" SID="3231">
-    <PortCounts in="1" out="1"/>
-    <P Name="Position">[300, -111, 400, -69]</P>
-    <P Name="ZOrder">26213</P>
-    <System Ref="system_3231"/>
   </Block>
   <Block BlockType="SimscapeBus" Name="Simscape Bus" SID="48260">
     <PortCounts lconn="1" rconn="1"/>
@@ -1505,85 +1812,9 @@ Motion Sensor</P>
     <P Name="Port">2</P>
     <P Name="Side">Right</P>
   </Block>
-  <Block BlockType="Outport" Name="Bus Element Out" SID="6">
-    <P Name="Position">[450, 180, 460, 190]</P>
-    <P Name="ZOrder">26196</P>
-    <P Name="BackgroundColor">black</P>
-    <P Name="ShowName">off</P>
-    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
-    <List ListType="InterfaceData">
-      <P Name="Version">0</P>
-      <P Name="PortNumber">1</P>
-      <P Name="PortName">Info</P>
-      <P Name="Element">G</P>
-      <P Name="PortBlockIndex">1</P>
-      <P Name="IsComposite">1</P>
-      <P Name="IsClientServer">0</P>
-    </List>
-  </Block>
-  <Block BlockType="Outport" Name="Bus Element Out1" SID="7">
-    <P Name="Position">[450, 75, 460, 85]</P>
-    <P Name="ZOrder">26197</P>
-    <P Name="BackgroundColor">black</P>
-    <P Name="ShowName">off</P>
-    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
-    <List ListType="InterfaceData">
-      <P Name="Version">0</P>
-      <P Name="PortNumber">1</P>
-      <P Name="PortName">Info</P>
-      <P Name="Element">VehSpdKph</P>
-      <P Name="PortBlockIndex">2</P>
-      <P Name="IsComposite">1</P>
-      <P Name="IsClientServer">0</P>
-    </List>
-  </Block>
-  <Block BlockType="Outport" Name="Bus Element Out2" SID="3210">
-    <P Name="Position">[410, -5, 420, 5]</P>
-    <P Name="ZOrder">26211</P>
-    <P Name="BackgroundColor">black</P>
-    <P Name="ShowName">off</P>
-    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
-    <List ListType="InterfaceData">
-      <P Name="Version">0</P>
-      <P Name="PortNumber">1</P>
-      <P Name="PortName">Info</P>
-      <P Name="Element">VehSpdMph</P>
-      <P Name="PortBlockIndex">3</P>
-      <P Name="IsComposite">1</P>
-      <P Name="IsClientServer">0</P>
-    </List>
-  </Block>
-  <Block BlockType="Outport" Name="Bus Element Out3" SID="3230">
-    <P Name="Position">[470, -95, 480, -85]</P>
-    <P Name="ZOrder">26212</P>
-    <P Name="BackgroundColor">black</P>
-    <P Name="ShowName">off</P>
-    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
-    <List ListType="InterfaceData">
-      <P Name="Version">0</P>
-      <P Name="PortNumber">1</P>
-      <P Name="PortName">Info</P>
-      <P Name="Element">Incline</P>
-      <P Name="PortBlockIndex">4</P>
-      <P Name="IsComposite">1</P>
-      <P Name="IsClientServer">0</P>
-    </List>
-  </Block>
-  <Block BlockType="Outport" Name="Bus Element Out4" SID="3468">
-    <P Name="Position">[95, 275, 105, 285]</P>
-    <P Name="ZOrder">26228</P>
-    <P Name="BackgroundColor">black</P>
-    <P Name="ShowName">off</P>
-    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
-    <List ListType="InterfaceData">
-      <P Name="Version">0</P>
-      <P Name="PortNumber">1</P>
-      <P Name="PortName">Info</P>
-      <P Name="Element">AxleSpd</P>
-      <P Name="PortBlockIndex">5</P>
-      <P Name="IsComposite">1</P>
-      <P Name="IsClientServer">0</P>
-    </List>
+  <Block BlockType="Outport" Name="Info1" SID="48307">
+    <P Name="Position">[605, -52, 635, -38]</P>
+    <P Name="ZOrder">49123</P>
   </Block>
   <Line LineType="Connection">
     <P Name="ZOrder">606</P>
@@ -1595,13 +1826,7 @@ Motion Sensor</P>
     </Branch>
     <Branch ConnectType="DEST_SRC">
       <P Name="Points">[0, -45]</P>
-      <Branch ConnectType="DEST_DEST">
-        <P Name="Src">3209#lconn:1</P>
-        <P Name="Points">[-21, 0; 0, 80]</P>
-      </Branch>
-      <Branch ConnectType="DEST_SRC">
-        <P Name="Dst">1#lconn:1</P>
-      </Branch>
+      <P Name="Dst">1#lconn:1</P>
     </Branch>
   </Line>
   <Line LineType="Connection">
@@ -1624,30 +1849,12 @@ Motion Sensor</P>
   <Line>
     <P Name="ZOrder">17574</P>
     <P Name="Src">1#out:1</P>
-    <P Name="Points">[38, 0]</P>
-    <Branch>
-      <P Name="ZOrder">17573</P>
-      <P Name="Points">[0, -30]</P>
-      <P Name="Dst">3454#in:1</P>
-    </Branch>
-    <Branch>
-      <P Name="ZOrder">17572</P>
-      <P Name="Dst">7#in:1</P>
-    </Branch>
+    <P Name="Dst">3454#in:1</P>
   </Line>
   <Line>
     <P Name="ZOrder">17577</P>
     <P Name="Src">2#out:1</P>
-    <P Name="Points">[39, 0]</P>
-    <Branch>
-      <P Name="ZOrder">17576</P>
-      <P Name="Points">[0, 45]</P>
-      <P Name="Dst">3455#in:1</P>
-    </Branch>
-    <Branch>
-      <P Name="ZOrder">17575</P>
-      <P Name="Dst">6#in:1</P>
-    </Branch>
+    <P Name="Dst">3455#in:1</P>
   </Line>
   <Line LineType="Connection">
     <P Name="ZOrder">17578</P>
@@ -1674,15 +1881,7 @@ Motion Sensor</P>
     <Branch>
       <P Name="ZOrder">17582</P>
       <P Name="Points">[0, -45]</P>
-      <Branch>
-        <P Name="ZOrder">17581</P>
-        <P Name="Points">[0, -25]</P>
-        <P Name="Dst">3464#in:1</P>
-      </Branch>
-      <Branch>
-        <P Name="ZOrder">17580</P>
-        <P Name="Dst">3231#in:1</P>
-      </Branch>
+      <P Name="Dst">3464#in:1</P>
     </Branch>
   </Line>
   <Line>
@@ -1708,55 +1907,6 @@ Motion Sensor</P>
     <P Name="Src">2189#out:1</P>
     <P Name="Dst">2139#in:1</P>
   </Line>
-  <Line>
-    <P Name="ZOrder">17589</P>
-    <P Name="Src">3209#out:1</P>
-    <P Name="Dst">3210#in:1</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">17592</P>
-    <P Name="Src">3231#out:1</P>
-    <P Name="Points">[31, 0]</P>
-    <Branch>
-      <P Name="ZOrder">17591</P>
-      <P Name="Dst">3230#in:1</P>
-    </Branch>
-    <Branch>
-      <P Name="ZOrder">17590</P>
-      <P Name="Points">[0, 45]</P>
-      <P Name="Dst">3450#in:1</P>
-    </Branch>
-  </Line>
-  <Line>
-    <P Name="ZOrder">17596</P>
-    <P Name="Src">3451#out:1</P>
-    <P Name="Dst">3421#in:2</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">17597</P>
-    <P Name="Src">3453#out:1</P>
-    <P Name="Dst">3421#in:3</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">17598</P>
-    <P Name="Src">3449#out:1</P>
-    <P Name="Dst">3421#in:4</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">17599</P>
-    <P Name="Src">3456#out:1</P>
-    <P Name="Dst">3421#in:5</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">17600</P>
-    <P Name="Src">3457#out:1</P>
-    <P Name="Dst">3421#in:6</P>
-  </Line>
-  <Line>
-    <P Name="ZOrder">17601</P>
-    <P Name="Src">3465#out:1</P>
-    <P Name="Dst">3421#in:1</P>
-  </Line>
   <Line LineType="Connection">
     <P Name="ZOrder">17606</P>
     <P Name="Src">48261#rconn:1</P>
@@ -1771,16 +1921,46 @@ Motion Sensor</P>
   <Line>
     <P Name="ZOrder">17613</P>
     <P Name="Src">48263#out:1</P>
-    <P Name="Points">[10, 0]</P>
+    <P Name="Dst">3448#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">17619</P>
+    <P Name="Src">48284#out:1</P>
+    <P Name="Points">[24, 0]</P>
     <Branch>
-      <P Name="ZOrder">17615</P>
-      <P Name="Points">[0, 30]</P>
-      <P Name="Dst">3468#in:1</P>
+      <P Name="ZOrder">17618</P>
+      <P Name="Points">[0, 50]</P>
+      <P Name="Dst">48266#in:1</P>
     </Branch>
     <Branch>
-      <P Name="ZOrder">17614</P>
-      <P Name="Dst">3448#in:1</P>
+      <P Name="ZOrder">17617</P>
+      <P Name="Dst">48307#in:1</P>
     </Branch>
+  </Line>
+  <Line>
+    <P Name="ZOrder">17620</P>
+    <P Name="Src">3465#out:1</P>
+    <P Name="Dst">48284#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">17621</P>
+    <P Name="Src">3453#out:1</P>
+    <P Name="Dst">48284#in:2</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">17622</P>
+    <P Name="Src">3449#out:1</P>
+    <P Name="Dst">48284#in:3</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">17623</P>
+    <P Name="Src">3456#out:1</P>
+    <P Name="Dst">48284#in:4</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">17624</P>
+    <P Name="Src">3457#out:1</P>
+    <P Name="Dst">48284#in:5</P>
   </Line>
   <Annotation SID="48265">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1807,7 +1987,7 @@ li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:12px;&quot;&gt;Copyright 2020-2026 The MathWorks, Inc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[192, 275, 419, 291]</P>
+    <P Name="Position">[116, 274, 343, 290]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
     <P Name="ZOrder">-55</P>
@@ -1827,7 +2007,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
   <Object PropName="BdWindowsInfo" ObjectID="1" ClassName="Simulink.BDWindowsInfo">
     <Object PropName="WindowsInfo" ObjectID="2" ClassName="Simulink.WindowInfo">
       <P Name="IsActive" Class="logical">1</P>
-      <P Name="Location" Class="double">[32.0, 25.0, 1096.0, 694.0]</P>
+      <P Name="Location" Class="double">[75.0, 97.0, 1096.0, 694.0]</P>
       <Object PropName="ModelBrowserInfo" ObjectID="3" ClassName="Simulink.ModelBrowserInfo">
         <P Name="Visible" Class="logical">0</P>
         <P Name="DockPosition" Class="char">Left</P>
@@ -1847,8 +2027,8 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="LoadSaveID" Class="char">0</P>
           <P Name="Extents" Class="double">[1062.0, 460.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-238.5, -142.5]</P>
-          <P Name="SceneRectInView" Class="double">[-238.5, -142.5, 1062.0, 460.0]</P>
+          <P Name="Offset" Class="double">[-301.4921875, -142.0]</P>
+          <P Name="SceneRectInView" Class="double">[-301.4921875, -142.0, 1062.0, 460.0]</P>
         </Object>
         <Object ObjectID="6">
           <P Name="IsActive" Class="logical">0</P>

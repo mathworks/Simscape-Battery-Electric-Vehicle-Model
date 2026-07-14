@@ -8,8 +8,8 @@
 function Result = refineOCVData(NameValuePair)
 
 arguments (Input)
-  NameValuePair.Temperature (1,:) {CodeUtil1.mustBeSimscapeValueStrictAscend} = simscape.Value([0, 25, 60], "degC")
-  NameValuePair.SOC (:,1) {mustBeBetween(NameValuePair.SOC, 0, 1, "closed"), CodeUtil1.mustBeStrictAscend} = [0; 0.1; 0.15; 0.25; 0.75; 0.9; 1]
+  NameValuePair.Temperature (1,:) {bev1mus.CodeUtil.mustBeSimscapeValueStrictAscend} = simscape.Value([0, 25, 60], "degC")
+  NameValuePair.SOC (:,1) {mustBeBetween(NameValuePair.SOC, 0, 1, "closed"), bev1mus.CodeUtil.mustBeStrictAscend} = [0; 0.1; 0.15; 0.25; 0.75; 0.9; 1]
   NameValuePair.SOCInterval (1,1) {mustBeBetween(NameValuePair.SOCInterval, 0, 0.2, "open")} = 0.01
   NameValuePair.OCV = simscape.Value([2.8, 2.9, 3.0; 3.0, 3.1, 3.3; 3.1, 3.2, 3.4; 3.3, 3.4, 3.6; 3.4, 3.5, 3.7; 3.5, 3.6, 3.8; 3.6, 3.9, 4.15], "V")
 end  % arguments
@@ -27,7 +27,7 @@ ds = NameValuePair.SOCInterval;
 
 if height(soc) ~= height(ocv)
   id = errorID + "SocAndOcvSizeMismatch";
-  msg = CodeUtil1.i18n("SOC vector and OCV matrix must have the same number of rows.");
+  msg = bev1mus.CodeUtil.i18n("SOC vector and OCV matrix must have the same number of rows.");
 
   throw(MException(id, msg))
 
@@ -35,7 +35,7 @@ end  % if
 
 if width(ocv) ~= width(t)
   id = errorID + "OcvAndTemperatureSizeMismatch";
-  msg = CodeUtil1.i18n("Temperature vector and OCV matrix must have the same number of columns.");
+  msg = bev1mus.CodeUtil.i18n("Temperature vector and OCV matrix must have the same number of columns.");
 
   throw(MException(id, msg))
 
@@ -43,7 +43,7 @@ end  % if
 
 if ds > (soc(end) - soc(1))/2
   id = errorID + "SOCIntervalTooLarge";
-  msg = CodeUtil1.i18n("SOC interval is too large to insert data points.");
+  msg = bev1mus.CodeUtil.i18n("SOC interval is too large to insert data points.");
 
   throw(MException(id, msg))
 

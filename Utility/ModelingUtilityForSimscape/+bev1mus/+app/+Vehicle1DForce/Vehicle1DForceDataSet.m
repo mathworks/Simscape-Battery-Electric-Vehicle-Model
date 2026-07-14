@@ -154,6 +154,10 @@ classdef Vehicle1DForceDataSet
         % !todo: Make the "Dry air density" parameter of the block public.
         DataSet.ModelParams.DryAirDensity = bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(DataSet.BlockPath, "air_density");
 
+        % B is always 0 for the "Regular" parameterization type. The Longitudinal Vehicle block does not expose B as a parameter,
+        % so it must be explicitly set to 0 rather than read from the block.
+        DataSet.ModelParams.RoadLoadB = simscape.Value(0, "N/(m/s)");
+
         DataSet = resetCommonSettings(DataSet);
       end  % if
     end  % function

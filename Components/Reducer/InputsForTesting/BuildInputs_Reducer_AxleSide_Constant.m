@@ -10,11 +10,11 @@ f_unit = "N*m";
 interp_method = "Smooth";
 extrap_method = "Nearest";
 
-result = SignalUtil1.getVectorsFromSignalDesignMatrix(design_matrix);
+result = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(design_matrix);
 x = result.X';
 f = result.F';
 
-SignalUtil1.plotLookupTable1D( ... %[output:group:544c6d52] %[output:5c5c6964]
+bev1mus.SignalUtil.plotLookupTable1D( ... %[output:group:544c6d52] %[output:5c5c6964]
   x, f, ... %[output:5c5c6964]
   XUnitText = x_unit, ... %[output:5c5c6964]
   YUnitText = f_unit, ... %[output:5c5c6964]
@@ -23,9 +23,9 @@ SignalUtil1.plotLookupTable1D( ... %[output:group:544c6d52] %[output:5c5c6964]
   InterpolationInterval = dx, ... %[output:5c5c6964]
   PlotXLowerBound = x(1), ... %[output:5c5c6964]
   PlotXUpperBound = x(end) ); %[output:group:544c6d52] %[output:5c5c6964]
-x_text = CodeUtil1.stringify(x);
-f_text = CodeUtil1.stringify(f);
-design_matrix_text = CodeUtil1.stringify(design_matrix);
+x_text = bev1mus.CodeUtil.stringify(x);
+f_text = bev1mus.CodeUtil.stringify(f);
+design_matrix_text = bev1mus.CodeUtil.stringify(design_matrix);
 %%
 %[text] Set up the target PS Lookup Table (1D) block.
 load_system(model_name)

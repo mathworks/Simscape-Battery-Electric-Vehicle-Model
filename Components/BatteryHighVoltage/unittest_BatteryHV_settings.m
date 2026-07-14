@@ -112,7 +112,7 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
         target_block_path = block_paths(ii);
         disp("Checking: " + target_block_path)
         ClickFcn_text = string(get_param(target_block_path, "ClickFcn"));
-        lines = CodeUtil1.cleanupCodeText(ClickFcn_text);
+        lines = bev1mus.CodeUtil.cleanupCodeText(ClickFcn_text);
         if isempty(lines)
 
           verifyFail(testcase, "Callback must contain code.")
@@ -155,7 +155,7 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
       model_name = "HarnessModel_BatteryHV";
       expected_num_blocks = 3;
 
-      result = ModelUtil1.checkRefSubInCallbackButton(model_name);
+      result = bev1mus.ModelUtil.checkRefSubInCallbackButton(model_name);
       logical_index = result.Found;
       verifyEqual(testcase, nnz(logical_index), expected_num_blocks)
       target_blocks = result(logical_index, :);
@@ -172,9 +172,9 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
       %
       % This test makes sure there are no broken MATLAB links.
 
-      target_fullpath = FileUtil1.getFileFullPath("BatteryHV_Description.m");
+      target_fullpath = bev1mus.FileUtil.getFileFullPath("BatteryHV_Description.m");
 
-      link_table = FileUtil1.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
+      link_table = bev1mus.FileUtil.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
 
       if height(link_table) == 0
         disp("No hyperlinked MATLAB commands were found.")
@@ -198,10 +198,10 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
 
           main_target = extractBetween(matlab_command, "("+("'"|""""), ("'"|"""")+")");
           fullpath = strings(4, 1);
-          fullpath(1) = FileUtil1.getFileFullPath(main_target + ".m", ReturnIfNotFound=true);
-          fullpath(2) = FileUtil1.getFileFullPath(main_target + ".mlx", ReturnIfNotFound=true);
-          fullpath(3) = FileUtil1.getFileFullPath(main_target + ".mdl", ReturnIfNotFound=true);
-          fullpath(4) = FileUtil1.getFileFullPath(main_target + ".slx", ReturnIfNotFound=true);
+          fullpath(1) = bev1mus.FileUtil.getFileFullPath(main_target + ".m", ReturnIfNotFound=true);
+          fullpath(2) = bev1mus.FileUtil.getFileFullPath(main_target + ".mlx", ReturnIfNotFound=true);
+          fullpath(3) = bev1mus.FileUtil.getFileFullPath(main_target + ".mdl", ReturnIfNotFound=true);
+          fullpath(4) = bev1mus.FileUtil.getFileFullPath(main_target + ".slx", ReturnIfNotFound=true);
           logical_index = fullpath ~= "";
 
           verifyEqual(testcase, nnz(logical_index), 1)
@@ -212,7 +212,7 @@ classdef unittest_BatteryHV_settings < matlab.unittest.TestCase
           % This test should not actually open the app.
 
           main_target = matlab_command + ".m";
-          fullpath = FileUtil1.getFileFullPath(main_target, ReturnIfNotFound=true);
+          fullpath = bev1mus.FileUtil.getFileFullPath(main_target, ReturnIfNotFound=true);
 
           verifyTrue(testcase, fullpath ~= "")
 

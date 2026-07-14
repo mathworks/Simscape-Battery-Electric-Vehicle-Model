@@ -69,28 +69,28 @@ classdef unittest_BatteryHV_SystemTable_SimulationCases < matlab.unittest.TestCa
 
     function PassingTest_1(testcase)
       target_name = "BatteryHV_" + testcase.ModelID + "_Charge";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_2(testcase)
       target_name = "BatteryHV_" + testcase.ModelID + "_Constant";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_3(testcase)
       target_name = "BatteryHV_" + testcase.ModelID + "_Discharge";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_4(testcase)
       target_name = "BatteryHV_" + testcase.ModelID + "_Random";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function

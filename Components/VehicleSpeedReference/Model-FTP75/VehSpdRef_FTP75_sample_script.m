@@ -11,7 +11,7 @@ sim_out = sim(sim_in);
 
 sim_data = extractTimetable(sim_out.logsout);
 
-SignalUtil1.plotTimedData( ... %[output:group:60fb41eb] %[output:9488dc4a]
+bev1mus.SignalUtil.plotTimedData( ... %[output:group:60fb41eb] %[output:9488dc4a]
   TimedData = sim_data, ... %[output:9488dc4a]
   SignalName = "Vehicle speed reference kph", ... %[output:9488dc4a]
   FigureHeight = 250, ... %[output:9488dc4a]

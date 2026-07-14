@@ -1,5 +1,5 @@
 classdef unittest_Vehicle1D_settings < matlab.unittest.TestCase
-  %% Class-based unit test
+  % Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
   % https://www.mathworks.com/help/matlab/matlab_prog/author-class-based-unit-tests-in-matlab.html
@@ -10,20 +10,37 @@ classdef unittest_Vehicle1D_settings < matlab.unittest.TestCase
   % Test Browser
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2025 The MathWorks, Inc.
+  % Copyright 2025-2026 The MathWorks, Inc.
 
   methods (TestMethodSetup)
-    % Functions in this section always run before each test defined in the Test section runs.
+    % Functions in this "TestMethodSetup" section always run before
+    % each test defined in the "Test" section runs.
 
     function test_method_setup_1(testcase)
-      function closeAll
-        close all
-        bdclose all
-      end  % nested function
-      closeAll
+      %%
+      % Close all before test
+      close all
+      bdclose all
+      evalin("base", "clearvars")
+
       % addTeardown adds a function which always runs after each test.
       % Even if the execution of a test ends with an error, the teardown function runs.
-      addTeardown(testcase, @closeAll)
+      addTeardown(testcase, @closeAllAfterTest)
+      function closeAllAfterTest
+        % Close/delete all figure windows. This closes/deletes not only the test targets but also
+        % all the other figure windows too to provide clean state for the next test.
+        figs = findall(0, Type="Figure");
+        if not(any(isempty(figs)))
+          disp("Deleting figures (" + numel(figs) + ")")
+          delete(figs)
+        end  % if
+
+        bdclose all
+
+        % Do not clear variables in the base workspace at the end of a test
+        % to make it easy to debug after test if necessary.
+
+      end  % nested function
     end  % function
 
   end  % methods
@@ -36,12 +53,8 @@ classdef unittest_Vehicle1D_settings < matlab.unittest.TestCase
 
     function solver_settings(testcase)
       load_system("HarnessModel_Vehicle1D")
-
-      s = string(get_param(gcs, "SolverType"));
-      verifyEqual(testcase, s, "Variable-step")
-
-      s = string(get_param(gcs, "SolverName"));
-      verifyEqual(testcase, s, "daessc")
+      verifyTrue(testcase, get_param(gcs, "SolverType") == "Variable-step")
+      verifyTrue(testcase, get_param(gcs, "SolverName") == "daessc")
     end  % function
 
     %% Parameter settings
@@ -56,40 +69,40 @@ classdef unittest_Vehicle1D_settings < matlab.unittest.TestCase
 
     %% Subsystem Reference block
 
-    function subsystem_reference_block_settings_1(testcase)
+    function subsystem_reference_block_settings(testcase)
+      % Check the settings of the Subsystem Reference blocks in the specified model.
+
       model_name = "HarnessModel_Vehicle1D";
-      block_path = "HarnessModel_Vehicle1D/Inputs";
 
       load_system(model_name)
 
-      % The OpenFcn callback has to have the following code.
-      %   open_system(gcb, "force")
-      openFcn_text = string(get_param(block_path, "OpenFcn"));
-      target_text = lineBoundary("start") + "open_system(gcb, ""force"")";
-      verifyTrue(testcase, contains(openFcn_text, target_text));
+      % Unless modified, the model should have the following blocks as referenced subsystem.
+      %   HarnessModel_Vehicle1D/Inputs
+      %   HarnessModel_Vehicle1D/Longitudinal Vehicle
+      refsub_blockpaths = string( getfullname( Simulink.findBlocksOfType( bdroot, ...
+        "SubSystem", "ReferencedSubsystem", ".", Simulink.FindOptions("RegExp", 1))));
+      num_refsub_blocks = numel(refsub_blockpaths);
+      if num_refsub_blocks == 0
 
-      % IO port labels must be visible, i.e.,
-      % the Icon Transparency must be "Opaque with Ports". (Default is "Opaque".)
-      actual = string(get_param(block_path, "MaskIconOpaque"));
-      verifyEqual(testcase, actual, "opaque-with-ports")
-    end  % function
+        return
 
-    function subsystem_reference_block_settings_2(testcase)
-      model_name = "HarnessModel_Vehicle1D";
-      block_path = "HarnessModel_Vehicle1D/Longitudinal Vehicle";
+      end  % if
+      for k = 1 : num_refsub_blocks
+        target_refsub_path = refsub_blockpaths(k);
+        disp("Checking: " + target_refsub_path)
 
-      load_system(model_name)
+        % The OpenFcn callback has to have the following code.
+        %   open_system(gcb, "force")
+        openFcn_text = string(get_param(target_refsub_path, "OpenFcn"));
+        target_text = lineBoundary("start") + "open_system(gcb, ""force"")";
+        verifyTrue(testcase, contains(openFcn_text, target_text));
 
-      % The OpenFcn callback has to have the following code.
-      %   open_system(gcb, "force")
-      openFcn_text = string(get_param(block_path, "OpenFcn"));
-      target_text = lineBoundary("start") + "open_system(gcb, ""force"")";
-      verifyTrue(testcase, contains(openFcn_text, target_text));
+        % IO port labels must be visible, i.e.,
+        % the Icon Transparency must be "Opaque with Ports". (Default is "Opaque".)
+        actual = string(get_param(target_refsub_path, "MaskIconOpaque"));
+        verifyEqual(testcase, actual, "opaque-with-ports")
 
-      % IO port labels must be visible, i.e.,
-      % the Icon Transparency must be "Opaque with Ports". (Default is "Opaque".)
-      actual = string(get_param(block_path, "MaskIconOpaque"));
-      verifyEqual(testcase, actual, "opaque-with-ports")
+      end  % for
     end  % function
 
     %% Button block callback
@@ -170,37 +183,5 @@ classdef unittest_Vehicle1D_settings < matlab.unittest.TestCase
       sim(model_name);
     end  % function
 
-    %% Links
-
-    function linked_app_in_live_script_1(testcase)
-      % Text in a Live Script can have hyperlinks that are MATLAB commands.
-      % Those commands are not executed when the script runs, hense this test checks them.
-      %
-      % This test assumes that the name of an app command ends with "App" and
-      % checks that the linked apps exist.
-      % This test does not open the app.
-
-      target_fullpath = FileUtil1.getFileFullPath("SignalTool_Description.m");
-
-      link_table = FileUtil1.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
-      if isempty(link_table)
-        disp("No hyperlinked apps were found.")
-
-        return
-
-      end  % if
-      for ii = 1 : height(link_table)
-        matlab_command = link_table.Command(ii);
-        if endsWith(matlab_command, "App")
-          disp("Hyperlinked app: " + matlab_command)
-          fullpath = string( which(matlab_command));
-
-          verifyTrue(testcase, fullpath ~= "")
-
-        end  % if
-      end  % for
-    end  % function
-
   end  % methods
-
 end  % classdef

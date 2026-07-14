@@ -36,12 +36,12 @@ classdef uptodateTest_Reducer_Inputs < matlab.unittest.TestCase
 
     function markdowns_are_uptodate(testcase)
       % Make sure that all Live Scripts have been converted to markdown files.
-      n = FileUtil1.batchGenerateMarkdowns( ...
+      n = bev1mus.FileUtil.batchGenerateMarkdowns( ...
         LiveScriptFolderNames = pwd, ...
         MarkdownFolderPath = "markdown");
 
       if n > 0
-        n = FileUtil1.batchGenerateMarkdowns( ...
+        n = bev1mus.FileUtil.batchGenerateMarkdowns( ...
           LiveScriptFolderNames = pwd, ...
           MarkdownFolderPath = "markdown", DisplayInfo = true);
       end  % if
@@ -62,7 +62,7 @@ classdef uptodateTest_Reducer_Inputs < matlab.unittest.TestCase
 
       % Select Live Scripts.
       % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
-      live_script_file_collection = select(mfile_collection, @(p) FileUtil1.isPlainTextLiveScript(p));
+      live_script_file_collection = select(mfile_collection, @(p) bev1mus.FileUtil.isPlainTextLiveScript(p));
 
       [folder_path, base_file_name, ~] = fileparts(live_script_file_collection.paths');
       markdown_files = fullfile(folder_path, "markdown", base_file_name + ".md");

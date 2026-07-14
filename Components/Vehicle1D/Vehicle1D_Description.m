@@ -1,5 +1,5 @@
 %[text] # Abstract model of longitudinal vehicle dynamics
-%[text] Longitudinal vehicle driving/resisting force $F$ as a function of longitudinal vehicle speed $V$ is modelled as follows.
+%[text] Longitudinal vehicle driving/resisting force $F$ as a function of longitudinal vehicle speed $V$ is modeled as follows.
 %[text] $F(V) = (A\_{rl} + B\_{rl} V) \\cos(\\theta) + C\_{rl} {V}^2 + g M\_v \\sin(\\theta)$
 %[text] where
 %[text] - $A\_{rl}$, $B\_{rl}$, $C\_{rl}$ are road-load coefficients.
@@ -13,7 +13,7 @@
 %[text] $C\_{\\textrm{rl}} =\\frac{1}{2}\\;C\_d \\;A\_f \\;\\rho \\;${"editStyle":"visual"}
 %[text] Note that road-load coefficient $B\_{\\textrm{rl}}${"editStyle":"visual"} is not related to any vehicle parameters in this model.
 %[text] The above model is following Longitudinal Vehicle block in Simscape Driveline. For information about the block and detailed description about the model, see the [documentation](https://www.mathworks.com/help/sdl/ref/longitudinalvehicle.html).
-%[text] *Copyright 2024-2025 The MathWorks, Inc.*
+%[text] *Copyright 2024-2026 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}
 %---

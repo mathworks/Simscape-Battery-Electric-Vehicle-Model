@@ -371,7 +371,7 @@ doclink_ui.HyperlinkClickedCallback = @() ...
   function check_link(filename)
     % Check that the file exists.
     try
-      FileUtil1.getFileFullPath(filename);
+      bev1mus.FileUtil.getFileFullPath(filename);
     catch exception
       if not(force_start)
 

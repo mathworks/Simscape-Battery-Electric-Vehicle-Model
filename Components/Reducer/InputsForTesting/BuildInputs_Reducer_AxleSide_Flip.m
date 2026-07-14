@@ -10,25 +10,25 @@ design_matrix = [
   65 70 0
   ];
 
-result = SignalUtil1.getVectorsFromSignalDesignMatrix(design_matrix);
+result = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(design_matrix);
 x = result.X';
 f = result.F';
 
 % "Table grid vector" parameter in PS Lookup Table (1D) block.
-x_text = CodeUtil1.stringify(x);
+x_text = bev1mus.CodeUtil.stringify(x);
 x_unit = "s";
 
 % "Table values" parameter in PS Lookup Table (1D) block.
-f_text = CodeUtil1.stringify(f);
+f_text = bev1mus.CodeUtil.stringify(f);
 f_unit = "N*m";
 
 interp_method = "Smooth";
 extrap_method = "Nearest";
 
 % Add the design matrix as text to the Description property of the target block.
-design_matrix_text = CodeUtil1.stringify(design_matrix);
+design_matrix_text = bev1mus.CodeUtil.stringify(design_matrix);
 
-SignalUtil1.plotLookupTable1D( ... %[output:group:9868a38d] %[output:588a3d56]
+bev1mus.SignalUtil.plotLookupTable1D( ... %[output:group:9868a38d] %[output:588a3d56]
   x, f, ... %[output:588a3d56]
   XUnitText = x_unit, ... %[output:588a3d56]
   YUnitText = f_unit, ... %[output:588a3d56]

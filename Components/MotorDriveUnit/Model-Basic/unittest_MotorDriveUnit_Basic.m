@@ -1,5 +1,5 @@
 classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
-  %% Class-based unit test
+  % Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
   % https://www.mathworks.com/help/matlab/matlab_prog/author-class-based-unit-tests-in-matlab.html
@@ -10,44 +10,37 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
   % Test Browser
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2021-2025 The MathWorks, Inc.
-
-  properties
-
-    ComponentID (1,1) string = "MotorDriveUnit"
-
-    % Keyword representing the model.
-    % This is defined by extracting text after "Model-" in a folder name.
-    % For example, "Basic" from the "Model-Basic" folder, or
-    % "SystemThermal" from the "Model-SystemThermal" folder.
-    ModelID (1,1) string
-
-  end  % properties
-
-  methods (TestClassSetup)
-    % Functions in this section run only once before tests in the Test section runs.
-
-    function test_class_setup_1(testcase)
-      [~, folder_name, ~] = fileparts(pwd);
-      testcase.ModelID = extractAfter(folder_name, "Model-");
-      verifyTrue(testcase, endsWith(mfilename, testcase.ModelID))
-      disp("# Starting test class with ModelID: " + testcase.ModelID)
-    end  % function
-
-  end  % methods
+  % Copyright 2021-2026 The MathWorks, Inc.
 
   methods (TestMethodSetup)
-    % Functions in this section always run before each test defined in the Test section runs.
+    % Functions in this "TestMethodSetup" section always run before
+    % each test defined in the "Test" section runs.
 
     function test_method_setup_1(testcase)
-      function closeAll
-        close all
-        bdclose all
-      end  % nested function
-      closeAll
+      %%
+      % Close all before test
+      close all
+      bdclose all
+      evalin("base", "clearvars")
+
       % addTeardown adds a function which always runs after each test.
       % Even if the execution of a test ends with an error, the teardown function runs.
-      addTeardown(testcase, @closeAll)
+      addTeardown(testcase, @closeAllAfterTest)
+      function closeAllAfterTest
+        % Close/delete all figure windows. This closes/deletes not only the test targets but also
+        % all the other figure windows too to provide clean state for the next test.
+        figs = findall(0, Type="Figure");
+        if not(any(isempty(figs)))
+          disp("Deleting figures (" + numel(figs) + ")")
+          delete(figs)
+        end  % if
+
+        bdclose all
+
+        % Do not clear variables in the base workspace at the end of a test
+        % to make it easy to debug after test if necessary.
+
+      end  % nested function
     end  % function
 
   end  % methods
@@ -60,62 +53,50 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(testcase)
-      % Run code, for example, MotorDriveUnit_Basic_params.
-      target_name = testcase.ComponentID + "_" + testcase.ModelID + "_params";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
-      disp("Testing: " + target_fullpath)
+      target_name = "MotorDriveUnit_Basic_params";
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
       evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_2(testcase)
-      % Load system, for example, MotorDriveUnit_Basic_refsub.
-      load_system(testcase.ComponentID + "_" + testcase.ModelID + "_refsub")  % !test-target
+      target_name = "MotorDriveUnit_Basic_refsub";
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
+      load_system(target_name)  % !test-target
     end  % function
 
-    function PassingTest_3(~)
-      target_name = "MotorDriveUnit_BasicModelEfficiencyPlot";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
-      disp("Testing: " + target_fullpath)
-      evalin("base", target_name)  % !test-target
-    end  % function
+    %% Test Callback Button blocks
 
-    function PassingTest_4(~)
-      target_name = "MotorDriveUnit_BasicModelEfficiencyDoc";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
-      disp("Testing: " + target_fullpath)
-      evalin("base", target_name)  % !test-target
-    end  % function
+    function CallbackButton_1(testcase)
+      %%
+      % Test the command, ClickFcn, specified in Callback Button blocks.
+      % Assume that the command text is one line.
 
-    %% Link tests
+      refsub_name = "MotorDriveUnit_Basic_refsub";
+      refsub_fullpath = bev1mus.FileUtil.getFileFullPath(refsub_name);
 
-    function LinkTest_1(testcase)
-      refsub_name = testcase.ComponentID + "_" + testcase.ModelID + "_refsub";
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(refsub_fullpath) == pwd)
 
       load_system(refsub_name)
 
       blocks = string(getfullname(Simulink.findBlocksOfType(refsub_name, "CustomCallbackButton")));
 
       num_blocks = numel(blocks);
-      for idx = 1 : num_blocks
-        target_block = blocks(idx);
-
+      for k = 1 : num_blocks
+        target_block = blocks(k);
         disp("Found a Custom Callback Button: " + target_block)
-
         ClickFcn_text = string(get_param(target_block, "ClickFcn"));
-
-        % !test-target: There is only one line in the ClickFcn, just calling the target command.
-        num_lines = height(ClickFcn_text);
-        verifyEqual(testcase, num_lines, 1)
-
-        % !test-target: Check that the ClickFcn text is a file on MATLAB paths.
-        % The ClickFcn text must be something that can run, i.e., a script, a function, a class, or a model.
-        % However, do not evaluate the ClickFcn text here to make it run because
-        % checking that runnables do run should be done separately.
-        target_fullpath = FileUtil1.getFileFullPath(ClickFcn_text, ReturnIfNotFound=true);
-        verifyTrue(testcase, isfile(target_fullpath))
-
+        disp("Evaluating ClickFcn...")
+        eval(ClickFcn_text)  % !test-target
       end  % for
-
     end  % function
 
     %% other tests
@@ -145,6 +126,30 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
     end  % function
 
-  end  % methods
+    function screenshot_plot(~)
+      %%
+      % Take the screenshot of a plot of motor efficiency map based on the block parameters.
+      % !todo: Ideally, do not take a screenshot if it already exists and is newer than the source.
 
+      % Load block parameters in the base workspace.
+      evalin("base", "MotorDriveUnit_Basic_params")
+
+      % Set up the data set using the target block in the model.
+      ds = bev1mus.app.AbstractMotorEfficiency.AbstractMotorEfficiencyDataSet( ...
+        BlockPath="MotorDriveUnit_Basic_refsub/Motor & Drive (Driveline)");
+
+      % Create a plot.
+      fig = bev1mus.app.AbstractMotorEfficiency.plotAbstractMotorEfficiency(DataSource="dataset", DataSet=ds);
+      fig.Position(3:4) = [500, 400];  % width height
+
+      % Take a screenshot.
+      media_path = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit", "media");
+      if not(isfolder(media_path))
+        mkdir(media_path)
+      end  % if
+      exportgraphics(fig, fullfile(media_path, "screenshot-MDU-BasicModelEfficiencyPlot.png"))
+
+    end  % function
+
+  end  % methods
 end  % classdef

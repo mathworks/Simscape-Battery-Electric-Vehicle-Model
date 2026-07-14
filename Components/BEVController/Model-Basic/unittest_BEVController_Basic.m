@@ -77,7 +77,7 @@ classdef unittest_BEVController_Basic < matlab.unittest.TestCase
     function PassingTest_1(testcase)
       % Run script, for example, BEVController_Basic_params.
       target_name = "BEVController_" + testcase.ModelID + "_params";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function

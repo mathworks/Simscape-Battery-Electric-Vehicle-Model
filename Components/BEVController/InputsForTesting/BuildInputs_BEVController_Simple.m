@@ -2,7 +2,7 @@
 %[text] Generate data.
 signal_design_matrix = [0 100 0; 105 200 40; 205 300 60; 305 400 100; 405 500 50; 510 600 0];
 
-data_table = SignalUtil1.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 % The "Table data" parameter in Simulink 1D Lookup Table.
 t = data_table.X;
@@ -12,7 +12,7 @@ f = data_table.F;
 
 fig = figure; %[output:99120201]
 fig.Position(3:4) = [900 300];  % width height %[output:99120201]
-SignalUtil1.plotLookupTable1D(t, f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:99120201]
+bev1mus.SignalUtil.plotLookupTable1D(t, f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:99120201]
 %[text] *Copyright 2025-2026 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

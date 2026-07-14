@@ -1,5 +1,5 @@
 classdef unittest_MotorDriveUnit_BasicThermal_SimulationCases < matlab.unittest.TestCase
-  %% Class-based unit test
+  % Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
   % https://www.mathworks.com/help/matlab/matlab_prog/author-class-based-unit-tests-in-matlab.html
@@ -10,50 +10,37 @@ classdef unittest_MotorDriveUnit_BasicThermal_SimulationCases < matlab.unittest.
   % Test Browser
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2024-2025 The MathWorks, Inc.
-
-  properties
-
-    % Keyword representing the model.
-    % This is defined by extracting text after "Model-" in a folder name.
-    % For example, "Basic" from the "Model-Basic" folder, or
-    % "SystemThermal" from the "Model-SystemThermal" folder.
-    ModelID (1,1) string
-
-  end  % properties
-
-  methods (TestClassSetup)
-    % Functions in this section run only once before tests in the Test section runs.
-
-    function setup_ModelID(testcase)
-      % Extract text from the pwd path string.
-      % For example, extract "Basic" from "Model-Basic/SimulationCases".
-      testcase.ModelID = extractBetween(string(pwd), "Model-", filesep+"SimulationCase");
-
-      % Extract text from the classname.
-      % For example, extract "Basic" from "unittest_MotorDriveUnit_Basic_SimulationCases".
-      id = extractBetween(string(mfilename), "unittest_MotorDriveUnit_", "_SimulationCases");
-
-      % The texts extracted from the path and the class name must match.
-      verifyEqual(testcase, testcase.ModelID, id)
-
-      disp("# Starting tests ModelID: " + testcase.ModelID)
-    end  % function
-
-  end  % methods
+  % Copyright 2024-2026 The MathWorks, Inc.
 
   methods (TestMethodSetup)
-    % Functions in this section always run before each test defined in the Test section runs.
+    % Functions in this "TestMethodSetup" section always run before
+    % each test defined in the "Test" section runs.
 
     function test_method_setup_1(testcase)
-      function closeAll
-        close all
-        bdclose all
-      end  % nested function
-      closeAll
+      %%
+      % Close all before test
+      close all
+      bdclose all
+      evalin("base", "clearvars")
+
       % addTeardown adds a function which always runs after each test.
       % Even if the execution of a test ends with an error, the teardown function runs.
-      addTeardown(testcase, @closeAll)
+      addTeardown(testcase, @closeAllAfterTest)
+      function closeAllAfterTest
+        % Close/delete all figure windows. This closes/deletes not only the test targets but also
+        % all the other figure windows too to provide clean state for the next test.
+        figs = findall(0, Type="Figure");
+        if not(any(isempty(figs)))
+          disp("Deleting figures (" + numel(figs) + ")")
+          delete(figs)
+        end  % if
+
+        bdclose all
+
+        % Do not clear variables in the base workspace at the end of a test
+        % to make it easy to debug after test if necessary.
+
+      end  % nested function
     end  % function
 
   end  % methods
@@ -66,37 +53,48 @@ classdef unittest_MotorDriveUnit_BasicThermal_SimulationCases < matlab.unittest.
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(testcase)
-      % Run script, for example, MotorDriveUnit_Basic_Constant.
-      target_name = "MotorDriveUnit_" + testcase.ModelID + "_Constant";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
-      disp("Testing: " + target_fullpath)
+      %%
+      target_name = "MotorDriveUnit_BasicThermal_Constant";
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
       evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_2(testcase)
-      % Run script, for example, MotorDriveUnit_Basic_Constant.
-      target_name = "MotorDriveUnit_" + testcase.ModelID + "_Drive";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
-      disp("Testing: " + target_fullpath)
+      %%
+      target_name = "MotorDriveUnit_BasicThermal_Drive";
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
       evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_3(testcase)
-      % Run script, for example, MotorDriveUnit_Basic_Constant.
-      target_name = "MotorDriveUnit_" + testcase.ModelID + "_Random";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
-      disp("Testing: " + target_fullpath)
+      %%
+      target_name = "MotorDriveUnit_BasicThermal_Random";
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
       evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_4(testcase)
-      % Run script, for example, MotorDriveUnit_Basic_Constant.
-      target_name = "MotorDriveUnit_" + testcase.ModelID + "_RegenBrake";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
-      disp("Testing: " + target_fullpath)
+      %%
+      target_name = "MotorDriveUnit_BasicThermal_RegenBrake";
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
       evalin("base", target_name)  % !test-target
     end  % function
 
   end  % methods
-
 end  % classdef

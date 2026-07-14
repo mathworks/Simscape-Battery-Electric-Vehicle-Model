@@ -7,7 +7,7 @@ This script defines the High Speed drive pattern and sets it to Simullink 1D Loo
 % The block is 1D Lookup Table block, which is a Simulink block.
 block_path = "VehSpdRef_HighSpeed_refsub/Vehicle speed reference";
 
-signal_design_matrix = SignalUtil1.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = bev1mus.SignalUtil.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 6, ... Random seed
   ...
   FInitialValue = 0, ... Initial data value
@@ -23,11 +23,11 @@ signal_design_matrix = SignalUtil1.generateSignalDesignMatrixFromTraceProperties
   FFinalValue = 0, ... Final data value
   XFinalFlatLength = 10 );  % Final constant duration
 
-data_table = SignalUtil1.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 fig = figure;
 fig.Position(3:4) = [900 400];  % width height
-SignalUtil1.plotLookupTable1D(data_table.X, data_table.F, ...
+bev1mus.SignalUtil.plotLookupTable1D(data_table.X, data_table.F, ...
   Interpolation="Smooth", InterpolationInterval=0.1, ...
   ParentAxes=axes(fig))
 ```
@@ -41,11 +41,11 @@ load_system(model_name)
 
 % Time in seconds
 t_data = data_table.X;
-set_param(block_path, "BreakpointsForDimension1", CodeUtil1.stringify(t_data'))
+set_param(block_path, "BreakpointsForDimension1", bev1mus.CodeUtil.stringify(t_data'))
 
 % Physical unit is defined as Simulink property in the refsub.
 f_data = data_table.F;
-set_param(block_path, "Table", CodeUtil1.stringify(f_data'))
+set_param(block_path, "Table", bev1mus.CodeUtil.stringify(f_data'))
 ```
 
 *Copyright 2025 The MathWorks, Inc.*

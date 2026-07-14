@@ -1,33 +1,33 @@
 %[text] # Build inputs
 %[text] Generate data.
 BrakeForce.DesignMatrix = [0 200 0; 230 280 1000];
-BrakeForce.DataTable = SignalUtil1.getVectorsFromSignalDesignMatrix(BrakeForce.DesignMatrix);
+BrakeForce.DataTable = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(BrakeForce.DesignMatrix);
 BrakeForce.t = BrakeForce.DataTable.X;
 BrakeForce.f = BrakeForce.DataTable.F;
 fig = figure; %[output:04d8ef1d]
 fig.Position(3:4) = [900 200];  % width height %[output:04d8ef1d]
-SignalUtil1.plotLookupTable1D(BrakeForce.t, BrakeForce.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:04d8ef1d]
+bev1mus.SignalUtil.plotLookupTable1D(BrakeForce.t, BrakeForce.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:04d8ef1d]
 MotorTorqueCommand.DesignMatrix = [0 100 100; 110 200 0];
-MotorTorqueCommand.DataTable = SignalUtil1.getVectorsFromSignalDesignMatrix(MotorTorqueCommand.DesignMatrix);
+MotorTorqueCommand.DataTable = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(MotorTorqueCommand.DesignMatrix);
 MotorTorqueCommand.t = MotorTorqueCommand.DataTable.X;
 MotorTorqueCommand.f = MotorTorqueCommand.DataTable.F;
 fig = figure; %[output:5ee61939]
 fig.Position(3:4) = [900 200];  % width height %[output:5ee61939]
-SignalUtil1.plotLookupTable1D(MotorTorqueCommand.t, MotorTorqueCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:5ee61939]
+bev1mus.SignalUtil.plotLookupTable1D(MotorTorqueCommand.t, MotorTorqueCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:5ee61939]
 MotorHeatFlowCommand.DesignMatrix = [0 90 0; 110 190 -1000; 210 300 1000];
-MotorHeatFlowCommand.DataTable = SignalUtil1.getVectorsFromSignalDesignMatrix(MotorHeatFlowCommand.DesignMatrix);
+MotorHeatFlowCommand.DataTable = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(MotorHeatFlowCommand.DesignMatrix);
 MotorHeatFlowCommand.t = MotorHeatFlowCommand.DataTable.X;
 MotorHeatFlowCommand.f = MotorHeatFlowCommand.DataTable.F;
 fig = figure; %[output:2c1ec856]
 fig.Position(3:4) = [900 200];  % width height %[output:2c1ec856]
-SignalUtil1.plotLookupTable1D(MotorHeatFlowCommand.t, MotorHeatFlowCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:2c1ec856]
+bev1mus.SignalUtil.plotLookupTable1D(MotorHeatFlowCommand.t, MotorHeatFlowCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:2c1ec856]
 BatteryHeatFlowCommand.DesignMatrix = [0 90 0; 110 190 -1000; 210 300 1000];
-BatteryHeatFlowCommand.DataTable = SignalUtil1.getVectorsFromSignalDesignMatrix(BatteryHeatFlowCommand.DesignMatrix);
+BatteryHeatFlowCommand.DataTable = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(BatteryHeatFlowCommand.DesignMatrix);
 BatteryHeatFlowCommand.t = BatteryHeatFlowCommand.DataTable.X;
 BatteryHeatFlowCommand.f = BatteryHeatFlowCommand.DataTable.F;
 fig = figure; %[output:40a5a0d0]
 fig.Position(3:4) = [900 200];  % width height %[output:40a5a0d0]
-SignalUtil1.plotLookupTable1D(BatteryHeatFlowCommand.t, BatteryHeatFlowCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:40a5a0d0]
+bev1mus.SignalUtil.plotLookupTable1D(BatteryHeatFlowCommand.t, BatteryHeatFlowCommand.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:40a5a0d0]
 %%
 %[text] Set the generated data to the target block in the target model.
 model_name = "HarnessModel_CtrlEnv_Vehicle";
@@ -35,20 +35,20 @@ load_system(model_name)
 
 % Target blocks are Simulink 1D Lookup Tables.
 block_path = model_name + "/Brake force";
-set_param(block_path, "Table", CodeUtil1.stringify(BrakeForce.f))
-set_param(block_path, "BreakpointsForDimension1", CodeUtil1.stringify(BrakeForce.t))
+set_param(block_path, "Table", bev1mus.CodeUtil.stringify(BrakeForce.f))
+set_param(block_path, "BreakpointsForDimension1", bev1mus.CodeUtil.stringify(BrakeForce.t))
 
 block_path = model_name + "/Motor torque command";
-set_param(block_path, "Table", CodeUtil1.stringify(MotorTorqueCommand.f))
-set_param(block_path, "BreakpointsForDimension1", CodeUtil1.stringify(MotorTorqueCommand.t))
+set_param(block_path, "Table", bev1mus.CodeUtil.stringify(MotorTorqueCommand.f))
+set_param(block_path, "BreakpointsForDimension1", bev1mus.CodeUtil.stringify(MotorTorqueCommand.t))
 
 block_path = model_name + "/Motor heat flow command";
-set_param(block_path, "Table", CodeUtil1.stringify(MotorHeatFlowCommand.f))
-set_param(block_path, "BreakpointsForDimension1", CodeUtil1.stringify(MotorHeatFlowCommand.t))
+set_param(block_path, "Table", bev1mus.CodeUtil.stringify(MotorHeatFlowCommand.f))
+set_param(block_path, "BreakpointsForDimension1", bev1mus.CodeUtil.stringify(MotorHeatFlowCommand.t))
 
 block_path = model_name + "/Battery heat flow command";
-set_param(block_path, "Table", CodeUtil1.stringify(BatteryHeatFlowCommand.f))
-set_param(block_path, "BreakpointsForDimension1", CodeUtil1.stringify(BatteryHeatFlowCommand.t))
+set_param(block_path, "Table", bev1mus.CodeUtil.stringify(BatteryHeatFlowCommand.f))
+set_param(block_path, "BreakpointsForDimension1", bev1mus.CodeUtil.stringify(BatteryHeatFlowCommand.t))
 %[text] *Copyright 2025-2026 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

@@ -1,42 +1,42 @@
 %[text] # Build inputs
 %[text] Build vectors for $&dollar&;t&dollar&;${"altText":"t"} and $f\\left(t\\right)${"editStyle":"visual"} that are later sent to lookup table blocks in a model.
 BrakeForce.DesignMatrix = [0 1 0];
-BrakeForce.DataTable = SignalUtil1.getVectorsFromSignalDesignMatrix(BrakeForce.DesignMatrix);
+BrakeForce.DataTable = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(BrakeForce.DesignMatrix);
 BrakeForce.t = BrakeForce.DataTable.X;
 BrakeForce.f = BrakeForce.DataTable.F;
 fig = figure; %[output:871c2170]
 fig.Position(3:4) = [900 200];  % width height %[output:871c2170]
-SignalUtil1.plotLookupTable1D(BrakeForce.t, BrakeForce.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:871c2170]
+bev1mus.SignalUtil.plotLookupTable1D(BrakeForce.t, BrakeForce.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:871c2170]
 %[text] 
 RoadGrade.DesignMatrix = [0 1 0];
-RoadGrade.DataTable = SignalUtil1.getVectorsFromSignalDesignMatrix(RoadGrade.DesignMatrix);
+RoadGrade.DataTable = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(RoadGrade.DesignMatrix);
 RoadGrade.t = RoadGrade.DataTable.X;
 RoadGrade.f = RoadGrade.DataTable.F;
 fig = figure; %[output:471a2c5d]
 fig.Position(3:4) = [900 200];  % width height %[output:471a2c5d]
-SignalUtil1.plotLookupTable1D(RoadGrade.t, RoadGrade.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:471a2c5d]
+bev1mus.SignalUtil.plotLookupTable1D(RoadGrade.t, RoadGrade.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:471a2c5d]
 %[text] 
 AxleTorque.DesignMatrix = [0 1 0];
-AxleTorque.DataTable = SignalUtil1.getVectorsFromSignalDesignMatrix(AxleTorque.DesignMatrix);
+AxleTorque.DataTable = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(AxleTorque.DesignMatrix);
 AxleTorque.t = AxleTorque.DataTable.X;
 AxleTorque.f = AxleTorque.DataTable.F;
 fig = figure; %[output:52d507e2]
 fig.Position(3:4) = [900 200];  % width height %[output:52d507e2]
-SignalUtil1.plotLookupTable1D(AxleTorque.t, AxleTorque.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:52d507e2]
+bev1mus.SignalUtil.plotLookupTable1D(AxleTorque.t, AxleTorque.f, InterpolationInterval=0.2, ParentAxes=axes(fig)) %[output:52d507e2]
 %%
 %[text] Set the generated data to the target block in the target model.
 model_name = "Inputs_Vehicle1D_Coastdown_refsub";
 load_system(model_name)
 
 % Target block is Simulink 1D Lookup Table.
-set_param(model_name + "/Brake force", "Table", CodeUtil1.stringify(BrakeForce.f))
-set_param(model_name + "/Brake force", "BreakpointsForDimension1", CodeUtil1.stringify(BrakeForce.t))
+set_param(model_name + "/Brake force", "Table", bev1mus.CodeUtil.stringify(BrakeForce.f))
+set_param(model_name + "/Brake force", "BreakpointsForDimension1", bev1mus.CodeUtil.stringify(BrakeForce.t))
 
-set_param(model_name + "/Road grade", "Table", CodeUtil1.stringify(RoadGrade.f))
-set_param(model_name + "/Road grade", "BreakpointsForDimension1", CodeUtil1.stringify(RoadGrade.t))
+set_param(model_name + "/Road grade", "Table", bev1mus.CodeUtil.stringify(RoadGrade.f))
+set_param(model_name + "/Road grade", "BreakpointsForDimension1", bev1mus.CodeUtil.stringify(RoadGrade.t))
 
-set_param(model_name + "/Axle torque", "Table", CodeUtil1.stringify(AxleTorque.f))
-set_param(model_name + "/Axle torque", "BreakpointsForDimension1", CodeUtil1.stringify(AxleTorque.t))
+set_param(model_name + "/Axle torque", "Table", bev1mus.CodeUtil.stringify(AxleTorque.f))
+set_param(model_name + "/Axle torque", "BreakpointsForDimension1", bev1mus.CodeUtil.stringify(AxleTorque.t))
 %[text] *Copyright 2025-2026 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

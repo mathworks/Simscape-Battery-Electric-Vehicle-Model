@@ -51,7 +51,7 @@ classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
 
     function app_screenshot_1_dark(testcase)
       %%
-      if TestUtil1.isR2024bOrOlder || TestUtil1.isNonLocal(testcase.LocalTopFolder)
+      if bev1mus.TestUtil.isR2024bOrOlder || bev1mus.TestUtil.isNonLocal(testcase.LocalTopFolder)
         disp("!Skipping")
 
         return
@@ -69,7 +69,7 @@ classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
       destination_fullpath = fullfile(top_folder, "BEVProjectUtility", "screenshot-BEVProjectNavigationApp-dark.png");
 
       if isfile(destination_fullpath)
-        needs_update = FileUtil1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+        needs_update = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       else
         needs_update = true;
       end  % if
@@ -85,13 +85,13 @@ classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
         disp("Screenshot is up to date.")
       end  % if
 
-      destination_is_newer = not(FileUtil1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath));
+      destination_is_newer = not(bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath));
       verifyTrue(testcase, destination_is_newer)
     end  % function
 
     function app_screenshot_1_light(testcase)
       %%
-      if TestUtil1.isNonLocal(testcase.LocalTopFolder)
+      if bev1mus.TestUtil.isNonLocal(testcase.LocalTopFolder)
         disp("!Skipping")
 
         return
@@ -108,7 +108,7 @@ classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
       destination_fullpath = fullfile(top_folder, "BEVProjectUtility", "screenshot-BEVProjectNavigationApp-light.png");
 
       if isfile(destination_fullpath)
-        needs_update = FileUtil1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+        needs_update = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       else
         needs_update = true;
       end  % if
@@ -124,7 +124,7 @@ classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
         disp("Screenshot is up to date.")
       end  % if
 
-      destination_is_newer = not(FileUtil1.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath));
+      destination_is_newer = not(bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath));
       verifyTrue(testcase, destination_is_newer)
 
     end  % function

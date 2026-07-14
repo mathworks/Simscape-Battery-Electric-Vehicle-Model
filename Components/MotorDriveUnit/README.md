@@ -7,11 +7,15 @@ and simulate the high-level behavior of conversion
 between electric and mechanical powers
 by considering power conversion efficiency or losses.
 
+<img src="Utility/icon-MotorDriveUnit-abstract.png"
+ alt="motor drive unit icon"
+ width="100">
+
 ## MDU models
 
 This component provides the following MDU models.
 
-**Basic model** (`MotorDriveUnit_Basic_refsub`)
+🔵 **Basic model** (`MotorDriveUnit_Basic_refsub`)
 is the simplest model with the fewest parameters
 among the provided models.
 It uses [Motor & Drive block][url-motordrive-driveline]
@@ -24,19 +28,19 @@ Irons loss and fixed loss are not modeled.
 This model does not simulate temperature dynamics.
 Below is an example plot of efficiency contour of the Basic model.
 
-<img src="Model-Basic/screenshot-MDU-BasicModelEfficiencyPlot.png"
+<img src="media/screenshot-MDU-BasicModelEfficiencyPlot.png"
  alt="Efficiency contour plot of the basic model of motor drive unit"
  width="400">
 
 [url-motordrive-driveline]: https://www.mathworks.com/help/sdl/ref/motordrive.html
 
-**Basic thermal model** (`MotorDriveUnit_BasicThermal_refsub`)
+🔵 **Basic thermal model** (`MotorDriveUnit_BasicThermal_refsub`)
 uses [Motor & Drive block][url-motordrive-driveline],
 which is the same block as the above Basic model uses,
 but with thermal model enabled
 to simulate motor temperature dynamics.
 
-**System-level thermal model** (`MotorDriveUnit_System_refsub`)
+🔵 **System-level thermal model** (`MotorDriveUnit_System_refsub`)
 uses [Motor & Drive (System-Level) block][url-motordrive-elec]
 from Simscape Electrical
 to compute power conversion between electrical and mechanical powers.
@@ -46,11 +50,11 @@ which is the **single efficiency measurement model**,
 but irons loss and fixed loss are also considered in this model.
 Below is an example plot of efficiency contour of the System-level model.
 
-<img src="Model-SystemThermal/screenshot-MDU-SystemThermalModelEfficiencyPlot.png"
+<img src="media/screenshot-MDU-SystemThermalModelEfficiencyPlot.png"
  alt="Efficiency contour plot of the basic model of motor drive unit"
  width="400">
 
-**System-level model with tabulated losses**
+🔵 **System-level model with tabulated losses**
 (`MotorDriveUnit_SystemTable_refsub`) uses
 [Motor & Drive (System-Level) block][url-motordrive-elec]
 from Simscape Electrical.
@@ -68,11 +72,11 @@ measured at two different temperatures.
 
 ## Harness model
 
-To run simulation with the above models, use the harness model.
+To validate the above models by simulation, use the harness model.
 
 - `HarnessModel_MotorDriveUnit.mdl`
 
-<img src="screenshot-HarnessModel_MotorDriveUnit.png"
+<img src="media/screenshot-HarnessModel_MotorDriveUnit.png"
  width="800"  alt="Screenshot of the harness model for motor drive unit component">
 
 ## Simulation Cases
@@ -95,4 +99,15 @@ of the models in various simulation scenarios as follows.
   Input signals for motor torque command and axle load torque
   are randomly generated.
 
-_Copyright 2022-2025 The MathWorks, Inc._
+These inputs are designed and built in the `InputsForTesting` folder.
+
+## Abstract motor efficiency app
+
+Use the abstract motor efficiency app, `bev1mus_AbstractMotorEfficiencyApp`,
+to view the parameter settings of the motor drive unit.
+
+<img src="media/screenshot-AbstractMotorEfficiencyApp-light.png"
+ alt="Screenshot of the abstract motor efficiency app"
+ width="800">
+
+_Copyright 2022-2026 The MathWorks, Inc._

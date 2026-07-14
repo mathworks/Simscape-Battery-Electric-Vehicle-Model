@@ -1,6 +1,6 @@
 %[text] # Build input signal trace
 %[text] Generate data.
-signal_design_matrix = SignalUtil1.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = bev1mus.SignalUtil.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 123, ...
   FInitialValue = 0, ...
   XInitialFlatLength = 5, ...
@@ -13,22 +13,22 @@ signal_design_matrix = SignalUtil1.generateSignalDesignMatrixFromTraceProperties
   XFinalFlatLength = 10, ...
   FFinalValue = 0 );
 
-data_table = SignalUtil1.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 t = data_table.X;
 f = data_table.F;
 
 fig = figure; %[output:4510eefd]
 fig.Position(3:4) = [900 300];  % width height %[output:4510eefd]
-SignalUtil1.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig)) %[output:4510eefd]
+bev1mus.SignalUtil.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig)) %[output:4510eefd]
 %%
 %[text] Set the generated data to the target block in the target model.
 model_name = "Inputs_BatteryHV_Random_refsub";
 load_system(model_name)
 %[text] Load current input
 % Target block is Simulink 1D Lookup Table.
-set_param(model_name + "/Load current", "Table", CodeUtil1.stringify(f))
-set_param(model_name + "/Load current", "BreakpointsForDimension1", CodeUtil1.stringify(t))
+set_param(model_name + "/Load current", "Table", bev1mus.CodeUtil.stringify(f))
+set_param(model_name + "/Load current", "BreakpointsForDimension1", bev1mus.CodeUtil.stringify(t))
 %[text] *Copyright 2025 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

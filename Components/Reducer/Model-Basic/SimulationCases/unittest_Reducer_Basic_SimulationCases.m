@@ -70,7 +70,7 @@ classdef unittest_Reducer_Basic_SimulationCases < matlab.unittest.TestCase
     function PassingTest_1(testcase)
       % Run script, for example, Reducer_Basic_Constant.
       target_name = testcase.ComponentID + "_" + testcase.ModelID + "_Constant";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -78,7 +78,7 @@ classdef unittest_Reducer_Basic_SimulationCases < matlab.unittest.TestCase
     function PassingTest_2(testcase)
       % Run script, for example, Reducer_Basic_Constant.
       target_name = testcase.ComponentID + "_" + testcase.ModelID + "_Flip";
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function
@@ -86,7 +86,7 @@ classdef unittest_Reducer_Basic_SimulationCases < matlab.unittest.TestCase
     function PassingTest_3(testcase)
       % Run script, for example, Reducer_Basic_Constant.
       target_name = "profileSim_" + testcase.ComponentID + "_" + testcase.ModelID;
-      target_fullpath = FileUtil1.getFileFullPath(target_name);
+      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function

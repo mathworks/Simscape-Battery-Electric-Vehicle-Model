@@ -1,6 +1,6 @@
 %[text] # Build input signal trace
 %[text] Generate data.
-signal_design_matrix = SignalUtil1.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = bev1mus.SignalUtil.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 25, ...
   FInitialValue = 0, ...
   XInitialFlatLength = 100, ...
@@ -13,7 +13,7 @@ signal_design_matrix = SignalUtil1.generateSignalDesignMatrixFromTraceProperties
   XFinalFlatLength = 10, ...
   FFinalValue = 0 );
 
-data_table = SignalUtil1.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 % The "Table data" parameter in Simulink 1D Lookup Table.
 t = data_table.X;
@@ -23,7 +23,7 @@ f = data_table.F;
 
 fig = figure; %[output:60d5f82f]
 fig.Position(3:4) = [900 300];  % width height %[output:60d5f82f]
-SignalUtil1.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig)) %[output:60d5f82f]
+bev1mus.SignalUtil.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig)) %[output:60d5f82f]
 %[text] *Copyright 2025-2026 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

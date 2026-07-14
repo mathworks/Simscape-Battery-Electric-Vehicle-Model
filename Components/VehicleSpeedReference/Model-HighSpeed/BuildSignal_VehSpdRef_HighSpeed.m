@@ -3,7 +3,7 @@
 % The block is 1D Lookup Table block, which is a Simulink block.
 block_path = "VehSpdRef_HighSpeed_refsub/Vehicle speed reference";
 
-signal_design_matrix = SignalUtil1.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = bev1mus.SignalUtil.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 6, ... Random seed
   ...
   FInitialValue = 0, ... Initial data value
@@ -19,11 +19,11 @@ signal_design_matrix = SignalUtil1.generateSignalDesignMatrixFromTraceProperties
   FFinalValue = 0, ... Final data value
   XFinalFlatLength = 10 );  % Final constant duration
 
-data_table = SignalUtil1.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 fig = figure; %[output:283ceb90]
 fig.Position(3:4) = [900 400];  % width height %[output:283ceb90]
-SignalUtil1.plotLookupTable1D(data_table.X, data_table.F, ... %[output:group:730650e0] %[output:283ceb90]
+bev1mus.SignalUtil.plotLookupTable1D(data_table.X, data_table.F, ... %[output:group:730650e0] %[output:283ceb90]
   Interpolation="Smooth", InterpolationInterval=0.1, ... %[output:283ceb90]
   ParentAxes=axes(fig)) %[output:group:730650e0] %[output:283ceb90]
 model_name = extractBefore(block_path, "/");
@@ -31,11 +31,11 @@ load_system(model_name)
 
 % Time in seconds
 t_data = data_table.X;
-set_param(block_path, "BreakpointsForDimension1", CodeUtil1.stringify(t_data'))
+set_param(block_path, "BreakpointsForDimension1", bev1mus.CodeUtil.stringify(t_data'))
 
 % Physical unit is defined as Simulink property in the refsub.
 f_data = data_table.F;
-set_param(block_path, "Table", CodeUtil1.stringify(f_data'))
+set_param(block_path, "Table", bev1mus.CodeUtil.stringify(f_data'))
 %[text] *Copyright 2025 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}

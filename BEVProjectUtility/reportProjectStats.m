@@ -33,7 +33,7 @@ disp(sscfiles) %[output:8a0ff20b]
 mfile_pattern = fullfile(currentProject().RootFolder, "**/*.m");
 mfile_collection = matlab.buildtool.io.FileCollection.fromPaths(mfile_pattern);
 %[text] Apply a filter to get plain-text Live Scripts. See the documentation for [`select`](https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html).
-live_script_file_collection = select(mfile_collection, @(p) FileUtil1.isPlainTextLiveScript(p));
+live_script_file_collection = select(mfile_collection, @(p) bev1mus.FileUtil.isPlainTextLiveScript(p));
 disp(numel(live_script_file_collection.paths) + " plain-text Live Scripts") %[output:31f6ab39]
 live_script_paths = extractAfter(transpose(live_script_file_collection.paths), currentProject().RootFolder);
 disp(live_script_paths) %[output:31b228c5]
