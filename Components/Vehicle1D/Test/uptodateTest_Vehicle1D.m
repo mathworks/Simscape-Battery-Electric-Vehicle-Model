@@ -89,7 +89,7 @@ classdef uptodateTest_Vehicle1D < matlab.unittest.TestCase
       source_fullpath = fullfile(top_folder, model_name + ".mdl");
       verifyTrue(testcase, isfile(source_fullpath))
 
-      destination_folder = fullfile(top_folder, "Utility");
+      destination_folder = fullfile(top_folder, "media");
       destination_fullpath = fullfile(destination_folder, image_filename);
       if isfile(destination_fullpath)
         source_is_newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);

@@ -7,7 +7,7 @@ and simulate the high-level behavior of conversion
 between electric and mechanical powers
 by considering power conversion efficiency or losses.
 
-<img src="Utility/icon-MotorDriveUnit-abstract.png"
+<img src="media/icon-MotorDriveUnit-abstract.png"
  alt="motor drive unit icon"
  width="100">
 

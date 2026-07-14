@@ -12,18 +12,22 @@ Version 5.0.0
 
 ## Introduction
 
-This is a MATLAB&reg; Project containing
+This is a MATLAB&reg; project containing
 a [Battery Electric Vehicle (BEV) model](BEV/README.md) and
 its components such as
 motor, high voltage battery, and longitudinal vehicle.
 This project demonstrates Simscape's modular and
 multi-fidelity modeling technology.
-
 The abstract BEV model is built in a simple and modular fashion,
 and it can run faster than real-time.
 It is suitable as a baseline model for drive cycle simulation
 to estimate vehicle's electrical efficiency and
 other vehicle-level information.
+
+Cite this project as
+
+> MathWorks. Battery Electric Vehicle Model in Simscape
+> (https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model). GitHub, 2026.
 
 BEV system model:
 
@@ -63,12 +67,11 @@ how the model parameters are affecting the motor efficiency.
  alt="Screenshot of the motor drive unit efficiency app for system thermal model"
  width="700">
 
-## What's New in 5.0 (May 2026)
+## What's New in 5.0 (July 2026)
 
 - The project is upgraded to R2026a.
+- The overall project size is reduced.
 - Utility APIs are updated.
-- Apps are built with the new utility APIs.
-- Motor Drive Unit Simulation App is retired.
 
 ## What's New in 4.0 (January 2026)
 
@@ -85,14 +88,13 @@ R2026a or newer releases
 Required:
 [MATLAB](https://www.mathworks.com/products/matlab.html),
 [Simulink&reg;](https://www.mathworks.com/products/simulink.html),
-[Powertrain Blockset](https://www.mathworks.com/products/powertrain.html),
 [Simscape](https://www.mathworks.com/products/simscape.html),
 [Simscape Driveline&trade;](https://www.mathworks.com/products/simscape-driveline.html),
-[Simscape Electrical&trade;](https://www.mathworks.com/products/simscape-electrical.html)
+[Simscape Electrical&trade;](https://www.mathworks.com/products/simscape-electrical.html),
+[Powertrain Blockset](https://www.mathworks.com/products/powertrain.html)
 
 Optional:
-[MATLAB Test](https://www.mathworks.com/products/matlab-test.html),
-[Parallel Computing Toolbox&trade;](https://www.mathworks.com/products/parallel-computing.html)
+[MATLAB Test](https://www.mathworks.com/products/matlab-test.html)
 
 ## How to Use
 
@@ -170,33 +172,6 @@ Electric Vehicle Design with Simscape
 - Provides BEV design workflows using detailed models
   for detailed analysis.
 - https://www.mathworks.com/matlabcentral/fileexchange/124795
-
-## FYI: Detailed Model Applications
-
-This project previously provided "Detailed Model Applications",
-but they were removed because there are better alternatives in
-the following product documentation and GitHub.
-
-### Import IPMSM Flux Linkage Data from ANSYS Maxwell
-
-```matlab
-openExample("simscapeelectrical/IPMSMFluxFromANSYSMaxwellExample", workDir=pwd)
-```
-
-[Documentation](http://mathworks.com/help/sps/ug/import-ipmsm-flux-linkage-data-from-ansys-maxwell.html)
-
-### Import Efficiency Map Data from Motor-CAD
-
-```matlab
-openExample("simscapeelectrical/EfficiencyMapFromMotorCADExample", workDir=pwd)
-```
-
-[Documentation](https://www.mathworks.com/help/sps/ug/import-efficiency-map-motorcad.html)
-
-### Import a Motor-CAD Thermal Model into Simulink and Simscape
-
-- [GitHub](https://github.com/mathworks/import-motorcad-thermal-simulink)
-- [File Exchange](https://www.mathworks.com/matlabcentral/fileexchange/120598)
 
 ## License
 

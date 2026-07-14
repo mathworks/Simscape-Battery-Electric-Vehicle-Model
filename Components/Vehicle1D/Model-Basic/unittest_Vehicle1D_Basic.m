@@ -119,11 +119,13 @@ classdef unittest_Vehicle1D_Basic < matlab.unittest.TestCase
       fig.Position(3:4) = [500, 400];  % width height
 
       % Take a screenshot.
-      util_path = fullfile(currentProject().RootFolder, "Components", "Vehicle1D", "Utility");
-      if not(isfolder(util_path))
-        mkdir(util_path)
+      media_path = fullfile(currentProject().RootFolder, "Components", "Vehicle1D", "media");
+      if not(isfolder(media_path))
+        mkdir(media_path)
       end  % if
-      exportgraphics(fig, fullfile(util_path, "screenshot-Vehicle1D-force-plot.png"))
+      pngfile_fullpath = fullfile(media_path, "screenshot-Vehicle1D-force-plot.png");
+      disp("Exporting: " + pngfile_fullpath)
+      exportgraphics(fig, pngfile_fullpath)
 
     end  % function
 

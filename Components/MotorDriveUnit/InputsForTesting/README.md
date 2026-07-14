@@ -2,6 +2,7 @@
 
 `Inputs_MotorDriveUnit_*_refsub.mdl`
 
+- Used by `HarnessModel_MotorDriveUnit.mdl` and `HarnessModel_MotorDriveUnit_Inputs.mdl`.
 - Define input signals in a referenced subsystem for use by `HarnessModel_MotorDriveUnit.mdl`
   to test the motor drive unit.
 - Tested individually with `HarnessModel_MotorDriveUnit_Inputs.mdl` and

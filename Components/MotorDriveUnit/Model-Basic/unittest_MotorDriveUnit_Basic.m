@@ -147,7 +147,9 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
       if not(isfolder(media_path))
         mkdir(media_path)
       end  % if
-      exportgraphics(fig, fullfile(media_path, "screenshot-MDU-BasicModelEfficiencyPlot.png"))
+      pngfile_fullpath = fullfile(media_path, "screenshot-MDU-BasicModelEfficiencyPlot.png");
+      disp("Exporting: " + pngfile_fullpath)
+      exportgraphics(fig, pngfile_fullpath)
 
     end  % function
 

@@ -49,7 +49,19 @@ classdef unittest_MotorDriveunit_Inputs < matlab.unittest.TestCase
     % Functions in this "Test" section are the tests.
     % Before each function in this section runs, functions defined in the TestMethodSetup section run.
 
-    function PassingTest_1(~)
+    function PassingTest_1_1(~)
+      evalin("base", "BuildInputs_MotorDriveUnit_Drive")
+    end  % function
+
+    function PassingTest_1_2(~)
+      evalin("base", "BuildInputs_MotorDriveUnit_Random")
+    end  % function
+
+    function PassingTest_1_3(~)
+      evalin("base", "BuildInputs_MotorDriveUnit_RegenBrake")
+    end  % function
+
+    function PassingTest_2_1(~)
       model_name = "HarnessModel_MotorDriveUnit_Inputs";
       load_system(model_name)
       block_path = "HarnessModel_MotorDriveUnit_Inputs/Inputs";
@@ -57,7 +69,7 @@ classdef unittest_MotorDriveunit_Inputs < matlab.unittest.TestCase
       sim(model_name);  % !test-target
     end  % function
 
-    function PassingTest_2(~)
+    function PassingTest_2_2(~)
       model_name = "HarnessModel_MotorDriveUnit_Inputs";
       load_system(model_name)
       block_path = "HarnessModel_MotorDriveUnit_Inputs/Inputs";
@@ -65,7 +77,7 @@ classdef unittest_MotorDriveunit_Inputs < matlab.unittest.TestCase
       sim(model_name);  % !test-target
     end  % function
 
-    function PassingTest_3(~)
+    function PassingTest_2_3(~)
       model_name = "HarnessModel_MotorDriveUnit_Inputs";
       load_system(model_name)
       block_path = "HarnessModel_MotorDriveUnit_Inputs/Inputs";
@@ -73,7 +85,7 @@ classdef unittest_MotorDriveunit_Inputs < matlab.unittest.TestCase
       sim(model_name);  % !test-target
     end  % function
 
-    function PassingTest_4(~)
+    function PassingTest_2_4(~)
       model_name = "HarnessModel_MotorDriveUnit_Inputs";
       load_system(model_name)
       block_path = "HarnessModel_MotorDriveUnit_Inputs/Inputs";
