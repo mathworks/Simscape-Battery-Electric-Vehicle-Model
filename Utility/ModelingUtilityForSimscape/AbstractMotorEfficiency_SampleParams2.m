@@ -10,7 +10,7 @@
 % The app can also read these fields with the "Get" button all at once.
 %
 % Use a nested struct as an example.
-Params.Motor = bev1mus.app.AbstractMotorEfficiency.AbstractMotorEfficiencyAppParameters;
+Params.Motor = bevutil1.app.AbstractMotorEfficiency.AbstractMotorEfficiencyAppParameters;
 
 % =============================================================================
 % Maximum motor speed is not a parameter of the Motor & Drive blocks, but
