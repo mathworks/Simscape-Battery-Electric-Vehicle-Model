@@ -1,5 +1,5 @@
 %[text] # Refine data representing open circuit voltage (OCV)
-%[text] Refine SOC data points with the specified SOC interval and generate smoothly interpolated OCV data.
+%[text] Refine SOC data points with the specified SOC interval and generate smoothly interpolated OCV data. The computed OCV data can be used as the **Open-circuit voltage, V0(SOC, T)** parameter of the **Battery (Table-Based)** block.
 %[text] ## Options
 %[text] Temperature: a vector of temperatures.
 %[text] SOC: a vector of SOC data points.
@@ -63,7 +63,7 @@ Result = addprop(Result, {'OCVTemperature'}, {'table'});
 Result.Properties.CustomProperties.OCVTemperature = t;
 
 end  % function
-%[text] *Copyright 2025 The MathWorks, Inc.*
+%[text] *Copyright 2025-2026 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}
 %---

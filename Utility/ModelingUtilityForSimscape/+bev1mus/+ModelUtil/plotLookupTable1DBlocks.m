@@ -9,7 +9,7 @@ function ReturnFigure = plotLookupTable1DBlocks(SubsystemPath, NameValuePair)
 % Use the Blocks option to specify the blocks to make plots. If this option is not specified,
 % all lookup table 1D blocks in the specified subsystems layers are visualized.
 %
-% Use the SearchDepth option to specify how many subsystem layers to seach for lookup table blocks.
+% Use the SearchDepth option to specify how many subsystem layers to search for lookup table blocks.
 % By default, the search depth is 1.
 
 % Copyright 2025-2026 The MathWorks, Inc.
