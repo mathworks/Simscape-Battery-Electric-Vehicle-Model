@@ -54,7 +54,7 @@ classdef unittest_MotorDriveUnit_SystemThermal < matlab.unittest.TestCase
 
     function PassingTest_1(testcase)
       target_name = "MotorDriveUnit_SystemThermal_params";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)
@@ -64,7 +64,7 @@ classdef unittest_MotorDriveUnit_SystemThermal < matlab.unittest.TestCase
 
     function PassingTest_2(testcase)
       target_name = "MotorDriveUnit_SystemThermal_refsub";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)
@@ -80,7 +80,7 @@ classdef unittest_MotorDriveUnit_SystemThermal < matlab.unittest.TestCase
       % Assume that the command text is one line.
 
       refsub_name = "MotorDriveUnit_SystemThermal_refsub";
-      refsub_fullpath = bev1mus.FileUtil.getFileFullPath(refsub_name);
+      refsub_fullpath = bevutil1.FileUtil.getFileFullPath(refsub_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(refsub_fullpath) == pwd)
@@ -109,7 +109,7 @@ classdef unittest_MotorDriveUnit_SystemThermal < matlab.unittest.TestCase
         % !test-target: Check that the ClickFcn text is a file on MATLAB paths.
         % The ClickFcn text must be something that can run, i.e., a script, a function, a class, or a model.
         % However, do not evaluate the ClickFcn text here. Just check that it is exists as a file.
-        target_fullpath = bev1mus.FileUtil.getFileFullPath(ClickFcn_text, ReturnIfNotFound=true);
+        target_fullpath = bevutil1.FileUtil.getFileFullPath(ClickFcn_text, ReturnIfNotFound=true);
         verifyTrue(testcase, isfile(target_fullpath))
 
       end  % for
@@ -152,11 +152,11 @@ classdef unittest_MotorDriveUnit_SystemThermal < matlab.unittest.TestCase
       evalin("base", "MotorDriveUnit_SystemThermal_params")
 
       % Set up the data set using the target block in the model.
-      ds = bev1mus.app.AbstractMotorEfficiency.AbstractMotorEfficiencyDataSet( ...
+      ds = bevutil1.app.AbstractMotorEfficiency.AbstractMotorEfficiencyDataSet( ...
         BlockPath = "MotorDriveUnit_SystemThermal_refsub/Motor Drive/Motor & Drive (System Level)");
 
       % Create a plot.
-      fig = bev1mus.app.AbstractMotorEfficiency.plotAbstractMotorEfficiency(DataSource="dataset", DataSet=ds);
+      fig = bevutil1.app.AbstractMotorEfficiency.plotAbstractMotorEfficiency(DataSource="dataset", DataSet=ds);
       fig.Position(3:4) = [500, 400];  % width height
 
       % Take a screenshot.

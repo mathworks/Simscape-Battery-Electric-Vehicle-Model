@@ -28,7 +28,7 @@ signal_names = [
   ];
 
 for idx = 1 : numel(signal_names) %[output:group:2d875960]
-  bev1mus.SignalUtil.plotTimedData( TimedData = sim_data, ... %[output:0b61fbef] %[output:4c07950a] %[output:89a8a3ac] %[output:074c68af] %[output:19b4c2ca]
+  bevutil1.SignalUtil.plotTimedData( TimedData = sim_data, ... %[output:0b61fbef] %[output:4c07950a] %[output:89a8a3ac] %[output:074c68af] %[output:19b4c2ca]
     SignalName = signal_names(idx), ... %[output:0b61fbef] %[output:4c07950a] %[output:89a8a3ac] %[output:074c68af] %[output:19b4c2ca]
     FigureHeight = 150 ) %[output:0b61fbef] %[output:4c07950a] %[output:89a8a3ac] %[output:074c68af] %[output:19b4c2ca]
 end  % for %[output:group:2d875960]

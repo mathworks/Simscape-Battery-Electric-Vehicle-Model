@@ -119,7 +119,7 @@ classdef unittestModelSettings_CtrlEnv < matlab.unittest.TestCase
       model_name = "CtrlEnv_Basic_refsub";
       expected_num_blocks = 4;
 
-      result = bev1mus.ModelUtil.checkRefSubInCallbackButton(model_name);
+      result = bevutil1.ModelUtil.checkRefSubInCallbackButton(model_name);
       logical_index = result.Found;
       verifyEqual(testcase, nnz(logical_index), expected_num_blocks)
       target_blocks = result(logical_index, :);

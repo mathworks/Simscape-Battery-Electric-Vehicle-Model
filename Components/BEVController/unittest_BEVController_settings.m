@@ -133,7 +133,7 @@ classdef unittest_BEVController_settings < matlab.unittest.TestCase
       model_name = "HarnessModel_BEVController";
       expected_num_blocks = 2;
 
-      result = bev1mus.ModelUtil.checkRefSubInCallbackButton(model_name);  % !todo: 24b, sporadic issue
+      result = bevutil1.ModelUtil.checkRefSubInCallbackButton(model_name);  % !todo: 24b, sporadic issue
 
       logical_index = result.Found;
       verifyEqual(testcase, nnz(logical_index), expected_num_blocks)

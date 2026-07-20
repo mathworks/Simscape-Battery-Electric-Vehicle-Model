@@ -1,17 +1,16 @@
 # Input signals for testing Reducer component
 
-This folder contains input signal subsystems `Inputs_Reducer_*_refsub` and their support files.
-The input signal subsystems are used in `HarnessModel_Reducer`
-to test the Reducer component.
+This folder contains the `loadLUTData_Reducer_*.m` scripts to load data
+in the base worspace for use by lookup tables to test the Reducer component.
 
-The `BuildInputs_Reducer_*.m` files build input signal data
-and optionally set up the PS Lookup Table (1D) blocks
-in `Inputs_Reducer_*_refsub`.
+## Signals for the Flip Torque case 
 
-`Inputs_Reducer_*_refsub` subsystems are tested with
-the harness models `HarnessModel_Reducer_Inputs_*`.
+<img src="media/plot-Reducer_Motor_FlipTorque.png"
+ width="500"
+ alt="Motor torque input for the Reducer component" />
 
-The `setupProbe_Reducer_Inputs` script sets up
-the Probe blocks' output port labels.
+<img src="media/plot-Reducer_Axle_FlipTorque.png"
+ width="500"
+ alt="Axle torque input for the Reducer component" />
 
 _Copyright 2026 The MathWorks, Inc._

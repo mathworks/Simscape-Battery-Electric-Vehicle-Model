@@ -30,8 +30,8 @@ if not(bevutil1.ModelUtil.isSimulink1DLookupTableBlock(BlockPath))
 
 end  % if
 
-x_data = eval(get_param(BlockPath, "BreakpointsForDimension1"));
-y_data = eval(get_param(BlockPath, "Table"));
+x_data = get_param(BlockPath, "value@BreakpointsForDimension1");
+y_data = get_param(BlockPath, "value@Table");
 
 interp_method = get_param(BlockPath, "InterpMethod");
 extrap_method = get_param(BlockPath, "ExtrapMethod");

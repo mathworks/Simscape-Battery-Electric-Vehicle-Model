@@ -1,28 +1,51 @@
 # Vehicle speed reference
 
-This is a vehicle speed reference component for
-BEV system level simulation
-and provides the following speed reference patterns:
+This folder contains a vehicle speed reference component.
+The component acts as an external speed input representing a drive cycle.
+A vehicle speed controller can use it as a speed reference together with
+an actual vehicle speed to determine the command to control the longitudinal vehicle speed.
 
-1. Simple
-2. High speed
-3. FTP-75
-4. Constant
+The component provides the following cases:
+**Constant**, **Simple**, **High speed**, and **FTP-75**.
 
-This component is used in the **Controller and Environment** component.
+The Constant case outputs 0.
 
-You can use other drive cycles, such as WLTP, provided by the Drive Cycle Source block
-if you install the [support package][url-pkg].
+The Simple case provides a simple speed profile.
+
+<img src="media/plot-VehSpdRef_Simple.png"
+ width="700"
+ alt="The Simple speed reference" />
+
+The High speed case provides a speed profile at high-speed region.
+
+<img src="media/plot-VehSpdRef_HighSpeed.png"
+ width="700"
+ alt="The High-speed speed reference" />
+
+The Constant, Simple, and High speed cases are available
+as `VehSpdRef_LookupTable_refsub`.
+
+<img src="media/screenshot-VehSpdRef_LookupTable_refsub.png"
+ width="700"
+ alt="Subsystem with a Lookup Table block for vehicle speed reference" />
+
+The FTP-75 case requires the license of the Powertrain Blockset or the Vehicle Dynamics Blockset.
+
+<img src="media/screenshot-VehSpdRef_FTP75_refsub.png"
+ width="450"
+ alt="Subsystem with the Drive Cycle Source block for vehicle speed reference" />
+
+To use additional drive cycles such as WLTP as a speed reference,
+install the [Add-On][url-pkg] for the Drive Cycle Source block.
 
 [url-pkg]: https://www.mathworks.com/help/autoblks/ug/install-drive-cycle-data.html
 
 ## Harness model
 
-Use the harness model for testing and validating the vehicle speed reference component.
+Use the harness model (`HarnessModel_VehSpdRef`) for testing the component.
 
-- `HarnessModel_VehSpdRef.mdl`
+<img src="media/screenshot-HarnessModel_VehSpdRef.png"
+ width="800"
+ alt="Harness model for the vehicle speed reference component" />
 
-<img src="screenshot-HarnessModel_VehSpdRef.png"
- width="800" alt="Harness model for the vehicle speed reference component" />
-
-_Copyright 2023-2025 The MathWorks, Inc._
+_Copyright 2023-2026 The MathWorks, Inc._

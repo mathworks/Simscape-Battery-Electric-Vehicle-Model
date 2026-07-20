@@ -10,7 +10,7 @@ set_param(model_name + "/High Voltage Battery", ReferencedSubsystem = "BatteryHV
 set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_BatteryHV_Random_refsub");
 %%
 %[text] Test conditions
-signal_design_matrix = bev1mus.SignalUtil.generateSignalDesignMatrixFromTraceProperties(...
+signal_design_matrix = bevutil1.SignalUtil.generateSignalDesignMatrixFromTraceProperties(...
   RandomSeed = 12, ...
   FInitialValue = 0, ...
   XInitialFlatLength = 5, ...
@@ -23,17 +23,17 @@ signal_design_matrix = bev1mus.SignalUtil.generateSignalDesignMatrixFromTracePro
   XFinalFlatLength = 100, ...
   FFinalValue = 0 );
 
-data_table = bev1mus.SignalUtil.getVectorsFromSignalDesignMatrix(signal_design_matrix);
+data_table = bevutil1.SignalUtil.getVectorsFromSignalDesignMatrix(signal_design_matrix);
 
 t = data_table.X;
 f = data_table.F;
 
 fig = figure; %[output:6906c7dc]
 fig.Position(3:4) = [900 300];  % width height %[output:6906c7dc]
-bev1mus.SignalUtil.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig)) %[output:6906c7dc]
+bevutil1.SignalUtil.plotLookupTable1D(t, f, InterpolationInterval=0.5, ParentAxes=axes(fig)) %[output:6906c7dc]
 %%
-set_param(model_name + "/Inputs/Load current", "Table", bev1mus.CodeUtil.stringify(f))
-set_param(model_name + "/Inputs/Load current", "BreakpointsForDimension1", bev1mus.CodeUtil.stringify(t))
+set_param(model_name + "/Inputs/Load current", "Table", bevutil1.CodeUtil.stringify(f))
+set_param(model_name + "/Inputs/Load current", "BreakpointsForDimension1", bevutil1.CodeUtil.stringify(t))
 %[text] Initial conditions
 initial.hvBattery_SOC_pct = 50;
 initial.hvBattery_SOC_normalized = initial.hvBattery_SOC_pct / 100;

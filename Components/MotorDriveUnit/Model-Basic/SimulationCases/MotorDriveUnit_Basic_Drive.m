@@ -36,7 +36,7 @@ signal_names = [
   ];
 
 for idx = 1 : numel(signal_names) %[output:group:95ed9601]
-  fig = bev1mus.SignalUtil.plotTimedData(TimedData = sim_data, SignalName = signal_names(idx)); %[output:8528d569] %[output:7b39bffc] %[output:99b53256] %[output:27b076f7] %[output:7e03e9ef] %[output:63048914] %[output:80681035]
+  fig = bevutil1.SignalUtil.plotTimedData(TimedData = sim_data, SignalName = signal_names(idx)); %[output:8528d569] %[output:7b39bffc] %[output:99b53256] %[output:27b076f7] %[output:7e03e9ef] %[output:63048914] %[output:80681035]
   fig.Position(4) = 200;  % height
 end %[output:group:95ed9601]
 %[text] *Copyright 2021-2026 The Mathworks, Inc.*

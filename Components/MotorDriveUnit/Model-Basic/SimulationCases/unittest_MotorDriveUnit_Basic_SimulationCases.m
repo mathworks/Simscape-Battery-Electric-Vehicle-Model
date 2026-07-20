@@ -55,7 +55,7 @@ classdef unittest_MotorDriveUnit_Basic_SimulationCases < matlab.unittest.TestCas
     function PassingTest_1(testcase)
       %%
       target_name = "MotorDriveUnit_Basic_Constant";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)
@@ -66,7 +66,7 @@ classdef unittest_MotorDriveUnit_Basic_SimulationCases < matlab.unittest.TestCas
     function PassingTest_2(testcase)
       %%
       target_name = "MotorDriveUnit_Basic_Drive";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)
@@ -77,7 +77,7 @@ classdef unittest_MotorDriveUnit_Basic_SimulationCases < matlab.unittest.TestCas
     function PassingTest_3(testcase)
       %%
       target_name = "MotorDriveUnit_Basic_Random";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)
@@ -88,7 +88,7 @@ classdef unittest_MotorDriveUnit_Basic_SimulationCases < matlab.unittest.TestCas
     function PassingTest_4(testcase)
       %%
       target_name = "MotorDriveUnit_Basic_RegenBrake";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)

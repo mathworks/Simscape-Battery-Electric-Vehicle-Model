@@ -40,7 +40,7 @@ classdef unittest_BatteryHV_refineOCVData < matlab.unittest.TestCase
     end  % function
 
     function PassingTest_2(~)
-      refineOCVData_sample_script
+      SampleScript_BatteryHV_refineOCVData
     end  % function
 
     %% Up-to-date tests
@@ -54,7 +54,7 @@ classdef unittest_BatteryHV_refineOCVData < matlab.unittest.TestCase
 
       % Select Live Scripts.
       % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
-      live_script_file_collection = select(mfile_collection, @(p) bev1mus.FileUtil.isPlainTextLiveScript(p));
+      live_script_file_collection = select(mfile_collection, @(p) bevutil1.FileUtil.isPlainTextLiveScript(p));
 
       [folder_path, base_file_name, ~] = fileparts(live_script_file_collection.paths');
       markdown_files = fullfile(folder_path, "markdown", base_file_name + ".md");
@@ -71,12 +71,12 @@ classdef unittest_BatteryHV_refineOCVData < matlab.unittest.TestCase
 
     function markdowns_are_uptodate(testcase)
       % Make sure that all Live Scripts have been converted to markdown files.
-      n = bev1mus.FileUtil.batchGenerateMarkdowns( ...
+      n = bevutil1.FileUtil.batchGenerateMarkdowns( ...
         LiveScriptFolderNames = pwd, ...
         MarkdownFolderPath = "markdown");
 
       if n > 0
-        n = bev1mus.FileUtil.batchGenerateMarkdowns( ...
+        n = bevutil1.FileUtil.batchGenerateMarkdowns( ...
           LiveScriptFolderNames = pwd, ...
           MarkdownFolderPath = "markdown", DisplayInfo = true);
       end  % if

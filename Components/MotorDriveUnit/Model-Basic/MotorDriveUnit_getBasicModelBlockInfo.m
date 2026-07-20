@@ -46,22 +46,22 @@ errorID = "MotorDriveUnit_getBasicModelBlockInfo:";
 % Block parameters
 
 % Maximum torque
-info.MaxTorque = bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "torque_max");
+info.MaxTorque = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "torque_max");
 
 % Maximum power
-info.MaxPower =bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "power_max");
+info.MaxPower =bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "power_max");
 
 % Torque control time constant, Tc
-info.ResponseTime = bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "Tc");
+info.ResponseTime = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "Tc");
 
 % Motor and driver overall efficiency (percent)
-info.EfficiencyPercent = bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "eff");
+info.EfficiencyPercent = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "eff");
 
 % Speed at which efficiency is measured
-info.MeasuredSpeed = bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "w_eff");
+info.MeasuredSpeed = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "w_eff");
 
 % Torque at which efficiency is measured
-info.MeasuredTorque = bev1mus.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "T_eff");
+info.MeasuredTorque = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(fullpathToBlock, "T_eff");
 
 % ===============
 % Additional data
@@ -76,7 +76,7 @@ mechpow_meas_kW = mechpow_eff / 1000;
 info.MechanicalPower_measurement_kW = mechpow_meas_kW;
 assert( mechpow_meas_kW < maxPower_kW, ...
   errorID + "InvalidPower", ...
-  bev1mus.CodeUtil.i18n("Power at efficiency measurement speed must be smaller than maximum power."))
+  bevutil1.CodeUtil.i18n("Power at efficiency measurement speed must be smaller than maximum power."))
 
 % Nominal loss (total loss) at efficiency measurement point
 nominal_loss_meas_W = (1/eff_norm - 1) * mechpow_eff;

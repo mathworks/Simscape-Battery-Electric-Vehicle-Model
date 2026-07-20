@@ -1,5 +1,5 @@
 classdef unittest_Vehicle1D < matlab.unittest.TestCase
-  %% Class-based unit test
+  % Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
   % https://www.mathworks.com/help/matlab/matlab_prog/author-class-based-unit-tests-in-matlab.html
@@ -53,19 +53,19 @@ classdef unittest_Vehicle1D < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(~)
-      Vehicle1D_Description  % !test-target
+      Vehicle1D_Description
     end  % function
 
     function PassingTest_2(~)
-      HarnessSetup_Vehicle1D  % !test-target
+      HarnessSetup_Vehicle1D
     end  % function
 
     function PassingTest_3(~)
-      load_system("HarnessModel_Vehicle1D")  % !test-target
+      load_system("HarnessModel_Vehicle1D")
     end  % function
 
     function PassingTest_4(~)
-      sim("HarnessModel_Vehicle1D");  % !test-target
+      sim("HarnessModel_Vehicle1D");
     end  % function
 
     function sim_with_custom_1(~)

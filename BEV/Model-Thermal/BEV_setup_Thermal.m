@@ -21,18 +21,18 @@ if NameValuePair.DisplayMessage
 end  % if
 
 set_param(model_name + "/Longitudinal Vehicle", ReferencedSubsystem = "Vehicle1D_Basic_refsub");
-bev1mus.FileUtil.evalMFile("Vehicle1D_Basic_params")
+bevutil1.FileUtil.evalMFile("Vehicle1D_Basic_params")
 
 set_param(model_name + "/High Voltage Battery", ReferencedSubsystem = "BatteryHV_SystemThermal_refsub");
-bev1mus.FileUtil.evalMFile("BatteryHV_SystemThermal_params")
+bevutil1.FileUtil.evalMFile("BatteryHV_SystemThermal_params")
 
 set_param(model_name + "/Motor Drive Unit", ReferencedSubsystem = "MotorDriveUnit_BasicThermal_refsub");
-bev1mus.FileUtil.evalMFile("MotorDriveUnit_BasicThermal_params")
+bevutil1.FileUtil.evalMFile("MotorDriveUnit_BasicThermal_params")
 
 set_param(model_name + "/Reduction Gear", ReferencedSubsystem = "Reducer_Basic_refsub");
-bev1mus.FileUtil.evalMFile("Reducer_Basic_params")
+bevutil1.FileUtil.evalMFile("Reducer_Basic_params")
 
 set_param(model_name + "/Controller and Environment/BEV Controller", ReferencedSubsystem = "BEVController_Basic_refsub");
-bev1mus.FileUtil.evalMFile("BEVController_Basic_params")
+bevutil1.FileUtil.evalMFile("BEVController_Basic_params")
 
 end  % function

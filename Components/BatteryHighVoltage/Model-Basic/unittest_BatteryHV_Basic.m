@@ -59,7 +59,7 @@ classdef unittest_BatteryHV_Basic < matlab.unittest.TestCase
 
     function PassingTest_1(testcase)
       target_name = "BatteryHV_" + testcase.ModelID + "_params";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
       disp("Testing: " + target_fullpath)
       evalin("base", target_name)  % !test-target
     end  % function

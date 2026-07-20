@@ -111,10 +111,10 @@ for idx = 1 : num_blocks
   block_path = specified_blocks(idx);
 
   if bevutil1.ModelUtil.isSimulink1DLookupTableBlock(block_path)
-    xdata = eval(get_param(block_path, "BreakpointsForDimension1"));
+    xdata = get_param(block_path, "value@BreakpointsForDimension1");
     xmaxvalues(idx) = xdata(end);
   elseif bevutil1.ModelUtil.isSimscapePSLookupTable1DBlock(block_path)
-    xdata = eval(get_param(block_path, "x"));
+    xdata = get_param(block_path, "value@x");
     xmaxvalues(idx) = xdata(end);
   end  % if
 end  % for

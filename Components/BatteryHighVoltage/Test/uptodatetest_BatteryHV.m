@@ -35,10 +35,10 @@ classdef uptodatetest_BatteryHV < matlab.unittest.TestCase
     %% Up-to-date tests
 
     function html_is_uptodate(testcase)
-      source_fullpath = bev1mus.FileUtil.getFileFullPath("BatteryHV_Description.m");
-      destination_fullpath = bev1mus.FileUtil.getFileFullPath("BatteryHV_Description.html");
+      source_fullpath = bevutil1.FileUtil.getFileFullPath("BatteryHV_Description.m");
+      destination_fullpath = bevutil1.FileUtil.getFileFullPath("BatteryHV_Description.html");
 
-      newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         % The export command saves the generated file in the current working folder (pwd).
         % When this test runs, pwd is the folder where this test code file exists.
@@ -47,7 +47,7 @@ classdef uptodatetest_BatteryHV < matlab.unittest.TestCase
         verifyEqual(testcase, actual_path, expected_path)
       end  % if
 
-      newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
+      newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath, DisplayInfo=true);
       verifyFalse(testcase, newer)
     end  % function
 
@@ -60,7 +60,7 @@ classdef uptodatetest_BatteryHV < matlab.unittest.TestCase
 
       % Select Live Scripts.
       % https://www.mathworks.com/help/matlab/ref/matlab.buildtool.io.filecollection.select.html
-      live_script_file_collection = select(mfile_collection, @(p) bev1mus.FileUtil.isPlainTextLiveScript(p));
+      live_script_file_collection = select(mfile_collection, @(p) bevutil1.FileUtil.isPlainTextLiveScript(p));
 
       [folder_path, base_file_name, ~] = fileparts(live_script_file_collection.paths');
       markdown_files = fullfile(folder_path, "markdown", base_file_name + ".md");
@@ -77,12 +77,12 @@ classdef uptodatetest_BatteryHV < matlab.unittest.TestCase
 
     function markdowns_are_uptodate(testcase)
       % Make sure that all Live Scripts have been converted to markdown files.
-      n = bev1mus.FileUtil.batchGenerateMarkdowns( ...
+      n = bevutil1.FileUtil.batchGenerateMarkdowns( ...
         LiveScriptFolderNames = pwd, ...
         MarkdownFolderPath = "markdown");
 
       if n > 0
-        n = bev1mus.FileUtil.batchGenerateMarkdowns( ...
+        n = bevutil1.FileUtil.batchGenerateMarkdowns( ...
           LiveScriptFolderNames = pwd, ...
           MarkdownFolderPath = "markdown", DisplayInfo = true);
       end  % if
@@ -98,10 +98,10 @@ classdef uptodatetest_BatteryHV < matlab.unittest.TestCase
       model_name = "HarnessModel_BatteryHV";
       image_filename = "screenshot-" + model_name + ".png";
 
-      source_fullpath = bev1mus.FileUtil.getFileFullPath(model_name + ".mdl");
-      destination_fullpath = bev1mus.FileUtil.getFileFullPath(image_filename);
+      source_fullpath = bevutil1.FileUtil.getFileFullPath(model_name + ".mdl");
+      destination_fullpath = bevutil1.FileUtil.getFileFullPath(image_filename);
 
-      newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         load_system(model_name)
 
@@ -110,13 +110,13 @@ classdef uptodatetest_BatteryHV < matlab.unittest.TestCase
         % This also updates the canvas rendering.
         set_param(model_name, SimulationCommand = "update")
 
-        bev1mus.ModelUtil.screenshotSimulink( ...
+        bevutil1.ModelUtil.screenshotSimulink( ...
           OutputFileName = image_filename, ...
           SimulinkModelName = model_name, ...
           SaveFolder = pwd );
       end  % if
 
-      newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function

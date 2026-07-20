@@ -54,7 +54,7 @@ classdef unittest_MotorDriveUnit_SystemTable < matlab.unittest.TestCase
 
     function PassingTest_1(testcase)
       target_name = "MotorDriveUnit_SystemTable_params";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)
@@ -64,7 +64,7 @@ classdef unittest_MotorDriveUnit_SystemTable < matlab.unittest.TestCase
 
     function PassingTest_2(testcase)
       target_name = "MotorDriveUnit_SystemTable_refsub";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)

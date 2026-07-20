@@ -53,8 +53,9 @@ classdef unittest_Vehicle1D_Basic < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(testcase)
-      target_name = "Vehicle1D_Basic_params";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      %%
+      target_name = "Vehicle1D_Basic_params";  % !test-target
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)
@@ -63,8 +64,9 @@ classdef unittest_Vehicle1D_Basic < matlab.unittest.TestCase
     end  % function
 
     function PassingTest_2(testcase)
-      target_name = "Vehicle1D_Basic_refsub";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      %%
+      target_name = "Vehicle1D_Basic_refsub";  % !test-target
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)
@@ -81,7 +83,7 @@ classdef unittest_Vehicle1D_Basic < matlab.unittest.TestCase
       evalin("base", "Vehicle1D_Basic_params")
 
       refsub_name = "Vehicle1D_Basic_refsub";
-      refsub_fullpath = bev1mus.FileUtil.getFileFullPath(refsub_name);
+      refsub_fullpath = bevutil1.FileUtil.getFileFullPath(refsub_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(refsub_fullpath) == pwd)
@@ -111,11 +113,11 @@ classdef unittest_Vehicle1D_Basic < matlab.unittest.TestCase
       evalin("base", "Vehicle1D_Basic_params")
 
       % Set up the data set using the target block in the model.
-      ds = bev1mus.app.Vehicle1DForce.Vehicle1DForceDataSet( ...
+      ds = bevutil1.app.Vehicle1DForce.Vehicle1DForceDataSet( ...
         BlockPath="Vehicle1D_Basic_refsub/Longitudinal Vehicle");
 
       % Create a plot.
-      fig = bev1mus.app.Vehicle1DForce.plotVehicle1DForce(DataSource="dataset", DataSet=ds);
+      fig = bevutil1.app.Vehicle1DForce.plotVehicle1DForce(DataSource="dataset", DataSet=ds);
       fig.Position(3:4) = [500, 400];  % width height
 
       % Take a screenshot.

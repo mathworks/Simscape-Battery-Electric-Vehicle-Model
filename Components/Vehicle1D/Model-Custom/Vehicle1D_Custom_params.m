@@ -8,7 +8,7 @@ defineBus_Rotational
 
 %% Vehicle block parameters
 
-VehicleParams = bev1mus.app.Vehicle1DForce.Vehicle1DForceModelParameters(Initialization=true);
+VehicleParams = bevutil1.app.Vehicle1DForce.Vehicle1DForceModelParameters(Initialization=true);
 
 VehicleParams.VehicleMass = simscape.Value(1800, "kg");
 VehicleParams.TireRollingCoefficient = 0.0136;

@@ -53,12 +53,12 @@ classdef uptodateTest_MotorDriveUnit < matlab.unittest.TestCase
 
     function html_is_uptodate(testcase)
       %%
-      source_fullpath = bev1mus.FileUtil.getFileFullPath("MotorDriveUnit_Description.m");
+      source_fullpath = bevutil1.FileUtil.getFileFullPath("MotorDriveUnit_Description.m");
 
       destination_fullpath = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit", "MotorDriveUnit_Description.html");
 
       if isfile(destination_fullpath)
-        source_is_newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+        source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       else
         source_is_newer = true;
       end  % if
@@ -74,7 +74,7 @@ classdef uptodateTest_MotorDriveUnit < matlab.unittest.TestCase
 
       end  % if
 
-      source_is_newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, source_is_newer)
     end  % function
 
@@ -83,12 +83,12 @@ classdef uptodateTest_MotorDriveUnit < matlab.unittest.TestCase
       model_name = "HarnessModel_MotorDriveUnit";
       image_filename = "screenshot-" + model_name + ".png";
 
-      source_fullpath = bev1mus.FileUtil.getFileFullPath(model_name + ".mdl");
+      source_fullpath = bevutil1.FileUtil.getFileFullPath(model_name + ".mdl");
 
       destination_folder = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit", "media");
       destination_fullpath = fullfile(destination_folder, image_filename);
 
-      newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if newer
         load_system(model_name)
 
@@ -97,7 +97,7 @@ classdef uptodateTest_MotorDriveUnit < matlab.unittest.TestCase
         % This also updates the canvas rendering.
         set_param(model_name, SimulationCommand = "update")
 
-        bev1mus.ModelUtil.screenshotSimulink( ...
+        bevutil1.ModelUtil.screenshotSimulink( ...
           OutputFileName = image_filename, ...
           SimulinkModelName = model_name, ...
           SaveFolder = destination_folder );
@@ -107,11 +107,10 @@ classdef uptodateTest_MotorDriveUnit < matlab.unittest.TestCase
 
       end  % if
 
-      newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, newer)
 
     end  % function
 
   end  % methods
-
 end  % classdef

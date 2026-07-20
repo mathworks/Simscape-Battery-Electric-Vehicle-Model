@@ -54,7 +54,7 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
     function PassingTest_1(testcase)
       target_name = "MotorDriveUnit_Basic_params";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)
@@ -64,7 +64,7 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
     function PassingTest_2(testcase)
       target_name = "MotorDriveUnit_Basic_refsub";
-      target_fullpath = bev1mus.FileUtil.getFileFullPath(target_name);
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(target_fullpath) == pwd)
@@ -79,8 +79,13 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
       % Test the command, ClickFcn, specified in Callback Button blocks.
       % Assume that the command text is one line.
 
+      target_name = "MotorDriveUnit_Basic_params";
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+      evalin("base", target_name)
+
       refsub_name = "MotorDriveUnit_Basic_refsub";
-      refsub_fullpath = bev1mus.FileUtil.getFileFullPath(refsub_name);
+      refsub_fullpath = bevutil1.FileUtil.getFileFullPath(refsub_name);
 
       % Make sure that the target file is in the same folder as this test file.
       verifyTrue(testcase, fileparts(refsub_fullpath) == pwd)
@@ -135,11 +140,11 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
       evalin("base", "MotorDriveUnit_Basic_params")
 
       % Set up the data set using the target block in the model.
-      ds = bev1mus.app.AbstractMotorEfficiency.AbstractMotorEfficiencyDataSet( ...
+      ds = bevutil1.app.AbstractMotorEfficiency.AbstractMotorEfficiencyDataSet( ...
         BlockPath="MotorDriveUnit_Basic_refsub/Motor & Drive (Driveline)");
 
       % Create a plot.
-      fig = bev1mus.app.AbstractMotorEfficiency.plotAbstractMotorEfficiency(DataSource="dataset", DataSet=ds);
+      fig = bevutil1.app.AbstractMotorEfficiency.plotAbstractMotorEfficiency(DataSource="dataset", DataSet=ds);
       fig.Position(3:4) = [500, 400];  % width height
 
       % Take a screenshot.

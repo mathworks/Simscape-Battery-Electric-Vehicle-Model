@@ -45,7 +45,7 @@ classdef uptodateTest_BEV < matlab.unittest.TestCase
 
       destination_fullpath = fullfile(top_folder, "BEV_main_script.html");
       if isfile(destination_fullpath)
-        do_export = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+        do_export = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       else
         do_export = true;
       end  % if
@@ -57,7 +57,7 @@ classdef uptodateTest_BEV < matlab.unittest.TestCase
         disp("Generated: " + result_path)
       end  % if
 
-      is_newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       verifyFalse(testcase, is_newer)
     end  % function
 
@@ -72,7 +72,7 @@ classdef uptodateTest_BEV < matlab.unittest.TestCase
         mkdir(target_folder)
       end  % if
 
-      num_conversions = bev1mus.FileUtil.batchGenerateMarkdowns( ...
+      num_conversions = bevutil1.FileUtil.batchGenerateMarkdowns( ...
         DryRun = false, ...
         LiveScriptFolderNames = fullfile(top_folder), ...
         IncludeSubfolders = false, ...
@@ -80,7 +80,7 @@ classdef uptodateTest_BEV < matlab.unittest.TestCase
 
       if num_conversions > 0
         % If one or more markdowns were generated, rerun the command and get the return value of 0.
-        num_conversions = bev1mus.FileUtil.batchGenerateMarkdowns( ...
+        num_conversions = bevutil1.FileUtil.batchGenerateMarkdowns( ...
           DryRun = false, ...
           LiveScriptFolderNames = fullfile(top_folder), ...
           IncludeSubfolders = false, ...
@@ -109,7 +109,7 @@ classdef uptodateTest_BEV < matlab.unittest.TestCase
 
       destination_fullpath = fullfile(top_folder, "Utility", image_filename);
 
-      is_newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if is_newer
         disp("Taking screenshot: " + model_name)
 
@@ -120,14 +120,14 @@ classdef uptodateTest_BEV < matlab.unittest.TestCase
         % This also updates the canvas rendering.
         set_param(model_name, SimulationCommand = "update")
 
-        result = bev1mus.ModelUtil.screenshotSimulink( ...
+        result = bevutil1.ModelUtil.screenshotSimulink( ...
           OutputFileName = destination_fullpath, ...
           SimulinkModelName = model_name);
 
         disp("Generated: " + result.OutputFullPath)
       end  % if
 
-      is_newer = bev1mus.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
 
       verifyFalse(testcase, is_newer)
 

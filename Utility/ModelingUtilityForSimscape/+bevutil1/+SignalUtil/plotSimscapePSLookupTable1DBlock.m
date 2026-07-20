@@ -30,8 +30,8 @@ if not(bevutil1.ModelUtil.isSimscapePSLookupTable1DBlock(BlockPath))
 
 end  % if
 
-x_data = eval(get_param(BlockPath, "x"));  % !todo: avoid eval
-y_data = eval(get_param(BlockPath, "f"));  % !todo: avoid eval
+x_data = get_param(BlockPath, "value@x");
+y_data = get_param(BlockPath, "value@f");
 
 interp_method = extractAfter(get_param(BlockPath, "interp_method"), asManyOfPattern(alphanumericsPattern + "."));
 interp_method = [upper(interp_method(1)) interp_method(2:end)];  % Capitalize
