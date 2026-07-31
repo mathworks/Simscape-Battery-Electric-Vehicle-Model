@@ -1,5 +1,5 @@
 %% Setup script for the Reducer component harness
-% When the Reducer harness model opens, the model runs this script automatically in
+% When the harness model opens, the model runs this script automatically in
 % the PreLoadFcn callback.
 %
 % Displaying messages must be turned off to avoid warnings when the model opens.

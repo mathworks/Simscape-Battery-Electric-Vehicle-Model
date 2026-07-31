@@ -1,0 +1,39 @@
+component InfiniteBattery
+  % DC battery with infinite capacity
+
+  % Copyright 2026 The MathWorks, Inc.
+
+  parameters
+    V_sys = { 340 "V" }  % System voltage
+    R_internal = { 0.01 "Ohm" }  % Internal resistance
+  end  % parameters
+
+  nodes
+    Vp = foundation.electrical.electrical
+    Vm = foundation.electrical.electrical
+  end  % nodes
+  annotations
+    [Vp, Vm] : Side = right
+  end  % annotations
+
+  variables
+    i = { 0 "A" }  % Current
+    v = { 0 "V" }  % Voltage
+  end  % variables
+
+  branches
+    i : Vp.i -> Vm.i  % This defines 2 equations: Vp.i = i, Vm.i = -i
+  end  % branches
+
+  equations
+    v == Vp.v - Vm.v
+    v == V_sys + R_internal * i
+  end  % equations
+
+  intermediates (ExternalAccess=observe)
+    PowerLoss = -R_internal * i^2  % Power loss due to internal resistance
+  end  % intermediates
+  annotations
+    PowerLoss: LoggingUnit = "W"
+  end  % annotations
+end  % component

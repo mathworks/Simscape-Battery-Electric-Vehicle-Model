@@ -24,7 +24,6 @@ function ReturnFigure = plotLookupTable1D(x_data, y_data, NameValuePair)
 % Copyright 2025 The MathWorks, Inc.
 
 arguments (Input)
-  % BlockPath
   x_data (1,:) double {mustBeVector} = [0, 1, 2, 4, 7, 8, 9]
   y_data (1,:) double {mustBeVector} = [0, 0, 0, 2, 1, 1, 1]
 
@@ -124,7 +123,7 @@ if x_plot_upper_bound > x_query(end)
 end  % if
 
 if NameValuePair.Interpolation == "Linear" || NameValuePair.Interpolation == "Linear point-slope"
-  % "Linear" for Simscape. "Linear point-slope" for Simulnk.
+  % "Linear" for Simscape. "Linear point-slope" for Simulink.
 
   if NameValuePair.Extrapolation == "Linear"
     y_refined = interp1(x_data, y_data, x_query, "linear", "extrap");
@@ -136,7 +135,7 @@ if NameValuePair.Interpolation == "Linear" || NameValuePair.Interpolation == "Li
   end  % if
 
 elseif NameValuePair.Interpolation == "Smooth" || NameValuePair.Interpolation == "Akima spline"
-  % "Smooth" for Simscape. "Akima spline" for Simulnk.
+  % "Smooth" for Simscape. "Akima spline" for Simulink.
 
   if NameValuePair.Extrapolation == "Linear"
     y_refined = interp1(x_data, y_data, x_query, "makima", "extrap");

@@ -1,0 +1,16 @@
+component ElectricalReference3
+  % Electrical Reference
+
+  % Copyright 2026 The MathWorks, Inc.
+
+  nodes
+    V = foundation.electrical.electrical
+  end  % nodes
+  annotations
+    V : Side = top
+  end  % annotations
+
+  connections
+    connect(V, *)
+  end  % connections
+end  % component

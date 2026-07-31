@@ -1,0 +1,126 @@
+component SimpleVehicle
+% Simple Vehicle : 1.4 : fixed
+% This is a simple vehicle model for longitudinal dynamics.
+
+% Copyright 2026 The MathWorks, Inc.
+
+  parameters
+    M_vehicle = { 2200 'kg' }  % Vehicle effective mass
+    R_tireroll = { 0.36 'm' }  % Tire rolling radius
+
+    C_tireroll = { 0.0136 '1' }  % Tire rolling coefficient
+    C_airdrag = { 0.31 '1' }  % Air drag coefficient
+    A_front = { 2.3 'm^2' }  % Vehicle frontal area
+    air_density = { 1.184 'kg/m^3' }  % Dry air density
+
+    grav = { 9.81 'm/s^2' }  % Gravitational acceleration
+
+    % Smoothing parameters for simulation
+    V_1 = { 0.1 'km/hr' }  % Vehicle speed smoothing threshold
+    w_1 = { 0.1 'rpm' }  % Axle speed smoothing threshold
+  end  % parameters
+  equations
+    assert(M_vehicle > 0)
+    assert(R_tireroll > 0)
+
+    assert(C_tireroll > 0)
+    assert(C_airdrag > 0)
+    assert(A_front > 0)
+    assert(air_density >= 0)
+
+    assert(grav > 0)
+
+    assert(V_1> 0)
+    assert(w_1> 0)
+  end  % equations
+
+  inputs
+    % Braking force
+    brkF = { 0 'N' }  % Brake
+
+    % Road grade percent
+    grade_pct = 0  % Grade
+  end  % inputs
+  equations
+    assert(brkF >= 0)
+    assert(-50 <= grade_pct)
+    assert(grade_pct <= 50)
+  end  % equations
+
+  nodes
+    Axle = foundation.mechanical.rotational.rotational
+  end  % nodes
+
+  outputs
+    v_out = { 0 'km/hr' }  % VehSpd
+    G = 0  % G
+  end  % outputs
+
+  % Port locations
+  annotations
+    [ brkF, grade_pct ] : Side = top
+    Axle : Side = left
+    [ v_out, G ] : Side = right
+  end  % annotations
+
+  % Derived parameters
+  parameters (Access=private)
+    A_rl = C_tireroll*M_vehicle*grav  % Road-load coefficient A
+
+    % Assume that the road-load coefficient B_rl is always 0, and
+    % the implementation of the ideal BEV reflects the assumption.
+    % B_rl = { 0 'N/(m/s)' }  % Road-load coefficient B
+
+    C_rl = 0.5*C_airdrag*A_front*air_density  % Road-load coefficient C
+
+  end  % parameters
+  equations
+    assert(A_rl > 0)
+    assert(C_rl > 0)
+  end  % equations
+
+  variables
+    V_x = { value={ 0 'km/hr' }, priority=priority.high }  % Vehicle speed
+    trq = { 0 'N*m' }  % Axle torque
+    w = { 0 'rpm' }  % Axle speed
+  end  % variables
+
+  branches
+    trq : Axle.t -> *
+  end  % branches
+
+  % Set the ExternalAccess attributes to "observe" to make the members visible
+  % in the logs and viewers.
+  % https://www.mathworks.com/help/simscape/lang/attribute-lists.html
+  intermediates (ExternalAccess=observe)
+    accl = F_total/M_vehicle
+    F_total = F_drive - F_brake - F_resist
+
+    F_drive = trq/R_tireroll
+
+    F_brake = max(0, brkF)*tanh(w/w_1)
+
+    incline_angle = atan(grade_pct/100)  % Road inclination angle
+
+    % Typically, F_tire = A_rl + B_rl*V_x, but B_rl = 0 is assumed.
+    F_tire = A_rl
+
+    % The head/tail wind is ignored.
+    F_air = C_rl*V_x^2
+
+    F_resist = (F_tire*cos(incline_angle) + F_air)*tanh(V_x/V_1) + M_vehicle*grav*sin(incline_angle)
+  end  % intermediates
+  annotations
+    [ F_total, F_drive, F_brake, F_tire, F_air, F_resist ] : LoggingUnit = "N"
+  end  % annotations
+
+  equations
+    w == Axle.w
+    V_x == R_tireroll*w
+    M_vehicle*der(V_x) == F_total
+
+    % outputs
+    v_out == V_x
+    G == accl/grav
+  end  % equations
+end  % component

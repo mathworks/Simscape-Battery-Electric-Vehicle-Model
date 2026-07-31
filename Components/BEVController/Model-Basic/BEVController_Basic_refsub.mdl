@@ -48,8 +48,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2023-02-09T16:48:39Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-06-24T11:38:37Z</dcterms:modified>
-  <cp:revision>8.0</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-07-20T14:20:33Z</dcterms:modified>
+  <cp:revision>8.1</cp:revision>
   <cp:version>R2026a</cp:version>
 </cp:coreProperties>
 
@@ -71,11 +71,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2026a Release -->
 <MathWorks_version_info>
-  <version>26.1.0.3276743</version>
+  <version>26.1.0.3312084</version>
   <release>R2026a</release>
-  <description>Update 3</description>
-  <date>May 27 2026</date>
-  <checksum>23673432</checksum>
+  <description>Update 4</description>
+  <date>Jun 30 2026</date>
+  <checksum>4132326121</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -114,7 +114,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:8.0&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:8.1&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -716,7 +716,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[23, 43, 1163, 683]</P>
-  <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
   <P Name="SIDHighWatermark">62118</P>
   <Block BlockType="Inport" Name="VehSpdRef" SID="1">
@@ -796,7 +795,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     </PortProperties>
   </Block>
   <Block BlockType="From" Name="From" SID="9">
-    <P Name="Position">[495, -3, 595, 13]</P>
+    <P Name="Position">[500, -4, 605, 14]</P>
     <P Name="ZOrder">26265</P>
     <P Name="NameLocation">left</P>
     <P Name="GotoTag">MotorSpdRef</P>
@@ -979,13 +978,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Dst">23#in:1</P>
   </Line>
   <Line>
-    <P Name="Name">MotorSpdRef</P>
-    <P Name="ZOrder">280</P>
-    <P Name="Labels">[0, 0]</P>
-    <P Name="Src">9#out:1</P>
-    <P Name="Dst">5#in:1</P>
-  </Line>
-  <Line>
     <P Name="Name">Info</P>
     <P Name="ZOrder">281</P>
     <P Name="Labels">[0, 0]</P>
@@ -1072,10 +1064,25 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Src">52358#out:1</P>
     <P Name="Dst">6#in:1</P>
   </Line>
+  <Line>
+    <P Name="Name">MotorSpdRef</P>
+    <P Name="ZOrder">301</P>
+    <P Name="Labels">[0, 0]</P>
+    <P Name="Src">9#out:1</P>
+    <P Name="Dst">5#in:1</P>
+  </Line>
   <Annotation SID="52359">
-    <P Name="Name">Copyright 2025-2026 The MathWorks, Inc.</P>
-    <P Name="Position">[312, 320, 501, 334]</P>
+    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:12px;&quot;&gt;Copyright 2025-2026 The MathWorks, Inc.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[247, 330, 474, 346]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="Interpreter">rich</P>
     <P Name="ZOrder">-86</P>
   </Annotation>
 </System>
@@ -1151,7 +1158,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">2046061d-ef52-4cb6-823e-be880f0992b6</P>
     </Object>
-    <P Name="BDUuid" Class="char">eaac92f7-8613-47a2-b956-c24f0007323a</P>
+    <P Name="BDUuid" Class="char">e348f962-679f-4deb-be0d-e771c73d6582</P>
   </Object>
 </WindowsInfo>
 

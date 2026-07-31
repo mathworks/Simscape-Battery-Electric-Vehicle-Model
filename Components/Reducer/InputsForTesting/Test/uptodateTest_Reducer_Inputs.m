@@ -145,9 +145,5 @@ classdef uptodateTest_Reducer_Inputs < matlab.unittest.TestCase
 
     end  % function
 
-
-
-
-
   end  % methods
 end  % classdef

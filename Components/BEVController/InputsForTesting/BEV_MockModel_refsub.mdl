@@ -48,8 +48,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2025-08-08T07:25:46Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-06-24T10:35:26Z</dcterms:modified>
-  <cp:revision>4.0</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-07-20T14:21:35Z</dcterms:modified>
+  <cp:revision>4.1</cp:revision>
   <cp:version>R2026a</cp:version>
 </cp:coreProperties>
 
@@ -71,11 +71,11 @@ __MWOPC_PART_BEGIN__ /metadata/mwcorePropertiesReleaseInfo.xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Version information for MathWorks R2026a Release -->
 <MathWorks_version_info>
-  <version>26.1.0.3276743</version>
+  <version>26.1.0.3312084</version>
   <release>R2026a</release>
-  <description>Update 3</description>
-  <date>May 27 2026</date>
-  <checksum>23673432</checksum>
+  <description>Update 4</description>
+  <date>Jun 30 2026</date>
+  <checksum>4132326121</checksum>
 </MathWorks_version_info>
 
 __MWOPC_PART_BEGIN__ /simulink/_rels/blockdiagram.xml.rels
@@ -113,7 +113,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:4.0&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:4.1&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -718,7 +718,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[30, 30, 1010, 750]</P>
-  <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
   <P Name="SIDHighWatermark">1124</P>
   <Block BlockType="Inport" Name="VehSpdKph" SID="1">
@@ -841,11 +840,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Dst">35#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">47</P>
-    <P Name="Src">23#out:1</P>
-    <P Name="Dst">1123#in:1</P>
-  </Line>
-  <Line>
     <P Name="Name">Motor</P>
     <P Name="ZOrder">48</P>
     <P Name="Labels">[-1, 0]</P>
@@ -907,18 +901,23 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Dst">2#in:2</P>
   </Line>
   <Line>
-    <P Name="Name">MotorSpd</P>
-    <P Name="ZOrder">60</P>
-    <P Name="Labels">[1, 1]</P>
-    <P Name="Src">1123#out:1</P>
-    <P Name="Dst">2#in:1</P>
-  </Line>
-  <Line>
     <P Name="Name">VehSpdKph</P>
     <P Name="ZOrder">61</P>
     <P Name="Labels">[1, 1]</P>
     <P Name="Src">1124#out:1</P>
     <P Name="Dst">3#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">MotorSpd</P>
+    <P Name="ZOrder">70</P>
+    <P Name="Labels">[1, 1]</P>
+    <P Name="Src">1123#out:1</P>
+    <P Name="Dst">2#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">71</P>
+    <P Name="Src">23#out:1</P>
+    <P Name="Dst">1123#in:1</P>
   </Line>
   <Annotation SID="38">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -1005,7 +1004,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">35824964-0d88-4a02-85f1-15d7cda18fea</P>
     </Object>
-    <P Name="BDUuid" Class="char">5269e485-52dd-42c7-88e0-c58be849e639</P>
+    <P Name="BDUuid" Class="char">6c6f2edb-25a6-4299-aebe-12447ac3d836</P>
   </Object>
 </WindowsInfo>
 

@@ -7,7 +7,7 @@ classdef unittest_Reducer_Inputs < matlab.unittest.TestCase
   % matlab.unittest.TestCase Class
   % https://www.mathworks.com/help/matlab/ref/matlab.unittest.testcase-class.html
   %
-  % Test Browser
+  % Test Browser (testBrowser)
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
   % Copyright 2025-2026 The MathWorks, Inc.

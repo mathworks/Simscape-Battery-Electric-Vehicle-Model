@@ -33,7 +33,13 @@ errorID = "plotTimedData:";
 signal_name = NameValuePair.SignalName;
 
 t = NameValuePair.TimedData.Time;
+
+is_simscape = false;
 y = NameValuePair.TimedData.(signal_name);
+if class(y) == "simscape.Value"
+  is_simscape = true;
+  y = value(y);
+end  % if
 
 logical_index = NameValuePair.TimedData.Properties.VariableNames == signal_name;
 
@@ -45,7 +51,9 @@ if nnz(logical_index) == 0
 
 end  % if
 
-if not(isempty(NameValuePair.TimedData.Properties.VariableUnits))
+if is_simscape
+  unit_text = string(unit(NameValuePair.TimedData.(signal_name)));
+elseif not(isempty(NameValuePair.TimedData.Properties.VariableUnits))
   unit_text = NameValuePair.TimedData.Properties.VariableUnits{logical_index};
 else
   unit_text = "";

@@ -81,9 +81,6 @@ motorDriveUnit.trq_eff_Nm = 50;
 motorDriveUnit.ironLoss_W = 55;
 motorDriveUnit.fixedLoss_W = 40;
 
-motorDriveUnit.rotorInertia_kg_m2 = 5*0.01^2;
-motorDriveUnit.rotorDamping_Nm_per_radps = 1e-5;
-
 motorDriveUnit.ThermalMass_J_per_K = 90e3;
 
 % Ambient parameters for the thermal simulation of  motor drive unit.
