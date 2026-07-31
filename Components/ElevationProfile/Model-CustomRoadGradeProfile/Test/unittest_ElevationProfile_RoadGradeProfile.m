@@ -1,4 +1,4 @@
-resetParams_HarnessModel_RoadGradeProfileofile < matlab.unittest.TestCase
+classdef unittest_ElevationProfile_RoadGradeProfile < matlab.unittest.TestCase
   % Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
@@ -53,7 +53,7 @@ resetParams_HarnessModel_RoadGradeProfileofile < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_Script_1(~)
-      evalin("base", "resetParams_HarnessModel_CustomRoadGradeProfile")
+      evalin("base", "resetParams_HarnessModel_RoadGradeProfile")
     end  % function
 
     function PassingTest_Script_2(~)
@@ -73,11 +73,15 @@ resetParams_HarnessModel_RoadGradeProfileofile < matlab.unittest.TestCase
     end  % function
 
     function PassingTest_LiveScript_1(~)
-      evalin("base", "CheckPlot_RoadGradeProfile_1")
+      evalin("base", "CheckPlot_RoadGradeProfile_0")
     end  % function
 
     function PassingTest_LiveScript_2(~)
-      evalin("base", "CheckPlot_RoadGradeProfile_2")
+      evalin("base", "CheckPlot_RoadGradeProfile_ResetScript")
+    end  % function
+
+    function PassingTest_LiveScript_3(~)
+      evalin("base", "CheckPlot_RoadGradeProfile_Script1")
     end  % function
 
     % -------------------------------------------------------------------------
@@ -93,7 +97,7 @@ resetParams_HarnessModel_RoadGradeProfileofile < matlab.unittest.TestCase
     function PassingTest_HarnessModel_3(~)
       model_name = "HarnessModel_CustomRoadGradeProfile";
       load_system(model_name)
-      plotRoadGradeProfileBlock(model_name + "/Road Grade Profile")  % !test-target
+      plotRoadGradeProfileBlock(model_name + "/Road")  % !test-target
     end  % function
 
     function PassingTest_HarnessModel_4(~)
@@ -102,18 +106,6 @@ resetParams_HarnessModel_RoadGradeProfileofile < matlab.unittest.TestCase
       callback_text = get_param(model_name + "/Plot elevation and grade profiles", "ClickFcn");  % !test-target
       eval(callback_text)
     end  % function
-
-    %% Validations
-
-%{
-    function Test_1(testcase)
-      evalin("base", "resetParams_HarnessModel_CustomRoadGradeProfile")
-      result = sim("HarnessModel_CustomRoadGradeProfile");
-
-
-
-    end  % function
-%}
 
   end  % methods
 end  % classdef

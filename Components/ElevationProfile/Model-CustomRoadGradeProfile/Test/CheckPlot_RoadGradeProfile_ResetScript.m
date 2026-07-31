@@ -1,5 +1,5 @@
-resetParams_HarnessModel_RoadGradeProfileon with Road Grade Profile block
-evalin("base", "resetParams_HarnessModel_CustomRoadGradeProfile")
+%[text] # Visually inspect plots from simulation with Road Grade Profile block
+evalin("base", "resetParams_HarnessModel_RoadGradeProfile")
 
 sim_out = sim(sim_in);
 result = extractTimetable(sim_out.logsout);
