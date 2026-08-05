@@ -62,40 +62,48 @@ classdef unittest_Elevation_RoadGradeProfile_Utility < matlab.unittest.TestCase
       buildElevationProfileFromRoadGradeProfileBlock(model_name + "/Road")  % !test-target
     end  % function
 
-    function PassingTest_3_1(~)
+    function PassingTest_3(~)
+      buildElevationAndRoadGradeTable
+    end  % function
+
+    function PassingTest_4_1(~)
       evalin("base", "CheckPlot_buildElevationProfileFromRoadGradeProfileData")
     end  % function
 
-    function PassingTest_3_2(~)
+    function PassingTest_4_2(~)
       evalin("base", "CheckPlot_buildElevationProfileFromRoadGradeProfileData_2")
     end  % function
 
-    function PassingTest_3_3(~)
+    function PassingTest_4_3(~)
       evalin("base", "CheckPlot_buildElevationProfileFromRoadGradeProfileBlock")
     end  % function
 
-    function PassingTest_3_4(~)
+    function PassingTest_4_4(~)
+      evalin("base", "CheckPlot_plotElevationAndRoadGradeProfiles")
+    end  % function
+
+    function PassingTest_4_5(~)
       evalin("base", "CheckPlot_plotRoadGradeProfileBlock")
     end  % function
 
-    function PassingTest_4(~)
+    function PassingTest_5(~)
       findInitialElevationFromRoadGradeProfile
     end  % function
 
-    function PassingTest_5_1(~)
+    function PassingTest_6_1(~)
       model_name = "HarnessModel_CustomRoadGradeProfile";
       load_system(model_name)
       plotRoadGradeProfileBlock(model_name + "/Road")  % !test-target
     end  % function
 
-    function PassingTest_5_2(~)
+    function PassingTest_6_2(~)
       model_name = "HarnessModel_CustomRoadGradeProfile";
       load_system(model_name)
       fig = plotRoadGradeProfileBlock(model_name + "/Road");  % !test-target
       fig.Name = "Test";
     end  % function
 
-    function PassingTest_5_3(~)
+    function PassingTest_6_3(~)
       evalin("base", "setParams_HarnessModel_CustomRoadGradeProfile_2")
       model_name = "HarnessModel_CustomRoadGradeProfile";
       load_system(model_name)
@@ -103,16 +111,16 @@ classdef unittest_Elevation_RoadGradeProfile_Utility < matlab.unittest.TestCase
       fig.Name = "Test";
     end  % function
 
-    function PassingTest_6(~)
+    function PassingTest_7(~)
       model_name = "HarnessModel_CustomRoadGradeProfile";
       sim(model_name);
     end  % function
 
-    function PassingTest_7_1(~)
+    function PassingTest_8_1(~)
       plotElevationAndRoadGradeProfiles
     end  % function
 
-    function PassingTest_7_2(~)
+    function PassingTest_8_2(~)
       fig = figure;
       plotElevationAndRoadGradeProfiles(ParentAxes=axes(fig))
     end  % function
@@ -235,7 +243,6 @@ classdef unittest_Elevation_RoadGradeProfile_Utility < matlab.unittest.TestCase
       % Block
 
       % This script loads the target model and resets the block parameters.
-      % evalin("base", "resetParams_HarnessModel_CustomRoadGradeProfile")
       evalin("base", "resetParams_HarnessModel_RoadGradeProfile")
 
       result = buildElevationProfileFromRoadGradeProfileBlock(gcs + "/Road");

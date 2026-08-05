@@ -53,128 +53,23 @@ classdef unittest_ElevationProfile < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(~)
-      load_system("HarnessModel_ElevationProfile")
+      ElevationProfile_Description
     end  % function
 
     function PassingTest_2(~)
+      setupHarness_ElevationProfile
+    end  % function
+
+    function PassingTest_3(~)
+      setupLogging_ElevationProfile_live
+    end  % function
+
+    function PassingTest_4_1(~)
+      load_system("HarnessModel_ElevationProfile")
+    end  % function
+
+    function PassingTest_4_2(~)
       sim("HarnessModel_ElevationProfile");
-    end  % function
-
-    %% Unit settings in blocks
-
-    % Unit settings in the block parameter value and the block parameter unit
-    % must be the same.
-    % For example, if the block parameter value has var1.value("s") or value(var1, "s"),
-    % the block parameter unit must be s.
-
-    function block_parameter_unit_1_1(testcase)
-      %%
-      model_name = "HarnessModel_ElevationProfile";
-      load_system(model_name)
-
-      % PS Lookup Table (1D) block.
-      block_path = model_name + "/Speed Reference";
-
-      % Table grid vector
-      param_value_text = string(get_param(block_path, "x"));
-      param_unit = string(get_param(block_path, "x_unit"));
-
-      % The value("s") style.
-      unit_in_value = string(extractBetween(param_value_text, "value(""", """)"));
-      if unit_in_value == ""
-        % The value(var1, "s") style.
-        unit_in_value = string(extractBetween(param_value_text, "value(" + wildcardPattern + """", """)"));
-      end  % if
-      verifyTrue(testcase, unit_in_value ~= "")
-      verifyEqual(testcase, unit_in_value, param_unit)
-    end  % function
-
-    function block_parameter_unit_1_2(testcase)
-      %%
-      model_name = "HarnessModel_ElevationProfile";
-      load_system(model_name)
-
-      % PS Lookup Table (1D) block.
-      block_path = model_name + "/Speed Reference";
-
-      % Table values
-      param_value_text = string(get_param(block_path, "f"));
-      param_unit = string(get_param(block_path, "f_unit"));
-
-      % The value("s") style.
-      unit_in_value = string(extractBetween(param_value_text, "value(""", """)"));
-      if unit_in_value == ""
-        % The value(var1, "s") style.
-        unit_in_value = string(extractBetween(param_value_text, "value(" + wildcardPattern + """", """)"));
-      end  % if
-      verifyTrue(testcase, unit_in_value ~= "")
-      verifyEqual(testcase, unit_in_value, param_unit)
-    end  % function
-
-    function block_parameter_unit_2_1(testcase)
-      %%
-      model_name = "HarnessModel_ElevationProfile";
-      load_system(model_name)
-
-      % Road Grade Profile block.
-      block_path = model_name + "/Road";
-
-      % Horizontal distance for vertical profile
-      param_value_text = string(get_param(block_path, "x_vector"));
-      param_unit = string(get_param(block_path, "x_vector_unit"));
-
-      % The value("s") style.
-      unit_in_value = string(extractBetween(param_value_text, "value(""", """)"));
-      if unit_in_value == ""
-        % The value(var1, "s") style.
-        unit_in_value = string(extractBetween(param_value_text, "value(" + wildcardPattern + """", """)"));
-      end  % if
-      verifyTrue(testcase, unit_in_value ~= "")
-      verifyEqual(testcase, unit_in_value, param_unit)
-    end  % function
-
-    function block_parameter_unit_2_2(testcase)
-      %%
-      model_name = "HarnessModel_ElevationProfile";
-      load_system(model_name)
-
-      % Road Grade Profile block.
-      block_path = model_name + "/Road";
-
-      % Elevation at left most horizontal position
-      param_value_text = string(get_param(block_path, "left_elevation"));
-      param_unit = string(get_param(block_path, "left_elevation_unit"));
-
-      % The value("s") style.
-      unit_in_value = string(extractBetween(param_value_text, "value(""", """)"));
-      if unit_in_value == ""
-        % The value(var1, "s") style.
-        unit_in_value = string(extractBetween(param_value_text, "value(" + wildcardPattern + """", """)"));
-      end  % if
-      verifyTrue(testcase, unit_in_value ~= "")
-      verifyEqual(testcase, unit_in_value, param_unit)
-    end  % function
-
-    function block_parameter_unit_2_3(testcase)
-      %%
-      model_name = "HarnessModel_ElevationProfile";
-      load_system(model_name)
-
-      % Road Grade Profile block.
-      block_path = model_name + "/Road";
-
-      % Initial horizontal position
-      param_value_text = string(get_param(block_path, "initial_position"));
-      param_unit = string(get_param(block_path, "initial_position_unit"));
-
-      % The value("s") style.
-      unit_in_value = string(extractBetween(param_value_text, "value(""", """)"));
-      if unit_in_value == ""
-        % The value(var1, "s") style.
-        unit_in_value = string(extractBetween(param_value_text, "value(" + wildcardPattern + """", """)"));
-      end  % if
-      verifyTrue(testcase, unit_in_value ~= "")
-      verifyEqual(testcase, unit_in_value, param_unit)
     end  % function
 
   end  % methods

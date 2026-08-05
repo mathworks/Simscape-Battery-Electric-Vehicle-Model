@@ -10,14 +10,13 @@ arguments (Input)
   NameValuePair.InterpolationInterval (1,1) simscape.Value {bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan} ...
     = simscape.Value(nan)
 
-  % Refined data were generated from the original road grade data.
-  % Use this option to plot the original data or not.
-  NameValuePair.PlotCoarseData (1,1) logical = true
+  % Refined data were generated from the road grade base data.
+  % Use this option to plot the base data or not.
+  NameValuePair.PlotBaseData (1,1) logical = true
 
 end  % arguments
 
 arguments (Output)
-  % fig {mustBeScalarOrEmpty, mustBeA(fig, ["matlab.ui.Figure", "matlab.graphics.layout.TiledChartLayout"])}
   fig matlab.ui.Figure {mustBeScalarOrEmpty}
 end  % arguments
 
@@ -38,12 +37,12 @@ refined_profile_data = buildElevationProfileFromRoadGradeProfileBlock( ...
 fig = plotElevationAndRoadGradeProfiles( ...
   DataSource = "table", ...
   ProfileTable = refined_profile_data, ...
-  PlotCoarseData = NameValuePair.PlotCoarseData );
+  PlotBaseData = NameValuePair.PlotBaseData );
 
 % fig.Children is a tiledlayout object.
 fig.Children.Title.String = replace(BlockPath, "/", " > ");
 
-% Prevent _ in the text to be interpreted as a TeX/LaTeX command.
+% Prevent _ in the text to be interpreted as a TeX command.
 fig.Children.Title.Interpreter = "none";
 
 if nargout == 0

@@ -1,14 +1,18 @@
 function result = buildElevationProfileFromRoadGradeProfileData(x_vec, grade_pct_vec, interp_method, left_z, dx)
-% Build a table of elevation profile from road grade profile.
+% Build a table of refined elevation profile from road grade profile base data.
+%
+% This function does not use the named arguments (name-value pair) because
+% the Road Grade Profile component calls this function in the private variables
+% section which does not support calling functions with named arguments.
 
 % Copyright 2026 The MathWorks, Inc.
 
 arguments (Input)
 
-  % Horizontal distance
+  % Horizontal distance. Unrefined base data.
   x_vec (1,:) double {bevutil1.CodeUtil.mustBeStrictAscend} = [ -100, 0, 100 ]
 
-  % Road grade percent
+  % Road grade percent. Unrefined base data.
   grade_pct_vec (1,:) double = [ -1 -1 -1 ]
 
   % Interpolation method

@@ -26,11 +26,11 @@ if BlockPath == ""
 end  % if
 
 % !todo: check strict ascend
-x_vec_value = get_param(BlockPath, "value@x_vector");
-x_vec_unit = get_param(BlockPath, "x_vector_unit");
-x_vec_ssc = simscape.Value(x_vec_value, x_vec_unit);
+base_x_vec_value = get_param(BlockPath, "value@x_vector");
+base_x_vec_unit = get_param(BlockPath, "x_vector_unit");
+base_x_vec_ssc = simscape.Value(base_x_vec_value, base_x_vec_unit);
 
-grade_pct_vec = get_param(BlockPath, "value@grade_vector");
+base_grade_pct_vec = get_param(BlockPath, "value@grade_vector");
 
 interp_method = get_param(BlockPath, "profile_interp_method");
 if interp_method == "simscape.enum.interpolation.linear"
@@ -54,9 +54,9 @@ end
 
 % buildElevationProfileFromRoadGradeProfile takes values as double.
 % Make sure to use the same unit of length in the relevant arguments.
-result_m = buildElevationProfileFromRoadGradeProfileData( ...
-  value(x_vec_ssc, "m"), ...
-  grade_pct_vec, ...
+refined_data_m = buildElevationProfileFromRoadGradeProfileData( ...
+  value(base_x_vec_ssc, "m"), ...
+  base_grade_pct_vec, ...
   interp_type, ...
   value(left_z_ssc, "m"), ...
   dx );
@@ -64,9 +64,9 @@ result_m = buildElevationProfileFromRoadGradeProfileData( ...
 % Build columns for horizontal distance and elevation using
 % the unit of length specified in the block, rather than meters.
 result = table( ...
-  convert(simscape.Value(result_m.x, "m"), x_vec_unit), ...
-  convert(simscape.Value(result_m.z, "m"), left_z_unit), ...
-  result_m.grade, ...
+  convert(simscape.Value(refined_data_m.x, "m"), base_x_vec_unit), ...
+  convert(simscape.Value(refined_data_m.z, "m"), left_z_unit), ...
+  refined_data_m.grade, ...
   VariableNames=["HorizontalDistance", "Elevation", "GradePercent"] );
 
 custom_props = [
@@ -82,9 +82,9 @@ custom_props = [
   ];
 
 result = addprop(result, custom_props, repmat("table", 1, numel(custom_props)));
-result.Properties.CustomProperties.HorizontalDistance_value = x_vec_value;
-result.Properties.CustomProperties.HorizontalDistance_unit = x_vec_unit;
-result.Properties.CustomProperties.RoadGradePercent = grade_pct_vec;
+result.Properties.CustomProperties.HorizontalDistance_value = base_x_vec_value;
+result.Properties.CustomProperties.HorizontalDistance_unit = base_x_vec_unit;
+result.Properties.CustomProperties.RoadGradePercent = base_grade_pct_vec;
 result.Properties.CustomProperties.InterpolationMethod = interp_method;
 result.Properties.CustomProperties.LeftElevation_value = left_z_value;
 result.Properties.CustomProperties.LeftElevation_unit = left_z_unit;

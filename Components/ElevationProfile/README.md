@@ -1,11 +1,13 @@
 # Elevation Profile
 
-Given road grade in percent $G$,
-road inclination angle $\theta$ is computed as follows.
+The Elevation Profile component provides the height of the road surface
+as a function of horizontal position.
+
+Given road grade $G$ (in percent), road incline angle $\theta$ is computed as follows.
 
 $$ \theta = \textrm{atan} ( G/100 ) $$
 
-Given curvilinear position $s$,
+Given curvilinear position $s$ which is the longitudinal direction of the vehicle,
 horizontal position $x$ and elevation $E$ are computed as follows.
 
 $$ x = s \cdot \cos ( \theta ) $$
@@ -19,36 +21,31 @@ corresponds to the following horizontal distances for various road grades.
 |---------------|-------------------------|---------------|
 | 0 | 100 | 0 |
 | 1 | 99.995 | 0.99995 |
-| 2 | 99.980 | 1.9996 |
-| 3 | 99.955 | 2.9987 |
 | 5 | 99.875 | 4.9938 |
-| 7 | 99.756 | 6.9829 |
 | 10 | 99.504 | 9.9504 |
-| 15 | 98.894 | 14.834 |
-| 20 | 98.058 | 19.612 |
 | 30 | 95.783 | 28.735 |
-| 40 | 92.848 | 37.139 |
 
+## Harness model for Road Grade Profile block
 
+The Elevation Profile component provides the Road Grade Profile block,
+which is a custom Simscape component.
+The harness model to test the Elevation Profile component is built with this custom component.
 
+<img src="media/screenshot-HarnessModel_ElevationProfile.png"
+ alt="Screenshot of the harness model for Road Grade Profile block"
+ width="800">
 
----
+## FYI: Road Profile block
 
-Curvilinear speed $V_s(x)$
+The [Road Profile block][roadprofile] in Simscape Driveline works with
+the [Vehicle Body block][vehiclebody].
+The Road Profile works in a similar manner with the Road Grade Profile block
+to feed the road incline data to the vehicle,
+but the Road Profile block computes the incline angle dynamically
+during simulation whereas the Road Grade Profile block takes the grade profile
+as a parameter which predetermines the angle.
 
-Elevation $E$
-
-
----
-
-The Road Profile block in Simscape Driveline
-
-- https://www.mathworks.com/help/sdl/ref/roadprofile.html
-
-Parameters
-
-- Horizontal distance for vertical profile
-- Vertical profile
-- Profile interpolation method
+[roadprofile]: https://www.mathworks.com/help/sdl/ref/roadprofile.html 
+[vehiclebody]: https://www.mathworks.com/help/sdl/ref/vehiclebody.html
 
 _Copyright 2026 The MathWorks, Inc._
