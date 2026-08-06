@@ -1,16 +1,13 @@
 %[text] # Controller and Environment - Simulation Case
 model_name = "HarnessModel_CtrlEnv";
 load_system(model_name)
-
-HarnessSetup_CtrlEnv
-
 sim_in = Simulink.SimulationInput(model_name);
 
+loadLUTData_VehSpdRef_Simple
+sim_in = setModelParameter(sim_in, StopTime = "100");
 sim_in = setBlockParameter(sim_in, ...
   model_name + "/Controller and Environment/Vehicle speed reference", ...
-  ReferencedSubsystem = "VehSpdRef_Simple_refsub");
-
-sim_in = setModelParameter(sim_in, StopTime = "100");
+  ReferencedSubsystem = "VehSpdRef_LookupTable_refsub");
 
 applyToModel(sim_in)
 
@@ -18,7 +15,6 @@ sim_out = sim(sim_in);
 
 sim_data = extractTimetable(sim_out.logsout);
 
-% Specify the signal logging names in the model.
 signal_names = [
   "Brake force"
   "Motor torque command"

@@ -1,4 +1,4 @@
-classdef unittest_BEVController_Basic < matlab.unittest.TestCase
+classdef unittest_CtrlEnv < matlab.unittest.TestCase
   % Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
@@ -10,7 +10,7 @@ classdef unittest_BEVController_Basic < matlab.unittest.TestCase
   % Test Browser
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2024-2026 The MathWorks, Inc.
+  % Copyright 2023-2026 The MathWorks, Inc.
 
   methods (TestMethodSetup)
     % Functions in this "TestMethodSetup" section always run before
@@ -53,20 +53,15 @@ classdef unittest_BEVController_Basic < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(~)
-      evalin("base", "BEVController_Basic_params")  % !test-target
+      HarnessSetup_CtrlEnv
     end  % function
 
     function PassingTest_2(~)
-      model_name = "HarnessModel_BEVController";
-      load_system(model_name)
-      sim_in = Simulink.SimulationInput(model_name);
+      load_system("HarnessModel_CtrlEnv")
+    end  % function
 
-      sim_in = setBlockParameter( sim_in, ...
-        model_name + "/BEV Speed Tracking Controller", ...
-        ReferencedSubsystem = "BEVController_Basic_refsub" );
-
-      sim_in = setModelParameter(sim_in, StopTime = "1");
-      sim(sim_in);
+    function PassingTest_3(~)
+      sim("HarnessModel_CtrlEnv");
     end  % function
 
   end  % methods

@@ -12,37 +12,6 @@ classdef unittest_BEVController_Basic_SimulationCases < matlab.unittest.TestCase
 
   % Copyright 2024-2026 The MathWorks, Inc.
 
-  properties
-
-    % Keyword representing the model.
-    % This is defined by extracting text after "Model-" in a folder name.
-    % For example, "Basic" from the "Model-Basic" folder, or
-    % "SystemThermal" from the "Model-SystemThermal" folder.
-    ModelID (1,1) string
-
-  end  % properties
-
-  methods (TestClassSetup)
-    % Functions in this section run only once before tests in the Test section runs.
-
-    function setup_ModelID(testcase)
-      % Extract text from the pwd path string.
-      % For example, extract "Basic" from "Model-Basic/SimulationCases".
-      testcase.ModelID = extractBetween(string(pwd), "Model-", filesep+"SimulationCase");
-
-      % Extract text from the classname.
-      % For example, extract "Basic" from "unittest_BEVController_Basic_SimulationCases".
-      id = extractBetween(string(mfilename), "unittest_BEVController_", "_SimulationCases");
-
-      % The texts extracted from the path and the class name must match.
-      verifyEqual(testcase, testcase.ModelID, id)
-
-      disp("# Starting test with ModelID=" + testcase.ModelID)
-    end  % function
-
-  end  % methods
-
-
   methods (TestMethodSetup)
     % Functions in this "TestMethodSetup" section always run before
     % each test defined in the "Test" section runs.
@@ -84,18 +53,22 @@ classdef unittest_BEVController_Basic_SimulationCases < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(testcase)
-      % Run script, for example, BEVController_Basic_Simple.
-      target_name = "BEVController_" + testcase.ModelID + "_Simple";
+      target_name = "BEVController_Basic_Simple";  % !test-target
       target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
-      disp("Testing: " + target_fullpath)
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
       evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_2(testcase)
-      % Run script, for example, BEVController_Basic_Simple.
-      target_name = "BEVController_" + testcase.ModelID + "_Random";
+      target_name = "BEVController_Basic_Random";  % !test-target
       target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
-      disp("Testing: " + target_fullpath)
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
       evalin("base", target_name)  % !test-target
     end  % function
 

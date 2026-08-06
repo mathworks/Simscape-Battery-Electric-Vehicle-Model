@@ -1,4 +1,4 @@
-classdef unittest_BEVController_settings < matlab.unittest.TestCase
+classdef unittes_CtrlEnv_settings < matlab.unittest.TestCase
   % Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
@@ -52,7 +52,7 @@ classdef unittest_BEVController_settings < matlab.unittest.TestCase
     %% Solver settings
 
     function solver_settings(testcase)
-      load_system("HarnessModel_BEVController")
+      load_system("HarnessModel_CtrlEnv")
 
       s = string(get_param(gcs, "SolverType"));
       verifyEqual(testcase, s, "Variable-step")
@@ -65,8 +65,8 @@ classdef unittest_BEVController_settings < matlab.unittest.TestCase
 
     function preload_parameters(testcase)
       % Check that the model loads parameters in the callback.
-      parameter_filename = "setupHarness_BEVController";  % without ".m"
-      load_system("HarnessModel_BEVController")
+      parameter_filename = "HarnessSetup_CtrlEnv";  % without ".m"
+      load_system("HarnessModel_CtrlEnv")
       callback_text = string(get_param(gcs, "PreLoadFcn"));
       verifyTrue(testcase, contains(callback_text, lineBoundary("start") + parameter_filename + alphanumericBoundary))
     end  % function
@@ -74,9 +74,9 @@ classdef unittest_BEVController_settings < matlab.unittest.TestCase
     %% Subsystem Reference block settings
 
     function subsystem_reference_block_settings(testcase)
-      % Check the settings of the Subsystem Reference blocks in the specified model.
+      % Check the settings of the Subsystem Reference block in the specified model.
 
-      model_name = "HarnessModel_BEVController";
+      model_name = "HarnessModel_CtrlEnv";
 
       load_system(model_name)
       block_paths = string(getfullname(Simulink.findBlocksOfType(bdroot, "SubSystem", "ReferencedSubsystem", ".", ...
@@ -93,7 +93,7 @@ classdef unittest_BEVController_settings < matlab.unittest.TestCase
 
         % The OpenFcn callback has to have the following code.
         %   open_system(gcb, "force")
-        openFcn_text = string(get_param(target_block_path, "OpenFcn"));  % !todo: 24b, sporadic issue
+        openFcn_text = string(get_param(target_block_path, "OpenFcn"));
         target_text = lineBoundary("start") + "open_system(gcb, ""force"")";
         verifyTrue(testcase, contains(openFcn_text, target_text));
 
@@ -103,6 +103,27 @@ classdef unittest_BEVController_settings < matlab.unittest.TestCase
         verifyEqual(testcase, actual, "opaque-with-ports")
 
       end  % for
+    end  % function
+
+    %% Button callback settings
+
+    function Button_callback_set_referenced_subsystems_1(testcase)
+      % A callback in a Button block sets referenced subsystems.
+      %
+      % Check if the callback uses the set_param command with ReferencedSubsystem:
+      %   set_param(block_path, ReferencedSubsystem="target_refsub")
+      % If yes, check that the target_refsub exists.
+      %
+      % One callback can be setting multiple referenced subsystems.
+
+      model_name = "CtrlEnv_Basic_refsub";
+      expected_num_blocks = 4;
+
+      result = bevutil1.ModelUtil.checkRefSubInCallbackButton(model_name);
+      logical_index = result.Found;
+      verifyEqual(testcase, nnz(logical_index), expected_num_blocks)
+      target_blocks = result(logical_index, :);
+      verifyTrue(testcase, all(target_blocks.IsRefSub))
     end  % function
 
   end  % methods

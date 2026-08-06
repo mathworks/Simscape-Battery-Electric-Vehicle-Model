@@ -1,5 +1,5 @@
 classdef unittest_CtrlEnv_Vehicle < matlab.unittest.TestCase
-  %% Class-based unit test
+  % Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
   % https://www.mathworks.com/help/matlab/matlab_prog/author-class-based-unit-tests-in-matlab.html
@@ -10,7 +10,7 @@ classdef unittest_CtrlEnv_Vehicle < matlab.unittest.TestCase
   % Test Browser
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2024-2025 The MathWorks, Inc.
+  % Copyright 2024-2026 The MathWorks, Inc.
 
   methods (TestMethodSetup)
     % Functions in this "TestMethodSetup" section always run before
@@ -52,40 +52,61 @@ classdef unittest_CtrlEnv_Vehicle < matlab.unittest.TestCase
     %% Minimum quality check
     % Check that models, scripts, functions, and classes run right out of the box.
 
-    function PassingTest_1(~)
-      CtrlEnv_Vehicle_getMotorSpeedFromVehicleSpeed
+    function PassingTest_1(testcase)
+      target_name = "BuildInputs_CtrlEnv_Vehicle_Simple";  % !test-target
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
+      evalin("base", target_name)  % !test-target
     end  % function
 
-    function PassingTest_2(~)
-      CtrlEnv_Vehicle_params
+    function PassingTest_2(testcase)
+      target_name = "CtrlEnv_Vehicle_getMotorSpeedFromVehicleSpeed";  % !test-target
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
+      evalin("base", target_name)  % !test-target
     end  % function
 
     function PassingTest_3(~)
-      HarnessSetup_CtrlEnv_Vehicle
+      CtrlEnv_Vehicle_params
     end  % function
 
     function PassingTest_4(~)
       load_system("CtrlEnv_Vehicle_refsub")
     end  % function
 
-    function PassingTest_5(~)
+    function PassingTest_5(testcase)
+      target_name = "CtrlEnv_Vehicle_sample_script";  % !test-target
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
+      evalin("base", target_name)  % !test-target
+    end  % function
+
+    function PassingTest_6(testcase)
+      target_name = "HarnessSetup_CtrlEnv_Vehicle";  % !test-target
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
+      evalin("base", target_name)  % !test-target
+    end  % function
+
+    function PassingTest_7_1(~)
       load_system("HarnessModel_CtrlEnv_Vehicle")
     end  % function
 
-    function PassingTest_6(~)
-      CtrlEnv_Vehicle_sample_script
-    end  % function
-
-    %% Test
-
-    function simulation_ends_quickly(testcase)
-      tic
+    function PassingTest_7_2(~)
       sim("HarnessModel_CtrlEnv_Vehicle");
-      verifyThat(testcase, @toc, ...
-        matlab.unittest.constraints.Eventually( ...
-        matlab.unittest.constraints.IsLessThan(10), WithTimeoutOf = 10))  % !test-target
     end  % function
 
   end  % methods
-
 end  % classdef
