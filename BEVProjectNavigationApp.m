@@ -15,7 +15,7 @@ arguments (Output)
   App struct {mustBeScalarOrEmpty}
 end  % arguments
 
-disp("Starting: BEV Project Navigation App")
+disp("Starting: <a href=""matlab:edit('" + mfilename + "')"">BEV Project Navigation App</a>")
 
 force_start = NameValuePair.ForceStart;
 
@@ -381,7 +381,7 @@ doclink_ui.HyperlinkClickedCallback = @() ...
     end  % try, catch
   end  % nested function
 
-% -----------------------------------------------------------------------
+% -----------------------------------------------------------------------------
 movegui(main_figure, "center")
 main_figure.Visible = "on";
 drawnow
@@ -394,11 +394,12 @@ end  % function
 
 % =============================================================================
 % Local functions
+% https://www.mathworks.com/help/matlab/matlab_prog/local-functions.html
 
 function open_target_script(target_script)
 disp("Navigation App: Opening script: <a href=""matlab:edit('" + target_script + "')"">" + target_script + "</a>")
 edit(target_script)
-end  % function
+end  % local function
 
 function open_target_model(target_model)
 disp("Navigation App: Opening model: <a href=""matlab:" + target_model + """>" + target_model + "</a>")

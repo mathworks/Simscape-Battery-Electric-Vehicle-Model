@@ -65,7 +65,7 @@ classdef unittes_CtrlEnv_settings < matlab.unittest.TestCase
 
     function preload_parameters(testcase)
       % Check that the model loads parameters in the callback.
-      parameter_filename = "HarnessSetup_CtrlEnv";  % without ".m"
+      parameter_filename = "setupHarness_CtrlEnv";  % without ".m"
       load_system("HarnessModel_CtrlEnv")
       callback_text = string(get_param(gcs, "PreLoadFcn"));
       verifyTrue(testcase, contains(callback_text, lineBoundary("start") + parameter_filename + alphanumericBoundary))

@@ -3,7 +3,7 @@
 %[text] Test that the motor can convert mechanical power to electric power.
 model_name = "HarnessModel_MotorDriveUnit";
 load_system(model_name)
-HarnessSetup_MotorDriveUnit
+setupHarness_MotorDriveUnit
 
 set_param(model_name + "/Motor Drive Unit", ReferencedSubsystem = "MotorDriveUnit_Basic_refsub")
 

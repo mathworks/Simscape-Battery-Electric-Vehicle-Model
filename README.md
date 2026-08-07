@@ -67,11 +67,12 @@ how the model parameters are affecting the motor efficiency.
  alt="Screenshot of the motor drive unit efficiency app for system thermal model"
  width="700">
 
-## What's New in 5.0 (July 2026)
+## What's New in 5.0 (August 2026)
 
 - The project is upgraded to R2026a.
+- Elevation profile component is added.
 - The overall project size is reduced.
-- Utility APIs are updated.
+- Utility APIs and apps are updated with the Modeling Utility for Simscape.
 
 ## What's New in 4.0 (January 2026)
 

@@ -1,7 +1,5 @@
 classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
   % Class-based unit test for app
-  % This uitest class is the App.m file.
-  % There is another uitest class for the AppMain.m file and the related files.
 
   % Overview of App Testing Framework
   % https://www.mathworks.com/help/matlab/matlab_prog/overview-of-app-testing-framework.html
@@ -28,18 +26,25 @@ classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
       % Close all before test
       close all
       bdclose all
+      evalin("base", "clearvars")
 
       % addTeardown adds a function which always runs after each test.
       % Even if the execution of a test ends with an error, the teardown function runs.
       addTeardown(testcase, @closeAllAfterTest)
       function closeAllAfterTest
-        % Close all figure windows. This closes not only the test targets but also other figure windows.
+        % Close/delete all figure windows. This closes/deletes not only the test targets but also
+        % all the other figure windows too to provide clean state for the next test.
         figs = findall(0, Type="Figure");
         if not(any(isempty(figs)))
           disp("Deleting figures (" + numel(figs) + ")")
           delete(figs)
         end  % if
+
         bdclose all
+
+        % Do not clear variables in the base workspace at the end of a test
+        % to make it easy to debug after test if necessary.
+
       end  % nested function
     end  % function
 
@@ -66,7 +71,7 @@ classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
       source_fullpath = fullfile(top_folder, "BEVProjectNavigationApp.m");
       verifyTrue(testcase, isfile(source_fullpath))
 
-      destination_fullpath = fullfile(top_folder, "BEVProjectUtility", "screenshot-BEVProjectNavigationApp-dark.png");
+      destination_fullpath = fullfile(top_folder, "media", "screenshot-BEVProjectNavigationApp-dark.png");
 
       if isfile(destination_fullpath)
         needs_update = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
@@ -105,7 +110,7 @@ classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
       source_fullpath = fullfile(top_folder, "BEVProjectNavigationApp.m");
       verifyTrue(testcase, isfile(source_fullpath))
 
-      destination_fullpath = fullfile(top_folder, "BEVProjectUtility", "screenshot-BEVProjectNavigationApp-light.png");
+      destination_fullpath = fullfile(top_folder, "media", "screenshot-BEVProjectNavigationApp-light.png");
 
       if isfile(destination_fullpath)
         needs_update = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);

@@ -53,7 +53,7 @@ classdef unittest_BatteryHV < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(~)
-      HarnessSetup_BatteryHV
+      setupHarness_BatteryHV
     end  % function
 
     function PassingTest_2(~)

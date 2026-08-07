@@ -9,7 +9,7 @@
 % Set data to the target variable in the base workspace.
 % These data are used as the parameters of a lookup table block which requires at least three data points.
 batteryHV.Input_LoadCurrent_TimePoints = simscape.Value([0, 1, 2], "s");
-batteryHV.Input_LoadCurrent_Data = simscape.Value([-10, -10, -10], "A");
+batteryHV.Input_LoadCurrent_Data = simscape.Value([0, 0, 0], "A");
 
 %% Heat flow
 

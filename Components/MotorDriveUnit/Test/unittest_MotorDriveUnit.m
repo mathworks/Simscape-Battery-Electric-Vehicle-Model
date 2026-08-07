@@ -57,7 +57,7 @@ classdef unittest_MotorDriveUnit < matlab.unittest.TestCase
     end  % function
 
     function PassingTest_2(~)
-      HarnessSetup_MotorDriveUnit  % !test-target
+      setupHarness_MotorDriveUnit  % !test-target
     end  % function
 
     function PassingTest_3(~)

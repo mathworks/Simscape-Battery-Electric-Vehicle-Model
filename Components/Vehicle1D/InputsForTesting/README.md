@@ -1,15 +1,15 @@
-# Vehicle 1D - Inputs for Testing
+# Input signals for testing Vehicle 1D component
 
-`Inputs_Vehicle1D_*_refsub.mdl`
+This folder contains resources to set up input signals to test
+the Vehicle 1D component.
 
-- Used by `HarnessModel_Vehicle1D.mdl` and `HarnessModel_Vehicle1D_Inputs.mdl`.
-- Defines input signals in a referenced subsystem for use by `HarnessModel_Vehicle1D.mdl`
-  to test the motor drive unit.
-- Tested individually with `HarnessModel_Vehicle1D_Inputs.mdl` and
-  `unittest_Vehicle1D_Inputs.m`.
-- Tested by `unittest_Vehicle1D_Inputs_settings.m` for basic settings.
+The model `Inputs_Vehicle1D_LookupTables_refsub` is a subsystem to generate input signals.
+It has Lookup Table blocks for brake force, road grade, and axle torque signals.
+The scripts `loadLUTData_*.m` load variables in the base workspace for the signals,
+and the lookup table blocks use them.
 
-`BuildInputs_Vehicle1D_*.m` files are Live M files where the input signals are
-designed and transferred to the `Inputs_Vehicle1D_*_refsub.mdl` subsystem files.
+The `Test` folder contains resources to test the subsystem and the scripts.
+
+The `Utility` folder contains Live Scripts to view the input signals.
 
 _Copyright 2026 The MathWorks, Inc._

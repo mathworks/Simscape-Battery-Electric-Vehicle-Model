@@ -6,9 +6,10 @@ BEV_setup_Basic %[output:541b43ce]
 
 sim_in = Simulink.SimulationInput(model_name);
 
+loadLUTData_VehSpdRef_Simple
 sim_in = setBlockParameter(sim_in, ...
   model_name + "/Controller and Environment/Vehicle speed reference", ...
-  ReferencedSubsystem = "VehSpdRef_Simple_refsub");
+  ReferencedSubsystem = "VehSpdRef_LookupTable_refsub");
 
 sim_in = setModelParameter(sim_in, StopTime = "100");
 

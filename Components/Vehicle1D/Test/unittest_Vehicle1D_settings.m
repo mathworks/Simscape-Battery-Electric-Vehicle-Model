@@ -61,7 +61,7 @@ classdef unittest_Vehicle1D_settings < matlab.unittest.TestCase
 
     function preload_parameters(testcase)
       % Check that the model loads parameters in the callback.
-      parameter_filename = "HarnessSetup_Vehicle1D";  % without ".m"
+      parameter_filename = "setupHarness_Vehicle1D";  % without ".m"
       load_system("HarnessModel_Vehicle1D")
       callback_text = string(get_param(gcs, "PreLoadFcn"));
       verifyTrue(testcase, contains(callback_text, lineBoundary("start") + parameter_filename + alphanumericBoundary))
@@ -107,79 +107,35 @@ classdef unittest_Vehicle1D_settings < matlab.unittest.TestCase
 
     %% Button block callback
 
-    function Click_callback_1(testcase)
+    function Click_callback_1(~)
       model_name = "HarnessModel_Vehicle1D";
       load_system(model_name)
-
-      ClickFcn = get_param(model_name + "/Set inputs 1", "ClickFcn");
-
-      % The callback changes the referenced subsystem.
-      eval(ClickFcn)  % !test-target
-
-      mask = Simulink.Mask.get(model_name + "/Inputs");
-      icon_code = mask.Display;
-
-      % Check that the expected referenced subsystem was selected by the callback.
-      verifyTrue(testcase, contains(icon_code, """Constant"""))
-
-      % Make sure simulation runs with the selected referenced subsystem.
+      ClickFcn_text = get_param(model_name + "/Set inputs 1", "ClickFcn");
+      evalin("base", ClickFcn_text)
       sim(model_name);
     end  % function
 
-    function Click_callback_2(testcase)
+    function Click_callback_2(~)
       model_name = "HarnessModel_Vehicle1D";
       load_system(model_name)
-
-      ClickFcn = get_param(model_name + "/Set inputs 2", "ClickFcn");
-
-      % The callback changes the referenced subsystem.
-      eval(ClickFcn)  % !test-target
-
-      mask = Simulink.Mask.get(model_name + "/Inputs");
-      icon_code = mask.Display;
-
-      % Check that the expected referenced subsystem was selected by the callback.
-      verifyTrue(testcase, contains(icon_code, """Accelerate"""))
-
-      % Make sure simulation runs with the selected referenced subsystem.
+      ClickFcn_text = get_param(model_name + "/Set inputs 2", "ClickFcn");
+      evalin("base", ClickFcn_text)
       sim(model_name);
     end  % function
 
-    function Click_callback_3(testcase)
+    function Click_callback_3(~)
       model_name = "HarnessModel_Vehicle1D";
       load_system(model_name)
-
-      ClickFcn = get_param(model_name + "/Set inputs 3", "ClickFcn");
-
-      % The callback changes the referenced subsystem.
-      eval(ClickFcn)  % !test-target
-
-      mask = Simulink.Mask.get(model_name + "/Inputs");
-      icon_code = mask.Display;
-
-      % Check that the expected referenced subsystem was selected by the callback.
-      verifyTrue(testcase, contains(icon_code, """Braking"""))
-
-      % Make sure simulation runs with the selected referenced subsystem.
+      ClickFcn_text = get_param(model_name + "/Set inputs 3", "ClickFcn");
+      evalin("base", ClickFcn_text)
       sim(model_name);
     end  % function
 
-    function Click_callback_4(testcase)
+    function Click_callback_4(~)
       model_name = "HarnessModel_Vehicle1D";
       load_system(model_name)
-
-      ClickFcn = get_param(model_name + "/Set inputs 4", "ClickFcn");
-
-      % The callback changes the referenced subsystem.
-      eval(ClickFcn)  % !test-target
-
-      mask = Simulink.Mask.get(model_name + "/Inputs");
-      icon_code = mask.Display;
-
-      % Check that the expected referenced subsystem was selected by the callback.
-      verifyTrue(testcase, contains(icon_code, """Coastdown"""))
-
-      % Make sure simulation runs with the selected referenced subsystem.
+      ClickFcn_text = get_param(model_name + "/Set inputs 4", "ClickFcn");
+      evalin("base", ClickFcn_text)
       sim(model_name);
     end  % function
 

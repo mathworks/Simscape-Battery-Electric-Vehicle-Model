@@ -21,9 +21,10 @@ BEV_setup_Basic %[output:341478d1]
 sim_in = Simulink.SimulationInput(model_name);
 
 % Select the vehicle speed reference, i.e., drive pattern/cycle.
+loadLUTData_VehSpdRef_Simple
 sim_in = setBlockParameter(sim_in, ...
   model_name + "/Controller and Environment/Vehicle speed reference", ...
-  ReferencedSubsystem = "VehSpdRef_Simple_refsub");
+  ReferencedSubsystem = "VehSpdRef_LookupTable_refsub");
 
 % Specify the stop time of simulation corresponding to the drive pattern.
 sim_in = setModelParameter(sim_in, StopTime = "100");

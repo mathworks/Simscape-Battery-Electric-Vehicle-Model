@@ -2,7 +2,7 @@
 
 % Copyright 2026 The MathWorks, Inc.
 
-tmp_result = BuildInputs_BatteryHV_Random();
+tmp_result = buildInputs_BatteryHV_Random();
 
 batteryHV.Input_LoadCurrent_TimePoints = tmp_result.Input_LoadCurrent_TimePoints;
 batteryHV.Input_LoadCurrent_Data = tmp_result.Input_LoadCurrent_Data;

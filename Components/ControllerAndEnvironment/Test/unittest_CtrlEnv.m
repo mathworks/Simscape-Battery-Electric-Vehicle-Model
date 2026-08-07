@@ -53,7 +53,7 @@ classdef unittest_CtrlEnv < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(~)
-      HarnessSetup_CtrlEnv
+      setupHarness_CtrlEnv
     end  % function
 
     function PassingTest_2(~)

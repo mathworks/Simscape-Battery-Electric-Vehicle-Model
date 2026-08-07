@@ -109,7 +109,7 @@ classdef unittest_Reducer_settings < matlab.unittest.TestCase
 
     end  % function
 
-    function Click_callback_3(testcase)
+    function Click_callback_3(~)
       %%
       model_name = "HarnessModel_Reducer";
       load_system(model_name)

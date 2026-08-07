@@ -55,7 +55,7 @@ classdef uptodateTest_Vehicle1D < matlab.unittest.TestCase
       %%
       source_fullpath = bevutil1.FileUtil.getFileFullPath("Vehicle1D_Description.m");
 
-      destination_fullpath = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit", "Vehicle1D_Description.html");
+      destination_fullpath = fullfile(currentProject().RootFolder, "Components", "Vehicle1D", "Vehicle1D_Description.html");
 
       if isfile(destination_fullpath)
         source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);

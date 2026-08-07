@@ -6,7 +6,7 @@
 % 
 % The BEV_system_model automatically runs this script in the PostLoadFcn callback.
 
-% Copyright 2020-2025 The MathWorks, Inc.
+% Copyright 2020-2026 The MathWorks, Inc.
 
 %% Bus definitions
 
@@ -113,6 +113,18 @@ bevControl.MotorSpdRef_Kp = 15;
 
 % Bounds for torque command
 bevControl.MotorDriveUnit_trqMax_Nm = motorDriveUnit.trqMax_Nm;
+
+%% Inputs to the model
+
+% Use the "Simple" drive pattern using the Lookup-Table-based subsystem.
+loadLUTData_VehSpdRef_Simple
+
+if bdIsLoaded("BEV_system_model")
+  % If the model is loaded, make sure to use the intended subsystem for
+  % the vehicle speed reference.
+  set_param(bdroot + "/Controller and Environment/Vehicle speed reference", ...
+    ReferencedSubsystem = "VehSpdRef_LookupTable_refsub")
+end  % if
 
 %% Initial conditions
 

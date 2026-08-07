@@ -129,7 +129,7 @@ classdef uptodateTest_BatteryHV_Inputs < matlab.unittest.TestCase
 
     function plot_image_is_uptodate_1(testcase)
       %%
-      source_name = "BuildInputs_BatteryHV_Random.m";  %!screenshot-target
+      source_name = "buildInputs_BatteryHV_Random.m";  %!screenshot-target
       image_filename = "plot-Inputs_BatteryHV_Random-LoadCurrent.png";
 
       source_fullpath = bevutil1.FileUtil.getFileFullPath(source_name);
@@ -143,7 +143,7 @@ classdef uptodateTest_BatteryHV_Inputs < matlab.unittest.TestCase
 
         % ---------------------------------------------------------------------
         % Create a plot.
-        data = BuildInputs_BatteryHV_Random();
+        data = buildInputs_BatteryHV_Random();
         fig = figure;
         fig.Position(3:4) = [1000 300];  % width height
 

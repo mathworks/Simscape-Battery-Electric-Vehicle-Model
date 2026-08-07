@@ -61,7 +61,7 @@ classdef unittest_MotorDriveUnit_settings < matlab.unittest.TestCase
 
     function preload_parameters(testcase)
       % Check that the model loads parameters in the callback.
-      parameter_filename = "HarnessSetup_MotorDriveUnit";  % without ".m"
+      parameter_filename = "setupHarness_MotorDriveUnit";  % without ".m"
       load_system("HarnessModel_MotorDriveUnit")
       callback_text = string(get_param(gcs, "PreLoadFcn"));
       verifyTrue(testcase, contains(callback_text, lineBoundary("start") + parameter_filename + alphanumericBoundary))

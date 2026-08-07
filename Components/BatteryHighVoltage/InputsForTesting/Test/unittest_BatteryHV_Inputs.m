@@ -49,24 +49,31 @@ classdef unittest_BatteryHV_Inputs < matlab.unittest.TestCase
     % Functions in this "Test" section are the tests.
     % Before each function in this section runs, functions defined in the TestMethodSetup section run.
 
-    function PassingTest_Constant_1(~)
+    %% Minimum quality check
+    % Check that models, scripts, functions, and classes run right out of the box.
+
+    function PassingTest_1(~)
       LoadInputs_BatteryHV_Constant
     end  % function
 
-    function PassingTest_Charge_1(~)
+    function PassingTest_2(~)
       LoadInputs_BatteryHV_Charge
     end  % function
 
-    function PassingTest_Random_1(~)
-      BuildInputs_BatteryHV_Random;
+    function PassingTest_3(~)
+      LoadInputs_BatteryHV_Discharge
     end  % function
 
-    function PassingTest_Random_2(~)
+    function PassingTest_4_1(~)
+      buildInputs_BatteryHV_Random;
+    end  % function
+
+    function PassingTest_4_2(~)
       LoadInputs_BatteryHV_Random
     end  % function
 
-    function PassingTest_visualize_1(~)
-      VisualizeInputs_BatteryHV
+    function PassingTest_5(~)
+      VisualizeInputs_BatteryHV_live
     end  % function
 
     function PassingTest_sim_1(~)

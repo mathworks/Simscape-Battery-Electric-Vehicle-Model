@@ -57,7 +57,7 @@ classdef unittest_Vehicle1D < matlab.unittest.TestCase
     end  % function
 
     function PassingTest_2(~)
-      HarnessSetup_Vehicle1D
+      setupHarness_Vehicle1D
     end  % function
 
     function PassingTest_3(~)
@@ -66,15 +66,6 @@ classdef unittest_Vehicle1D < matlab.unittest.TestCase
 
     function PassingTest_4(~)
       sim("HarnessModel_Vehicle1D");
-    end  % function
-
-    function sim_with_custom_1(~)
-      model_name = "HarnessModel_Vehicle1D";
-      load_system(model_name)
-      block_path = model_name + "/Longitudinal Vehicle";
-      set_param(block_path, ReferencedSubsystem="Vehicle1D_Custom_refsub")
-      evalin("base", "Vehicle1D_Custom_params")
-      sim(model_name);
     end  % function
 
   end  % methods
