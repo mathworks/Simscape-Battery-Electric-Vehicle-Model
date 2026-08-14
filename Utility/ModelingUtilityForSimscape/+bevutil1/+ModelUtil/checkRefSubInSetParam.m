@@ -1,17 +1,9 @@
 function Result = checkRefSubInSetParam(CodeText, NameValuePair)
 % This function checks if the given text contains code for setting a referenced subsystem
 % in one of the following styles.
-%   ReferencedSubsystem = "<refsub_name>")
-%   "ReferencedSubsystem", "<refsub_name>")
-%   (Double quotes can be single quotes.)
-%
-% A complete code is something like
 %   set_param(<block_path>, ReferencedSubsystem = "<refsub_name>")
-% but the code may be split into 2 lines like
-%   set_param(<block_path>, ...
-%     ReferencedSubsystem = "<refsub_name>")
-% This function focuses only on the target line
-%     ReferencedSubsystem = "<refsub_name>")
+%   set_param(<block_path>, "ReferencedSubsystem", "<refsub_name>")
+%   (Double quotes can be single quotes.)
 %
 % This function returns a table where each row indicates if a found code line
 % is actually referring to an existing file and if it is a referenced subsystem file.
@@ -49,8 +41,7 @@ end  % if
 
 ospace = optionalPattern(whitespacePattern);
 
-% logical_index = startsWith(lines, ospace+"set_param(") & contains(lines, "ReferencedSubsystem");
-logical_index = contains(lines, "ReferencedSubsystem");
+logical_index = startsWith(lines, ospace+"set_param(") & contains(lines, "ReferencedSubsystem");
 
 lines = lines(logical_index);
 % At this point, all lines are one of the followings.

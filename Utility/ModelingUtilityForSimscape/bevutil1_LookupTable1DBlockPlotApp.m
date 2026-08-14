@@ -6,7 +6,7 @@ function App = bevutil1_LookupTable1DBlockPlotApp(NameValuePair)
 %
 % This app automatically finds Simscape LUT blocks and Simulink LUT blocks in the model.
 
-% Copyright 2025 The MathWorks, Inc.
+% Copyright 2025-2026 The MathWorks, Inc.
 
 arguments (Input)
   NameValuePair.ModelFilePath (1,:) string {mustBeScalarOrEmpty}
@@ -75,7 +75,7 @@ panel_ui.ComponentHeight = 380;
 
     end  % if
     [~, block_name, ~] = fileparts(block_selector_ui.BlockPath);
-    bevutil1.ModelUtil.plotLookupTable1DBlocks(gcs, Blocks=block_name, ParentType="Panel", ParentPanel=panel_ui.MainPanel)
+    bevutil1.SignalUtil.plotLookupTable1DBlocks(gcs, Blocks=block_name, ParentType="Panel", ParentPanel=panel_ui.MainPanel)
   end  % nested function
 
 %%

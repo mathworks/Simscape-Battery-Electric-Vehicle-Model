@@ -71,6 +71,7 @@ classdef Vehicle1DForceAppMain < handle
 
     UpdateButtonUI bevutil1.AppUtil.Component.EnabledButton
     OpenInFigureWindowUI bevutil1.AppUtil.Component.Hyperlink
+
     AxesUI bevutil1.AppUtil.Graphics.Axes
 
     % === Plot customization
@@ -1005,7 +1006,6 @@ classdef Vehicle1DForceAppMain < handle
         App.DataSet = updateDataSet(App.DataSet);
       catch exception
         App.DataSet = previous_dataset;
-
         App.VehicleMassUI.SimscapeValue = App.DataSet.ModelParams.VehicleMass;
         App.TireRollingCoefficientUI.SimscapeValue = App.DataSet.ModelParams.TireRollingCoefficient;
         App.AirDragCoefficientUI.SimscapeValue = App.DataSet.ModelParams.AirDragCoefficient;

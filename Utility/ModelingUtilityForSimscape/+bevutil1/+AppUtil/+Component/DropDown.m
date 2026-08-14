@@ -38,7 +38,9 @@ classdef DropDown < bevutil1.AppUtil.Component.ComponentBase
     HorizontalAlignment (1,1) {mustBeMember( HorizontalAlignment, ["left", "center", "right"])} = "center"
 
     ComponentHeight (1,:) {bevutil1.CodeUtil.mustBeTextOrPositiveNumber} = bevutil1.AppUtil.Constant.Height{"oneline++"}
-    DropDownHeight (1,:) {bevutil1.CodeUtil.mustBeTextOrPositiveNumber} = bevutil1.AppUtil.Constant.Height{"oneline+"}
+
+    % Make the drop down height slightly slim to make sure the whole height of the drop down is visible.
+    DropDownHeight (1,:) {bevutil1.CodeUtil.mustBeTextOrPositiveNumber} = bevutil1.AppUtil.Constant.Height{"oneline+"} - 2
 
     % uidropdown has VerticalAlignment property, but it is for the alignment of icon and text within a drop down button.
     % The VerticalAlignment property of this class is for the alignment of the main element within its parent component.

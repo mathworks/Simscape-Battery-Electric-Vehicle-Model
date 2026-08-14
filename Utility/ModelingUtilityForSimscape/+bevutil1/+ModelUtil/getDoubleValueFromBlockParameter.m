@@ -2,11 +2,26 @@ function DoubleVal = getDoubleValueFromBlockParameter(FullpathToBlock, Parameter
 % Get a numeric (double) value for a block parameter of the specified block.
 %
 % Unlike get_param, this function always returns a numeric value.
-% If a block parameter is referring to a base workspace variable, evaluation is done.
+% If a block parameter refers to a base workspace variable,
+% this function returns an evaluated value.
 % If the referred variable is not defined in the base workspace,
 % this function produces an error.
 
 % Copyright 2026 The MathWorks, Inc.
+
+% Notes on implementation
+%
+% Unlike getSimscapeValueFromBlockParameter, this function cannot use
+% the "value@param_name" format to get an evaluated value because the "value@"
+% prefix text only works with masked block parameters.
+%
+% !todo:
+% In R2025a or newer, a potential improvement is to use
+%   evaluateAndCapture
+%   https://www.mathworks.com/help/matlab/ref/matlab.lang.workspace.evaluateandcapture.html
+% together with
+%   matlab.lang.Workspace.baseWorkspace
+%   https://www.mathworks.com/help/matlab/ref/matlab.lang.workspace.baseworkspace.html
 
 arguments (Input)
   FullpathToBlock {mustBeText} = ""

@@ -67,7 +67,7 @@ classdef unittest_BEVProject_settings < matlab.unittest.TestCase
       verifyTrue(testcase, nnz(logical_index) == 0)
 
       % This must open the intended Live Script in the Editor.
-      bevutil1.ProjectUtil.openInProject(target_file)  % !test-target
+      bevutil1.ProjectUtil.bevutil1.ProjectUtil.openInProject(target_file)  % !test-target
 
       % Find the target Live Script in the Editor and close it.
       docs_in_editor = matlab.desktop.editor.getAll;

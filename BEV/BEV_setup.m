@@ -116,15 +116,8 @@ bevControl.MotorDriveUnit_trqMax_Nm = motorDriveUnit.trqMax_Nm;
 
 %% Inputs to the model
 
-% Use the "Simple" drive pattern using the Lookup-Table-based subsystem.
+% Load the "Simple" drive pattern for the Lookup-Table-based subsystem.
 loadLUTData_VehSpdRef_Simple
-
-if bdIsLoaded("BEV_system_model")
-  % If the model is loaded, make sure to use the intended subsystem for
-  % the vehicle speed reference.
-  set_param(bdroot + "/Controller and Environment/Vehicle speed reference", ...
-    ReferencedSubsystem = "VehSpdRef_LookupTable_refsub")
-end  % if
 
 %% Initial conditions
 

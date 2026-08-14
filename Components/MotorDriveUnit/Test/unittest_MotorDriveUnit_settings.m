@@ -148,8 +148,8 @@ classdef unittest_MotorDriveUnit_settings < matlab.unittest.TestCase
         matlab_command = link_table.Command(ii);
         disp("Hyperlinked MATLAB command: " + matlab_command)
 
-        if startsWith(matlab_command, "openInProject(")
-          % Assume that the argument to the openInProject is a simple word representing
+        if startsWith(matlab_command, "bevutil1.ProjectUtil.openInProject(")
+          % Assume that the argument to the bevutil1.ProjectUtil.openInProject is a simple word representing
           % a MATLAB code file or a Simulink model file.
           % For example, "hello" in openInFile("hello") should be one of
           % "hello.m", "hello.mlx", "hello.mdl", or "hello.slx".

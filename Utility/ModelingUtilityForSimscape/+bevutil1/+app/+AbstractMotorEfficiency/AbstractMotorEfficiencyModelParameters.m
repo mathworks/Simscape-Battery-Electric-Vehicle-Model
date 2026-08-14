@@ -29,13 +29,15 @@ classdef AbstractMotorEfficiencyModelParameters
       { simscape.mustBeCommensurateUnit(MaxPower, "kW"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
       = simscape.Value(nan, "kW")
 
-    OverallEfficiencyPercent double { mustBeInRange(OverallEfficiencyPercent, 0, 100) } ...
+    ElectricalEfficiencyPercent double { mustBeInRange(ElectricalEfficiencyPercent, 0, 100) } ...
       = 0  %#ok<MUSTINRANGE> mustBeBetween is not available in R2024b.
 
     MeasuredAngularSpeed simscape.Value ...
       { simscape.mustBeCommensurateUnit(MeasuredAngularSpeed, "rpm"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
       = simscape.Value(nan, "rpm")
 
+    % Torque at which electrical power conversion efficiency was measured.
+    % This is electrical torque.
     MeasuredTorque simscape.Value ...
       { simscape.mustBeCommensurateUnit(MeasuredTorque, "N*m"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
       = simscape.Value(nan, "N*m")
@@ -51,9 +53,8 @@ classdef AbstractMotorEfficiencyModelParameters
       { simscape.mustBeCommensurateUnit(FixedLosses, "W"), bevutil1.CodeUtil.mustBeSimscapeValueNonnegativeOrNan } ...
       = simscape.Value(nan, "W")
 
-    RotorDampingCoefficient simscape.Value ...
-      { simscape.mustBeCommensurateUnit(RotorDampingCoefficient, "N*m/rpm"), bevutil1.CodeUtil.mustBeSimscapeValueNonnegativeOrNan } ...
-      = simscape.Value(nan, "N*m/rpm")
+    IdealMotorThresholdPercent (1,1) double ...
+      { mustBeInRange(IdealMotorThresholdPercent, 0, 100) } = 99.8  %#ok<MUSTINRANGE>
 
     % -------------------------------------------------------------------------
     % Derived parameters
@@ -106,13 +107,12 @@ classdef AbstractMotorEfficiencyModelParameters
       ModelParams.MaxTorque = simscape.Value(160, "N*m");
       ModelParams.MaxPower = simscape.Value(55, "kW");
 
-      ModelParams.OverallEfficiencyPercent = 95;
+      ModelParams.ElectricalEfficiencyPercent = 95;
       ModelParams.MeasuredAngularSpeed = simscape.Value(2000, "rpm");
       ModelParams.MeasuredTorque = simscape.Value(50, "N*m");
 
       ModelParams.MeasuredIronLosses = simscape.Value(55, "W");
       ModelParams.FixedLosses = simscape.Value(40, "W");
-      ModelParams.RotorDampingCoefficient = simscape.Value(0.05, "N*m/(rad/s)");
 
       ModelParams = updateDerivedParameters(ModelParams);
 
@@ -127,7 +127,7 @@ classdef AbstractMotorEfficiencyModelParameters
       % The logic here validates constrains involving two or more parameters.
 
       if ModelParams.MaxTorque < ModelParams.MeasuredTorque
-        % It is unknown which is/are wrong; MaxTorque, and/or MeasuredTorque.
+        % It is unknown what is wrong is MaxTorque, MeasuredTorque, or both.
         id = ModelParams.errorID + "InvalidTorqueParameters";
         msg = bevutil1.CodeUtil.i18n("Torque at measurement point cannot be greater than max torque.");
 
@@ -136,7 +136,7 @@ classdef AbstractMotorEfficiencyModelParameters
       end  % if
 
       if ModelParams.MaxPower / ModelParams.MaxTorque < ModelParams.MeasuredAngularSpeed
-        % It is unknown which is/are wrong; MaxPower, MaxTorque, and/or MeasuredAngularSpeed.
+        % It is unknown what is wrong; MaxPower, MaxTorque, and/or MeasuredAngularSpeed.
         id = ModelParams.errorID + "SpeedConstraintViolation";
         msg = bevutil1.CodeUtil.i18n("MeasuredAngularSpeed cannot be higher than the speed determined from max power and max torque.");
 
@@ -145,11 +145,11 @@ classdef AbstractMotorEfficiencyModelParameters
       end  % if
 
       % -----------------------------------------------------------------------
-      % Nominal (rated) losses at efficiency measurement point
+      % Nominal (rated) electrical power losses at electrical efficiency measurement point
 
-      normalized_measured_efficiency = ModelParams.OverallEfficiencyPercent / 100;
-      if normalized_measured_efficiency > 0.998
-        % Treat the motor as an ideal motor, i.e., a motor without losses in power conversion.
+      normalized_measured_electrical_efficiency = ModelParams.ElectricalEfficiencyPercent / 100;
+      if normalized_measured_electrical_efficiency > ModelParams.IdealMotorThresholdPercent / 100
+        % Treat the motor as an ideal motor, i.e., a motor without electrical losses.
         ModelParams.MeasuredNominalLosses = simscape.Value(0, "W");
         ModelParams.IronToNominalLossRatioPercent = 0;
         ModelParams.MeasuredCopperLosses = simscape.Value(0, "W");
@@ -160,14 +160,14 @@ classdef AbstractMotorEfficiencyModelParameters
 
       end  % if
 
-      % Mechanical power at efficiency measurement point
-      measured_mechanical_power = ModelParams.MeasuredAngularSpeed * ModelParams.MeasuredTorque;
+      % Electrical power at efficiency measurement point
+      measured_electrical_power = ModelParams.MeasuredAngularSpeed * ModelParams.MeasuredTorque;
 
-      % Nominal losses (total losses) at efficiency measurement point
-      measured_nominal_losses = convert((1/normalized_measured_efficiency - 1) * measured_mechanical_power, "W");
-      if measured_nominal_losses <= ModelParams.MeasuredIronLosses
-        id = ModelParams.errorID + "InvalidIronLosses";
-        msg = bevutil1.CodeUtil.i18n("Iron losses cannot be higher than nominal losses.");
+      % Nominal power losses (total losses) at efficiency measurement point
+      measured_nominal_losses = convert((1/normalized_measured_electrical_efficiency - 1) * measured_electrical_power, "W");
+      if measured_nominal_losses <= ModelParams.MeasuredIronLosses + ModelParams.FixedLosses
+        id = ModelParams.errorID + "InvalidIronAndFixedLosses";
+        msg = bevutil1.CodeUtil.i18n("The sum of iron losses and fixed losses cannot be greater than nominal losses.");
 
         throw(MException(id, msg))
 
@@ -176,7 +176,7 @@ classdef AbstractMotorEfficiencyModelParameters
       ModelParams.MeasuredNominalLosses = measured_nominal_losses;
 
       % -----------------------------------------------------------------------
-      % The ratio of iron losses to nominal losses at efficiency measurement point.
+      % The ratio of iron losses to nominal losses at electrical efficiency measurement point.
 
       % measured_nominal_losses can be positive and very close to zero if efficiency is very close to 1, but
       % such a case is already excluded by checking as the ideal motor case above.
@@ -186,9 +186,9 @@ classdef AbstractMotorEfficiencyModelParameters
       ModelParams.IronToNominalLossRatioPercent = 100 * normalized_iron_to_nominal_loss_ratio;
 
       % -----------------------------------------------------------------------
-      % Copper losses at efficiency measurement point
+      % Copper losses at electrical efficiency measurement point
 
-      measured_copper_loss = convert(measured_nominal_losses - ModelParams.MeasuredIronLosses, "W");
+      measured_copper_loss = convert(measured_nominal_losses - ModelParams.MeasuredIronLosses - ModelParams.FixedLosses, "W");
       ModelParams.MeasuredCopperLosses = measured_copper_loss;
 
       % -----------------------------------------------------------------------

@@ -1,7 +1,7 @@
 function ReturnFigure = plotTimedData(NameValuePair)
 %% Plot timetable data.
 
-% Copyright 2021-2025 The MathWorks, Inc.
+% Copyright 2021-2026 The MathWorks, Inc.
 
 arguments (Input)
 

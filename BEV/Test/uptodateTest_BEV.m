@@ -80,7 +80,7 @@ classdef uptodateTest_BEV < matlab.unittest.TestCase
 
     function model_screenshot_is_uptodate(testcase)
       %%
-
+ 
       top_folder = fullfile(currentProject().RootFolder, "BEV");
       verifyTrue(testcase, isfolder(top_folder))
 
@@ -90,29 +90,90 @@ classdef uptodateTest_BEV < matlab.unittest.TestCase
       source_fullpath = fullfile(top_folder, model_name+".mdl");
       verifyTrue(testcase, isfile(source_fullpath))
 
-      destination_fullpath = fullfile(top_folder, "Utility", image_filename);
+      destination_fullpath = fullfile(top_folder, "media", image_filename);
 
-      is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
-      if is_newer
-        disp("Taking screenshot: " + model_name)
-
-        load_system(model_name)
-
-        % Update the model before taking screenshot.
-        % This ensures that the model is properly updated without errors and ready to run.
-        % This also updates the canvas rendering.
-        set_param(model_name, SimulationCommand = "update")
-
-        result = bevutil1.ModelUtil.screenshotSimulink( ...
-          OutputFileName = destination_fullpath, ...
-          SimulinkModelName = model_name);
-
-        disp("Generated: " + result.OutputFullPath)
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      if source_is_newer
+        result = bevutil1.ModelUtil.screenshotSimulink(OutputFileName=destination_fullpath, SimulinkModelName=model_name);
+        disp("Saved: " + result.OutputFullPath)
+      else
+        disp("Screenshot is up to date.")
       end  % if
 
-      is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      verifyFalse(testcase, source_is_newer)
 
-      verifyFalse(testcase, is_newer)
+    end  % function
+
+    function plot_png_is_uptodate_1(testcase)
+      %%
+      source_script = "BEV_Basic_Simple";  % without ".m"
+      image_filename = "BEV_Basic_Simple.png";
+
+      source_fullpath = fullfile(currentProject().RootFolder, "BEV", "Model-Basic", "SimulationCases", source_script + ".m");
+      verifyTrue(testcase, isfile(source_fullpath))
+
+      destination_fullpath = fullfile(currentProject().RootFolder, "BEV", "media", image_filename);
+
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      if source_is_newer
+        destination_fullpath = takeScreenshot_BEV_SimulationResult( ...
+          Script=source_script, ResultVariable="sim_data", MediaFolder=fileparts(destination_fullpath) );
+        disp("Saved: " + destination_fullpath)
+      else
+        disp("Screenshot is up to date.")
+      end  % if
+
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      verifyFalse(testcase, source_is_newer)
+
+    end  % function
+
+    function plot_png_is_uptodate_2(testcase)
+      %%
+      source_script = "BEV_Basic_HighSpeed";  % without ".m"
+      image_filename = "BEV_Basic_HighSpeed.png";
+
+      source_fullpath = fullfile(currentProject().RootFolder, "BEV", "Model-Basic", "SimulationCases", source_script + ".m");
+      verifyTrue(testcase, isfile(source_fullpath))
+
+      destination_fullpath = fullfile(currentProject().RootFolder, "BEV", "media", image_filename);
+
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      if source_is_newer
+        destination_fullpath = takeScreenshot_BEV_SimulationResult( ...
+          Script=source_script, ResultVariable="sim_data", MediaFolder=fileparts(destination_fullpath) );
+        disp("Saved: " + destination_fullpath)
+      else
+        disp("Screenshot is up to date.")
+      end  % if
+
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      verifyFalse(testcase, source_is_newer)
+
+    end  % function
+
+    function plot_png_is_uptodate_3(testcase)
+      %%
+      source_script = "BEV_Basic_FTP75";  % without ".m"
+      image_filename = "BEV_Basic_FTP75.png";
+
+      source_fullpath = fullfile(currentProject().RootFolder, "BEV", "Model-Basic", "SimulationCases", source_script + ".m");
+      verifyTrue(testcase, isfile(source_fullpath))
+
+      destination_fullpath = fullfile(currentProject().RootFolder, "BEV", "media", image_filename);
+
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      if source_is_newer
+        destination_fullpath = takeScreenshot_BEV_SimulationResult( ...
+          Script=source_script, ResultVariable="sim_data", MediaFolder=fileparts(destination_fullpath) );
+        disp("Saved: " + destination_fullpath)
+      else
+        disp("Screenshot is up to date.")
+      end  % if
+
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      verifyFalse(testcase, source_is_newer)
 
     end  % function
 

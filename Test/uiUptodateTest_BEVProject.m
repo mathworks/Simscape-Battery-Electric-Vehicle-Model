@@ -73,18 +73,14 @@ classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
 
       destination_fullpath = fullfile(top_folder, "media", "screenshot-BEVProjectNavigationApp-dark.png");
 
-      if isfile(destination_fullpath)
-        needs_update = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
-      else
-        needs_update = true;
-      end  % if
-
-      if needs_update
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      if source_is_newer
         disp("Taking screenshot: " + source_fullpath)
         app = target_app();  % !screenshot-target
         app.MainFigure.Theme = "dark";
         drawnow
         exportapp(app.MainFigure, destination_fullpath)
+
         disp("Saved: " + destination_fullpath)
       else
         disp("Screenshot is up to date.")
@@ -92,6 +88,7 @@ classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
 
       destination_is_newer = not(bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath));
       verifyTrue(testcase, destination_is_newer)
+
     end  % function
 
     function app_screenshot_1_light(testcase)
@@ -112,18 +109,14 @@ classdef uiUptodateTest_BEVProject < matlab.uitest.TestCase
 
       destination_fullpath = fullfile(top_folder, "media", "screenshot-BEVProjectNavigationApp-light.png");
 
-      if isfile(destination_fullpath)
-        needs_update = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
-      else
-        needs_update = true;
-      end  % if
-
-      if needs_update
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      if source_is_newer
         disp("Taking screenshot: " + source_fullpath)
         app = target_app();  % !screenshot-target
         app.MainFigure.Theme = "light";
         drawnow
         exportapp(app.MainFigure, destination_fullpath)
+
         disp("Saved: " + destination_fullpath)
       else
         disp("Screenshot is up to date.")

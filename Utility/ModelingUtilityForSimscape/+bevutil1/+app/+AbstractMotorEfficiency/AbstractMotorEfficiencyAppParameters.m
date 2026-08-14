@@ -34,37 +34,33 @@ classdef AbstractMotorEfficiencyAppParameters
       { simscape.mustBeCommensurateUnit(MaxPower, "kW"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
       = simscape.Value(110, "kW")
 
-    % Overall power conversion efficiency in percent.
-    OverallEfficiencyPercent double ...
-      { mustBeInRange(OverallEfficiencyPercent, 0, 100) } ...
+    % Electrical power conversion efficiency in percent.
+    ElectricalEfficiencyPercent double ...
+      { mustBeInRange(ElectricalEfficiencyPercent, 0, 100) } ...
       = 97  %#ok<MUSTINRANGE> mustBeBetween is not available in R2024b.
 
-    % Angular speed at which power conversion efficiency was measured.
+    % Angular speed at which electrical efficiency was measured.
     MeasuredAngularSpeed simscape.Value ...
       { simscape.mustBeCommensurateUnit(MeasuredAngularSpeed, "rpm"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
       = simscape.Value(2800, "rpm")
 
-    % Torque at which power conversion efficiency was measured.
+    % Torque at which electrical efficiency was measured.
+    % This is electrical torque.
     MeasuredTorque simscape.Value ...
       { simscape.mustBeCommensurateUnit(MeasuredTorque, "N*m"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
       = simscape.Value(80, "N*m")
 
-    % Iron (core) losses measured at efficiency measurement point.
+    % Iron (core) losses measured at electrical efficiency measurement point.
     % - Hysteresis and eddy current losses.
     % - Primarily voltage/frequency dependent.
     MeasuredIronLosses simscape.Value ...
       { simscape.mustBeCommensurateUnit(MeasuredIronLosses, "W"), bevutil1.CodeUtil.mustBeSimscapeValueNonnegativeOrNan } ...
       = simscape.Value(70, "W")
 
-    % Fixed losses over all operating region, independent of efficiency measurement point.
+    % Fixed losses over all operating region, independent of electrical efficiency measurement point.
     FixedLosses simscape.Value ...
       { simscape.mustBeCommensurateUnit(FixedLosses, "W"), bevutil1.CodeUtil.mustBeSimscapeValueNonnegativeOrNan } ...
       = simscape.Value(30, "W")
-
-    % Rotational friction losses at motor rotor.
-    RotorDampingCoefficient simscape.Value ...
-      { simscape.mustBeCommensurateUnit(RotorDampingCoefficient, "N*m/rpm"), bevutil1.CodeUtil.mustBeSimscapeValueNonnegativeOrNan } ...
-      = simscape.Value(0.03, "N*m/rpm")
 
     % -------------------------------------------------------------------------
     % Plot customization
@@ -86,6 +82,10 @@ classdef AbstractMotorEfficiencyAppParameters
     % Contour levels need 3 or more points for lower bound, upper bound,
     % and one or more points in between.
     PlotContourLevelsPercent (1,:) double {mustBeNonnegative} = [0 70 80 90 99]
+
+    PlotPowers (1,:) simscape.Value ...
+      { simscape.mustBeCommensurateUnit(PlotPowers, "kW"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
+      = simscape.Value([10, 50, 100, 150], "kW")
 
   end  % properties
 end  % classdef

@@ -110,7 +110,7 @@ motorDriveUnit.RadiationArea_m2 = 1;
 motorDriveUnit.RadiationCoeff_W_per_K4m2 = 5e-10;
 
 %% Block parameters in harness model
-% Parameters outisde of the model under test.
+% Parameters outside of the model under test.
 
 batteryHV.nominalVoltage_V = 340;
 batteryHV.nominalCapacity_kWh = 60;

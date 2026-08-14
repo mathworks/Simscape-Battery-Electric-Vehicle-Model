@@ -29,6 +29,8 @@ arguments (Input)
   NameValuePair.ParentPanel (1,:) matlab.ui.container.Panel
   NameValuePair.ParentAxes (1,:) matlab.graphics.axis.Axes
 
+  NameValuePair.TitleText (1,1) string = ""
+
 end  % arguments
 
 arguments (Output)
@@ -104,6 +106,14 @@ end  % if
 
 vertical_tile = tiledlayout(parent, "vertical");
 vertical_tile.TileSpacing = "tight";
+
+if NameValuePair.TitleText == ""
+  vertical_tile.Title.String = replace(SubsystemPath, "/", " / ");
+else
+  vertical_tile.Title.String = NameValuePair.TitleText;
+end  % if
+% Prevent _ from being interpreted as tex command.
+vertical_tile.Title.Interpreter = "none";
 
 % First pass - find the maximum X value.
 xmaxvalues = nan(num_blocks, 1);

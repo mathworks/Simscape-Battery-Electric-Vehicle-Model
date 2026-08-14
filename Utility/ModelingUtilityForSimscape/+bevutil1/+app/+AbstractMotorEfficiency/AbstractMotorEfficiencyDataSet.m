@@ -82,6 +82,11 @@ classdef AbstractMotorEfficiencyDataSet
       {bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan, simscape.mustBeCommensurateUnit(MaxAngularSpeed, "rad/s")} ...
       = simscape.Value(nan, "rpm")
 
+    % Power values to plot constant power contours
+    PlotPowers (1,:) simscape.Value ...
+      { simscape.mustBeCommensurateUnit(PlotPowers, "kW"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
+      = simscape.Value([nan, nan], "kW")
+
     % -------------------------------------------------------------------------
     % Y axis - Motor torque
 
@@ -119,6 +124,16 @@ classdef AbstractMotorEfficiencyDataSet
     TorqueEnvelopeValues (:,1) simscape.Value ...
       {mustBeVector, simscape.mustBeCommensurateUnit(TorqueEnvelopeValues, "N*m")} ...
       = simscape.Value([0, 0]', "N*m")
+
+    % Values of torque at constant power
+    TorqueValuesAtConstantPower simscape.Value ...
+      { simscape.mustBeCommensurateUnit(TorqueValuesAtConstantPower, "N*m") } ...
+      = simscape.Value([0, 0]', "N*m")
+
+    % Angular speed values for the constant power curves (matches TorqueValuesAtConstantPower dimension)
+    AngularSpeedValuesForConstantPower (:,1) simscape.Value ...
+      {mustBeVector, simscape.mustBeCommensurateUnit(AngularSpeedValuesForConstantPower, "rad/s")} ...
+      = simscape.Value([0, 1]', "rad/s")
 
   end  % properties
 
@@ -171,19 +186,17 @@ classdef AbstractMotorEfficiencyDataSet
 
         DataSet.ModelParams.MaxTorque = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(DataSet.BlockPath, "torque_max");
         DataSet.ModelParams.MaxPower = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(DataSet.BlockPath, "power_max");
-        DataSet.ModelParams.OverallEfficiencyPercent = bevutil1.ModelUtil.getDoubleValueFromBlockParameter(DataSet.BlockPath, "eff");
+        DataSet.ModelParams.ElectricalEfficiencyPercent = bevutil1.ModelUtil.getDoubleValueFromBlockParameter(DataSet.BlockPath, "eff");
         DataSet.ModelParams.MeasuredAngularSpeed = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(DataSet.BlockPath, "w_eff");
         DataSet.ModelParams.MeasuredTorque = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(DataSet.BlockPath, "T_eff");
 
         if DataSet.MotorModelType == "Full"
           DataSet.ModelParams.MeasuredIronLosses = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(DataSet.BlockPath, "Piron");
           DataSet.ModelParams.FixedLosses = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(DataSet.BlockPath, "Pbase");
-          DataSet.ModelParams.RotorDampingCoefficient = bevutil1.ModelUtil.getSimscapeValueFromBlockParameter(DataSet.BlockPath, "Lam");
         else
           % Simplified.
           DataSet.ModelParams.MeasuredIronLosses = simscape.Value(0, "W");
           DataSet.ModelParams.FixedLosses = simscape.Value(0, "W");
-          DataSet.ModelParams.RotorDampingCoefficient = simscape.Value(0, "N*m/(rad/s)");
         end  % if
 
         DataSet = resetCommonSettings(DataSet);
@@ -196,19 +209,17 @@ classdef AbstractMotorEfficiencyDataSet
       DataSet.ModelParams.MaxTorque = simscape.Value(160, "N*m");
       DataSet.ModelParams.MaxPower = simscape.Value(55, "kW");
 
-      DataSet.ModelParams.OverallEfficiencyPercent = 95;
+      DataSet.ModelParams.ElectricalEfficiencyPercent = 95;
       DataSet.ModelParams.MeasuredAngularSpeed = simscape.Value(2000, "rpm");
       DataSet.ModelParams.MeasuredTorque = simscape.Value(50, "N*m");
 
       if DataSet.MotorModelType == "Full"
         DataSet.ModelParams.MeasuredIronLosses = simscape.Value(55, "W");
         DataSet.ModelParams.FixedLosses = simscape.Value(40, "W");
-        DataSet.ModelParams.RotorDampingCoefficient = simscape.Value(0.05, "N*m/(rad/s)");
       else
         % Simplified.
         DataSet.ModelParams.MeasuredIronLosses = simscape.Value(0, "W");
         DataSet.ModelParams.FixedLosses = simscape.Value(0, "W");
-        DataSet.ModelParams.RotorDampingCoefficient = simscape.Value(0, "N*m/(rad/s)");
       end  % if
 
       DataSet = resetCommonSettings(DataSet);
@@ -229,6 +240,7 @@ classdef AbstractMotorEfficiencyDataSet
       DataSet.PlotAutoRange = "on";
       DataSet.PlotAngularSpeedUpperBound = simscape.Value(18000, "rpm");
       DataSet.PlotTorqueUpperBound = simscape.Value(200, "N*m");
+      DataSet.PlotPowers = simscape.Value([10, 50, 100, 150], "kW");
 
       DataSet = updateDataSet(DataSet);
 
@@ -259,15 +271,39 @@ classdef AbstractMotorEfficiencyDataSet
       if DataSet.MaxAngularSpeedMode == "auto"
         max_motor_speed_value_in_radps = max_motor_power_W / (DataSet.MaxAngularSpeedRate * max_motor_torque_value_in_Nm);
         DataSet.MaxAngularSpeed = convert(simscape.Value(max_motor_speed_value_in_radps, "rad/s"), "rpm");
+
       else
         % MaxAngularSpeedMode is "specify".
         % Max angular speed is not a model parameter.
         max_motor_speed_value_in_radps = value(DataSet.MaxAngularSpeed, "rad/s");
+
       end  % if
 
       % !attention: Speed should avoid zero because it is used in the denominator when calculating torque envelope.
       w_radps_vec = linspace(1, max_motor_speed_value_in_radps, plot_resolution);
+
       DataSet.AngularSpeedValues = transpose(simscape.Value(w_radps_vec, "rad/s"));
+
+      if DataSet.PlotAutoRange
+        if DataSet.MaxAngularSpeedMode == "auto"
+          plot_speed_unit_text = "rpm";
+          plot_speed_upper_bound_value_in_plot_unit = value(simscape.Value(max_motor_speed_value_in_radps, "rad/s"), "rpm");
+        else
+          % MaxAngularSpeedMode is "specify".
+          plot_speed_unit_text = string(unit(DataSet.MaxAngularSpeed));
+          plot_speed_upper_bound_value_in_plot_unit = value(DataSet.MaxAngularSpeed);
+        end
+        DataSet.PlotAngularSpeedUpperBound = simscape.Value(plot_speed_upper_bound_value_in_plot_unit, plot_speed_unit_text);
+        DataSet.PlotTorqueUpperBound = DataSet.ModelParams.MaxTorque;
+      else
+        % PlotAutoRange is OFF: use user-specified bound.
+        plot_speed_unit_text = string(unit(DataSet.PlotAngularSpeedUpperBound));
+        plot_speed_upper_bound_value_in_plot_unit = value(DataSet.PlotAngularSpeedUpperBound);
+      end
+
+      % !attention: Speed should avoid zero because it is used in the denominator when calculating torque envelope.
+      speed_vector_for_const_power_in_plot_unit = linspace(1, plot_speed_upper_bound_value_in_plot_unit, plot_resolution);
+      DataSet.AngularSpeedValuesForConstantPower = transpose(simscape.Value(speed_vector_for_const_power_in_plot_unit, plot_speed_unit_text));
 
       % -----------------------------------------------------------------------
       contour_levels = DataSet.PlotContourLevelsPercent;
@@ -281,32 +317,33 @@ classdef AbstractMotorEfficiencyDataSet
 
       % -----------------------------------------------------------------------
 
-      fixed_losses_W = value(DataSet.ModelParams.FixedLosses, "W");
-
-      k_damp = value(DataSet.ModelParams.RotorDampingCoefficient, "N*m/(rad/s)");
-
-      measured_copper_loss_coeff = value(DataSet.ModelParams.MeasuredCopperLossCoefficient, "W/(N*m)^2");
-
-      measured_iron_loss_coeff = value(DataSet.ModelParams.MeasuredIronLossCoefficient, "W/(rad/s)^2");  % Use rad/s.
+      normalized_efficiency = DataSet.ModelParams.ElectricalEfficiencyPercent / 100;
+      is_ideal_motor = normalized_efficiency > DataSet.ModelParams.IdealMotorThresholdPercent / 100;
 
       % =======================================================================
       % Calculations below are done in x-y mesh.
       [w_radps_mat, trq_Nm_mat] = meshgrid(w_radps_vec, trq_Nm_vec);
 
-      % Fixed electrical loss
-      fixed_losses_mat = fixed_losses_W*ones(plot_resolution, plot_resolution);
+      if is_ideal_motor
+        efficiency_percent_mat = 100 * ones(plot_resolution, plot_resolution);
 
-      electrical_torque_mat = abs(trq_Nm_mat) + k_damp*w_radps_mat;  % Steady state
-      copper_losses_mat = measured_copper_loss_coeff * electrical_torque_mat.^2;  % Copper loss model
+      else
+        fixed_losses_W = value(DataSet.ModelParams.FixedLosses, "W");
+        measured_copper_loss_coeff = value(DataSet.ModelParams.MeasuredCopperLossCoefficient, "W/(N*m)^2");
+        measured_iron_loss_coeff = value(DataSet.ModelParams.MeasuredIronLossCoefficient, "W/(rad/s)^2");
 
-      iron_losses_mat = measured_iron_loss_coeff * w_radps_mat.^2;  % Iron loss model
+        fixed_losses_mat = fixed_losses_W*ones(plot_resolution, plot_resolution);
+        copper_losses_mat = measured_copper_loss_coeff * trq_Nm_mat.^2;  % Copper loss model
+        iron_losses_mat = measured_iron_loss_coeff * w_radps_mat.^2;  % Iron loss model
 
-      % Total electrical losses
-      electrical_losses_mat = fixed_losses_mat + copper_losses_mat + iron_losses_mat;
+        % Total electrical losses
+        electrical_losses_mat = fixed_losses_mat + copper_losses_mat + iron_losses_mat;
 
-      mech_power_mat = trq_Nm_mat .* w_radps_mat;  % Mechanical power
+        mech_power_mat = trq_Nm_mat .* w_radps_mat;  % Mechanical power
 
-      efficiency_percent_mat = 100 * abs(mech_power_mat) ./ (electrical_losses_mat + abs(mech_power_mat));
+        efficiency_percent_mat = 100 * abs(mech_power_mat) ./ (electrical_losses_mat + abs(mech_power_mat));
+
+      end  % if
 
       torque_envelope_vec_in_Nm = min(max_motor_power_W ./ w_radps_vec, max_motor_torque_value_in_Nm);
       % !todo: Remove transpose when the "must be a vector" error is fixed.
@@ -314,14 +351,24 @@ classdef AbstractMotorEfficiencyDataSet
 
       % A mask matrix with 1 for valid, 0 for invalid regions.
       % This is multiplied to the efficiency matrix to set regions over the maximum torque to 0.
-      valid_torque_region_mask = trq_Nm_mat < torque_envelope_vec_in_Nm;
+      valid_torque_region_mask = trq_Nm_mat <= torque_envelope_vec_in_Nm;
 
-      valid_speed_region_mask = w_radps_mat < max_motor_speed_value_in_radps;
+      valid_speed_region_mask = w_radps_mat <= max_motor_speed_value_in_radps;
 
       % Apply the mask matrices.
       efficiency_percent_mat = valid_torque_region_mask .* efficiency_percent_mat;
       efficiency_percent_mat = valid_speed_region_mask .* efficiency_percent_mat;
       DataSet.EfficiencyPercentMeshData = efficiency_percent_mat;
+
+      % Torque curves for constant power values
+      powers = DataSet.PlotPowers;
+      num_powers = numel(powers);
+      Torque_const_power = simscape.Value(zeros(plot_resolution, num_powers), "N*m");
+      for col = 1 : num_powers
+        Torque_const_power(:, col) = powers(col) ./ transpose(simscape.Value(speed_vector_for_const_power_in_plot_unit, plot_speed_unit_text));
+      end  % for
+      DataSet.TorqueValuesAtConstantPower = Torque_const_power;
+
     end  % function
 
   end  % methods

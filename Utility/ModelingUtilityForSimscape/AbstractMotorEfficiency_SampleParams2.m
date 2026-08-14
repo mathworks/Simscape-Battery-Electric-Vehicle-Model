@@ -50,8 +50,8 @@ Params.Motor.MaxTorque = simscape.Value(160, "N*m");
 % Continuous operation maximum power
 Params.Motor.MaxPower = simscape.Value(55, "kW");
 
-% Motor and driver overall efficiency (percent)
-Params.Motor.OverallEfficiencyPercent = 95;
+% Overall electrical power conversion efficiency (percent)
+Params.Motor.ElectricalEfficiencyPercent = 95;
 
 % Speed at which efficiency is measured
 Params.Motor.MeasuredAngularSpeed = simscape.Value(2000, "rpm");
@@ -69,9 +69,6 @@ Params.Motor.MeasuredIronLosses = simscape.Value(55, "W");
 % Fixed losses independent of torque and speed
 Params.Motor.FixedLosses = simscape.Value(40, "W");
 
-% Rotor damping
-Params.Motor.RotorDampingCoefficient = simscape.Value(0.05, "N*m/(rad/s)");
-
 % -----------------------------------------------------------------------------
 % Plot customization
 
@@ -85,3 +82,5 @@ Params.Motor.PlotAngularSpeedUpperBound = simscape.Value(round(1.1*value(Params.
 Params.Motor.PlotTorqueUpperBound = simscape.Value(round(1.1*value(Params.Motor.MaxTorque, "N*m"), -2), "N*m");
 
 Params.Motor.PlotContourLevelsPercent = [1, 60, 80, 90, 96, 99];
+
+Params.Motor.PlotPowers = simscape.Value([10, 50, 100, 150], "kW");

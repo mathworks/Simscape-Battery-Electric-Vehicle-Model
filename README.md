@@ -10,6 +10,11 @@ Version 5.0.0
 [url-fx-bev]: https://www.mathworks.com/matlabcentral/fileexchange/82250
 [url-fx-icon]: https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg
 
+Cite this project as
+
+> MathWorks. Battery Electric Vehicle Model in Simscape
+> (https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model). GitHub, 2026.
+
 ## Introduction
 
 This is a MATLAB&reg; project containing
@@ -24,62 +29,58 @@ It is suitable as a baseline model for drive cycle simulation
 to estimate vehicle's electrical efficiency and
 other vehicle-level information.
 
-Cite this project as
-
-> MathWorks. Battery Electric Vehicle Model in Simscape
-> (https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model). GitHub, 2026.
-
 BEV system model:
 
-<img src="BEV/Utility/screenshot-BEV_system_model.png"
+<img src="BEV/media/screenshot-BEV_system_model.png"
  alt="Screenshot of the battery electric vehicle model"
  width="700">
 
 FTP75 drive cycle simulation result:
 
-<img src="BEV/Model-Basic/markdown/media/BEV_Basic_FTP75_media/figure_0.png"
- alt="Screenshot of the simulation result plots"
+<img src="BEV/media/BEV_Basic_FTP75.png"
+ alt="Screenshot of the simulation results from BEV basic model with FTP 75 drive cycle"
  width="700">
 
 Simple drive pattern simulation result:
 
-<img src="BEV/Model-Basic/markdown/media/BEV_Basic_Simple_media/figure_0.png"
- alt="Screenshot of the simulation result plots"
+<img src="BEV/media/BEV_Basic_Simple.png"
+ alt="Screenshot of the simulation results from BEV basic model with a simple drive pattern"
  width="700">
 
 Use **BEV Project Navigator App** to quickly access some key files and tools.
 
-<img src="BEVProjectUtility/screenshot-BEVProjectNavigationApp-light.png"
- alt="Screenshot of the longitudinal vehicle performance design app"
+<img src="media/screenshot-BEVProjectNavigationApp.png"
+ alt="Screenshot of the BEV project navigation app"
  width="450">
 
-Use **Vehicle1D App** to design the basic performance parameters
+Use **Vehicle 1D Force App** to understand and design the basic performance parameters
 of a road vehicle.
 
-<img src="Components/Vehicle1D/screenshot-Vehicle1DPerformanceDesignApp.png"
- alt="Screenshot of the longitudinal vehicle performance design app"
+<img src="Utility/ModelingUtilityForSimscape/media/screenshot-Vehicle1DForceApp-light.png"
+ alt="Screenshot of the longitudinal vehicle force app"
  width="700">
 
-Use **Motor Drive Unit Efficiency App for System Thermal Model** to understand
-how the model parameters are affecting the motor efficiency.
+Use **Abstract Motor Efficiency App** to understand and design the motor efficiency parameters.
 
-<img src="Components/MotorDriveUnit/Model-SystemThermal/screenshot-MDU-SystemThermalModelEfficiencyApp.png"
- alt="Screenshot of the motor drive unit efficiency app for system thermal model"
+<img src="Utility/ModelingUtilityForSimscape/media/screenshot-AbstractMotorEfficiencyApp-light.png"
+ alt="Screenshot of the abstract motor efficiency app"
  width="700">
 
 ## What's New in 5.0 (August 2026)
 
 - The project is upgraded to R2026a.
-- Elevation profile component is added.
+- The utility APIs and apps are available as the Modeling Utility for Simscape (MUS).
+- The updated Abstract Motor Efficiency App is available from the MUS.
+- The updated Vehicle 1D Force App is available from the MUS.
+- The new Elevation Profile component is available.
 - The overall project size is reduced.
-- Utility APIs and apps are updated with the Modeling Utility for Simscape.
 
 ## What's New in 4.0 (January 2026)
 
 - The project works in R2024b or newer.
 - The version 4 is built from the version 2.
 
-Past What's New contents have been moved to [Change Log](ChangeLog.md).
+For the past What's New, see [the change log](ChangeLog.md).
 
 ## Tool Requirements
 

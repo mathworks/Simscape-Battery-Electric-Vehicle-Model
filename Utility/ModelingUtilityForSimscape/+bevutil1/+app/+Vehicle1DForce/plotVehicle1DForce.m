@@ -95,8 +95,6 @@ arguments (Output)
   fig matlab.ui.Figure {mustBeScalarOrEmpty}
 end  % arguments
 
-errorID = "plotVehicle1DForce:";
-
 % -----------------------------------------------------------------------------
 % Collect properties from the specified data source.
 
@@ -214,16 +212,9 @@ end  %if
 % Create a plot.
 
 if isfield(NameValuePair, "ParentAxes")
-  if class(NameValuePair.ParentAxes) == "matlab.graphics.axis.Axes"
-    ax = NameValuePair.ParentAxes;
-    target_fig = ax.Parent;
-  else
-    id = errorID + "InvalidParentAxes";
-    msg = bevutil1.CodeUtil.i18n("ParentAxes must be of type matlab.graphics.axis.Axes.");
-
-    throw(MException(id, msg))
-
-  end  % if
+  % NameValuePair.ParentAxes is guaranteed to be of type matlab.graphics.axis.Axes.
+  ax = NameValuePair.ParentAxes;
+  target_fig = ax.Parent;
 else
   target_fig = figure;
   if not(isMATLABReleaseOlderThan("R2025a"))

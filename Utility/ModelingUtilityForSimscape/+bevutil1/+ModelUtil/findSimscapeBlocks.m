@@ -5,6 +5,9 @@ function BlockPaths = findSimscapeBlocks(ModelName, SimscapeBlockNames)
 % Second argument is a scalar string or a string array, representing
 % block name which get_param(block_path, "MaskType") returns, such as
 % "Mass", "PS Ramp", etc., that are defined in Simscape source files.
+%
+% If two or more blocks are found, their block paths are return in
+% a string array.
 
 % Copyright 2025-2026 The MathWorks, Inc.
 

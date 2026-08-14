@@ -21,7 +21,7 @@ function ReturnFigure = plotLookupTable1D(x_data, y_data, NameValuePair)
 % See the documentation for the supported LaTeX commands.
 % https://www.mathworks.com/help/matlab/matlab_prog/insert-equations.html#bvak56c-1
 
-% Copyright 2025 The MathWorks, Inc.
+% Copyright 2025-2026 The MathWorks, Inc.
 
 arguments (Input)
   x_data (1,:) double {mustBeVector} = [0, 1, 2, 4, 7, 8, 9]

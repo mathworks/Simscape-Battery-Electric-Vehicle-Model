@@ -108,6 +108,8 @@ classdef PhysicalUnitDropDown < bevutil1.AppUtil.Component.ComponentBase
 
       component.DropDownUI.ComponentWidth = component.ComponentWidth;
       component.DropDownUI.ComponentHeight = component.ComponentHeight;
+      % Make the drop down height slightly slim to make sure the whole height of the drop down is visible.
+      % component.DropDownUI.DropDownHeight = bevutil1.AppUtil.Constant.Height{"oneline+"} - 2;
 
       if component.HighlightBackground
         component.DropDownUI.HighlightBackground = "on";

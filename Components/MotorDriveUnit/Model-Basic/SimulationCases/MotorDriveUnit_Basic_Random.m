@@ -1,21 +1,25 @@
 %[text] # Motor Drive Unit - Simulation Case
 %[text] ## Randomly generated input signals
 %[text] Test that the model runs with reasonably random inputs. This is part of stress-test.
+MotorDriveUnit_Basic_params
+target_subsystem = "MotorDriveUnit_Basic_refsub";
+
+stop_time = "400";
+
 model_name = "HarnessModel_MotorDriveUnit";
 load_system(model_name)
-setupHarness_MotorDriveUnit
-
-set_param(model_name + "/Motor Drive Unit", ReferencedSubsystem = "MotorDriveUnit_Basic_refsub")
-
-set_param(model_name + "/Inputs", ReferencedSubsystem = "Inputs_MotorDriveUnit_Random_refsub")
-
-% Initial conditions
+%[text] Test conditions
+LoadInputs_MotorDriveUnit_Random
+%[text] Initial conditions
 initial.LoadInertiaSpeed = simscape.Value(0, "rpm");
 initial.motorDriveUnit_RotorSpd_rpm = 0;
 initial.ambientTemp_K = motorDriveUnit.ambientTemp_K;
-
+%[text] 
 sim_in = Simulink.SimulationInput(model_name);
-sim_in = setModelParameter(sim_in, StopTime = "400");
+sim_in = setBlockParameter(sim_in, model_name + "/Motor Drive Unit", ReferencedSubsystem = "MotorDriveUnit_Basic_refsub");
+sim_in = setBlockParameter(sim_in, model_name + "/Inputs", ReferencedSubsystem = "Inputs_MotorDriveUnit_refsub");
+sim_in = setModelParameter(sim_in, StopTime = stop_time);
+applyToModel(sim_in)
 %[text] Run simulation.
 sim_out = sim(sim_in);
 %[text] Visually inspect the result.

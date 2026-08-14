@@ -47,6 +47,12 @@ model_name = extractBefore(FullpathToBlock, "/");
 
 load_system(model_name)
 
+% Use the "value@param_name" format to get the evaluated value.
+%   See the example: "Get Evaluated Value of Masked Parameter"
+%   https://www.mathworks.com/help/simulink/slref/get_param.html
+v = get_param(FullpathToBlock, "value@" + ParameterName);
+
+%{
 param = get_param(FullpathToBlock, ParameterName);
 
 v = double(string(param));
@@ -75,6 +81,7 @@ if isnan(v)
   v = evaluation_result;
 
 end  % if
+%}
 
 param_unit = get_param(FullpathToBlock, ParameterName + "_unit");
 

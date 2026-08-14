@@ -74,7 +74,7 @@ if isfield(NameValuePair, "SimulinkModelName")
   model_name = NameValuePair.SimulinkModelName;
 else
   model_name = "";
-end
+end  % if
 Result.SimulinkModelName = model_name;
 
 if isfield(NameValuePair, "OutputFileName")
@@ -84,8 +84,8 @@ else
     output_filename = "screenshot-untitled.png";
   else
     output_filename = "screenshot-" + model_name + ".png";
-  end
-end
+  end  % if
+end  % if
 Result.OutputFileName = output_filename;
 
 output_fullpath = fullfile(NameValuePair.SaveFolder, output_filename);
@@ -95,8 +95,8 @@ subsystem_path = NameValuePair.SubsystemPath;
 if subsystem_path ~= ""
   if not(startsWith(subsystem_path, "/"))
     subsystem_path = "/" + subsystem_path;
-  end
-end
+  end  % if
+end  % if
 
 % The values of these variables can be 0 at this point.
 % They are fully determined later.
@@ -117,13 +117,20 @@ if standalone_test
 else
   if not(bdIsLoaded(model_name))
     load_system(model_name)
-  end
+  end  % if
+
+  % Update the model before taking screenshot.
+  % This ensures that the model is properly updated without errors and ready to run.
+  % This also updates the canvas rendering, such as Bus lines.
+  % !todo: it seems that this is skipped?
+  set_param(model_name, SimulationCommand = "update")
+
   subsystem_fullpath = model_name + subsystem_path;
   list_of_blocks = getfullname(Simulink.findBlocks(model_name));
   found_blocks = contains(list_of_blocks, subsystem_fullpath);
   if not(any(found_blocks))
     error("Specified subsystem does not exist: " + subsystem_fullpath)
-  end
+  end  % if
   % Take screenshot. It is saved in a file.
   print("-s" + subsystem_fullpath, ...
         "-dpng", output_fullpath)

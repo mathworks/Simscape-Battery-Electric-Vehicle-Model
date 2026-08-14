@@ -73,7 +73,6 @@ arguments (Input)
   NameValuePair.PlotTorqueUpperBound simscape.Value ...
     { simscape.mustBeCommensurateUnit(NameValuePair.PlotTorqueUpperBound, "N*m"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
     = simscape.Value(200, "N*m")
-    % FYI: 200 N*m = 147.5 lbf*ft
 
   % --- angular speed
 
@@ -97,20 +96,24 @@ arguments (Input)
     = simscape.Value(17000, "rpm")
 
   % PlotAngularSpeedUpperBound is ignored if PlotRangeAngularSpeedMode is "auto".
-  % PlotAngularSpeedUpperBound is ignored if PlotRangeAngularSpeedMode is "auto".
   NameValuePair.PlotAngularSpeedUpperBound simscape.Value ...
     { simscape.mustBeCommensurateUnit(NameValuePair.PlotAngularSpeedUpperBound, "rad/s"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
     = simscape.Value(18000, "rpm")
-    % FYI: 18000 rpm = 1885 rad/s
 
   % --- power and others
 
   NameValuePair.MaxPower (1,1) simscape.Value ...
-      { simscape.mustBeCommensurateUnit(NameValuePair.MaxPower, "kW"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
+    { simscape.mustBeCommensurateUnit(NameValuePair.MaxPower, "kW"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
     = simscape.Value(55, "kW")
 
-  NameValuePair.OverallEfficiencyPercent (1,1) double ...
-    { mustBeInRange(NameValuePair.OverallEfficiencyPercent, 0, 100) } = 95  %#ok<MUSTINRANGE>
+  % ---------------------------------------------------------------------------
+  % Electrical losses parameters
+
+  NameValuePair.ElectricalEfficiencyPercent (1,1) double ...
+    { mustBeInRange(NameValuePair.ElectricalEfficiencyPercent, 0, 100) } = 95  %#ok<MUSTINRANGE>
+
+  NameValuePair.IdealMotorThresholdPercent (1,1) double ...
+    { mustBeInRange(NameValuePair.IdealMotorThresholdPercent, 0, 100) } = 99.8  %#ok<MUSTINRANGE>
 
   NameValuePair.MeasuredAngularSpeed (1,1) simscape.Value ...
     { simscape.mustBeCommensurateUnit(NameValuePair.MeasuredAngularSpeed, "rpm"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
@@ -128,9 +131,13 @@ arguments (Input)
     { simscape.mustBeCommensurateUnit(NameValuePair.FixedLosses, "W"), bevutil1.CodeUtil.mustBeSimscapeValueNonnegativeOrNan } ...
     = simscape.Value(40, "W")
 
-  NameValuePair.RotorDamping (1,1) simscape.Value ...
-      { simscape.mustBeCommensurateUnit(NameValuePair.RotorDamping, "N*m/rpm"), bevutil1.CodeUtil.mustBeSimscapeValueNonnegativeOrNan } ...
-    = simscape.Value(0.05, "N*m/(rad/s)")
+  % ---------------------------------------------------------------------------
+  % Additional parameters
+
+  % Force curve with constant power
+  NameValuePair.PlotPowers (1,:) simscape.Value ...
+    { simscape.mustBeCommensurateUnit(NameValuePair.PlotPowers, "kW"), bevutil1.CodeUtil.mustBeSimscapeValueNonnegativeOrNan } ...
+    = simscape.Value([10, 50, 100], "kW")
 
 end  % arguments
 
@@ -204,7 +211,9 @@ if NameValuePair.DataSource == "direct"
 
   w_radps_vec = linspace(1, max_motor_speed_value_in_radps, plot_resolution);
   computed_data.AngularSpeedValues = transpose(simscape.Value(w_radps_vec, "rad/s"));
-  
+
+  speed_vector_for_const_power_in_plot_unit = linspace(1, plot_speed_upper_bound_value_in_plot_unit, plot_resolution);
+
   % ---------------------------------------------------------------------------
   contour_levels = NameValuePair.PlotContourLevelsPercent;
   if numel(contour_levels) <= 2
@@ -217,55 +226,57 @@ if NameValuePair.DataSource == "direct"
 
   show_text = NameValuePair.ShowContourText;
 
-  measured_efficiency_percent = NameValuePair.OverallEfficiencyPercent;
-  normalized_measured_efficiency = measured_efficiency_percent / 100;
+  measured_electrical_efficiency_percent = NameValuePair.ElectricalEfficiencyPercent;
 
-  measured_speed_in_plot_unit = value(NameValuePair.MeasuredAngularSpeed, plot_speed_unit_text);
-  measured_speed_in_radps = value(NameValuePair.MeasuredAngularSpeed, "rad/s");
+  is_ideal_motor = false;
+  if NameValuePair.ElectricalEfficiencyPercent > NameValuePair.IdealMotorThresholdPercent
+    % Treat the motor as an ideal motor, i.e., a motor without electrical losses.
+    is_ideal_motor = true;
+    show_text = false;
+    show_torque_envelope = false;
+    measured_copper_loss_coeff = 0;
+    measured_iron_loss_coeff = 0;
 
-  measured_torque_in_plot_unit = value(NameValuePair.MeasuredTorque, plot_torque_unit_text);
-  measured_torque_in_Nm = value(NameValuePair.MeasuredTorque, "N*m");
+  else
+    % A non-ideal motor, i.e., a normal motor involving electrical losses.
 
-  % Iron losses at efficiency measurement point
-  measured_iron_losses_W = value(NameValuePair.MeasuredIronLosses, "W");
+    measured_speed_in_plot_unit = value(NameValuePair.MeasuredAngularSpeed, plot_speed_unit_text);
+    measured_speed_in_radps = value(NameValuePair.MeasuredAngularSpeed, "rad/s");
 
-  loss_const_W = value(NameValuePair.FixedLosses, "W");
+    measured_torque_in_plot_unit = value(NameValuePair.MeasuredTorque, plot_torque_unit_text);
+    measured_torque_in_Nm = value(NameValuePair.MeasuredTorque, "N*m");
 
-  k_damp = value(NameValuePair.RotorDamping, "N*m/(rad/s)");
+    % Iron losses at electrical efficiency measurement point
+    measured_iron_losses_W = value(NameValuePair.MeasuredIronLosses, "W");
 
-  % Mechanical power at efficiency measurement point
-  measured_mechanical_power_W = measured_speed_in_radps * measured_torque_in_Nm;
+    loss_const_W = value(NameValuePair.FixedLosses, "W");
 
-  % Nominal (rated) losses at efficiency measurement point
-  measured_nominal_losses_W = (1/normalized_measured_efficiency - 1) * measured_mechanical_power_W;
+    % Electrical power at electrical efficiency measurement point
+    measured_electrical_power_W = measured_speed_in_radps * measured_torque_in_Nm;
 
-  % Copper losses at efficiency measurement point
-  measured_copper_losses_W = measured_nominal_losses_W - measured_iron_losses_W;
+    % Nominal (rated) power losses at electrical efficiency measurement point
+    normalized_measured_electrical_efficiency = measured_electrical_efficiency_percent / 100;
+    measured_nominal_losses_W = (1/normalized_measured_electrical_efficiency - 1) * measured_electrical_power_W;
 
-  % Copper loss coefficient for copper loss model
-  measured_copper_loss_coeff = measured_copper_losses_W/measured_torque_in_Nm^2;
+    % Copper losses at electrical efficiency measurement point
+    measured_copper_losses_W = measured_nominal_losses_W - measured_iron_losses_W - loss_const_W;
 
-  % Iron loss coefficient for iron loss model
-  measured_iron_loss_coeff = measured_iron_losses_W/measured_speed_in_radps^2;
+    if measured_copper_losses_W < 0
+      id = errorID + "InvalidIronAndFixedLosses";
+      msg = bevutil1.CodeUtil.i18n("The sum of iron losses and fixed losses cannot be greater than nominal losses.");
+      throw(MException(id, msg))
+    end
+
+    % Copper loss coefficient for copper loss model
+    measured_copper_loss_coeff = measured_copper_losses_W/measured_torque_in_Nm^2;
+
+    % Iron loss coefficient for iron loss model
+    measured_iron_loss_coeff = measured_iron_losses_W/measured_speed_in_radps^2;
+
+  end  % if
 
   % ---------------------------------------------------------------------------
   % Calculations below are done in x-y mesh.
-  [w_radps_mat, trq_Nm_mat] = meshgrid(w_radps_vec, trq_Nm_vec);
-
-  % Fixed electrical losses
-  fixed_losses_mat = loss_const_W*ones(plot_resolution, plot_resolution);
-
-  electrical_torque_mat = abs(trq_Nm_mat) + k_damp*w_radps_mat;  % Steady state
-  copper_losses_mat = measured_copper_loss_coeff * electrical_torque_mat.^2;  % Copper loss model
-
-  iron_losses_mat = measured_iron_loss_coeff * w_radps_mat.^2;  % Iron loss model
-
-  % Total electrical losses
-  electrical_losses_mat = fixed_losses_mat + copper_losses_mat + iron_losses_mat;
-
-  mech_power_mat = trq_Nm_mat .* w_radps_mat;  % Mechanical power
-
-  efficiency_percent_mat = 100 * abs(mech_power_mat) ./ (electrical_losses_mat + abs(mech_power_mat));
 
   torque_envelope_vec_in_Nm = min(max_motor_power_W ./ w_radps_vec, max_motor_torque_value_in_Nm);
   % !todo: Remove transpose when the "must be a vector" error is fixed.
@@ -273,16 +284,48 @@ if NameValuePair.DataSource == "direct"
 
   torque_envelope_vec_in_plot_unit = value(simscape.Value(torque_envelope_vec_in_Nm, "N*m"), plot_torque_unit_text);
 
+  [w_radps_mat, trq_Nm_mat] = meshgrid(w_radps_vec, trq_Nm_vec);
+
   % A mask matrix with 1 for valid, 0 for invalid regions.
   % This is multiplied to the efficiency matrix to set regions over the maximum torque to 0.
-  valid_torque_region_mask = trq_Nm_mat < torque_envelope_vec_in_Nm;
+  valid_torque_region_mask = trq_Nm_mat <= torque_envelope_vec_in_Nm;
 
-  valid_speed_region_mask = w_radps_mat < max_motor_speed_value_in_radps;
+  valid_speed_region_mask = w_radps_mat <= max_motor_speed_value_in_radps;
+
+  if is_ideal_motor
+    efficiency_percent_mat = 100 * ones([numel(w_radps_vec), numel(trq_Nm_vec)]);
+
+  else
+    % Fixed electrical losses
+    fixed_losses_mat = loss_const_W*ones(plot_resolution, plot_resolution);
+
+    copper_losses_mat = measured_copper_loss_coeff * trq_Nm_mat.^2;  % Copper loss model
+
+    iron_losses_mat = measured_iron_loss_coeff * w_radps_mat.^2;  % Iron loss model
+
+    % Total electrical losses
+    electrical_losses_mat = fixed_losses_mat + copper_losses_mat + iron_losses_mat;
+
+    mech_power_mat = trq_Nm_mat .* w_radps_mat;  % Mechanical power
+
+    efficiency_percent_mat = 100 * abs(mech_power_mat) ./ (electrical_losses_mat + abs(mech_power_mat));
+
+  end  % if
 
   % Apply the mask matrices.
   efficiency_percent_mat = valid_torque_region_mask .* efficiency_percent_mat;
   efficiency_percent_mat = valid_speed_region_mask .* efficiency_percent_mat;
+
   computed_data.EfficiencyPercentMeshData = efficiency_percent_mat;
+
+  % ---------------------------------------------------------------------------
+  % Torque curves for constant power values
+  powers = NameValuePair.PlotPowers;
+  num_powers = numel(powers);
+  Torque_const_power = simscape.Value(zeros(plot_resolution, num_powers), "N*m");
+  for k = 1 : num_powers
+    Torque_const_power(:, k) = powers(k) ./ transpose(simscape.Value(speed_vector_for_const_power_in_plot_unit, plot_speed_unit_text));
+  end  % for
 
 else
   % External data set.
@@ -294,6 +337,9 @@ else
   else
     DataSet = bevutil1.app.AbstractMotorEfficiency.AbstractMotorEfficiencyDataSet(Initialization=true);
   end  % if
+
+  powers = DataSet.PlotPowers;
+  num_powers = numel(powers);
 
   % ---------------------------------------------------------------------------
   % power
@@ -319,17 +365,21 @@ else
   % ---------------------------------------------------------------------------
   % angular speed
 
-  if DataSet.MaxAngularSpeedMode == "auto"
-    max_motor_torque_value_in_Nm = value(DataSet.ModelParams.MaxTorque, "N*m");
-    max_motor_speed_value_in_radps = max_motor_power_W / (DataSet.MaxAngularSpeedRate * max_motor_torque_value_in_Nm);
-    plot_speed_unit_text = "rpm";
-    plot_speed_upper_bound_value_in_plot_unit = value(simscape.Value(max_motor_speed_value_in_radps, "rad/s"), plot_speed_unit_text);
-
+  if DataSet.PlotAutoRange
+    if DataSet.MaxAngularSpeedMode == "auto"
+      max_motor_torque_value_in_Nm = value(DataSet.ModelParams.MaxTorque, "N*m");
+      max_motor_speed_value_in_radps = max_motor_power_W / (DataSet.MaxAngularSpeedRate * max_motor_torque_value_in_Nm);
+      plot_speed_unit_text = "rpm";
+      plot_speed_upper_bound_value_in_plot_unit = value(simscape.Value(max_motor_speed_value_in_radps, "rad/s"), plot_speed_unit_text);
+    else
+      % MaxAngularSpeedMode is "specify".
+      plot_speed_unit_text = string(unit(DataSet.MaxAngularSpeed));
+      plot_speed_upper_bound_value_in_plot_unit = value(DataSet.MaxAngularSpeed);
+    end  % if
   else
-    % MaxAngularSpeedMode is "specify".
+    % PlotAutoRange is OFF: use the user-specified bound and unit.
     plot_speed_unit_text = string(unit(DataSet.PlotAngularSpeedUpperBound));
     plot_speed_upper_bound_value_in_plot_unit = value(DataSet.PlotAngularSpeedUpperBound);
-
   end  % if
 
   speed_vector_in_plot_unit = value(DataSet.AngularSpeedValues, plot_speed_unit_text);
@@ -339,9 +389,13 @@ else
 
   show_text = DataSet.ShowContourText;
 
-  measured_efficiency_percent = DataSet.ModelParams.OverallEfficiencyPercent;
-  measured_speed_in_plot_unit = value(DataSet.ModelParams.MeasuredAngularSpeed, plot_speed_unit_text);
-  measured_torque_in_plot_unit = value(DataSet.ModelParams.MeasuredTorque, plot_torque_unit_text);
+  measured_electrical_efficiency_percent = DataSet.ModelParams.ElectricalEfficiencyPercent;
+  is_ideal_motor = measured_electrical_efficiency_percent > DataSet.ModelParams.IdealMotorThresholdPercent;
+
+  if not(is_ideal_motor)
+    measured_speed_in_plot_unit = value(DataSet.ModelParams.MeasuredAngularSpeed, plot_speed_unit_text);
+    measured_torque_in_plot_unit = value(DataSet.ModelParams.MeasuredTorque, plot_torque_unit_text);
+  end
 
   % ---------------------------------------------------------------------------
 
@@ -353,6 +407,9 @@ else
   computed_data.AngularSpeedValues = DataSet.AngularSpeedValues;
   computed_data.TorqueEnvelopeValues = DataSet.TorqueEnvelopeValues;
   computed_data.EfficiencyPercentMeshData = DataSet.EfficiencyPercentMeshData;
+
+  Torque_const_power = DataSet.TorqueValuesAtConstantPower;
+  speed_vector_for_const_power_in_plot_unit = value(DataSet.AngularSpeedValuesForConstantPower, plot_speed_unit_text);
 
 end  % if
 
@@ -372,6 +429,7 @@ else
   ax = axes(target_fig);
 end  % if
 
+%% Plot
 cla(ax)
 
 contourf(ax, speed_vector_in_plot_unit, torque_vector_in_plot_unit, efficiency_percent_mat, ...
@@ -388,28 +446,58 @@ if show_torque_envelope
   plot(ax, speed_vector_in_plot_unit, torque_envelope_vec_in_plot_unit, LineWidth=5)
 end  % if
 
-sct = scatter(ax, measured_speed_in_plot_unit, measured_torque_in_plot_unit);
-sct.Marker = "x";
-sct.LineWidth = 1;
-sct.SizeData = 100;
-sct.MarkerEdgeColor = "black";
+if is_ideal_motor
+  ylabel(ax, bevutil1.CodeUtil.i18n("Torque, \tau, (" + plot_torque_unit_text + ")"), Interpreter="tex")
+  title_text = bevutil1.CodeUtil.i18n("Motor operating region");
+  title(ax, title_text, Interpreter="none")
+
+else
+
+  sct = scatter(ax, measured_speed_in_plot_unit, measured_torque_in_plot_unit);
+  sct.Marker = "x";
+  sct.LineWidth = 1;
+  sct.SizeData = 100;
+  sct.MarkerEdgeColor = "black";
+
+  ylabel(ax, bevutil1.CodeUtil.i18n("Electrical torque, \tau, (" + plot_torque_unit_text + ")"), Interpreter="tex")
+
+  title_text = bevutil1.CodeUtil.i18n("Electrical efficiency (%)");
+
+  second_line_text = bevutil1.CodeUtil.i18n("Measurement point (X): ") ...
+    + measured_electrical_efficiency_percent + " %, " ...
+    + measured_speed_in_plot_unit + " " + plot_speed_unit_text + ", " ...
+    + measured_torque_in_plot_unit + " " + plot_torque_unit_text;
+
+  title(ax, [title_text; second_line_text], Interpreter="none")
+
+end  % if
+
+%------------------------------------------------------------------------------
+% Torque curves at constant powers - dashed curves
+
+dashed_line(1:num_powers) = matlab.graphics.chart.primitive.Line;
+for k = 1 : num_powers
+  dashed_line(k) = plot(ax, speed_vector_for_const_power_in_plot_unit, value(Torque_const_power(:, k), plot_torque_unit_text));
+  dashed_line(k).LineWidth = 1;
+  dashed_line(k).LineStyle = "--";  % Dashed line
+
+  y = value(Torque_const_power(end, k), plot_torque_unit_text);
+  str = "  " + value(powers(k), "kW");
+  text(ax, plot_speed_upper_bound_value_in_plot_unit, y, str)
+end  % for
+
+y = value(Torque_const_power(end, num_powers), plot_torque_unit_text);
+str = " kW" + newline + " ";
+text(ax, plot_speed_upper_bound_value_in_plot_unit, y, str, VerticalAlignment="bottom")
+
+%------------------------------------------------------------------------------
 
 xlim(ax, [0, plot_speed_upper_bound_value_in_plot_unit])
+xlabel(ax, bevutil1.CodeUtil.i18n("Angular speed, \omega (" + plot_speed_unit_text + ")"), Interpreter="tex")
 
 ylim(ax, [0, plot_torque_upper_bound_value_in_plot_unit])
 
-xlabel(ax, bevutil1.CodeUtil.i18n("Angular speed, $\omega$ (" + plot_speed_unit_text + ")"), Interpreter="latex")
-
-ylabel(ax, bevutil1.CodeUtil.i18n("Torque, $\tau$ (" + plot_torque_unit_text + ")"), Interpreter="latex")
-
-title(ax, [
-  bevutil1.CodeUtil.i18n("Overall power conversion efficiency (%)")
-  bevutil1.CodeUtil.i18n("Measured point (x): ") ...
-  + measured_efficiency_percent + " %, " ...
-  + measured_speed_in_plot_unit + " " + plot_speed_unit_text + ", " ...
-  + measured_torque_in_plot_unit + " " + plot_torque_unit_text
-  ])
-
+%------------------------------------------------------------------------------
 if nargout > 0
   fig = target_fig;
   ComputedData = computed_data;

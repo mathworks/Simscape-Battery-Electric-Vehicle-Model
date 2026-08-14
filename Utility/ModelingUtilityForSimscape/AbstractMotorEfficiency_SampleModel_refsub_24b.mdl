@@ -42,8 +42,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2025-11-28T09:08:10Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-05-29T14:26:07Z</dcterms:modified>
-  <cp:revision>1.17</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-08-11T08:41:47Z</dcterms:modified>
+  <cp:revision>1.18</cp:revision>
   <cp:version>R2024b</cp:version>
 </cp:coreProperties>
 
@@ -181,7 +181,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
 <ModelInformation Version="1.0">
   <Subsystem>
     <P Name="ModelUUID">e6e5da82-05b0-42fb-b07b-5262fbfa726c</P>
-    <P Name="PreLoadFcn">AbstractMotorEfficiency_SampleParams1</P>
+    <P Name="PreLoadFcn">AbstractMotorEfficiency_SampleParams2</P>
     <P Name="LastSavedArchitecture">win64</P>
     <P Name="HideAutomaticNames">off</P>
     <UserParameters>
@@ -192,7 +192,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.17&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.18&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -1343,7 +1343,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
       <P Name="losses_param">1</P>
       <P Name="losses_param_unit">1</P>
       <P Name="losses_param_conf">compiletime</P>
-      <P Name="eff">Params.Motor.OverallEfficiencyPercent</P>
+      <P Name="eff">Params.Motor.ElectricalEfficiencyPercent</P>
       <P Name="eff_unit">1</P>
       <P Name="eff_conf">compiletime</P>
       <P Name="w_eff">Params.Motor.MeasuredAngularSpeed.value(&quot;rpm&quot;)</P>
@@ -1466,6 +1466,7 @@ p, li { white-space: pre-wrap; }
     <P Name="Position">[43, 346, 164, 364]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
+    <P Name="ZOrder">-1</P>
     <P Name="MarkupType">markup</P>
   </Annotation>
   <Annotation SID="3">
