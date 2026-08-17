@@ -15,6 +15,11 @@ classdef unittest_BEVProject_settings < matlab.unittest.TestCase
 
   % Copyright 2021-2026 The MathWorks, Inc.
 
+  properties
+    % Some of the tests in this test class run only if test is running locally under the LocalTopFolder.
+    LocalTopFolder (1,1) pattern = "C:\local"
+  end  % properties
+
   methods (TestMethodSetup)
     % Functions in this "TestMethodSetup" section always run before
     % each test defined in the "Test" section runs.
@@ -57,6 +62,13 @@ classdef unittest_BEVProject_settings < matlab.unittest.TestCase
 
     function project_initial_live_script(testcase)
       %%
+      if bevutil1.TestUtil.isNonLocal(testcase.LocalTopFolder)
+        disp("!Skipping this test because the test is running outside LocalTopFolder.")
+
+        return
+
+      end  %if
+
       target_file = "BEVProject_Description.m";
 
       % Make sure that the target file is not open. Close it if it is.

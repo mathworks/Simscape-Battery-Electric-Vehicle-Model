@@ -12,6 +12,11 @@ classdef unittest_MotorDriveUnit_settings < matlab.unittest.TestCase
 
   % Copyright 2021-2026 The MathWorks, Inc.
 
+  properties
+    % Some of the tests in this test class run only if test is running locally under the LocalTopFolder.
+    LocalTopFolder (1,1) pattern = "C:\local"
+  end  % properties
+
   methods (TestMethodSetup)
     % Functions in this "TestMethodSetup" section always run before
     % each test defined in the "Test" section runs.
@@ -132,6 +137,13 @@ classdef unittest_MotorDriveUnit_settings < matlab.unittest.TestCase
       % is passed to MATLAB when the link is clicked.
       %
       % This test makes sure there are no broken links.
+
+      if bevutil1.TestUtil.isNonLocal(testcase.LocalTopFolder)
+        disp("!Skipping this test because the test is running outside LocalTopFolder.")
+
+        return
+
+      end  %if
 
       target_fullpath = bevutil1.FileUtil.getFileFullPath("MotorDriveUnit_Description.m");
 
