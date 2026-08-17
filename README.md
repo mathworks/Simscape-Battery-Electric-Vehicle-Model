@@ -68,12 +68,14 @@ Use **Abstract Motor Efficiency App** to understand and design the motor efficie
 
 ## What's New in 5.0 (August 2026)
 
-- The project is upgraded to R2026a.
+- The project works with R2026a or newer. All MATLAB Live Scripts are plain text `*.m` files.
 - The utility APIs and apps are available as the Modeling Utility for Simscape (MUS).
 - The updated Abstract Motor Efficiency App is available from the MUS.
 - The updated Vehicle 1D Force App is available from the MUS.
-- The new Elevation Profile component is available.
-- The overall project size is reduced.
+- The Motor Drive Unit component is simplified.
+  The "Basic" and "BasicThermal" model uses the Motor & Drive (System Level) block from Simscape Electrical.
+- The new Elevation Profile component is available. It is not used with Vehicle 1D component yet.
+- The overall project size is smaller. MATLAB script files no longer come with corresponding Markdown files.
 
 ## What's New in 4.0 (January 2026)
 

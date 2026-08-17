@@ -1,5 +1,10 @@
 # Change Log and What's New
 
+## What's New in 4.0 (January 2026)
+
+- The project works in R2024b or newer.
+- The version 4 is built from the version 2.
+
 ## What's New in 3.3 (November 2025)
 
 - The project is upgraded to R2025b.
