@@ -196,21 +196,5 @@ classdef unittest_MotorDriveUnit_settings < matlab.unittest.TestCase
       end  % for
     end  % function
 
-    function app_screenshot_1(testcase)
-      %%
-      % The "img" tag seems unable to contain ".." to refer to an image file outside of the folder path.
-      % As a result, the png file is duplicated, which is not ideal.
-
-      pngfile = "screenshot-AbstractMotorEfficiencyApp-light.png";
-
-      original_path = fullfile(currentProject().RootFolder, "Utility", "ModelingUtilityForSimscape", "media");
-      verifyTrue(testcase, isfile(fullfile(original_path, pngfile)));
-
-      % Used by the MotorDriveUnit's README file.
-      new_path = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit", "media");
-      verifyTrue(testcase, isfile(fullfile(new_path, pngfile)));
-
-    end  % function
-
   end  % methods
 end  % classdef

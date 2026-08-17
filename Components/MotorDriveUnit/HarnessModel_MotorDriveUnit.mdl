@@ -50,9 +50,9 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <cp:category>model</cp:category>
   <dcterms:created xsi:type="dcterms:W3CDTF">2022-04-27T10:50:21Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
-  <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-08-14T14:39:17Z</dcterms:modified>
-  <cp:revision>9.21</cp:revision>
+  <cp:lastModifiedBy>ythvg</cp:lastModifiedBy>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-08-16T15:10:19Z</dcterms:modified>
+  <cp:revision>9.36</cp:revision>
   <cp:version>R2026a</cp:version>
 </cp:coreProperties>
 
@@ -713,20 +713,30 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
 <ModelInformation Version="1.0">
   <Model>
     <P Name="ModelUUID">58e94d85-7e83-4465-8e37-8e0b74ae42fc</P>
-    <P Name="PreLoadFcn">MotorDriveUnit.Input_AxleSpeedSwitch_TimePoints = simscape.Value([0, 1], &quot;s&quot;);
-MotorDriveUnit.Input_AxleSpeedSwitch_StepValues = [0 0];
+    <P Name="PreLoadFcn">MDU_HarnessInputs.AxleSpeedSwitch = table( ...
+  simscape.Value([0 1], &quot;s&quot;), ...
+  [0 0], ...
+  VariableNames=[&quot;Time&quot; &quot;StepValues&quot;]);
 
-MotorDriveUnit.Input_AxleSpeed_TimePoints = simscape.Value([0, 1, 2], &quot;s&quot;);
-MotorDriveUnit.Input_AxleSpeed_Data = simscape.Value([0, 0, 0], &quot;rpm&quot;);
+MDU_HarnessInputs.AxleSpeed = table( ...
+  simscape.Value([0 1 2], &quot;s&quot;), ...
+  simscape.Value([0 0 0], &quot;rpm&quot;), ...
+  VariableNames=[&quot;Time&quot; &quot;Data&quot;]);
 
-MotorDriveUnit.Input_AxleTorque_TimePoints = simscape.Value([0, 1, 2], &quot;s&quot;);
-MotorDriveUnit.Input_AxleTorque_Data = simscape.Value([-1, -1, -1], &quot;N*m&quot;);
+MDU_HarnessInputs.AxleTorque = table( ...
+  simscape.Value([0 1 2], &quot;s&quot;), ...
+  simscape.Value([0 0 0], &quot;N*m&quot;), ...
+  VariableNames=[&quot;Time&quot; &quot;Data&quot;]);
 
-MotorDriveUnit.Input_MotorTorqueCommand_TimePoints = simscape.Value([0, 1, 2], &quot;s&quot;);
-MotorDriveUnit.Input_MotorTorqueCommand_Data = simscape.Value([10, 10, 10], &quot;N*m&quot;);
+MDU_HarnessInputs.MotorTorqueCommand = table( ...
+  simscape.Value([0 1 2], &quot;s&quot;), ...
+  simscape.Value([0 0 0], &quot;N*m&quot;), ...
+  VariableNames=[&quot;Time&quot; &quot;Data&quot;]);
 
-MotorDriveUnit.Input_MotorHeatFlow_TimePoints = simscape.Value([0, 1, 2], &quot;s&quot;);
-MotorDriveUnit.Input_MotorHeatFlow_Data = simscape.Value([0, 0, 0], &quot;W&quot;);
+MDU_HarnessInputs.MotorHeatFlow = table( ...
+  simscape.Value([0 1 2], &quot;s&quot;), ...
+  simscape.Value([0 0 0], &quot;W&quot;), ...
+  VariableNames=[&quot;Time&quot; &quot;Data&quot;]);
 
 setupHarness_MotorDriveUnit
 </P>
@@ -739,7 +749,7 @@ setupHarness_MotorDriveUnit
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:9.21&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:9.36&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="ShowPortUnits">on</P>
@@ -1127,7 +1137,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
     <P Name="Version" Class="char">26.0.0</P>
     <Array PropName="Components" Type="Simulink.ConfigComponent" Dimension="11*1">
       <Object ObjectID="2" ClassName="Simulink.SolverCC">
-        <P Name="StopTime" Class="char">400</P>
+        <P Name="StopTime" Class="char">10</P>
         <P Name="SolverName" Class="char">daessc</P>
         <P Name="ODENIntegrationMethod" Class="char">ode3</P>
         <P Name="Version" Class="char">26.0.0</P>
@@ -1452,7 +1462,7 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
             },
             {
                 "Path":"$bdroot\/Inputs",
-                "Reference":"Inputs_MotorDriveUnit_refsub",
+                "Reference":"Inputs_MotorDriveUnit_LookupTable_refsub",
                 "SID":"289",
                 "Type":"SUBSYSTEM_REFERENCE_BLOCK"
             },
@@ -1571,7 +1581,7 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
         "SubsystemReferences":[
             {
                 "BlockPath":"$bdroot\/Inputs",
-                "SubsystemName":"Inputs_MotorDriveUnit_refsub"
+                "SubsystemName":"Inputs_MotorDriveUnit_LookupTable_refsub"
             },
             {
                 "BlockPath":"$bdroot\/Motor Drive Unit",
@@ -1724,7 +1734,7 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
                 "FullBlockPath":"$bdroot\/Motor Drive Unit\/Measurement\/From6",
                 "LogSignal":true,
                 "MaxPoints":5000,
-                "SignalName":"Motor electrical loss"
+                "SignalName":"Motor mechanical-electrical loss"
             },
             {
                 "Decimation":2,
@@ -1893,7 +1903,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/_rels/system_root.xml.rels
 __MWOPC_PART_BEGIN__ /simulink/systems/system_10.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[165, 20, 1305, 660]</P>
+  <P Name="Location">[22, 24, 1162, 771]</P>
   <Block BlockType="Inport" Name="Inputs" SID="17">
     <P Name="Position">[-180, -12, -150, 2]</P>
     <P Name="ZOrder">26294</P>
@@ -2040,6 +2050,7 @@ Converter</P>
     <P Name="BlockRotation">180</P>
     <P Name="BlockMirror">on</P>
     <P Name="NameLocation">right</P>
+    <P Name="ShowName">off</P>
     <P Name="LibraryVersion">26001000.2</P>
     <P Name="SourceBlock">fl_lib/Mechanical/Rotational Elements/Mechanical
 Rotational Reference</P>
@@ -2069,6 +2080,7 @@ Rotational Reference</P>
     <P Name="ZOrder">26297</P>
     <P Name="BlockMirror">on</P>
     <P Name="NameLocation">left</P>
+    <P Name="ShowName">off</P>
     <P Name="LibraryVersion">26001000.2</P>
     <P Name="SourceBlock">fl_lib/Mechanical/Rotational Elements/Mechanical
 Rotational Reference</P>
@@ -2504,20 +2516,21 @@ p, li { white-space: pre-wrap; }
 __MWOPC_PART_BEGIN__ /simulink/systems/system_142.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[165, 20, 1305, 660]</P>
+  <P Name="Location">[22, 24, 1162, 771]</P>
   <Block BlockType="SubSystem" Name="Battery Status" SID="146">
     <PortCounts out="1" lconn="2"/>
-    <P Name="Position">[735, 256, 790, 334]</P>
+    <P Name="Position">[735, 281, 790, 359]</P>
     <P Name="ZOrder">4444</P>
+    <P Name="NameLocation">top</P>
     <System Ref="system_146"/>
   </Block>
   <Block BlockType="Reference" Name="Current Sensor" SID="180">
     <PortCounts lconn="1" rconn="2"/>
-    <P Name="Position">[665, 365, 705, 405]</P>
+    <P Name="Position">[635, 390, 675, 430]</P>
     <P Name="ZOrder">4443</P>
     <P Name="BlockRotation">90</P>
     <P Name="BlockMirror">on</P>
-    <P Name="NameLocation">right</P>
+    <P Name="NameLocation">left</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="LibraryVersion">26001000.2</P>
     <P Name="SourceBlock">fl_lib/Electrical/Electrical Sensors/Current Sensor</P>
@@ -2548,13 +2561,12 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_142.xml
   </Block>
   <Block BlockType="Reference" Name="DC Voltage Source" SID="181">
     <PortCounts lconn="1" rconn="1"/>
-    <P Name="Position">[406, 350, 434, 390]</P>
+    <P Name="Position">[436, 390, 464, 430]</P>
     <P Name="ZOrder">4445</P>
     <P Name="BlockRotation">90</P>
     <P Name="BlockMirror">on</P>
     <P Name="NameLocation">left</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="AttributesFormatString">%&lt;v0&gt; [%&lt;v0_unit&gt;]</P>
     <P Name="LibraryVersion">26001000.2</P>
     <P Name="SourceBlock">fl_lib/Electrical/Electrical Sources/DC Voltage Source</P>
     <P Name="SourceType">DC Voltage Source</P>
@@ -2569,7 +2581,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_142.xml
       <P Name="ComponentVariantNames">dc_voltage</P>
       <P Name="ClassName">dc_voltage_source</P>
       <P Name="SchemaVersion">1</P>
-      <P Name="v0">batteryHV.nominalVoltage_V</P>
+      <P Name="v0">BatteryHV.NominalVoltage.value(&quot;V&quot;)</P>
       <P Name="v0_unit">V</P>
       <P Name="v0_conf">compiletime</P>
     </InstanceData>
@@ -2594,10 +2606,9 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_142.xml
   </Block>
   <Block BlockType="Reference" Name="Terminal resistance" SID="182">
     <PortCounts lconn="1" rconn="1"/>
-    <P Name="Position">[530, 406, 570, 434]</P>
+    <P Name="Position">[530, 456, 570, 484]</P>
     <P Name="ZOrder">4446</P>
     <P Name="NameLocation">top</P>
-    <P Name="AttributesFormatString">%&lt;R&gt; [%&lt;R_unit&gt;]</P>
     <P Name="LibraryVersion">26001000.2</P>
     <P Name="SourceBlock">fl_lib/Electrical/Electrical Elements/Resistor</P>
     <P Name="SourceType">Resistor</P>
@@ -2612,7 +2623,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_142.xml
       <P Name="ComponentVariantNames">resistor</P>
       <P Name="ClassName">resistor</P>
       <P Name="SchemaVersion">1</P>
-      <P Name="R">batteryHV.internalResistance_Ohm</P>
+      <P Name="R">BatteryHV.TerminalResistance.value(&quot;Ohm&quot;)</P>
       <P Name="R_unit">Ohm</P>
       <P Name="R_conf">runtime</P>
       <P Name="i_specify">off</P>
@@ -2641,7 +2652,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_142.xml
   </Block>
   <Block BlockType="Reference" Name="Voltage Sensor" SID="186">
     <PortCounts lconn="1" rconn="2"/>
-    <P Name="Position">[590, 305, 630, 345]</P>
+    <P Name="Position">[530, 330, 570, 370]</P>
     <P Name="ZOrder">4442</P>
     <P Name="BlockMirror">on</P>
     <P Name="NameLocation">top</P>
@@ -2686,36 +2697,36 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_142.xml
     <P Name="Side">Right</P>
   </Block>
   <Block BlockType="Outport" Name="Info" SID="214">
-    <P Name="Position">[845, 288, 875, 302]</P>
+    <P Name="Position">[845, 313, 875, 327]</P>
     <P Name="ZOrder">4455</P>
   </Block>
   <Line LineType="Connection">
     <P Name="ZOrder">200</P>
-    <P Name="Points">[420, 335; 0, 0]</P>
+    <P Name="Points">[450, 360; 0, 15]</P>
     <P Name="Dst">181#rconn:1</P>
     <Branch ConnectType="SRC_DEST">
-      <P Name="Points">[420, 230; 0, 105]</P>
-      <Branch ConnectType="SRC_DEST">
-        <P Name="Src">184#lconn:2</P>
-        <P Name="Points">[16, 0; -311, 0]</P>
-      </Branch>
+      <P Name="Points">[450, 230; 0, 130]</P>
       <Branch ConnectType="SRC_DEST">
         <P Name="Src">187#rconn:1</P>
-        <P Name="Points">[75, 0]</P>
+        <P Name="Points">[105, 0]</P>
+      </Branch>
+      <Branch ConnectType="SRC_DEST">
+        <P Name="Src">184#lconn:2</P>
+        <P Name="Points">[16, 0; -281, 0]</P>
       </Branch>
     </Branch>
     <Branch ConnectType="SRC_DEST">
       <P Name="Src">186#rconn:2</P>
-      <P Name="Points">[-155, 0]</P>
+      <P Name="Points">[-65, 0]</P>
     </Branch>
   </Line>
   <Line LineType="Connection">
     <P Name="ZOrder">204</P>
     <P Name="Src">184#lconn:1</P>
-    <P Name="Points">[-40, 0; 0, 115]</P>
+    <P Name="Points">[-70, 0; 0, 140]</P>
     <Branch ConnectType="DEST_DEST">
       <P Name="Src">186#lconn:1</P>
-      <P Name="Points">[30, 0]</P>
+      <P Name="Points">[60, 0]</P>
     </Branch>
     <Branch ConnectType="DEST_SRC">
       <P Name="Dst">180#rconn:2</P>
@@ -2724,7 +2735,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_142.xml
   <Line LineType="Connection">
     <P Name="ZOrder">2</P>
     <P Name="Src">146#lconn:2</P>
-    <P Name="Points">[-25, 0]</P>
+    <P Name="Points">[-55, 0]</P>
     <P Name="Dst">180#rconn:1</P>
   </Line>
   <Line LineType="Connection">
@@ -2736,35 +2747,64 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_142.xml
   <Line LineType="Connection">
     <P Name="ZOrder">4</P>
     <P Name="Src">180#lconn:1</P>
+    <P Name="Points">[0, 25]</P>
     <P Name="Dst">182#rconn:1</P>
   </Line>
   <Line LineType="Connection">
     <P Name="ZOrder">5</P>
     <P Name="Src">181#lconn:1</P>
-    <P Name="Points">[0, 15]</P>
+    <P Name="Points">[0, 25]</P>
     <P Name="Dst">182#lconn:1</P>
   </Line>
   <Line LineType="Connection">
     <P Name="ZOrder">6</P>
     <P Name="Src">146#lconn:1</P>
-    <P Name="Points">[-165, 0; 0, 40]</P>
+    <P Name="Points">[-225, 0; 0, 40]</P>
     <P Name="Dst">186#rconn:1</P>
   </Line>
   <Line>
     <P Name="ZOrder">214</P>
     <P Name="Src">146#out:1</P>
-    <P Name="Points">[50, 0]</P>
     <P Name="Dst">214#in:1</P>
   </Line>
+  <Annotation SID="14074">
+    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Terminal resistance parameter&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[606, 499, 796, 517]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="Interpreter">rich</P>
+    <P Name="ZOrder">-1</P>
+    <P Name="MarkupType">markup</P>
+  </Annotation>
+  <Connector>
+    <P Name="Annotation">14074</P>
+    <P Name="Target">Block:146</P>
+    <P Name="MarkupType">markup</P>
+    <P Name="StrokeWidth">2</P>
+    <P Name="Color">[0.000000, 0.000000, 0.700000]</P>
+  </Connector>
+  <Connector>
+    <P Name="Annotation">14074</P>
+    <P Name="Target">Block:182</P>
+    <P Name="MarkupType">markup</P>
+    <P Name="StrokeWidth">2</P>
+    <P Name="Color">[0.000000, 0.000000, 0.700000]</P>
+  </Connector>
 </System>
 
 __MWOPC_PART_BEGIN__ /simulink/systems/system_146.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
-  <P Name="Location">[165, 20, 1305, 660]</P>
+  <P Name="Location">[22, 24, 1162, 771]</P>
   <Block BlockType="Reference" Name="Charge" SID="148">
     <PortCounts lconn="1" rconn="1"/>
-    <P Name="Position">[120, 10, 150, 40]</P>
+    <P Name="Position">[120, -25, 150, 5]</P>
     <P Name="ZOrder">63</P>
     <P Name="BlockRotation">180</P>
     <P Name="BlockMirror">on</P>
@@ -2816,7 +2856,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_146.xml
   </Block>
   <Block BlockType="Reference" Name="Gain" SID="149">
     <PortCounts lconn="1" rconn="1"/>
-    <P Name="Position">[0, 10, 30, 40]</P>
+    <P Name="Position">[0, -25, 30, 5]</P>
     <P Name="ZOrder">62</P>
     <P Name="BlockRotation">180</P>
     <P Name="BlockMirror">on</P>
@@ -2851,7 +2891,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_146.xml
   </Block>
   <Block BlockType="Reference" Name="I^2" SID="150">
     <PortCounts lconn="2" rconn="1"/>
-    <P Name="Position">[0, 107, 30, 143]</P>
+    <P Name="Position">[35, 107, 65, 143]</P>
     <P Name="ZOrder">61</P>
     <P Name="BlockRotation">180</P>
     <P Name="BlockMirror">on</P>
@@ -2884,7 +2924,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_146.xml
   </Block>
   <Block BlockType="Reference" Name="PS Add" SID="151">
     <PortCounts lconn="2" rconn="1"/>
-    <P Name="Position">[270, 162, 290, 193]</P>
+    <P Name="Position">[270, 202, 290, 233]</P>
     <P Name="ZOrder">77</P>
     <P Name="LibraryVersion">26001000.2</P>
     <P Name="SourceBlock">fl_lib/Physical Signals/Functions/PS Add</P>
@@ -2915,7 +2955,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_146.xml
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter" SID="154">
     <PortCounts out="1" lconn="1"/>
-    <P Name="Position">[330, 170, 345, 190]</P>
+    <P Name="Position">[330, 210, 345, 230]</P>
     <P Name="ZOrder">59</P>
     <P Name="BackgroundColor">automatic</P>
     <P Name="ShowName">off</P>
@@ -2951,7 +2991,7 @@ Converter</P>
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter1" SID="155">
     <PortCounts out="1" lconn="1"/>
-    <P Name="Position">[330, 17, 345, 33]</P>
+    <P Name="Position">[330, -18, 345, -2]</P>
     <P Name="ZOrder">58</P>
     <P Name="BackgroundColor">automatic</P>
     <P Name="ShowName">off</P>
@@ -2987,7 +3027,7 @@ Converter</P>
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter2" SID="156">
     <PortCounts out="1" lconn="1"/>
-    <P Name="Position">[330, 77, 345, 93]</P>
+    <P Name="Position">[330, 42, 345, 58]</P>
     <P Name="ZOrder">68</P>
     <P Name="BackgroundColor">automatic</P>
     <P Name="ShowName">off</P>
@@ -3023,7 +3063,7 @@ Converter</P>
   </Block>
   <Block BlockType="Reference" Name="PS-Simulink&#xA;Converter3" SID="157">
     <PortCounts out="1" lconn="1"/>
-    <P Name="Position">[330, 222, 345, 238]</P>
+    <P Name="Position">[330, 262, 345, 278]</P>
     <P Name="ZOrder">71</P>
     <P Name="BackgroundColor">automatic</P>
     <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
@@ -3093,7 +3133,7 @@ Converter</P>
   </Block>
   <Block BlockType="Reference" Name="Power" SID="160">
     <PortCounts lconn="2" rconn="1"/>
-    <P Name="Position">[0, 167, 30, 203]</P>
+    <P Name="Position">[0, 207, 30, 243]</P>
     <P Name="ZOrder">60</P>
     <P Name="BlockRotation">180</P>
     <P Name="BlockMirror">on</P>
@@ -3128,7 +3168,6 @@ Converter</P>
     <PortCounts lconn="1" rconn="1"/>
     <P Name="Position">[120, 110, 150, 140]</P>
     <P Name="ZOrder">64</P>
-    <P Name="AttributesFormatString">%&lt;gain&gt; [%&lt;gain_unit&gt;]</P>
     <P Name="LibraryVersion">26001000.2</P>
     <P Name="SourceBlock">fl_lib/Physical Signals/Functions/PS Gain</P>
     <P Name="SourceType">PS Gain</P>
@@ -3143,7 +3182,7 @@ Converter</P>
       <P Name="ComponentVariantNames">gain</P>
       <P Name="ClassName">gain</P>
       <P Name="SchemaVersion">1</P>
-      <P Name="gain">batteryHV.internalResistance_Ohm</P>
+      <P Name="gain">BatteryHV.TerminalResistance.value(&quot;Ohm&quot;)</P>
       <P Name="gain_unit">Ohm</P>
       <P Name="gain_conf">runtime</P>
     </InstanceData>
@@ -3157,18 +3196,18 @@ Converter</P>
     </PortProperties>
   </Block>
   <Block BlockType="PMIOPort" Name="V" SID="167">
-    <P Name="Position">[-95, 223, -65, 237]</P>
+    <P Name="Position">[-95, 263, -65, 277]</P>
     <P Name="ZOrder">57</P>
     <P Name="Side">Left</P>
   </Block>
   <Block BlockType="PMIOPort" Name="Curr" SID="168">
-    <P Name="Position">[-95, 78, -65, 92]</P>
+    <P Name="Position">[-95, 43, -65, 57]</P>
     <P Name="ZOrder">56</P>
     <P Name="Port">2</P>
     <P Name="Side">Left</P>
   </Block>
   <Block BlockType="Outport" Name="Out Bus Element" SID="171">
-    <P Name="Position">[490, 20, 500, 30]</P>
+    <P Name="Position">[490, -15, 500, -5]</P>
     <P Name="ZOrder">65</P>
     <P Name="BackgroundColor">black</P>
     <P Name="ShowName">off</P>
@@ -3184,7 +3223,7 @@ Converter</P>
     </List>
   </Block>
   <Block BlockType="Outport" Name="Out Bus Element3" SID="172">
-    <P Name="Position">[490, 80, 500, 90]</P>
+    <P Name="Position">[490, 45, 500, 55]</P>
     <P Name="ZOrder">69</P>
     <P Name="BackgroundColor">black</P>
     <P Name="ShowName">off</P>
@@ -3216,7 +3255,7 @@ Converter</P>
     </List>
   </Block>
   <Block BlockType="Outport" Name="Out Bus Element2" SID="174">
-    <P Name="Position">[490, 175, 500, 185]</P>
+    <P Name="Position">[490, 215, 500, 225]</P>
     <P Name="ZOrder">67</P>
     <P Name="BackgroundColor">black</P>
     <P Name="ShowName">off</P>
@@ -3232,7 +3271,7 @@ Converter</P>
     </List>
   </Block>
   <Block BlockType="Outport" Name="Out Bus Element4" SID="175">
-    <P Name="Position">[490, 225, 500, 235]</P>
+    <P Name="Position">[490, 265, 500, 275]</P>
     <P Name="ZOrder">70</P>
     <P Name="BackgroundColor">black</P>
     <P Name="ShowName">off</P>
@@ -3313,13 +3352,13 @@ Converter</P>
   <Line LineType="Connection">
     <P Name="ZOrder">17</P>
     <P Name="Src">151#lconn:1</P>
-    <P Name="Points">[-7, 0; 0, -45]</P>
-    <Branch ConnectType="DEST_DEST">
-      <P Name="Src">161#rconn:1</P>
-      <P Name="Points">[83, 0]</P>
-    </Branch>
+    <P Name="Points">[-25, 0; 0, -85]</P>
     <Branch ConnectType="DEST_SRC">
       <P Name="Dst">158#lconn:1</P>
+    </Branch>
+    <Branch ConnectType="DEST_DEST">
+      <P Name="Src">161#rconn:1</P>
+      <P Name="Points">[65, 0]</P>
     </Branch>
   </Line>
   <Line LineType="Connection">
@@ -3336,7 +3375,7 @@ Converter</P>
   </Line>
   <Line LineType="Connection">
     <P Name="ZOrder">23</P>
-    <P Name="Points">[-35, 85; 0, -60; 20, 0]</P>
+    <P Name="Points">[-35, 50; 0, -60; 20, 0]</P>
     <P Name="Dst">149#lconn:1</P>
     <Branch ConnectType="SRC_DEST">
       <P Name="Src">156#lconn:1</P>
@@ -3346,7 +3385,7 @@ Converter</P>
       <P Name="Dst">168#rconn:1</P>
     </Branch>
     <Branch ConnectType="SRC_DEST">
-      <P Name="Points">[-35, 115; 0, -30]</P>
+      <P Name="Points">[-35, 115; 0, -65]</P>
       <Branch ConnectType="SRC_DEST">
         <P Name="Points">[-35, 135; 0, -20]</P>
         <Branch ConnectType="SRC_SRC">
@@ -3354,7 +3393,7 @@ Converter</P>
         </Branch>
         <Branch ConnectType="SRC_DEST">
           <P Name="Src">160#lconn:2</P>
-          <P Name="Points">[-20, 0; 0, -40]</P>
+          <P Name="Points">[-20, 0; 0, -80]</P>
         </Branch>
       </Branch>
       <Branch ConnectType="SRC_SRC">
@@ -3362,6 +3401,18 @@ Converter</P>
       </Branch>
     </Branch>
   </Line>
+  <Annotation SID="14075">
+    <P Name="Name">I2R loss</P>
+    <P Name="Position">[-12, 71, 200, 172]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="FixedWidth">on</P>
+    <P Name="ForegroundColor">[0.901961, 0.901961, 1.000000]</P>
+    <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
+    <P Name="DropShadow">on</P>
+    <P Name="AnnotationType">area_annotation</P>
+    <P Name="ZOrder">1</P>
+    <P Name="FontSize">12</P>
+  </Annotation>
   <Annotation SID="178">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -3369,7 +3420,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:12px;&quot;&gt;Signals are logged in&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:12px;&quot;&gt;the Measurement subsystem.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[-95, -41, 62, -9]</P>
+    <P Name="Position">[-95, -76, 62, -44]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="BackgroundColor">[0.901961, 0.901961, 1.000000]</P>
     <P Name="Interpreter">rich</P>
@@ -3546,9 +3597,7 @@ Priority: %&lt;w_priority&gt;</P>
     <P Name="BlockMirror">on</P>
     <P Name="NameLocation">right</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="AttributesFormatString">%&lt;inertia&gt; [%&lt;inertia_unit&gt;]
-%&lt;w&gt; [%&lt;w_unit&gt;]
-Priority: %&lt;w_priority&gt;</P>
+    <P Name="AttributesFormatString">Priority: %&lt;w_priority&gt;</P>
     <P Name="LibraryVersion">26001000.2</P>
     <P Name="SourceBlock">fl_lib/Mechanical/Rotational Elements/Inertia</P>
     <P Name="SourceType">Inertia</P>
@@ -3563,7 +3612,7 @@ Priority: %&lt;w_priority&gt;</P>
       <P Name="ComponentVariantNames">[&quot;inertia&quot;]</P>
       <P Name="ClassName">inertia</P>
       <P Name="SchemaVersion">1</P>
-      <P Name="inertia">9</P>
+      <P Name="inertia">MechanicalLoad.Inertia.value(&quot;kg*m^2&quot;)</P>
       <P Name="inertia_unit">kg*m^2</P>
       <P Name="inertia_conf">compiletime</P>
       <P Name="num_ports">foundation.enum.numPorts2.one</P>
@@ -3571,7 +3620,7 @@ Priority: %&lt;w_priority&gt;</P>
       <P Name="num_ports_conf">compiletime</P>
       <P Name="w_specify">on</P>
       <P Name="w_priority">High</P>
-      <P Name="w">initial.LoadInertiaSpeed.value(&quot;rpm&quot;)</P>
+      <P Name="w">initial.LoadInertia_AngularSpeed.value(&quot;rpm&quot;)</P>
       <P Name="w_unit">rpm</P>
       <P Name="w_nominal_specify">off</P>
       <P Name="w_nominal_value">1</P>
@@ -4067,17 +4116,17 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_39.xml
     <PortCounts in="12"/>
     <P Name="Position">[560, -44, 655, 259]</P>
     <P Name="ZOrder">8</P>
-    <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true,true,true,true,true,true,true,true,true,true,true,true],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5],&quot;BarWidth&quot;:[0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9],&quot;LineColor&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1,1,1,1,1,1,1,1,1,1,1,1],&quot;LineEdgeAlpha&quot;:[1,1,1,1,1,1,1,1,1,1,1,1],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803]],&quot;ChannelNames&quot;:[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;],&quot;DefaultLegendLabel&quot;:[&quot;Motor torque command&quot;,&quot;Axle torque input&quot;,&quot;Axle clutch switch&quot;,&quot;Axle speed input&quot;,&quot;Motor power rate&quot;,&quot;Motor mechanical power&quot;,&quot;Motor speed&quot;,&quot;Motor temperature&quot;,&quot;Heat flow rate&quot;,&quot;Battery power&quot;,&quot;Battery current&quot;,&quot;Battery voltage&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[1,1,1,1,1,1,1,1,1,1,1,1],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;Motor torque command&quot;,&quot;Axle torque input&quot;,&quot;Axle clutch switch&quot;,&quot;Axle speed input&quot;,&quot;Motor power rate&quot;,&quot;Motor mechanical power&quot;,&quot;Motor speed&quot;,&quot;Motor temperature&quot;,&quot;Heat flow rate&quot;,&quot;Battery power&quot;,&quot;Battery current&quot;,&quot;Battery voltage&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:0,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Auto&quot;,&quot;ExpandOnly&quot;:true,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:true,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[4,3],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:340.0779148846347,&quot;MaxYLimReal&quot;:340.0779148846347,&quot;MinYLimMag&quot;:339.29880189933976,&quot;MinYLimReal&quot;:339.29880189933976,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:112.50000000000001,&quot;MaxYLimReal&quot;:112.50000000000001,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-12.499999999999998,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:11.250000000008185,&quot;MaxYLimReal&quot;:1.2500000000009093,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-11.250000000008185,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:1},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:1,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:2},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:11.250000000000002,&quot;MaxYLimReal&quot;:1.25,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-11.250000000000002,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:3},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:9.736746922024677,&quot;MaxYLimReal&quot;:9.736746922024677,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1.0818760081510184,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:4},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:21.420843228454288,&quot;MaxYLimReal&quot;:21.420843228454288,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-2.3801272179322406,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:5},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:2149.2295251715136,&quot;MaxYLimReal&quot;:2149.2295251715136,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-440.45329078090185,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:6},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:393.15,&quot;MaxYLimReal&quot;:393.15,&quot;MinYLimMag&quot;:193.14999999999998,&quot;MinYLimReal&quot;:193.14999999999998,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:7},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:13500.000000000033,&quot;MaxYLimReal&quot;:1500.0000000000034,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-13500.000000000033,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:8},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:23.840735422448827,&quot;MaxYLimReal&quot;:23.840735422448827,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-2.6491060775797126,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:9},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:70.11981006602595,&quot;MaxYLimReal&quot;:70.11981006602595,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-7.791488463469741,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:10},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:340.0779148846347,&quot;MaxYLimReal&quot;:340.0779148846347,&quot;MinYLimMag&quot;:339.29880189933976,&quot;MinYLimReal&quot;:339.29880189933976,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:11}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
+    <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true,true,true,true,true,true,true,true,true,true,true,true],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5,1.5],&quot;BarWidth&quot;:[0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9,0.9],&quot;LineColor&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1,1,1,1,1,1,1,1,1,1,1,1],&quot;LineEdgeAlpha&quot;:[1,1,1,1,1,1,1,1,1,1,1,1],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803]],&quot;ChannelNames&quot;:[&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;,&quot;&quot;],&quot;DefaultLegendLabel&quot;:[&quot;Motor torque command&quot;,&quot;Axle torque input&quot;,&quot;Axle clutch switch&quot;,&quot;Axle speed input&quot;,&quot;Motor power rate&quot;,&quot;Motor mechanical power&quot;,&quot;Motor speed&quot;,&quot;Motor temperature&quot;,&quot;Heat flow rate&quot;,&quot;Battery power&quot;,&quot;Battery current&quot;,&quot;Battery voltage&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[1,1,1,1,1,1,1,1,1,1,1,1],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;Motor torque command&quot;,&quot;Axle torque input&quot;,&quot;Axle clutch switch&quot;,&quot;Axle speed input&quot;,&quot;Motor power rate&quot;,&quot;Motor mechanical power&quot;,&quot;Motor speed&quot;,&quot;Motor temperature&quot;,&quot;Heat flow rate&quot;,&quot;Battery power&quot;,&quot;Battery current&quot;,&quot;Battery voltage&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:0,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Auto&quot;,&quot;ExpandOnly&quot;:true,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:true,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[4,3],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:340.077942060179,&quot;MaxYLimReal&quot;:340.077942060179,&quot;MinYLimMag&quot;:339.28675671179843,&quot;MinYLimReal&quot;:339.28675671179843,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:112.5,&quot;MaxYLimReal&quot;:112.5,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-12.499999999999996,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:11.25,&quot;MaxYLimReal&quot;:1.2499999999999998,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-11.25,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:1},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:1,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:2},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:1,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:3},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:10.063893916580474,&quot;MaxYLimReal&quot;:10.063893916580474,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1.118210435175608,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:4},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:22.14056661647704,&quot;MaxYLimReal&quot;:22.14056661647704,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-2.4600629573863375,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:5},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:2238.75718746349,&quot;MaxYLimReal&quot;:2238.75718746349,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-248.7507986295724,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:6},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:393.15,&quot;MaxYLimReal&quot;:393.15,&quot;MinYLimMag&quot;:193.14999999999998,&quot;MinYLimReal&quot;:193.14999999999998,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:7},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:1,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:8},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:24.250271798905466,&quot;MaxYLimReal&quot;:24.250271798905466,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-2.6500300460903152,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:9},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:71.32432882030989,&quot;MaxYLimReal&quot;:71.32432882030989,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-7.794206017912659,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:10},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:340.077942060179,&quot;MaxYLimReal&quot;:340.077942060179,&quot;MinYLimMag&quot;:339.28675671179843,&quot;MinYLimReal&quot;:339.28675671179843,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:11}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
     <P Name="WindowPosition">[1242.000000,786.000000,989.000000,605.000000,]</P>
     <P Name="Visible">on</P>
     <P Name="ScopeFrameLocation">window</P>
     <P Name="WasSavedAsWebScope">on</P>
     <P Name="Floating">off</P>
-    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:112.50000000000001,&quot;MaxYLimReal&quot;:112.50000000000001,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-12.499999999999998,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:11.250000000000002,&quot;MaxYLimReal&quot;:1.25,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-11.250000000000002,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:1,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:1,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10.062165491278142,&quot;MaxYLimReal&quot;:10.062165491278142,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1.1180183879197934,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:22.136764080811915,&quot;MaxYLimReal&quot;:22.136764080811915,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-2.4596404534235456,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:2238.7466531670916,&quot;MaxYLimReal&quot;:2238.7466531670916,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-248.74962815241469,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:393.15,&quot;MaxYLimReal&quot;:393.15,&quot;MinYLimMag&quot;:193.14999999999998,&quot;MinYLimReal&quot;:193.14999999999998,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:1,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:24.560825443946207,&quot;MaxYLimReal&quot;:24.560825443946207,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-2.7291025653194292,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:72.237721893959417,&quot;MaxYLimReal&quot;:72.237721893959417,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-8.0267722509394961,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:340.08026772250946,&quot;MaxYLimReal&quot;:340.08026772250946,&quot;MinYLimMag&quot;:339.27762278106047,&quot;MinYLimReal&quot;:339.27762278106047,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
+    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:393.15,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:193.14999999999998,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:0.050000138409262353,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:0.030000138409262349,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:0.21764746590959516,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:0.017647465909595136,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:439.99882352534092,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:239.99882352534092,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
     <P Name="NumInputPorts">12</P>
     <P Name="LayoutDimensionsString">[4 3]</P>
-    <P Name="ActiveDisplayYMinimum">-12.499999999999998</P>
-    <P Name="ActiveDisplayYMaximum">112.50000000000001</P>
+    <P Name="ActiveDisplayYMinimum">-1</P>
+    <P Name="ActiveDisplayYMaximum">1</P>
   </Block>
   <Block BlockType="Terminator" Name="Terminator" SID="940">
     <P Name="Position">[15, 170, 35, 190]</P>
@@ -4286,10 +4335,10 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   <P Name="Location">[22, 24, 1162, 771]</P>
   <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">14070</P>
+  <P Name="SIDHighWatermark">14325</P>
   <Block BlockType="Reference" Name="Electrical Reference" SID="35">
     <PortCounts lconn="1"/>
-    <P Name="Position">[225, 320, 245, 340]</P>
+    <P Name="Position">[240, 305, 260, 325]</P>
     <P Name="ZOrder">26299</P>
     <P Name="BlockRotation">270</P>
     <P Name="BlockMirror">on</P>
@@ -4326,7 +4375,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Position">[835, -20, 890, 0]</P>
     <P Name="ZOrder">26307</P>
     <P Name="NameLocation">left</P>
-    <P Name="GotoTag">Axle</P>
+    <P Name="GotoTag">axle</P>
   </Block>
   <Block BlockType="From" Name="From2" SID="218">
     <P Name="Position">[835, 0, 890, 20]</P>
@@ -4338,7 +4387,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Position">[835, -60, 890, -40]</P>
     <P Name="ZOrder">26324</P>
     <P Name="NameLocation">left</P>
-    <P Name="GotoTag">Inputs</P>
+    <P Name="GotoTag">inputs</P>
   </Block>
   <Block BlockType="Goto" Name="Goto" SID="37">
     <P Name="Position">[615, 205, 670, 225]</P>
@@ -4349,7 +4398,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Position">[800, 220, 855, 240]</P>
     <P Name="ZOrder">26306</P>
     <P Name="NameLocation">top</P>
-    <P Name="GotoTag">Axle</P>
+    <P Name="GotoTag">axle</P>
   </Block>
   <Block BlockType="Goto" Name="Goto2" SID="217">
     <P Name="Position">[345, 215, 400, 235]</P>
@@ -4361,7 +4410,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Position">[455, 52, 510, 68]</P>
     <P Name="ZOrder">26322</P>
     <P Name="NameLocation">right</P>
-    <P Name="GotoTag">Inputs</P>
+    <P Name="GotoTag">inputs</P>
   </Block>
   <Block BlockType="SubSystem" Name="High Voltage Battery" SID="142">
     <PortCounts out="1" lconn="1" rconn="1"/>
@@ -4375,7 +4424,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="Position">[255, 45, 390, 125]</P>
     <P Name="ZOrder">26323</P>
     <P Name="OpenFcn">open_system(gcb, &quot;force&quot;)</P>
-    <P Name="ReferencedSubsystem">Inputs_MotorDriveUnit_refsub</P>
+    <P Name="ReferencedSubsystem">Inputs_MotorDriveUnit_LookupTable_refsub</P>
     <PortProperties>
       <Port Type="out" Index="1">
         <P Name="BlockName">Info</P>
@@ -4434,7 +4483,7 @@ open_system(gcb, &quot;force&quot;)
     <P Name="NameLocation">left</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="FontSize">12</P>
-    <P Name="Configuration">{&quot;components&quot;:[{&quot;name&quot;:&quot;BackgroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;position&quot;:[0,0,1,1]}},{&quot;name&quot;:&quot;ButtonStateComponent&quot;,&quot;settings&quot;:{&quot;buttonType&quot;:&quot;momentary&quot;,&quot;clickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_zero&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_zero&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_zero\n\nset_param(bdroot, StopTime=\&quot;10\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_refsub\&quot;)\n&quot;,&quot;onValue&quot;:1,&quot;position&quot;:[0,0,1,1],&quot;pressDelay&quot;:&quot;500&quot;,&quot;pressFcn&quot;:&quot;&quot;,&quot;repeatInterval&quot;:&quot;0&quot;,&quot;states&quot;:[{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Constant&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Constant&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Constant&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Constant&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;}]}},{&quot;name&quot;:&quot;ForegroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;isForeground&quot;:1,&quot;position&quot;:[0,0,1,1]}}],&quot;derived&quot;:{&quot;blockParameters&quot;:{&quot;AutoActivate&quot;:true,&quot;ButtonText&quot;:&quot;Constant&quot;,&quot;ButtonType&quot;:&quot;Momentary&quot;,&quot;ClickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_zero&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_zero&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_zero\n\nset_param(bdroot, StopTime=\&quot;10\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_refsub\&quot;)\n&quot;,&quot;OnValue&quot;:1,&quot;PressDelay&quot;:&quot;500&quot;,&quot;PressFcn&quot;:&quot;&quot;,&quot;RepeatInterval&quot;:&quot;0&quot;,&quot;fixedAspectRatio&quot;:&quot;on&quot;}},&quot;settings&quot;:{&quot;BindingType&quot;:&quot;standalone&quot;,&quot;autoActivate&quot;:true,&quot;backgroundColor&quot;:[244,244,244,1],&quot;backgroundOffset&quot;:0.2,&quot;backgroundOpacity&quot;:1,&quot;fixedAspectRatio&quot;:&quot;on&quot;,&quot;foregroundColor&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;migratedFromLegacy&quot;:true,&quot;useBackgroundColor&quot;:true,&quot;variant&quot;:&quot;callback&quot;,&quot;version&quot;:&quot;R2025a&quot;},&quot;type&quot;:&quot;Button&quot;}</P>
+    <P Name="Configuration">{&quot;components&quot;:[{&quot;name&quot;:&quot;BackgroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;position&quot;:[0,0,1,1]}},{&quot;name&quot;:&quot;ButtonStateComponent&quot;,&quot;settings&quot;:{&quot;buttonType&quot;:&quot;momentary&quot;,&quot;clickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_zero&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_zero&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_zero\n\nset_param(bdroot, StopTime=\&quot;10\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_LookupTable_refsub\&quot;)\n&quot;,&quot;onValue&quot;:1,&quot;position&quot;:[0,0,1,1],&quot;pressDelay&quot;:&quot;500&quot;,&quot;pressFcn&quot;:&quot;&quot;,&quot;repeatInterval&quot;:&quot;0&quot;,&quot;states&quot;:[{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Constant&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Constant&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Constant&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Constant&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;}]}},{&quot;name&quot;:&quot;ForegroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;isForeground&quot;:1,&quot;position&quot;:[0,0,1,1]}}],&quot;derived&quot;:{&quot;blockParameters&quot;:{&quot;AutoActivate&quot;:true,&quot;ButtonText&quot;:&quot;Constant&quot;,&quot;ButtonType&quot;:&quot;Momentary&quot;,&quot;ClickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_zero&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_zero&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_zero\n\nset_param(bdroot, StopTime=\&quot;10\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_LookupTable_refsub\&quot;)\n&quot;,&quot;OnValue&quot;:1,&quot;PressDelay&quot;:&quot;500&quot;,&quot;PressFcn&quot;:&quot;&quot;,&quot;RepeatInterval&quot;:&quot;0&quot;,&quot;fixedAspectRatio&quot;:&quot;on&quot;}},&quot;settings&quot;:{&quot;BindingType&quot;:&quot;standalone&quot;,&quot;autoActivate&quot;:true,&quot;backgroundColor&quot;:[244,244,244,1],&quot;backgroundOffset&quot;:0.2,&quot;backgroundOpacity&quot;:1,&quot;fixedAspectRatio&quot;:&quot;on&quot;,&quot;foregroundColor&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;migratedFromLegacy&quot;:true,&quot;useBackgroundColor&quot;:true,&quot;variant&quot;:&quot;callback&quot;,&quot;version&quot;:&quot;R2025a&quot;},&quot;type&quot;:&quot;Button&quot;}</P>
     <P Name="CustomBackgroundColor">{&quot;color&quot;:[0.9568627451,0.9568627451,0.9568627451],&quot;show&quot;:true}</P>
   </Block>
   <Block BlockType="CustomCallbackButton" Name="Set Inputs 2" SID="12267">
@@ -4445,7 +4494,7 @@ open_system(gcb, &quot;force&quot;)
     <P Name="NameLocation">left</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="FontSize">12</P>
-    <P Name="Configuration">{&quot;components&quot;:[{&quot;name&quot;:&quot;BackgroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;position&quot;:[0,0,1,1]}},{&quot;name&quot;:&quot;ButtonStateComponent&quot;,&quot;settings&quot;:{&quot;buttonType&quot;:&quot;momentary&quot;,&quot;clickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Drive&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Drive&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Drive\n\nset_param(bdroot, StopTime=\&quot;300\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_refsub\&quot;)\n&quot;,&quot;onValue&quot;:1,&quot;position&quot;:[0,0,1,1],&quot;pressDelay&quot;:&quot;500&quot;,&quot;pressFcn&quot;:&quot;&quot;,&quot;repeatInterval&quot;:&quot;0&quot;,&quot;states&quot;:[{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Drive&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Drive&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Drive&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Drive&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;}]}},{&quot;name&quot;:&quot;ForegroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;isForeground&quot;:1,&quot;position&quot;:[0,0,1,1]}}],&quot;derived&quot;:{&quot;blockParameters&quot;:{&quot;AutoActivate&quot;:true,&quot;ButtonText&quot;:&quot;Drive&quot;,&quot;ButtonType&quot;:&quot;Momentary&quot;,&quot;ClickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Drive&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Drive&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Drive\n\nset_param(bdroot, StopTime=\&quot;300\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_refsub\&quot;)\n&quot;,&quot;OnValue&quot;:1,&quot;PressDelay&quot;:&quot;500&quot;,&quot;PressFcn&quot;:&quot;&quot;,&quot;RepeatInterval&quot;:&quot;0&quot;,&quot;fixedAspectRatio&quot;:&quot;on&quot;}},&quot;settings&quot;:{&quot;BindingType&quot;:&quot;standalone&quot;,&quot;autoActivate&quot;:true,&quot;backgroundColor&quot;:[244,244,244,1],&quot;backgroundOffset&quot;:0.2,&quot;backgroundOpacity&quot;:1,&quot;fixedAspectRatio&quot;:&quot;on&quot;,&quot;foregroundColor&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;migratedFromLegacy&quot;:true,&quot;useBackgroundColor&quot;:true,&quot;variant&quot;:&quot;callback&quot;,&quot;version&quot;:&quot;R2025a&quot;},&quot;type&quot;:&quot;Button&quot;}</P>
+    <P Name="Configuration">{&quot;components&quot;:[{&quot;name&quot;:&quot;BackgroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;position&quot;:[0,0,1,1]}},{&quot;name&quot;:&quot;ButtonStateComponent&quot;,&quot;settings&quot;:{&quot;buttonType&quot;:&quot;momentary&quot;,&quot;clickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Drive&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Drive&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Drive\n\nset_param(bdroot, StopTime=\&quot;300\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_LookupTable_refsub\&quot;)\n&quot;,&quot;onValue&quot;:1,&quot;position&quot;:[0,0,1,1],&quot;pressDelay&quot;:&quot;500&quot;,&quot;pressFcn&quot;:&quot;&quot;,&quot;repeatInterval&quot;:&quot;0&quot;,&quot;states&quot;:[{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Drive&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Drive&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Drive&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Drive&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;}]}},{&quot;name&quot;:&quot;ForegroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;isForeground&quot;:1,&quot;position&quot;:[0,0,1,1]}}],&quot;derived&quot;:{&quot;blockParameters&quot;:{&quot;AutoActivate&quot;:true,&quot;ButtonText&quot;:&quot;Drive&quot;,&quot;ButtonType&quot;:&quot;Momentary&quot;,&quot;ClickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Drive&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Drive&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Drive\n\nset_param(bdroot, StopTime=\&quot;300\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_LookupTable_refsub\&quot;)\n&quot;,&quot;OnValue&quot;:1,&quot;PressDelay&quot;:&quot;500&quot;,&quot;PressFcn&quot;:&quot;&quot;,&quot;RepeatInterval&quot;:&quot;0&quot;,&quot;fixedAspectRatio&quot;:&quot;on&quot;}},&quot;settings&quot;:{&quot;BindingType&quot;:&quot;standalone&quot;,&quot;autoActivate&quot;:true,&quot;backgroundColor&quot;:[244,244,244,1],&quot;backgroundOffset&quot;:0.2,&quot;backgroundOpacity&quot;:1,&quot;fixedAspectRatio&quot;:&quot;on&quot;,&quot;foregroundColor&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;migratedFromLegacy&quot;:true,&quot;useBackgroundColor&quot;:true,&quot;variant&quot;:&quot;callback&quot;,&quot;version&quot;:&quot;R2025a&quot;},&quot;type&quot;:&quot;Button&quot;}</P>
     <P Name="CustomBackgroundColor">{&quot;color&quot;:[0.9568627451,0.9568627451,0.9568627451],&quot;show&quot;:true}</P>
   </Block>
   <Block BlockType="CustomCallbackButton" Name="Set Inputs 3" SID="12268">
@@ -4456,7 +4505,7 @@ open_system(gcb, &quot;force&quot;)
     <P Name="NameLocation">left</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="FontSize">12</P>
-    <P Name="Configuration">{&quot;components&quot;:[{&quot;name&quot;:&quot;BackgroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;position&quot;:[0,0,1,1]}},{&quot;name&quot;:&quot;ButtonStateComponent&quot;,&quot;settings&quot;:{&quot;buttonType&quot;:&quot;momentary&quot;,&quot;clickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Regen&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Regen&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Regen\n\nset_param(bdroot, StopTime=\&quot;400\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_refsub\&quot;)\n&quot;,&quot;onValue&quot;:1,&quot;position&quot;:[0,0,1,1],&quot;pressDelay&quot;:&quot;500&quot;,&quot;pressFcn&quot;:&quot;&quot;,&quot;repeatInterval&quot;:&quot;0&quot;,&quot;states&quot;:[{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Regen Brake&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Regen Brake&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Regen Brake&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Regen Brake&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;}]}},{&quot;name&quot;:&quot;ForegroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;isForeground&quot;:1,&quot;position&quot;:[0,0,1,1]}}],&quot;derived&quot;:{&quot;blockParameters&quot;:{&quot;AutoActivate&quot;:true,&quot;ButtonText&quot;:&quot;Regen Brake&quot;,&quot;ButtonType&quot;:&quot;Momentary&quot;,&quot;ClickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Regen&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Regen&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Regen\n\nset_param(bdroot, StopTime=\&quot;400\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_refsub\&quot;)\n&quot;,&quot;OnValue&quot;:1,&quot;PressDelay&quot;:&quot;500&quot;,&quot;PressFcn&quot;:&quot;&quot;,&quot;RepeatInterval&quot;:&quot;0&quot;,&quot;fixedAspectRatio&quot;:&quot;on&quot;}},&quot;settings&quot;:{&quot;BindingType&quot;:&quot;standalone&quot;,&quot;autoActivate&quot;:true,&quot;backgroundColor&quot;:[244,244,244,1],&quot;backgroundOffset&quot;:0.2,&quot;backgroundOpacity&quot;:1,&quot;fixedAspectRatio&quot;:&quot;on&quot;,&quot;foregroundColor&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;migratedFromLegacy&quot;:true,&quot;useBackgroundColor&quot;:true,&quot;variant&quot;:&quot;callback&quot;,&quot;version&quot;:&quot;R2025a&quot;},&quot;type&quot;:&quot;Button&quot;}</P>
+    <P Name="Configuration">{&quot;components&quot;:[{&quot;name&quot;:&quot;BackgroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;position&quot;:[0,0,1,1]}},{&quot;name&quot;:&quot;ButtonStateComponent&quot;,&quot;settings&quot;:{&quot;buttonType&quot;:&quot;momentary&quot;,&quot;clickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Regen&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Regen&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Regen\n\nset_param(bdroot, StopTime=\&quot;400\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_LookupTable_refsub\&quot;)\n&quot;,&quot;onValue&quot;:1,&quot;position&quot;:[0,0,1,1],&quot;pressDelay&quot;:&quot;500&quot;,&quot;pressFcn&quot;:&quot;&quot;,&quot;repeatInterval&quot;:&quot;0&quot;,&quot;states&quot;:[{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Regen Brake&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Regen Brake&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Regen Brake&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Regen Brake&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;}]}},{&quot;name&quot;:&quot;ForegroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;isForeground&quot;:1,&quot;position&quot;:[0,0,1,1]}}],&quot;derived&quot;:{&quot;blockParameters&quot;:{&quot;AutoActivate&quot;:true,&quot;ButtonText&quot;:&quot;Regen Brake&quot;,&quot;ButtonType&quot;:&quot;Momentary&quot;,&quot;ClickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Regen&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Regen&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Regen\n\nset_param(bdroot, StopTime=\&quot;400\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_LookupTable_refsub\&quot;)\n&quot;,&quot;OnValue&quot;:1,&quot;PressDelay&quot;:&quot;500&quot;,&quot;PressFcn&quot;:&quot;&quot;,&quot;RepeatInterval&quot;:&quot;0&quot;,&quot;fixedAspectRatio&quot;:&quot;on&quot;}},&quot;settings&quot;:{&quot;BindingType&quot;:&quot;standalone&quot;,&quot;autoActivate&quot;:true,&quot;backgroundColor&quot;:[244,244,244,1],&quot;backgroundOffset&quot;:0.2,&quot;backgroundOpacity&quot;:1,&quot;fixedAspectRatio&quot;:&quot;on&quot;,&quot;foregroundColor&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;migratedFromLegacy&quot;:true,&quot;useBackgroundColor&quot;:true,&quot;variant&quot;:&quot;callback&quot;,&quot;version&quot;:&quot;R2025a&quot;},&quot;type&quot;:&quot;Button&quot;}</P>
     <P Name="CustomBackgroundColor">{&quot;color&quot;:[0.9568627451,0.9568627451,0.9568627451],&quot;show&quot;:true}</P>
   </Block>
   <Block BlockType="CustomCallbackButton" Name="Set Inputs 4" SID="12414">
@@ -4467,12 +4516,12 @@ open_system(gcb, &quot;force&quot;)
     <P Name="NameLocation">left</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="FontSize">12</P>
-    <P Name="Configuration">{&quot;components&quot;:[{&quot;name&quot;:&quot;BackgroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;position&quot;:[0,0,1,1]}},{&quot;name&quot;:&quot;ButtonStateComponent&quot;,&quot;settings&quot;:{&quot;buttonType&quot;:&quot;momentary&quot;,&quot;clickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Random&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Random&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Random\n\nset_param(bdroot, StopTime=\&quot;400\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_refsub\&quot;)\n&quot;,&quot;onValue&quot;:1,&quot;position&quot;:[0,0,1,1],&quot;pressDelay&quot;:&quot;500&quot;,&quot;pressFcn&quot;:&quot;&quot;,&quot;repeatInterval&quot;:&quot;0&quot;,&quot;states&quot;:[{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Random&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Random&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Random&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Random&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;}]}},{&quot;name&quot;:&quot;ForegroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;isForeground&quot;:1,&quot;position&quot;:[0,0,1,1]}}],&quot;derived&quot;:{&quot;blockParameters&quot;:{&quot;AutoActivate&quot;:true,&quot;ButtonText&quot;:&quot;Random&quot;,&quot;ButtonType&quot;:&quot;Momentary&quot;,&quot;ClickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Random&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Random&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Random\n\nset_param(bdroot, StopTime=\&quot;400\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_refsub\&quot;)\n&quot;,&quot;OnValue&quot;:1,&quot;PressDelay&quot;:&quot;500&quot;,&quot;PressFcn&quot;:&quot;&quot;,&quot;RepeatInterval&quot;:&quot;0&quot;,&quot;fixedAspectRatio&quot;:&quot;on&quot;}},&quot;settings&quot;:{&quot;BindingType&quot;:&quot;standalone&quot;,&quot;autoActivate&quot;:true,&quot;backgroundColor&quot;:[244,244,244,1],&quot;backgroundOffset&quot;:0.2,&quot;backgroundOpacity&quot;:1,&quot;fixedAspectRatio&quot;:&quot;on&quot;,&quot;foregroundColor&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;migratedFromLegacy&quot;:true,&quot;useBackgroundColor&quot;:true,&quot;variant&quot;:&quot;callback&quot;,&quot;version&quot;:&quot;R2025a&quot;},&quot;type&quot;:&quot;Button&quot;}</P>
+    <P Name="Configuration">{&quot;components&quot;:[{&quot;name&quot;:&quot;BackgroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;position&quot;:[0,0,1,1]}},{&quot;name&quot;:&quot;ButtonStateComponent&quot;,&quot;settings&quot;:{&quot;buttonType&quot;:&quot;momentary&quot;,&quot;clickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Random&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Random&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Random\n\nset_param(bdroot, StopTime=\&quot;400\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_LookupTable_refsub\&quot;)\n&quot;,&quot;onValue&quot;:1,&quot;position&quot;:[0,0,1,1],&quot;pressDelay&quot;:&quot;500&quot;,&quot;pressFcn&quot;:&quot;&quot;,&quot;repeatInterval&quot;:&quot;0&quot;,&quot;states&quot;:[{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Random&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Random&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Random&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;},{&quot;horizontalAlignment&quot;:&quot;center&quot;,&quot;image&quot;:{&quot;position&quot;:[0,0,1,1],&quot;size&quot;:[1,1],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;label&quot;:{&quot;color&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;icon&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;iconOffset&quot;:0,&quot;iconPlacement&quot;:&quot;left&quot;,&quot;opacity&quot;:1,&quot;show&quot;:true,&quot;text&quot;:{&quot;content&quot;:&quot;Random&quot;,&quot;font&quot;:&quot;Helvetica&quot;}},&quot;labelOffset&quot;:[0,0],&quot;verticalAlignment&quot;:&quot;middle&quot;}]}},{&quot;name&quot;:&quot;ForegroundImageComponent&quot;,&quot;settings&quot;:{&quot;image&quot;:{&quot;size&quot;:[0,0],&quot;src&quot;:&quot;default&quot;,&quot;srcOrientation&quot;:&quot;Right&quot;},&quot;isForeground&quot;:1,&quot;position&quot;:[0,0,1,1]}}],&quot;derived&quot;:{&quot;blockParameters&quot;:{&quot;AutoActivate&quot;:true,&quot;ButtonText&quot;:&quot;Random&quot;,&quot;ButtonType&quot;:&quot;Momentary&quot;,&quot;ClickFcn&quot;:&quot;disp(\&quot;Loading inputs: &lt;a href=\&quot;\&quot;matlab:edit(&apos;LoadInputs_MotorDriveUnit_Random&apos;)\&quot;\&quot;&gt;LoadInputs_MotorDriveUnit_Random&lt;\/a&gt;\&quot;)\nLoadInputs_MotorDriveUnit_Random\n\nset_param(bdroot, StopTime=\&quot;400\&quot;)\nset_param(gcs + \&quot;\/Inputs\&quot;, ReferencedSubsystem = \&quot;Inputs_MotorDriveUnit_LookupTable_refsub\&quot;)\n&quot;,&quot;OnValue&quot;:1,&quot;PressDelay&quot;:&quot;500&quot;,&quot;PressFcn&quot;:&quot;&quot;,&quot;RepeatInterval&quot;:&quot;0&quot;,&quot;fixedAspectRatio&quot;:&quot;on&quot;}},&quot;settings&quot;:{&quot;BindingType&quot;:&quot;standalone&quot;,&quot;autoActivate&quot;:true,&quot;backgroundColor&quot;:[244,244,244,1],&quot;backgroundOffset&quot;:0.2,&quot;backgroundOpacity&quot;:1,&quot;fixedAspectRatio&quot;:&quot;on&quot;,&quot;foregroundColor&quot;:[0.01176470588,0.01176470588,0.01176470588,1],&quot;migratedFromLegacy&quot;:true,&quot;useBackgroundColor&quot;:true,&quot;variant&quot;:&quot;callback&quot;,&quot;version&quot;:&quot;R2025a&quot;},&quot;type&quot;:&quot;Button&quot;}</P>
     <P Name="CustomBackgroundColor">{&quot;color&quot;:[0.9568627451,0.9568627451,0.9568627451],&quot;show&quot;:true}</P>
   </Block>
   <Block BlockType="Reference" Name="Solver Configuration" SID="8">
     <PortCounts rconn="1"/>
-    <P Name="Position">[150, 254, 195, 276]</P>
+    <P Name="Position">[150, 279, 195, 301]</P>
     <P Name="ZOrder">26280</P>
     <P Name="HideAutomaticName">off</P>
     <P Name="AttributesFormatString">Local solver %&lt;UseLocalSolver&gt;</P>
@@ -4571,14 +4620,14 @@ Configuration</P>
   <Line LineType="Connection">
     <P Name="ZOrder">64</P>
     <P Name="Src">35#lconn:1</P>
-    <P Name="Points">[0, -40]</P>
+    <P Name="Points">[0, 0]</P>
     <Branch ConnectType="DEST_DEST">
       <P Name="Src">142#lconn:1</P>
-      <P Name="Points">[-25, 0]</P>
+      <P Name="Points">[-10, 0; 0, 25]</P>
     </Branch>
     <Branch ConnectType="DEST_DEST">
       <P Name="Src">8#rconn:1</P>
-      <P Name="Points">[25, 0]</P>
+      <P Name="Points">[40, 0]</P>
     </Branch>
   </Line>
   <Line>
@@ -4648,23 +4697,30 @@ li.checked::marker { content: &quot;\2612&quot;; }
   </Annotation>
   <Annotation SID="4054">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Use this model for stress-testing the target component.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[10, -37, 363, -19]</P>
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Use this model for stress test.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[10, -41, 208, -19]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="FixedHeight">on</P>
     <P Name="FixedWidth">on</P>
     <P Name="Interpreter">rich</P>
     <P Name="ZOrder">-19</P>
   </Annotation>
   <Annotation SID="10907">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
 &lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Scope &amp;amp; signal logging&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
-    <P Name="Position">[800, 64, 944, 82]</P>
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Scope and signal logging&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[800, 64, 958, 82]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
     <P Name="ZOrder">-79</P>
@@ -4697,7 +4753,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Object PropName="ExplorerBarInfo" ObjectID="4" ClassName="Simulink.ExplorerBarInfo">
         <P Name="Visible" Class="logical">1</P>
       </Object>
-      <Array PropName="EditorsInfo" Type="Simulink.EditorInfo" Dimension="1*39">
+      <Array PropName="EditorsInfo" Type="Simulink.EditorInfo" Dimension="1*43">
         <Object ObjectID="5">
           <P Name="IsActive" Class="logical">1</P>
           <P Name="IsTabbed" Class="logical">1</P>
@@ -4712,13 +4768,53 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">289</P>
+          <P Name="LoadSaveID" Class="char">146</P>
           <P Name="Extents" Class="double">[1073.0, 513.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-881.84765625, -195.5]</P>
-          <P Name="SceneRectInView" Class="double">[-881.84765625, -195.5, 1073.0, 513.0]</P>
+          <P Name="Offset" Class="double">[-295.359375, -147.5]</P>
+          <P Name="SceneRectInView" Class="double">[-295.359375, -147.5, 1073.0, 513.0]</P>
         </Object>
         <Object ObjectID="7">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">142</P>
+          <P Name="Extents" Class="double">[1073.0, 513.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[51.0, 87.5]</P>
+          <P Name="SceneRectInView" Class="double">[51.0, 87.5, 1073.0, 513.0]</P>
+        </Object>
+        <Object ObjectID="8">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">283</P>
+          <P Name="Extents" Class="double">[1073.0, 513.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[243.5, 81.5]</P>
+          <P Name="SceneRectInView" Class="double">[243.5, 81.5, 1073.0, 513.0]</P>
+        </Object>
+        <Object ObjectID="9">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">283:48334</P>
+          <P Name="Extents" Class="double">[1073.0, 513.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-367.02734375, -230.25]</P>
+          <P Name="SceneRectInView" Class="double">[-367.02734375, -230.25, 1073.0, 513.0]</P>
+        </Object>
+        <Object ObjectID="10">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">283:48371</P>
+          <P Name="Extents" Class="double">[1073.0, 513.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-226.5, -97.0]</P>
+          <P Name="SceneRectInView" Class="double">[-226.5, -97.0, 1073.0, 513.0]</P>
+        </Object>
+        <Object ObjectID="11">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4728,27 +4824,87 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-306.3046875, -146.0]</P>
           <P Name="SceneRectInView" Class="double">[-306.3046875, -146.0, 1073.0, 513.0]</P>
         </Object>
-        <Object ObjectID="8">
+        <Object ObjectID="12">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">283:50680</P>
+          <P Name="Extents" Class="double">[1073.0, 513.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-293.5, -156.0]</P>
+          <P Name="SceneRectInView" Class="double">[-293.5, -156.0, 1073.0, 513.0]</P>
+        </Object>
+        <Object ObjectID="13">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">283:50695</P>
+          <P Name="Extents" Class="double">[1073.0, 513.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-554.828125, -82.0]</P>
+          <P Name="SceneRectInView" Class="double">[-554.828125, -82.0, 1073.0, 513.0]</P>
+        </Object>
+        <Object ObjectID="14">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">283:50712</P>
+          <P Name="Extents" Class="double">[1073.0, 513.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-216.5, -98.0]</P>
+          <P Name="SceneRectInView" Class="double">[-216.5, -98.0, 1073.0, 513.0]</P>
+        </Object>
+        <Object ObjectID="15">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">283:50701</P>
+          <P Name="Extents" Class="double">[1073.0, 513.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-275.59375, 86.5]</P>
+          <P Name="SceneRectInView" Class="double">[-275.59375, 86.5, 1073.0, 513.0]</P>
+        </Object>
+        <Object ObjectID="16">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">283:50651</P>
+          <P Name="Extents" Class="double">[1073.0, 513.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-320.9140625, -81.0]</P>
+          <P Name="SceneRectInView" Class="double">[-320.9140625, -81.0, 1073.0, 513.0]</P>
+        </Object>
+        <Object ObjectID="17">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
           <P Name="LoadSaveID" Class="char">233</P>
           <P Name="Extents" Class="double">[1073.0, 513.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-86.24312500000002, -23.726073417000833]</P>
-          <P Name="SceneRectInView" Class="double">[-86.24312500000002, -23.726073417000833, 1073.0, 513.0]</P>
+          <P Name="Offset" Class="double">[-129.5078125, -23.696403375167108]</P>
+          <P Name="SceneRectInView" Class="double">[-129.5078125, -23.696403375167108, 1073.0, 513.0]</P>
         </Object>
-        <Object ObjectID="9">
+        <Object ObjectID="18">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">283</P>
+          <P Name="LoadSaveID" Class="char">10</P>
           <P Name="Extents" Class="double">[1073.0, 513.0]</P>
           <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[433.5, 420.0]</P>
-          <P Name="SceneRectInView" Class="double">[433.5, 420.0, 1073.0, 513.0]</P>
+          <P Name="Offset" Class="double">[-308.0, -172.0]</P>
+          <P Name="SceneRectInView" Class="double">[-308.0, -172.0, 1073.0, 513.0]</P>
         </Object>
-        <Object ObjectID="10">
+        <Object ObjectID="19">
+          <P Name="IsActive" Class="logical">0</P>
+          <P Name="IsTabbed" Class="logical">0</P>
+          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
+          <P Name="LoadSaveID" Class="char">289</P>
+          <P Name="Extents" Class="double">[1073.0, 513.0]</P>
+          <P Name="ZoomFactor" Class="double">1.0</P>
+          <P Name="Offset" Class="double">[-881.84765625, -195.5]</P>
+          <P Name="SceneRectInView" Class="double">[-881.84765625, -195.5, 1073.0, 513.0]</P>
+        </Object>
+        <Object ObjectID="20">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4758,7 +4914,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-293.5, -156.0]</P>
           <P Name="SceneRectInView" Class="double">[-293.5, -156.0, 1073.0, 513.0]</P>
         </Object>
-        <Object ObjectID="11">
+        <Object ObjectID="21">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4768,17 +4924,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-282.6953125, -94.666699999999992]</P>
           <P Name="SceneRectInView" Class="double">[-282.6953125, -94.666699999999992, 1073.0, 513.0]</P>
         </Object>
-        <Object ObjectID="12">
-          <P Name="IsActive" Class="logical">0</P>
-          <P Name="IsTabbed" Class="logical">0</P>
-          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">10</P>
-          <P Name="Extents" Class="double">[1073.0, 406.0]</P>
-          <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-308.0, -118.5]</P>
-          <P Name="SceneRectInView" Class="double">[-308.0, -118.5, 1073.0, 406.0]</P>
-        </Object>
-        <Object ObjectID="13">
+        <Object ObjectID="22">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4788,37 +4934,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-501.52734375, -19.0]</P>
           <P Name="SceneRectInView" Class="double">[-501.52734375, -19.0, 1073.0, 406.0]</P>
         </Object>
-        <Object ObjectID="14">
-          <P Name="IsActive" Class="logical">0</P>
-          <P Name="IsTabbed" Class="logical">0</P>
-          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">146</P>
-          <P Name="Extents" Class="double">[1614.0, 622.0]</P>
-          <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-296.859375, -100.33333333333334]</P>
-          <P Name="SceneRectInView" Class="double">[-296.859375, -100.33333333333334, 1076.0, 414.66666666666669]</P>
-        </Object>
-        <Object ObjectID="15">
-          <P Name="IsActive" Class="logical">0</P>
-          <P Name="IsTabbed" Class="logical">0</P>
-          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">142</P>
-          <P Name="Extents" Class="double">[1614.0, 622.0]</P>
-          <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[29.6953125, 94.166666666666657]</P>
-          <P Name="SceneRectInView" Class="double">[29.6953125, 94.166666666666657, 1076.0, 414.66666666666669]</P>
-        </Object>
-        <Object ObjectID="16">
-          <P Name="IsActive" Class="logical">0</P>
-          <P Name="IsTabbed" Class="logical">0</P>
-          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">283:50695</P>
-          <P Name="Extents" Class="double">[1614.0, 622.0]</P>
-          <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-539.984375, -32.333333333333343]</P>
-          <P Name="SceneRectInView" Class="double">[-539.984375, -32.333333333333343, 1076.0, 414.66666666666669]</P>
-        </Object>
-        <Object ObjectID="17">
+        <Object ObjectID="23">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4828,7 +4944,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-77.021875000000023, -66.5]</P>
           <P Name="SceneRectInView" Class="double">[-77.021875000000023, -66.5, 1076.0, 408.8]</P>
         </Object>
-        <Object ObjectID="18">
+        <Object ObjectID="24">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4838,7 +4954,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-289.3109375, -60.5]</P>
           <P Name="SceneRectInView" Class="double">[-289.3109375, -60.5, 1076.0, 408.8]</P>
         </Object>
-        <Object ObjectID="19">
+        <Object ObjectID="25">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4848,7 +4964,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-289.3109375, -60.5]</P>
           <P Name="SceneRectInView" Class="double">[-289.3109375, -60.5, 1076.0, 408.8]</P>
         </Object>
-        <Object ObjectID="20">
+        <Object ObjectID="26">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4858,7 +4974,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-289.7109375, -60.900000000000006]</P>
           <P Name="SceneRectInView" Class="double">[-289.7109375, -60.900000000000006, 1076.0, 408.8]</P>
         </Object>
-        <Object ObjectID="21">
+        <Object ObjectID="27">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4868,7 +4984,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-210.5, -65.4]</P>
           <P Name="SceneRectInView" Class="double">[-210.5, -65.4, 1076.0, 408.8]</P>
         </Object>
-        <Object ObjectID="22">
+        <Object ObjectID="28">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4878,7 +4994,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-82.421875, -69.4]</P>
           <P Name="SceneRectInView" Class="double">[-82.421875, -69.4, 1076.0, 408.8]</P>
         </Object>
-        <Object ObjectID="23">
+        <Object ObjectID="29">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4888,7 +5004,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-289.3109375, -60.5]</P>
           <P Name="SceneRectInView" Class="double">[-289.3109375, -60.5, 1076.0, 408.8]</P>
         </Object>
-        <Object ObjectID="24">
+        <Object ObjectID="30">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4898,7 +5014,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-37.140625, -32.900000000000006]</P>
           <P Name="SceneRectInView" Class="double">[-37.140625, -32.900000000000006, 1076.0, 408.8]</P>
         </Object>
-        <Object ObjectID="25">
+        <Object ObjectID="31">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4908,7 +5024,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-70.421875, -66.5]</P>
           <P Name="SceneRectInView" Class="double">[-70.421875, -66.5, 1062.0, 409.0]</P>
         </Object>
-        <Object ObjectID="26">
+        <Object ObjectID="32">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4918,7 +5034,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-532.984375, -29.5]</P>
           <P Name="SceneRectInView" Class="double">[-532.984375, -29.5, 1062.0, 409.0]</P>
         </Object>
-        <Object ObjectID="27">
+        <Object ObjectID="33">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4928,7 +5044,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-75.421875, -69.5]</P>
           <P Name="SceneRectInView" Class="double">[-75.421875, -69.5, 1062.0, 409.0]</P>
         </Object>
-        <Object ObjectID="28">
+        <Object ObjectID="34">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4938,7 +5054,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-204.5, -65.0]</P>
           <P Name="SceneRectInView" Class="double">[-204.5, -65.0, 1064.0, 409.0]</P>
         </Object>
-        <Object ObjectID="29">
+        <Object ObjectID="35">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4948,7 +5064,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-506.421875, -101.0]</P>
           <P Name="SceneRectInView" Class="double">[-506.421875, -101.0, 1064.0, 409.0]</P>
         </Object>
-        <Object ObjectID="30">
+        <Object ObjectID="36">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4958,7 +5074,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-310.5078125, -81.478487654320986]</P>
           <P Name="SceneRectInView" Class="double">[-310.5078125, -81.478487654320986, 1041.0, 387.0]</P>
         </Object>
-        <Object ObjectID="31">
+        <Object ObjectID="37">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4968,27 +5084,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-247.6640625, 156.75]</P>
           <P Name="SceneRectInView" Class="double">[-247.6640625, 156.75, 1041.0, 374.0]</P>
         </Object>
-        <Object ObjectID="32">
-          <P Name="IsActive" Class="logical">0</P>
-          <P Name="IsTabbed" Class="logical">0</P>
-          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">283:48334</P>
-          <P Name="Extents" Class="double">[1041.0, 387.0]</P>
-          <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-471.90625, -2.5]</P>
-          <P Name="SceneRectInView" Class="double">[-471.90625, -2.5, 1041.0, 387.0]</P>
-        </Object>
-        <Object ObjectID="33">
-          <P Name="IsActive" Class="logical">0</P>
-          <P Name="IsTabbed" Class="logical">0</P>
-          <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
-          <P Name="LoadSaveID" Class="char">283:48371</P>
-          <P Name="Extents" Class="double">[1041.0, 374.0]</P>
-          <P Name="ZoomFactor" Class="double">1.0</P>
-          <P Name="Offset" Class="double">[-168.0, -28.5]</P>
-          <P Name="SceneRectInView" Class="double">[-168.0, -28.5, 1041.0, 374.0]</P>
-        </Object>
-        <Object ObjectID="34">
+        <Object ObjectID="38">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -4998,7 +5094,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-469.5, -187.0]</P>
           <P Name="SceneRectInView" Class="double">[-469.5, -187.0, 964.0, 462.0]</P>
         </Object>
-        <Object ObjectID="35">
+        <Object ObjectID="39">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -5008,7 +5104,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-239.5, -131.0]</P>
           <P Name="SceneRectInView" Class="double">[-239.5, -131.0, 1014.0, 462.0]</P>
         </Object>
-        <Object ObjectID="36">
+        <Object ObjectID="40">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -5018,7 +5114,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-228.6953125, -69.250074999999981]</P>
           <P Name="SceneRectInView" Class="double">[-228.6953125, -69.250074999999981, 1014.0, 462.0]</P>
         </Object>
-        <Object ObjectID="37">
+        <Object ObjectID="41">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -5028,7 +5124,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[108.0, 108.5]</P>
           <P Name="SceneRectInView" Class="double">[108.0, 108.5, 1019.0, 462.0]</P>
         </Object>
-        <Object ObjectID="38">
+        <Object ObjectID="42">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -5038,7 +5134,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-350.90625, -57.75]</P>
           <P Name="SceneRectInView" Class="double">[-350.90625, -57.75, 1019.0, 462.0]</P>
         </Object>
-        <Object ObjectID="39">
+        <Object ObjectID="43">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -5048,7 +5144,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-34.49609375, -40.5]</P>
           <P Name="SceneRectInView" Class="double">[-34.49609375, -40.5, 1116.0, 463.0]</P>
         </Object>
-        <Object ObjectID="40">
+        <Object ObjectID="44">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -5058,7 +5154,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[17.0, 26.5]</P>
           <P Name="SceneRectInView" Class="double">[17.0, 26.5, 1116.0, 463.0]</P>
         </Object>
-        <Object ObjectID="41">
+        <Object ObjectID="45">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -5068,7 +5164,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-373.15625, -112.5]</P>
           <P Name="SceneRectInView" Class="double">[-373.15625, -112.5, 1116.0, 463.0]</P>
         </Object>
-        <Object ObjectID="42">
+        <Object ObjectID="46">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -5078,7 +5174,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Offset" Class="double">[-369.49609375, -105.0]</P>
           <P Name="SceneRectInView" Class="double">[-369.49609375, -105.0, 1116.0, 463.0]</P>
         </Object>
-        <Object ObjectID="43">
+        <Object ObjectID="47">
           <P Name="IsActive" Class="logical">0</P>
           <P Name="IsTabbed" Class="logical">0</P>
           <P Name="ViewObjType" Class="char">SimulinkSubsys</P>
@@ -5090,7 +5186,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
         </Object>
       </Array>
       <Array PropName="DockComponentsInfo" Type="Simulink.DockComponentInfo" Dimension="1*2">
-        <Object ObjectID="44">
+        <Object ObjectID="48">
           <P Name="Type" Class="char">GLUE2:PropertyInspector</P>
           <P Name="ID" Class="char">Property Inspector</P>
           <P Name="Visible" Class="logical">0</P>
@@ -5102,7 +5198,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
           <P Name="Height" Class="int32">480</P>
           <P Name="Minimized" Class="char">Off</P>
         </Object>
-        <Object ObjectID="45">
+        <Object ObjectID="49">
           <P Name="Type" Class="char">Simulink:Editor:ReferencedFiles</P>
           <P Name="ID" Class="char">Referenced Files</P>
           <P Name="Visible" Class="logical">1</P>

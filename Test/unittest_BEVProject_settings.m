@@ -56,6 +56,7 @@ classdef unittest_BEVProject_settings < matlab.unittest.TestCase
     % Project's initial Live Script
 
     function project_initial_live_script(testcase)
+      %%
       target_file = "BEVProject_Description.m";
 
       % Make sure that the target file is not open. Close it if it is.
@@ -67,13 +68,46 @@ classdef unittest_BEVProject_settings < matlab.unittest.TestCase
       verifyTrue(testcase, nnz(logical_index) == 0)
 
       % This must open the intended Live Script in the Editor.
-      bevutil1.ProjectUtil.bevutil1.ProjectUtil.openInProject(target_file)  % !test-target
+      bevutil1.ProjectUtil.openInProject(target_file)  % !test-target
 
       % Find the target Live Script in the Editor and close it.
       docs_in_editor = matlab.desktop.editor.getAll;
       logical_index = endsWith(string({docs_in_editor.Filename}'), target_file);
       verifyTrue(testcase, nnz(logical_index) == 1)
       close(docs_in_editor(logical_index))
+    end  % function
+
+    % -------------------------------------------------------------------------
+    % Project description
+
+    function project_description_linked_commands(~)
+      %%
+      % Make sure that the linked MATLAB commands in the project description file are valid.
+
+      % Use the full path to the target file because unit test may change working folder.
+      target_fullpath = bevutil1.FileUtil.getFileFullPath("BEVProject_Description.m");
+
+      linktable = bevutil1.FileUtil.getLinkedCommandFromPlainTextLiveScript(target_fullpath);
+      if height(linktable) == 0
+
+        return
+
+      end  % if
+      for k = 1 : height(linktable)
+        target_command = linktable.Command(k);
+        disp("Evaluating linked command: " + target_command)
+
+        % The linked MATLAB command can open an app, a figure, a model, or whatever.
+        eval(target_command)
+
+        % Close apps, figures, and models.
+        figs = findall(0, Type="Figure");
+        if not(any(isempty(figs)))
+          delete(figs)
+        end  % if
+        close all
+        bdclose all
+      end  % for
     end  % function
 
     % -------------------------------------------------------------------------

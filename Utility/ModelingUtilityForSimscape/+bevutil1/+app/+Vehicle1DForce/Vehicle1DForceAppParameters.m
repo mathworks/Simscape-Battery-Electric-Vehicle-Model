@@ -13,11 +13,11 @@ classdef Vehicle1DForceAppParameters
 
     VehicleMass (1,1) simscape.Value ...
       { simscape.mustBeCommensurateUnit(VehicleMass, "kg"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...
-      = simscape.Value(1200, "kg")
+      = simscape.Value(1900, "kg")
 
-    TireRollingCoefficient (1,1) double { bevutil1.CodeUtil.mustBePositiveOrNan } = 0.0136
+    TireRollingCoefficient (1,1) double { bevutil1.CodeUtil.mustBePositiveOrNan } = 0.013
 
-    AirDragCoefficient (1,1) double { bevutil1.CodeUtil.mustBePositiveOrNan } = 0.31
+    AirDragCoefficient (1,1) double { bevutil1.CodeUtil.mustBePositiveOrNan } = 0.3
 
     FrontalArea (1,1) simscape.Value ...
       { simscape.mustBeCommensurateUnit(FrontalArea, "m^2"), bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan } ...

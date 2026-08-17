@@ -88,8 +88,8 @@ classdef uptodateTest_MotorDriveUnit < matlab.unittest.TestCase
       destination_folder = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit", "media");
       destination_fullpath = fullfile(destination_folder, image_filename);
 
-      newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
-      if newer
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      if source_is_newer
         load_system(model_name)
 
         % Update the model before taking screenshot.
@@ -107,8 +107,8 @@ classdef uptodateTest_MotorDriveUnit < matlab.unittest.TestCase
 
       end  % if
 
-      newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
-      verifyFalse(testcase, newer)
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      verifyFalse(testcase, source_is_newer)
 
     end  % function
 

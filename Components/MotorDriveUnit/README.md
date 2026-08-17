@@ -28,7 +28,7 @@ Irons loss and fixed loss are not modeled.
 This model does not simulate temperature dynamics.
 Below is an example plot of efficiency contour of the Basic model.
 
-<img src="media/screenshot-MDU-BasicModelEfficiencyPlot.png"
+<img src="media/plotimage-MDU-Basic-MotorEfficiency.png"
  alt="Efficiency contour plot of the basic model of motor drive unit"
  width="400">
 
@@ -50,7 +50,7 @@ which is the **single efficiency measurement model**,
 but irons loss and fixed loss are also considered in this model.
 Below is an example plot of efficiency contour of the System-level model.
 
-<img src="media/screenshot-MDU-SystemThermalModelEfficiencyPlot.png"
+<img src="media/plotimage-MDU-SystemThermal-MotorEfficiency.png"
  alt="Efficiency contour plot of the basic model of motor drive unit"
  width="400">
 

@@ -135,7 +135,7 @@ label_ui.Text = "See BEV / Model-* / SimulationCases for more cases";
 v_layout = addVerticalGridLayout(app_v_container);
 
 label_ui = bevutil1.AppUtil.Component.Label(v_layout);
-label_ui.Text = "\textbf{Vehicle1D}";
+label_ui.Text = "\textbf{Vehicle 1D}";
 
 % -----------------------------------------------------------------------------
 v_layout = addVerticalGridLayout(app_v_container);
@@ -148,7 +148,7 @@ addHorizontalGridLayout(h_container, Width=indent);
 
 h_layout = addHorizontalGridLayout(h_container);
 link_ui = bevutil1.AppUtil.Component.Hyperlink(h_layout);
-link_ui.Text = "Vehicle1D description";
+link_ui.Text = "Vehicle 1D description";
 link_ui.Tooltip = "Open page: " + target_description_page;
 link_ui.HyperlinkClickedCallback = @() open_target_page(target_description_page);
 
@@ -163,9 +163,9 @@ addHorizontalGridLayout(h_container, Width=indent);
 
 h_layout = addHorizontalGridLayout(h_container);
 link_ui = bevutil1.AppUtil.Component.Hyperlink(h_layout);
-link_ui.Text = "Vehicle1D performance design app";
+link_ui.Text = "Vehicle 1D Force app";
 link_ui.Tooltip = "Open app: " + target_app;
-link_ui.HyperlinkClickedCallback = @() open_app(target_app);
+link_ui.HyperlinkClickedCallback = @() bevutil1.FileUtil.openApp(target_app);
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -202,7 +202,7 @@ h_layout = addHorizontalGridLayout(h_container);
 link_ui = bevutil1.AppUtil.Component.Hyperlink(h_layout);
 link_ui.Text = "Abstract Motor Efficiency app";
 link_ui.Tooltip = "Open app: " + target_app;
-link_ui.HyperlinkClickedCallback = @() open_app(target_app);
+link_ui.HyperlinkClickedCallback = @() bevutil1.FileUtil.openApp(target_app);
 
 % -----------------------------------------------------------------------------
 % -----------------------------------------------------------------------------
@@ -412,9 +412,4 @@ disp("Navigation App: Opening page: <a href=""matlab:web('" + target_page + "')"
 % web opens the page in MATLAB's web browser which supports
 % HTML hyperlinks to run MATLAB commands.
 web(target_page)
-end  % local function
-
-function open_app(target_app)
-disp("Navigation App: Opening app: <a href=""matlab:" + target_app + """>" + target_app + "</a>")
-feval(target_app);
 end  % local function

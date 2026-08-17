@@ -13,6 +13,10 @@
 defineBus_HighVoltage
 defineBus_Rotational
 
+%% Common parameters
+
+CommonParameter.Temperature = simscape.Value(273.15 + 20, "K");
+
 %% Vehicle block parameters
 
 vehicle.mass_kg = 2400;
@@ -57,7 +61,7 @@ batteryHV.secondMeasuredVoltage_V = batteryHV.nominalVoltage_V * 0.9;
 
 % Ambient parameters for battery thermal simulation
 
-batteryHV.ambientTemp_K = 273.15 + 20;
+batteryHV.ambientTemp_K = CommonParameter.Temperature.value("K");
 
 batteryHV.ambientMass_t = 10000;
 batteryHV.ambientSpecificHeat_J_per_Kkg = 1000;
@@ -67,31 +71,30 @@ batteryHV.RadiationCoeff_W_per_K4m2 = 5e-10;
 
 %% Motor drive unit parameters
 
-motorDriveUnit.trqMax_Nm = 420;
-motorDriveUnit.powerMax_kW = 220;
-motorDriveUnit.responseTime_s = 0.02;
+MotorDriveUnit.MaxTorque = simscape.Value(420, "N*m");
+MotorDriveUnit.MaxPower = simscape.Value(220, "kW");
+MotorDriveUnit.ResponseTime = simscape.Value(20, "ms");
 
-motorDriveUnit.rotorInertia_kg_m2 = 5*0.01^2;
-motorDriveUnit.rotorDamping_Nm_per_radps = 1e-5;
+MotorDriveUnit.ElectricalEfficiencyPercent = 95;
+MotorDriveUnit.MeasuredAngularSpeed = simscape.Value(2000, "rpm");
+MotorDriveUnit.MeasuredTorque = simscape.Value(50, "N*m");
+MotorDriveUnit.MeasuredIronLosses = simscape.Value(55, "W");
+MotorDriveUnit.FixedLosses = simscape.Value(40, "W");
 
-% Single efficiency measurement
-motorDriveUnit.efficiency_pct = 95;
-motorDriveUnit.spd_eff_rpm = 2000;
-motorDriveUnit.trq_eff_Nm = 50;
-motorDriveUnit.ironLoss_W = 55;
-motorDriveUnit.fixedLoss_W = 40;
+MotorDriveUnit.RotorInertia = simscape.Value(5*0.01^2, "kg*m^2");
+MotorDriveUnit.RotorDamping = simscape.Value(1e-5, "N*m/(rad/s)");
 
-motorDriveUnit.ThermalMass_J_per_K = 90e3;
+% Used in the Status subsystem of the Basic model to output a constant temperature value.
+% Not used in the BasicThermal model.
+MotorDriveUnit.AmbientTemperature = CommonParameter.Temperature;
 
-% Ambient parameters for the thermal simulation of  motor drive unit.
-
-motorDriveUnit.ambientTemp_K = 273.15 + 20;
-
-motorDriveUnit.ambientMass_t = 10000;
-motorDriveUnit.ambientSpecificHeat_J_per_Kkg = 1000;
-
-motorDriveUnit.RadiationArea_m2 = 1;
-motorDriveUnit.RadiationCoeff_W_per_K4m2 = 5e-10;
+% Used in the BasicThermal model.
+% Not used in the Basic model.
+MotorDriveUnit.ThermalMass = simscape.Value(90, "kJ/K");
+MotorDriveUnit.RadiationArea = simscape.Value(1, "m^2");
+MotorDriveUnit.RadiationCoefficient = simscape.Value(5e-10, "W/K^4/m^2");
+MotorDriveUnit.AmbientMass = simscape.Value(10000, "t");
+MotorDriveUnit.AmbientSpecificHeat = simscape.Value(1000, "J/K/kg");
 
 %% Reducer parameters
 
@@ -112,7 +115,7 @@ bevControl.MotorSpdRef_Ki = 15;
 bevControl.MotorSpdRef_Kp = 15;
 
 % Bounds for torque command
-bevControl.MotorDriveUnit_trqMax_Nm = motorDriveUnit.trqMax_Nm;
+bevControl.MotorDriveUnit_trqMax_Nm = MotorDriveUnit.MaxTorque.value("N*m");
 
 %% Inputs to the model
 
@@ -122,8 +125,11 @@ loadLUTData_VehSpdRef_Simple
 %% Initial conditions
 
 initial.vehicle_speed_kph = 0;
-initial.motorDriveUnit_RotorSpd_rpm = 0;
 initial.hvBattery_SOC_pct = 70;
+
+initial.MotorDriveUnit_RotorAngularSpeed = simscape.Value(0, "rpm");
+
+initial.MotorDriveUnit_Temperature = CommonParameter.Temperature;
 
 initial.hvBattery_Charge_Ahr = ...
   BatteryHV_getAmpereHourRating( ...
@@ -131,9 +137,6 @@ initial.hvBattery_Charge_Ahr = ...
     Capacity_kWh = batteryHV.nominalCapacity_kWh, ...
     StateOfCharge_pct = initial.hvBattery_SOC_pct );
 
-initial.hvBattery_Temperature_K = batteryHV.ambientTemp_K;
+initial.hvBattery_Temperature_K = CommonParameter.Temperature.value("K");
 
-initial.ambientTemp_K = batteryHV.ambientTemp_K;
-
-initial.motorDriveUnit_Temperature_K = motorDriveUnit.ambientTemp_K;
-initial.ambientTemp_K = motorDriveUnit.ambientTemp_K;
+initial.ambientTemp_K = CommonParameter.Temperature.value("K");

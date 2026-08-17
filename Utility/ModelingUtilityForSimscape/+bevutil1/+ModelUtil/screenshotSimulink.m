@@ -119,11 +119,12 @@ else
     load_system(model_name)
   end  % if
 
-  % Update the model before taking screenshot.
-  % This ensures that the model is properly updated without errors and ready to run.
-  % This also updates the canvas rendering, such as Bus lines.
-  % !todo: it seems that this is skipped?
-  set_param(model_name, SimulationCommand = "update")
+  if not(bdIsSubsystem(model_name))
+    % Update the model before taking a screenshot.
+    % This ensures that the model is properly updated without errors and ready to run.
+    % It also updates the canvas rendering.
+    set_param(model_name, SimulationCommand = "update")
+  end  % if
 
   subsystem_fullpath = model_name + subsystem_path;
   list_of_blocks = getfullname(Simulink.findBlocks(model_name));

@@ -106,55 +106,30 @@ classdef unittest_MotorDriveUnit_Basic < matlab.unittest.TestCase
 
     %% other tests
 
-    function test_MotorDriveUnit_getBasicModelBlockInfo_1(testcase)
-      %%
-      % Load workspace variables that are required by the test target.
-      % Without them, the test fails.
-      evalin("base", "MotorDriveUnit_Basic_params")
-
-      model_name = "MotorDriveUnit_Basic_refsub";
-      block_path = model_name + "/Motor & Drive (Driveline)";
-
-      % Load the model and select the target block.
-      load_system(model_name)
-      [system_path, block_name, ~] = fileparts(block_path);
-      set_param(0, "CurrentSystem", system_path)
-      set_param(gcs, "CurrentBlock", block_name)
-
-      info = MotorDriveUnit_getBasicModelBlockInfo;  % !test-target
-      parameter_names = string(fieldnames(info));
-
-      % Check that there are parameters "MaxTorque" and "MaxPower".
-      % There are more parameters. This is not a comprehensive test.
-      verifyEqual(testcase, nnz(startsWith(parameter_names, "MaxTorque")), 1)
-      verifyEqual(testcase, nnz(startsWith(parameter_names, "MaxPower")), 1)
-
-    end  % function
-
-    function screenshot_plot(~)
+    function plot_image_file_is_uptodate_1(testcase)
       %%
       % Take the screenshot of a plot of motor efficiency map based on the block parameters.
-      % !todo: Ideally, do not take a screenshot if it already exists and is newer than the source.
 
-      % Load block parameters in the base workspace.
-      evalin("base", "MotorDriveUnit_Basic_params")
+      source_script = "MotorDriveUnit_Basic_params";  % without ".m"
+      block_path = "MotorDriveUnit_Basic_refsub/Motor & Drive (System Level)";
+      image_filename = "plotimage-MDU-Basic-MotorEfficiency.png";
 
-      % Set up the data set using the target block in the model.
-      ds = bevutil1.app.AbstractMotorEfficiency.AbstractMotorEfficiencyDataSet( ...
-        BlockPath="MotorDriveUnit_Basic_refsub/Motor & Drive (Driveline)");
+      source_fullpath = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit", "Model-Basic", source_script + ".m");
+      verifyTrue(testcase, isfile(source_fullpath))
 
-      % Create a plot.
-      fig = bevutil1.app.AbstractMotorEfficiency.plotAbstractMotorEfficiency(DataSource="dataset", DataSet=ds);
-      fig.Position(3:4) = [500, 400];  % width height
+      destination_fullpath = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit", "media", image_filename);
 
-      % Take a screenshot.
-      media_path = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit", "media");
-      if not(isfolder(media_path))
-        mkdir(media_path)
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      if source_is_newer
+        takeScreenshot_MDU_EfficiencyPlot( ...
+          Script=source_script, BlockPath=block_path, ImageFilename=image_filename, MediaFolder=fileparts(destination_fullpath));
+        disp("Saved: " + destination_fullpath)
+      else
+        disp("Plot image file is up to date.")
       end  % if
-      pngfile_fullpath = fullfile(media_path, "screenshot-MDU-BasicModelEfficiencyPlot.png");
-      disp("Exporting: " + pngfile_fullpath)
-      exportgraphics(fig, pngfile_fullpath)
+
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      verifyFalse(testcase, source_is_newer)
 
     end  % function
 

@@ -72,5 +72,66 @@ classdef unittest_MotorDriveUnit_BasicThermal < matlab.unittest.TestCase
       load_system(target_name)  % !test-target
     end  % function
 
+    %% Test Callback Button blocks
+
+    function CallbackButton_1(testcase)
+      %%
+      % Test the command, ClickFcn, specified in Callback Button blocks.
+      % Assume that the command text is one line.
+
+      target_name = "MotorDriveUnit_BasicThermal_params";
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+      evalin("base", target_name)
+
+      refsub_name = "MotorDriveUnit_BasicThermal_refsub";
+      refsub_fullpath = bevutil1.FileUtil.getFileFullPath(refsub_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(refsub_fullpath) == pwd)
+
+      load_system(refsub_name)
+
+      blocks = string(getfullname(Simulink.findBlocksOfType(refsub_name, "CustomCallbackButton")));
+
+      num_blocks = numel(blocks);
+      for k = 1 : num_blocks
+        target_block = blocks(k);
+        disp("Found a Custom Callback Button: " + target_block)
+        ClickFcn_text = string(get_param(target_block, "ClickFcn"));
+        disp("Evaluating ClickFcn...")
+        eval(ClickFcn_text)  % !test-target
+      end  % for
+    end  % function
+
+    %% other tests
+
+    function plot_image_file_is_uptodate_1(testcase)
+      %%
+      % Take the screenshot of a plot of motor efficiency map based on the block parameters.
+
+      source_script = "MotorDriveUnit_BasicThermal_params";  % without ".m"
+      block_path = "MotorDriveUnit_BasicThermal_refsub/Motor & Drive (System Level)";
+      image_filename = "plotimage-MDU-BasicThermal-MotorEfficiency.png";
+
+      source_fullpath = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit", "Model-BasicThermal", source_script + ".m");
+      verifyTrue(testcase, isfile(source_fullpath))
+
+      destination_fullpath = fullfile(currentProject().RootFolder, "Components", "MotorDriveUnit", "media", image_filename);
+
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      if source_is_newer
+        takeScreenshot_MDU_EfficiencyPlot( ...
+          Script=source_script, BlockPath=block_path, ImageFilename=image_filename, MediaFolder=fileparts(destination_fullpath));
+        disp("Saved: " + destination_fullpath)
+      else
+        disp("Plot image file is up to date.")
+      end  % if
+
+      source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
+      verifyFalse(testcase, source_is_newer)
+
+    end  % function
+
   end  % methods
 end  % classdef

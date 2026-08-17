@@ -43,9 +43,9 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <cp:category>subsystem</cp:category>
   <dcterms:created xsi:type="dcterms:W3CDTF">2025-08-08T14:58:22Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
-  <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-08-14T15:34:34Z</dcterms:modified>
-  <cp:revision>3.14</cp:revision>
+  <cp:lastModifiedBy>ythvg</cp:lastModifiedBy>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-08-16T10:11:39Z</dcterms:modified>
+  <cp:revision>3.17</cp:revision>
   <cp:version>R2026a</cp:version>
 </cp:coreProperties>
 
@@ -114,7 +114,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:3.14&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:3.17&gt;</P>
     </ConfigManagerSettings>
     <SimulationSettings>
       <P Name="SimulationMode">normal</P>
@@ -380,7 +380,6 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
 <?xml version="1.0" encoding="utf-8"?>
 <System>
   <P Name="Location">[71, 51, 1140, 776]</P>
-  <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
   <P Name="SIDHighWatermark">13920</P>
   <Block BlockType="Lookup_n-D" Name="Axle speed" SID="79">
@@ -391,8 +390,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="AttributesFormatString">%&lt;Table&gt;</P>
     <P Name="InputPortMap">u0</P>
     <P Name="NumberOfTableDimensions">1</P>
-    <P Name="BreakpointsForDimension1">MotorDriveUnit.Input_AxleSpeed_TimePoints.value(&quot;s&quot;)</P>
-    <P Name="Table">MotorDriveUnit.Input_AxleSpeed_Data.value(&quot;rpm&quot;)</P>
+    <P Name="BreakpointsForDimension1">MDU_HarnessInputs.AxleSpeed.Time.value(&quot;s&quot;)</P>
+    <P Name="Table">MDU_HarnessInputs.AxleSpeed.Data.value(&quot;rpm&quot;)</P>
     <P Name="InterpMethod">Akima spline</P>
     <P Name="InternalRulePriority">Speed</P>
     <P Name="RndMeth">Simplest</P>
@@ -404,8 +403,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="HideAutomaticName">off</P>
     <P Name="InputPortMap">u0</P>
     <P Name="NumberOfTableDimensions">1</P>
-    <P Name="BreakpointsForDimension1">MotorDriveUnit.Input_AxleSpeedSwitch_TimePoints.value(&quot;s&quot;)</P>
-    <P Name="Table">MotorDriveUnit.Input_AxleSpeedSwitch_StepValues</P>
+    <P Name="BreakpointsForDimension1">MDU_HarnessInputs.AxleSpeedSwitch.Time.value(&quot;s&quot;)</P>
+    <P Name="Table">MDU_HarnessInputs.AxleSpeedSwitch.StepValues</P>
     <P Name="InterpMethod">Flat</P>
     <P Name="InternalRulePriority">Speed</P>
     <P Name="RndMeth">Simplest</P>
@@ -434,8 +433,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="AttributesFormatString">%&lt;Table&gt;</P>
     <P Name="InputPortMap">u0</P>
     <P Name="NumberOfTableDimensions">1</P>
-    <P Name="BreakpointsForDimension1">MotorDriveUnit.Input_AxleTorque_TimePoints.value(&quot;s&quot;)</P>
-    <P Name="Table">MotorDriveUnit.Input_AxleTorque_Data.value(&quot;N*m&quot;)</P>
+    <P Name="BreakpointsForDimension1">MDU_HarnessInputs.AxleTorque.Time.value(&quot;s&quot;)</P>
+    <P Name="Table">MDU_HarnessInputs.AxleTorque.Data.value(&quot;N*m&quot;)</P>
     <P Name="InterpMethod">Akima spline</P>
     <P Name="InternalRulePriority">Speed</P>
     <P Name="RndMeth">Simplest</P>
@@ -455,6 +454,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <PortCounts in="2" out="1"/>
     <P Name="Position">[-40, -94, -35, -56]</P>
     <P Name="ZOrder">26286</P>
+    <P Name="ShowName">off</P>
     <P Name="Inputs">2</P>
     <P Name="DisplayOption">bar</P>
     <P Name="InheritFromInputs">on</P>
@@ -463,6 +463,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <PortCounts in="3" out="1"/>
     <P Name="Position">[-145, -108, -140, 98]</P>
     <P Name="ZOrder">26324</P>
+    <P Name="ShowName">off</P>
     <P Name="Inputs">3</P>
     <P Name="DisplayOption">bar</P>
     <P Name="InheritFromInputs">on</P>
@@ -471,6 +472,7 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <PortCounts in="2" out="1"/>
     <P Name="Position">[-145, 115, -140, 255]</P>
     <P Name="ZOrder">26329</P>
+    <P Name="ShowName">off</P>
     <P Name="Inputs">2</P>
     <P Name="DisplayOption">bar</P>
     <P Name="InheritFromInputs">on</P>
@@ -483,8 +485,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="AttributesFormatString">%&lt;Table&gt;</P>
     <P Name="InputPortMap">u0</P>
     <P Name="NumberOfTableDimensions">1</P>
-    <P Name="BreakpointsForDimension1">MotorDriveUnit.Input_MotorHeatFlow_TimePoints.value(&quot;s&quot;)</P>
-    <P Name="Table">MotorDriveUnit.Input_MotorHeatFlow_Data.value(&quot;W&quot;)</P>
+    <P Name="BreakpointsForDimension1">MDU_HarnessInputs.MotorHeatFlow.Time.value(&quot;s&quot;)</P>
+    <P Name="Table">MDU_HarnessInputs.MotorHeatFlow.Data.value(&quot;W&quot;)</P>
     <P Name="InterpMethod">Akima spline</P>
     <P Name="InternalRulePriority">Speed</P>
     <P Name="RndMeth">Simplest</P>
@@ -508,8 +510,8 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
     <P Name="AttributesFormatString">%&lt;Table&gt;</P>
     <P Name="InputPortMap">u0</P>
     <P Name="NumberOfTableDimensions">1</P>
-    <P Name="BreakpointsForDimension1">MotorDriveUnit.Input_MotorTorqueCommand_TimePoints.value(&quot;s&quot;)</P>
-    <P Name="Table">MotorDriveUnit.Input_MotorTorqueCommand_Data.value(&quot;N*m&quot;)</P>
+    <P Name="BreakpointsForDimension1">MDU_HarnessInputs.MotorTorqueCommand.Time.value(&quot;s&quot;)</P>
+    <P Name="Table">MDU_HarnessInputs.MotorTorqueCommand.Data.value(&quot;N*m&quot;)</P>
     <P Name="InterpMethod">Akima spline</P>
     <P Name="InternalRulePriority">Speed</P>
     <P Name="RndMeth">Simplest</P>
@@ -581,100 +583,100 @@ Initial output: %&lt;InitialOutput&gt;
     <P Name="Port">3</P>
   </Block>
   <Line>
-    <P Name="ZOrder">144</P>
+    <P Name="ZOrder">210</P>
     <P Name="Src">13#out:1</P>
     <P Name="Dst">24#in:1</P>
   </Line>
   <Line>
     <P Name="Name">TrqCmd</P>
-    <P Name="ZOrder">145</P>
+    <P Name="ZOrder">211</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">34#out:1</P>
     <P Name="Dst">15#in:1</P>
   </Line>
   <Line>
     <P Name="Name">AxleTrqIn</P>
-    <P Name="ZOrder">146</P>
+    <P Name="ZOrder">212</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">33#out:1</P>
     <P Name="Dst">14#in:3</P>
   </Line>
   <Line>
     <P Name="Name">AxleSpdIn</P>
-    <P Name="ZOrder">147</P>
+    <P Name="ZOrder">213</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">38#out:1</P>
     <P Name="Dst">14#in:2</P>
   </Line>
   <Line>
     <P Name="Name">HeatCmd</P>
-    <P Name="ZOrder">148</P>
+    <P Name="ZOrder">214</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">35#out:1</P>
     <P Name="Dst">15#in:2</P>
   </Line>
   <Line>
-    <P Name="ZOrder">151</P>
+    <P Name="ZOrder">217</P>
     <P Name="Src">15#out:1</P>
     <P Name="Points">[61, 0]</P>
     <Branch>
-      <P Name="ZOrder">150</P>
+      <P Name="ZOrder">216</P>
       <P Name="Points">[0, -250]</P>
       <P Name="Dst">13#in:2</P>
     </Branch>
     <Branch>
-      <P Name="ZOrder">149</P>
+      <P Name="ZOrder">215</P>
       <P Name="Dst">26#in:1</P>
     </Branch>
   </Line>
   <Line>
-    <P Name="ZOrder">154</P>
+    <P Name="ZOrder">220</P>
     <P Name="Src">14#out:1</P>
     <P Name="Points">[34, 0]</P>
     <Branch>
-      <P Name="ZOrder">153</P>
+      <P Name="ZOrder">219</P>
       <P Name="Points">[0, -80]</P>
       <P Name="Dst">13#in:1</P>
     </Branch>
     <Branch>
-      <P Name="ZOrder">152</P>
+      <P Name="ZOrder">218</P>
       <P Name="Dst">25#in:1</P>
     </Branch>
   </Line>
   <Line>
     <P Name="Name">time</P>
-    <P Name="ZOrder">163</P>
+    <P Name="ZOrder">229</P>
     <P Name="Labels">[0, 0]</P>
     <P Name="Src">83#out:1</P>
     <P Name="Points">[59, 0]</P>
     <Branch>
-      <P Name="ZOrder">162</P>
+      <P Name="ZOrder">228</P>
       <P Name="Dst">78#in:1</P>
     </Branch>
     <Branch>
-      <P Name="ZOrder">161</P>
+      <P Name="ZOrder">227</P>
       <P Name="Points">[0, 70]</P>
       <Branch>
-        <P Name="ZOrder">160</P>
+        <P Name="ZOrder">226</P>
         <P Name="Dst">79#in:1</P>
       </Branch>
       <Branch>
-        <P Name="ZOrder">159</P>
+        <P Name="ZOrder">225</P>
         <P Name="Points">[0, 70]</P>
         <Branch>
-          <P Name="ZOrder">158</P>
+          <P Name="ZOrder">224</P>
           <P Name="Dst">80#in:1</P>
         </Branch>
         <Branch>
-          <P Name="ZOrder">157</P>
+          <P Name="ZOrder">223</P>
           <P Name="Points">[0, 85]</P>
           <Branch>
-            <P Name="ZOrder">156</P>
+            <P Name="ZOrder">222</P>
             <P Name="Points">[0, 70]</P>
             <P Name="Dst">81#in:1</P>
           </Branch>
           <Branch>
-            <P Name="ZOrder">155</P>
+            <P Name="ZOrder">221</P>
             <P Name="Dst">82#in:1</P>
           </Branch>
         </Branch>
@@ -683,28 +685,28 @@ Initial output: %&lt;InitialOutput&gt;
   </Line>
   <Line>
     <P Name="Name">ClutchSw</P>
-    <P Name="ZOrder">164</P>
+    <P Name="ZOrder">230</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">78#out:1</P>
     <P Name="Dst">14#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">165</P>
+    <P Name="ZOrder">231</P>
     <P Name="Src">79#out:1</P>
     <P Name="Dst">38#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">166</P>
+    <P Name="ZOrder">232</P>
     <P Name="Src">80#out:1</P>
     <P Name="Dst">33#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">167</P>
+    <P Name="ZOrder">233</P>
     <P Name="Src">82#out:1</P>
     <P Name="Dst">34#in:1</P>
   </Line>
   <Line>
-    <P Name="ZOrder">168</P>
+    <P Name="ZOrder">234</P>
     <P Name="Src">81#out:1</P>
     <P Name="Dst">35#in:1</P>
   </Line>
@@ -720,7 +722,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <P Name="Position">[-436, 276, -209, 292]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-8</P>
+    <P Name="ZOrder">-32</P>
   </Annotation>
   <Annotation SID="85">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -735,7 +737,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <P Name="Position">[-747, -147, -488, -113]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-9</P>
+    <P Name="ZOrder">-33</P>
   </Annotation>
   <Annotation SID="86">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -749,7 +751,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <P Name="Position">[-750, -170, -492, -152]</P>
     <P Name="InternalMargins">[0, 0, 0, 0]</P>
     <P Name="Interpreter">rich</P>
-    <P Name="ZOrder">-10</P>
+    <P Name="ZOrder">-34</P>
   </Annotation>
 </System>
 
@@ -834,7 +836,7 @@ __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml
       <Array PropName="PersistedApps" Type="Cell" Dimension="0*1"/>
       <P Name="WindowUuid" Class="char">b7c33820-69a7-485c-9936-6c50e2fb639b</P>
     </Object>
-    <P Name="BDUuid" Class="char">593d8832-b6f9-480f-a449-02940554e475</P>
+    <P Name="BDUuid" Class="char">7b3bc428-bc65-4fed-bb03-d496f2e14aae</P>
   </Object>
 </WindowsInfo>
 

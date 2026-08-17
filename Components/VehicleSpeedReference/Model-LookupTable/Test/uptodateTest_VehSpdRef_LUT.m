@@ -63,26 +63,12 @@ classdef uptodateTest_VehSpdRef_LUT < matlab.unittest.TestCase
 
       source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);
       if source_is_newer
-        disp("Taking screenshot: " + destination_fullpath)
-
+        disp("Taking screenshot: " + source_fullpath)
         evalin("base", "loadLUTData_VehSpdRef_Simple")
-        load_system(model_name)
-
-        if not(bdIsSubsystem(model_name))
-          % Update the model before taking a screenshot.
-          % This ensures that the model is properly updated without errors and ready to run.
-          % It also updates the canvas rendering.
-          set_param(model_name, SimulationCommand = "update")
-        end  % if
-
-        bevutil1.ModelUtil.screenshotSimulink( ...
-          OutputFileName = image_filename, ...
-          SimulinkModelName = model_name, ...
-          SaveFolder = destination_folder );
-
+        bevutil1.ModelUtil.screenshotSimulink(OutputFileName=image_filename, SimulinkModelName=model_name, SaveFolder=destination_folder);
+        disp("Saved: " + destination_fullpath)
       else
         disp("Skipping. Screenshot is up to date.")
-
       end  % if
 
       source_is_newer = bevutil1.FileUtil.sourceFileIsNewer(Source=source_fullpath, Destination=destination_fullpath);

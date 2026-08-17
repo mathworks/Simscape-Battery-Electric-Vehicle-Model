@@ -1,15 +1,11 @@
 # Motor Drive Unit - Inputs for Testing
 
-`Inputs_MotorDriveUnit_*_refsub.mdl`
+`LoadInputs_MotorDriveUnit_*.m` scripts load data in the base workspace.
 
-- Used by `HarnessModel_MotorDriveUnit.mdl` and `HarnessModel_MotorDriveUnit_Inputs.mdl`.
-- Define input signals in a referenced subsystem for use by `HarnessModel_MotorDriveUnit.mdl`
-  to test the motor drive unit.
-- Tested individually with `HarnessModel_MotorDriveUnit_Inputs.mdl` and
-  `unittest_MotorDriveUnit_Inputs.m`.
-- Tested by `unittest_MotorDriveUnit_Inputs_settings.m` for basic settings.
+`Inputs_MotorDriveUnit_LookupTable_refsub.mdl` subsystem model contains
+lookup table blocks that use the base workspace variables to generate
+signals for driving simulation.
 
-`BuildInputs_MotorDriveUnit_*.m` files are Live M files where the input signals are
-designed and transferred to the `Inputs_MotorDriveUnit_*_refsub.mdl` subsystem files.
+`Test` folder contains resources to validate the signals.
 
 _Copyright 2026 The MathWorks, Inc._

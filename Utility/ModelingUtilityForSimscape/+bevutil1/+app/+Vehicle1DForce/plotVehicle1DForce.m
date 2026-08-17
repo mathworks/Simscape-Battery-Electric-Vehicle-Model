@@ -216,7 +216,7 @@ if isfield(NameValuePair, "ParentAxes")
   ax = NameValuePair.ParentAxes;
   target_fig = ax.Parent;
 else
-  target_fig = figure;
+  target_fig = figure(WindowStyle="normal");
   if not(isMATLABReleaseOlderThan("R2025a"))
     target_fig.ThemeMode = NameValuePair.ThemeMode;
     target_fig.Theme = NameValuePair.Theme;
@@ -257,9 +257,11 @@ ylim(ax, [0, value(plot_force_ub, plot_force_unit)])
 xlabel(ax, "Vehicle speed (" + plot_speed_unit + ")")
 
 ylabel(ax, [
-  "Longitudinal vehicle force, solid (" + plot_force_unit + ")"
-  "Force at constant power, dashed (" + plot_force_unit + ")"
+  "Force (" + plot_force_unit + ")"
+  "Dashed: force at constant power"
   ])
+
+title(ax, "Longitudinal vehicle force", Interpreter="none")
 
 %------------------------------------------------------------------------------
 % Vehicle force curves at constant powers - dashed curves

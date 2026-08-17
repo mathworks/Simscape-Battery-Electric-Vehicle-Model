@@ -23,5 +23,5 @@ disp(ini_blocks) %[output:1174da9e]
 %   data: {"layout":"inline"}
 %---
 %[output:1174da9e]
-%   data: {"dataType":"text","outputData":{"text":"    \"BEV_system_model\/High Voltage Battery\/Battery↵(System-Level)\"\n    \"BEV_system_model\/High Voltage Battery\/Battery Status\/Ambient temperature\"\n    \"BEV_system_model\/High Voltage Battery\/Battery Status\/HV battery temperature\"\n    \"BEV_system_model\/High Voltage Battery\/Battery Status\/IV Status\/Charge\"\n    \"BEV_system_model\/Longitudinal Vehicle\/Longitudinal Vehicle\"\n    \"BEV_system_model\/Motor Drive Unit\/Rotor inertia\"\n\n","truncated":false}}
+%   data: {"dataType":"text","outputData":{"text":"    \"BEV_system_model\/High Voltage Battery\/Battery↵(System-Level)\"\n    \"BEV_system_model\/High Voltage Battery\/Battery Status\/Ambient temperature\"\n    \"BEV_system_model\/High Voltage Battery\/Battery Status\/HV battery temperature\"\n    \"BEV_system_model\/High Voltage Battery\/Battery Status\/IV Status\/Charge\"\n    \"BEV_system_model\/Longitudinal Vehicle\/Longitudinal Vehicle\"\n    \"BEV_system_model\/Motor Drive Unit\/Motor & Drive (System Level)\"\n\n","truncated":false}}
 %---
