@@ -77,11 +77,6 @@ Use **Abstract Motor Efficiency App** to understand and design the motor efficie
 - The new Elevation Profile component is available. It is not used with Vehicle 1D component yet.
 - The overall project size is smaller. MATLAB script files no longer come with corresponding Markdown files.
 
-## What's New in 4.0 (January 2026)
-
-- The project works in R2024b or newer.
-- The version 4 is built from the version 2.
-
 For the past What's New, see [the change log](ChangeLog.md).
 
 ## Tool Requirements
