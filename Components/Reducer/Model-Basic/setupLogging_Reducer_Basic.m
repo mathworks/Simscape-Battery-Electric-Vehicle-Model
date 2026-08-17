@@ -6,9 +6,22 @@ load_system(model_name)
 block_path = model_name + "/Reduction gear";
 
 logging_settings = simscape.instrumentation.defaultVariableTable(block_path);
-logging_settings("power_dissipated").Logging = "on";
-logging_settings("power_dissipated").Name = "Reducer power loss";
-logging_settings("power_dissipated").Unit = "W";
+
+logging_settings("B.w").Logging = "on";
+logging_settings("B.w").Name = "Motor side angular speed";
+logging_settings("B.w").Unit = "rpm";
+
+logging_settings("tB").Logging = "on";
+logging_settings("tB").Name = "Motor side torque";
+logging_settings("tB").Unit = "N*m";
+
+logging_settings("F.w").Logging = "on";
+logging_settings("F.w").Name = "Axle side angular speed";
+logging_settings("F.w").Unit = "rpm";
+
+logging_settings("tF").Logging = "on";
+logging_settings("tF").Name = "Axle side torque";
+logging_settings("tF").Unit = "N*m";
 
 simscape.instrumentation.setVariableTable(block_path, logging_settings)
 
@@ -16,8 +29,7 @@ new_settings = simscape.instrumentation.getVariableTable(block_path);
 disp(new_settings) %[output:43939b40]
 %[text] 
 save_system(model_name)
-bdclose(model_name)
-%[text] *Copyright 2025 The MathWorks, Inc.*
+%[text] *Copyright 2025-2026 The MathWorks, Inc.*
 
 %[appendix]{"version":"1.0"}
 %---
@@ -25,5 +37,5 @@ bdclose(model_name)
 %   data: {"layout":"inline"}
 %---
 %[output:43939b40]
-%   data: {"dataType":"text","outputData":{"text":"  <a href=\"matlab:helpPopup('simscape.instrumentation.VariableTable')\" style=\"font-weight:bold\">VariableTable<\/a> (<a href=\"matlab:helpPopup('string')\" style=\"font-weight:bold\">string<\/a> ⟼ <a href=\"matlab:helpPopup('simscape.instrumentation.VariableConfiguration')\" style=\"font-weight:bold\">VariableConfiguration<\/a>) with 9 variable(s):\n\n                                  <strong>Name<\/strong>            <strong>Unit<\/strong>     <strong>Logging<\/strong>\n                          <strong>____________________<\/strong>    <strong>_____<\/strong>    <strong>_______<\/strong>\n\n    <strong>B.w              ⟼<\/strong>    <missing>               rad\/s     false \n    <strong>F.w              ⟼<\/strong>    <missing>               rad\/s     false \n    <strong>H.T              ⟼<\/strong>    <missing>               K         false \n    <strong>f_hardstop       ⟼<\/strong>    <missing>               N         false \n    <strong>power_dissipated ⟼<\/strong>    \"Reducer power loss\"    W         true  \n    <strong>tB               ⟼<\/strong>    <missing>               N*m       false \n    <strong>tF               ⟼<\/strong>    <missing>               N*m       false \n    <strong>temperature      ⟼<\/strong>    <missing>               K         false \n    <strong>x_backlash       ⟼<\/strong>    <missing>               mm        false \n\n","truncated":false}}
+%   data: {"dataType":"text","outputData":{"text":"  <a href=\"matlab:helpPopup('simscape.instrumentation.VariableTable')\" style=\"font-weight:bold\">VariableTable<\/a> (<a href=\"matlab:helpPopup('string')\" style=\"font-weight:bold\">string<\/a> ⟼ <a href=\"matlab:helpPopup('simscape.instrumentation.VariableConfiguration')\" style=\"font-weight:bold\">VariableConfiguration<\/a>) with 8 variable(s):\n\n                                <strong>Name<\/strong>               <strong>Unit<\/strong>    <strong>Logging<\/strong>\n                     <strong>__________________________<\/strong>    <strong>____<\/strong>    <strong>_______<\/strong>\n\n    <strong>B.w         ⟼<\/strong>    \"Motor side angular speed\"    rpm      true  \n    <strong>F.w         ⟼<\/strong>    \"Axle side angular speed\"     rpm      true  \n    <strong>H.T         ⟼<\/strong>    <missing>                     K        false \n    <strong>f_hardstop  ⟼<\/strong>    <missing>                     N        false \n    <strong>tB          ⟼<\/strong>    \"Motor side torque\"           N*m      true  \n    <strong>tF          ⟼<\/strong>    \"Axle side torque\"            N*m      true  \n    <strong>temperature ⟼<\/strong>    <missing>                     K        false \n    <strong>x_backlash  ⟼<\/strong>    <missing>                     mm       false \n\n","truncated":false}}
 %---

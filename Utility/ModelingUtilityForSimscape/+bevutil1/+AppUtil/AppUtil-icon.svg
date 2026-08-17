@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+aria-label="AppUtil"
+role="img" viewBox="0 0 600 600">
+<!-- Copyright 2023-2025 The MathWorks, Inc. -->
+<!--
+Origin is at top left.
+X grows to the right.
+Y grows downwards.
+An object is drawn in front of the previous one.
+-->
+
+<!-- background circle -->
+<rect fill-opacity="1" fill="cyan" x="0" width="600" y="0" height="600" ry="300" />
+
+<g id="simple-A-shape"
+fill-opacity="1"
+fill="blue">
+
+    <!-- Right edge -->
+    <rect
+    fill="teal"
+    x="300" width="120" 
+    y="80" height="430" ry="20"
+    transform="skewX(10)" />
+
+    <!-- Left edge -->
+    <rect
+    fill="limegreen"
+    x="290" width="180" 
+    y="40" height="470" ry="60"
+    transform="skewX(-24)" />
+
+    <!-- Horizontal edge -->
+    <rect
+    transform="skewX(-20)"
+    fill="navy"
+    x="180" width="480"
+    y="320" height="110" ry="40" />
+
+</g>
+</svg>

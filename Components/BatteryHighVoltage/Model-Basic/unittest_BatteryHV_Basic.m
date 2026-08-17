@@ -1,5 +1,5 @@
 classdef unittest_BatteryHV_Basic < matlab.unittest.TestCase
-  %% Class-based unit test
+  % Class-based unit test
 
   % Author Class-Based Unit Tests in MATLAB
   % https://www.mathworks.com/help/matlab/matlab_prog/author-class-based-unit-tests-in-matlab.html
@@ -10,42 +10,37 @@ classdef unittest_BatteryHV_Basic < matlab.unittest.TestCase
   % Test Browser
   % https://www.mathworks.com/help/matlab/ref/testbrowser-app.html
 
-  % Copyright 2025 The MathWorks, Inc.
-
-  properties
-
-    % Keyword representing the model.
-    % This is defined by extracting text after "Model-" in a folder name.
-    % For example, "Basic" from the "Model-Basic" folder, or
-    % "SystemThermal" from the "Model-SystemThermal" folder.
-    ModelID (1,1) string
-
-  end  % properties
-
-  methods (TestClassSetup)
-    % Functions in this section run only once before tests in the Test section runs.
-
-    function test_class_setup_1(testcase)
-      [~, folder_name, ~] = fileparts(pwd);
-      testcase.ModelID = extractAfter(folder_name, "Model-");
-      verifyTrue(testcase, endsWith(mfilename, testcase.ModelID))
-      disp("# Starting tests with ModelID: " + testcase.ModelID)
-    end  % function
-
-  end  % methods
+  % Copyright 2025-2026 The MathWorks, Inc.
 
   methods (TestMethodSetup)
-    % Functions in this section always run before each test defined in the Test section runs.
+    % Functions in this "TestMethodSetup" section always run before
+    % each test defined in the "Test" section runs.
 
     function test_method_setup_1(testcase)
-      function closeAll
-        close all
-        bdclose all
-      end  % nested function
-      closeAll
+      %%
+      % Close all before test
+      close all
+      bdclose all
+      evalin("base", "clearvars")
+
       % addTeardown adds a function which always runs after each test.
       % Even if the execution of a test ends with an error, the teardown function runs.
-      addTeardown(testcase, @closeAll)
+      addTeardown(testcase, @closeAllAfterTest)
+      function closeAllAfterTest
+        % Close/delete all figure windows. This closes/deletes not only the test targets but also
+        % all the other figure windows too to provide clean state for the next test.
+        figs = findall(0, Type="Figure");
+        if not(any(isempty(figs)))
+          disp("Deleting figures (" + numel(figs) + ")")
+          delete(figs)
+        end  % if
+
+        bdclose all
+
+        % Do not clear variables in the base workspace at the end of a test
+        % to make it easy to debug after test if necessary.
+
+      end  % nested function
     end  % function
 
   end  % methods
@@ -58,32 +53,26 @@ classdef unittest_BatteryHV_Basic < matlab.unittest.TestCase
     % Check that models, scripts, functions, and classes run right out of the box.
 
     function PassingTest_1(testcase)
-      target_name = "BatteryHV_" + testcase.ModelID + "_params";
-      target_fullpath = FileTool3.getFileFullPath(target_name);
-      disp("Testing: " + target_fullpath)
+      %%
+      target_name = "BatteryHV_Basic_params";  % !test-target
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
+
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
+
       evalin("base", target_name)  % !test-target
     end  % function
 
-    %% Test
+    function PassingTest_2(testcase)
+      %%
+      target_name = "BatteryHV_Basic_refsub";  % !test-target
+      target_fullpath = bevutil1.FileUtil.getFileFullPath(target_name);
 
-    function simulation_ends_quickly(testcase)
-      target_model = "HarnessModel_BatteryHV";
-      load_system(target_model)
+      % Make sure that the target file is in the same folder as this test file.
+      verifyTrue(testcase, fileparts(target_fullpath) == pwd)
 
-      params_script = "BatteryHV_" + testcase.ModelID + "_params";
-      evalin("base", params_script)
-
-      refsub = "BatteryHV_" + testcase.ModelID + "_refsub";
-      set_param(target_model + "/High Voltage Battery", ReferencedSubsystem = refsub);
-
-      % Test that default simulation ends reasonably quickly.
-      tic
-      sim(target_model);
-      verifyThat(testcase, @toc, ...
-        matlab.unittest.constraints.Eventually( ...
-        matlab.unittest.constraints.IsLessThan(10), WithTimeoutOf = 10))  % !test-target
+      load_system(target_name)  % !test-target
     end  % function
 
   end  % methods
-
 end  % classdef

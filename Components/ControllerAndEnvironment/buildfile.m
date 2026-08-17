@@ -1,16 +1,22 @@
 function plan = buildfile
 % Define tasks for the buildtool to check code and run tests.
-% In the Editor, use the "Run Build" button to start a task.
+% If the current folder is where this file exists, start tests as follows.
+%   buildtool -verbosity Verbose Test
+% Or in the Editor, use the "Run Build" button to start a task.
 
 % Overview of MATLAB Build Tool
 % https://www.mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html
 %
 % Run Build from Toolstrip
 % https://www.mathworks.com/help/matlab/matlab_prog/run-build-from-toolstrip.html
+%
+% matlab.buildtool.tasks.TestTask Class
+% "SupportingFiles" property is supported from R2025a, i.e., R2024b does not support it.
+% https://www.mathworks.com/help/releases/R2026a/matlab/ref/matlab.buildtool.tasks.testtask-class.html
 
-% Copyright 2023-2025 The MathWorks, Inc.
+% Copyright 2023-2026 The MathWorks, Inc.
 
-plan = buildplan();
+plan = buildplan;
 plan.DefaultTasks = "CodeIssues";
 
 plan("CodeIssues") = matlab.buildtool.tasks.CodeIssuesTask( ...

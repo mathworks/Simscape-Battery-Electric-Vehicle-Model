@@ -1,0 +1,591 @@
+classdef PhysicalValueWithUnitLabel < bevutil1.AppUtil.Component.ComponentBase
+  % UI component for simscape.Value with a read-only unit label.
+  %
+  % This component can accept numeric literals, MATLAB expressions, or
+  % simscape.Value from the base workspace.
+  % Physical unit is displayed in a read-only label.
+
+  % Copyright 2023-2026 The MathWorks, Inc.
+
+  properties (Constant)
+    errorID (1,1) string = "PhysicalValueWithUnitLabel:"
+  end  % properties
+  properties
+
+    physical_value bevutil1.CodeUtil.PhysicalValue % = bevutil1.CodeUtil.PhysicalValue
+
+    % To improve the searchability, use "*Text", such as "NameText", "ValueText", etc.,
+    % rather than "Name", "Value", etc.
+    NameText (1,1) string = "Physical value"
+    NameInInfo (1,1) string = ""
+  end  % properties
+  properties (Dependent)
+
+    ValueText (1,1) string = ""
+
+    ValueTextIsSimscapeValue (1,1) logical
+
+  end  % properties
+  properties
+
+    ReadOnlyValueText (1,1) logical = false
+
+  end  % properties
+  properties (Dependent)
+    InfoText (1,1) string
+
+    UnitText (1,1) string
+    UnitAlias (1,1) string
+
+    hasError (1,1) logical
+  end  % properties
+  properties (Dependent)
+    SimscapeValue (1,:) simscape.Value
+  end  % properties
+  properties
+    ComponentHeight (1,:) {bevutil1.CodeUtil.mustBeTextOrPositiveNumber} = bevutil1.AppUtil.Constant.Height{"oneline++"}
+
+    NameUIWidth (1,:) {bevutil1.CodeUtil.mustBeTextOrPositiveNumber} = bevutil1.AppUtil.Constant.Width{"unitwidth"} * 14
+    AlertUIWidth (1,:) {bevutil1.CodeUtil.mustBeTextOrPositiveNumber} = 30
+    ValueUIWidth (1,:) {bevutil1.CodeUtil.mustBeTextOrPositiveNumber} = "1x"
+    InfoUIWidth (1,:) {bevutil1.CodeUtil.mustBeTextOrPositiveNumber} = bevutil1.AppUtil.Constant.Width{"unitwidth"} * 10
+    UnitUIWidth (1,:) {bevutil1.CodeUtil.mustBeTextOrPositiveNumber} = bevutil1.AppUtil.Constant.Width{"unitwidth"} * 10
+
+    NameUI bevutil1.AppUtil.Component.Label
+    AlertUI bevutil1.AppUtil.Graphics.Image
+    ValueTextUI bevutil1.AppUtil.Component.EditField
+    InfoUI bevutil1.AppUtil.Component.EditField
+    UnitLabelUI bevutil1.AppUtil.Component.PhysicalUnitLabel
+
+    ValueChangedCallback {bevutil1.CodeUtil.mustBeFunctionHandleOrEmpty} = []
+    % UnitChangedCallback is not provided. !todo: Consider use-cases.
+  end  % properties
+
+  properties
+
+    main_h_container bevutil1.AppUtil.HorizontalContainer
+
+    name_layout matlab.ui.container.GridLayout
+    alert_layout matlab.ui.container.GridLayout
+    value_layout matlab.ui.container.GridLayout
+    info_layout matlab.ui.container.GridLayout
+    unit_layout matlab.ui.container.GridLayout
+
+    % Used to distinguish first_update and regular_update.
+    initialized (1,1) logical = false
+
+  end  % properties
+
+  properties
+    % The Reporting property is for testing purpose only.
+    %
+    % To see outputs from the class constructor, set Reporting to "on" here.
+    % Setting Reporting to "on" in other ways does not enable reporting in the constructor.
+    Reporting (1,1) matlab.lang.OnOffSwitchState = "off"
+  end  % properties
+
+  methods (Access=protected)
+
+    function setup(component)
+      %%
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+
+      setup@bevutil1.AppUtil.Component.ComponentBase(component)
+
+      component.physical_value = bevutil1.CodeUtil.PhysicalValue;
+
+      component.main_h_container = bevutil1.AppUtil.HorizontalContainer(component.main_grid);
+
+      % ------------------------------------------------------------------------
+      %  Name
+
+      component.name_layout = addHorizontalGridLayout(component.main_h_container, Width="fit");
+
+      component.NameUI = bevutil1.AppUtil.Component.Label(component.name_layout);
+      component.NameUI.ComponentHeight = component.ComponentHeight;
+      component.NameUI.ComponentWidth = component.NameUIWidth;
+      component.NameUI.Text = bevutil1.CodeUtil.i18n("Physical value");
+
+      % ------------------------------------------------------------------------
+      %  Alert
+
+      component.alert_layout = addHorizontalGridLayout(component.main_h_container, Width="fit");
+
+      component.AlertUI = bevutil1.AppUtil.Graphics.Image(component.alert_layout);
+      component.AlertUI.ComponentHeight = component.ComponentHeight;
+      component.AlertUI.ComponentWidth = component.AlertUIWidth;
+
+      % ------------------------------------------------------------------------
+      % Value
+
+      component.value_layout = addHorizontalGridLayout(component.main_h_container);
+
+      component.ValueTextUI = bevutil1.AppUtil.Component.EditField(component.value_layout);
+      component.ValueTextUI.ValueChangedCallback = @() react_ValueTextUI_ValueChanged(component);
+
+      % ------------------------------------------------------------------------
+      % Info
+
+      component.info_layout = addHorizontalGridLayout(component.main_h_container, Width="fit");
+
+      component.InfoUI = bevutil1.AppUtil.Component.EditField(component.info_layout);
+      component.InfoUI.ComponentWidth = component.InfoUIWidth;
+      component.InfoUI.ReadOnly = "on";
+      component.InfoUI.MainEditField.Value = "";
+
+      % ------------------------------------------------------------------------
+      % Unit
+
+      component.unit_layout = addHorizontalGridLayout(component.main_h_container, Width="fit");
+
+      component.UnitLabelUI = bevutil1.AppUtil.Component.PhysicalUnitLabel(component.unit_layout);
+      component.UnitLabelUI.ComponentWidth = component.UnitUIWidth;
+
+    end  % function
+
+    function update(component)
+      %%
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+      update@bevutil1.AppUtil.Component.ComponentBase(component)
+      if component.initialized
+        regular_update(component)
+
+        return
+
+      end  % if
+      first_update(component)
+      regular_update(component)
+      component.initialized = true;
+    end  % function
+
+    function regular_update(component)
+      %%
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation("1")
+      end  % if
+
+      if component.NameInInfo == ""
+        component.NameInInfo = component.NameText;
+      end  % if
+
+      if strlength(component.InfoText) > 0
+        % Show the Info UI.
+        component.info_layout.ColumnWidth{1} = component.InfoUIWidth;
+        component.InfoUI.ComponentWidth = component.InfoUIWidth;
+        component.InfoUI.MainEditField.Tooltip = component.InfoText;
+      else
+        % Hide the Info UI.
+        component.info_layout.ColumnWidth{1} = 0;
+        component.InfoUI.MainEditField.Tooltip = "";
+      end  % if
+
+      component.unit_layout.ColumnWidth{1} = component.UnitUIWidth;
+      component.unit_layout.RowHeight{1} = component.ComponentHeight;
+      component.UnitLabelUI.ComponentWidth = component.UnitUIWidth;
+
+      if component.HighlightBackground
+        if component.Reporting
+          bevutil1.FileUtil.displayTimeAndFileLocation("2")
+        end  % if
+        component.NameUI.HighlightBackground = "on";
+        component.AlertUI.HighlightBackground = "on";
+        component.ValueTextUI.HighlightBackground = "on";
+        component.InfoUI.HighlightBackground = "on";
+        component.UnitLabelUI.HighlightBackground = "on";
+        switch component.ThemeNameForBackGroundHighlight
+          case "light"
+            component.main_h_container.BaseGridLayout.BackgroundColor = component.LightThemeBackGroundColor;
+          case "dark"
+            component.main_h_container.BaseGridLayout.BackgroundColor = component.DarkThemeBackGroundColor;
+        end  % switch
+      end  % if
+    end  % function
+
+    function first_update(component)
+      %%
+      % This function is called only once after the setup finished and
+      % public properties have been updated with the user-specified values.
+      % Use this method to freeze property values based on the user-specified ones.
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+
+      if not(component.UnitLabelUI.UnitSpecified)
+        % If the app code did not specify the unit of this component,
+        % fix it with "1".
+        component.UnitText = "1";
+      end  % if
+
+      component.main_h_container.BaseGridLayout.RowHeight = component.ComponentHeight;
+
+      component.NameUI.ComponentHeight = component.ComponentHeight;
+      component.NameUI.ComponentWidth = component.NameUIWidth;
+      component.NameUI.MainLabel.Text = component.NameText;
+
+      component.AlertUI.ComponentHeight = component.ComponentHeight;
+
+      component.ValueTextUI.ComponentHeight = component.ComponentHeight;
+      if component.ReadOnlyValueText
+        component.ValueTextUI.ReadOnly = "on";
+      end  % if
+
+      component.InfoUI.ComponentHeight = component.ComponentHeight;
+      component.InfoUI.ComponentWidth = component.InfoUIWidth;
+
+      component.UnitLabelUI.ComponentWidth = component.UnitUIWidth;
+
+    end  % function
+
+  end  % methods
+
+  methods
+
+    % --------------------------------------------------------------------------
+    % get or set SimscapeValue
+
+    function x = get.SimscapeValue(component)
+      %%
+      arguments (Output)
+        x simscape.Value
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+      try
+        component.physical_value.ValueText = component.ValueText;
+        component.physical_value.UnitText = component.UnitText;
+        ssc_val = component.physical_value.SimscapeValue;
+      catch exception
+
+        rethrow(exception)
+
+      end  % try, catch
+
+      updateInfoAndUnitUIs(component)
+
+      x = ssc_val;
+
+    end  % function
+
+    function set.SimscapeValue(component, x)
+      %%
+      arguments (Input)
+        component
+        x simscape.Value
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+
+      try
+        component.physical_value.SimscapeValue = x;
+      catch exception
+
+        rethrow(exception)
+
+      end  % try, catch
+      component.ValueText = bevutil1.CodeUtil.stringify(value(x));
+      component.UnitText = string(unit(x));
+    end  % function
+
+    % --------------------------------------------------------------------------
+    % get ValueTextIsSimscapeValue
+
+    function x = get.ValueTextIsSimscapeValue(component)
+      %%
+      arguments (Output)
+        x logical
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+      x = component.physical_value.ValueTextIsSimscapeValue;
+    end  % function
+
+    % --------------------------------------------------------------------------
+    % get hasError
+
+    function true_or_false = get.hasError(component)
+      %%
+      arguments (Output)
+        true_or_false (1,1) logical
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+      true_or_false = logical(component.AlertUI.MainImage.Visible);
+    end  % function
+
+    % --------------------------------------------------------------------------
+    % get or set ValueText
+
+    function str = get.ValueText(component)
+      %%
+      % Return the content of the value UI.
+      % It is a string representing a number, a simscape.Value, or an expression.
+      arguments (Output)
+        str string
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+      str = component.ValueTextUI.MainEditField.Value;
+    end  % function
+
+    function set.ValueText(component, str)
+      %%
+      arguments (Input)
+        component
+        str string
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+
+      try
+        component.physical_value.ValueText = str;
+
+      catch exception
+        msg = exception.message;
+
+        main_fig = ancestor(component, "figure");
+        if isempty(main_fig)
+          id = component.errorID + exception.identifier;
+
+          throw(MException(id, msg))
+
+        else
+          component.AlertUI.MainImage.Visible = "on";
+          component.AlertUI.MainImage.Tooltip = msg + bevutil1.CodeUtil.i18n(" (Click the icon to copy the message to clipboard.)");
+          component.AlertUI.ImageClickedCallback = @() clipboard("copy", msg);
+
+          return
+
+        end  % if
+      end  % try, catch
+      component.AlertUI.MainImage.Visible = "off";
+      component.AlertUI.MainImage.Tooltip = "";
+
+      % This assignment avoids triggering the react_ValueTextUI_ValueChanged callback.
+      component.ValueTextUI.MainEditField.Value = str;
+
+      % Show the tooltip because the width of the ValueTextUI may be shorter than its content.
+      component.ValueTextUI.MainEditField.Tooltip = str;
+
+      updateInfoAndUnitUIs(component)
+    end  % function
+
+  end  % methods
+  methods (Access=private)
+
+    function react_ValueTextUI_ValueChanged(component)
+      %%
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+
+      current_value_text = component.ValueTextUI.MainEditField.Value;
+      try
+        component.physical_value.ValueText = current_value_text;
+
+      catch exception
+        msg = exception.message;
+
+        main_fig = ancestor(component, "figure");
+        if isempty(main_fig)
+          id = component.errorID + exception.identifier;
+
+          throw(MException(id, msg))
+
+        else
+          component.AlertUI.MainImage.Visible = "on";
+          component.AlertUI.MainImage.Tooltip = msg + bevutil1.CodeUtil.i18n(" (Click the icon to copy the message to clipboard.)");
+          component.AlertUI.ImageClickedCallback = @() clipboard("copy", msg);
+
+          return
+
+        end  % if
+      end  % try, catch
+      component.AlertUI.MainImage.Visible = "off";
+      component.AlertUI.MainImage.Tooltip = "";
+
+      component.ValueTextUI.MainEditField.Tooltip = current_value_text;
+
+      updateInfoAndUnitUIs(component)
+
+      if not(isempty(component.ValueChangedCallback))
+        % Call the user-specified callback.
+        component.ValueChangedCallback()
+      end
+    end  % function
+
+  end  % methods
+  methods
+
+    function updateInfoAndUnitUIs(component)
+      %%
+      % Update the InfoUI and the UnitLabelUI using the current physical_value.SimscapeValue.
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+
+      sscval = component.physical_value.SimscapeValue;
+      unit_text = string(unit(sscval));
+      squashed_value_text = bevutil1.CodeUtil.squashCodeText(bevutil1.CodeUtil.stringify(value(sscval)));
+
+      % InfoUI
+      if component.physical_value.ValueTextIsSimscapeValue
+        component.InfoText = squashed_value_text + " (" + unit_text + ")";
+      else
+        % The data in ValueTextUI is of type double.
+        squashed_current_value_text = bevutil1.CodeUtil.squashCodeText(component.ValueTextUI.MainEditField.Value);
+        if squashed_value_text ~= squashed_current_value_text
+          component.InfoText = squashed_value_text;
+        else
+          component.InfoText = "";
+        end  % if
+      end  % if
+
+      % UnitLabelUI
+      if component.physical_value.ValueTextIsSimscapeValue
+        % The data in ValueTextUI is of type simscape.Value.
+        % In the Unit UI, show the simscape.Value's unit, but gray it out.
+        component.UnitText = unit_text;
+        component.UnitLabelUI.LabelUI.MainLabel.Enable = "off";
+      else
+        % The data in ValueTextUI is of type double.
+        % Render the UnitLabelUI normally.
+        component.UnitLabelUI.LabelUI.MainLabel.Enable = "on";
+      end  % if
+    end  % function
+
+    % --------------------------------------------------------------------------
+    % get or set InfoText
+
+    function str = get.InfoText(component)
+      %%
+      arguments (Output)
+        str string
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+      str = component.InfoUI.Value;
+    end  % function
+
+    function set.InfoText(component, NewInfoText)
+      %%
+      arguments (Input)
+        component
+        NewInfoText string
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+      component.InfoUI.Value = NewInfoText;
+      if NewInfoText == ""
+        % Hide the Info UI.
+        component.info_layout.ColumnWidth{1} = 0;
+      else
+        % Show the Info UI.
+        component.info_layout.ColumnWidth{1} = component.InfoUIWidth;
+      end  % if
+    end  % function
+
+    % --------------------------------------------------------------------------
+    % get or set UnitText
+
+    function unit_text = get.UnitText(component)
+      %%
+      arguments (Output)
+        unit_text (1,1) string
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+      unit_text = component.UnitLabelUI.UnitText;
+    end  % function
+
+    function set.UnitText(component, NewUnitText)
+      %%
+      arguments (Input)
+        component
+        NewUnitText (1,1) string
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation("1")
+      end  % if
+      if not(component.initialized)
+        % Make component.physical_value initializable.
+        if component.Reporting
+          bevutil1.FileUtil.displayTimeAndFileLocation("2:reset")
+        end  % if
+        component.physical_value.initialized = false;
+      end  % if
+      try
+        if component.Reporting
+          bevutil1.FileUtil.displayTimeAndFileLocation("3:UnitLabelUI.UnitText:" + NewUnitText)
+        end  % if
+        component.UnitLabelUI.UnitText = NewUnitText;
+      catch exception
+        if component.Reporting
+          bevutil1.FileUtil.displayTimeAndFileLocation("5:exception:" + exception.message)
+        end  % if
+
+        rethrow(exception)
+        
+      end  % try, catch
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation("6")
+      end  % if
+      component.AlertUI.MainImage.Visible = "off";
+      component.AlertUI.MainImage.Tooltip = "";
+      component.physical_value.UnitText = NewUnitText;
+    end  % function
+
+    % --------------------------------------------------------------------------
+    % get or set UnitAlias
+
+    function unit_alias = get.UnitAlias(component)
+      %%
+      arguments (Output)
+        unit_alias (1,1) string
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation
+      end  % if
+      unit_alias = component.UnitLabelUI.UnitAlias;
+    end  % function
+
+    function set.UnitAlias(component, NewUnitAlias)
+      %%
+      arguments (Input)
+        component
+        NewUnitAlias (1,1) string
+      end  % arguments
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation("1")
+      end  % if
+      if not(component.initialized)
+        % Make component.physical_value initializable.
+        if component.Reporting
+          bevutil1.FileUtil.displayTimeAndFileLocation("2:reset")
+        end  % if
+        component.physical_value.initialized = false;
+      end  % if
+      if component.Reporting
+        bevutil1.FileUtil.displayTimeAndFileLocation("3:UnitLabelUI.UnitAlias:" + NewUnitAlias)
+      end  % if
+      % Unit alias liberally accepts text.
+      component.UnitLabelUI.UnitAlias = NewUnitAlias;        
+      component.AlertUI.MainImage.Visible = "off";
+      component.AlertUI.MainImage.Tooltip = "";
+      component.physical_value.UnitAlias = NewUnitAlias;
+    end  % function
+
+  end  % methods
+end  % classdef

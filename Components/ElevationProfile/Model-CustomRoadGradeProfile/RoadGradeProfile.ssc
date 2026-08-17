@@ -1,0 +1,90 @@
+component RoadGradeProfile
+  % Road Grade Profile
+  % This block computes road grade percent value at the current horizontal position
+  % of a vehicle from the road grade profile parameter and the current vehicle speed.
+  % Input to this block is curvilinear speed Vs, which is a longitudinal speed
+  % parallel to the road surface.
+  %
+  % Horizontal speed Vx at x is obtained from Vs via Vx = Vs*cos(theta) where
+  % theta is the road incline angle at x and is computed from road grade gamma by
+  % theta = atan(gamma).
+  %
+  % Elevation z at x is computed from Vs by z = Vs*sin(theta).
+
+  % Copyright 2026 The MathWorks, Inc.
+
+  annotations
+    Icon = "RoadGradeProfile_icon.svg"
+  end  % annotations
+
+  parameters
+    x_vector = { [0 50 100] "m" }  % Horizontal distance for vertical profile
+    grade_vector = [0 0 0]  % Road grade profile (percent)
+
+    profile_interp_method = simscape.enum.interpolation.smooth  % Profile interpolation method
+
+    % Left elevation value is parameterized because grade profile is parameterized.
+    % If elevation profile is parameterized, the left elevation value is determined from it.
+    left_elevation = { 0 "m" }  % Elevation at left most horizontal position
+
+    initial_position = { 0 "m" }  % Initial horizontal position
+
+  end  % parameters
+  equations
+    assert(length(x_vector) >= 3)
+    assert(all(grade_vector > -100))
+    assert(all(grade_vector < 100))
+    assert(length(grade_vector) == length(x_vector))
+  end  % equations
+
+  inputs
+    % Curvilinear speed at horizontal position x
+    Vs = { 0 "m/s" }  % Spd
+  end
+  outputs
+    elevation  % E
+
+    horizontal_position  % X
+
+    % Road grade (percent) at horizontal position x
+    grade_pct_x  % PG
+  end
+
+  variables (Access=private, ExternalAccess=observe)
+
+    x = { value=initial_position, priority=priority.high }  % Horizontal position
+
+    z = { value = { ...
+            findInitialElevationFromRoadGradeProfile( ...
+              value(x_vector, "m"), ...
+              grade_vector, ...
+              profile_interp_method, ...
+              value(left_elevation, "m"), ...
+              value(initial_position, "m") ), "m" }, ...
+            priority = priority.high }  % Elevation
+
+  end  % variables
+
+  intermediates (ExternalAccess=observe)
+
+    incline_angle_x = atan(grade_pct_x/100)
+
+  end  % intermediates
+  annotations
+    incline_angle_x : LoggingUnit = "deg"
+  end  % annotations
+
+  equations
+    der(x) == Vs*cos(incline_angle_x)
+    der(z) == Vs*sin(incline_angle_x)
+
+    % Outputs
+    elevation == z
+
+    horizontal_position == x
+
+    grade_pct_x == tablelookup(x_vector, grade_vector, x, ...
+      interpolation = (if profile_interp_method==simscape.enum.interpolation.smooth, smooth else linear end), ...
+      extrapolation = nearest)  % Road grade at horizontal position x
+  end  % equations
+end  % component

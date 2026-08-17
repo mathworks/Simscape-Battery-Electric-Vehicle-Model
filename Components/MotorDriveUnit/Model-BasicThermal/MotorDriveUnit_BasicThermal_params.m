@@ -1,9 +1,8 @@
 %% Parameters for Motor Drive Unit component
-%
 % If you edit this file, make sure to run this to update variables
 % in the base workspace before running simulation.
 
-% Copyright 2021-2023 The MathWorks, Inc.
+% Copyright 2021-2026 The MathWorks, Inc.
 
 %% Connection Bus definitions
 
@@ -12,34 +11,33 @@ defineBus_Rotational
 
 %% Motor drive unit parameters
 
-motorDriveUnit.trqMax_Nm = 420;
-motorDriveUnit.powerMax_kW = 220;
-motorDriveUnit.responseTime_s = 0.02;
+MotorDriveUnit.MaxTorque = simscape.Value(420, "N*m");
+MotorDriveUnit.MaxPower = simscape.Value(220, "kW");
+MotorDriveUnit.ResponseTime = simscape.Value(20, "ms");
 
-motorDriveUnit.efficiency_pct = 95;
-motorDriveUnit.spd_eff_rpm = 2000;
-motorDriveUnit.trq_eff_Nm = 50;
+MotorDriveUnit.ElectricalEfficiencyPercent = 95;
+MotorDriveUnit.MeasuredAngularSpeed = simscape.Value(2000, "rpm");
+MotorDriveUnit.MeasuredTorque = simscape.Value(50, "N*m");
+MotorDriveUnit.MeasuredIronLosses = simscape.Value(55, "W");
+MotorDriveUnit.FixedLosses = simscape.Value(40, "W");
 
-motorDriveUnit.rotorInertia_kg_m2 = 5*0.01^2;
+% Mechanical
+MotorDriveUnit.RotorInertia = simscape.Value(5*0.01^2, "kg*m^2");
+MotorDriveUnit.RotorDamping = simscape.Value(1e-5, "N*m/(rad/s)");
 
-motorDriveUnit.rotorDamping_Nm_per_radps = 1e-5;
+% Thermal port
+MotorDriveUnit.ThermalMass = simscape.Value(90, "kJ/K");
 
-motorDriveUnit.ThermalMass_J_per_K = 90e3;
+% Thermal system > Radiative Heat Transfer
+MotorDriveUnit.RadiationArea = simscape.Value(1, "m^2");
+MotorDriveUnit.RadiationCoefficient = simscape.Value(5e-10, "W/K^4/m^2");
 
-%% Ambient parameters
-% for thermal simulation
-
-motorDriveUnit.ambientTemp_K = 273.15 + 20;
-
-motorDriveUnit.ambientMass_t = 10000;
-motorDriveUnit.ambientSpecificHeat_J_per_Kkg = 1000;
-
-motorDriveUnit.RadiationArea_m2 = 1;
-motorDriveUnit.RadiationCoeff_W_per_K4m2 = 5e-10;
+% Thermal system > Thermal Mass
+MotorDriveUnit.AmbientMass = simscape.Value(10000, "t");
+MotorDriveUnit.AmbientSpecificHeat = simscape.Value(1000, "J/K/kg");
 
 %% Initial conditions
 
-initial.motorDriveUnit_Temperature_K = motorDriveUnit.ambientTemp_K;
-initial.ambientTemp_K = motorDriveUnit.ambientTemp_K;
+initial.MotorDriveUnit_RotorAngularSpeed = simscape.Value(0, "rpm");
 
-initial.motorDriveUnit_RotorSpd_rpm = 0;
+initial.AmbientTemperature = simscape.Value(273.15 + 20, "K");

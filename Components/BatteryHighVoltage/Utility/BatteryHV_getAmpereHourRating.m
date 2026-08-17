@@ -1,12 +1,12 @@
 function Charge_Ah = BatteryHV_getAmpereHourRating(nvpairs)
 %% Computes ampere-hour rating
 
-% Copyright 2023 The MathWorks, Inc.
+% Copyright 2023-2026 The MathWorks, Inc.
 
 arguments
   nvpairs.Voltage_V (1,1) double {mustBePositive} = 350
   nvpairs.Capacity_kWh (1,1) double {mustBePositive} = 4
-  nvpairs.StateOfCharge_pct (1,1) double {mustBeInRange(nvpairs.StateOfCharge_pct, 0, 100)} = 70
+  nvpairs.StateOfCharge_pct (1,1) double {mustBeInRange(nvpairs.StateOfCharge_pct, 0, 100)} = 70 %#ok<MUSTINRANGE>
 end
 
 Voltage_V = nvpairs.Voltage_V;

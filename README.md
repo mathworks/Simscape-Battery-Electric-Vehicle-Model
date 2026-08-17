@@ -1,6 +1,6 @@
 # Battery Electric Vehicle Model in Simscape&trade;
 
-Version 3.3.0
+Version 5.0.0
 
 [![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml)
 [![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml)
@@ -10,15 +10,19 @@ Version 3.3.0
 [url-fx-bev]: https://www.mathworks.com/matlabcentral/fileexchange/82250
 [url-fx-icon]: https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg
 
+Cite this project as
+
+> MathWorks. Battery Electric Vehicle Model in Simscape
+> (https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model). GitHub, 2026.
+
 ## Introduction
 
-This is a MATLAB&reg; Project containing
+This is a MATLAB&reg; project containing
 a [Battery Electric Vehicle (BEV) model](BEV/README.md) and
 its components such as
 motor, high voltage battery, and longitudinal vehicle.
 This project demonstrates Simscape's modular and
 multi-fidelity modeling technology.
-
 The abstract BEV model is built in a simple and modular fashion,
 and it can run faster than real-time.
 It is suitable as a baseline model for drive cycle simulation
@@ -27,220 +31,69 @@ other vehicle-level information.
 
 BEV system model:
 
-<img src="BEV/screenshot-BEV_system_model.png"
+<img src="BEV/media/screenshot-BEV_system_model.png"
  alt="Screenshot of the battery electric vehicle model"
  width="700">
 
 FTP75 drive cycle simulation result:
 
-<img src="BEV/Model-Basic/SimulationCases/markdown/media/BEV_Basic_FTP75_media/figure_0.png"
- alt="Screenshot of the simulation result plots"
+<img src="BEV/media/BEV_Basic_FTP75.png"
+ alt="Screenshot of the simulation results from BEV basic model with FTP 75 drive cycle"
  width="700">
 
 Simple drive pattern simulation result:
 
-<img src="BEV/Model-Basic/SimulationCases/markdown/media/BEV_Basic_SimpleDrivePattern_media/figure_0.png"
- alt="Screenshot of the simulation result plots"
+<img src="BEV/media/BEV_Basic_Simple.png"
+ alt="Screenshot of the simulation results from BEV basic model with a simple drive pattern"
  width="700">
 
 Use **BEV Project Navigator App** to quickly access some key files and tools.
 
-<img src="screenshot-BEVProjectNavigationApp.png"
- alt="Screenshot of the longitudinal vehicle performance design app"
+<img src="media/screenshot-BEVProjectNavigationApp.png"
+ alt="Screenshot of the BEV project navigation app"
  width="450">
 
-Use **Vehicle1D Performance Design App** to design the basic performance parameters
+Use **Vehicle 1D Force App** to understand and design the basic performance parameters
 of a road vehicle.
 
-<img src="Components/Vehicle1D/screenshot-Vehicle1DPerformanceDesignApp.png"
- alt="Screenshot of the longitudinal vehicle performance design app"
+<img src="Utility/ModelingUtilityForSimscape/media/screenshot-Vehicle1DForceApp-light.png"
+ alt="Screenshot of the longitudinal vehicle force app"
  width="700">
 
-Use **Motor Drive Unit Efficiency App for System Thermal Model** to understand
-how the model parameters are affecting the motor efficiency.
+Use **Abstract Motor Efficiency App** to understand and design the motor efficiency parameters.
 
-<img src="Components/MotorDriveUnit/Model-SystemThermal/screenshot-MDU-SystemThermalModelEfficiencyApp.png"
- alt="Screenshot of the motor drive unit efficiency app for system thermal model"
+<img src="Utility/ModelingUtilityForSimscape/media/screenshot-AbstractMotorEfficiencyApp-light.png"
+ alt="Screenshot of the abstract motor efficiency app"
  width="700">
 
-Use **Motor Drive Unit Simulation App** to select model and run simulation for
-the Motor Drive Unit.
+## What's New in 5.0 (August 2026)
 
-<img src="Components/MotorDriveUnit/screenshot-MotorDriveUnitSimulationApp.png"
- alt="Screenshot of the motor drive unit app"
- width="440">
+- The project works with R2026a or newer. All MATLAB Live Scripts are plain text `*.m` files.
+- The utility APIs and apps are available as the Modeling Utility for Simscape (MUS).
+- The updated Abstract Motor Efficiency App is available from the MUS.
+- The updated Vehicle 1D Force App is available from the MUS.
+- The Motor Drive Unit component is simplified.
+  The "Basic" and "BasicThermal" model uses the Motor & Drive (System Level) block from Simscape Electrical.
+- The new Elevation Profile component is available. It is not used with Vehicle 1D component yet.
+- The overall project size is smaller. MATLAB script files no longer come with corresponding Markdown files.
 
-## What's New in 3.3 (November 2025)
-
-- The project is upgraded to R2025b.
-
-## What's New in 3.2 (August 2025)
-
-Improved Reducer component resources
-
-- Updated the test inputs for the harness model to use Referenced Subsystems.
-
-Improved testing
-
-- More unit tests and the `buildfile.m` files for the Build Tool are added.
-  In particular, tests for Button blocks' callbacks are added to check
-  that the callbacks work as expected.
-
-Improved code quality
-
-- Custom rules for MATLAB code are added for MATLAB Code Analyzer.
-  The rules are to remind developers to follow best practices and coding standards.
-  See the `codeAnalyzerConfiguration.json` file in the Project root > resources folder.
-  Custom rules are also used by the Editor and by the build tool's CodeIssues task.
-
-## What's New in 3.1 (August 2025)
-
-Improved signal design for lookup table blocks
-
-- Smooth signals (a.k.a. Akima spline) and piece-wise linear signals
-  for lookup table blocks are now designed with the Signal Tool,
-  which is stored in the Project root > Utility > SignalTool.
-- The Signal Tool provides MATLAB functions and Apps for designing signal traces.
-  The tool works with Simscape PS Lookup Table (1D) blocks and
-  Simulink 1-D Lookup Table blocks.
-- The Signal Tool has replaced the Signal Designer.
-  The Signal Designer provided Simulink custom block library for designing and using
-  smooth or linear signals.
-  With the Signal Tool, signal design process is isolated from signal usage process.
-  Models containing lookup tables do not depend on the Signal Tool.
-- Timed Trace Builder App is added to the project.
-  The app is a uifigure-based app built with the Signal Tool.
-  The app is used to design timed signal traces with high-level properties.
-  Generated data are used in some lookup tables as simulation inputs.
-  <img src="Utility/SignalTool/screenshot-TimedTraceBuilderApp.png"
-       alt="Screenshot of the Timed Trace Builder App"
-       width="700">
-
-Streamlined model set up
-
-- Selecting a referenced subsystem is done by clicking a button
-  placed right next to the Subsystem Reference block.
-- Custom functions to change a referenced subsystem have been removed.
-- The Inputs blocks in harness models are now Referenced Subsystems.
-  Some smooth signal traces in the Inputs are now designed by the Signal Tool.
-
-Improved isolation of simulation case scripts
-
-- Simulation case scripts directly use the product API as much as possible.
-  The simulation case scripts for the same model do very similar operations
-  that were used to be managed by custom functions to avoid writing similar code
-  in multiple places.
-  However, the use of custom functions was making the comprehension
-  and modifications of the scripts hard.
-  The scripts are now more isolated from each other and easier to figure out
-  how to modify individually.
-
-Improved discoverability and organization of test files
-
-- Test files are stored in the same folder with their targets.
-- Test files are named as `unittest_*`, `uitest_*`, `uptodatetest_*`, or
-  `uiuptodatetest_*` so that the purpose of each test file is clear from its file name.
-- Separating test files by their purpose makes it easy to run related tests only.
-
-Better organization of utility tools
-
-- Utility tools are now organized into separate name spaces based on their functionality.
-  See the folders in the Project root > Utility.
-
-## Whats' New in 3.0 (July 2025)
-
-Past What's New contents have been moved to [Change Log](ChangeLog.md).
-
-### Plain-text Live Scripts
-
-From R2025a, you can save Live Scripts as plain-text files.
-
-- MATLAB: [Live Code File Format (.m)][doc-m-live-script]
-
-All Live Scripts in the project are now plain-text with `.m` extensions.
-The use of plain-text files improves the compatibility with source control systems.
-Text-based search and replace work with not only conventional MATLAB code files but
-also all Live Script files in the project.
-
-[doc-m-live-script]: https://www.mathworks.com/help/matlab/matlab_prog/plain-text-file-format-for-live-scripts.html
-
-### Revamped Component Folders
-
-A model for testing a component is now placed in the component top folder.
-This improves the discoverability of models for component testing.
-
-Component models that are built as Referenced Subsystems such as Basic model or System model
-are stored in separate subfolders, such as Model-Basic or Model-System, respectively.
-Related resources for a referenced subsystem including simulation case scripts and
-test code files are saved in the same folder, improving the isolation of each component model.
-
-### Unit testing with Build Tool and `buildfile.m`
-
-For running unit tests,
-the project now uses the Build Tool with `buildfile.m`.
-
-- MATLAB: [Overview of MATLAB Build Tool][doc-buildtool]
-
-From R2025a, you can run Build Tool tasks using the Run Build button in the Toolstrips
-in addition to using the `buildtool` command on the Command Window.
-
-- MATLAB: [Run Build from Toolstrip][doc-buildtool-toolstrip]
-
-This project has several `buildfile.m` files.
-The Editor recognizes the `buildfile.m` file as a Build Tool file
-and shows the Run Build button in the Editor Toolstrip.
-The project finds the `buildfile.m` file in the project root folder
-and shows the Run Build button in the Project Toolstrip.
-
-[doc-buildtool]: https://www.mathworks.com/help/matlab/matlab_prog/overview-of-matlab-build-tool.html
-[doc-buildtool-toolstrip]: https://www.mathworks.com/help/matlab/matlab_prog/run-build-from-toolstrip.html
-
-### Updated Reducer Component
-
-Reducer component now has a test model and supporting files.
-
-Also, the Reducer component uses Simscape selective data logging, which
-simplifies the way data in Simscape blocks is logged during simulation.
-Other components will use the same approach in the future.
-
-- Simscape: [Log Selected Block Variables][doc-simscape-logging-graphical]
-- Simscape: [Log Selected Variables Programmatically][doc-simscape-logging-programmatic]
-
-[doc-simscape-logging-graphical]: https://www.mathworks.com/help/simscape/ug/log-individual-block-variables.html
-[doc-simscape-logging-programmatic]: https://www.mathworks.com/help/simscape/ug/manage-selective-logging-instrumentation-programmatically.html
-
-#### Signal Design App
-
-To edit physical input signals using PS Lookup Table (1D) blocks
-in the Reducer component, Signal Tool is used.
-
-- For graphically editing signals, you can use `SignalDesignApp`
-  which is included in the project and you can find in Project root > Utility > SignalTool folder.
-
-  <img src="Utility/SignalTool/screenshot-SignalDesignApp.png"
-   alt="Screenshot of the longitudinal vehicle performance design app"
-   width="700">
-
-- For programmatically editing signals, you can use functions in the `SignalTool1` name space.
-  See the Live Scripts in Project root > Components > Reducer > Model-Basic > SimulationCases
-  folder for example usages.
+For the past What's New, see [the change log](ChangeLog.md).
 
 ## Tool Requirements
 
 Supported MATLAB Version:
-R2025b or newer releases
+R2026a or newer releases
 
 Required:
 [MATLAB](https://www.mathworks.com/products/matlab.html),
 [Simulink&reg;](https://www.mathworks.com/products/simulink.html),
-[Powertrain Blockset](https://www.mathworks.com/products/powertrain.html),
 [Simscape](https://www.mathworks.com/products/simscape.html),
 [Simscape Driveline&trade;](https://www.mathworks.com/products/simscape-driveline.html),
-[Simscape Electrical&trade;](https://www.mathworks.com/products/simscape-electrical.html)
+[Simscape Electrical&trade;](https://www.mathworks.com/products/simscape-electrical.html),
+[Powertrain Blockset](https://www.mathworks.com/products/powertrain.html)
 
 Optional:
-[MATLAB Test](https://www.mathworks.com/products/matlab-test.html),
-[Parallel Computing Toolbox&trade;](https://www.mathworks.com/products/parallel-computing.html)
+[MATLAB Test](https://www.mathworks.com/products/matlab-test.html)
 
 ## How to Use
 
@@ -251,14 +104,14 @@ hyperlinks to models and scripts.
 
 ## How to Use in MATLAB Online
 
-You can try this in [MATLAB Online][url_online].
-In MATLAB Online, from the **HOME** tab in the toolstrip,
-select **Add-Ons** &gt; **Get Add-Ons**
-to open the Add-On Explorer.
-Then search for the submission name,
-navigate to the submission page,
-click **Add** button, and select **Save to MATLAB Drive**.
+1. Upload the zip archive of
+the project to [MATLAB drive][url_drive].
 
+2. Go to the [MATLAB Online][url_online] site and launch MATLAB Online.
+
+3. In MATLAB Online, find the zip archive, unzip it, and click the `BatteryElectricVehicle.prj` file.
+
+[url_drive]: https://drive.mathworks.com/files/
 [url_online]: https://www.mathworks.com/products/matlab-online.html
 
 ## Testing and quality assurance
@@ -269,8 +122,7 @@ BEV system model and its components are tested using [MATLAB Unit Testing framew
   do not use the `verify*` functions.
   They simply run scripts, functions, classes,
   or models, and check that they run without errors.
-  Passing tests are designed to finish quickly so that they can be used
-  in day-to-day development activities in a short iteration cycle.
+  Passing tests are designed to finish quickly.
 
 - This project uses the [buildtool][doc-buildtool] with `buildfile.m` to
   check code, run tests, measure code coverage, and generate test reports and
@@ -324,4 +176,4 @@ Electric Vehicle Design with Simscape
 
 See [`license.txt`](license.txt).
 
-_Copyright 2020-2025 The MathWorks, Inc._
+_Copyright 2020-2026 The MathWorks, Inc._

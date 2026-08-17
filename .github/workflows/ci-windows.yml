@@ -15,7 +15,7 @@ name: CI using MATLAB on Windows
 
 on:
   push:
-    branches: [ R2025b, R2025b-devel ]
+    branches: [ R2026a, R2026a-devel ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
@@ -25,7 +25,7 @@ on:
       - '**.xml'
 
   pull_request:
-    branches: [ R2025b, R2025b-devel ]
+    branches: [ R2026a, R2026a-devel ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
@@ -44,8 +44,8 @@ jobs:
 
     strategy:
       matrix:
-        matlab_version: [R2025b]
-        #matlab_version: [R2025b, R2026a]
+        matlab_version: [R2026a]
+        #matlab_version: [R2026a, R2026b]
 
     name: Test in ${{ matrix.matlab_version }} on Windows
 
