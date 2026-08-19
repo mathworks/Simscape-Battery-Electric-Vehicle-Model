@@ -135,7 +135,7 @@ classdef unittest_BEVProject_settings < matlab.unittest.TestCase
 
       % These are the two files.
       verifyEqual(testcase, nnz(endsWith(files, "atProjectStartUp.m")), 1)
-      verifyEqual(testcase, nnz(endsWith(files, "BEVProject_Description.html")), 1)
+      verifyEqual(testcase, nnz(endsWith(files, "openProjectDescription.m")), 1)
     end  % function
 
     % -------------------------------------------------------------------------
