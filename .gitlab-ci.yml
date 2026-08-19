@@ -1,0 +1,20 @@
+# GitLab CI configuration file
+
+# Copyright 2026 The MathWorks, Inc.
+
+variables:
+  LOCATION: "AH"
+
+26a-test:
+  stage: test
+  tags:
+    - long-jobs
+  script:
+    - mw -using BR2026ad matlab -nodesktop -batch "openProject(pwd); buildtool -buildFile buildfile.m -verbosity Verbose Test"
+
+25b-test:
+  stage: test
+  tags:
+    - long-jobs
+  script:
+    - mw -using BR2025bd matlab -nodesktop -batch "openProject(pwd); buildtool -buildFile buildfile.m -verbosity Verbose Test"
