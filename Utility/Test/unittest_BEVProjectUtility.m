@@ -61,7 +61,7 @@ classdef unittest_BEVProjectUtility < matlab.unittest.TestCase
     end  % function
 
     function PassingTest_3(~)
-      reportProjectStats
+      reportProjectStats_live
     end  % function
 
   end  % methods
