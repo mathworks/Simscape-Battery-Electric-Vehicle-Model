@@ -1,6 +1,6 @@
 # Battery Electric Vehicle Model in Simscape&trade;
 
-Version 5.0.0
+Version 5.0.1
 
 [![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml)
 [![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml)
@@ -47,7 +47,7 @@ Simple drive pattern simulation result:
  alt="Screenshot of the simulation results from BEV basic model with a simple drive pattern"
  width="700">
 
-Use **BEV Project Navigator App** to quickly access some key files and tools.
+Use **BEV Project Navigation App** to quickly access some key files and tools.
 
 <img src="media/screenshot-BEVProjectNavigationApp.png"
  alt="Screenshot of the BEV project navigation app"

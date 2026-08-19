@@ -11,4 +11,9 @@ The default namespace in the MUS is `mus*`, but it was changed to avoid namespac
 
 [modutilssc]: https://github.com/isaacito12/modutil-simscape
 
+## Project Startup
+
+The project automatically runs MATLAB code during startup.
+See the Project Settings > Task Automation > Startup files.
+
 _Copyright 2026 The MathWorks, Inc._
