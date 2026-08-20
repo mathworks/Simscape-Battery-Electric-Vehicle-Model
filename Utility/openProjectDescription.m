@@ -7,4 +7,9 @@
 
 % Copyright 2026 The MathWorks, Inc.
 
-web("BEVProject_Description.html")
+% !todo: Use web, ocne the issue is resolved.
+% In MATLAB Online, the web command attempts to use the HTML Viewer, but
+% the page can be empty there. For now, use the open command.
+% The page opens in a new tab in the system web browser.
+open("BEVProject_Description.html")
+% web("BEVProject_Description.html")
