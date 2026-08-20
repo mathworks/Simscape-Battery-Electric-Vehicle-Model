@@ -159,7 +159,7 @@ classdef unittest_ElevationProfile_RoadGradeProfile < matlab.unittest.TestCase
 
       sim_result = evalin("base", "result");
 
-      verifyTrue(testcase, all(sim_result.("Curvilinear speed") == 1))
+      verifyTrue(testcase, all(sim_result.("Vehicle speed") == 1))
       verifyTrue(testcase, all(sim_result.("Elevation") == 0))
       verifyTrue(testcase, all(sim_result.("Grade percent") == 0))
       verifyTrue(testcase, all(sim_result.("Incline angle") == 0))
@@ -190,7 +190,7 @@ classdef unittest_ElevationProfile_RoadGradeProfile < matlab.unittest.TestCase
 
       sim_result = evalin("base", "result");
 
-      verifyTrue(testcase, all(sim_result.("Curvilinear speed") == 1))
+      verifyTrue(testcase, all(sim_result.("Vehicle speed") == 1))
       verifyTrue(testcase, all(sim_result.("Grade percent") == 1))  %!test-target
 
       % Constant road grade throughout the simulation.
@@ -225,7 +225,7 @@ classdef unittest_ElevationProfile_RoadGradeProfile < matlab.unittest.TestCase
 
       sim_result = evalin("base", "result");
 
-      verifyTrue(testcase, all(sim_result.("Curvilinear speed") == 1))
+      verifyTrue(testcase, all(sim_result.("Vehicle speed") == 1))
       verifyTrue(testcase, all(sim_result.("Grade percent") == 2))  %!test-target
 
       % Constant road grade throughout the simulation.
@@ -260,7 +260,7 @@ classdef unittest_ElevationProfile_RoadGradeProfile < matlab.unittest.TestCase
 
       sim_result = evalin("base", "result");
 
-      verifyTrue(testcase, all(sim_result.("Curvilinear speed") == 1))
+      verifyTrue(testcase, all(sim_result.("Vehicle speed") == 1))
       verifyTrue(testcase, all(sim_result.("Grade percent") == 40))  %!test-target
 
       % Constant road grade throughout the simulation.
@@ -296,7 +296,7 @@ classdef unittest_ElevationProfile_RoadGradeProfile < matlab.unittest.TestCase
 
       sim_result = evalin("base", "result");
 
-      verifyTrue(testcase, all(sim_result.("Curvilinear speed") == 1))
+      verifyTrue(testcase, all(sim_result.("Vehicle speed") == 1))
       verifyTrue(testcase, all(sim_result.("Grade percent") == -3))  %!test-target
 
       % Constant road grade throughout the simulation.
