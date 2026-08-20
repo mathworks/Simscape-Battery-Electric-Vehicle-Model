@@ -44,7 +44,8 @@ fprintf("Absolute difference (actual - expected): %g\n", absolute_difference) %[
 %%
 %[text] Visually inspect the simulation result.
 varnames = [
-"Curvilinear speed"
+"Vehicle speed"
+"Horizontal speed"
 "Grade percent"
 "Incline angle"
 "Elevation"

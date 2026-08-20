@@ -5,6 +5,8 @@ function result = buildElevationProfileFromRoadGradeProfileBlock(BlockPath, Name
 arguments (Input)
   BlockPath (1,1) string = ""
 
+  NameValuePair.UpdateModel (1,1) logical = false
+
   % Interpolation interval to build refined data
   NameValuePair.InterpolationInterval (1,1) simscape.Value {bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan} ...
     = simscape.Value(nan)
@@ -23,6 +25,12 @@ if BlockPath == ""
 
   throw(MException(id, msg))
 
+end  % if
+
+if NameValuePair.UpdateModel
+  % To get the most up-to-data data in block parameters which use base workspace variables,
+  % update the model before calling get_param with the "value@" format.
+  set_param(bdroot, SimulationCommand = "update")
 end  % if
 
 % !todo: check strict ascend

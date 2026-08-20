@@ -7,7 +7,7 @@
 % -----------------------------------------------------------------------------
 % Road grade profile
 
-RoadSurface.HorizontalDistance = simscape.Value([0 10 20, 30 40 50, 60 70 80, 90 100 110, 120 130 140], "m");
+RoadSurface.HorizontalDistance = simscape.Value([0 2 5, 20 30 80, 90 100 110, 120 130 200, 240 250 260], "m");
 RoadSurface.GradePercent = [0 0 0 3 3 3 0 0 0 -5 -5 -5 0 0 0];
 RoadSurface.LeftElevation = simscape.Value(0, "m");
 
@@ -16,5 +16,5 @@ initial.HorizontalPosition = simscape.Value(0, "m");
 % -----------------------------------------------------------------------------
 % Speed reference input
 
-InputLUT.SpeedReference.Time = simscape.Value([0 1 2, 7 9 10], "s");
-InputLUT.SpeedReference.Speed = simscape.Value([0 0 0, 40 40 40], "km/hr");
+InputLUT.SpeedReference.Time = simscape.Value([0 1 2, 12 13 14], "s");
+InputLUT.SpeedReference.Speed = simscape.Value([0 0 0, 30 30 30], "km/hr");

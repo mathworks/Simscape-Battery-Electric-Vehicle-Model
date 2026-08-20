@@ -6,6 +6,8 @@ arguments (Input)
 
   BlockPath (1,1) string = ""
 
+  NameValuePair.UpdateModel (1,1) logical = false
+
   % Interpolation interval (for visualization)
   NameValuePair.InterpolationInterval (1,1) simscape.Value {bevutil1.CodeUtil.mustBeSimscapeValuePositiveOrNan} ...
     = simscape.Value(nan)
@@ -32,12 +34,15 @@ end  % if
 
 refined_profile_data = buildElevationProfileFromRoadGradeProfileBlock( ...
   BlockPath, ...
+  UpdateModel = NameValuePair.UpdateModel, ...
   InterpolationInterval = NameValuePair.InterpolationInterval );
 
 fig = plotElevationAndRoadGradeProfiles( ...
   DataSource = "table", ...
   ProfileTable = refined_profile_data, ...
   PlotBaseData = NameValuePair.PlotBaseData );
+
+fig.Position(3:4) = [600 600];  % width height
 
 % fig.Children is a tiledlayout object.
 fig.Children.Title.String = replace(BlockPath, "/", " > ");

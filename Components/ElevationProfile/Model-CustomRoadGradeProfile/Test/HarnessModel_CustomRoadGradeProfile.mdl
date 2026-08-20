@@ -45,8 +45,8 @@ __MWOPC_PART_BEGIN__ /metadata/coreProperties.xml
   <dcterms:created xsi:type="dcterms:W3CDTF">2026-07-23T07:18:36Z</dcterms:created>
   <dc:creator>isaacito</dc:creator>
   <cp:lastModifiedBy>isaacito</cp:lastModifiedBy>
-  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-08-05T10:15:12Z</dcterms:modified>
-  <cp:revision>1.74</cp:revision>
+  <dcterms:modified xsi:type="dcterms:W3CDTF">2026-08-20T10:35:47Z</dcterms:modified>
+  <cp:revision>1.76</cp:revision>
   <cp:version>R2026a</cp:version>
 </cp:coreProperties>
 
@@ -189,13 +189,13 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
     <P Name="ModelUUID">81ac9f70-69bf-4c74-8f3d-36a9eb9730a4</P>
     <P Name="LastSavedArchitecture">win64</P>
     <UserParameters>
-      <P Name="PhysicalModelingChecksum">3615936954</P>
+      <P Name="PhysicalModelingChecksum">3583392094</P>
       <P Name="PhysicalModelingProducts">Simscape</P>
     </UserParameters>
     <ConfigManagerSettings>
       <P Name="ModifiedByFormat">%&lt;Auto&gt;</P>
       <P Name="ModifiedDateFormat">%&lt;Auto&gt;</P>
-      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.74&gt;</P>
+      <P Name="ModelVersionFormat">%&lt;AutoIncrement:1.76&gt;</P>
     </ConfigManagerSettings>
     <EditorSettings>
       <P Name="ShowPortUnits">on</P>
@@ -213,7 +213,7 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
         </Array>
       </Object>
       <Object PropName="InstrumentedSignals" ObjectID="2" ClassName="Simulink.HMI.InstrumentedSignals">
-        <Array PropName="Persistence" Type="Struct" Dimension="5*1">
+        <Array PropName="Persistence" Type="Struct" Dimension="6*1">
           <MATStruct>
             <Field Name="UUID" Class="char">909415fc-93ec-489f-b893-95549ec073ec</Field>
             <Field Name="BlockPath_" Class="char">From2</Field>
@@ -314,6 +314,26 @@ __MWOPC_PART_BEGIN__ /simulink/blockdiagram.xml
             </Array>
             <Field Name="VisualType_" Class="char"/>
           </MATStruct>
+          <MATStruct>
+            <Field Name="UUID" Class="char">206e077f-43b4-43f1-a2d7-155dc454f54a</Field>
+            <Field Name="BlockPath_" Class="char">From5</Field>
+            <Field Name="SID_" Class="char">33</Field>
+            <Field Name="SubPath_" Class="char"/>
+            <Field Name="OutputPortIndex_" Class="double">1.0</Field>
+            <Field Name="LogicalPortIndex_" Class="double">0.0</Field>
+            <Field Name="SignalName_" Class="char"/>
+            <Field Name="SubSysPath_" Class="char"/>
+            <Field Name="Decimation_" Class="double">1.0</Field>
+            <Field Name="MaxPoints_" Class="double">1024.0</Field>
+            <Field Name="TargetBufferedStreaming_" Class="double">0.0</Field>
+            <Field Name="IsFrameBased_" Class="double">0.0</Field>
+            <Field Name="HideInSDI_" Class="double">0.0</Field>
+            <Field Name="DomainType_" Class="char"/>
+            <Array PropName="DomainParams_" Type="Struct" Dimension="1*1">
+              <MATStruct/>
+            </Array>
+            <Field Name="VisualType_" Class="char"/>
+          </MATStruct>
         </Array>
       </Object>
     </SimulationSettings>
@@ -343,7 +363,7 @@ __MWOPC_PART_BEGIN__ /simulink/configSet0.xml
     <P Name="Version" Class="char">26.0.0</P>
     <Array PropName="Components" Type="Simulink.ConfigComponent" Dimension="10*1">
       <Object ObjectID="2" ClassName="Simulink.SolverCC">
-        <P Name="StopTime" Class="char">10000</P>
+        <P Name="StopTime" Class="char">100</P>
         <P Name="SolverName" Class="char">VariableStepAuto</P>
         <P Name="ODENIntegrationMethod" Class="char">ode3</P>
         <P Name="Version" Class="char">26.0.0</P>
@@ -578,6 +598,12 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
                 "Type":"LIBRARY_BLOCK"
             },
             {
+                "Path":"$bdroot\/Converter3",
+                "Reference":"nesl_utility\/PS-Simulink\nConverter",
+                "SID":"31",
+                "Type":"LIBRARY_BLOCK"
+            },
+            {
                 "Path":"$bdroot\/Curvilinear Speed",
                 "Reference":"fl_lib\/Physical Signals\/Sources\/PS Constant",
                 "SID":"2",
@@ -620,7 +646,7 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
                 "FullBlockPath":"$bdroot\/From3",
                 "LogSignal":true,
                 "MaxPoints":5000,
-                "SignalName":"Curvilinear speed"
+                "SignalName":"Vehicle speed"
             },
             {
                 "Decimation":2,
@@ -628,6 +654,13 @@ __MWOPC_PART_BEGIN__ /simulink/graphicalInterface.json
                 "LogSignal":true,
                 "MaxPoints":5000,
                 "SignalName":"Incline angle"
+            },
+            {
+                "Decimation":2,
+                "FullBlockPath":"$bdroot\/From5",
+                "LogSignal":true,
+                "MaxPoints":5000,
+                "SignalName":"Horizontal speed"
             }
         ]
     }
@@ -745,10 +778,10 @@ __MWOPC_PART_BEGIN__ /simulink/systems/system_root.xml
   <P Name="Location">[9, 11, 1003, 632]</P>
   <P Name="Open">on</P>
   <P Name="ReportName">simulink-default.rpt</P>
-  <P Name="SIDHighWatermark">30</P>
+  <P Name="SIDHighWatermark">34</P>
   <Block BlockType="Reference" Name="Converter" SID="3">
     <PortCounts out="1" lconn="1"/>
-    <P Name="Position">[270, 242, 285, 258]</P>
+    <P Name="Position">[270, 247, 285, 263]</P>
     <P Name="ZOrder">15</P>
     <P Name="BackgroundColor">automatic</P>
     <P Name="ShowName">off</P>
@@ -778,7 +811,7 @@ Converter</P>
   </Block>
   <Block BlockType="Reference" Name="Converter1" SID="13">
     <PortCounts out="1" lconn="1"/>
-    <P Name="Position">[270, 162, 285, 178]</P>
+    <P Name="Position">[270, 157, 285, 173]</P>
     <P Name="ZOrder">21</P>
     <P Name="BackgroundColor">automatic</P>
     <P Name="ShowName">off</P>
@@ -808,8 +841,38 @@ Converter</P>
   </Block>
   <Block BlockType="Reference" Name="Converter2" SID="19">
     <PortCounts out="1" lconn="1"/>
-    <P Name="Position">[270, 202, 285, 218]</P>
+    <P Name="Position">[270, 187, 285, 203]</P>
     <P Name="ZOrder">47</P>
+    <P Name="BackgroundColor">automatic</P>
+    <P Name="ShowName">off</P>
+    <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
+    <P Name="LibraryVersion">11.0</P>
+    <P Name="SourceBlock">nesl_utility/PS-Simulink
+Converter</P>
+    <P Name="SourceType">PS-Simulink
+Converter</P>
+    <InstanceData>
+      <P Name="RTWMemSecFuncInitTerm">Inherit from model</P>
+      <P Name="RTWMemSecFuncExecute">Inherit from model</P>
+      <P Name="RTWMemSecDataConstants">Inherit from model</P>
+      <P Name="RTWMemSecDataInternal">Inherit from model</P>
+      <P Name="RTWMemSecDataParameters">Inherit from model</P>
+      <P Name="ContentPreviewEnabled">on</P>
+      <P Name="PhysicalDomain">network_engine_domain</P>
+      <P Name="SubClassName">ps_output</P>
+      <P Name="LeftPortType">input</P>
+      <P Name="RightPortType">output</P>
+      <P Name="PseudoPeriodic">off</P>
+      <P Name="Frequencies">[]</P>
+      <P Name="VectorFormat">inherit</P>
+      <P Name="Unit">inherit</P>
+      <P Name="AffineConversion">off</P>
+    </InstanceData>
+  </Block>
+  <Block BlockType="Reference" Name="Converter3" SID="31">
+    <PortCounts out="1" lconn="1"/>
+    <P Name="Position">[270, 217, 285, 233]</P>
+    <P Name="ZOrder">5780</P>
     <P Name="BackgroundColor">automatic</P>
     <P Name="ShowName">off</P>
     <P Name="AttributesFormatString">%&lt;Unit&gt;</P>
@@ -858,7 +921,7 @@ Converter</P>
       <P Name="ClassName">constant</P>
       <P Name="SchemaVersion">1</P>
       <P Name="constant">1</P>
-      <P Name="constant_unit">ft/s</P>
+      <P Name="constant_unit">m/s</P>
       <P Name="constant_conf">compiletime</P>
     </InstanceData>
     <PortProperties>
@@ -868,7 +931,7 @@ Converter</P>
     </PortProperties>
   </Block>
   <Block BlockType="From" Name="From" SID="23">
-    <P Name="Position">[525, 183, 590, 207]</P>
+    <P Name="Position">[525, 213, 590, 237]</P>
     <P Name="ZOrder">5772</P>
     <P Name="ShowName">off</P>
     <P Name="GotoTag">elevation</P>
@@ -879,7 +942,7 @@ Converter</P>
     </PortProperties>
   </Block>
   <Block BlockType="From" Name="From1" SID="24">
-    <P Name="Position">[525, 273, 590, 297]</P>
+    <P Name="Position">[525, 303, 590, 327]</P>
     <P Name="ZOrder">5773</P>
     <P Name="ShowName">off</P>
     <P Name="GotoTag">hpos</P>
@@ -890,7 +953,7 @@ Converter</P>
     </PortProperties>
   </Block>
   <Block BlockType="From" Name="From2" SID="25">
-    <P Name="Position">[525, 213, 590, 237]</P>
+    <P Name="Position">[525, 243, 590, 267]</P>
     <P Name="ZOrder">5774</P>
     <P Name="ShowName">off</P>
     <P Name="GotoTag">grade</P>
@@ -907,12 +970,12 @@ Converter</P>
     <P Name="GotoTag">Vc</P>
     <PortProperties>
       <Port Type="out" Index="1">
-        <P Name="Name">Curvilinear speed</P>
+        <P Name="Name">Vehicle speed</P>
       </Port>
     </PortProperties>
   </Block>
   <Block BlockType="From" Name="From4" SID="29">
-    <P Name="Position">[525, 243, 590, 267]</P>
+    <P Name="Position">[525, 273, 590, 297]</P>
     <P Name="ZOrder">5778</P>
     <P Name="ShowName">off</P>
     <P Name="GotoTag">angle</P>
@@ -922,26 +985,38 @@ Converter</P>
       </Port>
     </PortProperties>
   </Block>
+  <Block BlockType="From" Name="From5" SID="33">
+    <P Name="Position">[525, 183, 590, 207]</P>
+    <P Name="ZOrder">5782</P>
+    <P Name="NameLocation">left</P>
+    <P Name="ShowName">off</P>
+    <P Name="GotoTag">Vh</P>
+    <PortProperties>
+      <Port Type="out" Index="1">
+        <P Name="Name">Horizontal speed</P>
+      </Port>
+    </PortProperties>
+  </Block>
   <Block BlockType="Goto" Name="Goto" SID="20">
-    <P Name="Position">[325, 238, 390, 262]</P>
+    <P Name="Position">[325, 243, 390, 267]</P>
     <P Name="ZOrder">5769</P>
     <P Name="ShowName">off</P>
     <P Name="GotoTag">grade</P>
   </Block>
   <Block BlockType="Goto" Name="Goto1" SID="21">
-    <P Name="Position">[325, 198, 390, 222]</P>
+    <P Name="Position">[325, 183, 390, 207]</P>
     <P Name="ZOrder">5770</P>
     <P Name="ShowName">off</P>
     <P Name="GotoTag">hpos</P>
   </Block>
   <Block BlockType="Goto" Name="Goto2" SID="22">
-    <P Name="Position">[325, 158, 390, 182]</P>
+    <P Name="Position">[325, 153, 390, 177]</P>
     <P Name="ZOrder">5771</P>
     <P Name="ShowName">off</P>
     <P Name="GotoTag">elevation</P>
   </Block>
   <Block BlockType="Goto" Name="Goto3" SID="26">
-    <P Name="Position">[30, 103, 95, 127]</P>
+    <P Name="Position">[30, 78, 95, 102]</P>
     <P Name="ZOrder">5775</P>
     <P Name="ShowName">off</P>
     <P Name="GotoTag">Vc</P>
@@ -951,6 +1026,12 @@ Converter</P>
     <P Name="ZOrder">5777</P>
     <P Name="ShowName">off</P>
     <P Name="GotoTag">angle</P>
+  </Block>
+  <Block BlockType="Goto" Name="Goto5" SID="32">
+    <P Name="Position">[325, 213, 390, 237]</P>
+    <P Name="ZOrder">5781</P>
+    <P Name="ShowName">off</P>
+    <P Name="GotoTag">Vh</P>
   </Block>
   <Block BlockType="CustomCallbackButton" Name="Plot elevation and grade profiles" SID="18">
     <P Name="Position">[117, 293, 227, 328]</P>
@@ -964,7 +1045,7 @@ Converter</P>
   </Block>
   <Block BlockType="SimscapeProbe" Name="Probe Curvilinear Speed" SID="17">
     <PortCounts out="1"/>
-    <P Name="Position">[-2, 140, 22, 165]</P>
+    <P Name="Position">[-2, 115, 22, 140]</P>
     <P Name="ZOrder">23</P>
     <P Name="BlockRotation">270</P>
     <P Name="HideAutomaticName">off</P>
@@ -981,7 +1062,7 @@ Converter</P>
     <P Name="Variables">{&quot;incline_angle_x&quot;:{&quot;Probing&quot;:&quot;ON&quot;}}</P>
   </Block>
   <Block BlockType="SimscapeComponentBlock" Name="Road" SID="1">
-    <PortCounts lconn="1" rconn="3"/>
+    <PortCounts lconn="1" rconn="4"/>
     <P Name="Position">[115, 151, 230, 269]</P>
     <P Name="ZOrder">13</P>
     <P Name="BackgroundColor">automatic</P>
@@ -998,60 +1079,66 @@ Converter</P>
     <P Name="ClassName">RoadGradeProfile</P>
     <P Name="SchemaVersion">1</P>
     <P Name="x_vector">[ -1 0 1 ]</P>
-    <P Name="x_vector_unit">m</P>
+    <P Name="x_vector_unit">km</P>
     <P Name="x_vector_conf">compiletime</P>
-    <P Name="grade_vector">[ -3 -3 -3 ]</P>
+    <P Name="grade_vector">[ 0 0 0 ]</P>
     <P Name="grade_vector_unit">1</P>
     <P Name="grade_vector_conf">compiletime</P>
     <P Name="profile_interp_method">simscape.enum.interpolation.linear</P>
     <P Name="profile_interp_method_unit">1</P>
     <P Name="profile_interp_method_conf">compiletime</P>
-    <P Name="left_elevation">100</P>
-    <P Name="left_elevation_unit">ft</P>
+    <P Name="left_elevation">0</P>
+    <P Name="left_elevation_unit">m</P>
     <P Name="left_elevation_conf">compiletime</P>
-    <P Name="initial_position">2000</P>
-    <P Name="initial_position_unit">ft</P>
+    <P Name="initial_position">0</P>
+    <P Name="initial_position_unit">m</P>
     <P Name="initial_position_conf">compiletime</P>
     <PortProperties>
       <Port Type="lconn" Index="1">
         <P Name="Rotation">0.0</P>
         <P Name="Position">[111, 210]</P>
         <P Name="ConnectionType">network_engine_domain.input</P>
-        <P Name="PortId">Vs</P>
+        <P Name="PortId">Vc</P>
       </Port>
       <Port Type="rconn" Index="1">
         <P Name="Rotation">0.0</P>
-        <P Name="Position">[234, 170]</P>
+        <P Name="Position">[234, 165]</P>
         <P Name="ConnectionType">network_engine_domain.output</P>
         <P Name="PortId">elevation</P>
       </Port>
       <Port Type="rconn" Index="2">
         <P Name="Rotation">0.0</P>
-        <P Name="Position">[234, 210]</P>
+        <P Name="Position">[234, 195]</P>
         <P Name="ConnectionType">network_engine_domain.output</P>
         <P Name="PortId">horizontal_position</P>
       </Port>
       <Port Type="rconn" Index="3">
         <P Name="Rotation">0.0</P>
-        <P Name="Position">[234, 250]</P>
+        <P Name="Position">[234, 225]</P>
+        <P Name="ConnectionType">network_engine_domain.output</P>
+        <P Name="PortId">horizontal_speed</P>
+      </Port>
+      <Port Type="rconn" Index="4">
+        <P Name="Rotation">0.0</P>
+        <P Name="Position">[234, 255]</P>
         <P Name="ConnectionType">network_engine_domain.output</P>
         <P Name="PortId">grade_pct_x</P>
       </Port>
     </PortProperties>
   </Block>
-  <Block BlockType="Scope" Name="Scope1" SID="7">
-    <PortCounts in="5"/>
-    <P Name="Position">[715, 144, 760, 306]</P>
+  <Block BlockType="Scope" Name="Scope" SID="7">
+    <PortCounts in="6"/>
+    <P Name="Position">[715, 142, 755, 338]</P>
     <P Name="ZOrder">19</P>
     <P Name="HideAutomaticName">off</P>
-    <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true,true,true,true,true],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5,1.5,1.5,1.5],&quot;BarWidth&quot;:[0.9,0.9,0.9,0.9,0.9],&quot;LineColor&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1,1,1,1,1],&quot;LineEdgeAlpha&quot;:[1,1,1,1,1],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803]],&quot;ChannelNames&quot;:&quot;&quot;,&quot;DefaultLegendLabel&quot;:[&quot;Curvilinear speed&quot;,&quot;Elevation&quot;,&quot;Grade percent&quot;,&quot;Incline angle&quot;,&quot;Horizontal position&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[1,1,1,1,1],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;Curvilinear speed&quot;,&quot;Elevation&quot;,&quot;Grade percent&quot;,&quot;Incline angle&quot;,&quot;Horizontal position&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:0,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Auto&quot;,&quot;ExpandOnly&quot;:false,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:true,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[5,1],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:13244.940914626624,&quot;MaxYLimReal&quot;:13244.940914626624,&quot;MinYLimMag&quot;:750.5621205970419,&quot;MinYLimReal&quot;:750.5621205970419,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:1.1,&quot;MaxYLimReal&quot;:1.1,&quot;MinYLimMag&quot;:0.9,&quot;MinYLimReal&quot;:0.9,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:105.82373972334577,&quot;MaxYLimReal&quot;:8.42485996926064,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-105.82373972334577,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:1},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:4,&quot;MaxYLimReal&quot;:-2,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-4,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:2},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:2.7183580016554574,&quot;MaxYLimReal&quot;:-0.7183580016554572,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-2.7183580016554574,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:3},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:13244.940914626624,&quot;MaxYLimReal&quot;:13244.940914626624,&quot;MinYLimMag&quot;:750.5621205970419,&quot;MinYLimReal&quot;:750.5621205970419,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:4}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
+    <P Name="GraphicalSettings">{&quot;Style&quot;:{&quot;BackgroundColor&quot;:[0.12941176470588237,0.12941176470588237,0.12941176470588237],&quot;AxesColor&quot;:[0.07058823529411765,0.07058823529411765,0.07058823529411765],&quot;LabelsColor&quot;:[0.8509803921568627,0.8509803921568627,0.8509803921568627],&quot;PreserveColors&quot;:false,&quot;Visible&quot;:[true,true,true,true,true,true],&quot;LineStyle&quot;:[&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;,&quot;-&quot;],&quot;LineWidth&quot;:[1.5,1.5,1.5,1.5,1.5,1.5],&quot;BarWidth&quot;:[0.9,0.9,0.9,0.9,0.9,0.9],&quot;LineColor&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;],&quot;LineFaceAlpha&quot;:[1,1,1,1,1,1],&quot;LineEdgeAlpha&quot;:[1,1,1,1,1,1],&quot;Marker&quot;:[&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;,&quot;none&quot;],&quot;FontSize&quot;:8.5,&quot;LineTrueColor&quot;:[[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[1,0.9098039215686274,0.39215686274509803],[0.14901960784313725,0.5490196078431373,0.8666666666666667]],&quot;ChannelNames&quot;:&quot;&quot;,&quot;DefaultLegendLabel&quot;:[&quot;Vehicle speed&quot;,&quot;Horizontal speed&quot;,&quot;Elevation&quot;,&quot;Grade percent&quot;,&quot;Incline angle&quot;,&quot;Horizontal position&quot;],&quot;PlotType&quot;:&quot;Auto&quot;,&quot;NumLinesForDisplays&quot;:[1,1,1,1,2],&quot;OffsetView&quot;:true,&quot;LineLabels&quot;:[&quot;Vehicle speed&quot;,&quot;Horizontal speed&quot;,&quot;Elevation&quot;,&quot;Grade percent&quot;,&quot;Incline angle&quot;,&quot;Horizontal position&quot;],&quot;MinimizeControls&quot;:false,&quot;LineCache&quot;:null},&quot;MeasurementChannel&quot;:0,&quot;AxesScalingProperties&quot;:{&quot;AxesScaling&quot;:&quot;Auto&quot;,&quot;ExpandOnly&quot;:false,&quot;AxesScalingNumUpdates&quot;:10,&quot;ScaleAxesLimitsAtStop&quot;:true,&quot;YAxisDataRange&quot;:80,&quot;AlignYAxis&quot;:&quot;Center&quot;,&quot;AutoScaleXAxisLimits&quot;:false,&quot;XAxisDataRange&quot;:100,&quot;AlignXAxis&quot;:&quot;Center&quot;},&quot;DisplayProperties&quot;:{&quot;DisplayLayoutDimensions&quot;:[5,1],&quot;DisplayPropertyDefaults&quot;:{&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:13244.940914626624,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:750.5621205970419,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},&quot;DisplayContentCache&quot;:{&quot;Title&quot;:&quot;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0},&quot;SerializedDisplays&quot;:[{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:1.1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:0.9,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:0},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:8.42485996926064,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-105.82373972334577,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:1},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:-2,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-4,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:2},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:-0.7183580016554572,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-2.7183580016554574,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:1,&quot;ShowContent&quot;:1,&quot;Placement&quot;:3},{&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;LinePropertiesCache&quot;:{},&quot;UserDefinedChannelNames&quot;:{},&quot;PlotMagPhase&quot;:0,&quot;MaxYLimMag&quot;:10,&quot;MaxYLimReal&quot;:13244.940914626624,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:750.5621205970419,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;YLabel&quot;:&quot;&quot;,&quot;NumLines&quot;:2,&quot;ShowContent&quot;:1,&quot;Placement&quot;:4}],&quot;ColorOrder&quot;:[&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;,&quot;auto&quot;]}}</P>
     <P Name="WindowPosition">[1008.000000,653.000000,578.000000,739.000000,]</P>
     <P Name="Visible">on</P>
     <P Name="ScopeFrameLocation">window</P>
     <P Name="WasSavedAsWebScope">on</P>
     <P Name="Floating">off</P>
-    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:1.1,&quot;MaxYLimReal&quot;:1.1,&quot;MinYLimMag&quot;:0.9,&quot;MinYLimReal&quot;:0.9,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:105.82373972334577,&quot;MaxYLimReal&quot;:8.42485996926064,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-105.82373972334577,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:4,&quot;MaxYLimReal&quot;:-2,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-4,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:2.7183580016554574,&quot;MaxYLimReal&quot;:-0.71835800165545716,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-2.7183580016554574,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:13244.940914626624,&quot;MaxYLimReal&quot;:13244.940914626624,&quot;MinYLimMag&quot;:750.56212059704194,&quot;MinYLimReal&quot;:750.56212059704194,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
-    <P Name="NumInputPorts">5</P>
+    <P Name="MultipleDisplayCache">[{&quot;MaxYLimMag&quot;:1.1,&quot;MaxYLimReal&quot;:1.1,&quot;MinYLimMag&quot;:0.9,&quot;MinYLimReal&quot;:0.9,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:1.1,&quot;MaxYLimReal&quot;:1.1,&quot;MinYLimMag&quot;:0.9,&quot;MinYLimReal&quot;:0.9,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:1,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:1,&quot;MaxYLimReal&quot;:1,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-1,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;},{&quot;MaxYLimMag&quot;:112.5,&quot;MaxYLimReal&quot;:112.5,&quot;MinYLimMag&quot;:0,&quot;MinYLimReal&quot;:-12.499999999999996,&quot;PlotAsMagnitudePhase&quot;:false,&quot;ShowGrid&quot;:true,&quot;ShowLegend&quot;:false,&quot;Title&quot;:&quot;%&lt;SignalLabel&gt;&quot;,&quot;YLabel&quot;:&quot;&quot;}]</P>
+    <P Name="NumInputPorts">6</P>
     <P Name="LayoutDimensionsString">[5,1]</P>
     <P Name="AxesScaling">Auto</P>
     <P Name="ActiveDisplayYMinimum">0.9</P>
@@ -1060,7 +1147,7 @@ Converter</P>
   </Block>
   <Block BlockType="Reference" Name="Solver Configuration" SID="10">
     <PortCounts rconn="1"/>
-    <P Name="Position">[270, 286, 315, 304]</P>
+    <P Name="Position">[270, 291, 315, 309]</P>
     <P Name="ZOrder">20</P>
     <P Name="BlockMirror">on</P>
     <P Name="NameLocation">right</P>
@@ -1133,13 +1220,13 @@ Configuration</P>
     </InstanceData>
   </Block>
   <Line LineType="Connection">
-    <P Name="ZOrder">1</P>
-    <P Name="Src">2#rconn:1</P>
-    <P Name="Dst">1#lconn:1</P>
+    <P Name="ZOrder">59</P>
+    <P Name="Src">1#lconn:1</P>
+    <P Name="Dst">2#rconn:1</P>
   </Line>
   <Line LineType="Connection">
     <P Name="ZOrder">3</P>
-    <P Name="Src">1#rconn:3</P>
+    <P Name="Src">1#rconn:4</P>
     <P Name="Points">[4, 0]</P>
     <Branch ConnectType="DEST_DEST">
       <P Name="Src">10#rconn:1</P>
@@ -1159,14 +1246,14 @@ Configuration</P>
     <P Name="ZOrder">40</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">25#out:1</P>
-    <P Name="Dst">7#in:3</P>
+    <P Name="Dst">7#in:4</P>
   </Line>
   <Line>
     <P Name="Name">Horizontal position</P>
     <P Name="ZOrder">42</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">24#out:1</P>
-    <P Name="Dst">7#in:5</P>
+    <P Name="Dst">7#in:6</P>
   </Line>
   <Line LineType="Connection">
     <P Name="ZOrder">27</P>
@@ -1193,7 +1280,7 @@ Configuration</P>
     <P Name="ZOrder">43</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">23#out:1</P>
-    <P Name="Dst">7#in:2</P>
+    <P Name="Dst">7#in:3</P>
   </Line>
   <Line>
     <P Name="ZOrder">49</P>
@@ -1202,7 +1289,7 @@ Configuration</P>
     <P Name="Dst">26#in:1</P>
   </Line>
   <Line>
-    <P Name="Name">Curvilinear speed</P>
+    <P Name="Name">Vehicle speed</P>
     <P Name="ZOrder">50</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">27#out:1</P>
@@ -1218,8 +1305,39 @@ Configuration</P>
     <P Name="ZOrder">53</P>
     <P Name="Labels">[-1, 0]</P>
     <P Name="Src">29#out:1</P>
-    <P Name="Dst">7#in:4</P>
+    <P Name="Dst">7#in:5</P>
   </Line>
+  <Line LineType="Connection">
+    <P Name="ZOrder">56</P>
+    <P Name="Src">1#rconn:3</P>
+    <P Name="Dst">31#lconn:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">57</P>
+    <P Name="Src">31#out:1</P>
+    <P Name="Dst">32#in:1</P>
+  </Line>
+  <Line>
+    <P Name="Name">Horizontal speed</P>
+    <P Name="ZOrder">58</P>
+    <P Name="Labels">[-1, 0]</P>
+    <P Name="Src">33#out:1</P>
+    <P Name="Dst">7#in:2</P>
+  </Line>
+  <Annotation SID="34">
+    <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body align=&quot;left&quot; style=&quot; font-family:&apos;Helvetica&apos;; font-size:10px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p align=&quot;left&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14px;&quot;&gt;Vehicle speed&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</P>
+    <P Name="Position">[-62, 163, 27, 181]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="Interpreter">rich</P>
+    <P Name="ZOrder">-1</P>
+  </Annotation>
   <Annotation SID="15">
     <P Name="Name">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -1264,6 +1382,13 @@ li.checked::marker { content: &quot;\2612&quot;; }
     <P Name="Interpreter">rich</P>
     <P Name="ZOrder">-2</P>
   </Annotation>
+  <Connector>
+    <P Name="Annotation">34</P>
+    <P Name="Target">Block:2</P>
+    <P Name="MarkupType">model</P>
+    <P Name="StrokeWidth">2</P>
+    <P Name="Color">[0.000000, 0.000000, 0.700000]</P>
+  </Connector>
 </System>
 
 __MWOPC_PART_BEGIN__ /simulink/windowsInfo.xml

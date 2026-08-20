@@ -1,6 +1,6 @@
 # Battery Electric Vehicle Model in Simscape&trade;
 
-Version 5.0.1
+Version 5.0.2
 
 [![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-linux.yml)
 [![MATLAB](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml/badge.svg)](https://github.com/mathworks/Simscape-Battery-Electric-Vehicle-Model/actions/workflows/ci-windows.yml)
@@ -103,6 +103,19 @@ The script contains the description of the model and
 hyperlinks to models and scripts.
 
 ## How to Use in MATLAB Online
+
+### From the File Exchange site
+
+Visit the File Exchange page of this project.
+
+- https://www.mathworks.com/matlabcentral/fileexchange/82250
+
+Then click the "Open in MATLAB Online" button.
+If your MATLAB Online already has the previous versions of this project,
+a dialog will appear asking if you want to use the existing one
+or to get a copy of the new version.
+
+### From your local machine
 
 1. Upload the zip archive of
 the project to [MATLAB drive][url_drive].

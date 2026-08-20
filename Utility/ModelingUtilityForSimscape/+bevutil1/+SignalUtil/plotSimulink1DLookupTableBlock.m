@@ -1,9 +1,10 @@
 function ReturnFigure = plotSimulink1DLookupTableBlock(BlockPath, NameValuePair)
 
-% Copyright 2025 The MathWorks, Inc.
+% Copyright 2025-2026 The MathWorks, Inc.
 
 arguments (Input)
   BlockPath (1,1) string
+  NameValuePair.UpdateModel (1,1) logical = false
   NameValuePair.ParentAxes (1,:) matlab.graphics.axis.Axes
   NameValuePair.DivisionType {mustBeMember(NameValuePair.DivisionType, ["Divisions", "InterpolationInterval"])} = "Divisions"
   NameValuePair.Divisions (1,:) {mustBeInteger, mustBePositive} = 200
@@ -28,6 +29,12 @@ if not(bevutil1.ModelUtil.isSimulink1DLookupTableBlock(BlockPath))
 
   throw(MException(id, msg))
 
+end  % if
+
+if NameValuePair.UpdateModel
+  % To get the most up-to-data data in block parameters which use base workspace variables,
+  % update the model before calling get_param with the "value@" format.
+  set_param(bdroot, SimulationCommand = "update")
 end  % if
 
 x_data = get_param(BlockPath, "value@BreakpointsForDimension1");

@@ -115,7 +115,7 @@ if isfield(NameValuePair, "ParentAxes")
   ax = NameValuePair.ParentAxes;
   tl = tiledlayout(ax.Parent, 2, 1, TileSpacing="tight");
 else
-  fig = figure;
+  fig = figure(WindowStyle="normal");
   if not(isMATLABReleaseOlderThan("R2025a"))
     fig.Theme = NameValuePair.Theme;
     fig.ThemeMode = NameValuePair.ThemeMode;

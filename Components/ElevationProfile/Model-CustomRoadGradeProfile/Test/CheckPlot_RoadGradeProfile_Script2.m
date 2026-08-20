@@ -6,7 +6,8 @@ result = extractTimetable(sim_out.logsout);
 varnames = [
 "Grade percent"
 "Incline angle"
-"Curvilinear speed"
+"Vehicle speed"
+"Horizontal speed"
 "Horizontal position"
 "Elevation"
 ];

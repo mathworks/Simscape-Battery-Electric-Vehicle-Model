@@ -2,14 +2,14 @@ component RoadGradeProfile
   % Road Grade Profile
   % This block computes road grade percent value at the current horizontal position
   % of a vehicle from the road grade profile parameter and the current vehicle speed.
-  % Input to this block is curvilinear speed Vs, which is a longitudinal speed
+  % Input to this block is curvilinear speed Vc, which is a longitudinal speed
   % parallel to the road surface.
   %
-  % Horizontal speed Vx at x is obtained from Vs via Vx = Vs*cos(theta) where
+  % Horizontal speed Vh at x is obtained from Vc via Vh = Vc*cos(theta) where
   % theta is the road incline angle at x and is computed from road grade gamma by
   % theta = atan(gamma).
   %
-  % Elevation z at x is computed from Vs by z = Vs*sin(theta).
+  % Elevation z at x is computed from Vc by z = Vc*sin(theta).
 
   % Copyright 2026 The MathWorks, Inc.
 
@@ -39,12 +39,14 @@ component RoadGradeProfile
 
   inputs
     % Curvilinear speed at horizontal position x
-    Vs = { 0 "m/s" }  % Spd
+    Vc = { 0 "m/s" }  % Spd
   end
   outputs
     elevation  % E
 
     horizontal_position  % X
+
+    horizontal_speed  % Vh
 
     % Road grade (percent) at horizontal position x
     grade_pct_x  % PG
@@ -75,8 +77,10 @@ component RoadGradeProfile
   end  % annotations
 
   equations
-    der(x) == Vs*cos(incline_angle_x)
-    der(z) == Vs*sin(incline_angle_x)
+    horizontal_speed == Vc*cos(incline_angle_x)
+    der(x) == horizontal_speed
+
+    der(z) == Vc*sin(incline_angle_x)
 
     % Outputs
     elevation == z
